@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-009
 title: "Failure Museum Product Specification"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 
@@ -39,3 +39,7 @@ Show that DRL treats failures as research evidence and regression assets.
 - GPU cold start created confusing blank state.
 
 Failures are never fabricated for atmosphere and never expose private user data.
+
+## Current records
+
+- [`CI-0001: Duplicate pnpm Version Sources`](../10-research/failures/CI-0001-DUPLICATE-PNPM-VERSION.md)

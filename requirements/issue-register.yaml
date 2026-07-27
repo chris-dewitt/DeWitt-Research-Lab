@@ -74,10 +74,12 @@ issues:
     evidence_owner: Program Director
     labels: [research, failure-museum]
     title: Publish first real failure record
-    status: READY
+    status: EVIDENCE_READY
     dependencies: [DRL-004]
     body: .github/ISSUE_BODIES/DRL-006.md
     requirements: [DRL-EVL-008, DRL-WEB-009]
+    evidence:
+      - docs/10-research/failures/CI-0001-DUPLICATE-PNPM-VERSION.md
   - id: DRL-007
     milestone: M2
     mission: 7

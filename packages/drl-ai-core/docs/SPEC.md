@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PKG-002
 title: "DRL AI Core Package"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-07-27
@@ -52,7 +52,10 @@ The package is not permission to centralize unrelated project logic, add hidden 
   development and CI.
 - `gateway`: disclosed primary/fallback routing that rejects silent closed-weight
   substitution on open-weight paths.
-- `structured_output`: schema-constrained parse/repair with bounded attempts and trace evidence.
+- `structured_output`: schema-constrained parse/repair with bounded attempts and
+  content-minimized trace evidence. Untrusted model text is never elevated into
+  system/policy instructions during repair; `$schema`/`$id` on instances cannot
+  redefine the fixed control-plane schema; repair budgets are hard caps.
 - `execution`: deadlines, cancellation, retry budgets, circuit breakers, and idempotency declarations.
 - `telemetry`: content-minimized logs/traces/metrics and correlation propagation.
 - `provenance`: source/artifact/claim binding helpers.

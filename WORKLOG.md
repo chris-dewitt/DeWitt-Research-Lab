@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-07-27
@@ -16,8 +16,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete; Mission 00/01 CI repair and DRL-005 merged.
-- Active mission: **07 Atticus Runtime** — DRL-007 open-weight provider interface.
+- Foundation generation: complete; Mission 00/01 CI repair and DRL-005/007 merged.
+- Active mission: **07 Atticus Runtime** — DRL-008 structured-output validation.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
@@ -28,7 +28,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 |---|---|---|---|---|---|
 | 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
-| 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | IN REVIEW | PR #9 |
+| 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
+| 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | IN REVIEW | TBD |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -155,3 +156,17 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   rejection, unpaid demo preserved
 - DIR-004 unchanged: no upstream model brand selected
 - Handoff: `agents/handoffs/2026-07-27-drl-007.md`
+
+### 2026-07-27 — DRL-008 structured-output validation and bounded repair
+
+- Branch: `cursor/drl-008-structured-output-repair-ad29`
+- Added `StructuredOutputValidator` with JSON Schema draft 2020-12 validation,
+  nested JSON extraction, bounded repair via `ModelProvider`, and
+  content-minimized trace events
+- Injection markers in model text are observed as data only; `$schema`/`$id`
+  cannot redefine the fixed control-plane schema; repair budgets fail closed
+- Atticus helper: `TOOL_CALL_PLAN_SCHEMA` / `build_tool_plan_validator`
+- Tests: malformed output, schema failure, repair success, budget exhaustion,
+  injection/schema-strip, additionalProperties deny
+- Requirements evidence: DRL-SEC-007, DRL-SYS-004 (partial in matrix)
+- Handoff: `agents/handoffs/2026-07-27-drl-008.md`

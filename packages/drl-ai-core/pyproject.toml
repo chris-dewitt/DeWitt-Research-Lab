@@ -1,9 +1,11 @@
 [project]
 name = "drl-ai-core"
-version = "0.2.0"
+version = "0.3.0"
 description = "Shared deterministic AI infrastructure for DeWitt Research Laboratory"
 requires-python = ">=3.12,<3.14"
-dependencies = []
+dependencies = [
+  "jsonschema>=4.0",
+]
 
 [build-system]
 requires = ["hatchling"]

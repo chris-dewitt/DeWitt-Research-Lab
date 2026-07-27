@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ARC-005
 title: "Model Gateway, Routing, and Fallback Architecture"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 
@@ -22,6 +22,15 @@ last_updated: 2026-07-26
 - timeout, retry, and fallback policy;
 - usage and quality telemetry;
 - content-minimized caching where allowed.
+
+## Structured-output enforcement
+
+Invalid or malformed model JSON is validated against a fixed control-plane
+schema (`drl_ai_core.structured_output`). Repair is bounded and discloses
+attempts in the trace. Injection-like markers inside model text are treated as
+data only and cannot rewrite schema, policy, or system prompts. Exhausted
+repair budgets fail closed with a typed error rather than accepting partial
+plans.
 
 ## Routing policy
 

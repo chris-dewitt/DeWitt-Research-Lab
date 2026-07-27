@@ -112,10 +112,14 @@ issues:
     evidence_owner: Atticus Runtime
     labels: [atticus, security]
     title: Implement structured-output validation and bounded repair
-    status: QUEUED
+    status: IN_REVIEW
     dependencies: [DRL-007]
     body: .github/ISSUE_BODIES/DRL-008.md
     requirements: [DRL-SEC-007, DRL-SYS-004]
+    evidence:
+      - packages/drl-ai-core/src/drl_ai_core/structured_output.py
+      - services/atticus-control-plane/src/atticus_control_plane/structured_plans.py
+      - tests/test_structured_output.py
   - id: DRL-009
     milestone: M2
     mission: 9

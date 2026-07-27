@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PKG-001
 title: "DRL Protocol Package"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # DRL Protocol Package
@@ -48,6 +48,8 @@ The package is not permission to centralize unrelated project logic, add hidden 
 
 - `schemas`: package and resolve the canonical schema bundle.
 - `models`: generated/verified Python and TypeScript types.
+- `state_machine`: legal Atticus `RunState` transitions, terminal-state helpers,
+  and illegal-transition rejection used by orchestrators and contract tests.
 - `validation`: strict validation with typed path-aware errors.
 - `canonical`: canonical JSON profile and `sha256:` digest helpers.
 - `compatibility`: compare old/new schemas and supported-version matrix.

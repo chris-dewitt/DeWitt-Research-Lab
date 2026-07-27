@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-001
 title: "Specification Map and Authority Index"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 
@@ -45,6 +45,12 @@ This document tells agents where requirements live and prevents the “same rule
 | Open-source operations | `docs/09-open-source/OPEN_SOURCE_PROGRAM.md` |
 | Agent sequence | `agents/SEQUENTIAL_EXECUTION_PLAN.md` |
 | V1 acceptance | `docs/12-acceptance/V1_RELEASE_CRITERIA.md` |
+| Current-state baseline | `docs/00-program/CURRENT_STATE_BASELINE.md` |
+| Critical path gates | `docs/00-program/CRITICAL_PATH_AND_GATES.md` |
+| First sprint plan | `docs/00-program/FIRST_SPRINT_PLAN.md` |
+| ADR / Director queue | `docs/00-program/ADR_APPROVAL_QUEUE.md` |
+| Weekly release dashboard | `docs/00-program/RELEASE_DASHBOARD.md` |
+| Issue register | `requirements/issue-register.yaml` and `.github/ISSUE_BODIES/` |
 
 ## Change rule
 

@@ -1,0 +1,321 @@
+schema_version: 1.0.0
+generated_at: '2026-07-27'
+description: >
+  Machine-readable GitHub issue register for Mission 00. Each issue maps to
+  exactly one primary mission and one evidence owner. Bodies live under
+  .github/ISSUE_BODIES/.
+milestones:
+  - id: M1
+    title: "M1: Repository Online and Trusted"
+    due_day: 14
+  - id: M2
+    title: "M2: Atticus Local Alpha"
+    due_day: 35
+  - id: M3
+    title: "M3: Integrated Research Alpha"
+    due_day: 63
+  - id: M4
+    title: "M4: Public Laboratory Preview"
+    due_day: 90
+issues:
+  - id: DRL-001
+    milestone: M1
+    mission: 0
+    evidence_owner: Program Director
+    labels: [program, governance]
+    title: Initialize repository and protected branches
+    status: READY
+    dependencies: []
+    body: .github/ISSUE_BODIES/DRL-001.md
+    requirements: [DRL-SYS-010, DRL-OSS-001]
+  - id: DRL-002
+    milestone: M1
+    mission: 0
+    evidence_owner: Program Director
+    labels: [ci, security]
+    title: Enable Actions and repository security features
+    status: READY
+    dependencies: [DRL-001]
+    body: .github/ISSUE_BODIES/DRL-002.md
+    requirements: [DRL-SEC-006, DRL-PLT-002]
+  - id: DRL-003
+    milestone: M1
+    mission: 0
+    evidence_owner: Program Director
+    labels: [docs, governance]
+    title: Activate Director's Memo review
+    status: READY
+    dependencies: [DRL-001]
+    body: .github/ISSUE_BODIES/DRL-003.md
+    requirements: [DRL-SYS-010]
+  - id: DRL-004
+    milestone: M1
+    mission: 1
+    evidence_owner: Document Control
+    labels: [developer-experience]
+    title: Prove clean-clone bootstrap and demo
+    status: READY
+    dependencies: [DRL-001, DRL-002]
+    body: .github/ISSUE_BODIES/DRL-004.md
+    requirements: [DRL-SYS-003, DRL-OSS-002]
+  - id: DRL-005
+    milestone: M1
+    mission: 2
+    evidence_owner: Architecture/Protocol
+    labels: [protocol, test]
+    title: Expand protocol and state-machine contract tests
+    status: READY
+    dependencies: [DRL-004]
+    body: .github/ISSUE_BODIES/DRL-005.md
+    requirements: [DRL-SYS-001, DRL-SYS-005, DRL-SYS-007]
+  - id: DRL-006
+    milestone: M1
+    mission: 0
+    evidence_owner: Program Director
+    labels: [research, failure-museum]
+    title: Publish first real failure record
+    status: READY
+    dependencies: [DRL-004]
+    body: .github/ISSUE_BODIES/DRL-006.md
+    requirements: [DRL-EVL-008, DRL-WEB-009]
+  - id: DRL-007
+    milestone: M2
+    mission: 7
+    evidence_owner: Atticus Runtime
+    labels: [atticus, model]
+    title: Implement typed open-weight provider interface
+    status: QUEUED
+    dependencies: [DRL-005]
+    body: .github/ISSUE_BODIES/DRL-007.md
+    requirements: [DRL-SYS-002, DRL-MOD-002]
+  - id: DRL-008
+    milestone: M2
+    mission: 7
+    evidence_owner: Atticus Runtime
+    labels: [atticus, security]
+    title: Implement structured-output validation and bounded repair
+    status: QUEUED
+    dependencies: [DRL-007]
+    body: .github/ISSUE_BODIES/DRL-008.md
+    requirements: [DRL-SEC-007, DRL-SYS-004]
+  - id: DRL-009
+    milestone: M2
+    mission: 9
+    evidence_owner: Local Runner
+    labels: [local-runner, security]
+    title: Add approved-root repository inspection
+    status: QUEUED
+    dependencies: [DRL-005]
+    body: .github/ISSUE_BODIES/DRL-009.md
+    requirements: [DRL-SEC-005, DRL-SEC-008]
+  - id: DRL-010
+    milestone: M2
+    mission: 9
+    evidence_owner: Local Runner
+    labels: [local-runner, approvals]
+    title: Add patch proposal and local approval flow
+    status: QUEUED
+    dependencies: [DRL-009]
+    body: .github/ISSUE_BODIES/DRL-010.md
+    requirements: [DRL-SEC-003, DRL-SEC-004]
+  - id: DRL-011
+    milestone: M2
+    mission: 4
+    evidence_owner: EvalForge
+    labels: [evalforge, security]
+    title: Build permission and trajectory evaluation suite
+    status: QUEUED
+    dependencies: [DRL-005]
+    body: .github/ISSUE_BODIES/DRL-011.md
+    requirements: [DRL-EVL-001, DRL-EVL-005, DRL-SEC-010]
+  - id: DRL-012
+    milestone: M2
+    mission: 8
+    evidence_owner: Model/Data
+    labels: [model, research]
+    title: Run first Atticus Core and Edge bake-off
+    status: QUEUED
+    dependencies: [DRL-007, DRL-011]
+    body: .github/ISSUE_BODIES/DRL-012.md
+    requirements: [DRL-MOD-001, DRL-MOD-002]
+  - id: DRL-013
+    milestone: M2
+    mission: 9
+    evidence_owner: Local Runner
+    labels: [voice, privacy]
+    title: Prototype explicitly activated local voice
+    status: QUEUED
+    dependencies: [DRL-009]
+    body: .github/ISSUE_BODIES/DRL-013.md
+    requirements: [DRL-SEC-011, DRL-DAT-005]
+  - id: DRL-014
+    milestone: M3
+    mission: 10
+    evidence_owner: Atlas
+    labels: [atlas, data]
+    title: Add first point-in-time public Atlas adapter
+    status: QUEUED
+    dependencies: [DRL-007]
+    body: .github/ISSUE_BODIES/DRL-014.md
+    requirements: [DRL-DAT-001, DRL-DAT-002]
+  - id: DRL-015
+    milestone: M3
+    mission: 11
+    evidence_owner: FedLens
+    labels: [fedlens, data]
+    title: Ingest bounded public Fed corpus
+    status: QUEUED
+    dependencies: [DRL-007]
+    body: .github/ISSUE_BODIES/DRL-015.md
+    requirements: [DRL-DAT-002, DRL-DAT-006]
+  - id: DRL-016
+    milestone: M3
+    mission: 11
+    evidence_owner: FedLens
+    labels: [fedlens, nlp]
+    title: Implement cited document comparison and search
+    status: QUEUED
+    dependencies: [DRL-015]
+    body: .github/ISSUE_BODIES/DRL-016.md
+    requirements: [DRL-SYS-004, DRL-EVL-002]
+  - id: DRL-017
+    milestone: M3
+    mission: 12
+    evidence_owner: BalanceLab
+    labels: [balancelab, quant]
+    title: Expand synthetic bank and scenario engine
+    status: QUEUED
+    dependencies: [DRL-005]
+    body: .github/ISSUE_BODIES/DRL-017.md
+    requirements: [DRL-SYS-008]
+  - id: DRL-018
+    milestone: M3
+    mission: 13
+    evidence_owner: Integration
+    labels: [integration, atticus]
+    title: Run evidence-to-scenario integrated workflow
+    status: QUEUED
+    dependencies: [DRL-014, DRL-016, DRL-017]
+    body: .github/ISSUE_BODIES/DRL-018.md
+    requirements: [DRL-SYS-008, DRL-SYS-004]
+  - id: DRL-019
+    milestone: M3
+    mission: 13
+    evidence_owner: EvalForge
+    labels: [evalforge, release]
+    title: Publish signed success and degraded replays
+    status: QUEUED
+    dependencies: [DRL-018]
+    body: .github/ISSUE_BODIES/DRL-019.md
+    requirements: [DRL-EVL-009, DRL-SYS-009]
+  - id: DRL-020
+    milestone: M3
+    mission: 15
+    evidence_owner: Research/Community
+    labels: [documentation, teaching]
+    title: Publish integrated workflow teaching guide
+    status: QUEUED
+    dependencies: [DRL-018]
+    body: .github/ISSUE_BODIES/DRL-020.md
+    requirements: [DRL-OSS-003]
+  - id: DRL-021
+    milestone: M4
+    mission: 6
+    evidence_owner: Brand/Web
+    labels: [wix, design]
+    title: Build canonical Wix institutional pages
+    status: QUEUED
+    dependencies: [DRL-003]
+    body: .github/ISSUE_BODIES/DRL-021.md
+    requirements: [DRL-WEB-001, DRL-WEB-006]
+  - id: DRL-022
+    milestone: M4
+    mission: 5
+    evidence_owner: Platform
+    labels: [domain, security]
+    title: Connect and verify dwit-labs.com
+    status: QUEUED
+    dependencies: [DRL-021]
+    body: .github/ISSUE_BODIES/DRL-022.md
+    requirements: [DRL-WEB-003, DRL-PLT-002]
+  - id: DRL-023
+    milestone: M4
+    mission: 5
+    evidence_owner: Platform
+    labels: [gcp, infra]
+    title: Create budget-capped GCP development topology
+    status: QUEUED
+    dependencies: [DRL-002]
+    body: .github/ISSUE_BODIES/DRL-023.md
+    requirements: [DRL-PLT-001, DRL-PLT-003]
+    director_decisions: [DIR-002]
+  - id: DRL-024
+    milestone: M4
+    mission: 5
+    evidence_owner: Platform
+    labels: [gcp, atticus]
+    title: Deploy authenticated Atticus prototype to Cloud Run
+    status: QUEUED
+    dependencies: [DRL-023, DRL-007]
+    body: .github/ISSUE_BODIES/DRL-024.md
+    requirements: [DRL-PLT-002, DRL-SEC-009]
+  - id: DRL-025
+    milestone: M4
+    mission: 5
+    evidence_owner: Platform
+    labels: [azure, infra]
+    title: Validate optional Azure Container Apps profile
+    status: QUEUED
+    dependencies: [DRL-023]
+    body: .github/ISSUE_BODIES/DRL-025.md
+    requirements: [DRL-PLT-001]
+  - id: DRL-026
+    milestone: M4
+    mission: 6
+    evidence_owner: Brand/Web
+    labels: [accessibility, web]
+    title: Complete accessibility and reduced-motion review
+    status: QUEUED
+    dependencies: [DRL-021]
+    body: .github/ISSUE_BODIES/DRL-026.md
+    requirements: [DRL-WEB-007]
+  - id: DRL-027
+    milestone: M4
+    mission: 3
+    evidence_owner: Security
+    labels: [security, privacy]
+    title: Complete public-preview threat and privacy review
+    status: QUEUED
+    dependencies: [DRL-024]
+    body: .github/ISSUE_BODIES/DRL-027.md
+    requirements: [DRL-SEC-010, DRL-SEC-012]
+  - id: DRL-028
+    milestone: M4
+    mission: 15
+    evidence_owner: Research/Community
+    labels: [research, publication]
+    title: Publish first DRL technical report
+    status: QUEUED
+    dependencies: [DRL-018]
+    body: .github/ISSUE_BODIES/DRL-028.md
+    requirements: [DRL-EVL-008, DRL-OSS-003]
+  - id: DRL-029
+    milestone: M4
+    mission: 15
+    evidence_owner: Research/Community
+    labels: [open-source, community]
+    title: Publish contributor routes and good-first issues
+    status: QUEUED
+    dependencies: [DRL-004]
+    body: .github/ISSUE_BODIES/DRL-029.md
+    requirements: [DRL-OSS-003]
+  - id: DRL-030
+    milestone: M4
+    mission: 0
+    evidence_owner: Program Director
+    labels: [program, governance]
+    title: Conduct day-90 evidence review
+    status: QUEUED
+    dependencies: [DRL-027, DRL-028, DRL-029]
+    body: .github/ISSUE_BODIES/DRL-030.md
+    requirements: [DRL-SYS-010]

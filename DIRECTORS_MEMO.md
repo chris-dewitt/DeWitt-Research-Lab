@@ -50,7 +50,7 @@ DeWitt's approval.
 
 | ID | Area | Question | Options and consequence | Agent recommendation | Status |
 |---|---|---|---|---|---|
-| DIR-001 | Repository | What GitHub owner and repository slug will host DRL? | Personal account is simplest; an organization provides cleaner long-term governance. | Start on DeWitt's account unless an organization already exists; preserve transferability. | Director input required before remote setup |
+| DIR-001 | Repository | What GitHub owner and repository slug will host DRL? | Personal account is simplest; an organization provides cleaner long-term governance. Observed remote: `chris-dewitt/dewitt-research-lab-foundation`. | Confirm personal slug as canonical or schedule org transfer; preserve transferability. | Director confirmation required (remote exists; identity not finalized) |
 | DIR-002 | GCP | What projects, billing account, and primary US region will be used? | Separate dev/stage/prod/research projects reduce blast radius but require more setup. | Begin with one budget-capped development project, then create isolated production and research projects before public beta. | Director input required before deployment |
 | DIR-003 | Security | What public address receives vulnerability reports? | A dedicated alias protects personal workflow and supports policy publication. | Create `security@dwit-labs.com` before public launch. | Director input required |
 | DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. | Run the documented bake-off; do not select by brand preference. | Evidence gate |
@@ -74,11 +74,15 @@ DeWitt's approval.
 
 ## Current blockers
 
-- No GitHub remote, organization, or repository identifier is configured.
+- DIR-001 remains open for Director confirmation even though a GitHub remote
+  currently resolves to `chris-dewitt/dewitt-research-lab-foundation`. Agents
+  must not treat that remote as a final org/governance decision until confirmed.
 - No Google Cloud project or billing identity is configured.
 - No production secrets or credentials belong in this archive.
 - Core and Edge upstream models remain an evidence-based selection gate.
 - Public Wix content and DNS require action in DeWitt's accounts.
+- GitHub milestones/issues from the Mission 00 register are ready to file but
+  not yet created on the remote (gh write is operator-owned).
 
 ## Current implementation truth
 

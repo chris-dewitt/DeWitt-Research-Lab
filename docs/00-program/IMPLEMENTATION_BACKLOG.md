@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-013
 title: "Implementation Backlog"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # Implementation Backlog
@@ -13,12 +13,12 @@ This controlled backlog contains **122** planned work packages. The machine-read
 
 | Work package | Mission | Title | Status |
 |---|---:|---|---|
-| WP-00-01 | 00 | Audit all requirements and create a machine-readable requirement/work-package register. | PLANNED |
-| WP-00-02 | 00 | Build a directed dependency graph and critical path with entry/exit gates. | PLANNED |
-| WP-00-03 | 00 | Create GitHub milestone, label, issue, and PR templates with requirement/evidence fields. | PLANNED |
-| WP-00-04 | 00 | Create initial issue backlog and assign each issue to exactly one mission and one evidence owner. | PLANNED |
-| WP-00-05 | 00 | Identify unresolved director decisions and prepare ADR proposals without deciding them. | PLANNED |
-| WP-00-06 | 00 | Define release dashboard and weekly program review format. | PLANNED |
+| WP-00-01 | 00 | Audit all requirements and create a machine-readable requirement/work-package register. | COMPLETE |
+| WP-00-02 | 00 | Build a directed dependency graph and critical path with entry/exit gates. | COMPLETE |
+| WP-00-03 | 00 | Create GitHub milestone, label, issue, and PR templates with requirement/evidence fields. | COMPLETE |
+| WP-00-04 | 00 | Create initial issue backlog and assign each issue to exactly one mission and one evidence owner. | COMPLETE |
+| WP-00-05 | 00 | Identify unresolved director decisions and prepare ADR proposals without deciding them. | COMPLETE |
+| WP-00-06 | 00 | Define release dashboard and weekly program review format. | COMPLETE |
 | WP-01-01 | 01 | Create one-command setup, lint, typecheck, unit, contract, docs, and validation targets. | PLANNED |
 | WP-01-02 | 01 | Implement controlled-document frontmatter, ID, status, link, and reference validators. | PLANNED |
 | WP-01-03 | 01 | Validate all JSON Schemas, YAML configuration, OpenAPI, and example fixtures. | PLANNED |

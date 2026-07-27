@@ -1,8 +1,13 @@
 # GitHub issue seed backlog
 
+**Executable bodies:** `.github/ISSUE_BODIES/DRL-*.md`  
+**Machine register:** `requirements/issue-register.yaml`  
+**First sprint order:** `docs/00-program/FIRST_SPRINT_PLAN.md`  
+**Labels:** `.github/labels.yml`
+
 Create these issues in order and attach them to the matching milestone. Do not
 copy an issue into GitHub until its owner, dependency, and acceptance evidence
-are still accurate.
+are still accurate. Prefer the full body files over this summary table.
 
 | ID | Milestone | Labels | Issue | Acceptance evidence |
 |---|---|---|---|---|

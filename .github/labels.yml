@@ -1,0 +1,130 @@
+# Apply with: gh label create <name> --color <hex> --description <text>
+# or a GitHub App/action that syncs this file. Colors are GitHub hex without '#'.
+
+labels:
+  - name: program
+    color: "0E8A16"
+    description: Program governance and sequencing
+  - name: governance
+    color: "5319E7"
+    description: Director decisions, ADRs, policy
+  - name: ci
+    color: "1D76DB"
+    description: Continuous integration and checks
+  - name: security
+    color: "B60205"
+    description: Security, privacy, abuse, approvals
+  - name: docs
+    color: "0075CA"
+    description: Controlled documentation
+  - name: developer-experience
+    color: "FBCA04"
+    description: Bootstrap, toolchain, contributor setup
+  - name: protocol
+    color: "D93F0B"
+    description: DRL protocol and contracts
+  - name: test
+    color: "BFDADC"
+    description: Tests and evaluation fixtures
+  - name: research
+    color: "C5DEF5"
+    description: Research artifacts and reports
+  - name: failure-museum
+    color: "E99695"
+    description: Published failures and corrections
+  - name: atticus
+    color: "0052CC"
+    description: Atticus control plane / runtime
+  - name: model
+    color: "5319E7"
+    description: Model selection and training
+  - name: local-runner
+    color: "006B75"
+    description: Private local runner
+  - name: evalforge
+    color: "3E4B9E"
+    description: Evaluation system
+  - name: voice
+    color: "F9D0C4"
+    description: Local voice interaction
+  - name: privacy
+    color: "B60205"
+    description: Privacy and data lifecycle
+  - name: atlas
+    color: "0E8A16"
+    description: Atlas specialist
+  - name: data
+    color: "C2E0C6"
+    description: Data ingestion and rights
+  - name: fedlens
+    color: "1D76DB"
+    description: FedLens specialist
+  - name: nlp
+    color: "D4C5F9"
+    description: Document NLP and diffs
+  - name: balancelab
+    color: "BFD4F2"
+    description: BalanceLab specialist
+  - name: quant
+    color: "FEF2C0"
+    description: Deterministic quantitative engines
+  - name: integration
+    color: "E4E669"
+    description: Cross-system integration
+  - name: release
+    color: "000000"
+    description: Release evidence and gates
+  - name: documentation
+    color: "0075CA"
+    description: Teaching and docs
+  - name: teaching
+    color: "C5DEF5"
+    description: Teaching materials
+  - name: wix
+    color: "D93F0B"
+    description: Wix institutional site
+  - name: design
+    color: "F9D0C4"
+    description: Design system and UX
+  - name: domain
+    color: "5319E7"
+    description: DNS and domain routing
+  - name: gcp
+    color: "4285F4"
+    description: Google Cloud platform
+  - name: infra
+    color: "BFDADC"
+    description: Infrastructure as code
+  - name: azure
+    color: "0078D4"
+    description: Azure portability profile
+  - name: accessibility
+    color: "FBCA04"
+    description: A11y and inclusive design
+  - name: web
+    color: "1D76DB"
+    description: Web applications
+  - name: open-source
+    color: "0E8A16"
+    description: Open-source program
+  - name: community
+    color: "C2E0C6"
+    description: Contributors and community
+  - name: publication
+    color: "D4C5F9"
+    description: Papers and public reports
+  - name: approvals
+    color: "B60205"
+    description: Approval binding flows
+  - name: feature
+    color: "A2EEEF"
+    description: Specification-backed feature
+  - name: architecture
+    color: "D93F0B"
+    description: Architecture decisions
+  - name: approval-required
+    color: "B60205"
+    description: Requires Director approval
+  - name: blocked
+    color: "000000"
+    description: Blocked on Director decision or upstream mission

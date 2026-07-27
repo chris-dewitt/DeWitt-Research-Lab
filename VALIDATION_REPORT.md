@@ -1,7 +1,7 @@
 ---
 document_id: DRL-VAL-001
 title: "Runnable Foundation Validation Report"
-version: 2.0.0
+version: 2.1.0
 status: RELEASE CANDIDATE
 owner: DeWitt
 last_updated: 2026-07-27
@@ -21,16 +21,17 @@ institutional/editorial platform while open applications deploy independently.
 ## Validation summary
 
 - Foundation validator: **PASSED**
+- Program register validator: **PASSED**
 - Open-source identity validator: **PASSED**
 - Domain/Wix validator: **PASSED**
-- Python test suite: **17 passed**
+- Python test suite: **25 passed**
 - Python Ruff lint: **PASSED**
-- Python strict type check over implemented source: **PASSED**
+- Python strict type check over 33 source files, including validators: **PASSED**
 - Bandit security scan over implemented source: **PASSED**
 - Integrated Atticus CLI smoke test: **PASSED**
 - Atticus HTTP health and task smoke test: **PASSED**
 - Node workspace placeholder lint/type/test/build commands: **PASSED**
-- Controlled Markdown documents: **322**
+- Controlled Markdown documents: **331**
 - Approved V1 requirements: **132**
 - Planned work packages: **122**
 - JSON Schema/example pairs: **26/26**
@@ -74,11 +75,12 @@ institutional/editorial platform while open applications deploy independently.
 ```bash
 uv run pytest -q
 uv run python scripts/validate_foundation.py
+uv run python scripts/validate_program.py
 uv run python scripts/validate_open_identity.py
 uv run python scripts/validate_domain_wix.py
-uv run ruff check packages/drl-protocol packages/drl-ai-core services apps/atticus-local-runner tests
-uv run mypy packages/drl-protocol/src packages/drl-ai-core/src services/atlas/src services/fedlens/src services/balancelab-ai/src services/evalforge/src services/atticus-control-plane/src apps/atticus-local-runner/src
-uv run bandit -q -r packages/drl-protocol/src packages/drl-ai-core/src services apps/atticus-local-runner/src
+uv run ruff check scripts tests packages services apps/atticus-local-runner
+uv run mypy scripts packages services apps/atticus-local-runner
+uv run bandit -q -r scripts packages services apps/atticus-local-runner
 uv run --package atticus-control-plane atticus-demo --public
 pnpm -r lint
 pnpm -r typecheck

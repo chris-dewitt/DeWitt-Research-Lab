@@ -44,20 +44,25 @@ issues:
     evidence_owner: Program Director
     labels: [docs, governance]
     title: Activate Director's Memo review
-    status: READY
+    status: EVIDENCE_READY
     dependencies: [DRL-001]
     body: .github/ISSUE_BODIES/DRL-003.md
     requirements: [DRL-SYS-010]
+    evidence:
+      - docs/00-program/RELEASE_DASHBOARD.md
+      - WORKLOG.md
   - id: DRL-004
     milestone: M1
     mission: 1
     evidence_owner: Document Control
     labels: [developer-experience]
     title: Prove clean-clone bootstrap and demo
-    status: READY
+    status: EVIDENCE_READY
     dependencies: [DRL-001, DRL-002]
     body: .github/ISSUE_BODIES/DRL-004.md
     requirements: [DRL-SYS-003, DRL-OSS-002]
+    evidence:
+      - docs/00-program/evidence/M1-CLEAN-CLONE-2026-07-27.md
   - id: DRL-005
     milestone: M1
     mission: 2
@@ -80,6 +85,7 @@ issues:
     requirements: [DRL-EVL-008, DRL-WEB-009]
     evidence:
       - docs/10-research/failures/CI-0001-DUPLICATE-PNPM-VERSION.md
+      - docs/10-research/failures/SETUP-0001-PYTHON-EXECUTABLE-ASSUMPTION.md
   - id: DRL-007
     milestone: M2
     mission: 7

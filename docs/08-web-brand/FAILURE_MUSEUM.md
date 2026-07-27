@@ -43,3 +43,4 @@ Failures are never fabricated for atmosphere and never expose private user data.
 ## Current records
 
 - [`CI-0001: Duplicate pnpm Version Sources`](../10-research/failures/CI-0001-DUPLICATE-PNPM-VERSION.md)
+- [`SETUP-0001: Nonportable Python Executable Assumption`](../10-research/failures/SETUP-0001-PYTHON-EXECUTABLE-ASSUMPTION.md)

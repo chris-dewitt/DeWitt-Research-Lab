@@ -27,7 +27,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
-| 00 | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | IN REVIEW | pending |
+| 00 | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | IN REVIEW | PR #6 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -63,6 +63,8 @@ Append completed handoffs below this line. Never place credentials, private data
 - Branch: `cursor/mission-00-program-bootstrap-ad29`
 - Status: PARTIAL → awaiting PR review and operator filing of GitHub issues
 - Objective: convert foundation into executable M1 sprint + issue program
+- Follow-up sprint: repaired failed Node CI setup, added program validation,
+  made bootstrap portable, and produced Linux clean-clone evidence.
 
 #### Work packages
 
@@ -74,6 +76,29 @@ Append completed handoffs below this line. Never place credentials, private data
 | WP-00-04 | COMPLETE | `requirements/issue-register.yaml`, `.github/ISSUE_BODIES/DRL-001..030.md` |
 | WP-00-05 | COMPLETE | `ADR_APPROVAL_QUEUE.md` + Memo updates |
 | WP-00-06 | COMPLETE | `RELEASE_DASHBOARD.md` + weekly WORKLOG snapshot |
+
+#### M1 issue evidence prepared
+
+| Issue | Repository evidence | Remaining closure condition |
+|---|---|---|
+| DRL-003 | Release dashboard + dated WORKLOG review | File/close remote issue |
+| DRL-004 | `docs/00-program/evidence/M1-CLEAN-CLONE-2026-07-27.md` | Windows clean-room run |
+| DRL-006 | CI-0001 + SETUP-0001 Failure Museum records | File/close remote issue |
+
+#### Verification after CI repair
+
+```text
+make verify       # PASS; 25 Python tests
+make lint         # PASS
+make typecheck    # PASS; 33 source files
+make security     # PASS
+make build        # PASS
+clean clone       # bootstrap 1.312s; demo 0.087s; verify 2.694s
+```
+
+The original PR failure was duplicate pnpm version configuration. The first
+clean-clone proof also exposed nonportable `python` and `/usr/bin/time`
+assumptions. Both have regression evidence in the Failure Museum.
 
 #### Paths outside Mission 00 ownership (noted)
 

@@ -3,6 +3,14 @@ description: Propose a major decision requiring DeWitt approval
 title: "[ADR]: "
 labels: ["architecture", "approval-required"]
 body:
+  - type: input
+    id: adr_id
+    attributes:
+      label: ADR / Director ID
+      description: e.g. ADR-0006 or DIR-002
+      placeholder: ADR-0006
+    validations:
+      required: true
   - type: textarea
     id: context
     attributes:
@@ -22,8 +30,22 @@ body:
     validations:
       required: true
   - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence required before approval
+      description: Benchmarks, license review, cost, security tests, spike results.
+    validations:
+      required: true
+  - type: textarea
     id: security
     attributes:
       label: Security, privacy, compatibility, and migration
+    validations:
+      required: true
+  - type: textarea
+    id: blocked_work
+    attributes:
+      label: Work blocked until resolution
+      placeholder: DRL-023 terraform apply; Mission 05 toolchain lock
     validations:
       required: true

@@ -1,15 +1,17 @@
 ---
 document_id: DRL-ROOT-ROADMAP
 title: "V1 Coordinated Roadmap"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # V1 Coordinated Roadmap
 
 **Canonical public destination:** `https://www.dwit-labs.com` (registered domain; Wix institutional site).
+
+**Current execution entrypoint:** `docs/00-program/FIRST_SPRINT_PLAN.md` (M1 bootstrap issues DRL-001–006). Machine issue register: `requirements/issue-register.yaml`.
 
 ## Release philosophy
 

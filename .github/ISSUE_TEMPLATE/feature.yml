@@ -3,6 +3,30 @@ description: Implement a specification-backed feature
 title: "[Feature]: "
 labels: ["feature"]
 body:
+  - type: input
+    id: issue_id
+    attributes:
+      label: Seed issue ID
+      description: e.g. DRL-007 — must exist in requirements/issue-register.yaml
+      placeholder: DRL-007
+    validations:
+      required: true
+  - type: input
+    id: mission
+    attributes:
+      label: Owning mission
+      description: Two-digit mission number from agents/
+      placeholder: "07"
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirement IDs
+      description: From requirements/requirements.yaml
+      placeholder: DRL-SYS-001, DRL-SEC-003
+    validations:
+      required: true
   - type: textarea
     id: objective
     attributes:
@@ -14,7 +38,14 @@ body:
     id: authority
     attributes:
       label: Authoritative documents
-      description: Bible section, project spec, and ADRs.
+      description: Bible section, project spec, ADRs, Director's Memo IDs.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and entry gates
+      description: Blocking issues and CRITICAL_PATH_AND_GATES entry conditions.
     validations:
       required: true
   - type: textarea
@@ -24,14 +55,31 @@ body:
     validations:
       required: true
   - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence commands and artifacts
+      description: Exact commands, expected artifacts, EvalForge suites.
+    validations:
+      required: true
+  - type: textarea
     id: risks
     attributes:
       label: Security, privacy, licensing, and cost risks
     validations:
       required: true
-  - type: textarea
-    id: tests
+  - type: dropdown
+    id: contract_impact
     attributes:
-      label: Required tests and EvalForge suites
+      label: Public contract impact
+      options:
+        - NONE
+        - COMPATIBLE
+        - BREAKING
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback / reversibility
     validations:
       required: true

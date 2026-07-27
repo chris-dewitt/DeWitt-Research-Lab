@@ -33,7 +33,7 @@ dashboard in `WORKLOG.md` weekly and before any public claim.
 | Active mission | 00 Program Director |
 | Active issue | DRL-001 (after filing) |
 | Integration branch | *to create* `integration/v1` |
-| Last green `make verify` | pending on this branch |
+| Last green `make verify` | 2026-07-27 at `0eaabd7` (clean clone; 25 tests) |
 | Open P0 Director decisions | DIR-001, DIR-003 |
 | Open P1 ADRs | ADR-0006, ADR-0007; DIR-002 |
 | Prototype surfaces | Atticus + specialists + local-runner primitives |
@@ -48,7 +48,7 @@ dashboard in `WORKLOG.md` weekly and before any public claim.
 | Gate family | M1 target | V1 target | Status |
 |---|---|---|---|
 | Repo trust / CI | Required | Required | In progress |
-| Clean-clone demo | Required | Required | Pending DRL-004 |
+| Clean-clone demo | Required | Required | Linux evidence ready; Windows pending |
 | Protocol/policy tests | Started | Hard gate | Pending DRL-005 |
 | Open-weight production path | Not required | Required | Blocked on bake-off |
 | Wix + domain | Not required | Required | Blocked on accounts |

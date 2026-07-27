@@ -8,6 +8,7 @@ import re
 import sys
 from collections import defaultdict
 from pathlib import Path
+from typing import Any
 from urllib.parse import unquote
 
 import yaml
@@ -233,7 +234,7 @@ except Exception as exc:
 schema_paths = sorted((ROOT / "schemas").glob("*.schema.json"))
 if len(schema_paths) < 20:
     error(f"Expected >=20 JSON Schemas; found {len(schema_paths)}")
-schema_docs: dict[str, dict] = {}
+schema_docs: dict[str, dict[str, Any]] = {}
 resources = []
 for path in schema_paths:
     try:
@@ -264,10 +265,10 @@ for example_path in example_paths:
         schema = json.loads(schema_path.read_text(encoding="utf-8"))
         validator = Draft202012Validator(schema, registry=registry, format_checker=FormatChecker())
         errs = sorted(validator.iter_errors(instance), key=lambda e: list(e.path))
-        for exc in errs[:20]:
+        for validation_error in errs[:20]:
             error(
                 f"Schema example invalid {example_path.relative_to(ROOT)} "
-                f"at {list(exc.path)}: {exc.message}"
+                f"at {list(validation_error.path)}: {validation_error.message}"
             )
     except Exception as exc:
         error(f"Cannot validate example {example_path.relative_to(ROOT)}: {exc}")

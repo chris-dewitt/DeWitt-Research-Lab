@@ -26,12 +26,18 @@ jobs:
         run: uv sync --all-packages --locked
       - name: Deep foundation validation
         run: uv run python scripts/validate_foundation.py
+      - name: Program register validation
+        run: uv run python scripts/validate_program.py
       - name: Open identity validation
         run: uv run python scripts/validate_open_identity.py
       - name: Domain and Wix validation
         run: uv run python scripts/validate_domain_wix.py
       - name: Python lint
         run: uv run ruff check scripts tests packages services apps/atticus-local-runner
+      - name: Python type check
+        run: uv run mypy scripts packages services apps/atticus-local-runner
+      - name: Python security scan
+        run: uv run bandit -q -r scripts packages services apps/atticus-local-runner
       - name: Python tests
         run: uv run pytest
       - name: Integrated Atticus smoke test
@@ -51,13 +57,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
+        # Read the exact version from package.json#packageManager. Supplying a
+        # second version here makes pnpm/action-setup reject the workflow.
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile=false
+      - run: pnpm install --frozen-lockfile
       - run: pnpm -r lint
       - run: pnpm -r typecheck
       - run: pnpm -r test

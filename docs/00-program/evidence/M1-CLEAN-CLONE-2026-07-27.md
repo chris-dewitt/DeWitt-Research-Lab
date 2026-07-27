@@ -75,5 +75,8 @@ after those corrections.
 ## Remaining acceptance work
 
 - Repeat on supported Windows environment before M1 is declared complete.
-- Attach GitHub CI run proving the container build and action setup.
+- GitHub Actions run
+  [`30239648838`](https://github.com/chris-dewitt/DeWitt-Research-Lab-Foundation/actions/runs/30239648838)
+  passed the container build, frozen pnpm setup, program/docs checks, type
+  checking, security scan, tests, and integrated smoke test.
 - Web workspaces are honest placeholders, not implemented UIs.

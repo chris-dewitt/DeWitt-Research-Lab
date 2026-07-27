@@ -72,8 +72,9 @@ pnpm -r test
 pnpm -r build
 ```
 
-The follow-up CI run URL and final status belong in the PR and handoff after
-GitHub completes the pushed revision.
+Follow-up GitHub Actions run
+[`30239648838`](https://github.com/chris-dewitt/DeWitt-Research-Lab-Foundation/actions/runs/30239648838)
+passed `node-workspace`, `contracts-and-docs`, and `atticus-container`.
 
 ## Residual limitations
 

@@ -85,4 +85,5 @@ GitHub CI remains the authoritative end-to-end action check.
 
 - DRL-002 — repository CI and security features
 - DRL-006 — first genuine Failure Museum entry
-- PR #6 — Mission 00 first-sprint bootstrap
+- PR #6 — merged Mission 00 baseline containing the failure
+- PR #7 — CI/bootstrap repair and regression evidence

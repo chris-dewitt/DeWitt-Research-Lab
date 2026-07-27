@@ -27,7 +27,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
-| 00 | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | IN REVIEW | PR #6 |
+| 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | IN REVIEW | PR #7 (PR #6 merged) |
 
 ## Weekly dashboard snapshot — 2026-07-27
 

@@ -59,4 +59,4 @@ Docker was not available locally; GitHub CI owns the container-build proof.
 
 - DRL-004 — clean-clone bootstrap
 - DRL-006 — Failure Museum
-- PR #6 — Mission 00 program bootstrap
+- PR #7 — CI/bootstrap repair and M1 evidence

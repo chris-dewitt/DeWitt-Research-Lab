@@ -7,7 +7,7 @@ import re
 import sys
 from collections import defaultdict, deque
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -34,17 +34,32 @@ def load_yaml(relative: str) -> dict[str, Any]:
 
 def validate_issue_register() -> None:
     register = load_yaml("requirements/issue-register.yaml")
-    requirements = load_yaml("requirements/requirements.yaml").get("requirements", [])
-    labels = load_yaml(".github/labels.yml").get("labels", [])
+    requirements = cast(
+        list[dict[str, Any]],
+        load_yaml("requirements/requirements.yaml").get("requirements", []),
+    )
+    labels = cast(
+        list[dict[str, Any]], load_yaml(".github/labels.yml").get("labels", [])
+    )
 
-    known_requirements = {item.get("id") for item in requirements if isinstance(item, dict)}
-    known_labels = {item.get("name") for item in labels if isinstance(item, dict)}
-    milestones = register.get("milestones", [])
-    issues = register.get("issues", [])
+    known_requirements = {
+        item_id for item in requirements if isinstance((item_id := item.get("id")), str)
+    }
+    known_labels = {
+        item_name for item in labels if isinstance((item_name := item.get("name")), str)
+    }
+    milestones = cast(list[dict[str, Any]], register.get("milestones", []))
+    issues = cast(list[dict[str, Any]], register.get("issues", []))
 
-    milestone_ids = {item.get("id") for item in milestones if isinstance(item, dict)}
-    issue_by_id = {
-        item.get("id"): item for item in issues if isinstance(item, dict) and item.get("id")
+    milestone_ids = {
+        milestone_id
+        for item in milestones
+        if isinstance((milestone_id := item.get("id")), str)
+    }
+    issue_by_id: dict[str, dict[str, Any]] = {
+        issue_id: item
+        for item in issues
+        if isinstance((issue_id := item.get("id")), str)
     }
     allowed_issue_statuses = {"READY", "QUEUED", "EVIDENCE_READY", "COMPLETE", "BLOCKED"}
     expected_ids = {f"DRL-{number:03d}" for number in range(1, 31)}
@@ -91,7 +106,8 @@ def validate_issue_register() -> None:
         if not isinstance(dependencies, list):
             error(f"{issue_id}: dependencies must be a list")
             dependencies = []
-        for dependency in dependencies:
+        for dependency_value in dependencies:
+            dependency = str(dependency_value)
             if dependency not in actual_ids:
                 error(f"{issue_id}: unknown dependency {dependency}")
                 continue
@@ -129,8 +145,11 @@ def validate_issue_register() -> None:
 
 
 def validate_work_packages() -> None:
-    packages = load_yaml("requirements/work-packages.yaml").get("work_packages", [])
-    ids = [item.get("id") for item in packages if isinstance(item, dict)]
+    packages = cast(
+        list[dict[str, Any]],
+        load_yaml("requirements/work-packages.yaml").get("work_packages", []),
+    )
+    ids = [str(item.get("id")) for item in packages]
     if len(ids) != len(set(ids)):
         error("work package IDs are not unique")
     if len(ids) != 122:
@@ -138,9 +157,6 @@ def validate_work_packages() -> None:
 
     allowed_statuses = {"PLANNED", "IN_PROGRESS", "COMPLETE", "BLOCKED", "DEFERRED"}
     for package in packages:
-        if not isinstance(package, dict):
-            error("work package entry must be a mapping")
-            continue
         package_id = str(package.get("id", "<missing>"))
         if package.get("status") not in allowed_statuses:
             error(f"{package_id}: invalid status {package.get('status')!r}")

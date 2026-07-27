@@ -7,10 +7,10 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-errors = []
+errors: list[str] = []
 
 
-def req(rel):
+def req(rel: str) -> Path:
     p = ROOT / rel
     if not p.exists():
         errors.append(f"missing: {rel}")

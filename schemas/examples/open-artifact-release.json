@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "atticus-core-1.0.0",
+  "name": "Atticus Core",
+  "artifact_class": "model",
+  "classification": "open_weight_model",
+  "version": "1.0.0",
+  "source_revision": "abcdef1234567890",
+  "license_expression": "Apache-2.0 AND upstream-model-license",
+  "upstream_ids": [
+    "qwen-candidate-revision"
+  ],
+  "modification_surface": [
+    "training recipe",
+    "adapter",
+    "evaluation suite",
+    "GGUF profile"
+  ],
+  "reproducibility_level": "R3",
+  "forkability_status": "passed",
+  "lifecycle": "stable",
+  "release_manifest_uri": "https://example.org/releases/atticus-core-1.0.0.json",
+  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "exceptions": []
+}

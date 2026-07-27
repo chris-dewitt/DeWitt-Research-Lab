@@ -1,0 +1,24 @@
+version: 1.0.0
+classes:
+  public:
+    storage:
+    - public_buckets
+    - public_db
+    training: eligible_after_rights_review
+  drl-private:
+    storage:
+    - restricted_project
+    training: internal_only_if_approved
+  local-personal:
+    storage:
+    - user_device
+    training: private_adapter_only_with_explicit_user_action
+  restricted:
+    storage:
+    - restricted_project
+    training: prohibited_unless_specific_approval
+  secret:
+    storage:
+    - secret_manager_or_os_keystore
+    training: prohibited
+    logging: prohibited

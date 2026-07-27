@@ -1,0 +1,33 @@
+version: 1.0.0
+tools:
+- name: drl.docs.search
+  effect_type: read
+  risk: R1
+  data: public
+- name: drl.tour.launch
+  effect_type: observe
+  risk: R0
+  data: public
+- name: atlas.research
+  effect_type: read
+  risk: R1
+  data: public_approved
+- name: fedlens.compare_statements
+  effect_type: read
+  risk: R1
+  data: public_approved
+- name: balancelab.run_sample_scenario
+  effect_type: draft
+  risk: R2
+  data: synthetic
+- name: evalforge.evaluate_public_trace
+  effect_type: read
+  risk: R1
+  data: public
+forbidden_patterns:
+- arbitrary_url_fetch
+- shell
+- filesystem_private
+- email_send
+- calendar_write
+- owner_runner

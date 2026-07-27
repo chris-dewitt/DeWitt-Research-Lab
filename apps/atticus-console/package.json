@@ -1,0 +1,12 @@
+{
+  "name": "@drl/atticus-console",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "echo \"Implementation pending: read docs/SPEC.md\"",
+    "build": "echo \"Implementation pending: read docs/SPEC.md\"",
+    "lint": "echo \"Implementation pending: read docs/SPEC.md\"",
+    "typecheck": "echo \"Implementation pending: read docs/SPEC.md\"",
+    "test": "echo \"Implementation pending: read docs/SPEC.md\""
+  }
+}

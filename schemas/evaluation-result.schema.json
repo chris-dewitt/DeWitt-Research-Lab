@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/evaluation-result.schema.json",
+  "title": "DRL Evaluation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "suite_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "suite_version": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "target_id": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "target_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "dataset_version": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "sample_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "number",
+          "integer",
+          "string",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    "slices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "critical_failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "gate_decision": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail",
+        "incomplete",
+        "exception_required"
+      ]
+    },
+    "baseline_result_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "configuration_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "report_artifact": {
+      "$ref": "https://schemas.dewittresearch.org/drl/v1/artifact-reference.schema.json"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "suite_id",
+    "suite_version",
+    "target_id",
+    "target_digest",
+    "dataset_id",
+    "dataset_version",
+    "sample_count",
+    "metrics",
+    "slices",
+    "critical_failures",
+    "gate_decision",
+    "configuration_digest",
+    "report_artifact"
+  ]
+}

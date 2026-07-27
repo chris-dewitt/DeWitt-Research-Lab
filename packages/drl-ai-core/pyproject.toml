@@ -1,0 +1,13 @@
+[project]
+name = "drl-ai-core"
+version = "0.1.0"
+description = "Shared deterministic AI infrastructure for DeWitt Research Laboratory"
+requires-python = ">=3.12,<3.14"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/drl_ai_core"]

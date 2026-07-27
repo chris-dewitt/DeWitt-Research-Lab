@@ -1,0 +1,2424 @@
+{
+  "schema_version": "1.0.0",
+  "package": "DeWitt-Research-Lab-Foundation",
+  "generated_at": "2026-07-27",
+  "algorithm": "sha256",
+  "entry_count": 483,
+  "entries": [
+    {
+      "path": ".editorconfig",
+      "size_bytes": 266,
+      "sha256": "2997360c78cb1449e1f6b1a4b18cfc90164409a6360d8ccdfcbed25970b33857"
+    },
+    {
+      "path": ".env.example",
+      "size_bytes": 613,
+      "sha256": "85e3a0e6e8812eadcbb795e13071fcd4ef9caccccf9be45ebeb786350194f5d8"
+    },
+    {
+      "path": ".github/ISSUE_BACKLOG.md",
+      "size_bytes": 5042,
+      "sha256": "47af613eef9cc207b326209779441c39ac2e2070526d9f6b9142c03c7c6e8192"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/adr.yml",
+      "size_bytes": 692,
+      "sha256": "e70bda7e97a1439e7a91d04bd7795d29d3167fb7c34403cc1c144ca8d3d820ef"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature.yml",
+      "size_bytes": 883,
+      "sha256": "65580e6f58227a47c26fb2df52dc4de9dd55f4a2dd7b5495e24ba85ea530941a"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/research.yml",
+      "size_bytes": 786,
+      "sha256": "396bab719a3a7642ced2c8a88ac0eabd902232a2ed99c01aa8f4e8837c0dc5e7"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "size_bytes": 292,
+      "sha256": "638671dd7606a5a29f703201c12a8d7bc8e970647c51de76e27546e22bf97e7b"
+    },
+    {
+      "path": ".github/milestones.yml",
+      "size_bytes": 655,
+      "sha256": "d87249df8b3fe18ecc44ced3df55e7d9df24fccc763ced9176369147421e7baa"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "size_bytes": 549,
+      "sha256": "789a57344aad1aec9f22fc434f81af0575082cddb0ca2a18370e8295c7135c38"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size_bytes": 2113,
+      "sha256": "db1d6f8d2b905b7ff15749182049aef98521d6389b8fcfcd1f9a085010d3e0e2"
+    },
+    {
+      "path": ".gitignore",
+      "size_bytes": 288,
+      "sha256": "d9e5e7b91fa97d707a2f354afd04d3ceda6595d0c3a02f1dd8cb0b80201cea83"
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "size_bytes": 255,
+      "sha256": "50b048c4468c55c7100ebda2a6f5fd3b393431718345e56308d3f9bd87e53d8e"
+    },
+    {
+      "path": "AGENTS.md",
+      "size_bytes": 9856,
+      "sha256": "85b13d6cb9c39a7d44aff6419927f015f62d63c68aca9670ab0a5e6acc8bb325"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size_bytes": 3303,
+      "sha256": "baf6db92ed1c56a04e0a8b10bcf687a1b6a2085918c527799fb742d53c7b4c5c"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "size_bytes": 1810,
+      "sha256": "0cde4e4fff98ad55d3766fdae2c28a10552fbfb5fbff23b3c8475b913ceed5ab"
+    },
+    {
+      "path": "COMMERCIAL_SUSTAINABILITY.md",
+      "size_bytes": 2034,
+      "sha256": "c2dd0e47a4a16a36d86b964074c41bf5da62472181d17790f13a4507111fa735"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size_bytes": 7858,
+      "sha256": "d36586999e5d8e06c85e991d9867a0287c4cddb68ae8780e6176d9cbef2ed8ad"
+    },
+    {
+      "path": "DIRECTORS_MEMO.md",
+      "size_bytes": 6821,
+      "sha256": "05f18b64bbc81bad0338b805ca8fef5059c54ed3b669664fc7928b29ff9f0039"
+    },
+    {
+      "path": "DOCUMENT_CONTROL.md",
+      "size_bytes": 2525,
+      "sha256": "eba66fbb1a4bf5bebefc35d74b11491a19954cd7718f579e005d9af6269b9449"
+    },
+    {
+      "path": "FOUNDATION_AUDIT_AND_UPGRADE.md",
+      "size_bytes": 3654,
+      "sha256": "58278ff1a0005ba7969be0e0bc998bc77f65af23084b931f1b4889f70bd134fb"
+    },
+    {
+      "path": "GOVERNANCE.md",
+      "size_bytes": 6488,
+      "sha256": "406757b27fa515f4f54937e427dfb57d555ea9d6f4c3d59285062c87043902df"
+    },
+    {
+      "path": "LABORATORY_BIBLE.md",
+      "size_bytes": 39378,
+      "sha256": "fa42e3261476d4184acce31b351b53299dc8335d8e3c135db71604fbb6b281a0"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "LICENSE-STRATEGY.md",
+      "size_bytes": 8845,
+      "sha256": "4eb1f820e5269d6c52ace9810a3bb13766e6938cfe70e67b28ecfbc2277db1e2"
+    },
+    {
+      "path": "Makefile",
+      "size_bytes": 1548,
+      "sha256": "9cf2dbba6a61b7386e96f6b41038c30c23485de9f939cdf02647643103e89913"
+    },
+    {
+      "path": "NOTICE",
+      "size_bytes": 444,
+      "sha256": "4c462481ad5d099c816c4f50707fd4cc1e8d7d2f6d8a55840b15fef6a4fa5b12"
+    },
+    {
+      "path": "OPEN_RESEARCH_CHARTER.md",
+      "size_bytes": 7988,
+      "sha256": "3999755a93f0e69a901c235d026092c4843bbbb4666da0e8e7f67ad8f9b0c5f2"
+    },
+    {
+      "path": "OPEN_SOURCE_IDENTITY_UPGRADE.md",
+      "size_bytes": 5600,
+      "sha256": "4c351b877ff548d2d710b31d0cc6c19bb364ebb7c09e1d188073b1b02f44f31e"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 10216,
+      "sha256": "86a3fb1ccc97746f47055315d7874965dd0770e3893bf0e87ecba799a5f010ed"
+    },
+    {
+      "path": "ROADMAP.md",
+      "size_bytes": 4659,
+      "sha256": "cc28750fa008d08a613d82b2dc208d6b92c8e217c82b28d204b92de27ed51847"
+    },
+    {
+      "path": "SECURITY.md",
+      "size_bytes": 2964,
+      "sha256": "69c42aa7b478c7c5bd11b7e63cab67f77486982c82136432d74e3fa98500fcd8"
+    },
+    {
+      "path": "TRADEMARK_POLICY.md",
+      "size_bytes": 1686,
+      "sha256": "4a1d97a7d66cd8f4f1cdfe10c1d577733fb0af77aeb295744aedf28118ed5178"
+    },
+    {
+      "path": "VALIDATION_REPORT.md",
+      "size_bytes": 4437,
+      "sha256": "180ad39db1958cdf711f413d30b7704c5a48ca5c5c515865bb7f89c020025af7"
+    },
+    {
+      "path": "WORKLOG.md",
+      "size_bytes": 1743,
+      "sha256": "c93bdd3c2ae663cf5bf5c92e1ed45e93580ff4aad313cb453f7e685a7c7147ad"
+    },
+    {
+      "path": "agents/00_PROGRAM_DIRECTOR.md",
+      "size_bytes": 5744,
+      "sha256": "418fdeca2227ee8b90a0f419840edfade3f5d23fe65ed0a6cf53ddf8e0b271d1"
+    },
+    {
+      "path": "agents/01_DOCUMENT_CONTROL.md",
+      "size_bytes": 5933,
+      "sha256": "462d5e0240a1b7a2696a64a869259331164bfe5a08d89bc8b8f9a4cb6e94b8ee"
+    },
+    {
+      "path": "agents/02_ARCHITECTURE_PROTOCOL.md",
+      "size_bytes": 6261,
+      "sha256": "7234702dec04d40b66a73186148e767b9f98e95c32364fdc8d9273d058c17fe2"
+    },
+    {
+      "path": "agents/03_SECURITY_POLICY.md",
+      "size_bytes": 6065,
+      "sha256": "188bd600b0d75b91b51fdfe8f43915ebfc7510248f677fef08fc6e8851f4f3bc"
+    },
+    {
+      "path": "agents/04_EVALFORGE.md",
+      "size_bytes": 5729,
+      "sha256": "ffcc2d17d77ae57edeb73bd84e31a2624c3ff0699ce13bb44f10d8903dea7ba0"
+    },
+    {
+      "path": "agents/05_GCP_PLATFORM.md",
+      "size_bytes": 9068,
+      "sha256": "b1df267ea68b55c19dcbdfe1ab884225552ee004427f69a866cf604479292424"
+    },
+    {
+      "path": "agents/06_BRAND_WEB.md",
+      "size_bytes": 9576,
+      "sha256": "170ddeb7945d299086378c872513252b1dd4d5b8afb0fdb9db34a7618d31fb87"
+    },
+    {
+      "path": "agents/07_ATTICUS_RUNTIME.md",
+      "size_bytes": 7415,
+      "sha256": "71f1bb34e2bfafff9e92712c2a95cc577c74389b8a1a9db94dc1c92f39a0deef"
+    },
+    {
+      "path": "agents/08_MODEL_DATA.md",
+      "size_bytes": 9158,
+      "sha256": "b9dd466f0454f92132cd3111b999ecb3cf1902b7389379008a52a976b4b87be3"
+    },
+    {
+      "path": "agents/09_LOCAL_RUNNER_EDGE.md",
+      "size_bytes": 7450,
+      "sha256": "2dac5791f9b075171e5b255726e0daaa5d962e14452735c9936536523daa1ca5"
+    },
+    {
+      "path": "agents/10_ATLAS.md",
+      "size_bytes": 6697,
+      "sha256": "233918f899858eeb45adb0a198693956a85a0f3f0a88b369d2b73dd47dc8ff33"
+    },
+    {
+      "path": "agents/11_FEDLENS.md",
+      "size_bytes": 6748,
+      "sha256": "62f584c8b32c3d8224314a616465015dc2eb52521468daa8c25ebbcc5f3e72e4"
+    },
+    {
+      "path": "agents/12_BALANCELAB.md",
+      "size_bytes": 6958,
+      "sha256": "23c96f26b6af98bd9b87e2cbe89f1b5ccf488e06f526794d3eda4ab7e242a36f"
+    },
+    {
+      "path": "agents/13_INTEGRATION_DEMO.md",
+      "size_bytes": 7261,
+      "sha256": "a4787e6685c5c4af3a8dee36ae3445fbb2f9843fc2d1d7dca0bb5215e090052a"
+    },
+    {
+      "path": "agents/14_RELEASE_QA.md",
+      "size_bytes": 8299,
+      "sha256": "4d85c46b1d301bcbb4f0c199b816c0450c6f4e22700f12c758eb7e2bc30d9784"
+    },
+    {
+      "path": "agents/15_RESEARCH_COMMUNITY.md",
+      "size_bytes": 8311,
+      "sha256": "28500b7db191a7ee73511e546f17a16163dfc5905b438db26165d88bdd0e1f89"
+    },
+    {
+      "path": "agents/BOOTSTRAP_PROMPTS.md",
+      "size_bytes": 3742,
+      "sha256": "e3452310ad7425ecaa31b2c0d8cb79e2d5813bb8ab394811ced0bce7bd4058f4"
+    },
+    {
+      "path": "agents/HANDOFF_TEMPLATE.md",
+      "size_bytes": 2311,
+      "sha256": "5816980bd4967bbf7ee1c5049cab9bbfbd23eec9f8a18af300594bef66fcea01"
+    },
+    {
+      "path": "agents/ISSUE_DECOMPOSITION_TEMPLATE.md",
+      "size_bytes": 1407,
+      "sha256": "0475105fb1a84e7b4533fa4e1417ec1778e0cb927c005802f02031d45375f9d1"
+    },
+    {
+      "path": "agents/README.md",
+      "size_bytes": 1652,
+      "sha256": "90ccd9d1c700899fa3a94110f675886af50d75f5b6ebfb83d0845e3724ddb12b"
+    },
+    {
+      "path": "agents/SEQUENTIAL_EXECUTION_PLAN.md",
+      "size_bytes": 3552,
+      "sha256": "8f6f18eae2b0ed4b2290109806910d04c70d2faf3dea18b4751159c96c057603"
+    },
+    {
+      "path": "apps/atticus-console/AGENTS.md",
+      "size_bytes": 1881,
+      "sha256": "803dae99e01aa1004f23255777fed1943585d1838e244651d044d8175b9974de"
+    },
+    {
+      "path": "apps/atticus-console/README.md",
+      "size_bytes": 2916,
+      "sha256": "f7638826965d9ec05086b748b3663e2ef30065e758490497cb8acc604afcafdc"
+    },
+    {
+      "path": "apps/atticus-console/docs/ACCESSIBILITY_AND_SECURITY.md",
+      "size_bytes": 1401,
+      "sha256": "7bed80cd98c2e005d0aafac5f4d64e9a090c93528a47c7af2331ee73322be52a"
+    },
+    {
+      "path": "apps/atticus-console/docs/ROADMAP.md",
+      "size_bytes": 1659,
+      "sha256": "92b11bc08a6bd644e6405279eaa1173b4e138e016ba5591a2405b12dbeddd80c"
+    },
+    {
+      "path": "apps/atticus-console/docs/SPEC.md",
+      "size_bytes": 6162,
+      "sha256": "c95af8ec0311bdcaaf3da9cccf87357129da2a3a6f93859bf76daf7b17a24327"
+    },
+    {
+      "path": "apps/atticus-console/docs/STATE_AND_EVENTS.md",
+      "size_bytes": 1795,
+      "sha256": "b142b6665dfd5f5a5e2d4cd67db87037fa51f7a66a2c31c20dfbdcb0f5aa8adb"
+    },
+    {
+      "path": "apps/atticus-console/package.json",
+      "size_bytes": 432,
+      "sha256": "56b870b83bd72f60e22332f7586b4b4653cabd505c64ff4c6e012c863b0e81b6"
+    },
+    {
+      "path": "apps/atticus-local-runner/AGENTS.md",
+      "size_bytes": 1969,
+      "sha256": "7ffa9e9b7254bcb8018d727c9d665021ef04ac1de7cc7c96306ed9a75673bb32"
+    },
+    {
+      "path": "apps/atticus-local-runner/README.md",
+      "size_bytes": 3259,
+      "sha256": "88acc2892b8ffb27673e4949c8d83ab06a2cf613526e8d333f962e4902628080"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/DEMO.md",
+      "size_bytes": 2379,
+      "sha256": "d21b5ccf7ccd10459ab0d851fb81736fc9c41e0904a34b4bd7418bb6f89697b9"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/EVALUATION.md",
+      "size_bytes": 3223,
+      "sha256": "e50635dc20d466997422d71bd8aeb63b2e2baf6ede3c7c6ac623cf766ad37750"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/PROTOCOL.md",
+      "size_bytes": 4117,
+      "sha256": "09b1e6f7c4045bcf65759edcdc974d3d46c129052edb4d8dcd4ee54bb5841f0f"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/ROADMAP.md",
+      "size_bytes": 1811,
+      "sha256": "999bfb0c4efa973fbb5d6b6f40f756355d69815bcb06e91557cc8c5ad106d0c2"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/SECURITY.md",
+      "size_bytes": 2680,
+      "sha256": "eff3f880b48de9bca54abef741f146e20d0121317742c2fc86755ac2c3d1f5ba"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/SPEC.md",
+      "size_bytes": 6936,
+      "sha256": "07cdde75e8b5973ff6b116dff369ae8fb769de044ed17430fa305180498a16ed"
+    },
+    {
+      "path": "apps/atticus-local-runner/docs/TOOLS_AND_SANDBOX.md",
+      "size_bytes": 1969,
+      "sha256": "58eb9133eb1dabcb7a2c11bc39d5e712fe6bb648049df7f160bf70d5ec42a33d"
+    },
+    {
+      "path": "apps/atticus-local-runner/pyproject.toml",
+      "size_bytes": 406,
+      "sha256": "8df26092c0e4e238fb060a39842bd72acc5a1b68ba92a77ca9495d18fb703a05"
+    },
+    {
+      "path": "apps/atticus-local-runner/src/atticus_local_runner/__init__.py",
+      "size_bytes": 204,
+      "sha256": "ae56b743282e4b36db1761a3aee33339365bba08fbc2726f5c8d431119cbdb50"
+    },
+    {
+      "path": "apps/atticus-local-runner/src/atticus_local_runner/workspace.py",
+      "size_bytes": 4672,
+      "sha256": "16de91028b1516d77505d62d7a500ffdcbd9b51c9900a538833ac28a1bd63e0e"
+    },
+    {
+      "path": "apps/lab-web/AGENTS.md",
+      "size_bytes": 1941,
+      "sha256": "40c52e6aadff82720ac0ca25517c6110ae7029d572ca8e714a6bafce8098362b"
+    },
+    {
+      "path": "apps/lab-web/README.md",
+      "size_bytes": 3869,
+      "sha256": "98e6df6b966d60b997ce318b3b2184736d19d087889dde9737469a37d8d45ef4"
+    },
+    {
+      "path": "apps/lab-web/docs/DATA_AND_CONTENT.md",
+      "size_bytes": 3509,
+      "sha256": "7eb439cbb5d6f83de7ec6ecec0c5bac4a9e61b8336e7203df05231a12b9b6517"
+    },
+    {
+      "path": "apps/lab-web/docs/DEMO.md",
+      "size_bytes": 2342,
+      "sha256": "1efdab547b7be5bf0bbefd38c5e4c1f458db9ebd3592627c5519f918c1b95967"
+    },
+    {
+      "path": "apps/lab-web/docs/EVALUATION.md",
+      "size_bytes": 3303,
+      "sha256": "1633f40a60c4be73b0535aadee530f65ac45127df374c67a7f1ae621afef902d"
+    },
+    {
+      "path": "apps/lab-web/docs/INFORMATION_ARCHITECTURE.md",
+      "size_bytes": 2941,
+      "sha256": "dffee6d1a89ef9860df1ec47f284da52ebd056b772d6ea87374845691c3f53af"
+    },
+    {
+      "path": "apps/lab-web/docs/ROADMAP.md",
+      "size_bytes": 1870,
+      "sha256": "41eb5f893296a90a193cde5f912ab3e75768159cdda57200e8b92a0435c7c17d"
+    },
+    {
+      "path": "apps/lab-web/docs/SECURITY.md",
+      "size_bytes": 2622,
+      "sha256": "4d3e79104e0b9c2b39fb3fe3fc7b47b141252498dc0a41c2d41b61490c0d8ac7"
+    },
+    {
+      "path": "apps/lab-web/docs/SPEC.md",
+      "size_bytes": 9100,
+      "sha256": "d0822ca2d1a66cd462236adb575a8ae57b0de1cb74d9b04991eaa6e2d193f66c"
+    },
+    {
+      "path": "apps/lab-web/docs/UX_FLOWS.md",
+      "size_bytes": 1036,
+      "sha256": "0433089f239c429546971d1ff7ab965a5fc36f74f4f079464d122dc09eca68d9"
+    },
+    {
+      "path": "apps/lab-web/package.json",
+      "size_bytes": 424,
+      "sha256": "6f1ab9b75056fb2a5805bc6090d826f856696e57eef5fd2805d843f90c15b7f5"
+    },
+    {
+      "path": "configs/data-classification.yaml",
+      "size_bytes": 540,
+      "sha256": "40886532f9af1065cfe12163b1111d5d06bcbbdd2a3d6077e246a4d0e1ab5c5d"
+    },
+    {
+      "path": "configs/domain-routing.yaml",
+      "size_bytes": 1472,
+      "sha256": "8b23bce702634cd2af64997c35d6b2f8f1629345dfbed69564e109a421c3180d"
+    },
+    {
+      "path": "configs/environments/dev.yaml",
+      "size_bytes": 142,
+      "sha256": "502b4ead4e0def55d64bb02f5db2293ac8a0ccd2ee82cb39072c3af5977297dc"
+    },
+    {
+      "path": "configs/environments/prod.yaml",
+      "size_bytes": 143,
+      "sha256": "624354bb3fc7bacae06c94debea6382230db569c7c2cbfd9e4f72ca4ea26f0b6"
+    },
+    {
+      "path": "configs/environments/staging.yaml",
+      "size_bytes": 149,
+      "sha256": "ebbd5e0c9224614d91486c9ded27a1dbe75e6dadd7e2b8a4ad3a3c3d68091168"
+    },
+    {
+      "path": "configs/model-routing.yaml",
+      "size_bytes": 827,
+      "sha256": "a6d1d02364e621e9aa7cefa4102dba4aedfa9fad493e962b4ec553bbee52868e"
+    },
+    {
+      "path": "configs/open-artifact-policy.yaml",
+      "size_bytes": 1139,
+      "sha256": "0a8d14acfb3562b66679e1756d42547073d976642a4bb22fe6f180eda511ac7c"
+    },
+    {
+      "path": "configs/open-source-metrics.yaml",
+      "size_bytes": 1100,
+      "sha256": "45906f0d4fab8c1d7f44b71135f0fb5348335802dc8c33193b3dc70141662b32"
+    },
+    {
+      "path": "configs/open-stack.yaml",
+      "size_bytes": 3958,
+      "sha256": "2ac5448df8c8f0f694895423a76a174af456e81c9ed5f0aaed3c91f5d72055c5"
+    },
+    {
+      "path": "configs/public-tool-catalog.yaml",
+      "size_bytes": 624,
+      "sha256": "a4182dc2d33d732436a014f9a633db079e749b018b4c19a212fc1dfc47ed2376"
+    },
+    {
+      "path": "configs/quotas.yaml",
+      "size_bytes": 587,
+      "sha256": "c9a02ad150a9f5863504964ef4889f322c1bea100544bec48619c7969f8be64e"
+    },
+    {
+      "path": "configs/retention.yaml",
+      "size_bytes": 539,
+      "sha256": "fa5ffbcfd7f93755de2085fc66cc66dd34bd7bbc5d2fcd9c9cd411d8ac10fb8a"
+    },
+    {
+      "path": "configs/risk-tiers.yaml",
+      "size_bytes": 1023,
+      "sha256": "02022d44f026d822fd837b69d5f2a9f3abf28e222b21d5ae8b3df29afbd9a664"
+    },
+    {
+      "path": "configs/telemetry.yaml",
+      "size_bytes": 722,
+      "sha256": "c2702bb0e6cd90c141d71b9c5bcd4b22441d5b50d883b21f8e4d6f6c78a67755"
+    },
+    {
+      "path": "configs/tool-policy.yaml",
+      "size_bytes": 1040,
+      "sha256": "07d8913dd31dbed69c8d89e8fba4f83c0b75b6c9b6ef56c5241bf18c42106a3a"
+    },
+    {
+      "path": "datasets/atticusbench/AGENTS.md",
+      "size_bytes": 1810,
+      "sha256": "628566ee612884cb2e141919fdcd38a409fa29d54904ac89fd99e7d87f11640c"
+    },
+    {
+      "path": "datasets/atticusbench/README.md",
+      "size_bytes": 407,
+      "sha256": "ab4b5503244f7ed7aed4afd34c3b92107e8bb76725ef8b34c64a02c875b63ee4"
+    },
+    {
+      "path": "datasets/atticusbench/docs/DATASET_CARD_TEMPLATE.md",
+      "size_bytes": 474,
+      "sha256": "befd2f5b0ee326f27737dcc0640e5031eb89f962f628a6012d92bf3f8d3faaa3"
+    },
+    {
+      "path": "datasets/atticusbench/docs/SPEC.md",
+      "size_bytes": 7506,
+      "sha256": "8ceaeabae68b71c43db53350469928bcc5fa46b5f17aa230f81ab4e2db17857c"
+    },
+    {
+      "path": "datasets/atticusbench/docs/TASK_AUTHORING.md",
+      "size_bytes": 1940,
+      "sha256": "43e7036355101d4e80b1e887ad6face5bfcc1f30c0db6da1bf534fff7d8d795e"
+    },
+    {
+      "path": "datasets/public-traces/README.md",
+      "size_bytes": 708,
+      "sha256": "b3371d26399c95ead84b21b2f2fdf4c00693a158e5bf7deb5862514e6f460851"
+    },
+    {
+      "path": "datasets/public-traces/docs/SPEC.md",
+      "size_bytes": 570,
+      "sha256": "4dde2178d6e7aaffe79b02ebfe38e4efcd0ddb7d99b413a94af5c98687755832"
+    },
+    {
+      "path": "docker-compose.yml",
+      "size_bytes": 878,
+      "sha256": "d22631dc0e830b779f75aef202b9b006cf5b36070e0de33172cf26ad867fc6f6"
+    },
+    {
+      "path": "docs/00-program/90_DAY_EXECUTION_PLAN.md",
+      "size_bytes": 6289,
+      "sha256": "99f48661e873f0c90f1954aaa8c0d1ffab48e2f1fb1569b6b0628f402f5e8ac0"
+    },
+    {
+      "path": "docs/00-program/ASSUMPTIONS_AND_GATES.md",
+      "size_bytes": 1805,
+      "sha256": "27c36c461c67984f9b6a9726e05531bcb657d74d704339702a2f41a26bf18542"
+    },
+    {
+      "path": "docs/00-program/CLAIMS_AND_EVIDENCE_POLICY.md",
+      "size_bytes": 1448,
+      "sha256": "3bcdb956804ba9cf68be0a6eabfcc066ac5a361b2269dc0da2488f4b73c16f20"
+    },
+    {
+      "path": "docs/00-program/DECISION_REGISTER.md",
+      "size_bytes": 5475,
+      "sha256": "0c513d52a57b0d08564b15f650d1609f131c27f4b40217ae4f75c7f7bada085b"
+    },
+    {
+      "path": "docs/00-program/DEPENDENCY_GRAPH.md",
+      "size_bytes": 1695,
+      "sha256": "3103bb5a4baabf6169f64fbc5116fc8359522be9751cebf8947b9998bc811bd4"
+    },
+    {
+      "path": "docs/00-program/IMPLEMENTATION_BACKLOG.md",
+      "size_bytes": 11435,
+      "sha256": "57bc0d3d78d88d05e00cbd03524fb1707024977371ef7cd2a0cf62049d13f81e"
+    },
+    {
+      "path": "docs/00-program/MASTER_BUILD_PLAN.md",
+      "size_bytes": 6484,
+      "sha256": "cf5a20c72231eb80e9812b2d419cb2d3a71333844aca40a7c249b8283e73dd31"
+    },
+    {
+      "path": "docs/00-program/PROGRAM_CHARTER.md",
+      "size_bytes": 3818,
+      "sha256": "13cf4b6a09db58c73780bb69dcc2a75e88dc5afef2086822966447b78d8c1efd"
+    },
+    {
+      "path": "docs/00-program/QUALITY_MANAGEMENT_PLAN.md",
+      "size_bytes": 2399,
+      "sha256": "81e358b6d5f1ad361401de9371b6a028ca40d0ddd47354fa79e34f7439db8e9c"
+    },
+    {
+      "path": "docs/00-program/REQUIREMENT_CATALOG.md",
+      "size_bytes": 22632,
+      "sha256": "77c583783b9f178d0cce20671e0dde1cc7b538f4d1bbf24175e916b972f1d3a9"
+    },
+    {
+      "path": "docs/00-program/RISK_REGISTER.md",
+      "size_bytes": 3393,
+      "sha256": "a46aba52bb945b8f2404b746cf170be8eef31bfadf487e5ddfe5774d07bb1268"
+    },
+    {
+      "path": "docs/00-program/SPECIFICATION_MAP.md",
+      "size_bytes": 2832,
+      "sha256": "5cb1976877f73fd4f73e017c69f2bee2328882effcbf70aacbd497f83f884577"
+    },
+    {
+      "path": "docs/00-program/TRACEABILITY_MATRIX.md",
+      "size_bytes": 21908,
+      "sha256": "fd374ce2b61cc2e333a6f65b8338042b6dc4a62b491600491daacf782db1086f"
+    },
+    {
+      "path": "docs/00-program/WORK_BREAKDOWN_STRUCTURE.md",
+      "size_bytes": 2589,
+      "sha256": "466935e00da36798af0123a4682c689afbf48971bd2313824cbbda1587aca789"
+    },
+    {
+      "path": "docs/01-product/INTEGRATED_REFERENCE_DEMO.md",
+      "size_bytes": 3034,
+      "sha256": "80a4be8cfe50f1e3e9f43b08a007d5ac0340ee8e486d5ae41a7724bb65701c49"
+    },
+    {
+      "path": "docs/01-product/PORTFOLIO_CONTENT_REQUIREMENTS.md",
+      "size_bytes": 1343,
+      "sha256": "b3cd755f1fae8f6dc0e9198f0e11b2dc3dc8634646609c2cabceb2d35826fca8"
+    },
+    {
+      "path": "docs/01-product/PORTFOLIO_V1_PRD.md",
+      "size_bytes": 4854,
+      "sha256": "878f6c959d247200d077b2d72c146d8ef4e472a6fd7c96c53c111b7d85634682"
+    },
+    {
+      "path": "docs/01-product/PRIVATE_ATTICUS_PRD.md",
+      "size_bytes": 3163,
+      "sha256": "9097a4a6d07efe0a8b688019e81260546fb5bdbdd4af5cd4e61dd5fcfb61a9d5"
+    },
+    {
+      "path": "docs/01-product/PRODUCT_MATURITY_AND_SCOPE.md",
+      "size_bytes": 1279,
+      "sha256": "5a5ddb546ae237d983237536411056b0a0b1076ef33ab1644fdabe3c7d1c2595"
+    },
+    {
+      "path": "docs/01-product/PUBLIC_ATTICUS_PRD.md",
+      "size_bytes": 4065,
+      "sha256": "a57f0e0aecb76f750bcd14710d34ad3743d143dff52080bcfd75f8be20e22f1b"
+    },
+    {
+      "path": "docs/01-product/USER_PERSONAS_AND_JOURNEYS.md",
+      "size_bytes": 3226,
+      "sha256": "b6253412a37942dc173fdfc4a7967a968e1cc77e4e4b8afa91c32092618510f2"
+    },
+    {
+      "path": "docs/02-architecture/ATTICUS_RUNTIME_STATE_MACHINE.md",
+      "size_bytes": 2034,
+      "sha256": "3c0d8157d4deaaa99122afb9fd9585ec3080a3b3011fe31b04167de7055e1035"
+    },
+    {
+      "path": "docs/02-architecture/DATA_MODEL_AND_STORAGE.md",
+      "size_bytes": 1743,
+      "sha256": "39cf94e7be2db208d10acb46fbe6dd8d356c839708d34eb5aca3a295f8470f73"
+    },
+    {
+      "path": "docs/02-architecture/DEPLOYMENT_AND_ENVIRONMENTS.md",
+      "size_bytes": 2406,
+      "sha256": "f19d37165fe73403cbf38da299841d51de00f6fbecc3fac483d5a07791cc70f2"
+    },
+    {
+      "path": "docs/02-architecture/DRL_PROTOCOL.md",
+      "size_bytes": 3556,
+      "sha256": "360351c9d5cdcc22638ca1d9410e656ce42257668aadfc0194c0b6af66844324"
+    },
+    {
+      "path": "docs/02-architecture/ERROR_AND_RECOVERY_MODEL.md",
+      "size_bytes": 1488,
+      "sha256": "19e45ed1ff826247ca9aa6b85e1a6655e16253d315ec5022e877d5c951a2244f"
+    },
+    {
+      "path": "docs/02-architecture/EVENTS_QUEUES_AND_IDEMPOTENCY.md",
+      "size_bytes": 1465,
+      "sha256": "dd213c7517e704c3fb3ccf2ebe8a4a00655f6365b8a3c7b5cc731152a1f8f94b"
+    },
+    {
+      "path": "docs/02-architecture/IDENTITY_TENANCY_AND_AUTH.md",
+      "size_bytes": 1820,
+      "sha256": "5f4727214b8f80d93056922ff24f6ad3050c289de06225b0d0e00c6b448372cb"
+    },
+    {
+      "path": "docs/02-architecture/LOCAL_RUNNER_PROTOCOL.md",
+      "size_bytes": 1766,
+      "sha256": "0a0381be068bda7a1ee8fc5727c04afae6cec652a00def8b3a5db6cf3ab1b0ba"
+    },
+    {
+      "path": "docs/02-architecture/MODEL_GATEWAY_AND_ROUTING.md",
+      "size_bytes": 2001,
+      "sha256": "4930782eb8a6b8382b4c4f894792249f6268c61fb06ed2ee33193fd1d2d4ab38"
+    },
+    {
+      "path": "docs/02-architecture/OBSERVABILITY_AND_TRACE_MODEL.md",
+      "size_bytes": 1524,
+      "sha256": "c708f78769396633315b14ec77b0e05ab54ba0a24417343825ec6f142ba684e1"
+    },
+    {
+      "path": "docs/02-architecture/POLICY_AND_TOOL_EXECUTION.md",
+      "size_bytes": 1674,
+      "sha256": "f69bb46d53d451f465c1940da4118d80ac0f4195c1fd5941e101a2291e3b3d5d"
+    },
+    {
+      "path": "docs/02-architecture/PROVENANCE_CITATIONS_AND_CLAIMS.md",
+      "size_bytes": 1389,
+      "sha256": "cae675edae4032eafb3120cd200363f9236ac3ff176866e2c264c1c52db9ab5f"
+    },
+    {
+      "path": "docs/02-architecture/SKILLS_AND_PLUGIN_ARCHITECTURE.md",
+      "size_bytes": 1576,
+      "sha256": "21492af21c2fa74289b06f43f119d2a61bb4dc5870e824974cf6fc9a2134899a"
+    },
+    {
+      "path": "docs/02-architecture/SLOS_AND_RESILIENCE.md",
+      "size_bytes": 1620,
+      "sha256": "eda48fc00a590a8764e077fa30c08673eaacc6a06a71da2c7f7b5f3482fc6b4a"
+    },
+    {
+      "path": "docs/02-architecture/SYSTEM_CONTEXT_AND_C4.md",
+      "size_bytes": 3199,
+      "sha256": "95905ebac3ca9fce7801219000205d85da467b5a1f30636f336f2293c69332c5"
+    },
+    {
+      "path": "docs/03-model/ATTICUS_MODEL_PROGRAM.md",
+      "size_bytes": 4465,
+      "sha256": "174dc3928e7c8ca6d9626bce0d5c1c1b807e3271db4b56ec6fd57c29d2154b66"
+    },
+    {
+      "path": "docs/03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md",
+      "size_bytes": 4490,
+      "sha256": "fab3b4c1a62950287b0c9cf8c51c73fdbbee33dff241206639171209dcb04947"
+    },
+    {
+      "path": "docs/03-model/BASE_MODEL_BAKEOFF.md",
+      "size_bytes": 4277,
+      "sha256": "90d7364a255d1fa4a8a3932fc6a7f5a077cb79730c349d7cec90dd68ee71e45c"
+    },
+    {
+      "path": "docs/03-model/CORE_MODEL_SPEC.md",
+      "size_bytes": 2029,
+      "sha256": "f375015dde508b7b3fdefad9b91c690b5f126b79bef9989408a7cdb70cd4f6df"
+    },
+    {
+      "path": "docs/03-model/EDGE_DISTILLATION.md",
+      "size_bytes": 1229,
+      "sha256": "777e5b6f9fa9a4dbb67ed5824867a047376887c469bb2877eda7b2a6afa736a7"
+    },
+    {
+      "path": "docs/03-model/EDGE_MODEL_SPEC.md",
+      "size_bytes": 1773,
+      "sha256": "96cefb10b18bfd48181ddf8ecf0ccf7f52617fd6cdd6ad402db4b70b2d958ebe"
+    },
+    {
+      "path": "docs/03-model/EVALUATION_AND_RELEASE_GATES.md",
+      "size_bytes": 1263,
+      "sha256": "f94e60824d094a565554c7f3d5de6bb3821bb9168d79af9bc54b4a53c2e8d68c"
+    },
+    {
+      "path": "docs/03-model/MODEL_ECOSYSTEM_CANDIDATE_REGISTER.md",
+      "size_bytes": 4032,
+      "sha256": "f7ed1658a9c754f2e0f54f204683cbc0205f1f71548bcdba2592c8d278f77f50"
+    },
+    {
+      "path": "docs/03-model/MODEL_LICENSE_AND_RELEASE_REVIEW.md",
+      "size_bytes": 972,
+      "sha256": "17b326bfcc1f85196fca2b1ff57609fbb101ec0cdd59877dbe9c251ead207f9c"
+    },
+    {
+      "path": "docs/03-model/MODEL_SERVING_AND_CAPACITY.md",
+      "size_bytes": 1373,
+      "sha256": "e55134fef28cf519916d68e2f1cdd8ae47a81757897f29472e83e199683bb422"
+    },
+    {
+      "path": "docs/03-model/OPEN_MODEL_RELEASE_AND_DISTRIBUTION.md",
+      "size_bytes": 3886,
+      "sha256": "a982ce74bcfe7779548d9dffe4538488d11e69b36bfddf196cc6b606c16fd40e"
+    },
+    {
+      "path": "docs/03-model/PREFERENCE_AND_SAFETY_POSTTRAINING.md",
+      "size_bytes": 1548,
+      "sha256": "4930ab710ef66bddc6facc0fa1532dc8ea83f5292b5849b8d2569f3e0790c143"
+    },
+    {
+      "path": "docs/03-model/QUANTIZATION_AND_RUNTIME_MATRIX.md",
+      "size_bytes": 1208,
+      "sha256": "c05dbacf07d9a90339b8b09552234690c9d3d0ea40e83e06f88e4e8eaa62ffae"
+    },
+    {
+      "path": "docs/03-model/REPRODUCIBILITY_AND_EXPERIMENT_TRACKING.md",
+      "size_bytes": 1013,
+      "sha256": "ad5d1a8d28cb7076f88cfe047e6fb8a7fc1112c814c367e798bd58f05824cbbe"
+    },
+    {
+      "path": "docs/03-model/SFT_AND_DATA_MIXTURE.md",
+      "size_bytes": 2172,
+      "sha256": "3fdfe8d71ef9cd9328b150e2d9a2da89333804e59f14e2b3b7ffe6ae04c05ba0"
+    },
+    {
+      "path": "docs/03-model/TRAINING_PIPELINE.md",
+      "size_bytes": 3249,
+      "sha256": "f2d745f4f272362ace7e9f09ba009dcd11b6e44f347b299453757ea73ace5aa0"
+    },
+    {
+      "path": "docs/04-data/ATTICUSBENCH_SPEC.md",
+      "size_bytes": 3306,
+      "sha256": "1745e5f4722675c1a1fa2883d19a596172109b16afb4c5f1d03bea5dc3d1b7cf"
+    },
+    {
+      "path": "docs/04-data/CONTAMINATION_AND_DEDUPLICATION.md",
+      "size_bytes": 1150,
+      "sha256": "1f47edee5232dfbf1720332507da7502e4ae4449b423cc53444ce1d7125dc01c"
+    },
+    {
+      "path": "docs/04-data/DATASET_RELEASE_AND_VERSIONING.md",
+      "size_bytes": 862,
+      "sha256": "b37b80ec1e6e5f872f9648ee3087a74e0834c4ce9ac290fd8994e54e31f32019"
+    },
+    {
+      "path": "docs/04-data/DATA_CLASSIFICATION_AND_RETENTION.md",
+      "size_bytes": 1815,
+      "sha256": "f0646b3ca490a6358ba3ab4eb8eec3bf5df730f752e7b27b0c406d282cf9df9c"
+    },
+    {
+      "path": "docs/04-data/DATA_GOVERNANCE.md",
+      "size_bytes": 1650,
+      "sha256": "e9f9081790849b7b3709771b543677f2ea54640e77b3b9fbe832f72d40aefdcc"
+    },
+    {
+      "path": "docs/04-data/DATA_QUALITY_AND_LINEAGE.md",
+      "size_bytes": 954,
+      "sha256": "4ee18cdd1b455fa526f6d331a153d53654acb107075cab199357c8ecaaac5f7d"
+    },
+    {
+      "path": "docs/04-data/HUMAN_REVIEW_AND_ANNOTATION.md",
+      "size_bytes": 1395,
+      "sha256": "63ddec0f70a73f77fc0285e38919cc1549bb6b26760a709a1aeb68366193db20"
+    },
+    {
+      "path": "docs/04-data/PROVENANCE_AND_SOURCE_REGISTER.md",
+      "size_bytes": 783,
+      "sha256": "b625a5f71073254d8b8b5e86f1112af6d2329c35442a2ee7afa4a3f963d4743b"
+    },
+    {
+      "path": "docs/04-data/SYNTHETIC_DATA_GENERATION.md",
+      "size_bytes": 1718,
+      "sha256": "8bdade00e826d69ff7212298adbd2528f4415402d4512c364bfe305bf0bba144"
+    },
+    {
+      "path": "docs/04-data/TASK_SCHEMA_AND_TAXONOMY.md",
+      "size_bytes": 1184,
+      "sha256": "6c37be441081f84942bc45487ba239bb45bae732bf4d6dc80ca16f9f98de7751"
+    },
+    {
+      "path": "docs/04-data/TRACE_DONATION_POLICY.md",
+      "size_bytes": 1393,
+      "sha256": "f691f8020740bac7cc4aaa0613f8734904c3b28f773aed565f3d9edea1328cf6"
+    },
+    {
+      "path": "docs/05-evaluation/CI_AND_RELEASE_GATES.md",
+      "size_bytes": 1081,
+      "sha256": "a2c05b3a037d55d5edc31553b551974a8a152c749f99831887a3fdbb24d51bca"
+    },
+    {
+      "path": "docs/05-evaluation/EVALFORGE_SYSTEM_SPEC.md",
+      "size_bytes": 1633,
+      "sha256": "da00da286cc432cf654c5742b50f5dffc10486234815a3983d7a5d515acbca00"
+    },
+    {
+      "path": "docs/05-evaluation/EVALUATION_TAXONOMY.md",
+      "size_bytes": 881,
+      "sha256": "8c139d7f297abcceb23bfa01fda8f9f8065339710fa03bf2e7e169d10db0b91a"
+    },
+    {
+      "path": "docs/05-evaluation/LLM_JUDGE_CALIBRATION.md",
+      "size_bytes": 1180,
+      "sha256": "1e12267460a684099382f3190d98ceafd10b8b7188a8ad34058bd61141cbc526"
+    },
+    {
+      "path": "docs/05-evaluation/METRICS_AND_SCORING.md",
+      "size_bytes": 1460,
+      "sha256": "eb579b228a8aa50a512924ae0a977ce78062ed2bef1cfb059502e1b9dbea69e4"
+    },
+    {
+      "path": "docs/05-evaluation/RAG_CITATION_AND_TEMPORAL_EVALS.md",
+      "size_bytes": 1117,
+      "sha256": "25c9530f1d65756c9d9050de2acf335de85f2329cb3e4cb8df2799c809189a3f"
+    },
+    {
+      "path": "docs/05-evaluation/REPORT_AND_LEADERBOARD_SPEC.md",
+      "size_bytes": 851,
+      "sha256": "178b0a97769582520bf75adff41f47416ab6f036acc11960f457d53f3ac2fe05"
+    },
+    {
+      "path": "docs/05-evaluation/SECURITY_AND_RED_TEAM_EVALS.md",
+      "size_bytes": 961,
+      "sha256": "18d65d87b3d9d180aefe20d5317f64527306fd723857c13866e990df4ffa64c4"
+    },
+    {
+      "path": "docs/05-evaluation/STATISTICAL_COMPARISON.md",
+      "size_bytes": 1143,
+      "sha256": "b0480c65309b621e720c1dbd258adeb2e01f28bd89a97a3f620984ff4a7e0ded"
+    },
+    {
+      "path": "docs/05-evaluation/TRAJECTORY_AND_TOOL_EVALS.md",
+      "size_bytes": 1159,
+      "sha256": "406b958eedc7f19b39a3e36aedd9bc89425bbd9693f92d5b6fb40294a5023ccd"
+    },
+    {
+      "path": "docs/06-security/ABUSE_PREVENTION_AND_QUOTAS.md",
+      "size_bytes": 949,
+      "sha256": "b628ba492222045dd6bbdcdffbfc2612247daf86904480380868a083faa6d7fa"
+    },
+    {
+      "path": "docs/06-security/INCIDENT_RESPONSE.md",
+      "size_bytes": 1081,
+      "sha256": "5e40211024775a41bfebe42eb6abbeba7eb575102f64b2dca743a1613bfb9339"
+    },
+    {
+      "path": "docs/06-security/LOCAL_RUNNER_SECURITY.md",
+      "size_bytes": 1171,
+      "sha256": "c491d03e595fc85b71b933b3f0906824af24f04be321376b9f6f5c5f3cffedbd"
+    },
+    {
+      "path": "docs/06-security/MCP_SECURITY_PROFILE.md",
+      "size_bytes": 1056,
+      "sha256": "4b288117087ed2b887b61091ebdb73b39a172729bc9001c595fe7f8aac6e09a4"
+    },
+    {
+      "path": "docs/06-security/MULTITENANCY_AND_PRIVACY.md",
+      "size_bytes": 1183,
+      "sha256": "0cb1a62459a241e8790765e9bae8ee48c2a0c78a2e206eb9658ab739738804c0"
+    },
+    {
+      "path": "docs/06-security/PERMISSION_AND_APPROVAL_MODEL.md",
+      "size_bytes": 1556,
+      "sha256": "0bcf1b374e9f846f07a796284855618d6ae99d0d0fea2d9f22791564a21b684a"
+    },
+    {
+      "path": "docs/06-security/PROMPT_INJECTION_DEFENSE.md",
+      "size_bytes": 1693,
+      "sha256": "54897e0923b048da3cfc49b0561766f54bd01768d577bd9fe9bec896446508f2"
+    },
+    {
+      "path": "docs/06-security/SECRETS_AND_KEY_MANAGEMENT.md",
+      "size_bytes": 1107,
+      "sha256": "12e328bce8928f96537cdd5b4ff3faee682469e87997448d5144147adabee609"
+    },
+    {
+      "path": "docs/06-security/SECURITY_ARCHITECTURE.md",
+      "size_bytes": 1336,
+      "sha256": "48606425f6882ef580d32c013c2717860b2bcaf01de35e635fad3d4855a7ddf9"
+    },
+    {
+      "path": "docs/06-security/SECURITY_TEST_PLAN.md",
+      "size_bytes": 1081,
+      "sha256": "25d540dea3695219e257c4a222ad66a0c5eb2ea57efeb79d96616f66d164712b"
+    },
+    {
+      "path": "docs/06-security/SUPPLY_CHAIN_AND_ARTIFACT_SECURITY.md",
+      "size_bytes": 1237,
+      "sha256": "89989fdca709b52c565e5339f7cb2137a9e1f923c9d6fd3b5a58c9ff6744e598"
+    },
+    {
+      "path": "docs/06-security/TELEMETRY_AND_CONTENT_CAPTURE.md",
+      "size_bytes": 1125,
+      "sha256": "00eb009396b10e284e2ffd6df0c1b24a1355a4f694f5a625cc4cc44ab66d722c"
+    },
+    {
+      "path": "docs/06-security/THREAT_MODEL.md",
+      "size_bytes": 3229,
+      "sha256": "b4292dc4f611ad269ada04a2a1f2165e44e68089d74dfa61aa3038e75eb44c58"
+    },
+    {
+      "path": "docs/06-security/TOOL_SANDBOX_AND_EGRESS.md",
+      "size_bytes": 1401,
+      "sha256": "3c3b6fdbc23f04bd2935cd21a1caa25fcad3877a982b56019c4d641389b0d1bf"
+    },
+    {
+      "path": "docs/07-platform-gcp/ASYNC_MESSAGING.md",
+      "size_bytes": 1032,
+      "sha256": "8bec11e7e091905561275ada382b38725d597779f4e86d1e651d8d172c299405"
+    },
+    {
+      "path": "docs/07-platform-gcp/AZURE_PORTABILITY_PROFILE.md",
+      "size_bytes": 1770,
+      "sha256": "81b47dfb1923ad0f5313d51004d1fb1b1d6ab13530a626bb983337080ffbb26a"
+    },
+    {
+      "path": "docs/07-platform-gcp/BACKUP_RECOVERY_AND_RUNBOOKS.md",
+      "size_bytes": 1014,
+      "sha256": "fd77f9259e964f1c621a9449ae7494baaaf1c8118bc6a15571c0df53bcb03d3d"
+    },
+    {
+      "path": "docs/07-platform-gcp/CI_CD_AND_RELEASE.md",
+      "size_bytes": 1071,
+      "sha256": "976e4059f43b35820b871e66c6412c8b59ada63c0aa2b4c04ffea0f303c9a903"
+    },
+    {
+      "path": "docs/07-platform-gcp/CLOUD_RUN_GPU_INFERENCE.md",
+      "size_bytes": 1636,
+      "sha256": "d7c2aeb71126476904aeafd0b0646bea6da544c7e09e10c0dfca611749626b6a"
+    },
+    {
+      "path": "docs/07-platform-gcp/CLOUD_RUN_SERVICE_STANDARD.md",
+      "size_bytes": 1369,
+      "sha256": "5894fd8c7f25dfbc692195b994d630988d64ec3d35efa886c8903e556e85b926"
+    },
+    {
+      "path": "docs/07-platform-gcp/CLOUD_SQL_AND_DATA_SERVICES.md",
+      "size_bytes": 1168,
+      "sha256": "cfde203d7a11d55720d186921009a0cc05573fe429e9806d860e01461c3490f0"
+    },
+    {
+      "path": "docs/07-platform-gcp/COLAB_RESEARCH_WORKFLOW.md",
+      "size_bytes": 1119,
+      "sha256": "7a2078b7be89cbd99336bf83447c933d4da2bdcd5cfc4b0f4ccc4ff5a571de2d"
+    },
+    {
+      "path": "docs/07-platform-gcp/COST_AND_BUDGET_CONTROLS.md",
+      "size_bytes": 1028,
+      "sha256": "a1f5871f88c5ac0017ccad2fe180779f1edc363ed138ed020349154e576f4d43"
+    },
+    {
+      "path": "docs/07-platform-gcp/DOMAIN_DNS_AND_WIX_RUNBOOK.md",
+      "size_bytes": 5278,
+      "sha256": "921a7d82a46fb5d19a8660ac64083e09c7b16ee60b4992dabee5d5c4d2455e74"
+    },
+    {
+      "path": "docs/07-platform-gcp/FIREBASE_AND_WEB_DELIVERY.md",
+      "size_bytes": 1297,
+      "sha256": "3c858decec951f412e1fbd4379493d11df375fcb587e48055eec1c1a79eaf629"
+    },
+    {
+      "path": "docs/07-platform-gcp/IAM_AND_SERVICE_IDENTITY.md",
+      "size_bytes": 1075,
+      "sha256": "2cedada97ad7be95252c5e8d2bf13689d6e09fa90833f35530ec284d3e360a29"
+    },
+    {
+      "path": "docs/07-platform-gcp/OBSERVABILITY_AND_SLOS.md",
+      "size_bytes": 1000,
+      "sha256": "d68ee64607cbbc58d15350d24a8a83514c2544d576cfb7f9633caf17fc25ff59"
+    },
+    {
+      "path": "docs/07-platform-gcp/PLATFORM_ARCHITECTURE.md",
+      "size_bytes": 2479,
+      "sha256": "f9f302a4a7e3317d213e9640bce24be7c4b95adc433b265a7d24b6e01553ec46"
+    },
+    {
+      "path": "docs/07-platform-gcp/TERRAFORM_AND_PROJECT_BOOTSTRAP.md",
+      "size_bytes": 1425,
+      "sha256": "437e9307d4f6ddc626c1d358a9a290ae4cf0ecbd688deb4b8468e94f542a9cbd"
+    },
+    {
+      "path": "docs/07-platform-gcp/VERTEX_AI_TRAINING.md",
+      "size_bytes": 1244,
+      "sha256": "987cc845249f031e3c9859459c6f10acd20cbc03a8c6f1fb54dabbd5376588e5"
+    },
+    {
+      "path": "docs/08-web-brand/ACCESSIBILITY_AND_INCLUSIVE_DESIGN.md",
+      "size_bytes": 1115,
+      "sha256": "30607f9e9a539318b2dd3d63509bcc700e0ba05465a40049cea780d06d12301f"
+    },
+    {
+      "path": "docs/08-web-brand/ANALYTICS_CONSENT_AND_SEO.md",
+      "size_bytes": 1778,
+      "sha256": "f9365264c1c052c07dbfa5138b6b354672554bb2ee8fe2acd8c22becccac620f"
+    },
+    {
+      "path": "docs/08-web-brand/ATTICUS_CONSOLE_UX.md",
+      "size_bytes": 1606,
+      "sha256": "e17b3dc5f3225844d2f4f64c91f05dc26a6bde1677a4e03af3d5f470dafb8dbe"
+    },
+    {
+      "path": "docs/08-web-brand/BRAND_SYSTEM.md",
+      "size_bytes": 1864,
+      "sha256": "f3b3eaf04cf88fd45534c20804d9ff2cb3ddac66c9b74cb4a72004841228eac8"
+    },
+    {
+      "path": "docs/08-web-brand/COMMAND_PALETTE_AND_TMUX.md",
+      "size_bytes": 924,
+      "sha256": "a64676d1288ec04de916e62a51b557c385991158aa4d757793be70adbc8f5b11"
+    },
+    {
+      "path": "docs/08-web-brand/CONTENT_MODEL_AND_PIPELINE.md",
+      "size_bytes": 1820,
+      "sha256": "2b575a7826702f57e194f68f2452af24881f9b53d733bdaf13fe2dac13446a68"
+    },
+    {
+      "path": "docs/08-web-brand/DEMO_REPLAY_SYSTEM.md",
+      "size_bytes": 959,
+      "sha256": "bdf439b804687ccda409e01ecd7abce230832580675232701a7c1ae92af720e1"
+    },
+    {
+      "path": "docs/08-web-brand/DESIGN_TOKENS_AND_COMPONENTS.md",
+      "size_bytes": 1636,
+      "sha256": "d818159b8eb3882b19ea930b335b804bb73d496e2209d74c71c3ba3c1f8b531d"
+    },
+    {
+      "path": "docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md",
+      "size_bytes": 14870,
+      "sha256": "e7d17523e257f9e8f48c13ddcd20488b9b6102fb8883a22f0ebeab6c0b5a7c84"
+    },
+    {
+      "path": "docs/08-web-brand/FAILURE_MUSEUM.md",
+      "size_bytes": 1070,
+      "sha256": "99ea7fc82615fb58637d948c10250fe0cbfd5828a44bd8427871d7d7ca42401e"
+    },
+    {
+      "path": "docs/08-web-brand/FOUNDER_PROFILE.md",
+      "size_bytes": 2072,
+      "sha256": "618b5d028c8687fb91a135f2a0f6a71dc38095662b796d7e2e54fa5ff1b2f625"
+    },
+    {
+      "path": "docs/08-web-brand/HOMEPAGE_SPEC.md",
+      "size_bytes": 3528,
+      "sha256": "bd5ef7879b08dee345bcb488d0e82de8dbededf208992fec60afb84ce78e5e73"
+    },
+    {
+      "path": "docs/08-web-brand/MOTION_AUDIO_AND_VISUAL_EFFECTS.md",
+      "size_bytes": 884,
+      "sha256": "1f44b3f1f04dfdca74d93b621c8e4a9cc6f91414b208cebe51e34dc85b987c40"
+    },
+    {
+      "path": "docs/08-web-brand/OPEN_SOURCE_PORTAL_AND_COMMONS.md",
+      "size_bytes": 4718,
+      "sha256": "400ef9f1193077775caa43ab8bf78d5960b0560c139da43d4536e4ac9b3cc8b3"
+    },
+    {
+      "path": "docs/08-web-brand/OPEN_SOURCE_VISUAL_IDENTITY.md",
+      "size_bytes": 3242,
+      "sha256": "fb6c2bb366e66f6f202d59089f5c3c50b0b28b781a59f59319bb3dfcfb45b4b2"
+    },
+    {
+      "path": "docs/08-web-brand/PROJECT_PAGE_TEMPLATE.md",
+      "size_bytes": 1913,
+      "sha256": "962323cec17b3e568daddd8f2a15b23457ac72515bb9a41635241928cdfd2e2c"
+    },
+    {
+      "path": "docs/08-web-brand/RESEARCH_ARCHIVE_AND_DOCUMENTS.md",
+      "size_bytes": 860,
+      "sha256": "064882ffc06114a0f8d3901dd5f1ddb216e11f52bc8a7310549660abdf9bbe84"
+    },
+    {
+      "path": "docs/08-web-brand/SYSTEM_CONSOLE_AND_STATUS.md",
+      "size_bytes": 844,
+      "sha256": "2817451e8f9fbca5013b3ec21edae7017cb8b89b5bf9b9c7a6243e9d2ad51607"
+    },
+    {
+      "path": "docs/08-web-brand/WEBSITE_PRODUCT_AND_DESIGN_SPEC.md",
+      "size_bytes": 5341,
+      "sha256": "da41cc10eb29ce54f43a2a5654bd586825b9d903028f66f570503fad8def4ea2"
+    },
+    {
+      "path": "docs/08-web-brand/WIX_EDITOR_HANDOFF_CHECKLIST.md",
+      "size_bytes": 5028,
+      "sha256": "00836d65c8bd5de40f9788cc42f4e1d4b762184adaf105ea1f5c88ec57caf9d8"
+    },
+    {
+      "path": "docs/08-web-brand/WIX_SITE_BUILD_PLAN.md",
+      "size_bytes": 9688,
+      "sha256": "738037a47143044afe7a4590e0ebcd47841ed98c40dcea3e3f44b5a5aa74d30a"
+    },
+    {
+      "path": "docs/09-open-source/COMMUNITY_RESEARCH_NETWORK.md",
+      "size_bytes": 4455,
+      "sha256": "681709fa73ee017a3a7226eece5cebb286a3206d00dea01e4677625b089d2a65"
+    },
+    {
+      "path": "docs/09-open-source/CONTRIBUTOR_CREDIT_AND_AUTHORSHIP.md",
+      "size_bytes": 2772,
+      "sha256": "135fe1d38e80854f91f781d63baf25125e2c5f4eb09687fb6ab00df7bbd39e08"
+    },
+    {
+      "path": "docs/09-open-source/CONTRIBUTOR_EXPERIENCE.md",
+      "size_bytes": 3988,
+      "sha256": "dcba41aee89da26ed3a56ae7198e050c16dfc2ee33fbd9ad69c0631fcaf82572"
+    },
+    {
+      "path": "docs/09-open-source/FORKABILITY_AND_SELF_HOSTING_STANDARD.md",
+      "size_bytes": 2891,
+      "sha256": "2fa8dd7bafce2796f3dfd7b1ceeb19f61b21be57a3860af9f476cd7186ba986a"
+    },
+    {
+      "path": "docs/09-open-source/GOVERNANCE_AND_MAINTAINERS.md",
+      "size_bytes": 3319,
+      "sha256": "59c7d537b94f9af86a9943f8a7aeb585e91441fa1009fe124f9c2a59bbdd1127"
+    },
+    {
+      "path": "docs/09-open-source/LICENSING_AND_MONETIZATION.md",
+      "size_bytes": 1840,
+      "sha256": "d399bbc5bf4d53e647c6b84ee8bc13bd2d54da6e939ea40b70231e5e2b5d94b5"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_ARTIFACT_STANDARD.md",
+      "size_bytes": 6224,
+      "sha256": "a2d951cf25b5d718c693ed8e196226788d37b6ed0fe19ca3c5163697ef215012"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_MODEL_COMMONS.md",
+      "size_bytes": 6547,
+      "sha256": "11b0a974ca203ebff1eb9ba71b11e431d722afa8a2ce072db7b23dd4fca72e77"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_SOURCE_HEALTH_METRICS.md",
+      "size_bytes": 3071,
+      "sha256": "37c233c03a8ae9eb624cdcee84451052d95a791e938b8efd306d66d2ec42ba78"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md",
+      "size_bytes": 4774,
+      "sha256": "e067f05a5eb36ac8c3085669ae0ceedfe3378e65a6c85517ce8ddf6841ec678d"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_SOURCE_MATURITY_MODEL.md",
+      "size_bytes": 2920,
+      "sha256": "21d86ed2e8ed3fda3641f3ac58fc53647055d555b5c04b4ed734ba90a9554b92"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_SOURCE_PROGRAM.md",
+      "size_bytes": 5989,
+      "sha256": "8a379740be1871cea52241bfd75a2cf0b2433ac6a2106f293815cab222884cd8"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_SOURCE_SUSTAINABILITY.md",
+      "size_bytes": 3496,
+      "sha256": "3244bd6d7539c6e205411c5f7563efadb9156ef44ff40e4394235d8ff9baeccd"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_STACK_AND_UPSTREAM_POLICY.md",
+      "size_bytes": 6090,
+      "sha256": "1423453522f7dba10dab8a7bdd904999c9b11bb6dff444f3454d351e30277e11"
+    },
+    {
+      "path": "docs/09-open-source/OPEN_TECHNOLOGY_CATALOG.md",
+      "size_bytes": 4315,
+      "sha256": "4bf023f33002273e83cd3eb9025482f2cc4f823e380056b222c93bdbd0dc34e7"
+    },
+    {
+      "path": "docs/09-open-source/PLUGIN_AND_REGISTRY_PROGRAM.md",
+      "size_bytes": 3049,
+      "sha256": "40435cddcc0584895825b9907930fec57afe8525c1c4e4e6585713b064086aa6"
+    },
+    {
+      "path": "docs/09-open-source/REPRODUCIBILITY_BADGES.md",
+      "size_bytes": 3697,
+      "sha256": "0a7b19aae5185a9730ff580b8cb3c7cdd037c270be801e5d89d42ca6c815257e"
+    },
+    {
+      "path": "docs/09-open-source/UPSTREAM_CONTRIBUTION_POLICY.md",
+      "size_bytes": 2497,
+      "sha256": "3f2046e723a3186bf46dd4c06c82bcbc00240dc0ed5f92b2ecb05346feb899bc"
+    },
+    {
+      "path": "docs/09-open-source/V1_OPEN_SOURCE_SHOWCASE.md",
+      "size_bytes": 2837,
+      "sha256": "7e813c6d0baf0c96d5bb891535733110afcf91603d32777a3abea57b413106a2"
+    },
+    {
+      "path": "docs/10-research/OPEN_RESEARCH_PUBLICATION_AND_REPLICATION.md",
+      "size_bytes": 2310,
+      "sha256": "01d07e4429dfd684876eb6c22861e9e4fe815df946699937d894f97d0e035740"
+    },
+    {
+      "path": "docs/10-research/PUBLICATION_PIPELINE.md",
+      "size_bytes": 701,
+      "sha256": "0b42540fca0649d38ccb5b11dcdbc571714f913ca50048d3a89acb89a0cdc832"
+    },
+    {
+      "path": "docs/10-research/RESEARCH_ETHICS_AND_INTEGRITY.md",
+      "size_bytes": 854,
+      "sha256": "09c7d334115dd06748e6e5b013acb04c7250eaae8cec6ad54d01ddb3e10532a2"
+    },
+    {
+      "path": "docs/10-research/RESEARCH_PROGRAM.md",
+      "size_bytes": 1209,
+      "sha256": "fbd4338c7cead8902199a7d1449546556b0a2f61b20511de2a93b3f4514f4363"
+    },
+    {
+      "path": "docs/11-operations/ADR_PROCESS.md",
+      "size_bytes": 630,
+      "sha256": "8095b606a2a0265634aa56084f4b84664fc15b0ebb37ab699a544073cadbee14"
+    },
+    {
+      "path": "docs/11-operations/COST_OPERATIONS.md",
+      "size_bytes": 714,
+      "sha256": "ed856a6df741d18035d5c0b7ed53bbee9e9a4e0a7c3bcc144a442cd5265426d1"
+    },
+    {
+      "path": "docs/11-operations/DOCUMENT_CONTROL.md",
+      "size_bytes": 873,
+      "sha256": "720d928cb0ab37eeb098c303f980087940c5ce2736af99435d9118c0117f0938"
+    },
+    {
+      "path": "docs/11-operations/OPEN_SOURCE_RELEASE_OPERATIONS.md",
+      "size_bytes": 2434,
+      "sha256": "c8d8269948afac5bba942a054ea12f33ecd17b8396c1a4dd7951e745689c05dd"
+    },
+    {
+      "path": "docs/11-operations/RELEASE_PROCESS.md",
+      "size_bytes": 888,
+      "sha256": "a0269b0b811d47f62344d4b3739c75d2e677cf7f6e1f0aee8c0ecdac4ac379df"
+    },
+    {
+      "path": "docs/11-operations/SEQUENTIAL_AGENT_WORKFLOW.md",
+      "size_bytes": 1288,
+      "sha256": "b19eb4c12c1f7a1d6eaf18acf4d8238ec56eae3a60149bac855092334fe7a56b"
+    },
+    {
+      "path": "docs/12-acceptance/DEFINITION_OF_READY_AND_DONE.md",
+      "size_bytes": 820,
+      "sha256": "5218a81f30b45cb3fa221d0936909421d86434c6709e28aa8f2a83c6bb224297"
+    },
+    {
+      "path": "docs/12-acceptance/V1_RELEASE_CRITERIA.md",
+      "size_bytes": 6348,
+      "sha256": "1cf81982c8169a113e48d9b04ba825830b8058287e0f03fd3ff7180718b107ad"
+    },
+    {
+      "path": "docs/INDEX.md",
+      "size_bytes": 3258,
+      "sha256": "b29b7b17fc2aac61e08126067c2b3bfd927ecc714b828b13682f8e7cef6be2fe"
+    },
+    {
+      "path": "docs/adr/ADR-0000-template.md",
+      "size_bytes": 377,
+      "sha256": "25dbef119a0d8bf366ec2d1326174516f81eb0ee175c5646d9e88b7451239ade"
+    },
+    {
+      "path": "docs/adr/ADR-0001-monorepo.md",
+      "size_bytes": 568,
+      "sha256": "71403b4739f516efee3a482403bf80cdf32d67743eeff0dfef26cb33ddc265ec"
+    },
+    {
+      "path": "docs/adr/ADR-0002-google-cloud.md",
+      "size_bytes": 878,
+      "sha256": "250958fd1157eb97b96d2eb21a739c8a5b3444afa1a5d9307bb2b85e1059fb8a"
+    },
+    {
+      "path": "docs/adr/ADR-0003-atticus-model-family.md",
+      "size_bytes": 438,
+      "sha256": "da18893f27dc344c750d9f8075aa8a753233e891c8316241a56096846404761b"
+    },
+    {
+      "path": "docs/adr/ADR-0004-permission-engine.md",
+      "size_bytes": 420,
+      "sha256": "ff1ec4e2a960eb0da010878f8b837e42fb3aefb4f56ff6340d2a7d7f1bea5dfb"
+    },
+    {
+      "path": "docs/adr/ADR-0005-mixed-licensing.md",
+      "size_bytes": 427,
+      "sha256": "8c3831f95dbb561e42ce1ba40f418a277a3019e6375e5123a08ebf4c406a7175"
+    },
+    {
+      "path": "docs/adr/ADR-0006-opentofu-first-iac.md",
+      "size_bytes": 2092,
+      "sha256": "9a28750fbf119b6a5e02c879e2d7d446705a14ee2484d5d3ab1acce21a2e8771"
+    },
+    {
+      "path": "docs/adr/ADR-0007-valkey-cache-coordination.md",
+      "size_bytes": 1987,
+      "sha256": "0446914b3c29fe0e3688e78b9ae15b9baf21c4dcf30c9f89df79ce98b8f6ee59"
+    },
+    {
+      "path": "docs/adr/ADR-0008-wix-canonical-public-site.md",
+      "size_bytes": 2097,
+      "sha256": "f0a54c2eb8a6dff00d55dee0dd695b65619cc3f22205e6fd40bdee4c2750fcbf"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "size_bytes": 420,
+      "sha256": "d08d98a5f19d6c164296e68e13262259d885c2615f311769b4d61666423d6e6e"
+    },
+    {
+      "path": "docs/references/README.md",
+      "size_bytes": 690,
+      "sha256": "f1fd1af358b6732d3d78c0c1fa8fb6af91fecbf440baaf0f36766bd5687108e1"
+    },
+    {
+      "path": "docs/references/TECHNICAL_REFERENCE_REGISTER.md",
+      "size_bytes": 9185,
+      "sha256": "de15343795d06cf452427e763abcb2c6c9898d6ad658aa0fa43b46789e2f013e"
+    },
+    {
+      "path": "docs/templates/DATASET_CARD_TEMPLATE.md",
+      "size_bytes": 469,
+      "sha256": "56d2c6cd765c3df45cdfe64b31e7218da9fb5b6815ec49c10bb5719415ecb1e0"
+    },
+    {
+      "path": "docs/templates/MODEL_CARD_TEMPLATE.md",
+      "size_bytes": 459,
+      "sha256": "0ea31a83f1a6b0d9a2ebd73736b479fae404efe5cdd180fcfe22eaa2e916a712"
+    },
+    {
+      "path": "docs/templates/PROJECT_SPEC_TEMPLATE.md",
+      "size_bytes": 399,
+      "sha256": "1d76d7f15c7ceeb3f97652cc61f806e680c7dd4934873f1417497f0fcfbfe5f6"
+    },
+    {
+      "path": "docs/templates/TECHNICAL_REPORT_TEMPLATE.md",
+      "size_bytes": 384,
+      "sha256": "b152ef7224be820798d476fb930c72ec7dbf6757654d2f78b12ec21a741696db"
+    },
+    {
+      "path": "infra/AGENTS.md",
+      "size_bytes": 1811,
+      "sha256": "df9fb512e16a3351ebe19c61a7e4a57496dc6c96a014cf0cf6f0a184df7a9ecd"
+    },
+    {
+      "path": "infra/README.md",
+      "size_bytes": 678,
+      "sha256": "9f3f37271d299772b58d4ec4d501ebee80a6879d1e0995abc8694b8c504f89a6"
+    },
+    {
+      "path": "infra/azure/README.md",
+      "size_bytes": 1001,
+      "sha256": "8fd1819f6671bc7028c9947b5f63a2dc2a5c5bb96af83a81961402748ac57410"
+    },
+    {
+      "path": "infra/azure/main.bicep",
+      "size_bytes": 2388,
+      "sha256": "8213b72a0f60bf465db014c078fec3d45c6c2ee3896cacd6f3ddda813753531b"
+    },
+    {
+      "path": "infra/cloud-run/README.md",
+      "size_bytes": 650,
+      "sha256": "33c6b5bfe361481e05052eb940915dc415804135974ded2eabba5324314944b2"
+    },
+    {
+      "path": "infra/colab/README.md",
+      "size_bytes": 722,
+      "sha256": "df35f0afecc612f585244197a43b31021eeee0d4ba68b76c36aaa029946f4e6f"
+    },
+    {
+      "path": "infra/gcp/README.md",
+      "size_bytes": 1245,
+      "sha256": "c36178f2ffaed5e4f63307cf448e28add78fafb251833e0ae6038062a05ebbdb"
+    },
+    {
+      "path": "infra/gcp/cloud-run/atticus-service.template.yaml",
+      "size_bytes": 1153,
+      "sha256": "00c34d235cbb45190668b046651ba0f5d87a99137de6a6f880e66943e3d6860c"
+    },
+    {
+      "path": "infra/gcp/cloudbuild-atticus.yaml",
+      "size_bytes": 1012,
+      "sha256": "e1c8b8e8372f2a1bd173d577bc9c83b911ffd01b2ea49421ed0878a3144af05c"
+    },
+    {
+      "path": "infra/observability/README.md",
+      "size_bytes": 513,
+      "sha256": "388155c19376280870fcbb3ad3f018bdfba6b8b397e5616e18bde39aa356da34"
+    },
+    {
+      "path": "infra/terraform/README.md",
+      "size_bytes": 824,
+      "sha256": "168cdd073d36e13355264fec2f2e94c526fb85618b4317ac185f41acc2809761"
+    },
+    {
+      "path": "infra/terraform/environments/dev/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "infra/terraform/environments/prod/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "infra/terraform/environments/staging/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "infra/terraform/modules/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "models/atticus-core/AGENTS.md",
+      "size_bytes": 1891,
+      "sha256": "224c3e3f68993808eff16df5eed3ea0cba1c90362058e072b00d86cc5a20a42a"
+    },
+    {
+      "path": "models/atticus-core/README.md",
+      "size_bytes": 3047,
+      "sha256": "2664f30c956e547154065542838f47d694152ab2448c34d0c4c8b6fd402a7c28"
+    },
+    {
+      "path": "models/atticus-core/docs/EVALUATION.md",
+      "size_bytes": 3363,
+      "sha256": "a51a4ac41420c54a38ad060e0a9de2b7f127b2ac082747ad23a414542f085fc3"
+    },
+    {
+      "path": "models/atticus-core/docs/MODEL_CARD.md",
+      "size_bytes": 748,
+      "sha256": "c4c4ded4a40508e442ed37f788e12018cd5c670d312b38c55cd95261c4aabed6"
+    },
+    {
+      "path": "models/atticus-core/docs/MODEL_CARD_TEMPLATE.md",
+      "size_bytes": 465,
+      "sha256": "e93d2e835ee81e3072429dd680bc225c0ec10180f6f1694c0f25d699f4bcc550"
+    },
+    {
+      "path": "models/atticus-core/docs/ROADMAP.md",
+      "size_bytes": 1702,
+      "sha256": "334900abcf9715cbc78b5f6bab8fb2e5c7d7a13546bbf997ba61cebcb4c9deb9"
+    },
+    {
+      "path": "models/atticus-core/docs/SAFETY_AND_LICENSE.md",
+      "size_bytes": 1086,
+      "sha256": "adfc43aff60571409da38957965086ddd23b1dbbdb45c449a405832e3979721c"
+    },
+    {
+      "path": "models/atticus-core/docs/SPEC.md",
+      "size_bytes": 6674,
+      "sha256": "40c20937e29e13a1c736b9750bcbce1bfb451540a081947088f6634317053c5e"
+    },
+    {
+      "path": "models/atticus-core/docs/TRAINING_RECIPE.md",
+      "size_bytes": 2565,
+      "sha256": "0c2621f08b8f159a834b9430c4345fd842fafbea0fec2139dc0534e33e9a4de2"
+    },
+    {
+      "path": "models/atticus-edge/AGENTS.md",
+      "size_bytes": 1811,
+      "sha256": "aef514442a04ce53b1ccf8a5ebdc9a1040b55a1b6355d9170a45feb5a1c30d97"
+    },
+    {
+      "path": "models/atticus-edge/README.md",
+      "size_bytes": 2979,
+      "sha256": "0cd4cfc7940bf6704e56e6e40784adf8ed28cddb1bec57667c02cb2683b8a3b6"
+    },
+    {
+      "path": "models/atticus-edge/docs/DISTILLATION_AND_TRAINING.md",
+      "size_bytes": 1266,
+      "sha256": "a4f233478463e6327fbf677da520c11274e6d4f3436b151f3f2c9bb80cd4603f"
+    },
+    {
+      "path": "models/atticus-edge/docs/EVALUATION.md",
+      "size_bytes": 3068,
+      "sha256": "e2d1f8ac60bf55b5aff98c424e8c23d2897f5f057e2460e047bb3161a80bcbf8"
+    },
+    {
+      "path": "models/atticus-edge/docs/MODEL_CARD.md",
+      "size_bytes": 591,
+      "sha256": "56e6db6d52eda99e48d08db1b5ca61199cea0d441e763af2daa0a600090da18a"
+    },
+    {
+      "path": "models/atticus-edge/docs/MODEL_CARD_TEMPLATE.md",
+      "size_bytes": 387,
+      "sha256": "fa5f787d0c1f8a3240af4b5c7af202333aee2ddbadfb67d5808472a3b95ae06b"
+    },
+    {
+      "path": "models/atticus-edge/docs/ROADMAP.md",
+      "size_bytes": 1662,
+      "sha256": "69437246adb01ed7e3c9fba4825e255449894913ff9db94f7958ddeaa036b44f"
+    },
+    {
+      "path": "models/atticus-edge/docs/SPEC.md",
+      "size_bytes": 6045,
+      "sha256": "c630cf9f70c669b700b13989f9708479190432c8a8286e7b5289cc77ad7b4508"
+    },
+    {
+      "path": "package.json",
+      "size_bytes": 307,
+      "sha256": "9223310815b80c475a6ada0beda91cf1e2744fbc357e5ea0ccacd299130cb5ee"
+    },
+    {
+      "path": "packages/atticus-sdk/AGENTS.md",
+      "size_bytes": 1751,
+      "sha256": "ffed93f7d21b336bd2bf6433362af801f8e2626007ae1a9d5989879647251672"
+    },
+    {
+      "path": "packages/atticus-sdk/README.md",
+      "size_bytes": 383,
+      "sha256": "7e40d3cbe68f1d8bdf1e1138fae2747a0a3e163273cc7c6b12571bad127ad10f"
+    },
+    {
+      "path": "packages/atticus-sdk/docs/SPEC.md",
+      "size_bytes": 3685,
+      "sha256": "f29c0ffcc5ece61ffb3664b793a18dc19eb34586380e33aee8f377ca1d3e7cc4"
+    },
+    {
+      "path": "packages/atticus-sdk/pyproject.toml",
+      "size_bytes": 302,
+      "sha256": "4926f94d2ee60395c606863c7cf4fcc94459ee8414c299f7e33f529802d0c0f8"
+    },
+    {
+      "path": "packages/atticus-sdk/src/atticus_sdk/__init__.py",
+      "size_bytes": 66,
+      "sha256": "8facb55d78ba60014a892a45e0a614e69874e22dd150cbd4bce089da2bf9867b"
+    },
+    {
+      "path": "packages/drl-ai-core/AGENTS.md",
+      "size_bytes": 1780,
+      "sha256": "b0ca2a6488f10e5bc3cfa673ca8959742d892aad35361be2b367a0729c89b6d5"
+    },
+    {
+      "path": "packages/drl-ai-core/README.md",
+      "size_bytes": 465,
+      "sha256": "b709b6afb924c8846a37b4d77fae82a545134c32cd5b7da6bac4ca22f35ed777"
+    },
+    {
+      "path": "packages/drl-ai-core/docs/SPEC.md",
+      "size_bytes": 3904,
+      "sha256": "c5b46d4acf99bec31fdf91336eaedb5576f8eb13c4b0be3d151684d08c4da17e"
+    },
+    {
+      "path": "packages/drl-ai-core/pyproject.toml",
+      "size_bytes": 326,
+      "sha256": "4f32082b6d71a5d7301ed56b27e1be2cf52b4f22eff95ae6da9490c5103403f1"
+    },
+    {
+      "path": "packages/drl-ai-core/src/drl_ai_core/__init__.py",
+      "size_bytes": 183,
+      "sha256": "a01598ea112ee07d1de0c2df37b82564d864895ed5d118269823da64502c5d1d"
+    },
+    {
+      "path": "packages/drl-ai-core/src/drl_ai_core/security.py",
+      "size_bytes": 888,
+      "sha256": "a2679141198621d4eec0290d382cca6078869922913ee04e7e1764aaa36baf1f"
+    },
+    {
+      "path": "packages/drl-protocol/AGENTS.md",
+      "size_bytes": 1746,
+      "sha256": "08ba577b98c26e743858c156dce4303c25c2e5bbb2ae03eaad3f08d218cc6d77"
+    },
+    {
+      "path": "packages/drl-protocol/README.md",
+      "size_bytes": 463,
+      "sha256": "9ffd9675c35706147ef397721daee6ee40da5636100534a2c4bd1ad1ec1eeac5"
+    },
+    {
+      "path": "packages/drl-protocol/docs/SPEC.md",
+      "size_bytes": 3594,
+      "sha256": "f2023f5b157d5a7182091658f5b8b577ddf02866a8eceed06007050c7301f5a5"
+    },
+    {
+      "path": "packages/drl-protocol/pyproject.toml",
+      "size_bytes": 316,
+      "sha256": "cf80a99f100d5d1971fb25560ee67ac12b684debb413fa5c28e12d60cf6e7e2c"
+    },
+    {
+      "path": "packages/drl-protocol/schemas/evidence.schema.json",
+      "size_bytes": 1140,
+      "sha256": "415b9c66da2507317e21f9e702c659801e73b0952204a0124e903ae0dc8fa56b"
+    },
+    {
+      "path": "packages/drl-protocol/schemas/task-request.schema.json",
+      "size_bytes": 1134,
+      "sha256": "dfb82e33c9335e6f5fc8bead374e0b5db5f16a72524d12391c02e8db1bef1404"
+    },
+    {
+      "path": "packages/drl-protocol/schemas/tool-descriptor.schema.json",
+      "size_bytes": 1155,
+      "sha256": "da0ccdec7c24c221ff6d8c1eab3dfdf0c70ed389eb084f04b3b5d3a2d6d5ebfa"
+    },
+    {
+      "path": "packages/drl-protocol/src/drl_protocol/__init__.py",
+      "size_bytes": 488,
+      "sha256": "c29bd713e4cb5452bb980ff99c6d39b9d7ad95ca371bd8972c3e423c604dcda1"
+    },
+    {
+      "path": "packages/drl-protocol/src/drl_protocol/models.py",
+      "size_bytes": 4299,
+      "sha256": "153f437afb4f8b90888d146c25f80910d44cb25b8f3f9a7aac4cc8c83465af18"
+    },
+    {
+      "path": "packages/evalforge-sdk/AGENTS.md",
+      "size_bytes": 1724,
+      "sha256": "e476798a0f2b3688b7d29dd8e91643abf9cf29488bfdad3d853c140a6ebda9c5"
+    },
+    {
+      "path": "packages/evalforge-sdk/README.md",
+      "size_bytes": 424,
+      "sha256": "4daae42847c1fdf73c1bc118c261ea6bc7b15262eea4ca4d9fdee5c6d268b00b"
+    },
+    {
+      "path": "packages/evalforge-sdk/docs/SPEC.md",
+      "size_bytes": 3994,
+      "sha256": "215c929701f32286b99090d8c37f5426f1e48fd712c2faf632d4ab88a0c9753d"
+    },
+    {
+      "path": "packages/evalforge-sdk/pyproject.toml",
+      "size_bytes": 306,
+      "sha256": "5aedd808be3d1678e57f9752e8f20d296f852c104fc9ca68305ef7268138cc47"
+    },
+    {
+      "path": "packages/evalforge-sdk/src/evalforge_sdk/__init__.py",
+      "size_bytes": 68,
+      "sha256": "da00bf069d982686e746c74a7214d3879efd7d09089191d81b5d829f1f46bd73"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "size_bytes": 162,
+      "sha256": "4349faf857e14bceff680f2cb1a2b9284327195b005d13ade33bc80211215d7c"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "size_bytes": 56,
+      "sha256": "c9fa3343d1ea5f70742bdacbab4161266e28b12dbf865a2fafb2b81738c412bc"
+    },
+    {
+      "path": "pyproject.toml",
+      "size_bytes": 1012,
+      "sha256": "973fcc55f30b5c61a89c8a67195afe3429d14b83980f7abc5d442511061ff8a3"
+    },
+    {
+      "path": "requirements/requirements.yaml",
+      "size_bytes": 40399,
+      "sha256": "49de26c9af72acec06d724b34f332c6d41ad2725659a00be31479bbacfaa6391"
+    },
+    {
+      "path": "requirements/work-packages.yaml",
+      "size_bytes": 22217,
+      "sha256": "f2ee189f8395b578669cd065b6bbe8059e9cb071de828b40114c20dfe0958297"
+    },
+    {
+      "path": "schemas/AGENTS.md",
+      "size_bytes": 1735,
+      "sha256": "78caa6341b3cca58503c49a42086c564c0b49c796c9bf95b6f099348ac17614d"
+    },
+    {
+      "path": "schemas/README.md",
+      "size_bytes": 1291,
+      "sha256": "ae2c630476d2c2ceb89615d70043efda17660cb8d51afa216b1e419e9a292182"
+    },
+    {
+      "path": "schemas/approval-grant.schema.json",
+      "size_bytes": 2064,
+      "sha256": "42f5fca07417fcfc64dd64971a3f990918d24502014da3e0aa6575a03c95a455"
+    },
+    {
+      "path": "schemas/approval-request.schema.json",
+      "size_bytes": 2245,
+      "sha256": "a873d5bdc49de13c9b954badad1ba12b4b602208f3d3b907612cb9000af9a751"
+    },
+    {
+      "path": "schemas/artifact-reference.schema.json",
+      "size_bytes": 1661,
+      "sha256": "00b2c13cc6d4c27edae8fb59e8f2c5772754b6fba8c40e48a27ab64973a7063d"
+    },
+    {
+      "path": "schemas/calculation-artifact.schema.json",
+      "size_bytes": 1998,
+      "sha256": "19cc4874361277e68e4497ad57441f2ef8e2a058c77ca6d0cd360130549c3c3b"
+    },
+    {
+      "path": "schemas/claim.schema.json",
+      "size_bytes": 1841,
+      "sha256": "20a7c4aaf20e4b39fae52f8fd4ad8ee5df3bafa593d38cb39ab96fff1cd32890"
+    },
+    {
+      "path": "schemas/consent-snapshot.schema.json",
+      "size_bytes": 1794,
+      "sha256": "86aad85472ebf59abfeb834561ca6ad30bdf98cd8a6a6615eadbcecb0faf913d"
+    },
+    {
+      "path": "schemas/dataset-release-manifest.schema.json",
+      "size_bytes": 1816,
+      "sha256": "90968f3c88d8046795927793d35a9544cd9b610bb5f74edfa30f58e86bee679e"
+    },
+    {
+      "path": "schemas/device-capability-manifest.schema.json",
+      "size_bytes": 1734,
+      "sha256": "71c87b6ae014b91e7a9cdd18668037c1fd4ba782e43f8a6aad0387559b0633de"
+    },
+    {
+      "path": "schemas/drl-error.schema.json",
+      "size_bytes": 1170,
+      "sha256": "732cedca94bc43f8d10cf172916b46597fdceabcdbc8903f38f2dd13a3769082"
+    },
+    {
+      "path": "schemas/evaluation-result.schema.json",
+      "size_bytes": 2465,
+      "sha256": "7d2e33f3fb72323f6beccab77fe6bc5705e80977c9e0ac73af181de08fb558e5"
+    },
+    {
+      "path": "schemas/evidence-bundle.schema.json",
+      "size_bytes": 1490,
+      "sha256": "bea4371d74fb3c91376ab84a2ad2de009837a2b3b534e63f12ba4ed21c3459fd"
+    },
+    {
+      "path": "schemas/evidence-item.schema.json",
+      "size_bytes": 2261,
+      "sha256": "8de8c9cdbd954432cc9e3b5683af6e9ebd256ce9edd01d8f9bca20b98821ffb3"
+    },
+    {
+      "path": "schemas/examples/approval-grant.json",
+      "size_bytes": 538,
+      "sha256": "93b8b586d88c8571e0d322c19d2e28a634257dd7d729e054ec61a864bfe27283"
+    },
+    {
+      "path": "schemas/examples/approval-request.json",
+      "size_bytes": 624,
+      "sha256": "d3a3aa8b5f66c3076d59981f4a277e11031a2355af7e47979f9040655fc5814f"
+    },
+    {
+      "path": "schemas/examples/artifact-reference.json",
+      "size_bytes": 328,
+      "sha256": "f71e31ba69a4703dcc9467ac5ad7b4136b9a0ca08c5664ec8d025b0ac5484e90"
+    },
+    {
+      "path": "schemas/examples/calculation-artifact.json",
+      "size_bytes": 577,
+      "sha256": "ab93e21c78b6fd9e85692cb3f21ec0f3c6c5f7cd1e723a50215ddaea57a517c9"
+    },
+    {
+      "path": "schemas/examples/claim.json",
+      "size_bytes": 297,
+      "sha256": "6ea3fa5a2564641053c9698a2dd162830aaf7d41c5ca58e900ff6934840bd19d"
+    },
+    {
+      "path": "schemas/examples/consent-snapshot.json",
+      "size_bytes": 265,
+      "sha256": "37a8f782ab7d5c7a463646441f006a50f98e7e9fd23f41e96699682a9c94fa3a"
+    },
+    {
+      "path": "schemas/examples/dataset-release-manifest.json",
+      "size_bytes": 1104,
+      "sha256": "ffeba18b24050e9a584bc3c4983fa05f341fd2816e8d25b24079a5bfeadb2f2d"
+    },
+    {
+      "path": "schemas/examples/device-capability-manifest.json",
+      "size_bytes": 420,
+      "sha256": "73f744c0188edaa1baa21b30b0e85eeaa960eee05e72e011b199d7f58c30afcd"
+    },
+    {
+      "path": "schemas/examples/drl-error.json",
+      "size_bytes": 216,
+      "sha256": "68d61df00a35675fc26ba927c91d750d83ba37bbb0f36aa7c4e45d4888d1d5f8"
+    },
+    {
+      "path": "schemas/examples/evaluation-result.json",
+      "size_bytes": 951,
+      "sha256": "5e5ba30105179382b82f27b19de477b1cbcc66cf02611d174d625e3d24e363e7"
+    },
+    {
+      "path": "schemas/examples/evidence-bundle.json",
+      "size_bytes": 1226,
+      "sha256": "11d067f825bf4cd67448fca663a49bfaeb24b3c75273e305a92a9e1b4b7961cb"
+    },
+    {
+      "path": "schemas/examples/evidence-item.json",
+      "size_bytes": 453,
+      "sha256": "257e15a3936b94c93794a0ea555c0138a7971e59cd969bddd60aca0db12319bb"
+    },
+    {
+      "path": "schemas/examples/execution-trace.json",
+      "size_bytes": 1304,
+      "sha256": "8bc0c15a04f312c0e2ff74a6aa407ec91b81224063923da1235b2b4d93882adf"
+    },
+    {
+      "path": "schemas/examples/model-release-manifest.json",
+      "size_bytes": 1220,
+      "sha256": "56d4c9255908f9c5ca7b941c2277c33b6482857ca96eb9e3d453b72e0b03c552"
+    },
+    {
+      "path": "schemas/examples/open-artifact-release.json",
+      "size_bytes": 745,
+      "sha256": "cc4ff5b315004a49288bfa1d854f6e0f2ec43bfc8ea03ab0866e858464d929b7"
+    },
+    {
+      "path": "schemas/examples/open-exception.json",
+      "size_bytes": 510,
+      "sha256": "23c7f3f09e4d603418bbc8422bafd3a925e6951a569f0349b85e342efd984fa7"
+    },
+    {
+      "path": "schemas/examples/policy-decision.json",
+      "size_bytes": 578,
+      "sha256": "5c216d122e6b6eb72e130e493c464f6c27c2f52a9c9ab785cc83b3c3c85f443a"
+    },
+    {
+      "path": "schemas/examples/replay-manifest.json",
+      "size_bytes": 1430,
+      "sha256": "a037aa191db4b4881c2b3cb22fbfff9bb2d18c90b6eb2940df69ed03a63257d3"
+    },
+    {
+      "path": "schemas/examples/skill-manifest.json",
+      "size_bytes": 432,
+      "sha256": "d31f1b8249ce1aa0c0438092cda22e289756e7888cbf66f07d4edbc85429d803"
+    },
+    {
+      "path": "schemas/examples/task-request.json",
+      "size_bytes": 574,
+      "sha256": "dcb6088c9a46d7d6951121e297f745cc189d776a4aa235cc9292ce757d46670b"
+    },
+    {
+      "path": "schemas/examples/task-result.json",
+      "size_bytes": 1049,
+      "sha256": "4679e55c5fa93d962219f002a415320092c74da784c731cf2058983d591c83db"
+    },
+    {
+      "path": "schemas/examples/tool-call.json",
+      "size_bytes": 612,
+      "sha256": "56cb007a0f75da9ea4bddb357c231afb849c1291fa2ea4b7f2d6f1b3f62752d0"
+    },
+    {
+      "path": "schemas/examples/tool-definition.json",
+      "size_bytes": 387,
+      "sha256": "f75aa0b311628ded4fe4962e4aa4ff622cd34e4baadb64b0ab9e819dbd8a2c0b"
+    },
+    {
+      "path": "schemas/examples/tool-result.json",
+      "size_bytes": 875,
+      "sha256": "3d8657650bd884e9379cda9900bd59eec0ae57ffb89c135637906f37cdb2003a"
+    },
+    {
+      "path": "schemas/examples/trace-event.json",
+      "size_bytes": 455,
+      "sha256": "2d7cca712337c0aa8036ca8c0e0ce4b403ef4abbf95faa89d1f870d87d0dc49c"
+    },
+    {
+      "path": "schemas/examples/upstream-dependency.json",
+      "size_bytes": 598,
+      "sha256": "2a850a45f97d3a2096c61af007c76ec1447bd1da0b27b1c119f946419ef15c67"
+    },
+    {
+      "path": "schemas/execution-trace.schema.json",
+      "size_bytes": 2040,
+      "sha256": "0a64d95d5b2044771091b9f7e59c184a4e1988590304f2bc7f9ac2856e3f0f38"
+    },
+    {
+      "path": "schemas/model-release-manifest.schema.json",
+      "size_bytes": 2022,
+      "sha256": "ae745e4de10a8ff668a3450390df1e34d1d1e7a69365c7ac652c217104403ccc"
+    },
+    {
+      "path": "schemas/open-artifact-release.schema.json",
+      "size_bytes": 2616,
+      "sha256": "0359ac85f484b8db9a79dcb6699bdacd88385614990efe7f3287bfda29857aab"
+    },
+    {
+      "path": "schemas/open-exception.schema.json",
+      "size_bytes": 1529,
+      "sha256": "fc25f1ae4d9ef928c63588e6e2b615c103088f608ed0463c6e08680224e8f07b"
+    },
+    {
+      "path": "schemas/openapi/drl-public-api.openapi.yaml",
+      "size_bytes": 6654,
+      "sha256": "4b557833f468c431d78c61f3de41ec09f43cdb3c334e126b73016171f30b44d6"
+    },
+    {
+      "path": "schemas/policy-decision.schema.json",
+      "size_bytes": 2069,
+      "sha256": "40be6165022ec0aabcf708ce2fed937b473de173a4258d0b3fffe4b5c39ac84f"
+    },
+    {
+      "path": "schemas/replay-manifest.schema.json",
+      "size_bytes": 2104,
+      "sha256": "df3a6765c435efd102cc3e2cb3f7e8f237aef421e5b725d04988c7fdd1232a34"
+    },
+    {
+      "path": "schemas/skill-manifest.schema.json",
+      "size_bytes": 2125,
+      "sha256": "9f1105fac671f6fc6863a43ede6a53167a0edefdcd4e914f97d7f0e1d79e078f"
+    },
+    {
+      "path": "schemas/task-request.schema.json",
+      "size_bytes": 2016,
+      "sha256": "abfec32a6703c019e9046a48fdd11be74fc2da6f788b2df912648eaa28dcfa02"
+    },
+    {
+      "path": "schemas/task-result.schema.json",
+      "size_bytes": 1914,
+      "sha256": "3657318682a4291ac3d7fc24a527b71308c32c7465e814b8008daa98f2151a13"
+    },
+    {
+      "path": "schemas/tool-call.schema.json",
+      "size_bytes": 2116,
+      "sha256": "c99e37e2bdfdbdc05759759ff4bc56118965ca9fd42334d058a2743a241f74df"
+    },
+    {
+      "path": "schemas/tool-definition.schema.json",
+      "size_bytes": 2089,
+      "sha256": "f92a91945757ceb054d9b765f45434dba126340d2ab0140f1916d216be9ff94c"
+    },
+    {
+      "path": "schemas/tool-result.schema.json",
+      "size_bytes": 2440,
+      "sha256": "ad15c20fa3174ed48b2a1c3823c064feccdaad561bb544d9349e05c04fc67669"
+    },
+    {
+      "path": "schemas/trace-event.schema.json",
+      "size_bytes": 1854,
+      "sha256": "7dc3d05c56464b8c4792543b37a82b484d1bf9d1563191a29026041547d6884f"
+    },
+    {
+      "path": "schemas/upstream-dependency.schema.json",
+      "size_bytes": 1883,
+      "sha256": "f42fce2cd9a99552b60c64bf1c50ce56602f69ca8a25de6c0844bd4e325a5757"
+    },
+    {
+      "path": "scripts/check_docs.py",
+      "size_bytes": 305,
+      "sha256": "f760ff27f2dd640808ad46fdf201050510701c5676041f19261923b16966ac59"
+    },
+    {
+      "path": "scripts/generate_manifest.py",
+      "size_bytes": 1225,
+      "sha256": "c0dfdc4545643add8e31ec3803312a3d1310b3ffd6d42ffc99d2a5d74b0fa301"
+    },
+    {
+      "path": "scripts/validate_domain_wix.py",
+      "size_bytes": 2110,
+      "sha256": "2f4bc78df8d446a53523c6bf075291959d77c3e9204709985cb3fbf7b8318fd9"
+    },
+    {
+      "path": "scripts/validate_foundation.py",
+      "size_bytes": 13274,
+      "sha256": "242545031a28c386317b14351b216311d8c71974129df5650ba717adca2fe7ca"
+    },
+    {
+      "path": "scripts/validate_open_identity.py",
+      "size_bytes": 4570,
+      "sha256": "1d049056b4793c2d3fa79cbf2acac00e270bc198f75819c163ab9fc124d8d554"
+    },
+    {
+      "path": "scripts/verify_foundation.py",
+      "size_bytes": 299,
+      "sha256": "ad9d295af1441aebd0b900109b5492adfe0d14fd3bce3949c72607796681603b"
+    },
+    {
+      "path": "services/atlas/AGENTS.md",
+      "size_bytes": 1860,
+      "sha256": "b02ec074c2f98dfefa0c9e9814db3578c188fcc1008b4728f903d0b1c1a1b18a"
+    },
+    {
+      "path": "services/atlas/README.md",
+      "size_bytes": 3025,
+      "sha256": "4e7e3eeae8a9ab1098ffed68539e401524912c2f204e5453c0d6545d7ad953c6"
+    },
+    {
+      "path": "services/atlas/docs/API.md",
+      "size_bytes": 3944,
+      "sha256": "c6eceeaf4007ef4441b3fbb98c91daf804db31ede8ee8234b32d17e8e1f336d4"
+    },
+    {
+      "path": "services/atlas/docs/DATA.md",
+      "size_bytes": 3412,
+      "sha256": "80e17c74a727a3aaabeba93c91761c023068985ede838362c69099c63cbe68fa"
+    },
+    {
+      "path": "services/atlas/docs/DEMO.md",
+      "size_bytes": 2160,
+      "sha256": "b2448f701c241a3eb1d972cea5d661a10be7d4dc606b297f3a72a835e13899dc"
+    },
+    {
+      "path": "services/atlas/docs/EVALUATION.md",
+      "size_bytes": 2882,
+      "sha256": "4368352e63a058bdf9e859ae8dc83f2acc1f5ab6086444809f10f879f16afde7"
+    },
+    {
+      "path": "services/atlas/docs/ROADMAP.md",
+      "size_bytes": 1719,
+      "sha256": "f48ae4e8e7bc99224f6250c68383e4ee9316c0625e8158f38ff17b72b00b9007"
+    },
+    {
+      "path": "services/atlas/docs/SECURITY.md",
+      "size_bytes": 2222,
+      "sha256": "3271a1ef14656ccee626480e4cdd26286ab4e80b76941371d7ef7297fdff6be0"
+    },
+    {
+      "path": "services/atlas/docs/SPEC.md",
+      "size_bytes": 6673,
+      "sha256": "1f5be4448a5fcc49dc7f10b3dc653da565678800d74566cabd025093e565c1c1"
+    },
+    {
+      "path": "services/atlas/pyproject.toml",
+      "size_bytes": 328,
+      "sha256": "17fb74e1b2f76ee1e9384e19b440e35002ad5356eeed67231ff25028da3490e9"
+    },
+    {
+      "path": "services/atlas/src/atlas_service/__init__.py",
+      "size_bytes": 196,
+      "sha256": "7aceff94dd9ab6388fa0b37125ce6447f00e79704e28499510c77245730cf6bc"
+    },
+    {
+      "path": "services/atlas/src/atlas_service/service.py",
+      "size_bytes": 2684,
+      "sha256": "49b79c9c92e3a3272b926c201ddd063bc927790bb123da447c174a43d5a81f1a"
+    },
+    {
+      "path": "services/atticus-control-plane/AGENTS.md",
+      "size_bytes": 1946,
+      "sha256": "8c5217b8df0e84e821dc81782cd6ae0efc69c8478359b3baa5aee1d84f5cd35d"
+    },
+    {
+      "path": "services/atticus-control-plane/Dockerfile",
+      "size_bytes": 831,
+      "sha256": "f516d52dd482f3414e5dbc4b53b62efd893e08f3e92d8bd2e04baabd4e40c1d7"
+    },
+    {
+      "path": "services/atticus-control-plane/README.md",
+      "size_bytes": 3265,
+      "sha256": "48f20b35bf3e5f470862f65ac9376387fb6ba7160ed53c9e752dc3ec1b1fa38e"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/API.md",
+      "size_bytes": 4781,
+      "sha256": "879ff0cc3da2e27f622b536b6c009fdb686ef605a0c4a14d6f983648f0dc5747"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/DATA.md",
+      "size_bytes": 3998,
+      "sha256": "41a9ba408e4e510a46108a401351fec66c8694e72ac24b49bf6e067785efa13f"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/DEMO.md",
+      "size_bytes": 2628,
+      "sha256": "c3d91d02b94b90a69efe284bb51fabf9ca20c6bbcc2af15eb3b94d91f48ceab1"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/EVALUATION.md",
+      "size_bytes": 3755,
+      "sha256": "8718133198042ec473c3227347fec6acd52ae119a00f78d3c37c5dd1d1ea75ad"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/ROADMAP.md",
+      "size_bytes": 2021,
+      "sha256": "416708556594f94ace859512a1c9ed8fd6f569a540f165b1633d283770b47cf2"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/SECURITY.md",
+      "size_bytes": 3360,
+      "sha256": "6e90f640501f4e6eebf38a9222e8e7e695979974f8df8f31d85e406cdd162c25"
+    },
+    {
+      "path": "services/atticus-control-plane/docs/SPEC.md",
+      "size_bytes": 7515,
+      "sha256": "f066ab761915a9e15aee0d5a78180b1e71a96b3aa33ee49e2fe0e886a54f628b"
+    },
+    {
+      "path": "services/atticus-control-plane/pyproject.toml",
+      "size_bytes": 810,
+      "sha256": "1ae51d5d84e624e2a51696849bd6f232a4c0940c4d6d7dbb7607aaf1f658b1be"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/__init__.py",
+      "size_bytes": 341,
+      "sha256": "decd66bfea82247dc2f63e6567f26211031c3a8cfaa9c11e577000f2de0b1bc1"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/approvals.py",
+      "size_bytes": 1713,
+      "sha256": "c6c173c5c6e3bcbfd38daffb3dddd097ff8e8d4874a59c15d0f1490ad553d8e9"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/cli.py",
+      "size_bytes": 1855,
+      "sha256": "79636b0f39c12afce6b558ee7f59c0020c49feb2afe335d721c7a4212e719071"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/orchestrator.py",
+      "size_bytes": 10869,
+      "sha256": "ab1275eac8754b33ca4a366247e42d9e664a5422f450fe8c71a72fa100cc8e23"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/planner.py",
+      "size_bytes": 1865,
+      "sha256": "cb27970fc5c032e4bc195e314999ef31669b851ad06530d4d37da8b461f19116"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/policy.py",
+      "size_bytes": 1563,
+      "sha256": "438edfd1e97bd976a0ddd8375f78abeca757c8ad0ddf9124a628918296dfb11f"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/registry.py",
+      "size_bytes": 1557,
+      "sha256": "0a6e2139a8fb29adec05c18dd3f1b4102dc57407258b8d1f5b5123fc02e0a15b"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/runtime.py",
+      "size_bytes": 941,
+      "sha256": "8898d16cffcd0a697e744088c9fcc22c47025ab9bc11b404bfdeaab58fc391a8"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/server.py",
+      "size_bytes": 3659,
+      "sha256": "832790bccd547d3271630bf1aece979def4b9bc050b6355ba71bb09e252875d2"
+    },
+    {
+      "path": "services/atticus-control-plane/src/atticus_control_plane/tools.py",
+      "size_bytes": 5818,
+      "sha256": "64c7836ef986ba3de90a140ab665788650e8161ad58ecd4961b1da48e2dc6808"
+    },
+    {
+      "path": "services/balancelab-ai/AGENTS.md",
+      "size_bytes": 1849,
+      "sha256": "901cbcd09f9b7df51d6ebf397ccd689ae290a2af7388baabad681abf95d689c2"
+    },
+    {
+      "path": "services/balancelab-ai/README.md",
+      "size_bytes": 3086,
+      "sha256": "760eb117b3d875267c0e6d1e3a99d2c9cd88630f0f81ac4e15a33f2de9b9fc71"
+    },
+    {
+      "path": "services/balancelab-ai/docs/API.md",
+      "size_bytes": 3887,
+      "sha256": "dea84dab99c5b35cf93e77b943b9f2d3d57d0c216be5509d9c28f431b2492603"
+    },
+    {
+      "path": "services/balancelab-ai/docs/DATA.md",
+      "size_bytes": 3516,
+      "sha256": "9f3d2da6c7ba437c8114644b61a27e5888c72d5e52d55e522ae98c1207fe664f"
+    },
+    {
+      "path": "services/balancelab-ai/docs/DEMO.md",
+      "size_bytes": 2327,
+      "sha256": "b2f038a1fd89e47304a09fee47043f6145ddbd158b84172b712148f39eef372a"
+    },
+    {
+      "path": "services/balancelab-ai/docs/EVALUATION.md",
+      "size_bytes": 3136,
+      "sha256": "fbd030a8d6242e801609afd69469407ff4f59e606d45298bf22757655f6fab57"
+    },
+    {
+      "path": "services/balancelab-ai/docs/ROADMAP.md",
+      "size_bytes": 1818,
+      "sha256": "388322a5488b6abd16a496da9e2d9ba21e5b0760f6df0e65ed57973d7c982a25"
+    },
+    {
+      "path": "services/balancelab-ai/docs/SECURITY.md",
+      "size_bytes": 2542,
+      "sha256": "f260f0693c2c0cf302c5432b4073e02f809368bb3f16e3c6e8d4e5d842611829"
+    },
+    {
+      "path": "services/balancelab-ai/docs/SPEC.md",
+      "size_bytes": 6726,
+      "sha256": "6816dba16fb75846d2b08399505f53c28695ea07cb6c6b39774dd2815226ab82"
+    },
+    {
+      "path": "services/balancelab-ai/pyproject.toml",
+      "size_bytes": 323,
+      "sha256": "ec5869e57c131ffd458506e0d2c86d510e376e4e0ae7b9b1b25280064c941901"
+    },
+    {
+      "path": "services/balancelab-ai/src/balancelab_ai/__init__.py",
+      "size_bytes": 253,
+      "sha256": "3e7a8d62d20abecfc7c5f72d648b0f98a2e7c368b7d46fb2807e74ce807391f4"
+    },
+    {
+      "path": "services/balancelab-ai/src/balancelab_ai/engine.py",
+      "size_bytes": 3322,
+      "sha256": "f5e59011286a15df9b3771287ee900d85f20cd5a98701a88eb4033b06ef32c45"
+    },
+    {
+      "path": "services/evalforge/AGENTS.md",
+      "size_bytes": 1793,
+      "sha256": "0e3a6d715938903ab850be594f654eac6e434cf96bc505a5dca8f9488b9563b2"
+    },
+    {
+      "path": "services/evalforge/README.md",
+      "size_bytes": 3070,
+      "sha256": "9de5c16de9d6e59a4effb18f3d1cdef02605185968c54f467120a61bcd9639ce"
+    },
+    {
+      "path": "services/evalforge/docs/API.md",
+      "size_bytes": 3895,
+      "sha256": "00bfc4d37494191a90fce69d7277721f879587b8fbacb41818269098545d97ee"
+    },
+    {
+      "path": "services/evalforge/docs/DATA.md",
+      "size_bytes": 3514,
+      "sha256": "69df3dfabc15b37a24a4c98428ac874b2f73fec6da53d62c8d71108aa129c086"
+    },
+    {
+      "path": "services/evalforge/docs/DEMO.md",
+      "size_bytes": 2261,
+      "sha256": "c289ede5e879b211e26be8c0df43fdde1c5de389f16065de0514678b9fc7e54b"
+    },
+    {
+      "path": "services/evalforge/docs/EVALUATION.md",
+      "size_bytes": 3167,
+      "sha256": "91d5ca65076b8268aea22e5b44ebd78a412aa9327e25e01f359acafec64c94db"
+    },
+    {
+      "path": "services/evalforge/docs/ROADMAP.md",
+      "size_bytes": 1731,
+      "sha256": "34c6f46e60af63d1dd3920d12624bb7d16dd13333f0d11aea0ce35fe015fac5f"
+    },
+    {
+      "path": "services/evalforge/docs/SECURITY.md",
+      "size_bytes": 2506,
+      "sha256": "22fe2c84efd71e5717480455105e1016600c10849bfe998b96d04cb3e32e9f32"
+    },
+    {
+      "path": "services/evalforge/docs/SPEC.md",
+      "size_bytes": 6554,
+      "sha256": "8ba1a29b40457cbb9c62633f1319b0c94eecbada450c681cefdd546cebf4fb14"
+    },
+    {
+      "path": "services/evalforge/pyproject.toml",
+      "size_bytes": 320,
+      "sha256": "efef8d22b2d90c0147b58cfb1e210f314ad6feb91887cdd1831278ec3283563b"
+    },
+    {
+      "path": "services/evalforge/src/evalforge_service/__init__.py",
+      "size_bytes": 194,
+      "sha256": "d1ce620331f17d70805aaf3b071278fd22a3e74a193f2b95f10fab2d56bd2b07"
+    },
+    {
+      "path": "services/evalforge/src/evalforge_service/evaluator.py",
+      "size_bytes": 2325,
+      "sha256": "7ebe0ff878d1237cfddd4d4d940cd628e8be08b7e20d92b27c49174fa560fd85"
+    },
+    {
+      "path": "services/fedlens/AGENTS.md",
+      "size_bytes": 1795,
+      "sha256": "31c54c8676f9e4839de077551e24cb28c8a02fdef07ca61896292b90cfc0aad4"
+    },
+    {
+      "path": "services/fedlens/README.md",
+      "size_bytes": 3110,
+      "sha256": "fa00440ed96f7134438426811d5f756576cd1d9fe8ed59215e0a0422bfc5980e"
+    },
+    {
+      "path": "services/fedlens/docs/API.md",
+      "size_bytes": 3857,
+      "sha256": "c7d62dd77504fb0f70368f73db989e04ea7e1700be715326d2638eac358fe65d"
+    },
+    {
+      "path": "services/fedlens/docs/DATA.md",
+      "size_bytes": 3400,
+      "sha256": "6343fb9e6a4cceaa2b71b409f06d94bebf5d9fca0f24b78c66e351d0541437ac"
+    },
+    {
+      "path": "services/fedlens/docs/DEMO.md",
+      "size_bytes": 2272,
+      "sha256": "90dea11e9a34ffbde39d639b74cf070cd9f7cb71b0732543a7074dd73689ab8e"
+    },
+    {
+      "path": "services/fedlens/docs/EVALUATION.md",
+      "size_bytes": 2964,
+      "sha256": "45e5064c49f757e3c4cfea50db349b19898cb6833c4c4428719a4c17e9d86288"
+    },
+    {
+      "path": "services/fedlens/docs/ROADMAP.md",
+      "size_bytes": 1754,
+      "sha256": "c7ffd9510e19b9d2987430bfc740906b4a5e1f68a165b75a856afcecc69f6213"
+    },
+    {
+      "path": "services/fedlens/docs/SECURITY.md",
+      "size_bytes": 2314,
+      "sha256": "f2609667050034a07125e3962d6f58a018cb8f72ef81007296d5769c0fc4c604"
+    },
+    {
+      "path": "services/fedlens/docs/SPEC.md",
+      "size_bytes": 6410,
+      "sha256": "1113f12203153fdd6e47006688ee7918c92d6112e7b3c61731a9aa94c59e632d"
+    },
+    {
+      "path": "services/fedlens/pyproject.toml",
+      "size_bytes": 320,
+      "sha256": "e089945822fd5a3b65fe2c4c7bcc7ca6dd3696f6bebef6f9cb22f4cdaf589c7f"
+    },
+    {
+      "path": "services/fedlens/src/fedlens_service/__init__.py",
+      "size_bytes": 229,
+      "sha256": "f4f4fc6a3837a4e2ca89f1e4af2805e9eb8ef5c9c1f6c19bf3d4f885ff2e8cb2"
+    },
+    {
+      "path": "services/fedlens/src/fedlens_service/service.py",
+      "size_bytes": 3483,
+      "sha256": "01c93fe42ef9ef79d145ca09bc82a7ea32536c5200eaf39853fc98b6ecd82b08"
+    },
+    {
+      "path": "sql/0000_reference_schema.sql",
+      "size_bytes": 5531,
+      "sha256": "69dff7e9cf7d184de1b363538ef9a71da444924bbc3c02551b85e8b3b4c35bf6"
+    },
+    {
+      "path": "sql/README.md",
+      "size_bytes": 778,
+      "sha256": "aa445813da3d6c8a52f8a4515033ceb11c9aae31e1c18403d1525d8474841f23"
+    },
+    {
+      "path": "sql/migrations/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "sql/seeds/public/.gitkeep",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/conftest.py",
+      "size_bytes": 539,
+      "sha256": "9694a6ba5751879f6aef386977b55ac6162d9fca823a1527d9e1c8c8d4bbf31a"
+    },
+    {
+      "path": "tests/test_atticus_foundation.py",
+      "size_bytes": 4524,
+      "sha256": "d4d3665e4b6bfe25884611fa6dc46ff0949d74c5e3e95d17c6002ad904918559"
+    },
+    {
+      "path": "tests/test_domain_wix.py",
+      "size_bytes": 739,
+      "sha256": "f1ae0f2794903c8d2609d2e151efd25bead9680cb4f63f8cc39f77c623eb764a"
+    },
+    {
+      "path": "tests/test_foundation.py",
+      "size_bytes": 2093,
+      "sha256": "36ff9a711a2d5d1de9e22709a8dedba00e7f8291a01675a62ef45628a41c11c9"
+    },
+    {
+      "path": "tests/test_local_runner.py",
+      "size_bytes": 1207,
+      "sha256": "07e054b6a064ef95d40a23b97b570a35901d8c33d08125d9aa6df2632f44125f"
+    },
+    {
+      "path": "uv.lock",
+      "size_bytes": 84872,
+      "sha256": "5adc7801f772a15ba239d642cf100328eba07dabb28451de25a34fe19f2c29b9"
+    }
+  ]
+}

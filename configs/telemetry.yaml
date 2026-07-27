@@ -1,0 +1,37 @@
+version: 1.0.0
+default_profile: essential
+profiles:
+  'off':
+    events: []
+    content_capture: false
+  essential:
+    events:
+    - service_health
+    - error_code
+    - latency_bucket
+    - quota_usage
+    - deployment_version
+    content_capture: false
+  product:
+    events:
+    - page_view
+    - navigation
+    - feature_start
+    - feature_complete
+    - replay_start
+    - live_run_start
+    - consent_change
+    content_capture: false
+  diagnostic_opt_in:
+    events:
+    - safe_trace_metadata
+    - structured_error_details
+    content_capture: bounded_and_redacted
+never_collect:
+- passwords
+- tokens
+- credentials
+- private_file_content
+- email_body
+- voice_audio
+- raw_prompt_or_response_in_generic_analytics

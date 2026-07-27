@@ -1,0 +1,13 @@
+milestones:
+  - title: "M1: Repository Online and Trusted"
+    due_day: 14
+    description: "Clean-clone workflow, protected branches, CI, decision ledger, and issue system."
+  - title: "M2: Atticus Local Alpha"
+    due_day: 35
+    description: "Provider boundary, policy, approvals, local runner, evaluation, and model bake-off."
+  - title: "M3: Integrated Research Alpha"
+    due_day: 63
+    description: "Public evidence adapters, deterministic scenarios, EvalForge, and signed replay."
+  - title: "M4: Public Laboratory Preview"
+    due_day: 90
+    description: "Wix launch, canonical domain, private GCP deployment, hardening, and public artifacts."

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/evidence-bundle.schema.json",
+  "title": "DRL Evidence Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "question": {
+      "type": "string",
+      "maxLength": 16000
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/evidence-item.schema.json"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/claim.schema.json"
+      }
+    },
+    "missing_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 4000
+      }
+    },
+    "method_version": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "manifest_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "question",
+    "as_of",
+    "evidence",
+    "claims",
+    "missing_evidence",
+    "method_version",
+    "manifest_digest"
+  ]
+}

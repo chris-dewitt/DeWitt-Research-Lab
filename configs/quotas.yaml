@@ -1,0 +1,25 @@
+version: 1.0.0
+public_anonymous:
+  requests_per_hour: 10
+  concurrent_runs: 1
+  max_runtime_seconds: 90
+  max_input_chars: 8000
+  daily_gpu_seconds: 300
+  external_writes: 0
+public_authenticated:
+  requests_per_hour: 60
+  concurrent_runs: 2
+  max_runtime_seconds: 300
+  max_input_chars: 24000
+  daily_gpu_seconds: 1800
+  external_writes: 0
+private:
+  requests_per_hour: 240
+  concurrent_runs: 4
+  max_runtime_seconds: 1800
+  budget_enforced: true
+global_circuit_breakers:
+  monthly_usd_warning: 150
+  monthly_usd_hard_cap: 250
+  daily_gpu_usd_cap: 20
+  provider_failure_rate_percent: 25

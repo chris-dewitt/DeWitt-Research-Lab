@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "id": "id-example-0001",
+  "text": "The example claim is supported by the cited source.",
+  "claim_type": "direct_evidence",
+  "supporting_evidence_ids": [],
+  "contradicting_evidence_ids": [],
+  "calculation_artifact_ids": [],
+  "as_of": "2026-07-26T12:00:00Z"
+}

@@ -1,0 +1,46 @@
+services:
+  atticus:
+    profiles: ["atticus"]
+    build:
+      context: .
+      dockerfile: services/atticus-control-plane/Dockerfile
+    environment:
+      ATTICUS_HOST: 0.0.0.0
+      PORT: "8080"
+    ports:
+      - "8080:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: drl
+      POSTGRES_PASSWORD: drl
+      POSTGRES_DB: drl
+    ports:
+      - "5432:5432"
+    volumes:
+      - drl_postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: drl
+      MINIO_ROOT_PASSWORD: local-development-only
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - drl_minio:/data
+
+volumes:
+  drl_postgres:
+  drl_minio:

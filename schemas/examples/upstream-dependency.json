@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "dependency_id": "llama-cpp",
+  "name": "llama.cpp",
+  "canonical_url": "https://github.com/ggml-org/llama.cpp",
+  "license_expression": "MIT",
+  "classification": "open_source_software",
+  "version_policy": "Pin verified release/commit per model release",
+  "criticality": "high",
+  "owner": "Local Runner",
+  "drl_role": "GGUF quantization and local serving",
+  "exit_strategy": "Preserve safetensors releases and runtime adapter boundary for alternate local servers.",
+  "upstream_contributions": [],
+  "reviewed_at": "2026-07-26",
+  "review_by": "2026-10-24"
+}

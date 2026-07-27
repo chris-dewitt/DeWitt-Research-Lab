@@ -1,0 +1,43 @@
+version: 1.0.0
+open_weights_required: true
+routes:
+- id: edge-local
+  model_family: atticus-edge
+  modes:
+  - private-local
+  - offline
+  task_classes:
+  - intent
+  - simple_tool
+  - voice
+  - docs
+  max_risk: R2
+  fallback: core-local_or_clarify
+- id: core-local
+  model_family: atticus-core
+  modes:
+  - private-local
+  - offline
+  task_classes:
+  - planning
+  - coding
+  - research_synthesis
+  max_risk: R3
+  fallback: clarify_or_degrade
+- id: core-cloud
+  model_family: atticus-core
+  modes:
+  - public-anonymous
+  - public-authenticated
+  - private-cloud
+  task_classes:
+  - guide
+  - planning
+  - specialist_routing
+  - research_synthesis
+  max_risk: R3
+  fallback: signed_replay_or_degrade
+hard_constraints:
+- model_output_never_authorizes
+- no_private_content_to_public_route
+- quantized_artifact_must_be_release_gated

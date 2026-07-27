@@ -1,0 +1,27 @@
+version: 1.0.0
+classes:
+  public_release:
+    days: null
+    rule: versioned_until_withdrawal_or_rights_change
+  anonymous_session:
+    days: 7
+    content_days: 1
+  authenticated_history:
+    days: 365
+    user_configurable: true
+  essential_telemetry:
+    days: 30
+  security_audit:
+    days: 180
+    restricted: true
+  diagnostic_opt_in:
+    days: 14
+  quarantine:
+    days: 7
+  research_donation:
+    days: null
+    rule: consent_and_dataset_release_policy
+  local_audit:
+    days: 30
+    user_configurable: true
+deletion_sla_days: 30

@@ -1,0 +1,40 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: atticus-foundation
+  annotations:
+    run.googleapis.com/description: "DRL public fixture prototype; not production Atticus"
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "2"
+        run.googleapis.com/cpu-throttling: "true"
+    spec:
+      containerConcurrency: 20
+      timeoutSeconds: 60
+      serviceAccountName: atticus-foundation@PROJECT_ID.iam.gserviceaccount.com
+      containers:
+        - image: REGION-docker.pkg.dev/PROJECT_ID/drl/atticus-foundation:IMAGE_TAG
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ATTICUS_HOST
+              value: "0.0.0.0"
+          resources:
+            limits:
+              cpu: "1"
+              memory: "512Mi"
+          startupProbe:
+            httpGet:
+              path: /healthz
+            failureThreshold: 6
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+            periodSeconds: 30
+  traffic:
+    - percent: 100
+      latestRevision: true

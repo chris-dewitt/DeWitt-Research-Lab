@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/tool-call.schema.json",
+  "title": "DRL Tool Call",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "step_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "tool_name": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "tool_version": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "arguments": {
+      "type": "object"
+    },
+    "arguments_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "resource_scopes": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "string",
+        "maxLength": 2048
+      }
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    },
+    "policy_context_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 200
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "correlation_id",
+    "trace_id",
+    "run_id",
+    "step_id",
+    "tool_name",
+    "tool_version",
+    "arguments",
+    "arguments_digest",
+    "risk_tier",
+    "policy_context_id",
+    "deadline",
+    "idempotency_key"
+  ]
+}

@@ -1,0 +1,35 @@
+name: Research
+description: Propose a reproducible DRL experiment or publication
+title: "[Research]: "
+labels: ["research"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question or hypothesis
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data, provenance, and license
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Method and evaluation
+    validations:
+      required: true
+  - type: textarea
+    id: ethics
+    attributes:
+      label: Ethics, limitations, and conflicts
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Reproducible deliverables
+    validations:
+      required: true

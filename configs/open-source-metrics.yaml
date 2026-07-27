@@ -1,0 +1,37 @@
+schema_version: 1.0.0
+owner: Research/Community
+policy: docs/09-open-source/OPEN_SOURCE_HEALTH_METRICS.md
+metric_families:
+  artifact_health:
+    - supported_artifact_ratio
+    - complete_release_envelope_ratio
+    - vulnerability_triage_time
+    - dependency_freshness
+    - local_quickstart_pass_rate
+  reproducibility:
+    - clean_room_install_pass_rate
+    - independent_replication_count
+    - undocumented_step_count
+    - open_weight_workflow_coverage
+    - model_substitution_pass_rate
+  community:
+    - first_contribution_completion_rate
+    - first_human_response_time
+    - review_turnaround
+    - maintainer_load
+    - non_code_contribution_share
+  reciprocity:
+    - upstream_issues
+    - upstream_pull_requests
+    - accepted_upstream_changes
+    - retired_downstream_patches
+    - upstream_sponsorships
+  public_benefit:
+    - teaching_lab_completions
+    - self_host_reports_opt_in
+    - accessibility_coverage
+    - atticus_edge_low_resource_pass_rate
+privacy:
+  no_individual_productivity_ranking: true
+  aggregate_only_public_dashboard: true
+  conversation_content_excluded: true

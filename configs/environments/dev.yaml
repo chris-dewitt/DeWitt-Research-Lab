@@ -1,0 +1,7 @@
+version: 1.0.0
+environment: dev
+gcp_project: drl-dev
+min_instances: 0
+log_level: DEBUG
+public_live_enabled: true
+signed_replay_fallback: true

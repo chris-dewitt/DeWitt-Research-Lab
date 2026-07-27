@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/approval-request.schema.json",
+  "title": "DRL Approval Request",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "tool_call_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "action": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "resource_summary": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "effect_summary": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "risk_tier": {
+      "type": "string",
+      "enum": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4"
+      ]
+    },
+    "request_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "preview_artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/artifact-reference.schema.json"
+      }
+    },
+    "requested_scopes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 500
+      }
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "device_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "correlation_id",
+    "trace_id",
+    "run_id",
+    "tool_call_id",
+    "action",
+    "resource_summary",
+    "effect_summary",
+    "risk_tier",
+    "request_digest",
+    "requested_scopes",
+    "expires_at"
+  ]
+}

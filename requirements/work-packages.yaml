@@ -1,0 +1,994 @@
+schema_version: 1.0.0
+generated_at: '2026-07-26'
+work_packages:
+- id: WP-00-01
+  mission: 0
+  title: Audit all requirements and create a machine-readable requirement/work-package register.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-00-02
+  mission: 0
+  title: Build a directed dependency graph and critical path with entry/exit gates.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-00-03
+  mission: 0
+  title: Create GitHub milestone, label, issue, and PR templates with requirement/evidence fields.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-00-04
+  mission: 0
+  title: Create initial issue backlog and assign each issue to exactly one mission and one evidence owner.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-00-05
+  mission: 0
+  title: Identify unresolved director decisions and prepare ADR proposals without deciding them.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-00-06
+  mission: 0
+  title: Define release dashboard and weekly program review format.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-01
+  mission: 1
+  title: Create one-command setup, lint, typecheck, unit, contract, docs, and validation targets.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-02
+  mission: 1
+  title: Implement controlled-document frontmatter, ID, status, link, and reference validators.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-03
+  mission: 1
+  title: Validate all JSON Schemas, YAML configuration, OpenAPI, and example fixtures.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-04
+  mission: 1
+  title: Create generated specification, ADR, requirement, schema, package, and agent indexes.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-05
+  mission: 1
+  title: Establish Python and TypeScript workspace packages with minimal compilable skeletons.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-06
+  mission: 1
+  title: Build fast CI with cache and artifact publication; create slower scheduled/full workflow placeholders with explicit
+    gates.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-01-07
+  mission: 1
+  title: Generate SBOM and license inventory foundations.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-01
+  mission: 2
+  title: Implement generated or hand-maintained canonical types with cross-language conformance.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-02
+  mission: 2
+  title: Implement task/run/event/error/claim/evidence/artifact/approval envelopes.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-03
+  mission: 2
+  title: Implement run state machine and property-based transition tests.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-04
+  mission: 2
+  title: Implement idempotency-key and request-digest helpers.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-05
+  mission: 2
+  title: Implement provenance and content-digest utilities.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-06
+  mission: 2
+  title: Implement safe trace event builder and redaction hooks.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-07
+  mission: 2
+  title: Create protocol simulator and example end-to-end fixture trace.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-02-08
+  mission: 2
+  title: Generate OpenAPI foundation and SDK compatibility report.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-01
+  mission: 3
+  title: Implement rule-driven deny-by-default policy engine.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-02
+  mission: 3
+  title: Implement resource/action scope normalization and risk classification.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-03
+  mission: 3
+  title: Implement approval request/grant digest binding, expiry, versioning, and revocation.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-04
+  mission: 3
+  title: Implement consent snapshot, telemetry filtering, and content-capture separation.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-05
+  mission: 3
+  title: Implement quota/budget/circuit-breaker primitives.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-06
+  mission: 3
+  title: Implement identity/session/service principal adapters and authorization helpers.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-07
+  mission: 3
+  title: Build security fixtures for injection, replay, cross-session access, egress, and secret redaction.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-03-08
+  mission: 3
+  title: Produce threat-model-to-control-to-test matrix and incident hooks.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-01
+  mission: 4
+  title: Implement suite/case/target/scorer/gate manifests and validation.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-02
+  mission: 4
+  title: Implement deterministic local execution and artifact recording.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-03
+  mission: 4
+  title: Implement paired baseline/candidate analysis and bootstrap intervals.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-04
+  mission: 4
+  title: Implement JSON, Markdown, HTML, JUnit, and PR-summary reports.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-05
+  mission: 4
+  title: Implement accepted-baseline registry and manual promotion.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-06
+  mission: 4
+  title: Implement target adapters for local function, HTTP, OpenAI-compatible endpoint, and trace import.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-07
+  mission: 4
+  title: Implement CI gate with seeded pass/fail regressions.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-04-08
+  mission: 4
+  title: Design judge/human-review interfaces and calibration records without making them release-critical yet.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-01
+  mission: 5
+  title: Terraform foundation and project topology
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-02
+  mission: 5
+  title: Identity and trust boundaries
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-03
+  mission: 5
+  title: Deployment pipelines
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-04
+  mission: 5
+  title: Observability and SLO plumbing
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-05
+  mission: 5
+  title: Model training and serving substrate
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-06
+  mission: 5
+  title: Resilience and cost operations
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-01
+  mission: 6
+  title: Design system and tokens
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-02
+  mission: 6
+  title: Information architecture and content engine
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-03
+  mission: 6
+  title: Atticus public console
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-04
+  mission: 6
+  title: Demonstration and replay system
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-05
+  mission: 6
+  title: Accessibility, performance, privacy, and analytics
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-06
+  mission: 6
+  title: Recruiter, researcher, learner, and contributor journeys
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-07-01
+  mission: 7
+  title: Request/session lifecycle
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-07-02
+  mission: 7
+  title: Skill registry and planner
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-07-03
+  mission: 7
+  title: Model gateway and open-weight routing
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-07-04
+  mission: 7
+  title: Policy, approval, and tool execution
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-07-05
+  mission: 7
+  title: Specialist orchestration and synthesis
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-07-06
+  mission: 7
+  title: Recovery, observability, and public sandbox
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-01
+  mission: 8
+  title: Current base-model bakeoff
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-02
+  mission: 8
+  title: AtticusBench v1
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-03
+  mission: 8
+  title: Training data production
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-04
+  mission: 8
+  title: Core post-training
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-05
+  mission: 8
+  title: Edge distillation and specialization
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-06
+  mission: 8
+  title: Quantization, packaging, and public release
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-09-01
+  mission: 9
+  title: Device identity, pairing, and revocation
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-09-02
+  mission: 9
+  title: Local runtime and model routing
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-09-03
+  mission: 9
+  title: Voice and interaction loop
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-09-04
+  mission: 9
+  title: File, repository, and shell tools
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-09-05
+  mission: 9
+  title: Private memory and data lifecycle
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-09-06
+  mission: 9
+  title: Packaging and adversarial validation
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-10-01
+  mission: 10
+  title: Source registry and connector SDK
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-10-02
+  mission: 10
+  title: Temporal canonical data model
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-10-03
+  mission: 10
+  title: Retrieval and deterministic analytics
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-10-04
+  mission: 10
+  title: Research workflow and evidence bundles
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-10-05
+  mission: 10
+  title: Public demo and contributor interface
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-10-06
+  mission: 10
+  title: Evaluation and operations
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-11-01
+  mission: 11
+  title: Official corpus and metadata
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-11-02
+  mission: 11
+  title: Document processing and semantic diff
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-11-03
+  mission: 11
+  title: Policy timeline and retrieval
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-11-04
+  mission: 11
+  title: Event-study framework
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-11-05
+  mission: 11
+  title: Atticus tools and public demo
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-11-06
+  mission: 11
+  title: Evaluation and publication
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-12-01
+  mission: 12
+  title: Domain model and synthetic institutions
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-12-02
+  mission: 12
+  title: Deterministic scenario engine
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-12-03
+  mission: 12
+  title: Explainability and audit
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-12-04
+  mission: 12
+  title: Atticus tool interface and public workstation
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-12-05
+  mission: 12
+  title: Verification and model risk discipline
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-12-06
+  mission: 12
+  title: Educational publication and safety
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-01
+  mission: 13
+  title: Contract compatibility and environment matrix
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-02
+  mission: 13
+  title: Integrated workflow implementation
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-03
+  mission: 13
+  title: Trace, evidence, and replay
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-04
+  mission: 13
+  title: Failure and degradation drills
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-05
+  mission: 13
+  title: User experience and narrative
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-06
+  mission: 13
+  title: Staging endurance and release evidence
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-01
+  mission: 14
+  title: Clean-room reproducibility
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-02
+  mission: 14
+  title: Requirement and evidence audit
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-03
+  mission: 14
+  title: Independent quality suites
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-04
+  mission: 14
+  title: Operational readiness
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-05
+  mission: 14
+  title: Public release dossier
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-06
+  mission: 14
+  title: Go/no-go review
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-01
+  mission: 15
+  title: V1 publication portfolio
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-02
+  mission: 15
+  title: Teaching and onboarding
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-03
+  mission: 15
+  title: Open-source contributor system
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-04
+  mission: 15
+  title: Public research archive
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-05
+  mission: 15
+  title: Launch communications
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-06
+  mission: 15
+  title: Post-launch research agenda
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-07
+  mission: 6
+  title: Build Open Source portal, Open Stack lineage, model commons, reproduce panel, and artifact/maturity badge surfaces.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-08
+  mission: 6
+  title: Integrate evidence-derived model identity, licenses, upstream attribution, community replications, and self-hosting
+    routes into project pages.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-07
+  mission: 8
+  title: Publish Atticus Open Model Commons release structure across Hugging Face, GitHub, OCI, GGUF/Ollama, cards, and replication
+    bundles.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-08
+  mission: 8
+  title: Run open-model ecosystem bakeoff with precise license classification, runtime compatibility, local performance, and
+    upstream-community factors.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-07
+  mission: 14
+  title: Execute clean-room forkability, open-artifact, badge-evidence, SBOM/provenance, and terminology audit.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-08
+  mission: 14
+  title: Verify every managed capability has a documented portable boundary and that V1 runs without paid commercial model
+    APIs.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-07
+  mission: 15
+  title: Launch public Open Stack and upstream contribution ledger with attribution, dependency ownership, and temporary-fork
+    status.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-08
+  mission: 15
+  title: Launch Atticus model/data/evaluation commons and community submission, replication, mentorship, and research sprint
+    processes.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-09
+  mission: 15
+  title: Publish annual open research accountability template covering artifacts, exceptions, upstream work, replications,
+    community health, and sustainability.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-07
+  mission: 5
+  title: Run director-gated OpenTofu and Valkey compatibility spikes; record evidence without silently changing approved architecture.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-09
+  mission: 6
+  title: Implement open-source visual identity, artifact cards, lineage graph, contributor credit, and evidence-derived status
+    rendering.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-08-09
+  mission: 8
+  title: Execute the Atticus Open Model Commons release train for Core and Edge with full modification surfaces and community
+    submission lanes.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-07
+  mission: 13
+  title: Build the signature V1 open-source showcase workflow and reproduction bundle across all specialist systems.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-09
+  mission: 14
+  title: Run dedicated open-identity validator, open artifact schemas, public-link checks, and clean-room showcase acceptance.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-15-10
+  mission: 15
+  title: Publish contributor credit, open-source health baseline, sustainability statement, and open research accountability
+    report.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-05-08
+  mission: 5
+  title: Implement domain, DNS, TLS, Wix/cloud subdomain routing, monitoring, rollback, and cross-origin security evidence
+    for dwit-labs.com.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-06-10
+  mission: 6
+  title: Build the canonical Wix institutional site at www.dwit-labs.com and integrate truthful application launch, repository
+    content, brand, consent, SEO, accessibility, and fallback behavior.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-13-08
+  mission: 13
+  title: Verify the integrated reference journey from the Wix laboratory homepage through Atticus and specialist subdomains
+    and back, including degraded/replay behavior.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []
+- id: WP-14-10
+  mission: 14
+  title: Perform independent clean-room domain, Wix, TLS, redirect, cross-host navigation, consent, indexing, and iframe-boundary
+    release acceptance.
+  status: PLANNED
+  branch: null
+  issue: null
+  pull_request: null
+  evidence: []

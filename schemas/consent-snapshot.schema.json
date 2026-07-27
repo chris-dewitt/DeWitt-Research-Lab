@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/consent-snapshot.schema.json",
+  "title": "DRL Consent Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "subject_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy_version": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "analytics": {
+      "type": "string",
+      "enum": [
+        "off",
+        "essential",
+        "product"
+      ]
+    },
+    "content_capture": {
+      "type": "string",
+      "enum": [
+        "off",
+        "diagnostic_opt_in",
+        "research_donation_only"
+      ]
+    },
+    "history": {
+      "type": "string",
+      "enum": [
+        "ephemeral",
+        "account_history"
+      ]
+    },
+    "research_donation": {
+      "type": "boolean"
+    },
+    "allowed_research_uses": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "evaluation",
+          "dataset",
+          "model_training",
+          "publication"
+        ]
+      }
+    },
+    "expires_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "policy_version",
+    "analytics",
+    "content_capture",
+    "history",
+    "research_donation",
+    "allowed_research_uses"
+  ]
+}

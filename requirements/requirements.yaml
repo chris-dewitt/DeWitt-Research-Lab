@@ -1,0 +1,1226 @@
+schema_version: 1.0.0
+generated_at: '2026-07-26'
+requirements:
+- id: DRL-SYS-001
+  statement: Atticus shall coordinate specialist services only through versioned typed contracts.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-002
+  statement: The V1 production intelligence path shall use identifiable open-weight models and disclose routing.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-003
+  statement: The local/mock developer profile shall run without paid commercial model APIs.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-004
+  statement: Every externally visible action and public claim shall be attributable to a trace and artifact/evidence chain.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-005
+  statement: Every long-running request shall support deadline, cancellation, bounded retries, and terminal status.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-006
+  statement: Public, private-cloud, private-local, and offline modes shall have distinct capabilities and data policies.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-007
+  statement: Protocol-breaking changes shall require versioning, migration, consumer compatibility evidence, and ADR.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-008
+  statement: One integrated reference workflow shall exercise Atticus, Atlas, FedLens, BalanceLab, and EvalForge.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-009
+  statement: The platform shall degrade truthfully to replay/documentation when live compute is unavailable.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SYS-010
+  statement: No component shall infer completion solely from prose; evidence artifacts shall determine release status.
+  owner: Architecture
+  canonical_spec: docs/02-architecture/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-001
+  statement: The model shall never grant its own permission or override deterministic policy.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-002
+  statement: Public Atticus shall expose no external write tool or unrestricted code/shell execution.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-003
+  statement: Consequential private actions shall require a scoped, digest-bound, expiring approval.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-004
+  statement: Changed arguments or effect shall invalidate a prior approval.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-005
+  statement: Private devices shall initiate outbound connections; cloud services shall not require inbound device exposure.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-006
+  statement: Secrets shall remain outside source, prompts, traces, and public artifacts and use approved secret stores.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-007
+  statement: Untrusted retrieved content and tool output shall be treated as data, not instruction.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-008
+  statement: Tool execution shall enforce path, command, network, data, timeout, and output-size constraints.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-009
+  statement: Anonymous sessions shall be isolated, rate limited, short lived, and unable to access private resources.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-010
+  statement: Release security suites shall record zero unauthorized actions in critical cases.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-011
+  statement: Consent and retention shall be versioned and enforceable independently of interface text.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-012
+  statement: Incident response shall support disablement, revocation, rollback, notification, and evidence preservation.
+  owner: Security
+  canonical_spec: docs/06-security/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-001
+  statement: Atticus Core and Edge shall be planned and evaluated as a coordinated model family.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-002
+  statement: Base-model selection shall result from a current, license-reviewed bakeoff rather than an assumed winner.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-003
+  statement: Core shall target orchestration, tool use, research/coding assistance, and synthesis; Edge shall target low-latency
+    routing and local interactions.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-004
+  statement: Training runs shall be reproducible from pinned data manifests, code, configuration, environment, and seeds.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-005
+  statement: Commercial models used for synthetic data shall be disclosed and their outputs reviewed according to category.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-006
+  statement: Public model releases shall include weights/adapters as lawful, checksums, model card, safety/evaluation report,
+    and upstream obligations.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-007
+  statement: Quantized artifacts shall be evaluated separately from full-precision candidates.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-008
+  statement: Edge shall have explicit escalation thresholds rather than pretending to solve unsupported tasks.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-009
+  statement: Model release gates shall include permission, prompt-injection, grounding, latency, memory, and cost slices.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-MOD-010
+  statement: Private personalization adapters shall remain local/private unless the owner deliberately publishes them.
+  owner: Model/Data
+  canonical_spec: docs/03-model/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-001
+  statement: Every dataset record shall belong to public, DRL-private, or local-personal data tier.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-002
+  statement: Every source shall have identity, rights, provenance, acquisition, transformation, review, and release metadata.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-003
+  statement: Training and held-out evaluation shall use contamination-resistant splits and similarity audits.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-004
+  statement: Donated traces shall require explicit opt-in consent and quarantine before any research use.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-005
+  statement: Raw private files, email, voice, repositories, credentials, and local memory shall never enter public datasets
+    by default.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-006
+  statement: Dataset releases shall include manifests, checksums, license, cards, review report, and contamination report.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-007
+  statement: Data deletion/retention shall be implemented as lifecycle behavior rather than policy prose only.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-008
+  statement: Synthetic data shall record generator/configuration and human/automated review class.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-009
+  statement: Hidden benchmark details shall be protected and rotated when contamination is credible.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-DAT-010
+  statement: Data quality failures shall be observable, quarantinable, and reversible.
+  owner: Data
+  canonical_spec: docs/04-data/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-001
+  statement: EvalForge shall score terminal outcome and trajectory separately.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-002
+  statement: Deterministic graders shall decide schema, authorization, citation-link, and numerical consistency where possible.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-003
+  statement: Model judges shall be versioned, calibrated, and not solely decide critical safety.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-004
+  statement: Comparisons shall report uncertainty, slices, and critical failures rather than one aggregate score.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-005
+  statement: CI shall block regressions beyond approved thresholds and always block critical policy violations.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-006
+  statement: Evaluation runs shall capture target, configuration, dataset, scorer, environment, and artifact digests.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-007
+  statement: AtticusBench shall contain at least 1,000 held-out V1 cases across required taxonomies.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-008
+  statement: Release reports shall include failures and limitations, not only successful examples.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-009
+  statement: Replay evaluation shall verify that displayed artifacts correspond to the captured run.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-EVL-010
+  statement: Baseline thresholds shall be set before observing final release candidates or changed only by approved rationale.
+  owner: Evaluation
+  canonical_spec: docs/05-evaluation/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-001
+  statement: The public site shall introduce DeWitt Research Laboratory before Atticus.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-002
+  statement: The visual system shall be cream on black with research-workstation/tmux influence and remain accessible.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-003
+  statement: Traditional navigation and documentation shall work without chat.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-004
+  statement: Public demos shall identify live, cached, simulated, and replayed output truthfully.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-005
+  statement: The Atticus console shall render plan artifacts, tool events, policy/approval, evidence, evaluation, and cancellation
+    states.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-006
+  statement: The site shall provide project, research, open-source, founder, failure-museum, and system-console routes.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-007
+  statement: Critical flows shall support keyboard, screen reader, reduced motion, mobile, and high-latency conditions.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-008
+  statement: Analytics/content capture shall follow visible consent and telemetry policy.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-009
+  statement: Public metrics and system status shall be derived from release/operational evidence, never invented.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-010
+  statement: Priority visitor personas shall understand the laboratory and reach relevant evidence in under two minutes in
+    usability testing.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-001
+  statement: Infrastructure shall be reproducible through Terraform for dev, staging, and production.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-002
+  statement: Application identities shall use least privilege and deployment shall avoid long-lived static cloud credentials.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-003
+  statement: Cloud Run GPU inference shall be cost bounded and support scale-to-zero where compatible with declared SLOs.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-004
+  statement: Wix at www.dwit-labs.com shall deliver the canonical institutional site; approved Google-hosted frontends shall
+    deliver interactive DRL applications and documentation.
+  owner: Platform
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-005
+  statement: Cloud SQL PostgreSQL with pgvector shall be the canonical relational/vector service unless superseded by ADR.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-006
+  statement: Production changes shall use tested artifact promotion, smoke tests, and rollback.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-007
+  statement: Backups and restore procedures shall be tested before V1 release.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-008
+  statement: Budgets shall warn at $150 monthly and enforce a $250 monthly hard planning cap absent director approval.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-009
+  statement: Observability shall separate user, model, tool, queue, database, and cold-start latency/cost while redacting
+    content.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-010
+  statement: Colab shall be used for interactive research, not production service hosting; durable training shall use reproducible
+    cloud jobs.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-ATL-001
+  statement: Atlas shall preserve observation, release, revision, effective, ingestion, and as-of time.
+  owner: Atlas
+  canonical_spec: services/atlas/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-ATL-002
+  statement: Atlas shall not expose revised data as historically knowable before its release.
+  owner: Atlas
+  canonical_spec: services/atlas/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-ATL-003
+  statement: Atlas evidence bundles shall represent support, contradiction, missing evidence, uncertainty, and source rights.
+  owner: Atlas
+  canonical_spec: services/atlas/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-ATL-004
+  statement: Atlas numerical analysis and charts shall use deterministic versioned tools.
+  owner: Atlas
+  canonical_spec: services/atlas/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-ATL-005
+  statement: Atlas connectors shall be independently testable and rights-aware.
+  owner: Atlas
+  canonical_spec: services/atlas/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-ATL-006
+  statement: Atlas research snapshots shall be reproducible from manifests and source/artifact digests.
+  owner: Atlas
+  canonical_spec: services/atlas/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-FED-001
+  statement: FedLens shall acquire and identify official Federal Reserve documents with version lineage.
+  owner: FedLens
+  canonical_spec: services/fedlens/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-FED-002
+  statement: FedLens shall separate literal document changes from semantic/model-inferred interpretation.
+  owner: FedLens
+  canonical_spec: services/fedlens/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-FED-003
+  statement: FedLens topic/tone results shall report calibration, uncertainty, and abstention.
+  owner: FedLens
+  canonical_spec: services/fedlens/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-FED-004
+  statement: FedLens event-study artifacts shall be deterministic, reproducible, and avoid unsupported causal claims.
+  owner: FedLens
+  canonical_spec: services/fedlens/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-FED-005
+  statement: FedLens citations shall point to exact source spans and document versions.
+  owner: FedLens
+  canonical_spec: services/fedlens/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-FED-006
+  statement: FedLens public corpus releases shall pass source/license review.
+  owner: FedLens
+  canonical_spec: services/fedlens/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-BAL-001
+  statement: BalanceLab V1 shall use synthetic institutions and public/DRL-authored methodology only.
+  owner: BalanceLab
+  canonical_spec: services/balancelab-ai/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-BAL-002
+  statement: Authoritative financial outputs shall come exclusively from deterministic versioned calculations.
+  owner: BalanceLab
+  canonical_spec: services/balancelab-ai/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-BAL-003
+  statement: Every calculation artifact shall expose inputs, assumptions, units, formula/method version, reconciliation, and
+    limitations.
+  owner: BalanceLab
+  canonical_spec: services/balancelab-ai/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-BAL-004
+  statement: AI explanation shall consume and remain consistent with calculation artifacts.
+  owner: BalanceLab
+  canonical_spec: services/balancelab-ai/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-BAL-005
+  statement: Golden, property, invariant, metamorphic, and independent-reference checks shall cover critical calculations.
+  owner: BalanceLab
+  canonical_spec: services/balancelab-ai/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-BAL-006
+  statement: Public output shall be labeled educational/research and not individualized financial advice.
+  owner: BalanceLab
+  canonical_spec: services/balancelab-ai/docs/SPEC.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-001
+  statement: DRL-authored software shall default to Apache-2.0 while models, data, docs, and trademarks use artifact-specific
+    terms.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-002
+  statement: Every release shall have source/license register and required notices.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-003
+  statement: Sponsors shall not control roadmap, review, benchmarks, or research conclusions.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-004
+  statement: Contributors shall have reproducible no-paid-API development paths and clear issue/evidence requirements.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-005
+  statement: Forks may exercise licenses but may not imply official DRL status or endorsement.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-006
+  statement: Commercial services shall preserve already granted open-source rights and research integrity.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-001
+  statement: Major decisions shall be recorded and approved through ADRs.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-002
+  statement: Agents shall work sequentially on feature branches and create pull requests with evidence.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-003
+  statement: Every mission shall begin from validated inherited state and end with a reproducible handoff.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-004
+  statement: V1 shall launch publicly as a coordinated release after independent QA.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-005
+  statement: Release artifacts shall match tested commits/configurations and verify by checksum/signature.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-006
+  statement: Critical security, privacy, license, calculation, or public-claim findings shall block release absent explicit
+    recorded waiver.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-007
+  statement: Public documentation shall identify its release/commit and preserve corrections/history.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OPS-008
+  statement: Every public claim shall map to evidence in the release dossier.
+  owner: Operations
+  canonical_spec: docs/11-operations/
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-007
+  statement: Every flagship release shall satisfy the Open Artifact Standard or publish an approved open exception.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/OPEN_ARTIFACT_STANDARD.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-008
+  statement: DRL public language shall distinguish open-source software, Open Source AI, open-weight, source-available, and
+    public artifacts precisely.
+  owner: Governance/License
+  canonical_spec: OPEN_RESEARCH_CHARTER.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-009
+  statement: Atticus Core and Edge releases shall include a public model commons with lawful weights or derivatives, recipes,
+    cards, evaluation, and local runtime profiles.
+  owner: Model/Data
+  canonical_spec: docs/09-open-source/OPEN_MODEL_COMMONS.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-010
+  statement: Every managed flagship capability shall document a portable boundary and functional self-hosted or local research
+    path.
+  owner: Architecture
+  canonical_spec: docs/09-open-source/FORKABILITY_AND_SELF_HOSTING_STANDARD.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-011
+  statement: Public release badges shall be generated from verifiable openness, reproducibility, forkability, and supply-chain
+    evidence.
+  owner: Release QA
+  canonical_spec: docs/09-open-source/REPRODUCIBILITY_BADGES.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-012
+  statement: Critical open-source dependencies shall have owners, license/security review, exit plans, and an upstream contribution
+    ledger.
+  owner: Operations
+  canonical_spec: docs/09-open-source/OPEN_STACK_AND_UPSTREAM_POLICY.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-013
+  statement: Generally useful dependency fixes shall be proposed upstream before DRL adopts a permanent private fork, unless
+    documented constraints prevent it.
+  owner: Operations
+  canonical_spec: docs/09-open-source/UPSTREAM_CONTRIBUTION_POLICY.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-014
+  statement: The website shall prominently present the Atticus model commons, open stack, artifacts, self-hosting, contributions,
+    and independent replications.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/OPEN_SOURCE_PORTAL_AND_COMMONS.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-015
+  statement: DRL shall provide meaningful contribution paths for software, models, data, evaluation, accessibility, documentation,
+    teaching, security, and research.
+  owner: Research/Community
+  canonical_spec: docs/09-open-source/COMMUNITY_RESEARCH_NETWORK.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-016
+  statement: Every public artifact shall carry an evidence-derived maturity state and lifecycle policy.
+  owner: Release QA
+  canonical_spec: docs/09-open-source/OPEN_SOURCE_MATURITY_MODEL.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-017
+  statement: The V1 clean-room forkability test shall run the public research profile without proprietary DRL credentials
+    or a paid commercial model API.
+  owner: Release QA
+  canonical_spec: docs/09-open-source/FORKABILITY_AND_SELF_HOSTING_STANDARD.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-018
+  statement: DRL releases shall publish human-readable upstream attribution plus machine-readable license and SBOM evidence.
+  owner: Governance/License
+  canonical_spec: docs/09-open-source/UPSTREAM_CONTRIBUTION_POLICY.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-019
+  statement: DRL shall present open models, open-source software, reproducible research, local operation, and upstream reciprocity
+    as explicit institutional identity pillars.
+  owner: Governance
+  canonical_spec: docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-020
+  statement: Critical technology selections shall be represented in a public open-stack catalog with exact license classification,
+    ownership, review date, and exit strategy.
+  owner: Architecture/Protocol
+  canonical_spec: docs/09-open-source/OPEN_TECHNOLOGY_CATALOG.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-021
+  statement: DRL shall publish sustainability and monetization boundaries that preserve the core public modification surface
+    and sponsor independence.
+  owner: Governance
+  canonical_spec: docs/09-open-source/OPEN_SOURCE_SUSTAINABILITY.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-022
+  statement: DRL shall report open-source health through maintainability, reproducibility, reciprocity, community, and public-benefit
+    metrics rather than vanity metrics alone.
+  owner: Research/Community
+  canonical_spec: docs/09-open-source/OPEN_SOURCE_HEALTH_METRICS.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-023
+  statement: Release and research credit shall recognize code, data, evaluation, security, documentation, accessibility, teaching,
+    replication, and upstream work.
+  owner: Research/Community
+  canonical_spec: docs/09-open-source/CONTRIBUTOR_CREDIT_AND_AUTHORSHIP.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-024
+  statement: The V1 public demonstration shall expose a complete open-weight Atticus workflow with source, model identity,
+    traces, evaluation, reproduction bundle, local run, and contribution paths.
+  owner: Integration
+  canonical_spec: docs/09-open-source/V1_OPEN_SOURCE_SHOWCASE.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-025
+  statement: Open artifact, exception, and upstream dependency metadata shall conform to versioned machine-readable schemas.
+  owner: Architecture/Protocol
+  canonical_spec: schemas/open-artifact-release.schema.json
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-OSS-026
+  statement: The Atticus V1 release shall be delivered as an Open Model Commons release train containing Core, Edge, adapters,
+    runtime profiles, data manifests, benchmark evidence, and community submission lanes.
+  owner: Model/Data
+  canonical_spec: docs/03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-011
+  statement: The canonical public laboratory origin shall be https://www.dwit-labs.com and the apex domain shall redirect
+    to it.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-012
+  statement: Wix shall provide the V1 institutional, editorial, research-discovery, teaching, collaboration, and application-launch
+    surface.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - release-artifact
+  - review-record
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-013
+  statement: Atticus and specialist computational applications shall remain independently deployable open-source experiences
+    and shall not rely solely on Wix iframes.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-014
+  statement: Wix and application subdomains shall share approved navigation, visual identity, status language, consent, analytics
+    taxonomy, canonical-link policy, and truthful maturity labels.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - review-record
+  status: APPROVED-FOUNDATION
+- id: DRL-WEB-015
+  statement: Controlled technical and research documents shall remain repository-authoritative even when summarized or published
+    into Wix.
+  owner: Web/Brand
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-011
+  statement: Domain, DNS, TLS, application subdomain, monitoring, renewal, change, and rollback operations shall follow a
+    documented and tested runbook.
+  owner: Platform
+  canonical_spec: docs/07-platform-gcp/DOMAIN_DNS_AND_WIX_RUNBOOK.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - runbook-exercise
+  status: APPROVED-FOUNDATION
+- id: DRL-PLT-012
+  statement: Production promotion shall verify Wix publication, application host mappings, HTTPS, redirects, CORS/CSP, cookie
+    scope, and cross-host links as one coordinated release.
+  owner: Platform
+  canonical_spec: docs/02-architecture/DEPLOYMENT_AND_ENVIRONMENTS.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - release-artifact
+  status: APPROVED-FOUNDATION
+- id: DRL-SEC-013
+  statement: Visual continuity across Wix and DRL applications shall not imply shared authorization; privileged access requires
+    the approved application identity and session model.
+  owner: Security
+  canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
+  priority: V1-MUST
+  evidence:
+  - automated-test
+  - threat-model
+  status: APPROVED-FOUNDATION

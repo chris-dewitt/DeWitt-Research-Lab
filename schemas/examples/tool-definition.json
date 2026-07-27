@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "name": "name-example-0001",
+  "version": "1.0.0",
+  "description": "description-example-0001",
+  "input_schema": {},
+  "output_schema": {},
+  "required_scopes": [],
+  "risk_tier": "R0",
+  "effect_type": "observe",
+  "approval_policy": "never",
+  "timeout_ms": 100,
+  "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

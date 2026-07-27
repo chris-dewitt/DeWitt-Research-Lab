@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/evidence-item.schema.json",
+  "title": "DRL Evidence Item",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "source_uri": {
+      "type": "string",
+      "maxLength": 2048
+    },
+    "source_title": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "source_system": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "source_version": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "effective_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "as_of_eligible_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "extract": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 20000
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "drl-private",
+        "local-personal",
+        "secret",
+        "restricted"
+      ]
+    },
+    "rights_id": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "trust_notes": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4000
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "source_uri",
+    "source_title",
+    "source_system",
+    "source_version",
+    "retrieved_at",
+    "content_digest",
+    "locator",
+    "classification",
+    "rights_id"
+  ]
+}

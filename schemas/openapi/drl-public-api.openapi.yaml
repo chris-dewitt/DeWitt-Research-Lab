@@ -1,0 +1,214 @@
+openapi: 3.1.0
+info:
+  title: DeWitt Research Laboratory Public API
+  version: 1.0.0-foundation
+  description: >-
+    Contract-first public and authenticated API surface for Atticus and specialist services.
+    Foundation document; implementation status is not implied.
+servers:
+  - url: https://api.dewittresearch.org/v1
+    description: Planned production endpoint
+  - url: http://localhost:8080/v1
+    description: Local/mock endpoint
+security:
+  - bearerAuth: []
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      security: []
+      responses:
+        '200': {description: Service is alive}
+  /readiness:
+    get:
+      operationId: getReadiness
+      security: []
+      responses:
+        '200': {description: Dependencies are ready}
+        '503': {description: Dependency or model not ready}
+  /tasks:
+    post:
+      operationId: createTask
+      summary: Start a bounded Atticus task
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: {type: string, minLength: 8, maxLength: 200}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '../task-request.schema.json'}
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [run_id, trace_id, status]
+                properties:
+                  run_id: {type: string}
+                  trace_id: {type: string}
+                  status: {type: string, enum: [accepted, queued, planning]}
+        '400': {$ref: '#/components/responses/Error'}
+        '401': {$ref: '#/components/responses/Error'}
+        '409': {$ref: '#/components/responses/Error'}
+        '429': {$ref: '#/components/responses/Error'}
+  /tasks/{run_id}:
+    get:
+      operationId: getTask
+      parameters:
+        - {$ref: '#/components/parameters/RunId'}
+      responses:
+        '200':
+          description: Current or terminal result
+          content:
+            application/json:
+              schema: {$ref: '../task-result.schema.json'}
+        '404': {$ref: '#/components/responses/Error'}
+    delete:
+      operationId: cancelTask
+      parameters:
+        - {$ref: '#/components/parameters/RunId'}
+      responses:
+        '202': {description: Cancellation requested}
+        '409': {$ref: '#/components/responses/Error'}
+  /tasks/{run_id}/events:
+    get:
+      operationId: streamTaskEvents
+      parameters:
+        - {$ref: '#/components/parameters/RunId'}
+        - in: header
+          name: Last-Event-ID
+          required: false
+          schema: {type: string}
+      responses:
+        '200':
+          description: Server-sent event stream of safe trace events
+          content:
+            text/event-stream:
+              schema: {type: string}
+  /approvals/{approval_request_id}:
+    post:
+      operationId: decideApproval
+      parameters:
+        - in: path
+          name: approval_request_id
+          required: true
+          schema: {type: string}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '../approval-grant.schema.json'}
+      responses:
+        '200': {description: Decision recorded}
+        '409': {description: Expired, stale digest, or already decided}
+  /skills:
+    get:
+      operationId: listSkills
+      security: []
+      responses:
+        '200':
+          description: Publicly eligible skill manifests
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '../skill-manifest.schema.json'}
+  /atlas/research:
+    post:
+      operationId: atlasResearch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [question, as_of]
+              properties:
+                question: {type: string, minLength: 1, maxLength: 8000}
+                as_of: {type: string, format: date-time}
+                source_filters: {type: array, items: {type: string}}
+      responses:
+        '200':
+          description: Point-in-time evidence bundle
+          content:
+            application/json:
+              schema: {$ref: '../evidence-bundle.schema.json'}
+  /fedlens/compare:
+    post:
+      operationId: compareFedDocuments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [earlier_document_id, later_document_id]
+              properties:
+                earlier_document_id: {type: string}
+                later_document_id: {type: string}
+                include_semantic_analysis: {type: boolean, default: true}
+      responses:
+        '200': {description: Versioned literal and semantic diff artifact}
+  /balancelab/scenarios:
+    post:
+      operationId: runBalanceLabScenario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [institution_artifact_id, scenario]
+              properties:
+                institution_artifact_id: {type: string}
+                scenario: {type: object, additionalProperties: true}
+                methodology_version: {type: string}
+      responses:
+        '200':
+          description: Deterministic calculation artifact
+          content:
+            application/json:
+              schema: {$ref: '../calculation-artifact.schema.json'}
+  /evalforge/runs:
+    post:
+      operationId: runEvaluation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [suite_id, target]
+              properties:
+                suite_id: {type: string}
+                target: {type: object, additionalProperties: true}
+                baseline_result_id: {type: [string, 'null']}
+      responses:
+        '202': {description: Evaluation accepted}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    RunId:
+      in: path
+      name: run_id
+      required: true
+      schema: {type: string, minLength: 8, maxLength: 200}
+  responses:
+    Error:
+      description: DRL typed error
+      content:
+        application/json:
+          schema: {$ref: '../drl-error.schema.json'}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "name": "name-example-0001",
+  "version": "1.0.0",
+  "description": "description-example-0001",
+  "required_tools": [
+    "example-required-too"
+  ],
+  "required_scopes": [],
+  "supported_modes": [],
+  "workflow": [
+    {}
+  ],
+  "output_schema": {},
+  "failure_policy": {},
+  "evaluation_suites": [],
+  "manifest_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

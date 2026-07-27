@@ -1,0 +1,106 @@
+schema_version: 1.0.0
+owner: Architecture/Protocol
+review_policy: docs/09-open-source/OPEN_TECHNOLOGY_CATALOG.md
+components:
+  - id: python
+    category: runtime
+    name: Python
+    role: primary backend, research, model, and automation language
+    license: PSF-2.0
+    classification: open_source_software
+    canonical_url: https://www.python.org/
+    status: approved_direction
+    owner: Architecture/Protocol
+    exit_strategy: standards-compatible source and container boundaries
+  - id: typescript
+    category: runtime
+    name: TypeScript
+    role: web applications, SDKs, and interface tooling
+    license: Apache-2.0
+    classification: open_source_software
+    canonical_url: https://github.com/microsoft/TypeScript
+    status: approved_direction
+    owner: Web/Brand
+    exit_strategy: JavaScript standards and documented API contracts
+  - id: postgresql
+    category: database
+    name: PostgreSQL
+    role: authoritative relational state and evidence metadata
+    license: PostgreSQL
+    classification: open_source_software
+    canonical_url: https://www.postgresql.org/
+    status: approved_direction
+    owner: Platform
+    exit_strategy: SQL migrations and exportable open formats
+  - id: pgvector
+    category: database_extension
+    name: pgvector
+    role: vector retrieval inside PostgreSQL
+    license: PostgreSQL
+    classification: open_source_software
+    canonical_url: https://github.com/pgvector/pgvector
+    status: approved_direction
+    owner: Atlas
+    exit_strategy: retrieval adapter and embedding export
+  - id: valkey
+    category: cache_coordination
+    name: Valkey
+    role: proposed cache, rate-limit, and ephemeral coordination service
+    license: BSD-3-Clause
+    classification: open_source_software
+    canonical_url: https://valkey.io/
+    status: director_decision_required
+    decision_record: docs/adr/ADR-0007-valkey-cache-coordination.md
+    owner: Platform
+    exit_strategy: protocol adapter and PostgreSQL/PubSub fallback
+  - id: hugging-face-ecosystem
+    category: model_platform
+    name: Transformers / Datasets / TRL / PEFT
+    role: model loading, data processing, post-training, and release
+    license: component-specific OSI-approved licenses; verify exact revisions
+    classification: open_source_software
+    canonical_url: https://huggingface.co/docs
+    status: approved_direction
+    owner: Model/Data
+    exit_strategy: portable safetensors, datasets, configs, and documented recipes
+  - id: vllm
+    category: cloud_inference
+    name: vLLM
+    role: open-weight cloud serving and tool-call experiments
+    license: Apache-2.0
+    classification: open_source_software
+    canonical_url: https://github.com/vllm-project/vllm
+    status: bakeoff_required
+    owner: Model/Data
+    exit_strategy: OpenAI-compatible serving adapter
+  - id: llama-cpp
+    category: local_inference
+    name: llama.cpp
+    role: GGUF quantization and local OpenAI-compatible serving
+    license: MIT
+    classification: open_source_software
+    canonical_url: https://github.com/ggml-org/llama.cpp
+    status: approved_direction
+    owner: Local Runner
+    exit_strategy: runtime adapter and original safetensors artifacts
+  - id: opentelemetry
+    category: observability
+    name: OpenTelemetry
+    role: vendor-neutral traces, metrics, and logs
+    license: Apache-2.0
+    classification: open_source_software
+    canonical_url: https://opentelemetry.io/
+    status: approved_direction
+    owner: Platform
+    exit_strategy: OTLP export and standard telemetry storage
+  - id: opentofu
+    category: infrastructure_as_code
+    name: OpenTofu
+    role: proposed authoritative IaC CLI with HCL compatibility
+    license: MPL-2.0
+    classification: open_source_software
+    canonical_url: https://opentofu.org/
+    status: director_decision_required
+    decision_record: docs/adr/ADR-0006-opentofu-first-iac.md
+    owner: Platform
+    exit_strategy: compatible modules, state backup, and migration runbook

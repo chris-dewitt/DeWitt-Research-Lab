@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/skill-manifest.schema.json",
+  "title": "DRL Skill Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{2,127}$"
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000
+    },
+    "intent_examples": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      }
+    },
+    "required_tools": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "required_scopes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "supported_modes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "public-anonymous",
+          "public-authenticated",
+          "private-cloud",
+          "private-local",
+          "offline"
+        ]
+      }
+    },
+    "workflow": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "output_schema": {
+      "type": "object"
+    },
+    "failure_policy": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "evaluation_suites": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 200
+      }
+    },
+    "manifest_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "name",
+    "version",
+    "description",
+    "required_tools",
+    "required_scopes",
+    "supported_modes",
+    "workflow",
+    "output_schema",
+    "failure_policy",
+    "evaluation_suites",
+    "manifest_digest"
+  ]
+}

@@ -1,0 +1,29 @@
+name: Architecture Decision
+description: Propose a major decision requiring DeWitt approval
+title: "[ADR]: "
+labels: ["architecture", "approval-required"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and problem
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Proposed decision
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and consequences
+    validations:
+      required: true
+  - type: textarea
+    id: security
+    attributes:
+      label: Security, privacy, compatibility, and migration
+    validations:
+      required: true

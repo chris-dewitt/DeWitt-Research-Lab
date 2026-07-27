@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "id": "id-example-0001",
+  "run_id": "run_id-example-0001",
+  "started_at": "2026-07-26T12:00:00Z",
+  "status": "accepted",
+  "mode": "public-anonymous",
+  "events": [
+    {
+      "schema_version": "1.0.0",
+      "id": "id-example-0001",
+      "trace_id": "trace_id-example-0001",
+      "run_id": "run_id-example-0001",
+      "sequence": 0,
+      "event_type": "example-event-type-0",
+      "occurred_at": "2026-07-26T12:00:00Z",
+      "system": "system-example-0001",
+      "safe_summary": "safe_summary-example-0001",
+      "payload": {},
+      "classification": "public",
+      "payload_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "artifacts": [
+    {
+      "schema_version": "1.0.0",
+      "id": "id-example-0001",
+      "kind": "document",
+      "uri": "https://example.org/artifact",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "classification": "public",
+      "created_at": "2026-07-26T12:00:00Z",
+      "source_system": "source_system-example-0001"
+    }
+  ],
+  "config_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "code_revision": "code_revision-example-0001",
+  "privacy_profile": "privacy_profile-example-0001"
+}

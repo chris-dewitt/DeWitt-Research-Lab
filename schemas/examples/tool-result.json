@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "id": "id-example-0001",
+  "created_at": "2026-07-26T12:00:00Z",
+  "correlation_id": "correlation_id-example-0001",
+  "trace_id": "trace_id-example-0001",
+  "run_id": "run_id-example-0001",
+  "step_id": "step_id-example-0001",
+  "tool_call_id": "tool_call_id-example-0001",
+  "outcome": "succeeded",
+  "safe_summary": "safe_summary-example-0001",
+  "artifacts": [
+    {
+      "schema_version": "1.0.0",
+      "id": "id-example-0001",
+      "kind": "document",
+      "uri": "https://example.org/artifact",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "classification": "public",
+      "created_at": "2026-07-26T12:00:00Z",
+      "source_system": "source_system-example-0001"
+    }
+  ],
+  "started_at": "2026-07-26T12:00:00Z",
+  "finished_at": "2026-07-26T12:00:00Z",
+  "retry_safe": false
+}

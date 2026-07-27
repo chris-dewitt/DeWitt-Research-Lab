@@ -1,0 +1,7 @@
+version: 1.0.0
+environment: staging
+gcp_project: drl-staging
+min_instances: 0
+log_level: INFO
+public_live_enabled: true
+signed_replay_fallback: true

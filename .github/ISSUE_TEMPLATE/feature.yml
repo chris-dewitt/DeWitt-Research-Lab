@@ -1,0 +1,37 @@
+name: Feature
+description: Implement a specification-backed feature
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What user or research outcome is required?
+    validations:
+      required: true
+  - type: textarea
+    id: authority
+    attributes:
+      label: Authoritative documents
+      description: Bible section, project spec, and ADRs.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Security, privacy, licensing, and cost risks
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Required tests and EvalForge suites
+    validations:
+      required: true

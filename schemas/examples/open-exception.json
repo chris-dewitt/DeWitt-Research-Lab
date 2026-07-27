@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "exception_id": "DRL-OEX-0001",
+  "artifact_id": "atticusbench-hidden-0001",
+  "reason_category": "benchmark_integrity",
+  "public_summary": "Hidden evaluation answers remain restricted so public benchmark scores retain diagnostic value.",
+  "open_substitute": "Public task specifications, scoring code, representative cases, and governance are released.",
+  "approved_by": "DeWitt",
+  "approved_at": "2026-07-26T12:00:00Z",
+  "review_by": "2026-10-24",
+  "status": "active"
+}

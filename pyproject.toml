@@ -1,0 +1,52 @@
+[project]
+name = "dewitt-research-laboratory"
+version = "0.0.0"
+description = "Documentation-first monorepo for DeWitt Research Laboratory"
+requires-python = ">=3.12,<3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "bandit>=1.7",
+  "jsonschema>=4.0",
+  "mypy>=1.10",
+  "pydantic>=2.8",
+  "pyyaml>=6.0",
+  "referencing>=0.35",
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6",
+]
+
+[tool.uv.workspace]
+members = [
+  "apps/atticus-local-runner",
+  "packages/drl-protocol",
+  "packages/drl-ai-core",
+  "packages/atticus-sdk",
+  "packages/evalforge-sdk",
+  "services/atticus-control-plane",
+  "services/atlas",
+  "services/fedlens",
+  "services/balancelab-ai",
+  "services/evalforge",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S603"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unused_configs = true

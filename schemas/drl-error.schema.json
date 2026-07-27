@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/drl-error.schema.json",
+  "title": "DRL Error",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^DRL-[A-Z0-9-]{3,100}$"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "trace_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "safe_for_user": {
+      "type": "boolean"
+    },
+    "cause_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    }
+  },
+  "required": [
+    "schema_version",
+    "code",
+    "message",
+    "retryable",
+    "correlation_id",
+    "details",
+    "safe_for_user"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/1/task-request.schema.json",
+  "title": "DRL Task Request",
+  "type": "object",
+  "required": [
+    "protocol_version",
+    "task_id",
+    "session_id",
+    "goal",
+    "requested_at",
+    "data_classification"
+  ],
+  "properties": {
+    "protocol_version": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "data_classification": {
+      "type": "string",
+      "enum": [
+        "PUBLIC",
+        "PUBLIC-RESTRICTED",
+        "DRL-INTERNAL",
+        "PERSONAL-LOCAL",
+        "SECRET"
+      ]
+    },
+    "available_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "object"
+    },
+    "budget": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

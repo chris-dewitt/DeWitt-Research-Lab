@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/1/tool-descriptor.schema.json",
+  "title": "DRL Tool Descriptor",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "description",
+    "input_schema",
+    "output_schema",
+    "required_permissions",
+    "side_effect_class"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "input_schema": {
+      "type": "object"
+    },
+    "output_schema": {
+      "type": "object"
+    },
+    "required_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "side_effect_class": {
+      "type": "string",
+      "enum": [
+        "READ_ONLY",
+        "REVERSIBLE_WRITE",
+        "EXTERNAL_EFFECT",
+        "DESTRUCTIVE",
+        "PROHIBITED"
+      ]
+    },
+    "approval_policy": {
+      "type": "string"
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "idempotent": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}

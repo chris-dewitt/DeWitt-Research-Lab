@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/replay-manifest.schema.json",
+  "title": "DRL Signed Replay Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "execution_trace": {
+      "$ref": "https://schemas.dewittresearch.org/drl/v1/artifact-reference.schema.json"
+    },
+    "related_artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/artifact-reference.schema.json"
+      }
+    },
+    "code_revision": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "models": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "configuration_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "executed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "live_at_capture": {
+      "type": "boolean"
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "key_id",
+        "signature"
+      ],
+      "properties": {
+        "algorithm": {
+          "type": "string"
+        },
+        "key_id": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string"
+        }
+      }
+    },
+    "manifest_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "title",
+    "execution_trace",
+    "related_artifacts",
+    "code_revision",
+    "models",
+    "configuration_digest",
+    "executed_at",
+    "live_at_capture",
+    "signature",
+    "manifest_digest"
+  ]
+}

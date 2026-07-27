@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/task-request.schema.json",
+  "title": "DRL Task Request",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "public-anonymous",
+        "public-authenticated",
+        "private-cloud",
+        "private-local",
+        "offline"
+      ]
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16000
+    },
+    "context_refs": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/artifact-reference.schema.json"
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 200
+    },
+    "requested_skill": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "consent_snapshot_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "created_at",
+    "correlation_id",
+    "trace_id",
+    "session_id",
+    "mode",
+    "objective",
+    "deadline",
+    "idempotency_key"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/device-capability-manifest.schema.json",
+  "title": "DRL Device Capability Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "device_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "software_version": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "platform": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/tool-definition.schema.json"
+      }
+    },
+    "approved_roots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "network_profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "local_model_profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "manifest_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "device_id",
+    "software_version",
+    "platform",
+    "capabilities",
+    "approved_roots",
+    "network_profiles",
+    "local_model_profiles",
+    "issued_at",
+    "expires_at",
+    "manifest_digest"
+  ]
+}

@@ -1,0 +1,62 @@
+version: 1.0.0
+default_decision: deny
+rules:
+- id: public-read
+  modes:
+  - public-anonymous
+  - public-authenticated
+  effect_types:
+  - observe
+  - read
+  max_risk: R1
+  decision: allow
+  conditions:
+    public_data_only: true
+    egress_allowlisted: true
+- id: public-no-writes
+  modes:
+  - public-anonymous
+  - public-authenticated
+  effect_types:
+  - draft
+  - modify
+  - external_effect
+  - privileged
+  decision: deny
+- id: private-read
+  modes:
+  - private-cloud
+  - private-local
+  - offline
+  effect_types:
+  - observe
+  - read
+  max_risk: R1
+  decision: allow_if_scoped
+- id: private-draft
+  modes:
+  - private-cloud
+  - private-local
+  - offline
+  effect_types:
+  - draft
+  decision: allow_if_sandboxed
+- id: consequential
+  effect_types:
+  - modify
+  - external_effect
+  decision: approval_required
+- id: privileged
+  effect_types:
+  - privileged
+  - prohibited
+  decision: deny
+approval_defaults:
+  ttl_seconds: 300
+  bind:
+  - run_id
+  - tool_call_id
+  - request_digest
+  - resource_scopes
+  - effect
+  allow_batching: false

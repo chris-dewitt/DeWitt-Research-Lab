@@ -1,0 +1,48 @@
+version: 1.0.0
+tiers:
+  R0:
+    name: informational
+    examples:
+    - navigate public docs
+    - format a response
+    default: allow
+    approval: never
+    audit: aggregate
+  R1:
+    name: read-only
+    examples:
+    - read approved public data
+    - inspect approved local repository status
+    default: allow_if_scoped
+    approval: policy
+    audit: event
+  R2:
+    name: draft-or-reversible
+    examples:
+    - prepare patch
+    - write temp artifact
+    - draft email
+    default: approval_or_sandbox
+    approval: policy
+    audit: detailed
+  R3:
+    name: consequential-external
+    examples:
+    - apply persistent file change
+    - commit
+    - push
+    - send message
+    - calendar write
+    default: deny_without_explicit_approval
+    approval: always
+    audit: detailed
+  R4:
+    name: privileged-or-destructive
+    examples:
+    - delete recursively
+    - privilege escalation
+    - disable controls
+    - credential export
+    default: prohibited
+    approval: prohibited_by_default
+    audit: security

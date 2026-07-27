@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/open-exception.schema.json",
+  "title": "DRL Open Research Exception",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "exception_id": {
+      "type": "string",
+      "pattern": "^DRL-OEX-[0-9]{4}$"
+    },
+    "artifact_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "reason_category": {
+      "enum": [
+        "privacy",
+        "security",
+        "legal_rights",
+        "benchmark_integrity",
+        "client_confidentiality",
+        "operational",
+        "other"
+      ]
+    },
+    "public_summary": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1000
+    },
+    "open_substitute": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 1000
+    },
+    "approved_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_by": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "expired",
+        "revoked",
+        "superseded"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "exception_id",
+    "artifact_id",
+    "reason_category",
+    "public_summary",
+    "open_substitute",
+    "approved_by",
+    "approved_at",
+    "review_by",
+    "status"
+  ]
+}

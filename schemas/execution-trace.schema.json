@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/execution-trace.schema.json",
+  "title": "DRL Execution Trace",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finished_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "planning",
+        "running",
+        "awaiting_approval",
+        "degraded",
+        "completed",
+        "failed",
+        "cancelled",
+        "expired"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "public-anonymous",
+        "public-authenticated",
+        "private-cloud",
+        "private-local",
+        "offline"
+      ]
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/trace-event.schema.json"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "https://schemas.dewittresearch.org/drl/v1/artifact-reference.schema.json"
+      }
+    },
+    "config_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "code_revision": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "privacy_profile": {
+      "type": "string",
+      "maxLength": 100
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "run_id",
+    "started_at",
+    "status",
+    "mode",
+    "events",
+    "artifacts",
+    "config_digest",
+    "code_revision",
+    "privacy_profile"
+  ]
+}

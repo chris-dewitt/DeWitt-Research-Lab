@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "id": "id-example-0001",
+  "trace_id": "trace_id-example-0001",
+  "run_id": "run_id-example-0001",
+  "sequence": 0,
+  "event_type": "example-event-type-0",
+  "occurred_at": "2026-07-26T12:00:00Z",
+  "system": "system-example-0001",
+  "safe_summary": "safe_summary-example-0001",
+  "payload": {},
+  "classification": "public",
+  "payload_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

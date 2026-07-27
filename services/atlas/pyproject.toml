@@ -1,0 +1,13 @@
+[project]
+name = "atlas-service"
+version = "0.1.0"
+description = "Point-in-time macro evidence starter for DeWitt Research Laboratory"
+requires-python = ">=3.12,<3.14"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/atlas_service"]

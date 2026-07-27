@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/1/evidence.schema.json",
+  "title": "DRL Evidence",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "source_locator",
+    "publisher",
+    "title",
+    "ingested_at",
+    "integrity_hash"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string"
+    },
+    "source_locator": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "observation_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "publication_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "revision_time": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "ingested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "integrity_hash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

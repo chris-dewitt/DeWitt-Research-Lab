@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "created_at": "2026-07-26T12:00:00Z",
+  "correlation_id": "corr_drl_demo_0001",
+  "trace_id": "trace_drl_demo_0001",
+  "id": "task_drl_demo_0001",
+  "session_id": "sess_public_demo_0001",
+  "mode": "public-anonymous",
+  "objective": "Explain how Atticus uses EvalForge without invoking private tools.",
+  "context_refs": [],
+  "constraints": {
+    "public_tools_only": true
+  },
+  "deadline": "2026-07-26T12:02:00Z",
+  "idempotency_key": "idem_drl_demo_0001",
+  "requested_skill": "lab.guide",
+  "consent_snapshot_id": "consent_demo_0001"
+}

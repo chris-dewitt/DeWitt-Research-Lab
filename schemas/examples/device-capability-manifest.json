@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "device_id": "device_id-example-0001",
+  "software_version": "1.0.0",
+  "platform": "platform-example-0001",
+  "capabilities": [],
+  "approved_roots": [],
+  "network_profiles": [],
+  "local_model_profiles": [],
+  "issued_at": "2026-07-26T12:00:00Z",
+  "expires_at": "2026-07-26T12:00:00Z",
+  "manifest_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

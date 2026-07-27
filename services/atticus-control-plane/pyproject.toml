@@ -1,0 +1,33 @@
+[project]
+name = "atticus-control-plane"
+version = "0.1.0"
+description = "Policy-aware Atticus orchestration runtime for DRL"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "atlas-service",
+  "balancelab-ai",
+  "drl-ai-core",
+  "drl-protocol",
+  "evalforge-service",
+  "fedlens-service",
+]
+
+[project.scripts]
+atticus-demo = "atticus_control_plane.cli:main"
+atticus-server = "atticus_control_plane.server:main"
+
+[tool.uv.sources]
+atlas-service = { workspace = true }
+balancelab-ai = { workspace = true }
+drl-ai-core = { workspace = true }
+drl-protocol = { workspace = true }
+evalforge-service = { workspace = true }
+fedlens-service = { workspace = true }
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/atticus_control_plane"]

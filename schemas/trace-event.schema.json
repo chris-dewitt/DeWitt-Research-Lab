@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/drl/v1/trace-event.schema.json",
+  "title": "DRL Safe Trace Event",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "trace_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{7,199}$"
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "event_type": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{2,127}$"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "parent_event_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "step_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "system": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "safe_summary": {
+      "type": "string",
+      "maxLength": 8000
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "public",
+        "drl-private",
+        "local-personal",
+        "secret",
+        "restricted"
+      ]
+    },
+    "payload_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "trace_id",
+    "run_id",
+    "sequence",
+    "event_type",
+    "occurred_at",
+    "system",
+    "safe_summary",
+    "payload",
+    "classification",
+    "payload_digest"
+  ]
+}

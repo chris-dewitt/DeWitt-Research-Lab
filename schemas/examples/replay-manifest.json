@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "id": "id-example-0001",
+  "created_at": "2026-07-26T12:00:00Z",
+  "title": "title-example-0001",
+  "execution_trace": {
+    "schema_version": "1.0.0",
+    "id": "id-example-0001",
+    "kind": "document",
+    "uri": "https://example.org/artifact",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "classification": "public",
+    "created_at": "2026-07-26T12:00:00Z",
+    "source_system": "source_system-example-0001"
+  },
+  "related_artifacts": [
+    {
+      "schema_version": "1.0.0",
+      "id": "id-example-0001",
+      "kind": "document",
+      "uri": "https://example.org/artifact",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "classification": "public",
+      "created_at": "2026-07-26T12:00:00Z",
+      "source_system": "source_system-example-0001"
+    }
+  ],
+  "code_revision": "code_revision-example-0001",
+  "models": [
+    {}
+  ],
+  "configuration_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "executed_at": "2026-07-26T12:00:00Z",
+  "live_at_capture": false,
+  "signature": {
+    "algorithm": "example-algorithm-00",
+    "key_id": "example-key-id-0001",
+    "signature": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "manifest_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

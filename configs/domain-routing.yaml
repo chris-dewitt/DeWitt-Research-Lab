@@ -1,0 +1,53 @@
+schema_version: 1.0.0
+canonical_domain: dwit-labs.com
+canonical_origin: https://www.dwit-labs.com
+apex_behavior:
+  host: dwit-labs.com
+  action: permanent_redirect
+  target: https://www.dwit-labs.com
+institutional_site:
+  host: www.dwit-labs.com
+  platform: Wix
+  role: canonical-public-institutional-site
+  status: registered-and-selected
+applications:
+  - id: atticus
+    host: atticus.dwit-labs.com
+    role: public-atticus-console
+    status: planned
+  - id: atlas
+    host: atlas.dwit-labs.com
+    role: macro-research-application
+    status: planned
+  - id: fedlens
+    host: fedlens.dwit-labs.com
+    role: monetary-policy-application
+    status: planned
+  - id: balancelab
+    host: balancelab.dwit-labs.com
+    role: synthetic-scenario-application
+    status: planned
+  - id: evalforge
+    host: evalforge.dwit-labs.com
+    role: evaluation-application
+    status: planned
+  - id: docs
+    host: docs.dwit-labs.com
+    role: versioned-documentation
+    status: planned
+  - id: status
+    host: status.dwit-labs.com
+    role: public-status
+    status: planned
+  - id: api
+    host: api.dwit-labs.com
+    role: public-api-gateway
+    status: conditional
+policies:
+  primary_apps_embedded_in_wix: false
+  embeds_allowed_for_bounded_public_widgets: true
+  separate_auth_until_adr: true
+  repository_is_technical_source_of_truth: true
+  wix_is_editorial_and_institutional_source: true
+  production_cookie_parent_domain_allowed: false
+  staging_indexing_allowed: false

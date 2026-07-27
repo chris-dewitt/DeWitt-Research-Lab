@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "id": "id-example-0001",
+  "created_at": "2026-07-26T12:00:00Z",
+  "question": "What evidence supports the example claim?",
+  "as_of": "2026-07-26T12:00:00Z",
+  "evidence": [
+    {
+      "schema_version": "1.0.0",
+      "id": "id-example-0001",
+      "source_uri": "https://example.org/artifact",
+      "source_title": "Example public source",
+      "source_system": "source_system-example-0001",
+      "source_version": "1.0.0",
+      "retrieved_at": "2026-07-26T12:00:00Z",
+      "content_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "locator": {},
+      "classification": "public",
+      "rights_id": "rights_id-example-0001"
+    }
+  ],
+  "claims": [
+    {
+      "schema_version": "1.0.0",
+      "id": "id-example-0001",
+      "text": "The example claim is supported by the cited source.",
+      "claim_type": "direct_evidence",
+      "supporting_evidence_ids": [],
+      "contradicting_evidence_ids": [],
+      "calculation_artifact_ids": [],
+      "as_of": "2026-07-26T12:00:00Z"
+    }
+  ],
+  "missing_evidence": [],
+  "method_version": "1.0.0",
+  "manifest_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

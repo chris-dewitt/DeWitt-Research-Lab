@@ -1,0 +1,42 @@
+policy_version: 1.0.0
+owner: Release QA
+constitutional_source: OPEN_RESEARCH_CHARTER.md
+default_software_license: Apache-2.0
+classifications:
+  open_source_software:
+    requires_osi_approved_license: true
+    modification_source_required: true
+  open_source_ai:
+    requires_recognized_definition_evidence: true
+    preferred_modification_materials_required: true
+  open_weight_model:
+    weights_required: true
+    exact_terms_required: true
+    may_not_be_labeled_open_source_ai_without_evidence: true
+  source_available:
+    exact_terms_required: true
+  public_only:
+    redistribution_rights_not_implied: true
+artifact_classes:
+  - software
+  - model
+  - dataset
+  - research
+  - deployment
+  - teaching
+universal_release_requirements:
+  - immutable_source_revision
+  - license_manifest
+  - upstream_lineage
+  - checksums
+  - supported_environments
+  - verification_report
+  - known_limitations
+  - security_contact
+  - lifecycle_state
+  - reproducibility_evidence
+exception_process:
+  schema: schemas/open-exception.schema.json
+  director_approval_required: true
+  public_register_required_when_safe: true
+  review_interval_days: 90

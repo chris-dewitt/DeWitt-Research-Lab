@@ -71,7 +71,10 @@ class StructuredParseResult:
 
     def raise_for_error(self) -> Any:
         if not self.ok:
-            detail = "; ".join(f"{issue.path}: {issue.message}" for issue in self.issues) or "invalid"
+            detail = (
+                "; ".join(f"{issue.path}: {issue.message}" for issue in self.issues)
+                or "invalid"
+            )
             raise StructuredOutputError(detail)
         return self.data
 

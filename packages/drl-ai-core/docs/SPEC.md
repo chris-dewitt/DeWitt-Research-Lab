@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PKG-002
 title: "DRL AI Core Package"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # DRL AI Core Package
@@ -46,7 +46,12 @@ The package is not permission to centralize unrelated project logic, add hidden 
 
 ## Module and API plan
 
-- `providers`: open-weight model endpoint interfaces and capability metadata.
+- `providers`: open-weight model endpoint interfaces, identity disclosure, and
+  typed completion constraints/errors.
+- `mock_provider`: deterministic unpaid open-weight fixture provider for local
+  development and CI.
+- `gateway`: disclosed primary/fallback routing that rejects silent closed-weight
+  substitution on open-weight paths.
 - `structured_output`: schema-constrained parse/repair with bounded attempts and trace evidence.
 - `execution`: deadlines, cancellation, retry budgets, circuit breakers, and idempotency declarations.
 - `telemetry`: content-minimized logs/traces/metrics and correlation propagation.

@@ -16,10 +16,10 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete; Mission 00/01 CI repair merged via PR #7.
-- Active mission: **02 Architecture/Protocol** — DRL-005 state-machine hardening.
+- Foundation generation: complete; Mission 00/01 CI repair and DRL-005 merged.
+- Active mission: **07 Atticus Runtime** — DRL-007 open-weight provider interface.
 - Integration branch: still to be created by operator via DRL-001.
-- Open blockers: DIR-001, DIR-003, DIR-002 (deploy). See `DIRECTORS_MEMO.md`.
+- Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
@@ -27,7 +27,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
 | 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
-| 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | IN REVIEW | PR #8 |
+| 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
+| 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | IN PROGRESS | pending |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -140,3 +141,17 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Verification: `make verify` → 58 passed; `make typecheck` clean
 - Next: DRL-007 provider interface, or continue Mission 02 packages
 - Handoff: `agents/handoffs/2026-07-27-drl-005.md`
+
+### 2026-07-27 — DRL-007 typed open-weight provider interface
+
+- Branch: `cursor/drl-007-model-provider-interface-ad29`
+- Added `ModelProvider`, `ModelIdentity`, `CompletionConstraints`,
+  `StructuredModelResponse`, and typed provider errors in `drl_ai_core`
+- Added deterministic `MockOpenWeightProvider` and disclosed `ModelGateway`
+  with open-weight enforcement and fallback disclosure
+- Atticus local factory: `build_local_model_gateway` /
+  `build_local_open_weight_gateway`
+- Tests: identity disclosure, timeout, unavailable, fallback, closed-weight
+  rejection, unpaid demo preserved
+- DIR-004 unchanged: no upstream model brand selected
+- Handoff: `agents/handoffs/2026-07-27-drl-007.md`

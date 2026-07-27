@@ -96,10 +96,16 @@ issues:
     evidence_owner: Atticus Runtime
     labels: [atticus, model]
     title: Implement typed open-weight provider interface
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-005]
     body: .github/ISSUE_BODIES/DRL-007.md
     requirements: [DRL-SYS-002, DRL-MOD-002]
+    evidence:
+      - packages/drl-ai-core/src/drl_ai_core/providers.py
+      - packages/drl-ai-core/src/drl_ai_core/mock_provider.py
+      - packages/drl-ai-core/src/drl_ai_core/gateway.py
+      - services/atticus-control-plane/src/atticus_control_plane/model_gateway.py
+      - tests/test_model_provider.py
   - id: DRL-008
     milestone: M2
     mission: 7

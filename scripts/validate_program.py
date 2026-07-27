@@ -52,7 +52,8 @@ def validate_issue_register() -> None:
     if actual_ids != expected_ids:
         error(
             "issue register IDs differ from DRL-001..DRL-030: "
-            f"missing={sorted(expected_ids - actual_ids)}, extra={sorted(actual_ids - expected_ids)}"
+            f"missing={sorted(expected_ids - actual_ids)}, "
+            f"extra={sorted(actual_ids - expected_ids)}"
         )
 
     graph: dict[str, set[str]] = defaultdict(set)

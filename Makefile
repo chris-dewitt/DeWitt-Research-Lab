@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo serve docs-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo serve docs-check program-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages
@@ -19,6 +19,9 @@ serve:
 docs-check:
 	uv run python scripts/validate_foundation.py
 
+program-check:
+	uv run python scripts/validate_program.py
+
 open-check:
 	uv run python scripts/validate_open_identity.py
 
@@ -28,7 +31,7 @@ domain-check:
 schema-check:
 	uv run python scripts/validate_foundation.py
 
-verify: docs-check open-check domain-check test
+verify: docs-check program-check open-check domain-check test
 
 format:
 	uv run ruff format scripts tests packages services apps/atticus-local-runner

@@ -122,6 +122,7 @@ make bootstrap       # install Python and JavaScript workspaces
 make demo            # run the integrated Atticus research workflow
 make doctor          # verify local toolchain
 make docs-check      # validate controlled documents and links
+make program-check   # validate issue/work-package registers and dependency graph
 make schema-check    # validate JSON Schemas and examples
 make test            # run available tests across workspaces
 make dev             # start local dependency stack as implementation matures

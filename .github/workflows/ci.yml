@@ -26,6 +26,8 @@ jobs:
         run: uv sync --all-packages --locked
       - name: Deep foundation validation
         run: uv run python scripts/validate_foundation.py
+      - name: Program register validation
+        run: uv run python scripts/validate_program.py
       - name: Open identity validation
         run: uv run python scripts/validate_open_identity.py
       - name: Domain and Wix validation
@@ -57,7 +59,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile=false
+      - run: pnpm install --frozen-lockfile
       - run: pnpm -r lint
       - run: pnpm -r typecheck
       - run: pnpm -r test

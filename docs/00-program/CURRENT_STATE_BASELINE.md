@@ -40,7 +40,7 @@ agents do not confuse specification density with product maturity.
 
 | Item | Observed state | Consequence |
 |---|---|---|
-| Git remote | `chris-dewitt/dewitt-research-lab-foundation` present | DIR-001 still needs Director confirmation in the Memo |
+| Git remote | Redirects to `chris-dewitt/DeWitt-Research-Lab-Foundation` | DIR-001 still needs Director confirmation in the Memo |
 | Default branch | `main` only | `integration/v1` not yet created (DRL-001) |
 | CI workflow | `.github/workflows/ci.yml` present | Branch protection / required checks not yet proven on GitHub |
 | Issue system | Seed backlog in `.github/ISSUE_BACKLOG.md` | GitHub issues/milestones not yet created |

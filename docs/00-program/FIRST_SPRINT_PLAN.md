@@ -50,13 +50,13 @@ are explicitly deferred with Director approval.
 ### Repository trust (DRL-001 / DRL-002)
 
 ```bash
-gh repo view chris-dewitt/dewitt-research-lab-foundation --json name,isPrivate,viewerPermission
-gh api repos/chris-dewitt/dewitt-research-lab-foundation/branches/main/protection || true
-gh api repos/chris-dewitt/dewitt-research-lab-foundation/branches/integration%2Fv1/protection || true
+gh repo view chris-dewitt/DeWitt-Research-Lab-Foundation --json name,isPrivate,viewerPermission
+gh api repos/chris-dewitt/DeWitt-Research-Lab-Foundation/branches/main/protection || true
+gh api repos/chris-dewitt/DeWitt-Research-Lab-Foundation/branches/integration%2Fv1/protection || true
 gh workflow list
 ```
 
-Record screenshots or JSON of branch protection requiring `foundation-ci`.
+Record screenshots or JSON of branch protection requiring `foundation-ci`. Confirm DIR-001 slug/casing first.
 
 ### Local proof (DRL-004)
 

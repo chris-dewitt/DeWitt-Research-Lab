@@ -51,8 +51,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10
+        # Read the exact version from package.json#packageManager. Supplying a
+        # second version here makes pnpm/action-setup reject the workflow.
       - uses: actions/setup-node@v4
         with:
           node-version: 22

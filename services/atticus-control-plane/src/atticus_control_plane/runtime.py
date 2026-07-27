@@ -4,10 +4,12 @@ from __future__ import annotations
 
 from atlas_service import AtlasService
 from balancelab_ai import ScenarioEngine
+from drl_ai_core import ModelGateway
 from evalforge_service import EvalForge
 from fedlens_service import FedLensService
 
 from .approvals import ApprovalService
+from .model_gateway import build_local_model_gateway
 from .orchestrator import AtticusOrchestrator
 from .policy import PolicyEngine
 from .registry import ToolRegistry
@@ -30,3 +32,9 @@ def build_local_runtime() -> AtticusOrchestrator:
         approvals=ApprovalService(),
         evaluator=EvalForge(),
     )
+
+
+def build_local_open_weight_gateway() -> ModelGateway:
+    """Build the unpaid open-weight model gateway used by local demos."""
+
+    return build_local_model_gateway()

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Callable, Iterable
 from datetime import UTC, datetime
 
 from drl_ai_core import redact_text
@@ -13,6 +13,8 @@ from drl_protocol import (
     TaskRequest,
     TaskResult,
     TraceEvent,
+    assert_transition,
+    is_terminal,
 )
 from evalforge_service import EvalForge
 
@@ -21,19 +23,7 @@ from .planner import FixturePlanner, Planner
 from .policy import PolicyEngine
 from .registry import ToolRegistry
 
-_LEGAL_TRANSITIONS: dict[RunState, frozenset[RunState]] = {
-    RunState.RECEIVED: frozenset({RunState.PLANNING, RunState.CANCELLED}),
-    RunState.PLANNING: frozenset(
-        {RunState.EXECUTING, RunState.AWAITING_APPROVAL, RunState.DENIED, RunState.FAILED}
-    ),
-    RunState.AWAITING_APPROVAL: frozenset(
-        {RunState.EXECUTING, RunState.CANCELLED, RunState.DENIED}
-    ),
-    RunState.EXECUTING: frozenset(
-        {RunState.EVALUATING, RunState.DEGRADED, RunState.DENIED, RunState.FAILED}
-    ),
-    RunState.EVALUATING: frozenset({RunState.COMPLETED, RunState.DEGRADED, RunState.FAILED}),
-}
+CancelCheck = Callable[[], bool]
 
 
 class AtticusOrchestrator:
@@ -53,6 +43,15 @@ class AtticusOrchestrator:
         self.approvals = approvals
         self.evaluator = evaluator
         self.planner = planner or FixturePlanner()
+
+    @staticmethod
+    def _validate_request(request: TaskRequest) -> None:
+        if not request.task_id.strip():
+            raise ValueError("Task ID cannot be empty")
+        if not request.objective.strip():
+            raise ValueError("Task objective cannot be empty")
+        if not request.session_id.strip():
+            raise ValueError("Session ID cannot be empty")
 
     @staticmethod
     def _event(
@@ -75,20 +74,50 @@ class AtticusOrchestrator:
 
     @staticmethod
     def _transition(current: RunState, target: RunState) -> RunState:
-        if target not in _LEGAL_TRANSITIONS.get(current, frozenset()):
-            raise RuntimeError(
-                f"Illegal Atticus state transition: {current.value} -> {target.value}"
+        return assert_transition(current, target)
+
+    def _cancelled_result(
+        self,
+        request: TaskRequest,
+        *,
+        state: RunState,
+        trace: list[TraceEvent],
+        evidence: list[EvidenceItem],
+        artifacts: dict[str, object],
+        message: str,
+    ) -> TaskResult:
+        if is_terminal(state) and state is not RunState.CANCELLED:
+            raise RuntimeError(f"Cannot cancel from terminal state {state.value}")
+        if state is not RunState.CANCELLED:
+            state = self._transition(state, RunState.CANCELLED)
+        trace.append(
+            self._event(
+                request,
+                state,
+                "task_cancelled",
+                message,
+                sequence=len(trace) + 1,
             )
-        return target
+        )
+        return TaskResult(
+            request.task_id,
+            state,
+            message,
+            evidence,
+            trace,
+            artifacts,
+            limitations=["Cancellation stopped the workflow before further side effects."],
+        )
 
     def run(
         self,
         request: TaskRequest,
         *,
         grants: Iterable[ApprovalGrant] = (),
+        cancel_check: CancelCheck | None = None,
     ) -> TaskResult:
-        if not request.objective.strip():
-            raise ValueError("Task objective cannot be empty")
+        self._validate_request(request)
+        should_cancel = cancel_check or (lambda: False)
 
         trace: list[TraceEvent] = []
         evidence: list[EvidenceItem] = []
@@ -96,6 +125,16 @@ class AtticusOrchestrator:
         grant_by_digest = {grant.call_digest: grant for grant in grants}
         state = RunState.RECEIVED
         trace.append(self._event(request, state, "task_received", "Task accepted.", sequence=1))
+
+        if should_cancel():
+            return self._cancelled_result(
+                request,
+                state=state,
+                trace=trace,
+                evidence=evidence,
+                artifacts=artifacts,
+                message="Task cancelled before planning.",
+            )
 
         state = self._transition(state, RunState.PLANNING)
         plan = self.planner.plan(request)
@@ -110,14 +149,22 @@ class AtticusOrchestrator:
             )
         )
 
-        decisions = []
+        if should_cancel():
+            return self._cancelled_result(
+                request,
+                state=state,
+                trace=trace,
+                evidence=evidence,
+                artifacts=artifacts,
+                message="Task cancelled after planning and before tool dispatch.",
+            )
+
         for index, call in enumerate(plan, start=1):
             decision = self.policy.decide(
                 request=request,
                 call=call,
                 definition=self.registry.definition(call.tool_name),
             )
-            decisions.append(decision)
             trace.append(
                 self._event(
                     request,
@@ -151,6 +198,17 @@ class AtticusOrchestrator:
                     now=datetime.now(UTC),
                 ):
                     state = self._transition(state, RunState.AWAITING_APPROVAL)
+                    if should_cancel():
+                        return self._cancelled_result(
+                            request,
+                            state=state,
+                            trace=trace,
+                            evidence=evidence,
+                            artifacts=artifacts,
+                            message=(
+                                f"Task cancelled while awaiting approval for {call.tool_name}."
+                            ),
+                        )
                     trace.append(
                         self._event(
                             request,
@@ -174,6 +232,15 @@ class AtticusOrchestrator:
         state = self._transition(state, RunState.EXECUTING)
         failures: list[str] = []
         for call in plan:
+            if should_cancel():
+                return self._cancelled_result(
+                    request,
+                    state=state,
+                    trace=trace,
+                    evidence=evidence,
+                    artifacts=artifacts,
+                    message=f"Task cancelled before invoking {call.tool_name}.",
+                )
             trace.append(
                 self._event(
                     request,
@@ -243,6 +310,8 @@ class AtticusOrchestrator:
             terminal_state=intended_terminal.value,
         )
         state = self._transition(state, intended_terminal)
+        if not is_terminal(state):
+            raise RuntimeError(f"Expected terminal state, got {state.value}")
         trace.append(
             self._event(
                 request,

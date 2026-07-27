@@ -16,18 +16,18 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete and upgraded after Director review.
-- Active mission: **00 Program Director** (planning PR in flight).
-- Integration branch: still to be created by operator via DRL-001 after merge.
-- Open blockers: confirm GitHub identity (DIR-001), security contact (DIR-003),
-  GCP topology (DIR-002) before deploy. See `DIRECTORS_MEMO.md`.
+- Foundation generation: complete; Mission 00/01 CI repair merged via PR #7.
+- Active mission: **02 Architecture/Protocol** — DRL-005 state-machine hardening.
+- Integration branch: still to be created by operator via DRL-001.
+- Open blockers: DIR-001, DIR-003, DIR-002 (deploy). See `DIRECTORS_MEMO.md`.
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
 
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
-| 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | IN REVIEW | PR #7 (PR #6 merged) |
+| 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
+| 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | IN REVIEW | PR #8 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -124,3 +124,19 @@ NONE
 6. Do not start specialist public adapters or model selection in M1.
 
 Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
+
+### 2026-07-27 — DRL-005 protocol state-machine hardening
+
+- Branch: `cursor/drl-005-protocol-state-machine-ad29`
+- Added `drl_protocol.state_machine` with legal/terminal transition helpers
+- Orchestrator now validates transitions via protocol helpers and supports
+  `cancel_check` before planning, after planning, while awaiting approval, and
+  between tool invocations
+- Invalid blank task/objective/session IDs rejected
+- Tests: success, denial (unknown tool + public private tool), invalid input,
+  cancellation, failed terminal, illegal transition table
+- Outside Mission 02 owned paths: `services/atticus-control-plane/**` (required
+  for executable orchestration contracts)
+- Verification: `make verify` → 58 passed; `make typecheck` clean
+- Next: DRL-007 provider interface, or continue Mission 02 packages
+- Handoff: `agents/handoffs/2026-07-27-drl-005.md`

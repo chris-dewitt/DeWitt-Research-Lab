@@ -69,10 +69,14 @@ issues:
     evidence_owner: Architecture/Protocol
     labels: [protocol, test]
     title: Expand protocol and state-machine contract tests
-    status: READY
+    status: EVIDENCE_READY
     dependencies: [DRL-004]
     body: .github/ISSUE_BODIES/DRL-005.md
     requirements: [DRL-SYS-001, DRL-SYS-005, DRL-SYS-007]
+    evidence:
+      - packages/drl-protocol/src/drl_protocol/state_machine.py
+      - tests/test_protocol_state_machine.py
+      - services/atticus-control-plane/src/atticus_control_plane/orchestrator.py
   - id: DRL-006
     milestone: M1
     mission: 0

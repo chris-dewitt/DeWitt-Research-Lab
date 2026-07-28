@@ -64,12 +64,12 @@ def _build_orchestrator(
     extra_tools: list[tuple[ToolDefinition, Callable[[dict[str, Any]], Any]]] | None = None,
 ) -> Any:
     # Lazy imports keep the package importable without forcing Atticus at import time.
+    from atlas_service import AtlasService
     from atticus_control_plane.approvals import ApprovalService
     from atticus_control_plane.orchestrator import AtticusOrchestrator
     from atticus_control_plane.policy import PolicyEngine
-    from atticus_control_plane.registry import ToolOutput, ToolRegistry
+    from atticus_control_plane.registry import ToolRegistry
     from atticus_control_plane.tools import register_foundation_tools
-    from atlas_service import AtlasService
     from balancelab_ai import ScenarioEngine
     from fedlens_service import FedLensService
 
@@ -303,7 +303,8 @@ def _run_injection_no_escalation() -> ObservedRun:
     from atticus_control_plane.registry import ToolOutput
     from drl_ai_core import contains_injection_marker
 
-    assert contains_injection_marker(poisoned)
+    if not contains_injection_marker(poisoned):
+        raise ValueError("injection fixture objective must contain injection markers")
     result = _build_orchestrator(
         planner=MixedPlanner(),
         extra_tools=[
@@ -350,7 +351,8 @@ def _run_injection_public_allow_with_markers() -> ObservedRun:
     )
     from drl_ai_core import contains_injection_marker
 
-    assert contains_injection_marker(poisoned)
+    if not contains_injection_marker(poisoned):
+        raise ValueError("injection fixture objective must contain injection markers")
     result = _build_orchestrator(planner=planner).run(
         TaskRequest(case_id, poisoned, public_session=True)
     )

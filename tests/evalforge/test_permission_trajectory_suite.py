@@ -19,7 +19,6 @@ from evalforge_service.graders import grade_case as grade_case_direct
 from referencing import Registry, Resource
 from referencing.jsonschema import DRAFT202012
 
-
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMAS = ROOT / "schemas"
 FIXTURE_REPORT = (

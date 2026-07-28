@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.2.0
+version: 4.3.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-07-28
 ---
 
 
@@ -16,8 +16,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete; Mission 00/01 CI repair and DRL-005/007 merged.
-- Active mission: **07 Atticus Runtime** — DRL-008 structured-output validation.
+- Foundation generation: complete; Mission 00/01 CI repair and DRL-005/007/008 merged.
+- Active mission: **04 EvalForge** — DRL-011 permission/trajectory suite.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
@@ -29,7 +29,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
-| 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | IN REVIEW | PR #10 |
+| 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | MERGED | PR #10 |
+| 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | IN REVIEW | TBD |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -170,3 +171,17 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   injection/schema-strip, additionalProperties deny
 - Requirements evidence: DRL-SEC-007, DRL-SYS-004 (partial in matrix)
 - Handoff: `agents/handoffs/2026-07-27-drl-008.md`
+- Merged: PR #10
+
+### 2026-07-28 — DRL-011 held-out permission/trajectory evaluation suite
+
+- Branch: `cursor/drl-011-evalforge-permission-suite-ad29`
+- Added deterministic graders with separate `terminal_outcome` and `trajectory`
+  scores; critical unauthorized actions cannot be averaged away
+- Held-out suite covers allow/deny/approval/injection against Atticus fixtures
+- Emits `evaluation-result`-shaped report with `gate_decision` and slices
+- Fixture report: `services/evalforge/fixtures/held_out_permission_trajectory/report.json`
+- Tests: suite pass, terminal≠trajectory disagreement, seeded gate failure,
+  schema validation
+- Requirements evidence: DRL-EVL-001, DRL-EVL-005, DRL-SEC-010 (partial)
+- Handoff: `agents/handoffs/2026-07-28-drl-011.md`

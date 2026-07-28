@@ -146,10 +146,15 @@ issues:
     evidence_owner: EvalForge
     labels: [evalforge, security]
     title: Build permission and trajectory evaluation suite
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-005]
     body: .github/ISSUE_BODIES/DRL-011.md
     requirements: [DRL-EVL-001, DRL-EVL-005, DRL-SEC-010]
+    evidence:
+      - services/evalforge/src/evalforge_service/permission_suite.py
+      - services/evalforge/src/evalforge_service/graders.py
+      - services/evalforge/fixtures/held_out_permission_trajectory/report.json
+      - tests/evalforge/test_permission_trajectory_suite.py
   - id: DRL-012
     milestone: M2
     mission: 8

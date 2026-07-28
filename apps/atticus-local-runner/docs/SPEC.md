@@ -1,10 +1,10 @@
 ---
 document_id: DRL-LOC-106
 title: "Atticus Local Runner System Specification"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-28
 ---
 
 
@@ -93,6 +93,14 @@ Edge/Core and local tools run without cloud. Cloud specialists are unavailable o
 - Secrets and full private content remain local unless explicitly approved for transfer.
 - Kill switch stops new work and revokes trust.
 - Offline mode makes no hidden network call.
+
+    ## 8.1 Prototype approved-root inspection (DRL-009)
+
+    `SandboxedWorkspace` provides deny-by-default inspection inside one approved
+    canonical root: path traversal and symlink escapes raise `PermissionError`;
+    oversized and binary reads fail closed; transferable `read_text` /
+    `inspect_text` results apply `redact_text`. Write proposals still bind
+    digests to raw content. Maturity: prototype (no pairing channel yet).
 
     ## 9. Quality attributes
 

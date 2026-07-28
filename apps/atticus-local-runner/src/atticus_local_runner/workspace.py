@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 
-from drl_ai_core import canonical_digest
+from drl_ai_core import canonical_digest, redact_text
 
 
 @dataclass(frozen=True, slots=True)
@@ -19,6 +19,17 @@ class WriteProposal:
     diff: str
 
 
+@dataclass(frozen=True, slots=True)
+class TextInspection:
+    """Redacted, size-bounded inspection result for transferable tooling."""
+
+    relative_path: str
+    size_bytes: int
+    content: str
+    content_digest: str
+    redacted: bool
+
+
 class SandboxedWorkspace:
     """Operate only inside one explicitly approved canonical root."""
 
@@ -26,6 +37,8 @@ class SandboxedWorkspace:
         self.root = root.resolve(strict=True)
         if not self.root.is_dir():
             raise ValueError("Approved workspace root must be a directory")
+        if max_read_bytes <= 0:
+            raise ValueError("max_read_bytes must be positive")
         self.max_read_bytes = max_read_bytes
 
     def _resolve(self, relative_path: str, *, must_exist: bool) -> Path:
@@ -44,6 +57,24 @@ class SandboxedWorkspace:
         except ValueError as exc:
             raise PermissionError("Path escapes the approved workspace") from exc
         return resolved
+
+    def _read_raw_bytes(self, relative_path: str) -> tuple[Path, bytes]:
+        path = self._resolve(relative_path, must_exist=True)
+        if path.is_symlink() or not path.is_file():
+            raise ValueError("Only ordinary files may be read")
+        size = path.stat().st_size
+        if size > self.max_read_bytes:
+            raise ValueError("File exceeds the approved read limit")
+        data = path.read_bytes()
+        if len(data) > self.max_read_bytes:
+            raise ValueError("File exceeds the approved read limit")
+        if b"\x00" in data:
+            raise ValueError("Binary files require a specialized tool")
+        return path, data
+
+    def _read_raw_text(self, relative_path: str) -> str:
+        _path, data = self._read_raw_bytes(relative_path)
+        return data.decode("utf-8")
 
     def list_files(self, relative_directory: str = ".", *, limit: int = 200) -> list[str]:
         if limit <= 0 or limit > 1000:
@@ -66,21 +97,32 @@ class SandboxedWorkspace:
         return files
 
     def read_text(self, relative_path: str) -> str:
-        path = self._resolve(relative_path, must_exist=True)
-        if not path.is_file():
-            raise ValueError("Only ordinary files may be read")
-        if path.stat().st_size > self.max_read_bytes:
-            raise ValueError("File exceeds the approved read limit")
-        data = path.read_bytes()
-        if b"\x00" in data:
-            raise ValueError("Binary files require a specialized tool")
-        return data.decode("utf-8")
+        """Return UTF-8 file text with secrets redacted for transferable results."""
+
+        return redact_text(self._read_raw_text(relative_path))
+
+    def inspect_text(self, relative_path: str) -> TextInspection:
+        """Inspect one approved-root text file under size/binary/redaction controls."""
+
+        path, data = self._read_raw_bytes(relative_path)
+        raw = data.decode("utf-8")
+        redacted = redact_text(raw)
+        relative = path.relative_to(self.root).as_posix()
+        return TextInspection(
+            relative_path=relative,
+            size_bytes=len(data),
+            content=redacted,
+            content_digest=canonical_digest(raw),
+            redacted=redacted != raw,
+        )
 
     def propose_write(self, relative_path: str, content: str) -> WriteProposal:
         path = self._resolve(relative_path, must_exist=False)
         previous = ""
         if path.exists():
-            previous = self.read_text(relative_path)
+            if path.is_symlink() or not path.is_file():
+                raise ValueError("Only ordinary files may be overwritten")
+            previous = self._read_raw_text(relative_path)
         diff = "".join(
             difflib.unified_diff(
                 previous.splitlines(keepends=True),

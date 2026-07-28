@@ -126,10 +126,13 @@ issues:
     evidence_owner: Local Runner
     labels: [local-runner, security]
     title: Add approved-root repository inspection
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-005]
     body: .github/ISSUE_BODIES/DRL-009.md
     requirements: [DRL-SEC-005, DRL-SEC-008]
+    evidence:
+      - apps/atticus-local-runner/src/atticus_local_runner/workspace.py
+      - tests/test_local_runner.py
   - id: DRL-010
     milestone: M2
     mission: 9

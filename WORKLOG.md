@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.3.0
+version: 4.4.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-07-28
@@ -16,8 +16,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete; Mission 00/01 CI repair and DRL-005/007/008 merged.
-- Active mission: **04 EvalForge** — DRL-011 permission/trajectory suite.
+- Foundation generation: complete; Mission 00/01 CI repair and DRL-005/007/008/011 merged.
+- Active mission: **09 Local Runner** — DRL-009 approved-root inspection.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
@@ -30,7 +30,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
 | 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | MERGED | PR #10 |
-| 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | IN REVIEW | PR #11 |
+| 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | MERGED | PR #11 |
+| 09 / DRL-009 | Cursor cloud agent | `cursor/drl-009-approved-root-inspection-ad29` | 2026-07-28 | IN REVIEW | PR #12 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -188,3 +189,16 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   fixture demo EvalForge 1.0
 - PR: #11
 - Handoff: `agents/handoffs/2026-07-28-drl-011.md`
+- Merged: PR #11
+
+### 2026-07-28 — DRL-009 approved-root repository inspection
+
+- Branch: `cursor/drl-009-approved-root-inspection-ad29`
+- Hardened `SandboxedWorkspace` with redacted `inspect_text`/`read_text`,
+  raw-preserving write digests, size/binary limits, traversal/symlink denial
+- Tests: traversal, symlink escape + list skip, oversized read, binary reject,
+  secret redaction without corrupting writes
+- Requirements evidence: DRL-SEC-005, DRL-SEC-008 (partial)
+- Verification: `make verify` → 87 passed; lint/typecheck clean
+- PR: #12
+- Handoff: `agents/handoffs/2026-07-28-drl-009.md`

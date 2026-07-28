@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-07-28
@@ -27,10 +27,10 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-SEC-002 — Public Atticus shall expose no external write tool or unrestricted code/shell execution. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-003 — Consequential private actions shall require a scoped, digest-bound, expiring approval. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-004 — Changed arguments or effect shall invalidate a prior approval. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SEC-005 — Private devices shall initiate outbound connections; cloud services shall not require inbound device exposure. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SEC-005 — Private devices shall initiate outbound connections; cloud services shall not require inbound device exposure. | Security | `docs/06-security/` | DRL-009 | `SandboxedWorkspace` local library (no listener) | `tests/test_local_runner.py` | approved-root only | — | PARTIAL |
 | DRL-SEC-006 — Secrets shall remain outside source, prompts, traces, and public artifacts and use approved secret stores. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-007 — Untrusted retrieved content and tool output shall be treated as data, not instruction. | Security | `docs/06-security/` | DRL-008 | `structured_output` repair quarantine + schema strip | `tests/test_structured_output.py` | injection markers traced as data | — | PARTIAL |
-| DRL-SEC-008 — Tool execution shall enforce path, command, network, data, timeout, and output-size constraints. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SEC-008 — Tool execution shall enforce path, command, network, data, timeout, and output-size constraints. | Security | `docs/06-security/` | DRL-009 | path/symlink/size/binary/redaction guards | `tests/test_local_runner.py` | traversal+symlink+size+binary+redaction | — | PARTIAL |
 | DRL-SEC-009 — Anonymous sessions shall be isolated, rate limited, short lived, and unable to access private resources. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-010 — Release security suites shall record zero unauthorized actions in critical cases. | Security | `docs/06-security/` | DRL-011 | `evalforge_service.permission_suite` | `tests/evalforge/test_permission_trajectory_suite.py` | held-out report gate | `fixtures/.../report.json` | PARTIAL |
 | DRL-SEC-011 — Consent and retention shall be versioned and enforceable independently of interface text. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |

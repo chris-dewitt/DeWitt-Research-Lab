@@ -1,10 +1,10 @@
 ---
 document_id: DRL-LOC-105
 title: "Atticus Local Runner Security and Privacy Specification"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-28
 ---
 
 
@@ -71,5 +71,7 @@ last_updated: 2026-07-26
 - Update-compromise drill.
 - Packet inspection and local privilege review.
 - Incident exercise and uninstall-residue audit.
+- **Prototype (DRL-009):** executable traversal, symlink, size, binary, and
+  redaction tests for `SandboxedWorkspace` approved-root inspection.
 
     “Sanitize input,” “encrypt it,” and “use least privilege” are not evidence. Each control identifies the boundary, exact mechanism, negative test, telemetry signal, owner, and incident response.

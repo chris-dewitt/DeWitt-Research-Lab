@@ -1,10 +1,10 @@
 ---
 document_id: DRL-EVL-100
 title: "EvalForge Project README"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-07-28
 ---
 
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-27
 
     **Role in DeWitt Research Laboratory:** Laboratory-wide evaluation, regression, evidence, and release-gate platform.
 
-    Runnable deterministic prototype that checks required trajectory events, citation presence, policy-bypass absence, and legal terminal state. Broader benchmark, judge-calibration, CI comparison, and hidden-set capabilities remain planned.
+    Runnable deterministic prototype that checks required trajectory events, citation presence, policy-bypass absence, and legal terminal state. Also ships a held-out **permission and trajectory** suite (`run_permission_trajectory_suite`) with separate terminal/trajectory scores, allow/deny/approval/injection slices, and a zero-tolerance unauthorized-action gate. Broader benchmark, judge-calibration, CI comparison, and hidden-set capabilities remain planned.
 
     This directory is an independently testable part of the DRL monorepo. It inherits the laboratory constitution in [`LABORATORY_BIBLE.md`](../../LABORATORY_BIBLE.md), the agent contract in [`AGENTS.md`](../../AGENTS.md), and canonical protocol/security/data contracts under [`schemas/`](../../schemas). Project specifications below govern this component; a conflict with an approved laboratory-wide document requires an ADR rather than an improvised compromise.
 

@@ -1,9 +1,16 @@
 [project]
 name = "evalforge-service"
-version = "0.1.0"
+version = "0.2.0"
 description = "Deterministic trajectory evaluation starter for DRL"
 requires-python = ">=3.12,<3.14"
-dependencies = []
+dependencies = [
+  "drl-ai-core",
+  "drl-protocol",
+]
+
+[tool.uv.sources]
+drl-ai-core = { workspace = true }
+drl-protocol = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

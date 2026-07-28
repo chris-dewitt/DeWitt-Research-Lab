@@ -144,7 +144,7 @@ for path in sorted(ROOT.rglob("*.md")):
     status = str(meta.get("status", ""))
     if status and status not in allowed_status:
         error(f"Unknown controlled-document status {status!r}: {rel}")
-    if meta.get("last_updated") and str(meta["last_updated"]) > "2026-07-27":
+    if meta.get("last_updated") and str(meta["last_updated"]) > "2026-07-28":
         error(f"Future last_updated date: {rel}")
 
 for doc_id, paths in ids.items():

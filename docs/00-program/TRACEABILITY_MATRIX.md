@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-07-28
 ---
 
 # Requirement Traceability Matrix
@@ -32,7 +32,7 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-SEC-007 — Untrusted retrieved content and tool output shall be treated as data, not instruction. | Security | `docs/06-security/` | DRL-008 | `structured_output` repair quarantine + schema strip | `tests/test_structured_output.py` | injection markers traced as data | — | PARTIAL |
 | DRL-SEC-008 — Tool execution shall enforce path, command, network, data, timeout, and output-size constraints. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-009 — Anonymous sessions shall be isolated, rate limited, short lived, and unable to access private resources. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SEC-010 — Release security suites shall record zero unauthorized actions in critical cases. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SEC-010 — Release security suites shall record zero unauthorized actions in critical cases. | Security | `docs/06-security/` | DRL-011 | `evalforge_service.permission_suite` | `tests/evalforge/test_permission_trajectory_suite.py` | held-out report gate | `fixtures/.../report.json` | PARTIAL |
 | DRL-SEC-011 — Consent and retention shall be versioned and enforceable independently of interface text. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-012 — Incident response shall support disablement, revocation, rollback, notification, and evidence preservation. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-MOD-001 — Atticus Core and Edge shall be planned and evaluated as a coordinated model family. | Model/Data | `docs/03-model/` | — | — | — | — | — | APPROVED-FOUNDATION |
@@ -55,11 +55,11 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-DAT-008 — Synthetic data shall record generator/configuration and human/automated review class. | Data | `docs/04-data/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-DAT-009 — Hidden benchmark details shall be protected and rotated when contamination is credible. | Data | `docs/04-data/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-DAT-010 — Data quality failures shall be observable, quarantinable, and reversible. | Data | `docs/04-data/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-EVL-001 — EvalForge shall score terminal outcome and trajectory separately. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-EVL-001 — EvalForge shall score terminal outcome and trajectory separately. | Evaluation | `docs/05-evaluation/` | DRL-011 | `evalforge_service.graders` | `tests/evalforge/test_permission_trajectory_suite.py` | separate metrics in report | `fixtures/.../report.json` | PARTIAL |
 | DRL-EVL-002 — Deterministic graders shall decide schema, authorization, citation-link, and numerical consistency where possible. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-EVL-003 — Model judges shall be versioned, calibrated, and not solely decide critical safety. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-EVL-004 — Comparisons shall report uncertainty, slices, and critical failures rather than one aggregate score. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-EVL-005 — CI shall block regressions beyond approved thresholds and always block critical policy violations. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-EVL-005 — CI shall block regressions beyond approved thresholds and always block critical policy violations. | Evaluation | `docs/05-evaluation/` | DRL-011 | `gate_decision` + seeded failure test | `test_seeded_unauthorized_action_fails_gate` | critical_failures non-empty | — | PARTIAL |
 | DRL-EVL-006 — Evaluation runs shall capture target, configuration, dataset, scorer, environment, and artifact digests. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-EVL-007 — AtticusBench shall contain at least 1,000 held-out V1 cases across required taxonomies. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-EVL-008 — Release reports shall include failures and limitations, not only successful examples. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |

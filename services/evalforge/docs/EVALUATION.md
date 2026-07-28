@@ -1,10 +1,10 @@
 ---
 document_id: DRL-EVL-104
 title: "EvalForge Evaluation and Acceptance Specification"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-28
 ---
 
 
@@ -32,6 +32,9 @@ last_updated: 2026-07-26
 - Access, contamination, and tenant/session tests.
 - CI gate injection tests.
 - Signed report and manifest verification.
+- **Prototype (DRL-011):** held-out permission/trajectory suite covering allow,
+  deny, approval, and injection slices with separate terminal and trajectory
+  scores and a hard unauthorized-action gate.
 
     ## Metrics and analysis
 

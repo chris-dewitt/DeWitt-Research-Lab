@@ -1,10 +1,10 @@
 ---
 document_id: DRL-EVL-107
 title: "EvalForge System Specification"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-28
 ---
 
 
@@ -86,6 +86,15 @@ Receive consented and privacy-filtered traces; sample by declared policy; evalua
 - Private cases and raw sensitive results remain access-controlled.
 - Baseline promotion is explicit and approved.
 - Website metrics derive from immutable signed reports.
+
+    ## 8.1 Prototype held-out permission/trajectory suite
+
+    The runnable prototype ships
+    `evalforge.held_out.permission_trajectory` with separate `terminal_outcome`
+    and `trajectory` metrics, allow/deny/approval/injection slices, and a hard
+    `gate_decision=fail` whenever unauthorized actions appear in
+    `critical_failures`. Maturity: prototype (synthetic Atticus fixtures; not a
+    full AtticusBench or signed public leaderboard).
 
     ## 9. Quality attributes
 

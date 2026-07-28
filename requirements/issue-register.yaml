@@ -167,20 +167,28 @@ issues:
     evidence_owner: Model/Data
     labels: [model, research]
     title: Run first Atticus Core and Edge bake-off
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-007, DRL-011]
     body: .github/ISSUE_BODIES/DRL-012.md
     requirements: [DRL-MOD-001, DRL-MOD-002]
+    evidence:
+      - models/bakeoff/candidates.yaml
+      - packages/drl-ai-core/src/drl_ai_core/bakeoff.py
+      - tests/test_bakeoff_scaffold.py
+    director_decisions: [DIR-004]
   - id: DRL-013
     milestone: M2
     mission: 9
     evidence_owner: Local Runner
     labels: [voice, privacy]
     title: Prototype explicitly activated local voice
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-009]
     body: .github/ISSUE_BODIES/DRL-013.md
     requirements: [DRL-SEC-011, DRL-DAT-005]
+    evidence:
+      - apps/atticus-local-runner/src/atticus_local_runner/voice.py
+      - tests/test_local_voice.py
   - id: DRL-014
     milestone: M3
     mission: 10

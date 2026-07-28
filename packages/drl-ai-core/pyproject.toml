@@ -1,10 +1,11 @@
 [project]
 name = "drl-ai-core"
-version = "0.3.0"
+version = "0.4.0"
 description = "Shared deterministic AI infrastructure for DeWitt Research Laboratory"
 requires-python = ">=3.12,<3.14"
 dependencies = [
   "jsonschema>=4.0",
+  "pyyaml>=6.0",
 ]
 
 [build-system]

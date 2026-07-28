@@ -1,0 +1,141 @@
+# Atticus Core/Edge bake-off candidate register (scaffold)
+# Maturity: prototype scaffolding for DRL-012 / DIR-004 evidence.
+# This is NOT a base-model selection. No winner is declared.
+
+suite_id: atticus.bakeoff.scaffold
+suite_version: "1.0.0"
+as_of: "2026-07-29"
+selection_status: not_selected
+director_gate: DIR-004
+notes:
+  - Shortlist refreshed for scaffold only; exact revisions must be revalidated before a live bake-off.
+  - Fixture metrics are synthetic placeholders for CI reproducibility, not measured hardware runs.
+  - Commercial/closed-weight candidates are excluded from the V1 production path.
+
+candidates:
+  - id: core-qwen35-9b-class
+    role: core
+    family: Qwen 3.5 9B-class
+    revision_label: scaffold-unpinned
+    license_label: Apache-2.0
+    license_status: provisional_review_required
+    open_weight: true
+    hardware_class: gpu-16gb-class
+    estimated_vram_gb: 18
+    cost_tier: medium
+    source_url: https://huggingface.co/Qwen/Qwen3.5-9B
+    limitations:
+      - Exact revision and tool parser must be pinned before Stage B.
+      - Memory estimate is scaffold-only.
+
+  - id: core-ministral3-8b-class
+    role: core
+    family: Ministral 3 8B-class
+    revision_label: scaffold-unpinned
+    license_label: Apache-2.0
+    license_status: provisional_review_required
+    open_weight: true
+    hardware_class: gpu-16gb-class
+    estimated_vram_gb: 16
+    cost_tier: medium
+    source_url: https://mistral.ai/news/mistral-3/
+    limitations:
+      - Confirm current model-card Apache-2.0 terms at bake-off time.
+      - Not the older 2024 Ministral release line.
+
+  - id: core-gemma4-e4b-class
+    role: core
+    family: Gemma 4 E4B/12B-class
+    revision_label: scaffold-unpinned
+    license_label: Gemma-Terms
+    license_status: custom_terms_review_required
+    open_weight: true
+    hardware_class: gpu-16gb-class
+    estimated_vram_gb: 14
+    cost_tier: medium
+    source_url: https://ai.google.dev/gemma/terms
+    limitations:
+      - Custom terms; do not label as OSI open-source without review.
+      - Redistribution constraints must be recorded before download.
+
+  - id: edge-qwen35-4b-class
+    role: edge
+    family: Qwen 3.5 4B-class
+    revision_label: scaffold-unpinned
+    license_label: Apache-2.0
+    license_status: provisional_review_required
+    open_weight: true
+    hardware_class: cpu-or-8gb-gpu
+    estimated_vram_gb: 6
+    cost_tier: low
+    source_url: https://huggingface.co/Qwen
+    limitations:
+      - Edge latency and noisy-ASR robustness still unmeasured.
+
+  - id: edge-ministral3-3b-class
+    role: edge
+    family: Ministral 3 3B-class
+    revision_label: scaffold-unpinned
+    license_label: Apache-2.0
+    license_status: provisional_review_required
+    open_weight: true
+    hardware_class: cpu-or-8gb-gpu
+    estimated_vram_gb: 4
+    cost_tier: low
+    source_url: https://mistral.ai/news/mistral-3/
+    limitations:
+      - Exact card and quantization matrix required before Stage A hardware.
+
+runtimes:
+  - id: vllm
+    class: cloud-serving
+    notes: Primary cloud candidate; parser/template validation required.
+  - id: llama-cpp
+    class: local-edge
+    notes: Primary local/edge candidate; GGUF evaluated separately.
+  - id: transformers
+    class: research
+    notes: Default post-training/distribution ecosystem.
+
+fixture_metrics:
+  # Synthetic Stage-A style scores for CI only (0.0–1.0). Not live measurements.
+  core-qwen35-9b-class:
+    license_clarity: 0.9
+    runtime_fit: 0.85
+    structured_output: 0.8
+    tool_use: 0.82
+    latency_proxy: 0.7
+    cost_efficiency: 0.75
+    quality_proxy: 0.84
+  core-ministral3-8b-class:
+    license_clarity: 0.88
+    runtime_fit: 0.8
+    structured_output: 0.78
+    tool_use: 0.8
+    latency_proxy: 0.72
+    cost_efficiency: 0.78
+    quality_proxy: 0.8
+  core-gemma4-e4b-class:
+    license_clarity: 0.55
+    runtime_fit: 0.75
+    structured_output: 0.77
+    tool_use: 0.76
+    latency_proxy: 0.74
+    cost_efficiency: 0.8
+    quality_proxy: 0.79
+  edge-qwen35-4b-class:
+    license_clarity: 0.9
+    runtime_fit: 0.88
+    structured_output: 0.7
+    tool_use: 0.68
+    latency_proxy: 0.9
+    cost_efficiency: 0.92
+    quality_proxy: 0.7
+  edge-ministral3-3b-class:
+    license_clarity: 0.88
+    runtime_fit: 0.86
+    structured_output: 0.68
+    tool_use: 0.66
+    latency_proxy: 0.93
+    cost_efficiency: 0.94
+    quality_proxy: 0.68

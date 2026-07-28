@@ -81,7 +81,7 @@ requires-dist = [
 
 [[package]]
 name = "atticus-local-runner"
-version = "0.3.0"
+version = "0.4.0"
 source = { editable = "apps/atticus-local-runner" }
 dependencies = [
     { name = "drl-ai-core" },
@@ -211,14 +211,18 @@ dev = [
 
 [[package]]
 name = "drl-ai-core"
-version = "0.3.0"
+version = "0.4.0"
 source = { editable = "packages/drl-ai-core" }
 dependencies = [
     { name = "jsonschema" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "jsonschema", specifier = ">=4.0" }]
+requires-dist = [
+    { name = "jsonschema", specifier = ">=4.0" },
+    { name = "pyyaml", specifier = ">=6.0" },
+]
 
 [[package]]
 name = "drl-protocol"

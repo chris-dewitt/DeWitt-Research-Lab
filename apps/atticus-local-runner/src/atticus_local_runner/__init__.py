@@ -8,6 +8,7 @@ from .approvals import (
     LocalApprovalGrant,
     LocalAuditLog,
 )
+from .voice import CaptureState, LocalVoiceSession, VoiceTurn
 from .workspace import SandboxedWorkspace, TextInspection, WriteProposal
 
 __all__ = [
@@ -15,11 +16,14 @@ __all__ = [
     "MAX_APPROVAL_TTL_SECONDS",
     "ApprovedWriteFlow",
     "AuditEvent",
+    "CaptureState",
     "LocalApprovalGrant",
     "LocalAuditLog",
+    "LocalVoiceSession",
     "SandboxedWorkspace",
     "TextInspection",
+    "VoiceTurn",
     "WriteProposal",
 ]
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

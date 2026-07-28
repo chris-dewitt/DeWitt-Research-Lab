@@ -1,10 +1,10 @@
 ---
 document_id: DRL-LOC-106
 title: "Atticus Local Runner System Specification"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-28
+last_updated: 2026-07-29
 ---
 
 
@@ -101,6 +101,14 @@ Edge/Core and local tools run without cloud. Cloud specialists are unavailable o
     oversized and binary reads fail closed; transferable `read_text` /
     `inspect_text` results apply `redact_text`. Write proposals still bind
     digests to raw content. Maturity: prototype (no pairing channel yet).
+
+    ## 8.2 Prototype local voice (DRL-013)
+
+    `LocalVoiceSession` is push-to-talk only: capture requires explicit `arm()`,
+    capture state is visible, processing is local/offline by default, raw audio
+    is discarded unless retention is requested, and turns are deletable. Cloud
+    voice processing is rejected. Maturity: prototype (fixture PCM; no device
+    microphone binding yet).
 
     ## 9. Quality attributes
 

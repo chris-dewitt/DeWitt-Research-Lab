@@ -8,7 +8,6 @@ import pytest
 import yaml
 from drl_ai_core import load_bakeoff_register, run_bakeoff_scaffold
 
-
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = ROOT / "models" / "bakeoff" / "candidates.yaml"
 
@@ -41,7 +40,10 @@ def test_bakeoff_scaffold_report_has_required_fields() -> None:
         assert "quality_proxy" in row
         assert "limitations" in row
         assert 0.0 <= row["metrics"]["aggregate_proxy"] <= 1.0
-    assert any("DIR-004" in item or "not selected" in item.lower() for item in report["limitations"])
+    assert any(
+        "DIR-004" in item or "not selected" in item.lower()
+        for item in report["limitations"]
+    )
     assert report["configuration_digest"].startswith("sha256:")
 
 

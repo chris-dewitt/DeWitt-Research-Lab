@@ -15,6 +15,16 @@ from .providers import (
     StructuredModelResponse,
 )
 from .security import canonical_digest, redact_text
+from .structured_output import (
+    StructuredOutputError,
+    StructuredOutputValidator,
+    StructuredParseResult,
+    StructuredTraceEvent,
+    ValidationIssue,
+    contains_injection_marker,
+    extract_json_candidate,
+    validate_against_schema,
+)
 
 __all__ = [
     "ChatMessage",
@@ -29,8 +39,16 @@ __all__ = [
     "ProviderTimeoutError",
     "ProviderUnavailableError",
     "StructuredModelResponse",
+    "StructuredOutputError",
+    "StructuredOutputValidator",
+    "StructuredParseResult",
+    "StructuredTraceEvent",
+    "ValidationIssue",
     "canonical_digest",
+    "contains_injection_marker",
+    "extract_json_candidate",
     "redact_text",
+    "validate_against_schema",
 ]
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"

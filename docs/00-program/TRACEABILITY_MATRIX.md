@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-27
 ---
 
 # Requirement Traceability Matrix
@@ -16,7 +16,7 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-SYS-001 — Atticus shall coordinate specialist services only through versioned typed contracts. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-002 — The V1 production intelligence path shall use identifiable open-weight models and disclose routing. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-003 — The local/mock developer profile shall run without paid commercial model APIs. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SYS-004 — Every externally visible action and public claim shall be attributable to a trace and artifact/evidence chain. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SYS-004 — Every externally visible action and public claim shall be attributable to a trace and artifact/evidence chain. | Architecture | `docs/02-architecture/` | DRL-008 | `packages/drl-ai-core/.../structured_output.py` | `tests/test_structured_output.py` | structured parse/repair trace events | — | PARTIAL |
 | DRL-SYS-005 — Every long-running request shall support deadline, cancellation, bounded retries, and terminal status. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-006 — Public, private-cloud, private-local, and offline modes shall have distinct capabilities and data policies. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-007 — Protocol-breaking changes shall require versioning, migration, consumer compatibility evidence, and ADR. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
@@ -29,7 +29,7 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-SEC-004 — Changed arguments or effect shall invalidate a prior approval. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-005 — Private devices shall initiate outbound connections; cloud services shall not require inbound device exposure. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-006 — Secrets shall remain outside source, prompts, traces, and public artifacts and use approved secret stores. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SEC-007 — Untrusted retrieved content and tool output shall be treated as data, not instruction. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SEC-007 — Untrusted retrieved content and tool output shall be treated as data, not instruction. | Security | `docs/06-security/` | DRL-008 | `structured_output` repair quarantine + schema strip | `tests/test_structured_output.py` | injection markers traced as data | — | PARTIAL |
 | DRL-SEC-008 — Tool execution shall enforce path, command, network, data, timeout, and output-size constraints. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-009 — Anonymous sessions shall be isolated, rate limited, short lived, and unable to access private resources. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-010 — Release security suites shall record zero unauthorized actions in critical cases. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |

@@ -58,7 +58,7 @@ source = { editable = "services/atlas" }
 
 [[package]]
 name = "atticus-control-plane"
-version = "0.1.0"
+version = "0.1.2"
 source = { editable = "services/atticus-control-plane" }
 dependencies = [
     { name = "atlas-service" },
@@ -211,8 +211,14 @@ dev = [
 
 [[package]]
 name = "drl-ai-core"
-version = "0.2.0"
+version = "0.3.0"
 source = { editable = "packages/drl-ai-core" }
+dependencies = [
+    { name = "jsonschema" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "jsonschema", specifier = ">=4.0" }]
 
 [[package]]
 name = "drl-protocol"

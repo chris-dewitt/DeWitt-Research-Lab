@@ -30,7 +30,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
 | 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | MERGED | PR #10 |
-| 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | IN REVIEW | TBD |
+| 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | IN REVIEW | PR #11 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -184,4 +184,7 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Tests: suite pass, terminal≠trajectory disagreement, seeded gate failure,
   schema validation
 - Requirements evidence: DRL-EVL-001, DRL-EVL-005, DRL-SEC-010 (partial)
+- Verification: `make verify` → 83 passed; lint/typecheck/security clean;
+  fixture demo EvalForge 1.0
+- PR: #11
 - Handoff: `agents/handoffs/2026-07-28-drl-011.md`

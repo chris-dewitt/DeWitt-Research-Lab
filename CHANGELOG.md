@@ -1,13 +1,32 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-29
 ---
 
 # Foundation Changelog
+
+## 2026-07-28 — First implementation missions merged
+
+- Repaired Mission 00/01 CI (duplicate pnpm version configuration) and added
+  portable bootstrap with Linux clean-clone evidence (PR #6, #7).
+- DRL-005: added `drl_protocol.state_machine` legal/terminal transition helpers
+  and orchestrator cancellation checks (PR #8).
+- DRL-007: added typed open-weight `ModelProvider` interface, deterministic
+  mock provider, and disclosed `ModelGateway` with open-weight enforcement
+  (PR #9).
+- DRL-008: added `StructuredOutputValidator` with JSON Schema 2020-12
+  validation, bounded fail-closed repair, and injection-resistant trace events
+  (PR #10).
+- DRL-011: added held-out EvalForge permission/trajectory suite with separate
+  terminal and trajectory scores and release-gating decisions (PR #11).
+- DRL-009: hardened local-runner `SandboxedWorkspace` with redacted
+  inspection, traversal/symlink denial, and size/binary limits (PR #12).
+- Replaced the hardcoded foundation date ceiling in `validate_foundation.py`
+  with a dynamic today-based check plus one day of clock skew tolerance.
 
 ## 2026-07-26 — Open-source identity iteration
 

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import json
 import re
 import sys
@@ -144,8 +145,16 @@ for path in sorted(ROOT.rglob("*.md")):
     status = str(meta.get("status", ""))
     if status and status not in allowed_status:
         error(f"Unknown controlled-document status {status!r}: {rel}")
-    if meta.get("last_updated") and str(meta["last_updated"]) > "2026-07-28":
-        error(f"Future last_updated date: {rel}")
+    if meta.get("last_updated"):
+        raw_date = str(meta["last_updated"])
+        try:
+            parsed = dt.date.fromisoformat(raw_date)
+        except ValueError:
+            error(f"Invalid last_updated date {raw_date!r} (expected YYYY-MM-DD): {rel}")
+        else:
+            # Allow one day of clock/timezone skew; anything later is a typo.
+            if parsed > dt.date.today() + dt.timedelta(days=1):
+                error(f"Future last_updated date: {rel}")
 
 for doc_id, paths in ids.items():
     if len(paths) > 1:

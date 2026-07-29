@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.4.0
+version: 4.4.1
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-28
+last_updated: 2026-07-29
 ---
 
 
@@ -16,8 +16,10 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete; Mission 00/01 CI repair and DRL-005/007/008/011 merged.
-- Active mission: **09 Local Runner** — DRL-009 approved-root inspection.
+- Foundation generation: complete; Mission 00/01 CI repair and
+  DRL-005/007/008/009/011 merged.
+- Active mission: none reserved; next mission per
+  `agents/SEQUENTIAL_EXECUTION_PLAN.md`.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
@@ -31,7 +33,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
 | 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | MERGED | PR #10 |
 | 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | MERGED | PR #11 |
-| 09 / DRL-009 | Cursor cloud agent | `cursor/drl-009-approved-root-inspection-ad29` | 2026-07-28 | IN REVIEW | PR #12 |
+| 09 / DRL-009 | Cursor cloud agent | `cursor/drl-009-approved-root-inspection-ad29` | 2026-07-28 | MERGED | PR #12 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -202,3 +204,4 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Verification: `make verify` → 87 passed; lint/typecheck clean
 - PR: #12
 - Handoff: `agents/handoffs/2026-07-28-drl-009.md`
+- Merged: PR #12

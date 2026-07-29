@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
+from pathlib import Path
 
 _HAWKISH = frozenset({"elevated", "persistent", "restrictive", "inflation", "vigilant"})
 _DOVISH = frozenset({"slowing", "balanced", "easing", "softening", "patient"})
@@ -42,6 +43,13 @@ class FedLensService:
 
     def __init__(self, documents: list[FedDocument] | None = None) -> None:
         self._documents = documents or self.fixture_documents()
+
+    @classmethod
+    def from_bounded_corpus(cls, root: Path | None = None) -> FedLensService:
+        from .corpus import load_fed_corpus
+
+        corpus = load_fed_corpus(root)
+        return cls([item.document for item in corpus.documents])
 
     @staticmethod
     def fixture_documents() -> list[FedDocument]:

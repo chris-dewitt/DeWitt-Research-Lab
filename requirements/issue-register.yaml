@@ -208,10 +208,14 @@ issues:
     evidence_owner: FedLens
     labels: [fedlens, data]
     title: Ingest bounded public Fed corpus
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-007]
     body: .github/ISSUE_BODIES/DRL-015.md
     requirements: [DRL-DAT-002, DRL-DAT-006]
+    evidence:
+      - services/fedlens/corpus/manifest.yaml
+      - services/fedlens/src/fedlens_service/corpus.py
+      - tests/test_fedlens_corpus.py
   - id: DRL-016
     milestone: M3
     mission: 11

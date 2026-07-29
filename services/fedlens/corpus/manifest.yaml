@@ -1,0 +1,26 @@
+corpus_id: fedlens.bounded.public.fixture
+corpus_version: 1.0.0
+data_tier: public
+license_label: CC0-1.0-equivalent-fixture
+source_register:
+- source_id: drl-synthetic-fomc
+  display_name: DRL synthetic FOMC communications
+  license_label: CC0-1.0-equivalent-fixture
+  terms_url: fixture://fedlens/SOURCE_TERMS
+  notes:
+  - Synthetic demo corpus only; not official Federal Reserve text.
+documents:
+- document_id: FOMC-2026-05-FIXTURE
+  title: Earlier synthetic FOMC communication
+  published_date: '2026-05-06'
+  relative_path: raw/FOMC-2026-05-FIXTURE.txt
+  citation: fixture://fedlens/FOMC-2026-05
+  source_id: drl-synthetic-fomc
+  checksum: sha256:9446773e0bf9519af6ff3f6b58f56fc781964b357b8bfd7f753120b81cd57255
+- document_id: FOMC-2026-06-FIXTURE
+  title: Latest synthetic FOMC communication
+  published_date: '2026-06-17'
+  relative_path: raw/FOMC-2026-06-FIXTURE.txt
+  citation: fixture://fedlens/FOMC-2026-06
+  source_id: drl-synthetic-fomc
+  checksum: sha256:b0841b67f15b0f4c278b1a89e685801b951689cbf5e349e2d7d74b56c521a611

@@ -1,9 +1,15 @@
 [project]
 name = "fedlens-service"
-version = "0.1.0"
-description = "Federal Reserve communications research starter for DRL"
+version = "0.2.0"
+description = "Federal Reserve communication analysis starter for DRL"
 requires-python = ">=3.12,<3.14"
-dependencies = []
+dependencies = [
+  "drl-ai-core",
+  "pyyaml>=6.0",
+]
+
+[tool.uv.sources]
+drl-ai-core = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

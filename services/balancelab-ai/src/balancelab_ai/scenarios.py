@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from decimal import Decimal
-from typing import Any
 
 from drl_ai_core import canonical_digest
 
@@ -83,9 +82,7 @@ def assert_projection_invariants(result: ProjectionResult) -> None:
     """Deterministic invariants for educational projections."""
 
     recomputed = (
-        result.asset_income_change
-        - result.deposit_expense_change
-        - result.wholesale_expense_change
+        result.asset_income_change - result.deposit_expense_change - result.wholesale_expense_change
     )
     if recomputed != result.annual_nii_change:
         raise AssertionError("NII identity failed")

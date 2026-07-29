@@ -107,3 +107,19 @@ class FedLensService:
             delta,
             interpretation,
         )
+
+    def compare_latest_cited(self, *, as_of: date):
+        from .citations import CitedComparison, cited_compare
+
+        documents = self.documents_as_of(as_of=as_of)
+        if len(documents) < 2:
+            raise LookupError("At least two documents are required for language comparison")
+        result = cited_compare(documents[-2], documents[-1])
+        if not isinstance(result, CitedComparison):
+            raise TypeError("cited_compare must return CitedComparison")
+        return result
+
+    def search(self, query: str, *, as_of: date, limit: int = 20):
+        from .citations import search_passages
+
+        return search_passages(self.documents_as_of(as_of=as_of), query, limit=limit)

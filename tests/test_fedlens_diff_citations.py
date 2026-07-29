@@ -7,7 +7,6 @@ from pathlib import Path
 
 from fedlens_service import FedLensService, cited_compare, write_checksums_into_manifest
 
-
 ROOT = Path(__file__).resolve().parents[1] / "services" / "fedlens" / "corpus"
 
 

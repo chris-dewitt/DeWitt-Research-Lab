@@ -114,11 +114,7 @@ def search_passages(
             end = index + len(needle)
             # Expand to enclosing sentence when possible.
             sentence = next(
-                (
-                    span
-                    for span in split_sentences(document.text)
-                    if span[0] <= index < span[1]
-                ),
+                (span for span in split_sentences(document.text) if span[0] <= index < span[1]),
                 (index, end, document.text[index:end]),
             )
             hits.append(

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-LOC-100
 title: "Atticus Local Runner Project README"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-28
+last_updated: 2026-07-29
 ---
 
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-28
 
     **Role in DeWitt Research Laboratory:** Installable private execution node for scoped local files, repositories, shell profiles, voice, and applications.
 
-    Central V1 feature with a strict security bar. The current prototype provides canonical approved-root listing plus redacted `inspect_text`/`read_text`, size and binary limits, traversal/symlink denial, and exact-digest atomic text-write proposals. Pairing, voice, sandboxed commands, OS credential storage, and signed updates remain planned. The public website never pairs to DeWitt’s real runner.
+    Central V1 feature with a strict security bar. The current prototype provides canonical approved-root listing plus redacted `inspect_text`/`read_text`, size and binary limits, traversal/symlink denial, and exact-digest atomic text-write proposals. Writes now flow through `ApprovedWriteFlow`: an expiring, actor-identified, workspace-scoped approval grant bound to the exact proposal digest, with a redacted append-only local audit log; expired, re-bound, or changed-workspace applies are denied and audited. Pairing, voice, sandboxed commands, OS credential storage, and signed updates remain planned. The public website never pairs to DeWitt’s real runner.
 
     This directory is an independently testable part of the DRL monorepo. It inherits the laboratory constitution in [`LABORATORY_BIBLE.md`](../../LABORATORY_BIBLE.md), the agent contract in [`AGENTS.md`](../../AGENTS.md), and canonical protocol/security/data contracts under [`schemas/`](../../schemas). Project specifications below govern this component; a conflict with an approved laboratory-wide document requires an ADR rather than an improvised compromise.
 

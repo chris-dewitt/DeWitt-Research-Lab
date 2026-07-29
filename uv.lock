@@ -81,7 +81,7 @@ requires-dist = [
 
 [[package]]
 name = "atticus-local-runner"
-version = "0.2.0"
+version = "0.3.0"
 source = { editable = "apps/atticus-local-runner" }
 dependencies = [
     { name = "drl-ai-core" },

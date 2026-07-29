@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
-version: 3.3.0
+version: 3.4.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-28
+last_updated: 2026-07-29
 ---
 
 # Requirement Traceability Matrix
@@ -25,8 +25,8 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-SYS-010 — No component shall infer completion solely from prose; evidence artifacts shall determine release status. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-001 — The model shall never grant its own permission or override deterministic policy. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-002 — Public Atticus shall expose no external write tool or unrestricted code/shell execution. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SEC-003 — Consequential private actions shall require a scoped, digest-bound, expiring approval. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SEC-004 — Changed arguments or effect shall invalidate a prior approval. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SEC-003 — Consequential private actions shall require a scoped, digest-bound, expiring approval. | Security | `docs/06-security/` | DRL-010 | `apps/atticus-local-runner/.../approvals.py` | `tests/test_local_runner.py` | expiry/scope denial + redacted audit | — | PARTIAL |
+| DRL-SEC-004 — Changed arguments or effect shall invalidate a prior approval. | Security | `docs/06-security/` | DRL-010 | `ApprovedWriteFlow` + `SandboxedWorkspace.apply_write` | `tests/test_local_runner.py` | changed-workspace/digest denial audited | — | PARTIAL |
 | DRL-SEC-005 — Private devices shall initiate outbound connections; cloud services shall not require inbound device exposure. | Security | `docs/06-security/` | DRL-009 | `SandboxedWorkspace` local library (no listener) | `tests/test_local_runner.py` | approved-root only | — | PARTIAL |
 | DRL-SEC-006 — Secrets shall remain outside source, prompts, traces, and public artifacts and use approved secret stores. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-007 — Untrusted retrieved content and tool output shall be treated as data, not instruction. | Security | `docs/06-security/` | DRL-008 | `structured_output` repair quarantine + schema strip | `tests/test_structured_output.py` | injection markers traced as data | — | PARTIAL |

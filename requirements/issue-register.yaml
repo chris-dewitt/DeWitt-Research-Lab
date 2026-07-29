@@ -219,10 +219,13 @@ issues:
     evidence_owner: FedLens
     labels: [fedlens, nlp]
     title: Implement cited document comparison and search
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-015]
     body: .github/ISSUE_BODIES/DRL-016.md
     requirements: [DRL-SYS-004, DRL-EVL-002]
+    evidence:
+      - services/fedlens/src/fedlens_service/citations.py
+      - tests/test_fedlens_diff_citations.py
   - id: DRL-017
     milestone: M3
     mission: 12

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PKG-002
 title: "DRL AI Core Package"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-07-29
 ---
 
 # DRL AI Core Package
@@ -56,6 +56,9 @@ The package is not permission to centralize unrelated project logic, add hidden 
   content-minimized trace evidence. Untrusted model text is never elevated into
   system/policy instructions during repair; `$schema`/`$id` on instances cannot
   redefine the fixed control-plane schema; repair budgets are hard caps.
+- `bakeoff`: deterministic Core/Edge candidate-register loader and scaffold
+  report (licenses/hardware/cost/latency/quality/limitations) that never
+  declares a selected base model (DIR-004 remains open).
 - `execution`: deadlines, cancellation, retry budgets, circuit breakers, and idempotency declarations.
 - `telemetry`: content-minimized logs/traces/metrics and correlation propagation.
 - `provenance`: source/artifact/claim binding helpers.

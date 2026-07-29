@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.4.1
+version: 4.5.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-07-29
@@ -16,12 +16,12 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete; Mission 00/01 CI repair and
-  DRL-005/007/008/009/011 merged.
-- Active mission: **09 Local Runner** — DRL-010 patch proposal and local
-  approval flow.
+- Foundation generation: complete through DRL-010; next combined slice
+  DRL-012 bake-off scaffold + DRL-013 local voice.
+- Active mission: **08 Model/Data** + **09 Local Runner** (combined PR).
 - Integration branch: still to be created by operator via DRL-001.
-- Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
+- Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
+  scaffold only — no winner).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
@@ -34,7 +34,9 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | MERGED | PR #10 |
 | 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | MERGED | PR #11 |
 | 09 / DRL-009 | Cursor cloud agent | `cursor/drl-009-approved-root-inspection-ad29` | 2026-07-28 | MERGED | PR #12 |
-| 09 / DRL-010 | Claude Code cloud agent | `claude/reas-repo-review-ch2zh6` | 2026-07-29 | IN PROGRESS | — |
+| 00 docs | Claude Code cloud agent | `claude/reas-repo-review-ch2zh6` | 2026-07-29 | MERGED | PR #13 |
+| 09 / DRL-010 | Claude Code cloud agent | `claude/reas-repo-review-ch2zh6` | 2026-07-29 | MERGED | PR #14 |
+| 08+09 / DRL-012+013 | Cursor cloud agent | `cursor/drl-012-013-bakeoff-voice-ad29` | 2026-07-29 | IN REVIEW | PR #15 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -224,3 +226,17 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Verification: `make verify` → 93 passed; lint/typecheck (45 files)/security
   clean
 - Handoff: `agents/handoffs/2026-07-29-drl-010.md`
+- Merged: PR #14 (docs fix was PR #13)
+
+### 2026-07-29 — DRL-012 + DRL-013 combined (bake-off scaffold + local voice)
+
+- Branch: `cursor/drl-012-013-bakeoff-voice-ad29`
+- DRL-012: versioned Core/Edge candidate register + `run_bakeoff_scaffold`
+  report (licenses/hardware/cost/latency/quality/limitations); no winner;
+  DIR-004 remains open
+- DRL-013: `LocalVoiceSession` push-to-talk arming, visible capture, local/
+  offline processing, optional raw retention, turn deletion
+- Tests: `tests/test_bakeoff_scaffold.py`, `tests/test_local_voice.py`
+- Verification: `make verify` → 101 passed; lint/typecheck clean
+- PR: #15
+- Handoff: `agents/handoffs/2026-07-29-drl-012-013.md`

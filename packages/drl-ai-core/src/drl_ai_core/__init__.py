@@ -1,5 +1,6 @@
 """Shared deterministic utilities for DRL AI components."""
 
+from .bakeoff import BakeoffCandidate, load_bakeoff_register, run_bakeoff_scaffold
 from .gateway import ModelGateway
 from .mock_provider import MockOpenWeightProvider
 from .providers import (
@@ -27,6 +28,7 @@ from .structured_output import (
 )
 
 __all__ = [
+    "BakeoffCandidate",
     "ChatMessage",
     "ClosedWeightRejectedError",
     "CompletionConstraints",
@@ -47,8 +49,10 @@ __all__ = [
     "canonical_digest",
     "contains_injection_marker",
     "extract_json_candidate",
+    "load_bakeoff_register",
     "redact_text",
+    "run_bakeoff_scaffold",
     "validate_against_schema",
 ]
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

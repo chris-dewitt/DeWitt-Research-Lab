@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED OPERATING PROCEDURE
 owner: DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-07-29
 ---
 
 # Director's Decision and Escalation Ledger
@@ -53,7 +53,7 @@ DeWitt's approval.
 | DIR-001 | Repository | What GitHub owner and repository slug will host DRL? | Personal account is simplest; an organization provides cleaner long-term governance. Observed push redirect to `chris-dewitt/DeWitt-Research-Lab-Foundation` (legacy lowercase remote still resolves). | Confirm personal slug casing/org as canonical or schedule org transfer; preserve transferability. | Director confirmation required (remote exists; identity not finalized) |
 | DIR-002 | GCP | What projects, billing account, and primary US region will be used? | Separate dev/stage/prod/research projects reduce blast radius but require more setup. | Begin with one budget-capped development project, then create isolated production and research projects before public beta. | Director input required before deployment |
 | DIR-003 | Security | What public address receives vulnerability reports? | A dedicated alias protects personal workflow and supports policy publication. | Create `security@dwit-labs.com` before public launch. | Director input required |
-| DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. | Run the documented bake-off; do not select by brand preference. | Evidence gate |
+| DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. | Run the documented bake-off; do not select by brand preference. Scaffold register + fixture report landed (DRL-012); no winner declared. | Evidence gate — scaffold only |
 | DIR-005 | Public access | What anonymous and authenticated quotas apply? | Higher limits improve exploration but increase abuse and cost. | Use fixture/replay mode by default; open bounded inference only after load and abuse testing. | Evidence gate |
 | DIR-006 | Legal | When should DRL form a legal entity or register marks? | Formation adds cost and administration but may help contracts and liability separation. | Continue truthful independent-initiative language; obtain professional advice before contracts or material revenue. | Deferred Director/legal decision |
 

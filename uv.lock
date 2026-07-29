@@ -251,8 +251,18 @@ requires-dist = [
 
 [[package]]
 name = "fedlens-service"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "services/fedlens" }
+dependencies = [
+    { name = "drl-ai-core" },
+    { name = "pyyaml" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "drl-ai-core", editable = "packages/drl-ai-core" },
+    { name = "pyyaml", specifier = ">=6.0" },
+]
 
 [[package]]
 name = "iniconfig"

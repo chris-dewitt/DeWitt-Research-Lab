@@ -139,10 +139,13 @@ issues:
     evidence_owner: Local Runner
     labels: [local-runner, approvals]
     title: Add patch proposal and local approval flow
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-009]
     body: .github/ISSUE_BODIES/DRL-010.md
     requirements: [DRL-SEC-003, DRL-SEC-004]
+    evidence:
+      - apps/atticus-local-runner/src/atticus_local_runner/approvals.py
+      - tests/test_local_runner.py
   - id: DRL-011
     milestone: M2
     mission: 4

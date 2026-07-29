@@ -18,8 +18,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - Foundation generation: complete; Mission 00/01 CI repair and
   DRL-005/007/008/009/011 merged.
-- Active mission: none reserved; next mission per
-  `agents/SEQUENTIAL_EXECUTION_PLAN.md`.
+- Active mission: **09 Local Runner** — DRL-010 patch proposal and local
+  approval flow.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
@@ -34,6 +34,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 07 / DRL-008 | Cursor cloud agent | `cursor/drl-008-structured-output-repair-ad29` | 2026-07-27 | MERGED | PR #10 |
 | 04 / DRL-011 | Cursor cloud agent | `cursor/drl-011-evalforge-permission-suite-ad29` | 2026-07-28 | MERGED | PR #11 |
 | 09 / DRL-009 | Cursor cloud agent | `cursor/drl-009-approved-root-inspection-ad29` | 2026-07-28 | MERGED | PR #12 |
+| 09 / DRL-010 | Claude Code cloud agent | `claude/reas-repo-review-ch2zh6` | 2026-07-29 | IN PROGRESS | — |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -205,3 +206,21 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - PR: #12
 - Handoff: `agents/handoffs/2026-07-28-drl-009.md`
 - Merged: PR #12
+
+### 2026-07-29 — DRL-010 patch proposal and local approval flow
+
+- Branch: `claude/reas-repo-review-ch2zh6`
+- Added `ApprovedWriteFlow` propose/approve/apply over `SandboxedWorkspace`
+  with expiring, actor-identified, workspace-scoped `LocalApprovalGrant`
+  bound to the exact proposal digest (TTL 1–3600 s, default 300 s)
+- Added redacted append-only `LocalAuditLog` with JSONL export; proposal,
+  grant, apply, and every denial (expired, rebound digest/workspace, changed
+  workspace) leave audit records
+- Changed-workspace and exact-digest invalidation preserved from DRL-009;
+  atomic apply unchanged
+- Tests: TTL apply, expiry denial, digest/workspace rebinding denial,
+  changed-workspace denial, TTL/actor validation, audit append-only/redaction
+- Requirements evidence: DRL-SEC-003, DRL-SEC-004 (partial in matrix)
+- Verification: `make verify` → 93 passed; lint/typecheck (45 files)/security
+  clean
+- Handoff: `agents/handoffs/2026-07-29-drl-010.md`

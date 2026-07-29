@@ -1,6 +1,6 @@
 [project]
 name = "atticus-local-runner"
-version = "0.2.0"
+version = "0.3.0"
 description = "User-controlled local capabilities for private Atticus workflows"
 requires-python = ">=3.12,<3.14"
 dependencies = ["drl-ai-core"]

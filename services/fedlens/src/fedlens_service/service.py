@@ -5,6 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .citations import CitedComparison, PassageCitation
 
 _HAWKISH = frozenset({"elevated", "persistent", "restrictive", "inflation", "vigilant"})
 _DOVISH = frozenset({"slowing", "balanced", "easing", "softening", "patient"})
@@ -108,7 +112,7 @@ class FedLensService:
             interpretation,
         )
 
-    def compare_latest_cited(self, *, as_of: date):
+    def compare_latest_cited(self, *, as_of: date) -> CitedComparison:
         from .citations import CitedComparison, cited_compare
 
         documents = self.documents_as_of(as_of=as_of)
@@ -119,7 +123,7 @@ class FedLensService:
             raise TypeError("cited_compare must return CitedComparison")
         return result
 
-    def search(self, query: str, *, as_of: date, limit: int = 20):
+    def search(self, query: str, *, as_of: date, limit: int = 20) -> list[PassageCitation]:
         from .citations import search_passages
 
         return search_passages(self.documents_as_of(as_of=as_of), query, limit=limit)

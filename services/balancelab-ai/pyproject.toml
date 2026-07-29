@@ -1,9 +1,12 @@
 [project]
 name = "balancelab-ai"
-version = "0.1.0"
-description = "Deterministic synthetic balance-sheet scenario starter for DRL"
+version = "0.2.0"
+description = "Deterministic synthetic balance-sheet engine for DRL"
 requires-python = ">=3.12,<3.14"
-dependencies = []
+dependencies = ["drl-ai-core"]
+
+[tool.uv.sources]
+drl-ai-core = { workspace = true }
 
 [build-system]
 requires = ["hatchling"]

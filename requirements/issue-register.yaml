@@ -232,10 +232,13 @@ issues:
     evidence_owner: BalanceLab
     labels: [balancelab, quant]
     title: Expand synthetic bank and scenario engine
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-005]
     body: .github/ISSUE_BODIES/DRL-017.md
     requirements: [DRL-SYS-008]
+    evidence:
+      - services/balancelab-ai/src/balancelab_ai/scenarios.py
+      - tests/test_balancelab_scenarios.py
   - id: DRL-018
     milestone: M3
     mission: 13

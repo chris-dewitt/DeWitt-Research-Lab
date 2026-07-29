@@ -112,8 +112,14 @@ wheels = [
 
 [[package]]
 name = "balancelab-ai"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "services/balancelab-ai" }
+dependencies = [
+    { name = "drl-ai-core" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "drl-ai-core", editable = "packages/drl-ai-core" }]
 
 [[package]]
 name = "bandit"

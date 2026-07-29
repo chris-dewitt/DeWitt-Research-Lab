@@ -9,7 +9,6 @@ import pytest
 import yaml
 from fedlens_service import FedLensService, load_fed_corpus, write_checksums_into_manifest
 
-
 ROOT = Path(__file__).resolve().parents[1] / "services" / "fedlens" / "corpus"
 
 

@@ -7,7 +7,7 @@ from dataclasses import asdict, dataclass
 from datetime import date, datetime
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from drl_ai_core import canonical_digest
 
@@ -121,7 +121,10 @@ class FileObservationCache:
         path = self._path(cache_key)
         if not path.exists():
             return None
-        return json.loads(path.read_text(encoding="utf-8"))
+        loaded = json.loads(path.read_text(encoding="utf-8"))
+        if not isinstance(loaded, dict):
+            raise AtlasValidationError(f"corrupt cache entry for {cache_key}")
+        return cast(dict[str, Any], loaded)
 
     def put(self, cache_key: str, payload: dict[str, Any]) -> str:
         body = json.dumps(payload, sort_keys=True, default=str)

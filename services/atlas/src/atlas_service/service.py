@@ -25,6 +25,17 @@ class AtlasService:
     def __init__(self, observations: list[MetricObservation] | None = None) -> None:
         self._observations = observations or self.fixture_observations()
 
+    @classmethod
+    def from_public_adapter(cls, adapter: object) -> AtlasService:
+        """Build a service from a validated/cached public adapter load."""
+
+        from .adapter import PublicFixtureAdapter
+
+        if not isinstance(adapter, PublicFixtureAdapter):
+            raise TypeError("adapter must be a PublicFixtureAdapter")
+        loaded = adapter.load()
+        return cls([item.observation for item in loaded])
+
     @staticmethod
     def fixture_observations() -> list[MetricObservation]:
         """Return explicitly synthetic/public-demo observations."""

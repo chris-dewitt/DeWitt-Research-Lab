@@ -195,10 +195,13 @@ issues:
     evidence_owner: Atlas
     labels: [atlas, data]
     title: Add first point-in-time public Atlas adapter
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-007]
     body: .github/ISSUE_BODIES/DRL-014.md
     requirements: [DRL-DAT-001, DRL-DAT-002]
+    evidence:
+      - services/atlas/src/atlas_service/adapter.py
+      - tests/test_atlas_adapter.py
   - id: DRL-015
     milestone: M3
     mission: 11

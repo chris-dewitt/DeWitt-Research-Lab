@@ -36,7 +36,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 09 / DRL-009 | Cursor cloud agent | `cursor/drl-009-approved-root-inspection-ad29` | 2026-07-28 | MERGED | PR #12 |
 | 00 docs | Claude Code cloud agent | `claude/reas-repo-review-ch2zh6` | 2026-07-29 | MERGED | PR #13 |
 | 09 / DRL-010 | Claude Code cloud agent | `claude/reas-repo-review-ch2zh6` | 2026-07-29 | MERGED | PR #14 |
-| 08+09 / DRL-012+013 | Cursor cloud agent | `cursor/drl-012-013-bakeoff-voice-ad29` | 2026-07-29 | IN REVIEW | PR #15 |
+| 08+09 / DRL-012+013 | Cursor cloud agent | `cursor/drl-012-013-bakeoff-voice-ad29` | 2026-07-29 | MERGED | PR #15 |
+| 10 / DRL-014 | Cursor cloud agent | `cursor/drl-014-atlas-adapter-ad29` | 2026-07-29 | IN REVIEW | TBD |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -240,3 +241,10 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Verification: `make verify` → 101 passed; lint/typecheck clean
 - PR: #15
 - Handoff: `agents/handoffs/2026-07-29-drl-012-013.md`
+
+### 2026-07-29 — DRL-014 Atlas public point-in-time adapter
+
+- Branch: `cursor/drl-014-atlas-adapter-ad29`
+- Source terms, temporal validation, disk cache, failure fixture
+- Handoff: `agents/handoffs/2026-07-29-drl-014.md`
+

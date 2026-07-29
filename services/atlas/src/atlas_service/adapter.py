@@ -166,7 +166,8 @@ class PublicFixtureAdapter:
             if cached is None:
                 checksum = self.cache.put(cache_key, record)
             else:
-                checksum = f"sha256:{canonical_digest(json.dumps(cached, sort_keys=True, default=str))}"
+                payload = json.dumps(cached, sort_keys=True, default=str)
+                checksum = f"sha256:{canonical_digest(payload)}"
             loaded.append(
                 CachedObservation(
                     observation=observation,

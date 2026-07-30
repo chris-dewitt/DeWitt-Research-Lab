@@ -41,7 +41,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 11 / DRL-015 | Cursor cloud agent | `cursor/drl-015-fedlens-corpus-ad29` | 2026-07-29 | MERGED | PR #17 |
 | 12 / DRL-017 | Cursor cloud agent | `cursor/drl-017-balancelab-scenarios-ad29` | 2026-07-29 | MERGED | PR #18 |
 | 11 / DRL-016 | Cursor cloud agent | `cursor/drl-016-fedlens-citations-ad29` | 2026-07-29 | MERGED OFF-TARGET | PR #19 → 015 branch |
-| 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | IN REVIEW | TBD |
+| 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | IN REVIEW | PR #20 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 

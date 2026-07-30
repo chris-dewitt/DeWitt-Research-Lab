@@ -4,11 +4,15 @@ from __future__ import annotations
 
 from dataclasses import asdict
 from datetime import date
-from decimal import Decimal
 from typing import Any
 
 from atlas_service import AtlasService
-from balancelab_ai import BalanceSheet, RateScenario, ScenarioEngine
+from balancelab_ai import (
+    SCENARIO_CATALOG,
+    ScenarioEngine,
+    project_named_scenario,
+    sample_regional_bank,
+)
 from drl_protocol import EvidenceItem, RiskTier, ToolDefinition
 from fedlens_service import FedLensService
 
@@ -19,6 +23,18 @@ def _parse_date(value: Any) -> date:
     if not isinstance(value, str):
         raise ValueError("as_of must be an ISO date string")
     return date.fromisoformat(value)
+
+
+def _catalog_scenario_name(raw: str) -> str:
+    """Map planner aliases onto the BalanceLab scenario catalog."""
+
+    name = raw.strip()
+    if name in SCENARIO_CATALOG:
+        return name
+    alias = name.removeprefix("synthetic-")
+    if alias in SCENARIO_CATALOG:
+        return alias
+    raise KeyError(f"unknown scenario {raw!r}")
 
 
 def register_foundation_tools(
@@ -95,7 +111,8 @@ def register_foundation_tools(
     def fedlens_handler(arguments: dict[str, Any]) -> ToolOutput:
         as_of = _parse_date(arguments["as_of"])
         document = fedlens.latest(as_of=as_of)
-        comparison = fedlens.compare_latest(as_of=as_of)
+        cited = fedlens.compare_latest_cited(as_of=as_of)
+        comparison = cited.comparison
         return ToolOutput(
             evidence=[
                 EvidenceItem(
@@ -105,10 +122,21 @@ def register_foundation_tools(
                     document.published_date.isoformat(),
                     document.text,
                     document.citation,
-                    {"fixture": True, "comparison": asdict(comparison)},
+                    {
+                        "fixture": True,
+                        "comparison": asdict(comparison),
+                        "added_passage_citations": [p.citation for p in cited.added_passages],
+                        "removed_passage_citations": [p.citation for p in cited.removed_passages],
+                    },
                 )
             ],
-            artifacts={"fed_language_comparison": asdict(comparison)},
+            artifacts={
+                "fed_language_comparison": asdict(comparison),
+                "fed_cited_comparison": {
+                    "added_passages": [asdict(item) for item in cited.added_passages],
+                    "removed_passages": [asdict(item) for item in cited.removed_passages],
+                },
+            },
             message=comparison.interpretation,
         )
 
@@ -123,17 +151,10 @@ def register_foundation_tools(
     )
 
     def balancelab_handler(arguments: dict[str, Any]) -> ToolOutput:
-        scenario = RateScenario(
-            str(arguments["name"]),
-            int(arguments["short_rate_bps"]),
-            int(arguments["long_rate_bps"]),
-        )
-        sample_bank = BalanceSheet(
-            earning_assets=Decimal("8500"),
-            interest_bearing_deposits=Decimal("6200"),
-            wholesale_funding=Decimal("900"),
-        )
-        result = balancelab.project(sample_bank, scenario)
+        scenario_name = _catalog_scenario_name(str(arguments["name"]))
+        bank = sample_regional_bank()
+        artifact = project_named_scenario(bank, scenario_name, engine=balancelab)
+        result = artifact.result
         content = (
             f"Synthetic annual NII change: ${result.annual_nii_change} million; "
             f"curve slope change: {result.curve_slope_change_bps} bps."
@@ -141,21 +162,29 @@ def register_foundation_tools(
         return ToolOutput(
             evidence=[
                 EvidenceItem(
-                    f"balancelab-{scenario.name}",
+                    f"balancelab-{scenario_name}",
                     "BalanceLab deterministic scenario engine",
                     "Synthetic regional-bank rate scenario",
                     "2026-07-27",
                     content,
-                    "calculation://balancelab/synthetic-bear-steepener",
+                    f"calculation://balancelab/{artifact.artifact_id}",
                     {
                         "fixture": True,
                         "lineage": list(result.calculation_lineage),
+                        "artifact_digest": artifact.digest,
                     },
                 )
             ],
             artifacts={
-                "balance_sheet": asdict(sample_bank),
+                "balance_sheet": asdict(bank.balance_sheet),
                 "scenario_result": asdict(result),
+                "calculation_artifact": {
+                    "artifact_id": artifact.artifact_id,
+                    "bank_id": artifact.bank_id,
+                    "scenario_name": artifact.scenario_name,
+                    "digest": artifact.digest,
+                    "result": asdict(result),
+                },
             },
             message=content,
         )

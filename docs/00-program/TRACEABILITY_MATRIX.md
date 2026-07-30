@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
-version: 3.4.0
+version: 3.5.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-29
+last_updated: 2026-07-30
 ---
 
 # Requirement Traceability Matrix
@@ -16,11 +16,11 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-SYS-001 — Atticus shall coordinate specialist services only through versioned typed contracts. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-002 — The V1 production intelligence path shall use identifiable open-weight models and disclose routing. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-003 — The local/mock developer profile shall run without paid commercial model APIs. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SYS-004 — Every externally visible action and public claim shall be attributable to a trace and artifact/evidence chain. | Architecture | `docs/02-architecture/` | DRL-008 | `packages/drl-ai-core/.../structured_output.py` | `tests/test_structured_output.py` | structured parse/repair trace events | — | PARTIAL |
+| DRL-SYS-004 — Every externally visible action and public claim shall be attributable to a trace and artifact/evidence chain. | Architecture | `docs/02-architecture/` | DRL-008, DRL-018 | `structured_output.py`; `AtticusOrchestrator._link_workflow` | `tests/test_structured_output.py`; `tests/integration/test_evidence_to_scenario_trace.py` | linked digests on completed runs | `linked_workflow` artifact | PARTIAL |
 | DRL-SYS-005 — Every long-running request shall support deadline, cancellation, bounded retries, and terminal status. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-006 — Public, private-cloud, private-local, and offline modes shall have distinct capabilities and data policies. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-007 — Protocol-breaking changes shall require versioning, migration, consumer compatibility evidence, and ADR. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-SYS-008 — One integrated reference workflow shall exercise Atticus, Atlas, FedLens, BalanceLab, and EvalForge. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-SYS-008 — One integrated reference workflow shall exercise Atticus, Atlas, FedLens, BalanceLab, and EvalForge. | Architecture | `docs/02-architecture/` / `docs/01-product/INTEGRATED_REFERENCE_DEMO.md` | DRL-018 | `atticus_control_plane` runtime/tools/orchestrator | `tests/integration/test_evidence_to_scenario_trace.py`; `tests/test_atticus_foundation.py` | EvalForge score on linked run | `make demo` / `atticus-demo --public` | PARTIAL |
 | DRL-SYS-009 — The platform shall degrade truthfully to replay/documentation when live compute is unavailable. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SYS-010 — No component shall infer completion solely from prose; evidence artifacts shall determine release status. | Architecture | `docs/02-architecture/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-SEC-001 — The model shall never grant its own permission or override deterministic policy. | Security | `docs/06-security/` | — | — | — | — | — | APPROVED-FOUNDATION |

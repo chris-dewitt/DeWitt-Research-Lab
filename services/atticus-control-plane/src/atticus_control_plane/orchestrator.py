@@ -4,8 +4,9 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable
 from datetime import UTC, datetime
+from typing import Any
 
-from drl_ai_core import redact_text
+from drl_ai_core import canonical_digest, redact_text
 from drl_protocol import (
     ApprovalGrant,
     EvidenceItem,
@@ -309,6 +310,28 @@ class AtticusOrchestrator:
             evidence=evidence,
             terminal_state=intended_terminal.value,
         )
+        evaluation = report.to_dict()
+        summary = self._synthesize(evidence, failures)
+        linked = self._link_workflow(
+            request=request,
+            evidence=evidence,
+            artifacts=artifacts,
+            summary=summary,
+            evaluation=evaluation,
+        )
+        artifacts["linked_workflow"] = linked
+        link_map = linked["links"]
+        trace.append(
+            self._event(
+                request,
+                RunState.EVALUATING,
+                "workflow_linked",
+                "Linked Atlas, FedLens, BalanceLab, report, and evaluation digests.",
+                sequence=len(trace) + 1,
+                link_keys=sorted(link_map.keys()),
+                workflow_digest=linked["workflow_digest"],
+            )
+        )
         state = self._transition(state, intended_terminal)
         if not is_terminal(state):
             raise RuntimeError(f"Expected terminal state, got {state.value}")
@@ -320,14 +343,15 @@ class AtticusOrchestrator:
                 f"Workflow finished with EvalForge score {report.score:.3f}.",
                 sequence=len(trace) + 1,
                 evaluation_passed=report.passed,
+                workflow_digest=linked["workflow_digest"],
             )
         )
 
-        summary = self._synthesize(evidence, failures)
         limitations = [
             "Macro, market, and Fed inputs are synthetic fixtures for local development.",
             "BalanceLab uses a simplified educational repricing model, not production bank data.",
             "The deterministic planner stands in for Atticus Core until the model bake-off.",
+            "Linked workflow is prototype maturity; signed replay packaging is DRL-019.",
         ]
         limitations.extend(failures)
         return TaskResult(
@@ -337,9 +361,67 @@ class AtticusOrchestrator:
             evidence,
             trace,
             artifacts,
-            report.to_dict(),
+            evaluation,
             limitations,
         )
+
+    @staticmethod
+    def _link_workflow(
+        *,
+        request: TaskRequest,
+        evidence: list[EvidenceItem],
+        artifacts: dict[str, object],
+        summary: str,
+        evaluation: dict[str, object],
+    ) -> dict[str, Any]:
+        """Build one inspectable link graph for the five DRL-018 artifacts."""
+
+        atlas_ids = [item.evidence_id for item in evidence if item.evidence_id.startswith("atlas-")]
+        fed_ids = [item.evidence_id for item in evidence if item.evidence_id.startswith("fedlens-")]
+        balance_ids = [
+            item.evidence_id for item in evidence if item.evidence_id.startswith("balancelab-")
+        ]
+        calculation = artifacts.get("calculation_artifact")
+        calculation_digest = None
+        if isinstance(calculation, dict):
+            calculation_digest = calculation.get("digest")
+        report_payload = {"task_id": request.task_id, "summary": summary}
+        report_digest = f"sha256:{canonical_digest(report_payload)}"
+        evaluation_digest = f"sha256:{canonical_digest(evaluation)}"
+        links: dict[str, dict[str, object]] = {
+            "atlas": {
+                "artifact_key": "atlas_snapshot",
+                "evidence_ids": atlas_ids,
+                "present": "atlas_snapshot" in artifacts and bool(atlas_ids),
+            },
+            "fedlens": {
+                "artifact_key": "fed_cited_comparison",
+                "evidence_ids": fed_ids,
+                "present": "fed_language_comparison" in artifacts and bool(fed_ids),
+            },
+            "balancelab": {
+                "artifact_key": "calculation_artifact",
+                "evidence_ids": balance_ids,
+                "digest": calculation_digest,
+                "present": isinstance(calculation, dict) and bool(balance_ids),
+            },
+            "report": {
+                "digest": report_digest,
+                "present": bool(summary.strip()),
+            },
+            "evaluation": {
+                "digest": evaluation_digest,
+                "passed": bool(evaluation.get("passed")),
+                "present": "passed" in evaluation,
+            },
+        }
+        workflow_digest = f"sha256:{canonical_digest({'task_id': request.task_id, 'links': links})}"
+        return {
+            "task_id": request.task_id,
+            "maturity": "prototype",
+            "workflow_digest": workflow_digest,
+            "links": links,
+        }
 
     @staticmethod
     def _synthesize(evidence: list[EvidenceItem], failures: list[str]) -> str:

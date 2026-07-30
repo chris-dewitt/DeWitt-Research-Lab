@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-091
 title: "Mission 00 Current-State Baseline"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-07-30
 ---
 
 # Mission 00 Current-State Baseline
@@ -27,8 +27,8 @@ agents do not confuse specification density with product maturity.
 
 | Surface | Maturity | Evidence |
 |---|---|---|
-| Atticus control plane | `prototype` | Deterministic planner, policy, approvals, orchestration, CLI, HTTP adapter |
-| Atlas / FedLens / BalanceLab / EvalForge | `prototype` | Fixture specialists with unit coverage |
+| Atticus control plane | `prototype` | Deterministic planner, policy, approvals, orchestration, CLI, HTTP adapter; DRL-018 linked workflow |
+| Atlas / FedLens / BalanceLab / EvalForge | `prototype` | M3 adapters/corpus/citations/scenarios composed into Atticus runtime |
 | Local runner safety primitives | `prototype` | Traversal/symlink rejection; approval-bound writes |
 | Protocol package | `prototype` | Pydantic models + JSON Schemas |
 | lab-web / atticus-console | `specified` | Placeholder package scripts only |
@@ -52,7 +52,7 @@ agents do not confuse specification density with product maturity.
 |---|---|
 | Specified behavior | Controlled docs / schemas / acceptance criteria |
 | Existing behavior | Runnable Python vertical slice and validators |
-| Missing behavior | Real public adapters, trained models, web UIs, cloud deploy, Wix publish |
+| Missing behavior | Signed replays (DRL-019), trained models, web UIs, cloud deploy, Wix publish |
 | Conflicting behavior | Director Memo previously said “no GitHub remote”; remote now exists — escalate, do not silently rewrite identity |
 | Tests that prove behavior | `tests/`, `make demo`, foundation/open/domain validators |
 | Unverified claims | Any public “live” or “open-weight production” statement |

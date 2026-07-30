@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.5.0
+version: 4.6.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-29
+last_updated: 2026-07-30
 ---
 
 
@@ -16,9 +16,9 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- Foundation generation: complete through DRL-010; next combined slice
-  DRL-012 bake-off scaffold + DRL-013 local voice.
-- Active mission: **08 Model/Data** + **09 Local Runner** (combined PR).
+- M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
+  (DRL-016 landed via corrective PR #20).
+- Active mission: **13 Integration** — DRL-018 evidence-to-scenario linked workflow.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -41,7 +41,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 11 / DRL-015 | Cursor cloud agent | `cursor/drl-015-fedlens-corpus-ad29` | 2026-07-29 | MERGED | PR #17 |
 | 12 / DRL-017 | Cursor cloud agent | `cursor/drl-017-balancelab-scenarios-ad29` | 2026-07-29 | MERGED | PR #18 |
 | 11 / DRL-016 | Cursor cloud agent | `cursor/drl-016-fedlens-citations-ad29` | 2026-07-29 | MERGED OFF-TARGET | PR #19 → 015 branch |
-| 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | IN REVIEW | PR #20 |
+| 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | MERGED | PR #20 |
+| 13 / DRL-018 | Cursor cloud agent | `cursor/drl-018-integrated-workflow-ad29` | 2026-07-30 | IN PROGRESS | TBD |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -58,6 +59,15 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-07-30 — DRL-018 evidence-to-scenario linked workflow
+
+- Branch: `cursor/drl-018-integrated-workflow-ad29`
+- Composed M3 Atlas/FedLens/BalanceLab specialists into Atticus runtime
+- Added `linked_workflow` digests + `workflow_linked` trace event
+- Docs/traceability/memo/changelog/issue-register updated
+- Next: DRL-019 signed replays after merge
+
 
 ### 2026-07-27 — Foundation implementation upgrade
 

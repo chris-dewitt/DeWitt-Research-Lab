@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED OPERATING PROCEDURE
 owner: DeWitt
-last_updated: 2026-07-29
+last_updated: 2026-07-30
 ---
 
 # Director's Decision and Escalation Ledger
@@ -87,11 +87,14 @@ DeWitt's approval.
 ## Current implementation truth
 
 The repository contains a runnable local research vertical slice using
-deterministic fixture specialists and a rule-based Atticus planning path. This
-proves component contracts, policy behavior, approval binding, evidence
-lineage, integrated orchestration, and evaluation plumbing. It is not yet a
-public production service, a trained Atticus model release, or a deployed Wix
-site.
+deterministic fixture specialists and a rule-based Atticus planning path. M3
+specialists (Atlas public adapter, bounded FedLens corpus with passage
+citations, BalanceLab scenario catalog) are composed into one prototype
+evidence-to-scenario workflow with a five-way `linked_workflow` artifact
+(DRL-018). This proves component contracts, policy behavior, approval binding,
+evidence lineage, integrated orchestration, and evaluation plumbing. It is not
+yet a public production service, a trained Atticus model release, a signed
+replay package (DRL-019), or a deployed Wix site.
 
 ## Release check
 

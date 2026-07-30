@@ -1,13 +1,24 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-29
+last_updated: 2026-07-30
 ---
 
 # Foundation Changelog
+
+## 2026-07-30 — M3 specialists and linked integrated workflow
+
+- DRL-014–017: Atlas public adapter, FedLens bounded corpus + passage citations,
+  and BalanceLab scenario catalog landed on `main` (PRs #16–#18, #20).
+- DRL-018: Atticus local runtime composes those specialists and emits one
+  `linked_workflow` artifact binding Atlas, FedLens, BalanceLab, report, and
+  evaluation digests (`tests/integration/test_evidence_to_scenario_trace.py`).
+- Documentation: integrated demo maturity table, traceability for DRL-SYS-008,
+  Director's Memo implementation truth, and issue-register evidence updated.
+- Signed replay packaging remains DRL-019; model winner remains DIR-004.
 
 ## 2026-07-28 — First implementation missions merged
 

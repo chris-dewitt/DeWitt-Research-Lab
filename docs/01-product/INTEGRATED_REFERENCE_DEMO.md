@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRD-005
 title: "Integrated Reference Demonstration Specification"
-version: 2.1.0
+version: 2.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 ---
 
 
@@ -27,7 +27,7 @@ The production demo pins an `as_of_date`; “latest” is resolved and displayed
 | Local fixture orchestration Atlas → FedLens → BalanceLab → EvalForge → report | `prototype` | `atticus-demo --public`, `tests/integration/test_evidence_to_scenario_trace.py` |
 | Five-way linked artifact digests on one task | `prototype` | `TaskResult.artifacts["linked_workflow"]` + `workflow_linked` trace event (DRL-018) |
 | M3 specialist composition (public Atlas adapter, bounded Fed corpus + citations, scenario catalog) | `prototype` | `build_m3_specialists()` in control-plane runtime |
-| Signed replay / independent verification package | `specified` | Deferred to DRL-019 |
+| Signed replay / independent verification package | `prototype` | `services/evalforge/fixtures/signed_replays/` (fixture HMAC; not production keys) |
 | Live staging/production open-weight demo | `specified` | Blocked on DIR-002/DIR-004 and M4 deploy work |
 
 ## Workflow contract
@@ -51,7 +51,7 @@ The production demo pins an `as_of_date`; “latest” is resolved and displayed
 - full `ExecutionTrace` including `workflow_linked`;
 - `EvaluationReport`;
 - human-readable report summary;
-- signed replay bundle (**DRL-019** — not yet implemented).
+- signed replay bundle (**DRL-019** prototype fixtures with demo HMAC).
 
 ## Failure behavior
 
@@ -68,7 +68,7 @@ The production demo pins an `as_of_date`; “latest” is resolved and displayed
 - All values in the fixture path trace to evidence or calculation artifacts.
 - Evaluation report is generated from the same trace shown to the operator.
 - Linked workflow digests are present for Atlas, FedLens, BalanceLab, report, and evaluation.
-- Replay can be independently verified from manifest and hashes (**pending DRL-019**).
+- Replay can be independently verified from manifest and fixture HMAC hashes (production keys later).
 - Staging/production open-weight live demo remains a later gate (M4 / DIR-002 / DIR-004).
 - Mobile user can follow summary and expand details (console/Wix — later).
 - Screen-reader user receives equivalent status and evidence (later).

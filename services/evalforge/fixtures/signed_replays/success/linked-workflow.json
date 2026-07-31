@@ -1,0 +1,40 @@
+{
+  "links": {
+    "atlas": {
+      "artifact_key": "atlas_snapshot",
+      "evidence_ids": [
+        "atlas-CPI_YOY-2026-06-30",
+        "atlas-UST_2Y-2026-07-24",
+        "atlas-UST_10Y-2026-07-24"
+      ],
+      "present": true
+    },
+    "balancelab": {
+      "artifact_key": "calculation_artifact",
+      "digest": "sha256:945d82945e14aed6ce41d62577cf83fd48bbd95ee46a51b331ce9914e38e2534",
+      "evidence_ids": [
+        "balancelab-bear-steepener"
+      ],
+      "present": true
+    },
+    "evaluation": {
+      "digest": "sha256:a19025c733ae2f2e5eadabf9ad060374ad55b77e218cf3240164f5c2d49d8ee2",
+      "passed": true,
+      "present": true
+    },
+    "fedlens": {
+      "artifact_key": "fed_cited_comparison",
+      "evidence_ids": [
+        "fedlens-FOMC-2026-06-FIXTURE"
+      ],
+      "present": true
+    },
+    "report": {
+      "digest": "sha256:703662bddbf5754b98a1b116bd3a537fce2914db13e1751477de8f21a60968f7",
+      "present": true
+    }
+  },
+  "maturity": "prototype",
+  "task_id": "replay-success-001",
+  "workflow_digest": "sha256:4b9e6dd754512e212e9822a89a14600bec44e763915411abfac2784c46b317f2"
+}

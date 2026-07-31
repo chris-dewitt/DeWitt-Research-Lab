@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.2.0
+version: 1.3.0
 status: APPROVED OPERATING PROCEDURE
 owner: DeWitt
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 ---
 
 # Director's Decision and Escalation Ledger
@@ -93,8 +93,9 @@ citations, BalanceLab scenario catalog) are composed into one prototype
 evidence-to-scenario workflow with a five-way `linked_workflow` artifact
 (DRL-018). This proves component contracts, policy behavior, approval binding,
 evidence lineage, integrated orchestration, and evaluation plumbing. It is not
-yet a public production service, a trained Atticus model release, a signed
-replay package (DRL-019), or a deployed Wix site.
+yet a public production service, a trained Atticus model release, or a deployed
+Wix site. Signed success/degraded replay fixtures exist as prototype packages
+(DRL-019) using a demo HMAC key — not production signing identity.
 
 ## Release check
 

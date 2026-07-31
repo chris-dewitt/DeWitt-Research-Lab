@@ -4,7 +4,7 @@ title: "EvalForge Demonstration and Portfolio Specification"
 version: 3.0.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-01
 ---
 
 
@@ -12,6 +12,7 @@ last_updated: 2026-07-26
 
     ## Purpose
 
+    Maturity: **prototype** signed fixture replays (DRL-019) verify digests locally.
     The demonstration proves the most important engineering claims of EvalForge. Every visible result is live, replayed from a signed real trace, cached from a dated artifact, or clearly marked illustrative.
 
     ## Signature story

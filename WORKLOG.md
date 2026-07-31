@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.6.0
+version: 4.7.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 ---
 
 
@@ -43,6 +43,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 11 / DRL-016 | Cursor cloud agent | `cursor/drl-016-fedlens-citations-ad29` | 2026-07-29 | MERGED OFF-TARGET | PR #19 → 015 branch |
 | 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | MERGED | PR #20 |
 | 13 / DRL-018 | Cursor cloud agent | `cursor/drl-018-integrated-workflow-ad29` | 2026-07-30 | IN REVIEW | PR #21 |
+| 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | IN REVIEW | TBD |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -59,6 +60,13 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-01 — DRL-020 integrated workflow teaching lab
+
+- Branch: `cursor/drl-020-teaching-guide-ad29`
+- Teaching lab + contributor path link + doc guard test
+- Next after merge: M4 / DRL-021+ or remaining M1 housekeeping
+
 
 ### 2026-07-30 — DRL-018 evidence-to-scenario linked workflow
 

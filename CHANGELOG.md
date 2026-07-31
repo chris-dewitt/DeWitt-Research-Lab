@@ -1,13 +1,19 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.2.0
+version: 4.3.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 ---
 
 # Foundation Changelog
+
+## 2026-08-01 — Integrated workflow teaching lab
+
+- DRL-020: published `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` with
+  exercises, instructor notes, and no private-data requirements.
+- Linked from contributor first-hour path; guarded by `tests/docs/test_teaching_lab.py`.
 
 ## 2026-07-30 — M3 specialists and linked integrated workflow
 

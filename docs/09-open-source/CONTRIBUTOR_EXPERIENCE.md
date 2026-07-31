@@ -1,10 +1,10 @@
 ---
 document_id: DRL-OSS-004
 title: "Contributor Experience, Issue Ladder, and Mentorship"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-01
 ---
 
 # Contributor Experience, Issue Ladder, and Mentorship
@@ -23,7 +23,9 @@ A clean contributor path provides:
 4. fixture data and a replayed Atticus workflow;
 5. one test to modify safely;
 6. links to the Laboratory Bible, relevant component spec, and issue ladder;
-7. a contribution check that shows which gates will run in CI.
+7. a contribution check that shows which gates will run in CI;
+8. the integrated workflow teaching lab at
+   `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` (DRL-020).
 
 Windows, Linux, and container paths are documented according to actual support, not aspirational badges.
 

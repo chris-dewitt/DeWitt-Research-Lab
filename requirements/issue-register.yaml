@@ -269,7 +269,9 @@ issues:
     requirements: [DRL-EVL-009, DRL-SYS-009]
     evidence:
       - services/evalforge/src/evalforge_service/replay.py
-      - services/evalforge/fixtures/signed_replays/
+      - services/evalforge/fixtures/signed_replays/README.md
+      - services/evalforge/fixtures/signed_replays/success/replay-manifest.json
+      - services/evalforge/fixtures/signed_replays/degraded/replay-manifest.json
       - tests/evalforge/test_signed_replays.py
   - id: DRL-020
     milestone: M3

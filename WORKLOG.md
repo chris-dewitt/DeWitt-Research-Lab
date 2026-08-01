@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.7.0
+version: 4.8.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
@@ -18,7 +18,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **13 Integration** — DRL-019 signed replays (then DRL-020 teaching guide).
+- Active mission: **15 Research/Community** — DRL-020 teaching lab in review;
+  DRL-019 signed replays merged.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -43,7 +44,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 11 / DRL-016 | Cursor cloud agent | `cursor/drl-016-fedlens-citations-ad29` | 2026-07-29 | MERGED OFF-TARGET | PR #19 → 015 branch |
 | 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | MERGED | PR #20 |
 | 13 / DRL-018 | Cursor cloud agent | `cursor/drl-018-integrated-workflow-ad29` | 2026-07-30 | MERGED | PR #21 |
-| 13 / DRL-019 | Cursor cloud agent | `cursor/drl-019-signed-replays-ad29` | 2026-08-01 | IN REVIEW | PR #22 |
+| 13 / DRL-019 | Cursor cloud agent | `cursor/drl-019-signed-replays-ad29` | 2026-08-01 | MERGED | PR #22 |
+| 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | IN REVIEW | PR #23 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -60,6 +62,12 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-01 — DRL-020 integrated workflow teaching lab
+
+- Branch: `cursor/drl-020-teaching-guide-ad29`
+- Teaching lab + contributor path link + doc guard test
+- Next after merge: M4 / DRL-021+ or remaining M1 housekeeping
 
 ### 2026-08-01 — DRL-019 signed success and degraded replays
 

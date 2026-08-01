@@ -279,10 +279,13 @@ issues:
     evidence_owner: Research/Community
     labels: [documentation, teaching]
     title: Publish integrated workflow teaching guide
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-018]
     body: .github/ISSUE_BODIES/DRL-020.md
     requirements: [DRL-OSS-003]
+    evidence:
+      - docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md
+      - tests/docs/test_teaching_lab.py
   - id: DRL-021
     milestone: M4
     mission: 6

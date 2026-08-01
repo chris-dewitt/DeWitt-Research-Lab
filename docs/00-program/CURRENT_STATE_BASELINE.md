@@ -35,6 +35,7 @@ agents do not confuse specification density with product maturity.
 | Atticus Core / Edge weights | `specified` | Bake-off gate open (DIR-004 / G-001) |
 | GCP / Azure deploy | `specified` | Terraform/Bicep starters; no live project |
 | Wix / DNS | `specified` | Runbooks and validators; not published |
+| Teaching lab (integrated workflow) | `prototype` | `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` |
 
 ## Repository operations
 

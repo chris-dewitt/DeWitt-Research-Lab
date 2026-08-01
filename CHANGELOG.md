@@ -1,13 +1,19 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.3.0
+version: 4.4.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
 ---
 
 # Foundation Changelog
+
+## 2026-08-01 — Integrated workflow teaching lab
+
+- DRL-020: published `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` with
+  exercises, instructor notes, and no private-data requirements.
+- Linked from contributor first-hour path; guarded by `tests/docs/test_teaching_lab.py`.
 
 ## 2026-08-01 — Signed success and degraded replays
 
@@ -26,7 +32,7 @@ last_updated: 2026-08-01
   evaluation digests (`tests/integration/test_evidence_to_scenario_trace.py`).
 - Documentation: integrated demo maturity table, traceability for DRL-SYS-008,
   Director's Memo implementation truth, and issue-register evidence updated.
-- Signed replay packaging remains DRL-019; model winner remains DIR-004.
+- Model bake-off winner remains DIR-004 (scaffold only).
 
 ## 2026-07-28 — First implementation missions merged
 

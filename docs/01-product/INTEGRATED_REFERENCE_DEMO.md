@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRD-005
 title: "Integrated Reference Demonstration Specification"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-07-30
 ---
 
 
@@ -20,6 +20,16 @@ Demonstrate that DRL is one platform and that Atticus can coordinate specialist 
 
 The production demo pins an `as_of_date`; “latest” is resolved and displayed to prevent nondeterministic historical replays.
 
+## Current maturity
+
+| Claim | Maturity | Evidence |
+|---|---|---|
+| Local fixture orchestration Atlas → FedLens → BalanceLab → EvalForge → report | `prototype` | `atticus-demo --public`, `tests/integration/test_evidence_to_scenario_trace.py` |
+| Five-way linked artifact digests on one task | `prototype` | `TaskResult.artifacts["linked_workflow"]` + `workflow_linked` trace event (DRL-018) |
+| M3 specialist composition (public Atlas adapter, bounded Fed corpus + citations, scenario catalog) | `prototype` | `build_m3_specialists()` in control-plane runtime |
+| Signed replay / independent verification package | `specified` | Deferred to DRL-019 |
+| Live staging/production open-weight demo | `specified` | Blocked on DIR-002/DIR-004 and M4 deploy work |
+
 ## Workflow contract
 
 1. **Normalize request.** Extract as-of date, region, requested scenario concept, synthetic institution, horizon, output depth.
@@ -30,18 +40,18 @@ The production demo pins an `as_of_date`; “latest” is resolved and displayed
 6. **BalanceLab execution.** Deterministic engine validates institution/scenario and calculates results.
 7. **Consistency check.** Narrative values must reconcile to calculation artifact IDs.
 8. **EvalForge evaluation.** Score trajectory, citations, tools, policy, calculation consistency, latency, and cost.
-9. **Report.** Present executive summary, evidence, assumptions, scenario, results, risks, contradictions, limitations, trace, and evaluation.
+9. **Link and report.** Emit one `linked_workflow` graph binding Atlas, FedLens, BalanceLab, report, and evaluation digests; present executive summary, evidence, assumptions, scenario, results, risks, contradictions, limitations, trace, and evaluation.
 
 ## Required artifacts
 
 - `TaskRequest`;
-- Atlas and FedLens `EvidenceBundle`s;
-- proposed `ScenarioDefinition`;
+- Atlas and FedLens evidence (fixture bundles today; formal `EvidenceBundle` schema remains the target);
+- proposed `ScenarioDefinition` (catalog name today, e.g. `bear-steepener`);
 - BalanceLab `CalculationArtifact` with version/hash;
-- full `ExecutionTrace`;
+- full `ExecutionTrace` including `workflow_linked`;
 - `EvaluationReport`;
-- human-readable report;
-- signed replay bundle.
+- human-readable report summary;
+- signed replay bundle (**DRL-019** — not yet implemented).
 
 ## Failure behavior
 
@@ -54,10 +64,11 @@ The production demo pins an `as_of_date`; “latest” is resolved and displayed
 
 ## Demo acceptance
 
-- Executes live in staging and production with open-weight Atticus.
-- No manual database editing or hidden operator intervention.
-- All values trace to evidence or calculation artifacts.
-- Evaluation report is generated from the same trace shown to user.
-- Replay can be independently verified from manifest and hashes.
-- Mobile user can follow summary and expand details.
-- Screen-reader user receives equivalent status and evidence.
+- Local prototype executes without network via `make demo` / `atticus-demo --public`.
+- All values in the fixture path trace to evidence or calculation artifacts.
+- Evaluation report is generated from the same trace shown to the operator.
+- Linked workflow digests are present for Atlas, FedLens, BalanceLab, report, and evaluation.
+- Replay can be independently verified from manifest and hashes (**pending DRL-019**).
+- Staging/production open-weight live demo remains a later gate (M4 / DIR-002 / DIR-004).
+- Mobile user can follow summary and expand details (console/Wix — later).
+- Screen-reader user receives equivalent status and evidence (later).

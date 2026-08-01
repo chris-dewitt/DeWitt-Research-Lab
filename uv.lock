@@ -64,7 +64,7 @@ requires-dist = [{ name = "drl-ai-core", editable = "packages/drl-ai-core" }]
 
 [[package]]
 name = "atticus-control-plane"
-version = "0.1.2"
+version = "0.2.0"
 source = { editable = "services/atticus-control-plane" }
 dependencies = [
     { name = "atlas-service" },

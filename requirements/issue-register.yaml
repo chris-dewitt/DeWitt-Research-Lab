@@ -248,10 +248,15 @@ issues:
     evidence_owner: Integration
     labels: [integration, atticus]
     title: Run evidence-to-scenario integrated workflow
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-014, DRL-016, DRL-017]
     body: .github/ISSUE_BODIES/DRL-018.md
     requirements: [DRL-SYS-008, DRL-SYS-004]
+    evidence:
+      - services/atticus-control-plane/src/atticus_control_plane/orchestrator.py
+      - services/atticus-control-plane/src/atticus_control_plane/runtime.py
+      - services/atticus-control-plane/src/atticus_control_plane/tools.py
+      - tests/integration/test_evidence_to_scenario_trace.py
   - id: DRL-019
     milestone: M3
     mission: 13

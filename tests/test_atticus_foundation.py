@@ -34,8 +34,11 @@ def test_integrated_atticus_workflow_completes_with_evidence() -> None:
     assert result.evaluation["passed"] is True
     assert result.evaluation["score"] == 1.0
     assert result.artifacts["scenario_result"]["annual_nii_change"] == Decimal("15.81")
+    assert result.artifacts["calculation_artifact"]["scenario_name"] == "bear-steepener"
+    assert "linked_workflow" in result.artifacts
     assert all(item.citation for item in result.evidence)
     assert any(event.event_type == "policy_decision" for event in result.trace)
+    assert any(event.event_type == "workflow_linked" for event in result.trace)
 
 
 def test_balancelab_calculation_is_hand_verifiable() -> None:

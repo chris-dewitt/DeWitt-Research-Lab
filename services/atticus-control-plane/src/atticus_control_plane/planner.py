@@ -38,7 +38,7 @@ class FixturePlanner:
                     f"{request.task_id}-balancelab",
                     "balancelab.run_scenario",
                     {
-                        "name": "synthetic-bear-steepener",
+                        "name": "bear-steepener",
                         "short_rate_bps": 25,
                         "long_rate_bps": 75,
                     },

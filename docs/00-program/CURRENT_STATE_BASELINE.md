@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-091
 title: "Mission 00 Current-State Baseline"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 ---
 
 # Mission 00 Current-State Baseline
@@ -52,7 +52,7 @@ agents do not confuse specification density with product maturity.
 |---|---|
 | Specified behavior | Controlled docs / schemas / acceptance criteria |
 | Existing behavior | Runnable Python vertical slice and validators |
-| Missing behavior | Signed replays (DRL-019), trained models, web UIs, cloud deploy, Wix publish |
+| Missing behavior | Production signing keys, trained models, web UIs, cloud deploy, Wix publish |
 | Conflicting behavior | Director Memo previously said “no GitHub remote”; remote now exists — escalate, do not silently rewrite identity |
 | Tests that prove behavior | `tests/`, `make demo`, foundation/open/domain validators |
 | Unverified claims | Any public “live” or “open-weight production” statement |

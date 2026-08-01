@@ -263,10 +263,16 @@ issues:
     evidence_owner: EvalForge
     labels: [evalforge, release]
     title: Publish signed success and degraded replays
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-018]
     body: .github/ISSUE_BODIES/DRL-019.md
     requirements: [DRL-EVL-009, DRL-SYS-009]
+    evidence:
+      - services/evalforge/src/evalforge_service/replay.py
+      - services/evalforge/fixtures/signed_replays/README.md
+      - services/evalforge/fixtures/signed_replays/success/replay-manifest.json
+      - services/evalforge/fixtures/signed_replays/degraded/replay-manifest.json
+      - tests/evalforge/test_signed_replays.py
   - id: DRL-020
     milestone: M3
     mission: 15

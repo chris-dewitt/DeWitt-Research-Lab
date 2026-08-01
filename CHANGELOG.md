@@ -1,13 +1,21 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.2.0
+version: 4.3.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-30
+last_updated: 2026-08-01
 ---
 
 # Foundation Changelog
+
+## 2026-08-01 — Signed success and degraded replays
+
+- DRL-019: EvalForge packages success and degraded Atticus runs as signed
+  replay manifests with on-disk artifact digest verification
+  (`services/evalforge/fixtures/signed_replays/`).
+- Fixture HMAC key is demo-only (`drl-fixture-replay-v1`); production signing
+  identity remains a later gate.
 
 ## 2026-07-30 — M3 specialists and linked integrated workflow
 

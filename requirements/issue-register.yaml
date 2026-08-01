@@ -363,10 +363,13 @@ issues:
     evidence_owner: Research/Community
     labels: [research, publication]
     title: Publish first DRL technical report
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-018]
     body: .github/ISSUE_BODIES/DRL-028.md
     requirements: [DRL-EVL-008, DRL-OSS-003]
+    evidence:
+      - docs/10-research/reports/TR-2026-001-integrated-workflow.md
+      - tests/docs/test_technical_report.py
   - id: DRL-029
     milestone: M4
     mission: 15

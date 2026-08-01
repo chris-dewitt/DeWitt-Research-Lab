@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.3.0
+version: 1.4.0
 status: APPROVED OPERATING PROCEDURE
 owner: DeWitt
 last_updated: 2026-08-01

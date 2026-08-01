@@ -1,0 +1,72 @@
+name: Good first issue
+description: Small, fixture-safe starter task with exact files and acceptance evidence
+title: "good-first: "
+labels: ["good first issue", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for GFI seeds from `docs/09-open-source/CONTRIBUTOR_ROUTES.md`.
+        Do not request private data, paid APIs, or production credentials.
+  - type: textarea
+    id: value
+    attributes:
+      label: User / research value
+      description: Why this helps a learner or the laboratory
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Exact files
+      description: Paths the contributor should touch
+      placeholder: docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Setup commands
+      value: |
+        make doctor
+        make demo
+        make verify
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance evidence
+      description: Commands and observable results required to close
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Explicit non-goals
+    validations:
+      required: true
+  - type: dropdown
+    id: maturity
+    attributes:
+      label: Maturity / contract impact
+      options:
+        - NONE (docs/tests only)
+        - COMPATIBLE
+        - BREAKING (requires ADR)
+    validations:
+      required: true
+  - type: textarea
+    id: security
+    attributes:
+      label: Security / privacy / license notes
+      value: Fixture/synthetic data only. No secrets or private content.
+    validations:
+      required: true
+  - type: input
+    id: mentor
+    attributes:
+      label: Mentor / reviewer path
+      description: Subtree AGENTS.md owner or Director
+    validations:
+      required: true

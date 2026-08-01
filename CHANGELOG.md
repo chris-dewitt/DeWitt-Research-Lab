@@ -1,13 +1,18 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.4.0
+version: 4.5.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
 ---
 
 # Foundation Changelog
+
+## 2026-08-01 — Contributor routes and good-first issues
+
+- DRL-029: published contributor route map, five GFI seeds, Good first issue
+  template, and CONTRIBUTING entry path.
 
 ## 2026-08-01 — Integrated workflow teaching lab
 

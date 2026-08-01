@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
-version: 3.6.0
+version: 3.7.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
@@ -105,7 +105,7 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-BAL-006 — Public output shall be labeled educational/research and not individualized financial advice. | BalanceLab | `services/balancelab-ai/docs/SPEC.md` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-OSS-001 — DRL-authored software shall default to Apache-2.0 while models, data, docs, and trademarks use artifact-specific terms. | Governance/License | `docs/09-open-source/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-OSS-002 — Every release shall have source/license register and required notices. | Governance/License | `docs/09-open-source/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-OSS-003 — Sponsors shall not control roadmap, review, benchmarks, or research conclusions. | Governance/License | `docs/09-open-source/` | DRL-020 | teaching lab + contributor path (no sponsor answer key control) | `tests/docs/test_teaching_lab.py` | instructor notes forbid sponsor-set conclusions | `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` | PARTIAL |
+| DRL-OSS-003 — Sponsors shall not control roadmap, review, benchmarks, or research conclusions. | Governance/License | `docs/09-open-source/` | DRL-020, DRL-029 | teaching lab + contributor routes | `tests/docs/test_teaching_lab.py`; `tests/docs/test_contributor_routes.py` | sponsor non-control stated | `CONTRIBUTOR_ROUTES.md` | PARTIAL |
 | DRL-OSS-004 — Contributors shall have reproducible no-paid-API development paths and clear issue/evidence requirements. | Governance/License | `docs/09-open-source/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-OSS-005 — Forks may exercise licenses but may not imply official DRL status or endorsement. | Governance/License | `docs/09-open-source/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-OSS-006 — Commercial services shall preserve already granted open-source rights and research integrity. | Governance/License | `docs/09-open-source/` | — | — | — | — | — | APPROVED-FOUNDATION |

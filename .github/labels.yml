@@ -128,3 +128,7 @@ labels:
   - name: blocked
     color: "000000"
     description: Blocked on Director decision or upstream mission
+  - name: good first issue
+    color: "7057FF"
+    description: Fixture-safe starter tasks for new contributors
+

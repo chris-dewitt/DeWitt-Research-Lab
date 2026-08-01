@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.8.0
+version: 4.9.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
@@ -45,7 +45,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 11 / DRL-016 land | Cursor cloud agent | `cursor/drl-016-land-main-ad29` | 2026-07-30 | MERGED | PR #20 |
 | 13 / DRL-018 | Cursor cloud agent | `cursor/drl-018-integrated-workflow-ad29` | 2026-07-30 | MERGED | PR #21 |
 | 13 / DRL-019 | Cursor cloud agent | `cursor/drl-019-signed-replays-ad29` | 2026-08-01 | MERGED | PR #22 |
-| 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | IN REVIEW | PR #23 |
+| 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
+| 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | TBD |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -62,6 +63,13 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-01 — DRL-029 contributor routes and good-first issues
+
+- Branch: `cursor/drl-029-contributor-routes-ad29`
+- Route map, GFI seeds, issue template, CONTRIBUTING updates
+- Next: M4 blocked items needing Director (Wix/GCP) or DRL-001/002 operator gates
+
 
 ### 2026-08-01 — DRL-020 integrated workflow teaching lab
 

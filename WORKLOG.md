@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.9.0
+version: 4.10.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
@@ -18,8 +18,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **15 Research/Community** — DRL-028 technical report + DRL-029
-  contributor routes (M3 complete through DRL-020).
+- Active mission: **15 Research/Community** — DRL-029 contributor routes in review
+  (DRL-028 TR-2026-001 merged).
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -46,7 +46,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 13 / DRL-018 | Cursor cloud agent | `cursor/drl-018-integrated-workflow-ad29` | 2026-07-30 | MERGED | PR #21 |
 | 13 / DRL-019 | Cursor cloud agent | `cursor/drl-019-signed-replays-ad29` | 2026-08-01 | MERGED | PR #22 |
 | 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
-| 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | IN REVIEW | PR #24 |
+| 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
+| 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -63,6 +64,12 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-01 — DRL-029 contributor routes and good-first issues
+
+- Branch: `cursor/drl-029-contributor-routes-ad29`
+- Route map, GFI seeds, issue template, CONTRIBUTING updates
+- Next: M4 blocked items needing Director (Wix/GCP) or DRL-001/002 operator gates
 
 ### 2026-08-01 — DRL-028 technical report TR-2026-001
 

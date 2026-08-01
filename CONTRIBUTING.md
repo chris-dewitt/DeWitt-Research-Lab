@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-CONTRIB
 title: "Contributing to DeWitt Research Laboratory"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-01
 ---
 
 # Contributing to DeWitt Research Laboratory
@@ -13,13 +13,23 @@ last_updated: 2026-07-26
 
 DRL welcomes collaborators, tinkerers, students, academics, learners, teachers, and engineers. Contributions may include code, tests, connectors, evaluation tasks, datasets with clear rights, documentation, replications, teaching materials, accessibility improvements, security reports, and research criticism.
 
+## Contributor routes (start here)
+
+1. Read this file and `docs/09-open-source/CONTRIBUTOR_ROUTES.md`.
+2. Run the tested setup: `make doctor`, `make demo`, `make verify`.
+3. Pick a **good first issue** seed (GFI-001…GFI-005) or open one with the Good first issue template.
+4. Reserve work in issues before substantial changes; identify requirement IDs and evidence.
+5. Follow recognition rules in `docs/09-open-source/CONTRIBUTOR_CREDIT_AND_AUTHORSHIP.md`.
+
+Sponsors do not control roadmap, review, benchmarks, or research conclusions.
+
 ## Before opening code
 
 1. Read the Laboratory Bible and the relevant component specification.
 2. Search issues and the roadmap; reserve an issue before substantial work.
 3. Use the issue template and identify requirement IDs, data classes, risk, dependencies, public-contract impact, and evidence.
 4. Discuss architecture, security authority, new data/model sources, or public API changes before implementation. These may require an ADR.
-5. Never submit employer-confidential, private/personal, scraped-without-rights, credential-bearing, or provenance-free material.
+5. Never submit confidential institutional, private/personal, scraped-without-rights, credential-bearing, or provenance-free material.
 
 ## Development environment
 

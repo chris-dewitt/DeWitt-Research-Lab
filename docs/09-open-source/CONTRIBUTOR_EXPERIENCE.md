@@ -1,7 +1,7 @@
 ---
 document_id: DRL-OSS-004
 title: "Contributor Experience, Issue Ladder, and Mentorship"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
@@ -25,7 +25,9 @@ A clean contributor path provides:
 6. links to the Laboratory Bible, relevant component spec, and issue ladder;
 7. a contribution check that shows which gates will run in CI;
 8. the integrated workflow teaching lab at
-   `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` (DRL-020).
+   `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` (DRL-020);
+9. contributor routes and good-first seeds at
+   `docs/09-open-source/CONTRIBUTOR_ROUTES.md` (DRL-029).
 
 Windows, Linux, and container paths are documented according to actual support, not aspirational badges.
 

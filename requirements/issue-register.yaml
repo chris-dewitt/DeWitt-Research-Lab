@@ -376,10 +376,14 @@ issues:
     evidence_owner: Research/Community
     labels: [open-source, community]
     title: Publish contributor routes and good-first issues
-    status: QUEUED
+    status: EVIDENCE_READY
     dependencies: [DRL-004]
     body: .github/ISSUE_BODIES/DRL-029.md
     requirements: [DRL-OSS-003]
+    evidence:
+      - docs/09-open-source/CONTRIBUTOR_ROUTES.md
+      - .github/ISSUE_TEMPLATE/good-first.yml
+      - tests/docs/test_contributor_routes.py
   - id: DRL-030
     milestone: M4
     mission: 0

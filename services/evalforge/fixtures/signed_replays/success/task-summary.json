@@ -1,0 +1,18 @@
+{
+  "evidence_ids": [
+    "atlas-CPI_YOY-2026-06-30",
+    "atlas-UST_2Y-2026-07-24",
+    "atlas-UST_10Y-2026-07-24",
+    "fedlens-FOMC-2026-06-FIXTURE",
+    "balancelab-bear-steepener"
+  ],
+  "limitations": [
+    "Macro, market, and Fed inputs are synthetic fixtures for local development.",
+    "BalanceLab uses a simplified educational repricing model, not production bank data.",
+    "The deterministic planner stands in for Atticus Core until the model bake-off.",
+    "Linked workflow is prototype maturity; signed replay packaging is DRL-019."
+  ],
+  "state": "completed",
+  "summary": "Fixture evidence shows CPI at 3.10 percent, the two-year yield at 4.15 percent, and the ten-year yield at 4.48 percent. FedLens analyzed the latest synthetic communication: \u201cLatest synthetic FOMC communication for local demos.\nInflation remains elevated, while activity is slowing. Risks appear more balanced.\u201d BalanceLab then applied a +25/+75 basis-point bear-steepener to the synthetic regional bank. Synthetic annual NII change: $15.81 million; curve slope change: 50 bps.",
+  "task_id": "replay-success-001"
+}

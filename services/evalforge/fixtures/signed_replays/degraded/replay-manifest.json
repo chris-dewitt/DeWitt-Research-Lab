@@ -1,0 +1,73 @@
+{
+  "code_revision": "drl-019-fixture",
+  "configuration_digest": "sha256:a12309d16239748e828a6b7d2e5e756eef998fecec87ed59e4ee884286ad9fad",
+  "created_at": "2026-07-30T00:00:00+00:00",
+  "executed_at": "2026-07-30T00:00:00+00:00",
+  "execution_trace": {
+    "classification": "public",
+    "created_at": "2026-07-30T00:00:00+00:00",
+    "digest": "sha256:d306f74a0104859672ce62c3a30071e38225b7636e49b95b35bcc7f59d21582a",
+    "id": "replay-degraded-execution-trace",
+    "kind": "trace",
+    "media_type": "application/json",
+    "schema_version": "1.0.0",
+    "source_system": "evalforge-replay",
+    "title": "degraded execution trace",
+    "uri": "file://services/evalforge/fixtures/signed_replays/degraded/execution-trace.json"
+  },
+  "id": "drl-replay-degraded-001",
+  "live_at_capture": false,
+  "manifest_digest": "sha256:dcba94f8f12ef5f60984b6f70eaa2e0448e306c8ac241bb45a4dce83cff27e87",
+  "models": [
+    {
+      "disclosure": "deterministic local fixture; not an open-weight Atticus Core/Edge release",
+      "identity": "fixture-planner",
+      "role": "planner"
+    }
+  ],
+  "related_artifacts": [
+    {
+      "classification": "public",
+      "created_at": "2026-07-30T00:00:00+00:00",
+      "digest": "sha256:f5349fb17e0fde3b9bdb96fe1ff186b3f207cff0b7c368ed61d37242dbe0dcb8",
+      "id": "replay-degraded-evaluation",
+      "kind": "report",
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "source_system": "evalforge-replay",
+      "title": "degraded evaluation report",
+      "uri": "file://services/evalforge/fixtures/signed_replays/degraded/evaluation-report.json"
+    },
+    {
+      "classification": "public",
+      "created_at": "2026-07-30T00:00:00+00:00",
+      "digest": "sha256:207ea03e514724cd652423d484b3b2bb3f9fd9aa0fc661b62e603f24d6d0dfd7",
+      "id": "replay-degraded-linked-workflow",
+      "kind": "other",
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "source_system": "evalforge-replay",
+      "title": "degraded linked workflow",
+      "uri": "file://services/evalforge/fixtures/signed_replays/degraded/linked-workflow.json"
+    },
+    {
+      "classification": "public",
+      "created_at": "2026-07-30T00:00:00+00:00",
+      "digest": "sha256:124248c14bb76be733a204ebdb773f30e8108e35f3bb590561d95d76e6df4b78",
+      "id": "replay-degraded-task-summary",
+      "kind": "report",
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "source_system": "evalforge-replay",
+      "title": "degraded task summary",
+      "uri": "file://services/evalforge/fixtures/signed_replays/degraded/task-summary.json"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "drl-fixture-replay-v1",
+    "signature": "sha256:5110f7b1ab971d5f27806ed59ea70e5ad687f4bd69da29a96e3de159712020a1"
+  },
+  "title": "DRL integrated workflow degraded replay"
+}

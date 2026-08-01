@@ -93,8 +93,9 @@ citations, BalanceLab scenario catalog) are composed into one prototype
 evidence-to-scenario workflow with a five-way `linked_workflow` artifact
 (DRL-018). This proves component contracts, policy behavior, approval binding,
 evidence lineage, integrated orchestration, and evaluation plumbing. It is not
-yet a public production service, a trained Atticus model release, a signed
-replay package (DRL-019), or a deployed Wix site.
+yet a public production service, a trained Atticus model release, or a deployed
+Wix site. Signed success/degraded replay fixtures exist as prototype packages
+(DRL-019) using a demo HMAC key — not production signing identity.
 
 ## Release check
 

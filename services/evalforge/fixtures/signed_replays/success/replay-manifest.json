@@ -1,0 +1,73 @@
+{
+  "code_revision": "drl-019-fixture",
+  "configuration_digest": "sha256:3ee5e0ff1a697cdcc31e5a87e6c9d69f1c74297e42d5e1a4ee17e1625fd72de3",
+  "created_at": "2026-07-30T00:00:00+00:00",
+  "executed_at": "2026-07-30T00:00:00+00:00",
+  "execution_trace": {
+    "classification": "public",
+    "created_at": "2026-07-30T00:00:00+00:00",
+    "digest": "sha256:ccb5e72ea1ff4d9a0987f6991a93b535dd7fe5daa094a7af889d193214e71ef9",
+    "id": "replay-success-execution-trace",
+    "kind": "trace",
+    "media_type": "application/json",
+    "schema_version": "1.0.0",
+    "source_system": "evalforge-replay",
+    "title": "success execution trace",
+    "uri": "file://services/evalforge/fixtures/signed_replays/success/execution-trace.json"
+  },
+  "id": "drl-replay-success-001",
+  "live_at_capture": false,
+  "manifest_digest": "sha256:64689b12fd6ad75516563d2b4daf38662433aa90da7f2468a38270f4ec6db529",
+  "models": [
+    {
+      "disclosure": "deterministic local fixture; not an open-weight Atticus Core/Edge release",
+      "identity": "fixture-planner",
+      "role": "planner"
+    }
+  ],
+  "related_artifacts": [
+    {
+      "classification": "public",
+      "created_at": "2026-07-30T00:00:00+00:00",
+      "digest": "sha256:f5349fb17e0fde3b9bdb96fe1ff186b3f207cff0b7c368ed61d37242dbe0dcb8",
+      "id": "replay-success-evaluation",
+      "kind": "report",
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "source_system": "evalforge-replay",
+      "title": "success evaluation report",
+      "uri": "file://services/evalforge/fixtures/signed_replays/success/evaluation-report.json"
+    },
+    {
+      "classification": "public",
+      "created_at": "2026-07-30T00:00:00+00:00",
+      "digest": "sha256:9595b491c2aaaaba5c3059ad5eaeb1758cb5634b6c8760ebdee03ad862b19278",
+      "id": "replay-success-linked-workflow",
+      "kind": "other",
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "source_system": "evalforge-replay",
+      "title": "success linked workflow",
+      "uri": "file://services/evalforge/fixtures/signed_replays/success/linked-workflow.json"
+    },
+    {
+      "classification": "public",
+      "created_at": "2026-07-30T00:00:00+00:00",
+      "digest": "sha256:e39b7b52bb68161dd97efce049d24118a116fddc9afdcb548e67e9de6d718e26",
+      "id": "replay-success-task-summary",
+      "kind": "report",
+      "media_type": "application/json",
+      "schema_version": "1.0.0",
+      "source_system": "evalforge-replay",
+      "title": "success task summary",
+      "uri": "file://services/evalforge/fixtures/signed_replays/success/task-summary.json"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "drl-fixture-replay-v1",
+    "signature": "sha256:924fccf231eb7155b2cf25059b56f3dab1b210512ceed4d8026afdb269689ca0"
+  },
+  "title": "DRL integrated workflow success replay"
+}

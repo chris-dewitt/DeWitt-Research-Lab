@@ -1,0 +1,184 @@
+[
+  {
+    "attributes": {},
+    "created_at": "2026-07-31 05:43:11.833783+00:00",
+    "event_id": "replay-success-001-event-001",
+    "event_type": "task_received",
+    "message": "Task accepted.",
+    "state": "received",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "tools": [
+        "atlas.research_snapshot",
+        "fedlens.compare_latest",
+        "balancelab.run_scenario"
+      ]
+    },
+    "created_at": "2026-07-31 05:43:11.833804+00:00",
+    "event_id": "replay-success-001-event-002",
+    "event_type": "plan_created",
+    "message": "Created bounded plan with 3 step(s).",
+    "state": "planning",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "allowed": true,
+      "call_digest": "78add4940f78c9edcd7e82de9ecbc12941e8a9adc367a36bc3f42775b0a8b57a",
+      "requires_approval": false,
+      "tool": "atlas.research_snapshot"
+    },
+    "created_at": "2026-07-31 05:43:11.833826+00:00",
+    "event_id": "replay-success-001-event-003",
+    "event_type": "policy_decision",
+    "message": "Allowed by deterministic catalog policy",
+    "state": "planning",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "allowed": true,
+      "call_digest": "88a92cc9b1567740a277343cda921881d6609fd8100b7a152979f039c41e96c7",
+      "requires_approval": false,
+      "tool": "fedlens.compare_latest"
+    },
+    "created_at": "2026-07-31 05:43:11.833841+00:00",
+    "event_id": "replay-success-001-event-004",
+    "event_type": "policy_decision",
+    "message": "Allowed by deterministic catalog policy",
+    "state": "planning",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "allowed": true,
+      "call_digest": "a38fd08f2f9518ee94eb60c40d21522ae7fe185828d35f3e59663147172aa89c",
+      "requires_approval": false,
+      "tool": "balancelab.run_scenario"
+    },
+    "created_at": "2026-07-31 05:43:11.833852+00:00",
+    "event_id": "replay-success-001-event-005",
+    "event_type": "policy_decision",
+    "message": "Allowed by deterministic catalog policy",
+    "state": "planning",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "tool": "atlas.research_snapshot"
+    },
+    "created_at": "2026-07-31 05:43:11.833858+00:00",
+    "event_id": "replay-success-001-event-006",
+    "event_type": "tool_started",
+    "message": "Invoking atlas.research_snapshot.",
+    "state": "executing",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "evidence_ids": [
+        "atlas-CPI_YOY-2026-06-30",
+        "atlas-UST_2Y-2026-07-24",
+        "atlas-UST_10Y-2026-07-24"
+      ],
+      "tool": "atlas.research_snapshot"
+    },
+    "created_at": "2026-07-31 05:43:11.833926+00:00",
+    "event_id": "replay-success-001-event-007",
+    "event_type": "tool_completed",
+    "message": "Atlas returned 3 point-in-time observations.",
+    "state": "executing",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "tool": "fedlens.compare_latest"
+    },
+    "created_at": "2026-07-31 05:43:11.833931+00:00",
+    "event_id": "replay-success-001-event-008",
+    "event_type": "tool_started",
+    "message": "Invoking fedlens.compare_latest.",
+    "state": "executing",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "evidence_ids": [
+        "fedlens-FOMC-2026-06-FIXTURE"
+      ],
+      "tool": "fedlens.compare_latest"
+    },
+    "created_at": "2026-07-31 05:43:11.834041+00:00",
+    "event_id": "replay-success-001-event-009",
+    "event_type": "tool_completed",
+    "message": "Language became less hawkish in the deterministic lexicon.",
+    "state": "executing",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "tool": "balancelab.run_scenario"
+    },
+    "created_at": "2026-07-31 05:43:11.834046+00:00",
+    "event_id": "replay-success-001-event-010",
+    "event_type": "tool_started",
+    "message": "Invoking balancelab.run_scenario.",
+    "state": "executing",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "evidence_ids": [
+        "balancelab-bear-steepener"
+      ],
+      "tool": "balancelab.run_scenario"
+    },
+    "created_at": "2026-07-31 05:43:11.834133+00:00",
+    "event_id": "replay-success-001-event-011",
+    "event_type": "tool_completed",
+    "message": "Synthetic annual NII change: $15.81 million; curve slope change: 50 bps.",
+    "state": "executing",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {},
+    "created_at": "2026-07-31 05:43:11.834140+00:00",
+    "event_id": "replay-success-001-event-012",
+    "event_type": "evaluation_started",
+    "message": "Submitting observable trace and evidence to EvalForge.",
+    "state": "evaluating",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "link_keys": [
+        "atlas",
+        "balancelab",
+        "evaluation",
+        "fedlens",
+        "report"
+      ],
+      "workflow_digest": "sha256:4b9e6dd754512e212e9822a89a14600bec44e763915411abfac2784c46b317f2"
+    },
+    "created_at": "2026-07-31 05:43:11.834206+00:00",
+    "event_id": "replay-success-001-event-013",
+    "event_type": "workflow_linked",
+    "message": "Linked Atlas, FedLens, BalanceLab, report, and evaluation digests.",
+    "state": "evaluating",
+    "task_id": "replay-success-001"
+  },
+  {
+    "attributes": {
+      "evaluation_passed": true,
+      "workflow_digest": "sha256:4b9e6dd754512e212e9822a89a14600bec44e763915411abfac2784c46b317f2"
+    },
+    "created_at": "2026-07-31 05:43:11.834213+00:00",
+    "event_id": "replay-success-001-event-014",
+    "event_type": "task_completed",
+    "message": "Workflow finished with EvalForge score 1.000.",
+    "state": "completed",
+    "task_id": "replay-success-001"
+  }
+]

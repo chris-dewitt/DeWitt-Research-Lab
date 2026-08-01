@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "evidence_has_citations": true,
+    "no_policy_bypass": true,
+    "required_trace_events": true,
+    "terminal_state": true
+  },
+  "findings": [],
+  "passed": true,
+  "score": 1.0
+}

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.3.0
+version: 4.4.0
 status: APPROVED FOUNDATION
 owner: DeWitt
 last_updated: 2026-08-01
@@ -15,6 +15,14 @@ last_updated: 2026-08-01
   exercises, instructor notes, and no private-data requirements.
 - Linked from contributor first-hour path; guarded by `tests/docs/test_teaching_lab.py`.
 
+## 2026-08-01 — Signed success and degraded replays
+
+- DRL-019: EvalForge packages success and degraded Atticus runs as signed
+  replay manifests with on-disk artifact digest verification
+  (`services/evalforge/fixtures/signed_replays/`).
+- Fixture HMAC key is demo-only (`drl-fixture-replay-v1`); production signing
+  identity remains a later gate.
+
 ## 2026-07-30 — M3 specialists and linked integrated workflow
 
 - DRL-014–017: Atlas public adapter, FedLens bounded corpus + passage citations,
@@ -24,7 +32,7 @@ last_updated: 2026-08-01
   evaluation digests (`tests/integration/test_evidence_to_scenario_trace.py`).
 - Documentation: integrated demo maturity table, traceability for DRL-SYS-008,
   Director's Memo implementation truth, and issue-register evidence updated.
-- Signed replay packaging remains DRL-019; model winner remains DIR-004.
+- Model bake-off winner remains DIR-004 (scaffold only).
 
 ## 2026-07-28 — First implementation missions merged
 

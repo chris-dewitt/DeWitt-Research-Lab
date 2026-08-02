@@ -3,7 +3,7 @@ document_id: DRL-PRD-002
 title: "User Personas and End-to-End Journeys"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -16,7 +16,7 @@ last_updated: 2026-07-26
 **Needs:** architecture clarity, setup instructions, roadmap, governance, issue quality, maintainer responsiveness.  
 **Journey:** homepage → open-source portal → system architecture → contributor tour with Atticus → good-first issue → local mock setup → PR.
 
-Success means the collaborator can identify the purpose of the work, run tests without paid APIs, understand ownership, and submit a change without asking DeWitt to explain the entire repository.
+Success means the collaborator can identify the purpose of the work, run tests without paid APIs, understand ownership, and submit a change without asking the Director to explain the entire repository.
 
 ## Persona: The tinkerer
 
@@ -44,11 +44,11 @@ Success means the collaborator can identify the purpose of the work, run tests w
 
 ## Persona: The hiring manager
 
-**Goal:** quickly judge DeWitt's ability to design and operate AI systems.  
+**Goal:** quickly judge the Director's ability to design and operate AI systems.  
 **Needs:** concise value proposition, three strong workflows, architecture, measurable evidence, code quality, résumé.  
 **Journey:** homepage → two-minute systems tour → Atticus trace → EvalForge report → founder profile/résumé → GitHub.
 
-## Persona: DeWitt, private operator
+## Persona: The Director, private operator
 
 **Goal:** use Atticus as a trusted local copilot and operate DRL.  
 **Needs:** voice, repository workflows, private files, model selection, approvals, local logs, cloud/local control.  

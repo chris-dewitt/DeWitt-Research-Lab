@@ -3,7 +3,7 @@ document_id: DRL-WEB-016
 title: "Open Source Portal, Model Commons, and Open Stack Website Experience"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

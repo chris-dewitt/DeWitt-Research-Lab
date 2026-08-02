@@ -3,7 +3,7 @@ document_id: DRL-OSS-003
 title: "Governance, Maintainer Ladder, and Research Independence"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Model
 
-DRL uses director-led, benevolent-dictator governance. DeWitt has final authority over mission, brand, major architecture, official releases, research publication, and maintainer appointment. Authority is delegated by component and can be revoked for cause or lack of capacity. The governance model is explicit so contributors understand how decisions are made.
+DRL uses director-led, benevolent-dictator governance. The Director has final authority over mission, brand, major architecture, official releases, research publication, and maintainer appointment. Authority is delegated by component and can be revoked for cause or lack of capacity. The governance model is explicit so contributors understand how decisions are made.
 
 ## Ladder
 

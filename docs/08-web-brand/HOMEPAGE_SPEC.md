@@ -3,7 +3,7 @@ document_id: DRL-WEB-004
 title: "Homepage Detailed Specification"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Canonical implementation
 
-This homepage is implemented at **`https://www.dwit-labs.com`** in Wix. Interactive previews may use bounded custom elements or public embeds, but primary Atticus and specialist experiences launch on DRL application subdomains. The homepage must remain complete and useful when those services are cold or unavailable.
+This homepage is implemented at **`https://www.dewitt-labs.com`** in Wix. Interactive previews may use bounded custom elements or public embeds, but primary Atticus and specialist experiences launch on DRL application subdomains. The homepage must remain complete and useful when those services are cold or unavailable.
 
 ## Hero
 

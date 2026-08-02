@@ -3,7 +3,7 @@ document_id: DRL-PRG-094
 title: "ADR and Director Approval Queue"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -18,7 +18,7 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 | Priority | ID | Question | Status | Blocking | Recommended next evidence |
 |---:|---|---|---|---|---|
 | P0 | DIR-001 | Confirm GitHub owner/repository slug | Director input | Remote identity / transferability | Accept personal repo or create org + transfer plan |
-| P0 | DIR-003 | Public vulnerability contact address | Director input | SECURITY.md publication | Create `security@dwit-labs.com` or document interim |
+| P0 | DIR-003 | Public vulnerability contact address | Director input | SECURITY.md publication | Create `security@dewitt-labs.com` or document interim |
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |
@@ -42,5 +42,5 @@ canonical public site · RES-001–RES-010 in `DIRECTORS_MEMO.md`.
 
 1. File or update an ADR row before implementing a material unresolved choice.
 2. Mark affected issues `blocked` when a P0/P1 item gates them.
-3. Record DeWitt’s resolution date and linked ADR/issue; never delete history.
+3. Record the Director’s resolution date and linked ADR/issue; never delete history.
 4. Spikes allowed only in isolated paths labeled experimental until approval.

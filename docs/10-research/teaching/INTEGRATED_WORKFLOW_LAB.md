@@ -3,7 +3,7 @@ document_id: DRL-TEACH-001
 title: "Integrated Workflow Teaching Lab"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 

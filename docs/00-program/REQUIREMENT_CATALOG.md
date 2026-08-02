@@ -3,7 +3,7 @@ document_id: DRL-PRG-012
 title: "V1 Requirement Catalog"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -78,7 +78,7 @@ This controlled catalog contains **132** approved V1 requirements. The machine-r
 | DRL-PLT-001 | Infrastructure shall be reproducible through Terraform for dev, staging, and production. | Platform | `docs/07-platform-gcp/` |
 | DRL-PLT-002 | Application identities shall use least privilege and deployment shall avoid long-lived static cloud credentials. | Platform | `docs/07-platform-gcp/` |
 | DRL-PLT-003 | Cloud Run GPU inference shall be cost bounded and support scale-to-zero where compatible with declared SLOs. | Platform | `docs/07-platform-gcp/` |
-| DRL-PLT-004 | Wix at www.dwit-labs.com shall deliver the canonical institutional site; approved Google-hosted frontends shall deliver interactive DRL applications and documentation. | Platform | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |
+| DRL-PLT-004 | Wix at www.dewitt-labs.com shall deliver the canonical institutional site; approved Google-hosted frontends shall deliver interactive DRL applications and documentation. | Platform | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |
 | DRL-PLT-005 | Cloud SQL PostgreSQL with pgvector shall be the canonical relational/vector service unless superseded by ADR. | Platform | `docs/07-platform-gcp/` |
 | DRL-PLT-006 | Production changes shall use tested artifact promotion, smoke tests, and rollback. | Platform | `docs/07-platform-gcp/` |
 | DRL-PLT-007 | Backups and restore procedures shall be tested before V1 release. | Platform | `docs/07-platform-gcp/` |
@@ -137,7 +137,7 @@ This controlled catalog contains **132** approved V1 requirements. The machine-r
 | DRL-OSS-024 | The V1 public demonstration shall expose a complete open-weight Atticus workflow with source, model identity, traces, evaluation, reproduction bundle, local run, and contribution paths. | Integration | `docs/09-open-source/V1_OPEN_SOURCE_SHOWCASE.md` |
 | DRL-OSS-025 | Open artifact, exception, and upstream dependency metadata shall conform to versioned machine-readable schemas. | Architecture/Protocol | `schemas/open-artifact-release.schema.json` |
 | DRL-OSS-026 | The Atticus V1 release shall be delivered as an Open Model Commons release train containing Core, Edge, adapters, runtime profiles, data manifests, benchmark evidence, and community submission lanes. | Model/Data | `docs/03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md` |
-| DRL-WEB-011 | The canonical public laboratory origin shall be https://www.dwit-labs.com and the apex domain shall redirect to it. | Web/Brand | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |
+| DRL-WEB-011 | The canonical public laboratory origin shall be https://www.dewitt-labs.com and the apex domain shall redirect to it. | Web/Brand | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |
 | DRL-WEB-012 | Wix shall provide the V1 institutional, editorial, research-discovery, teaching, collaboration, and application-launch surface. | Web/Brand | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |
 | DRL-WEB-013 | Atticus and specialist computational applications shall remain independently deployable open-source experiences and shall not rely solely on Wix iframes. | Web/Brand | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |
 | DRL-WEB-014 | Wix and application subdomains shall share approved navigation, visual identity, status language, consent, analytics taxonomy, canonical-link policy, and truthful maturity labels. | Web/Brand | `docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md` |

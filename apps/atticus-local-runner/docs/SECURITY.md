@@ -3,7 +3,7 @@ document_id: DRL-LOC-105
 title: "Atticus Local Runner Security and Privacy Specification"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-28
 ---
 

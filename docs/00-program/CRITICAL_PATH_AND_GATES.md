@@ -3,7 +3,7 @@ document_id: DRL-PRG-092
 title: "Critical Path, Entry Gates, and Exit Gates"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

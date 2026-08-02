@@ -3,7 +3,7 @@ document_id: DRL-FED-104
 title: "FedLens Evaluation and Acceptance Specification"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

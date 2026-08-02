@@ -1,13 +1,23 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.6.0
+version: 4.7.0
 status: APPROVED FOUNDATION
-owner: DeWitt
-last_updated: 2026-08-01
+owner: Christopher Noxon DeWitt
+last_updated: 2026-08-02
 ---
 
 # Foundation Changelog
+
+## 2026-08-02 — Canonical domain correction, live site, and founder identity
+
+- Corrected the canonical domain spelling from `dwit-labs.com` to
+  `dewitt-labs.com` across all documentation, configuration, schemas, scripts,
+  and tests (RES-011). The public Wix site is live at
+  `https://www.dewitt-labs.com`.
+- Recorded the founder's full name as Christopher Noxon DeWitt in
+  founder-identity lines, controlled-document ownership, and copyright; other
+  operational references now use "the Director" (RES-012).
 
 ## 2026-08-01 — Contributor routes and good-first issues
 
@@ -110,7 +120,7 @@ Initial documentation-first monorepo skeleton. Not a product release.
 
 ## 2026-07-26 — Registered domain and Wix institutional site integration
 
-- Recorded `https://www.dwit-labs.com` as the canonical public laboratory address.
+- Recorded `https://www.dewitt-labs.com` as the canonical public laboratory address.
 - Approved Wix as the V1 institutional/editorial website while preserving independently deployable open-source applications.
 - Added domain, DNS, TLS, Wix, subdomain, consent, SEO, and cross-host operating contracts.
 - Added ADR-0008, platform runbook, domain-routing configuration, release requirements, and agent work packages.

@@ -3,7 +3,7 @@ document_id: DRL-AGT-000
 title: "Agent Mission 00: Program Director and Execution Planner"
 version: 3.0.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -20,7 +20,7 @@ last_updated: 2026-07-26
 
     - Foundation validation passes.
 - All controlled documents are present and indexed.
-- DeWitt is available to approve major ADRs.
+- The Director is available to approve major ADRs.
 
     If a prerequisite is absent, stale, contradictory, or unapproved, stop and create a blocker in the handoff ledger. Do not fill an architectural gap with an undocumented personal preference.
 
@@ -63,7 +63,7 @@ last_updated: 2026-07-26
 - Any reordering that bypasses security, protocol, or evaluation prerequisites.
 - Any removal of evidence required by V1 criteria.
 
-    For each trigger, write the ADR first, mark it `PROPOSED`, identify alternatives and consequences, and wait for DeWitt's approval before implementation. The agent may prepare a nonbinding spike in an isolated path if the ADR explicitly allows it.
+    For each trigger, write the ADR first, mark it `PROPOSED`, identify alternatives and consequences, and wait for the Director's approval before implementation. The agent may prepare a nonbinding spike in an isolated path if the ADR explicitly allows it.
 
     ## Verification matrix
 
@@ -88,7 +88,7 @@ last_updated: 2026-07-26
     ## Handoff requirements
 
     - Name the first implementation-ready mission and its exact issue set.
-- List all ADRs needing DeWitt approval.
+- List all ADRs needing the Director's approval.
 - Provide repository state and validation commands.
 - Record any ambiguous or contradictory requirements.
 
@@ -97,7 +97,7 @@ last_updated: 2026-07-26
     ## Stop conditions
 
     - Foundation validation fails.
-- A constitutional contradiction cannot be resolved without DeWitt.
+- A constitutional contradiction cannot be resolved without the Director.
 - A critical requirement has no owner or evidence path.
 
     ## Definition of mission complete

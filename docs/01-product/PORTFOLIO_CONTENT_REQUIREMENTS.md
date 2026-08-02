@@ -3,7 +3,7 @@ document_id: DRL-PRD-007
 title: "Portfolio and Research Content Requirements"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -41,4 +41,4 @@ Every major project page must answer:
 
 ## Founder presentation
 
-DeWitt appears as Founder and Director, Applied AI Researcher. Finance and quantitative experience may appear in biography and résumé as relevant context, but the site does not imply employer endorsement or reuse employer intellectual property.
+Christopher Noxon DeWitt appears as Founder and Director, Applied AI Researcher. Finance and quantitative experience may appear in biography and résumé as relevant context, but the site does not imply employer endorsement or reuse employer intellectual property.

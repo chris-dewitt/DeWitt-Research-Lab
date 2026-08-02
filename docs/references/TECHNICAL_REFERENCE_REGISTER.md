@@ -3,7 +3,7 @@ document_id: DRL-REF-001
 title: "Technical Reference Register"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -93,7 +93,7 @@ Every implementation PR relying on a volatile source adds a note with source tit
 
 | Topic | Primary source | Foundation use | Revalidate before |
 |---|---|---|---|
-| Connect an existing domain to Wix | `https://support.wix.com/en/article/connecting-a-domain-you-own-to-your-wix-site` | existing `dwit-labs.com` connection workflow and ownership choices | initial domain connection and any host migration |
+| Connect an existing domain to Wix | `https://support.wix.com/en/article/connecting-a-domain-you-own-to-your-wix-site` | existing `dewitt-labs.com` connection workflow and ownership choices | initial domain connection and any host migration |
 | Wix nameserver connection | `https://support.wix.com/en/article/connecting-a-domain-to-the-wix-name-servers` | option where Wix manages authoritative DNS | connection-method decision |
 | Wix pointing connection | `https://support.wix.com/en/article/connecting-a-domain-to-wix-using-the-pointing-method` | option where DNS remains with current host; useful to evaluate for multi-subdomain architecture | connection-method decision |
 | Wix custom elements | `https://support.wix.com/en/article/studio-editor-adding-a-custom-element`, `https://dev.wix.com/docs/velo/velo-only-apis/%24w/custom-element/introduction` | bounded public widgets and externally hosted custom elements | widget implementation |

@@ -7,10 +7,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def test_domain_routing_contract():
     data = yaml.safe_load((ROOT / "configs/domain-routing.yaml").read_text())
-    assert data["canonical_origin"] == "https://www.dwit-labs.com"
+    assert data["canonical_origin"] == "https://www.dewitt-labs.com"
     assert data["institutional_site"]["platform"] == "Wix"
     assert data["policies"]["primary_apps_embedded_in_wix"] is False
-    assert any(x["host"] == "atticus.dwit-labs.com" for x in data["applications"])
+    assert any(x["host"] == "atticus.dewitt-labs.com" for x in data["applications"])
 
 
 def test_wix_specs_exist():

@@ -3,7 +3,7 @@ document_id: DRL-DAT-003
 title: "AtticusBench V1 Dataset and Benchmark Specification"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

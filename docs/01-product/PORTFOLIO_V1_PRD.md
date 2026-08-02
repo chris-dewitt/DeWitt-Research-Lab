@@ -3,7 +3,7 @@ document_id: DRL-PRD-001
 title: "DeWitt Research Laboratory V1 Product Requirements"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Product vision
 
-DRL V1 is a public, open-source research laboratory operated by Atticus. It gives visitors a compelling way to explore real AI systems, gives contributors usable software and documentation, gives learners transparent examples, and gives DeWitt a credible body of applied-AI research.
+DRL V1 is a public, open-source research laboratory operated by Atticus. It gives visitors a compelling way to explore real AI systems, gives contributors usable software and documentation, gives learners transparent examples, and gives the Director a credible body of applied-AI research.
 
 ## Primary audiences
 
@@ -21,7 +21,7 @@ DRL V1 is a public, open-source research laboratory operated by Atticus. It give
 3. **Students and learners** wanting transparent demonstrations and teaching materials.
 4. **Academics and applied researchers** interested in benchmarks, datasets, model post-training, and reproducibility.
 5. **Teachers** seeking examples and course-ready material.
-6. **Hiring managers and technical leaders** evaluating DeWitt's engineering and research judgment.
+6. **Hiring managers and technical leaders** evaluating the Director's engineering and research judgment.
 7. **Potential sponsors, consulting clients, or training partners** seeking credible expertise without roadmap control.
 
 ## Product promise
@@ -89,7 +89,7 @@ A visitor can understand the laboratory without chat, ask Atticus to guide them,
 
 - unrestricted public general-purpose agent;
 - real-world financial advice or production bank modeling;
-- public access to DeWitt's local runner;
+- public access to the Director's local runner;
 - training a foundation model from scratch;
 - full enterprise organization administration;
 - an unreviewed community plugin marketplace;

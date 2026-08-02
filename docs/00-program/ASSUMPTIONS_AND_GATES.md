@@ -3,7 +3,7 @@ document_id: DRL-PRG-010
 title: "Assumptions, Constraints, and Decision Gates"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Working assumptions
 
-- DeWitt controls the GitHub organization, Google Cloud billing account, model registry accounts, and public domain.
+- The Director controls the GitHub organization, Google Cloud billing account, model registry accounts, and public domain.
 - Initial contributor volume is low enough for director-led review.
 - Public demo demand is bursty, making scale-to-zero desirable.
 - Specialist systems use public or synthetic data only for V1.
@@ -37,7 +37,7 @@ Example gate record:
 ```yaml
 gate_id: G-001
 question: Which upstream model becomes Atticus Core?
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 latest_decision_point: before Core SFT dataset freeze
 options: [candidate_a, candidate_b, candidate_c]
 evidence:

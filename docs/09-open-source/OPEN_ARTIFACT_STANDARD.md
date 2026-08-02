@@ -3,7 +3,7 @@ document_id: DRL-OSS-007
 title: "DRL Open Artifact and Modification-Surface Standard"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

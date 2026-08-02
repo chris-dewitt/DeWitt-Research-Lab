@@ -3,7 +3,7 @@ document_id: DRL-OSS-020
 title: "V1 Open Source Showcase and Public Demonstration"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

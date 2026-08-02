@@ -5,7 +5,7 @@
   "reason_category": "benchmark_integrity",
   "public_summary": "Hidden evaluation answers remain restricted so public benchmark scores retain diagnostic value.",
   "open_substitute": "Public task specifications, scoring code, representative cases, and governance are released.",
-  "approved_by": "DeWitt",
+  "approved_by": "Christopher Noxon DeWitt",
   "approved_at": "2026-07-26T12:00:00Z",
   "review_by": "2026-10-24",
   "status": "active"

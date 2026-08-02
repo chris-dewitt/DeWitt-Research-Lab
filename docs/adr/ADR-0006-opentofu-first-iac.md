@@ -3,7 +3,7 @@ document_id: DRL-ADR-0006
 title: "Proposed OpenTofu-First Infrastructure-as-Code Toolchain"
 version: 0.1.0
 status: IN REVIEW
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

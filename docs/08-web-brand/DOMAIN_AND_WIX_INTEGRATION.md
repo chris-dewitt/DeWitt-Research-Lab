@@ -1,25 +1,27 @@
 ---
 document_id: DRL-WEB-018
 title: "Canonical Domain, Wix Institutional Site, and Application Integration"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
-last_updated: 2026-07-26
+owner: Christopher Noxon DeWitt
+last_updated: 2026-08-02
 ---
 
 # Canonical Domain, Wix Institutional Site, and Application Integration
 
 ## Recorded assets and binding decision
 
-DeWitt has registered **`dwit-labs.com`** and has acquired a Wix site. The canonical public laboratory address is:
+The Director has registered **`dewitt-labs.com`** and has acquired a Wix site. The canonical public laboratory address is:
 
 ```text
-https://www.dwit-labs.com
+https://www.dewitt-labs.com
 ```
+
+**Status (2026-08-02):** the Wix site is live at the canonical address. Earlier documentation used the misspelling `dwit-labs.com`; that spelling is retired and must not appear in DNS, links, metadata, or copy (see `DIRECTORS_MEMO.md` RES-011).
 
 This is existing DRL infrastructure, not a placeholder. The Wix site is the canonical institutional front door for V1: laboratory identity, public mission, research publishing, project discovery, teaching, collaboration, founder profile, news, and clear launch points into Atticus and the specialist applications.
 
-The apex domain `https://dwit-labs.com` shall redirect permanently to the canonical `www` origin unless a later approved ADR selects the apex as canonical. All public documents, model cards, package metadata, social profiles, repository descriptions, and release manifests shall use the canonical address and avoid competing primary URLs.
+The apex domain `https://dewitt-labs.com` shall redirect permanently to the canonical `www` origin unless a later approved ADR selects the apex as canonical. All public documents, model cards, package metadata, social profiles, repository descriptions, and release manifests shall use the canonical address and avoid competing primary URLs.
 
 ## Architectural principle
 
@@ -28,15 +30,15 @@ Wix is the **institutional publishing and discovery layer**. It is not required 
 Serious interactive systems remain independently deployable, open-source applications and services. They are linked through DRL-controlled subdomains and a shared design, navigation, authentication, consent, telemetry, and provenance contract.
 
 ```text
-www.dwit-labs.com          Wix institutional site and editorial front door
-atticus.dwit-labs.com      public Atticus laboratory console
-atlas.dwit-labs.com        Atlas research experience
-fedlens.dwit-labs.com      FedLens policy archive and analysis
-balancelab.dwit-labs.com   BalanceLab AI scenario workstation
-evalforge.dwit-labs.com    EvalForge reports and comparison lab
-docs.dwit-labs.com         versioned technical documentation
-status.dwit-labs.com       public operational and release status
-api.dwit-labs.com          public API gateway where justified
+www.dewitt-labs.com          Wix institutional site and editorial front door
+atticus.dewitt-labs.com      public Atticus laboratory console
+atlas.dewitt-labs.com        Atlas research experience
+fedlens.dewitt-labs.com      FedLens policy archive and analysis
+balancelab.dewitt-labs.com   BalanceLab AI scenario workstation
+evalforge.dewitt-labs.com    EvalForge reports and comparison lab
+docs.dewitt-labs.com         versioned technical documentation
+status.dewitt-labs.com       public operational and release status
+api.dewitt-labs.com          public API gateway where justified
 ```
 
 Subdomains are planned namespaces, not claims that each service is already deployed. An implementation PR may consolidate frontends while retaining these stable names. Any renaming, removal, or ownership transfer of a canonical public hostname requires an ADR and redirect plan.
@@ -162,7 +164,7 @@ The implementation agent must inventory the registrar, current DNS host, Wix con
 
 DRL requirements:
 
-- preserve registrar ownership and renewal access under DeWitt-controlled credentials;
+- preserve registrar ownership and renewal access under Director-controlled credentials;
 - enable registrar lock and multi-factor authentication where available;
 - avoid deleting unrelated mail, verification, or service records;
 - document all A, AAAA, CNAME, TXT, MX, CAA, and redirect records;
@@ -199,7 +201,7 @@ Wix and external applications share one public privacy narrative and event taxon
 
 ## SEO, discovery, and canonical content
 
-- `www.dwit-labs.com` is the canonical institutional origin.
+- `www.dewitt-labs.com` is the canonical institutional origin.
 - Wix pages use canonical tags and stable human-readable paths.
 - External application pages use their own canonical subdomain URLs.
 - Duplicate technical content is either summarized on Wix with a canonical link to docs or generated from the repository with explicit canonical ownership.
@@ -223,7 +225,7 @@ A model outage must not make the laboratory website disappear.
 
 ### Phase A — Domain and institutional launch
 
-1. Connect `www.dwit-labs.com` to the Wix site.
+1. Connect `www.dewitt-labs.com` to the Wix site.
 2. Establish apex redirect and HTTPS.
 3. Implement brand shell, laboratory mission, systems overview, open-source overview, research index, About, Contact, and Status link.
 4. Publish only truthful project maturity labels.
@@ -248,7 +250,7 @@ A model outage must not make the laboratory website disappear.
 
 V1 domain and Wix integration is complete only when:
 
-- `www.dwit-labs.com` resolves over HTTPS to the approved Wix site;
+- `www.dewitt-labs.com` resolves over HTTPS to the approved Wix site;
 - the apex redirects to the canonical origin;
 - every published DRL application has an approved hostname and TLS;
 - no core application relies on an iframe as its sole public surface;

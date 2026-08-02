@@ -3,7 +3,7 @@ document_id: DRL-OSS-017
 title: "Open Source Sustainability, Monetization, and Public-Benefit Boundaries"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

@@ -3,7 +3,7 @@ document_id: DRL-SUB-PROT
 title: "DRL Protocol Package Agent Instructions"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

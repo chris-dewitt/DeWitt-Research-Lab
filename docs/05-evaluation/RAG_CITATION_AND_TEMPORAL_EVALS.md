@@ -3,7 +3,7 @@ document_id: DRL-EVA-005
 title: "RAG, Citation, and Temporal Evaluation"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

@@ -3,7 +3,7 @@ document_id: DRL-WEB-009
 title: "Failure Museum Product Specification"
 version: 2.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

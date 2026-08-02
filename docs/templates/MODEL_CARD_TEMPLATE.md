@@ -3,7 +3,7 @@ document_id: DRL-DOC-011
 title: "Generic Model Card Template"
 version: 1.0.0
 status: DRAFT
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

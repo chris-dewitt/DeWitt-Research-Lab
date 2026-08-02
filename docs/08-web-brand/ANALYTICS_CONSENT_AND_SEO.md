@@ -3,7 +3,7 @@ document_id: DRL-WEB-014
 title: "Analytics, Consent, Search, and Social Metadata"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -41,4 +41,4 @@ Essential session/security data is explained separately from optional analytics 
 
 The Wix site and DRL application subdomains must present compatible consent categories and privacy explanations. Wix traffic analytics, product analytics, application operational telemetry, Atticus evaluation traces, and donated research traces are distinct data purposes. Consent to one does not imply consent to another.
 
-`www.dwit-labs.com` is the canonical institutional origin. External applications own canonical URLs on their subdomains. Duplicate long-form technical content is summarized on Wix and points to the repository-backed canonical version. Staging, preview, administrative, private trace, and internal evaluation routes are excluded from indexing.
+`www.dewitt-labs.com` is the canonical institutional origin. External applications own canonical URLs on their subdomains. Duplicate long-form technical content is summarized on Wix and points to the repository-backed canonical version. Staging, preview, administrative, private trace, and internal evaluation routes are excluded from indexing.

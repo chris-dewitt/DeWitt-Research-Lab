@@ -3,7 +3,7 @@ document_id: DRL-WEB-019
 title: "Wix Institutional Site Build Plan and Page Blueprint"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Objective
 
-Build `www.dwit-labs.com` into the credible public home of DeWitt Research Laboratory: an independent open research initiative that feels like a financial research workstation, academic institute, and restored 1980s computing laboratory without sacrificing clarity, accessibility, or truthfulness.
+Build `www.dewitt-labs.com` into the credible public home of DeWitt Research Laboratory: an independent open research initiative that feels like a financial research workstation, academic institute, and restored 1980s computing laboratory without sacrificing clarity, accessibility, or truthfulness.
 
 The Wix site introduces DRL. Atticus guides visitors after the laboratory is understood. The site sells no fictional institutional history and never implies government, university, accreditation, staff, or production maturity that does not exist.
 
@@ -47,7 +47,7 @@ Teaching
   Student/tinkerer pathways
 Failure Museum
 About
-  DeWitt / Founder and Director
+  Christopher Noxon DeWitt / Founder and Director
   Governance
   Contact and collaborate
 Status / Launch
@@ -144,7 +144,7 @@ Introduce Atticus as guide and copilot, not as the laboratory itself. Suggested 
 - Replay the integrated workflow
 - Find a contribution task
 
-The full experience opens at `atticus.dwit-labs.com` or an approved route. A Wix teaser must be bounded and contain a direct fallback link.
+The full experience opens at `atticus.dewitt-labs.com` or an approved route. A Wix teaser must be bounded and contain a direct fallback link.
 
 ### 7. Research, teaching, and collaboration
 
@@ -161,7 +161,7 @@ Show one real failure record with failure, detection, correction, and regression
 
 ### 9. Founder/director
 
-A restrained introduction to DeWitt as founder, director, and Applied AI Researcher. Link to research interests, biography, résumé, GitHub, and contact. Finance/quantitative background supports the work but does not dominate the institutional homepage.
+A restrained introduction to Christopher Noxon DeWitt as founder, director, and Applied AI Researcher. Link to research interests, biography, résumé, GitHub, and contact. Finance/quantitative background supports the work but does not dominate the institutional homepage.
 
 ## System page template
 
@@ -283,4 +283,4 @@ The Wix build is tested at representative phone, tablet, laptop, and large deskt
 - accessibility report;
 - mobile screenshots;
 - launch and rollback instructions;
-- handoff recording describing how DeWitt can update content safely.
+- handoff recording describing how the Director can update content safely.

@@ -3,7 +3,7 @@ document_id: DRL-MOD-002
 title: "Base Model Bake-Off and Selection Protocol"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

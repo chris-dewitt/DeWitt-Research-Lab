@@ -3,7 +3,7 @@ document_id: DRL-AGT-014
 title: "Agent Mission 14: Independent Quality Assurance and V1 Release"
 version: 3.1.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Mission objective
 
-Act as an independent release authority: verify rather than build. Audit requirement traceability, tests, security, privacy, accessibility, licensing, model/data reproducibility, cloud operations, documentation, and public claims; prepare the all-at-once V1 release candidate for DeWitt’s final decision.
+Act as an independent release authority: verify rather than build. Audit requirement traceability, tests, security, privacy, accessibility, licensing, model/data reproducibility, cloud operations, documentation, and public claims; prepare the all-at-once V1 release candidate for the Director’s final decision.
 
 
 ## Operating contract
@@ -27,7 +27,7 @@ The agent must not silently reinterpret the laboratory. Missing or contradictory
 - Commit after coherent work packages; avoid one giant undifferentiated commit.
 - Rebase or merge the latest integration branch before final verification.
 - Open a pull request containing requirement IDs, changed contracts, ADRs, test evidence, security/privacy impact, documentation impact, known limitations, and exact handoff state.
-- Never merge the pull request yourself unless DeWitt has explicitly delegated that authority for the specific PR.
+- Never merge the pull request yourself unless the Director has explicitly delegated that authority for the specific PR.
 
 ## Universal constraints
 
@@ -75,9 +75,9 @@ This mission must preserve DRL's open-by-construction identity. Read `OPEN_RESEA
 ## Protected or coordinated paths
 
 - Do not rewrite component behavior to make tests pass; file defects to owners.
-- Do not waive a release blocker without DeWitt’s explicit recorded approval and public disclosure where material.
+- Do not waive a release blocker without the Director’s explicit recorded approval and public disclosure where material.
 - Do not certify licenses, privacy, security, or research claims without evidence.
-- Production promotion remains DeWitt-approved.
+- Production promotion remains Director-approved.
 
 ## Required work packages
 
@@ -97,7 +97,7 @@ Witness deployment, canary, rollback, backup/restore, incident drill, quota/budg
 Prepare version map, checksums, SBOMs, model/data cards, evaluation/safety reports, architecture/security notes, known limitations, release notes, website claim register, and reproducibility instructions.
 
 ### WP-14-06 — Go/no-go review
-Classify blockers, require remediation or recorded waiver, create final launch checklist, and present a recommendation to DeWitt without merging/promoting unapproved production changes.
+Classify blockers, require remediation or recorded waiver, create final launch checklist, and present a recommendation to the Director without merging/promoting unapproved production changes.
 
 
 ### WP-14-07 — Open artifact and forkability audit
@@ -123,7 +123,7 @@ Every work package must name the requirements it satisfies, the evidence it prod
 - All known limitations are accurate and public where relevant.
 - Website metrics/claims match release evidence.
 - Rollback/restore/incident and budget controls are demonstrated.
-- DeWitt receives a concise evidence-based go/no-go packet.
+- The Director receives a concise evidence-based go/no-go packet.
 
 ## Handoff requirements
 
@@ -131,7 +131,7 @@ Provide final validation report, evidence index, blocker register, signed artifa
 
 ## Definition of mission complete
 
-DeWitt can make an informed public V1 decision from complete evidence; the tested artifacts are exactly the artifacts proposed for release; all release criteria pass or deviations are explicit, approved, and disclosed.
+The Director can make an informed public V1 decision from complete evidence; the tested artifacts are exactly the artifacts proposed for release; all release criteria pass or deviations are explicit, approved, and disclosed.
 
 ### WP-14-09 — Independent open-identity release audit
 

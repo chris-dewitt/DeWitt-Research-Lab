@@ -3,7 +3,7 @@ document_id: DRL-WEB-020
 title: "Wix Editor Build, Review, and Handoff Checklist"
 version: 1.0.0
 status: APPROVED OPERATING PROCEDURE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Access and safety
 
-- [ ] Wix site and domain ownership are confirmed under DeWitt-controlled accounts.
+- [ ] Wix site and domain ownership are confirmed under Director-controlled accounts.
 - [ ] MFA and recovery methods are enabled.
 - [ ] Collaborator roles are least privilege.
 - [ ] No password, transfer code, API key, or verification secret appears in Git, screenshots, or tickets.
@@ -19,8 +19,8 @@ last_updated: 2026-07-26
 
 ## Domain
 
-- [ ] `www.dwit-labs.com` is assigned to the correct Wix site.
-- [ ] `dwit-labs.com` redirects permanently to the canonical `www` URL.
+- [ ] `www.dewitt-labs.com` is assigned to the correct Wix site.
+- [ ] `dewitt-labs.com` redirects permanently to the canonical `www` URL.
 - [ ] HTTPS certificate is valid.
 - [ ] Existing mail and verification records are preserved.
 - [ ] Domain renewal ownership and alerts are documented privately.
@@ -77,7 +77,7 @@ last_updated: 2026-07-26
 
 ## SEO and sharing
 
-- [ ] Canonical URLs use `www.dwit-labs.com` for institutional pages.
+- [ ] Canonical URLs use `www.dewitt-labs.com` for institutional pages.
 - [ ] Application pages use their own canonical subdomain URLs.
 - [ ] Sitemap and robots behavior are reviewed.
 - [ ] Page titles and descriptions are unique and accurate.
@@ -105,7 +105,7 @@ last_updated: 2026-07-26
 
 ## Handoff
 
-- [ ] DeWitt receives page map, component inventory, custom-code list, content owners, and update instructions.
+- [ ] The Director receives page map, component inventory, custom-code list, content owners, and update instructions.
 - [ ] DNS and domain operations are documented separately from editorial updates.
 - [ ] Wix collaborators and permissions are reviewed.
 - [ ] Known limitations and future ADR gates are recorded.

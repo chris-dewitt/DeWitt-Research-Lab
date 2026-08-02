@@ -3,7 +3,7 @@ document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
 version: 4.10.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 
@@ -103,7 +103,7 @@ Append completed handoffs below this line. Never place credentials, private data
 ### 2026-07-27 — Foundation implementation upgrade
 
 - Upgraded the recovered Wix/domain build-bible foundation.
-- Added the living Director's decision ledger and recorded DeWitt's approved
+- Added the living Director's decision ledger and recorded the Director's approved
   institutional, implementation, cloud, and execution decisions.
 - Added a runnable deterministic Atticus vertical slice and working Atlas,
   FedLens, BalanceLab AI, and EvalForge starters.

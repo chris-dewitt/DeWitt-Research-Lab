@@ -3,7 +3,7 @@ document_id: DRL-OPS-002
 title: "Architecture Decision Record Process"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -14,4 +14,4 @@ ADR states: context, decision drivers, considered options, decision, consequence
 
 Statuses: proposed, accepted, rejected, superseded, deprecated.
 
-Major decisions require DeWitt approval. Experiments can evaluate options before acceptance when isolated. An accepted ADR is immutable except status/supersession; new information creates a new ADR.
+Major decisions require the Director's approval. Experiments can evaluate options before acceptance when isolated. An accepted ADR is immutable except status/supersession; new information creates a new ADR.

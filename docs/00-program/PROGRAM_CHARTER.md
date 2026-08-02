@@ -3,7 +3,7 @@ document_id: DRL-PRG-002
 title: "V1 Program Charter"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -16,7 +16,7 @@ Deliver one coordinated, public, open-source V1 of DeWitt Research Laboratory in
 
 ## Business and research outcomes
 
-- Establish DeWitt publicly as an Applied AI Researcher with a serious, reproducible body of work.
+- Establish Christopher Noxon DeWitt publicly as an Applied AI Researcher with a serious, reproducible body of work.
 - Provide useful open-source libraries, datasets, benchmark assets, and applications rather than portfolio-only demonstrations.
 - Demonstrate research quality through evaluations, citations, deterministic calculations, and failure publication.
 - Attract collaborators, tinkerers, students, academics, learners, teachers, hiring managers, sponsors, and consulting/training opportunities.
@@ -58,7 +58,7 @@ V1 includes:
 
 ## Program roles
 
-- **Director/Product Owner:** DeWitt. Final mission, scope, ADR, release, and brand authority.
+- **Director/Product Owner:** Christopher Noxon DeWitt. Final mission, scope, ADR, release, and brand authority.
 - **Program Director Agent:** maintains dependency plan, issue graph, status, and release evidence.
 - **Architecture/Protocol Agent:** owns cross-service contracts and architecture coherence.
 - **Security/Privacy Agent:** owns threat models, policy, abuse testing, and release security signoff.

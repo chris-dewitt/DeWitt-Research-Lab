@@ -28,14 +28,14 @@ required = [
 for r in required:
     req(r)
 config = yaml.safe_load((ROOT / "configs/domain-routing.yaml").read_text())
-if config.get("canonical_origin") != "https://www.dwit-labs.com":
+if config.get("canonical_origin") != "https://www.dewitt-labs.com":
     errors.append("wrong canonical origin")
 if config.get("institutional_site", {}).get("platform") != "Wix":
     errors.append("Wix not recorded as platform")
 if config.get("policies", {}).get("primary_apps_embedded_in_wix") is not False:
     errors.append("primary apps must not be iframe-only")
 hosts = [a.get("host") for a in config.get("applications", [])]
-for h in ("atticus.dwit-labs.com", "docs.dwit-labs.com", "status.dwit-labs.com"):
+for h in ("atticus.dewitt-labs.com", "docs.dewitt-labs.com", "status.dewitt-labs.com"):
     if h not in hosts:
         errors.append(f"missing planned host: {h}")
 for rel in (
@@ -45,7 +45,7 @@ for rel in (
     "docs/12-acceptance/V1_RELEASE_CRITERIA.md",
 ):
     text = (ROOT / rel).read_text()
-    if "www.dwit-labs.com" not in text:
+    if "www.dewitt-labs.com" not in text:
         errors.append(f"canonical domain absent: {rel}")
 requirements = yaml.safe_load((ROOT / "requirements/requirements.yaml").read_text())["requirements"]
 ids = {r["id"] for r in requirements}

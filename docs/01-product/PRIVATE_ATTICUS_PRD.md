@@ -3,7 +3,7 @@ document_id: DRL-PRD-004
 title: "Private Atticus and Local Runner Product Requirements"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Product goal
 
-Provide DeWitt with a local-first assistant capable of voice, file, and repository workflows while retaining explicit control over private data and consequential actions.
+Provide the Director with a local-first assistant capable of voice, file, and repository workflows while retaining explicit control over private data and consequential actions.
 
 ## V1 supported platform
 

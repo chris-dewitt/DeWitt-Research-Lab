@@ -3,7 +3,7 @@ document_id: DRL-OSS-005
 title: "Plugin, Skill, Model Adapter, and Registry Program"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

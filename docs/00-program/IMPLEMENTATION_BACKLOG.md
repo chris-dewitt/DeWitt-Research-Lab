@@ -3,7 +3,7 @@ document_id: DRL-PRG-013
 title: "Implementation Backlog"
 version: 4.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -131,7 +131,7 @@ This controlled backlog contains **122** planned work packages. The machine-read
 | WP-13-07 | 13 | Build the signature V1 open-source showcase workflow and reproduction bundle across all specialist systems. | PLANNED |
 | WP-14-09 | 14 | Run dedicated open-identity validator, open artifact schemas, public-link checks, and clean-room showcase acceptance. | PLANNED |
 | WP-15-10 | 15 | Publish contributor credit, open-source health baseline, sustainability statement, and open research accountability report. | PLANNED |
-| WP-05-08 | 05 | Implement domain, DNS, TLS, Wix/cloud subdomain routing, monitoring, rollback, and cross-origin security evidence for dwit-labs.com. | PLANNED |
-| WP-06-10 | 06 | Build the canonical Wix institutional site at www.dwit-labs.com and integrate truthful application launch, repository content, brand, consent, SEO, accessibility, and fallback behavior. | PLANNED |
+| WP-05-08 | 05 | Implement domain, DNS, TLS, Wix/cloud subdomain routing, monitoring, rollback, and cross-origin security evidence for dewitt-labs.com. | PLANNED |
+| WP-06-10 | 06 | Build the canonical Wix institutional site at www.dewitt-labs.com and integrate truthful application launch, repository content, brand, consent, SEO, accessibility, and fallback behavior. | PLANNED |
 | WP-13-08 | 13 | Verify the integrated reference journey from the Wix laboratory homepage through Atticus and specialist subdomains and back, including degraded/replay behavior. | PLANNED |
 | WP-14-10 | 14 | Perform independent clean-room domain, Wix, TLS, redirect, cross-host navigation, consent, indexing, and iframe-boundary release acceptance. | PLANNED |

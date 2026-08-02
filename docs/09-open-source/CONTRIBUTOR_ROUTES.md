@@ -3,7 +3,7 @@ document_id: DRL-OSS-029
 title: "Contributor Routes and Good-First Issue Map"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 
@@ -105,7 +105,7 @@ Every good-first issue must include:
 
 ## Maintainer ownership
 
-- Final merge authority: DeWitt (Director) or explicitly delegated maintainers
+- Final merge authority: the Director or explicitly delegated maintainers
 - Component contracts: subtree `AGENTS.md` owners
 - Security-sensitive paths: require deny-path tests and cannot weaken tenant/policy invariants
 

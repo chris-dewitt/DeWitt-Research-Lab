@@ -3,7 +3,7 @@ document_id: DRL-PRG-009
 title: "Requirement Traceability Matrix"
 version: 3.7.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 

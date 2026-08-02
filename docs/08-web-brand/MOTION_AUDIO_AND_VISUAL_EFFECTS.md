@@ -3,7 +3,7 @@ document_id: DRL-WEB-012
 title: "Motion, Audio, and Atmospheric Effects"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

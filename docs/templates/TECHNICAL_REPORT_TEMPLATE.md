@@ -3,7 +3,7 @@ document_id: DRL-RES-010
 title: "Technical Report Template"
 version: 1.0.0
 status: DRAFT
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

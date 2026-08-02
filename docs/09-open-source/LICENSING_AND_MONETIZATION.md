@@ -3,7 +3,7 @@ document_id: DRL-OSS-002
 title: "Licensing, Trademark, and Monetization Strategy"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

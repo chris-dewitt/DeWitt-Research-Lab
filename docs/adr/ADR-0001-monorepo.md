@@ -3,7 +3,7 @@ document_id: DRL-ADR-0001
 title: "Use a Monorepo"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

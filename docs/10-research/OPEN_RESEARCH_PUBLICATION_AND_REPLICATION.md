@@ -3,7 +3,7 @@ document_id: DRL-RES-004
 title: "Open Research Publication, Negative Results, and Replication"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

@@ -3,7 +3,7 @@ document_id: DRL-PRG-090
 title: "First 90-Day Repository Execution Plan"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -122,7 +122,7 @@ sessions.
 - Build the Wix institutional pages and cream-on-black design system.
 - Publish mission, systems, research, open source, teaching, About, and honest
   maturity/status pages.
-- Connect `www.dwit-labs.com` and test redirects, TLS, accessibility, and SEO.
+- Connect `www.dewitt-labs.com` and test redirects, TLS, accessibility, and SEO.
 
 ### Week 11
 

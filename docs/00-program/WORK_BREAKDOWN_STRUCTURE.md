@@ -3,7 +3,7 @@ document_id: DRL-PRG-004
 title: "V1 Work Breakdown Structure"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -33,6 +33,6 @@ Each work package has an owner, prerequisites, outputs, verification, and handof
 | GCP-01 | Dev/stage/prod infrastructure | Infrastructure | architecture ADRs | Terraform plan/apply evidence |
 | INT-01 | Integrated specialist workflow | Integration | FED-01, BAL-01, ATL-01, ATT-01 | live trace and EvalForge report |
 | REL-01 | Release candidate hardening | Release | all critical packages | evidence matrix |
-| REL-02 | Public V1 launch | DeWitt | REL-01 signoff | signed release, public artifacts |
+| REL-02 | Public V1 launch | The Director | REL-01 signoff | signed release, public artifacts |
 
 No issue may claim a package complete without attaching its exit evidence.

@@ -3,7 +3,7 @@ document_id: DRL-MODE-100
 title: "Atticus Edge Project README"
 version: 3.0.0
 status: RELEASE CANDIDATE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

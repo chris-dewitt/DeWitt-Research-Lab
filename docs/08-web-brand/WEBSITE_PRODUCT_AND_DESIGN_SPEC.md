@@ -3,7 +3,7 @@ document_id: DRL-WEB-001
 title: "Laboratory Website Product and Design Specification"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Canonical site and delivery model
 
-The public institutional website is the registered domain **`https://www.dwit-labs.com`**, hosted on Wix for V1. Wix introduces the laboratory and publishes editorial/research discovery content. The open-source DRL web applications, Atticus console, documentation, and specialist workstations deploy under DRL subdomains and share one design and navigation contract. See [`DOMAIN_AND_WIX_INTEGRATION.md`](DOMAIN_AND_WIX_INTEGRATION.md).
+The public institutional website is the registered domain **`https://www.dewitt-labs.com`**, hosted on Wix for V1. Wix introduces the laboratory and publishes editorial/research discovery content. The open-source DRL web applications, Atticus console, documentation, and specialist workstations deploy under DRL subdomains and share one design and navigation contract. See [`DOMAIN_AND_WIX_INTEGRATION.md`](DOMAIN_AND_WIX_INTEGRATION.md).
 
 ## Creative direction
 
@@ -115,8 +115,8 @@ Commands are searchable and have visible keyboard alternatives.
 ## Cross-host product architecture
 
 - Wix routes present the institution, editorial research, teaching, system summaries, collaboration, and launch pages.
-- `atticus.dwit-labs.com` and specialist subdomains present high-interaction tools, traces, calculations, and authenticated sessions.
+- `atticus.dewitt-labs.com` and specialist subdomains present high-interaction tools, traces, calculations, and authenticated sessions.
 - `apps/lab-web` remains a self-hostable open reference platform and can render docs, research workspaces, replay viewers, and shared application chrome.
 - Primary apps must have direct URLs and may not depend solely on Wix iframes.
-- Every external app exposes a clear return path to `www.dwit-labs.com` and a visible release/model/status identity.
+- Every external app exposes a clear return path to `www.dewitt-labs.com` and a visible release/model/status identity.
 - Navigation, consent, analytics, accessibility, and canonical-link behavior are validated across host boundaries.

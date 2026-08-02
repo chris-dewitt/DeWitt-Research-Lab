@@ -3,7 +3,7 @@ document_id: DRL-EVL-100
 title: "EvalForge Project README"
 version: 4.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-28
 ---
 

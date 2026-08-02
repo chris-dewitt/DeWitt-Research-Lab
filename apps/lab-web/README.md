@@ -3,14 +3,14 @@ document_id: DRL-WEB-100
 title: "DeWitt Research Laboratory Web Project README"
 version: 4.0.0
 status: RELEASE CANDIDATE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
 
     # DeWitt Research Laboratory Web
 
-    **Role in DeWitt Research Laboratory:** Open-source interactive web platform, shared application shell, research/documentation workspace, Atticus interface, failure museum, status console, and portable open-source portal. The canonical institutional homepage is the Wix site at `https://www.dwit-labs.com`.
+    **Role in DeWitt Research Laboratory:** Open-source interactive web platform, shared application shell, research/documentation workspace, Atticus interface, failure museum, status console, and portable open-source portal. The canonical institutional homepage is the Wix site at `https://www.dewitt-labs.com`.
 
     Design and content contracts are defined; public maturity requires accessibility, truthful-demo, performance, and provenance evidence.
 
@@ -62,4 +62,4 @@ last_updated: 2026-07-26
 
 ## Wix boundary
 
-This application does not assume it owns `www.dwit-labs.com`. It must provide stable launch URLs, return navigation, shared tokens, release metadata, and bounded widget surfaces to the Wix site. Primary authenticated or computational flows must remain usable outside an iframe. See `../../docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md`.
+This application does not assume it owns `www.dewitt-labs.com`. It must provide stable launch URLs, return navigation, shared tokens, release metadata, and bounded widget surfaces to the Wix site. Primary authenticated or computational flows must remain usable outside an iframe. See `../../docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md`.

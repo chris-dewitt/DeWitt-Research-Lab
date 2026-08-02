@@ -3,7 +3,7 @@ document_id: DRL-ROOT-AGENTS
 title: "Repository-Wide Agent Operating Contract"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -56,7 +56,7 @@ Required sequence:
 13. update `DIRECTORS_MEMO.md` when the work creates or resolves a material
     decision, blocker, inconsistency, risk, or Director question.
 
-Agents do not merge their own major changes. A later reviewer agent or DeWitt approves and merges.
+Agents do not merge their own major changes. A later reviewer agent or the Director approves and merges.
 
 ## 3. Branch and commit policy
 
@@ -92,7 +92,7 @@ Create an ADR before implementation when changing any of the following:
 - V1 scope or acceptance criteria;
 - dependency with material lock-in, security, or cost implications.
 
-An agent may draft an ADR, but DeWitt must approve major decisions. Until approval, implementation may exist only as a clearly labeled experiment isolated from the accepted path.
+An agent may draft an ADR, but the Director must approve major decisions. Until approval, implementation may exist only as a clearly labeled experiment isolated from the accepted path.
 
 ## 5. Security invariants
 

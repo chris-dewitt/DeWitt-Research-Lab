@@ -3,7 +3,7 @@ document_id: DRL-PRG-091
 title: "Mission 00 Current-State Baseline"
 version: 1.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 

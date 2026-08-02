@@ -176,7 +176,8 @@ def audit_collections(site_id: str) -> None:
     for expected in EXPECTED_COLLECTIONS:
         if expected.lower() not in lower:
             add("GAP", "CMS",
-                f"Proposed collection `{expected}` not present (build plan §CMS/content collections).")
+                f"Proposed collection `{expected}` not present "
+                "(build plan §CMS/content collections).")
     # Maturity labels inside any Systems-like collection.
     for key, actual in lower.items():
         if "system" not in key:
@@ -196,7 +197,8 @@ def audit_collections(site_id: str) -> None:
             elif label.lower() not in ALLOWED_MATURITY:
                 add("GAP", "Maturity",
                     f"`{actual}` item '{title}' has label '{label}' outside the approved "
-                    "vocabulary (Incubator/Experimental/Alpha/Beta/Stable/Deprecated/Archived/Planned).")
+                    "vocabulary (Incubator/Experimental/Alpha/Beta/Stable/"
+                    "Deprecated/Archived/Planned).")
 
 
 def fetch_sitemap() -> tuple[list[str], bool]:

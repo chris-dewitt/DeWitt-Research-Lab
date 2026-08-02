@@ -102,8 +102,10 @@ def add(severity: str, area: str, message: str) -> None:
 def http(url: str, *, body: dict | None = None, headers: dict | None = None,
          follow_redirects: bool = True, timeout: int = 30):
     """GET (or POST when body given) returning (status, headers, text)."""
+    if not url.startswith("https://"):
+        raise ValueError(f"refusing non-https URL: {url}")
     data = json.dumps(body).encode() if body is not None else None
-    req = urllib.request.Request(url, data=data, headers=headers or {})
+    req = urllib.request.Request(url, data=data, headers=headers or {})  # noqa: S310
     if body is not None:
         req.add_header("Content-Type", "application/json")
     ctx = ssl.create_default_context()
@@ -167,18 +169,20 @@ def audit_collections(site_id: str) -> None:
         return
     cols = data.get("collections", [])
     names = {c.get("id", ""): c for c in cols}
-    user_cols = [c for c in names if not c.startswith(("Members", "Marketing", "Stores", "Bookings"))]
+    system_prefixes = ("Members", "Marketing", "Stores", "Bookings")
+    user_cols = [c for c in names if not c.startswith(system_prefixes)]
     add("INFO", "CMS", f"Collections found: {sorted(user_cols) or 'none'}")
     lower = {n.lower().replace("_", "").replace("-", ""): n for n in names}
     for expected in EXPECTED_COLLECTIONS:
         if expected.lower() not in lower:
-            add("GAP", "CMS", f"Proposed collection `{expected}` not present (build plan §CMS/content collections).")
+            add("GAP", "CMS",
+                f"Proposed collection `{expected}` not present (build plan §CMS/content collections).")
     # Maturity labels inside any Systems-like collection.
     for key, actual in lower.items():
         if "system" not in key:
             continue
-        s2, items = wix_api("/wix-data/v2/items/query",
-                            {"dataCollectionId": actual, "query": {"paging": {"limit": 100}}}, site_id)
+        query = {"dataCollectionId": actual, "query": {"paging": {"limit": 100}}}
+        s2, items = wix_api("/wix-data/v2/items/query", query, site_id)
         if s2 != 200 or not isinstance(items, dict):
             add("UNVERIFIED", "CMS", f"Could not read items of `{actual}` (HTTP {s2}).")
             continue
@@ -187,7 +191,8 @@ def audit_collections(site_id: str) -> None:
             label = str(fields.get("maturity") or fields.get("status") or "").strip()
             title = fields.get("title") or fields.get("name") or item.get("id")
             if not label:
-                add("GAP", "Maturity", f"`{actual}` item '{title}' has no maturity/status field.")
+                add("GAP", "Maturity",
+                    f"`{actual}` item '{title}' has no maturity/status field.")
             elif label.lower() not in ALLOWED_MATURITY:
                 add("GAP", "Maturity",
                     f"`{actual}` item '{title}' has label '{label}' outside the approved "
@@ -295,7 +300,8 @@ def audit_page(url: str, is_home: bool) -> None:
         bgs = re.findall(r"background(?:-color)?\s*:\s*(#[0-9a-fA-F]{3,6})", css)
         light = [b for b in bgs if luminance(b) > 0.6]
         dark = [b for b in bgs if luminance(b) < 0.25]
-        add("INFO", "Brand", f"Homepage background colors observed: {sorted(set(bgs)) or 'none inline'} "
+        add("INFO", "Brand",
+            f"Homepage background colors observed: {sorted(set(bgs)) or 'none inline'} "
             f"(dark={len(dark)}, light={len(light)})")
         if bgs and len(light) > len(dark):
             add("GAP", "Brand", "Homepage backgrounds are predominantly light — spec requires "
@@ -335,10 +341,12 @@ def main() -> int:
         paths = " ".join(urls).lower()
         for section, slugs in EXPECTED_TOP_SECTIONS.items():
             if not any(s in paths for s in slugs):
-                add("GAP", "Structure", f"Approved page-tree section '{section}' not found in sitemap.")
+                add("GAP", "Structure",
+                    f"Approved page-tree section '{section}' not found in sitemap.")
         for system in EXPECTED_SYSTEM_PAGES:
             if system not in paths:
-                add("GAP", "Structure", f"System page or planned-state entry for '{system}' not found in sitemap.")
+                add("GAP", "Structure",
+                    f"System page or planned-state entry for '{system}' not found in sitemap.")
 
     home = f"https://{SITE_HOST}/"
     audit_page(home, is_home=True)

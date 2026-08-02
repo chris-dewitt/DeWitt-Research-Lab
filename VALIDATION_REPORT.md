@@ -3,7 +3,7 @@ document_id: DRL-VAL-001
 title: "Runnable Foundation Validation Report"
 version: 2.1.0
 status: RELEASE CANDIDATE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -15,7 +15,7 @@ This report covers `DeWitt-Research-Lab-Foundation`: the recovered Wix/domain
 Build Bible upgraded with a living Director's Memo, runnable Atticus control
 plane, working specialist starters, local-runner safety primitives, cloud
 deployment starters, GitHub execution assets, and a 90-day plan. The canonical
-institutional website is `https://www.dwit-labs.com`; Wix remains the
+institutional website is `https://www.dewitt-labs.com`; Wix remains the
 institutional/editorial platform while open applications deploy independently.
 
 ## Validation summary
@@ -57,7 +57,7 @@ institutional/editorial platform while open applications deploy independently.
 
 ## Wix, domain, and cloud controls
 
-- Canonical institutional origin is `https://www.dwit-labs.com`.
+- Canonical institutional origin is `https://www.dewitt-labs.com`.
 - Apex-domain redirect is required.
 - Wix is the public institutional and editorial layer.
 - Atticus and specialist applications remain independently deployable and may not be iframe-only.

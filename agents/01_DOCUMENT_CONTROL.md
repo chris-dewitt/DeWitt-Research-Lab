@@ -3,7 +3,7 @@ document_id: DRL-AGT-001
 title: "Agent Mission 01: Repository Foundation and Document Control"
 version: 3.0.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -68,7 +68,7 @@ last_updated: 2026-07-26
 - Adding a build service that creates vendor lock-in.
 - Relaxing validation for approved documents.
 
-    For each trigger, write the ADR first, mark it `PROPOSED`, identify alternatives and consequences, and wait for DeWitt's approval before implementation. The agent may prepare a nonbinding spike in an isolated path if the ADR explicitly allows it.
+    For each trigger, write the ADR first, mark it `PROPOSED`, identify alternatives and consequences, and wait for the Director's approval before implementation. The agent may prepare a nonbinding spike in an isolated path if the ADR explicitly allows it.
 
     ## Verification matrix
 

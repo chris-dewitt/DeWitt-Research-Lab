@@ -3,7 +3,7 @@ document_id: DRL-DAT-001
 title: "Data Governance and Stewardship"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -25,7 +25,7 @@ last_updated: 2026-07-26
 
 ## Roles
 
-- **Data owner:** DeWitt; approves public promotion and exceptions.
+- **Data owner:** The Director; approves public promotion and exceptions.
 - **Dataset steward:** maintains manifest, rights, quality, and version.
 - **Reviewer:** validates content according to review class.
 - **Security/privacy reviewer:** assesses personal or sensitive data.

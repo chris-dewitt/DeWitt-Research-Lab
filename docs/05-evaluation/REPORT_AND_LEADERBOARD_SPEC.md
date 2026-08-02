@@ -3,7 +3,7 @@ document_id: DRL-EVA-010
 title: "Evaluation Report and Leaderboard Specification"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

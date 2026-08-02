@@ -3,7 +3,7 @@ document_id: DRL-BIB-001
 title: "DeWitt Research Laboratory Bible"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -33,12 +33,12 @@ Existing code is not automatically correct merely because it exists. An agent en
 **Common name:** DeWitt Research Lab  
 **Short mark:** DRL  
 **Type:** Independent open research and open technology initiative  
-**Founder and director:** DeWitt  
+**Founder and director:** Christopher Noxon DeWitt  
 **Public professional identity:** Applied AI Researcher  
 **Location:** Charlotte, North Carolina  
 **Mission:** *AI for Good. AI for all. Intelligence of the people and for the people.*
 
-DRL is clearly DeWitt's laboratory while presenting itself as a credible independent research institution capable of welcoming collaborators, tinkerers, students, academics, learners, and teachers. Open models, open-source software, public evaluation, local operation, and reproducible teaching are visible institutional pillars. The laboratory does not merely publish source after building; it designs systems so other people can inspect, modify, run, evaluate, and teach from them. It should feel as though DeWitt discovered an abandoned technical institute, restored its terminals, and took command—without fabricating a history, staff, affiliation, government authority, accreditation, or scale that does not exist.
+DRL is clearly the Director's laboratory while presenting itself as a credible independent research institution capable of welcoming collaborators, tinkerers, students, academics, learners, and teachers. Open models, open-source software, public evaluation, local operation, and reproducible teaching are visible institutional pillars. The laboratory does not merely publish source after building; it designs systems so other people can inspect, modify, run, evaluate, and teach from them. It should feel as though the Director discovered an abandoned technical institute, restored its terminals, and took command—without fabricating a history, staff, affiliation, government authority, accreditation, or scale that does not exist.
 
 ### 2.1 Institutional voice
 
@@ -163,7 +163,7 @@ Atticus is a guide in everything: assistant, copilot, steward, and Samwise to th
 ### 5.2 Contextual modes
 
 - **Public laboratory mode:** learned, welcoming, restrained, lightly Southern, and institutionally credible.
-- **Private mode:** warmer, more familiar, humorous, personally adaptive, and permitted to call DeWitt “Boss” when natural.
+- **Private mode:** warmer, more familiar, humorous, personally adaptive, and permitted to call the Director “Boss” when natural.
 - **Technical mode:** concise, direct, structured, and minimally stylized.
 - **Teaching mode:** patient, explanatory, interactive, and never condescending.
 - **Incident mode:** factual, priority-oriented, no jokes, no speculative reassurance.
@@ -301,7 +301,7 @@ It may:
 
 It may not:
 
-- access DeWitt's local runner;
+- access the Director's local runner;
 - access private repositories, email, calendar, or files;
 - write to arbitrary external systems;
 - run unrestricted shell commands;
@@ -449,7 +449,7 @@ Public APIs may expose REST, streaming HTTP, CLIs, Python/TypeScript SDKs, and M
 
 DRL uses a Google-first deployment strategy for V1.
 
-- **Wix at `www.dwit-labs.com`:** canonical institutional site, editorial front door, research discovery, teaching, collaboration, and launch surface.
+- **Wix at `www.dewitt-labs.com`:** canonical institutional site, editorial front door, research discovery, teaching, collaboration, and launch surface.
 - **Firebase/App Hosting and Google-hosted frontends:** open-source Atticus and specialist applications, documentation, trace viewers, and advanced research workspaces under DRL subdomains.
 - **Cloud Run:** CPU-based APIs, control plane, specialist services, and bounded workers.
 - **Cloud Run GPU:** scale-to-zero public open-weight inference where cold-start tradeoffs are acceptable.
@@ -503,7 +503,7 @@ Required controls include:
 
 ## 17. Website and public presentation
 
-The canonical public laboratory address is **`https://www.dwit-labs.com`**. DeWitt has registered the domain and acquired the Wix site. Wix is the institute-first editorial and discovery layer; Atticus and specialist systems remain real, independently deployable open-source applications connected through DRL subdomains and a shared public-experience contract.
+The canonical public laboratory address is **`https://www.dewitt-labs.com`**. The Director has registered the domain and acquired the Wix site. Wix is the institute-first editorial and discovery layer; Atticus and specialist systems remain real, independently deployable open-source applications connected through DRL subdomains and a shared public-experience contract.
 
 The website is a living laboratory, not a résumé card grid.
 
@@ -544,9 +544,9 @@ Every metric displayed must be generated from an auditable source. Placeholder m
 
 ### 17.4 Canonical host and Wix integration
 
-- `www.dwit-labs.com` is the canonical institutional origin; the apex redirects to it.
+- `www.dewitt-labs.com` is the canonical institutional origin; the apex redirects to it.
 - Wix owns the mission, research introductions, teaching index, collaboration surfaces, founder profile, and system launch pages.
-- Interactive systems use first-class subdomains such as `atticus.dwit-labs.com`; primary application experiences are not iframe-only.
+- Interactive systems use first-class subdomains such as `atticus.dewitt-labs.com`; primary application experiences are not iframe-only.
 - Controlled technical documents remain repository-authoritative and may be summarized or published into Wix through validated workflows.
 - Wix and external applications share design tokens, navigation, status language, consent, analytics taxonomy, canonical-link policy, and truthful maturity labels.
 - Authentication continuity is not assumed from visual continuity; privileged DRL sessions remain governed by the application identity model until a separate SSO ADR is approved.
@@ -596,7 +596,7 @@ The contributor experience must provide:
 - a plugin/skill extension model once interfaces are stable;
 - teaching material that explains why the system is designed as it is.
 
-Governance remains benevolent-dictator-led by DeWitt. Maintainers may earn delegated authority, but mission, brand, research independence, and final major-architecture approval remain with the director unless governance is explicitly amended.
+Governance remains benevolent-dictator-led by the Director. Maintainers may earn delegated authority, but mission, brand, research independence, and final major-architecture approval remain with the director unless governance is explicitly amended.
 
 Sponsors and partners may fund work but do not purchase control of the roadmap or research conclusions. Conflicts and restricted deliverables must be disclosed.
 
@@ -632,7 +632,7 @@ Every agent must:
 9. identify unresolved risks and the next dependency-unblocking task;
 10. never merge its own major change or approve its own ADR.
 
-Agents may make local implementation choices within accepted architecture. Changes to security boundaries, protocols, storage models, public APIs, model family, cloud architecture, licensing, telemetry, or V1 scope require an ADR and DeWitt's approval.
+Agents may make local implementation choices within accepted architecture. Changes to security boundaries, protocols, storage models, public APIs, model family, cloud architecture, licensing, telemetry, or V1 scope require an ADR and the Director's approval.
 
 ## 21. V1 program and definition of legitimacy
 
@@ -658,7 +658,7 @@ V1 requires:
 - no critical unresolved security findings;
 - no claims that cannot be demonstrated.
 
-A launch committee consisting of DeWitt plus designated release, security, and evaluation reviewers signs the evidence matrix. For a one-person initial lab, reviewers may be independent agents, external collaborators, or documented second-pass human reviews, but DeWitt cannot waive critical evidence silently.
+A launch committee consisting of the Director plus designated release, security, and evaluation reviewers signs the evidence matrix. For a one-person initial lab, reviewers may be independent agents, external collaborators, or documented second-pass human reviews, but the Director cannot waive critical evidence silently.
 
 ## 22. Non-goals for V1
 
@@ -711,7 +711,7 @@ The following decisions remain deliberate gates rather than hidden assumptions:
 
 Build systems that deserve trust rather than interfaces that merely request it. Keep the intelligence open where possible, the calculations inspectable, the permissions explicit, the failures visible, and the work useful to people who want to learn, build, teach, and collaborate.
 
-**Atticus operates the laboratory. DeWitt directs it. The public should be able to inspect how it works.**
+**Atticus operates the laboratory. The Director directs it. The public should be able to inspect how it works.**
 
 ### 18.8 Open technology as a visible institutional actor
 

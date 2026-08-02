@@ -3,7 +3,7 @@ document_id: DRL-ARC-001
 title: "System Context and C4 Architecture"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,14 +12,14 @@ last_updated: 2026-07-26
 
 ## System context
 
-DeWitt Research Laboratory is a public research and software platform used by anonymous visitors, authenticated public researchers, contributors, DeWitt as private operator, and administrators. It integrates public data providers, model runtimes, Google Cloud services, GitHub, and optional local tools.
+DeWitt Research Laboratory is a public research and software platform used by anonymous visitors, authenticated public researchers, contributors, the Director as private operator, and administrators. It integrates public data providers, model runtimes, Google Cloud services, GitHub, and optional local tools.
 
 ### External actors and systems
 
 - anonymous visitor;
 - authenticated public researcher;
 - contributor/maintainer;
-- DeWitt/private operator;
+- The Director/private operator;
 - administrator/release operator;
 - public economic and Federal Reserve sources;
 - GitHub and package/model registries;

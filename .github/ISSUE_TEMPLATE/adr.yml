@@ -1,5 +1,5 @@
 name: Architecture Decision
-description: Propose a major decision requiring DeWitt approval
+description: Propose a major decision requiring the Director's approval
 title: "[ADR]: "
 labels: ["architecture", "approval-required"]
 body:

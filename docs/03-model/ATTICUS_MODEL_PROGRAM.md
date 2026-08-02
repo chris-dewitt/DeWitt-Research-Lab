@@ -3,7 +3,7 @@ document_id: DRL-MOD-001
 title: "Atticus Open-Weight Model Research Program"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

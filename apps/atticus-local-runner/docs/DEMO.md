@@ -3,7 +3,7 @@ document_id: DRL-LOC-101
 title: "Atticus Local Runner Demonstration and Portfolio Specification"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -16,7 +16,7 @@ last_updated: 2026-07-26
 
     ## Signature story
 
-    DeWitt asks Atticus by voice to inspect a synthetic repository, identify failing tests, prepare a patch, and explain it. Read-only work proceeds under local policy. The patch appears in a trusted approval view. Apply, commit, and push remain distinct decisions. The audit shows exactly what left the device.
+    The Director asks Atticus by voice to inspect a synthetic repository, identify failing tests, prepare a patch, and explain it. Read-only work proceeds under local policy. The patch appears in a trusted approval view. Apply, commit, and push remain distinct decisions. The audit shows exactly what left the device.
 
     ## Modes
 

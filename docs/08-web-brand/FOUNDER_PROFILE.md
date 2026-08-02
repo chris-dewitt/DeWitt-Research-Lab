@@ -3,7 +3,7 @@ document_id: DRL-WEB-021
 title: "Founder and Director Profile"
 version: 1.0.0
 status: DRAFT
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-27
 
 ## Short profile
 
-DeWitt is an Applied AI Researcher in Charlotte, North Carolina, with a
+Christopher Noxon DeWitt is an Applied AI Researcher in Charlotte, North Carolina, with a
 background in statistics, economics, applied data science, quantitative
 financial analysis, and software development. He founded DeWitt Research
 Laboratory as an independent, one-person initiative for tinkering with,
@@ -19,7 +19,7 @@ studying, and building open and publicly useful artificial intelligence.
 
 ## Full profile
 
-DeWitt's work sits at the intersection of artificial intelligence, statistical
+The Director's work sits at the intersection of artificial intelligence, statistical
 modeling, economics, quantitative finance, research engineering, and public
 technology. His experience includes balance-sheet and interest-rate-risk
 analysis, forecasting, data pipelines, econometrics, Python, SQL, and technical
@@ -40,7 +40,7 @@ operation is personal, practical, and open to serious collaborators.
 
 ## Disclosure
 
-DRL is independent of DeWitt's employer. Public work uses public, synthetic,
+DRL is independent of the Director's employer. Public work uses public, synthetic,
 personally owned, or appropriately licensed material and must never disclose
 confidential employer, customer, or production information. Employment names,
 exact dates, résumé links, photographs, and contact channels require a final

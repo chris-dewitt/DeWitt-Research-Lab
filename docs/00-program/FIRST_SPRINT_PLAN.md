@@ -3,7 +3,7 @@ document_id: DRL-PRG-093
 title: "First Sprint Execution Plan — M1 Bootstrap"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -93,10 +93,10 @@ test.
 | ID | Action this sprint |
 |---|---|
 | DIR-001 | Confirm GitHub owner/slug matches the live remote or record transfer intent |
-| DIR-003 | Confirm or create `security@dwit-labs.com` (or interim contact in SECURITY.md) |
+| DIR-003 | Confirm or create `security@dewitt-labs.com` (or interim contact in SECURITY.md) |
 | DIR-002 | Not required to *code*; required before any `terraform apply` |
 
-Do not invent resolutions. Update `DIRECTORS_MEMO.md` when DeWitt decides.
+Do not invent resolutions. Update `DIRECTORS_MEMO.md` when the Director decides.
 
 ## Out of scope for this sprint
 

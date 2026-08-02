@@ -3,7 +3,7 @@ document_id: DRL-TR-2026-001
 title: "Technical Report TR-2026-001: Local Integrated Evidence-to-Scenario Workflow"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 citation_key: dewitt2026tr001
 maturity: prototype
@@ -14,7 +14,7 @@ maturity: prototype
 
 ## Citation
 
-DeWitt. 2026. *Technical Report TR-2026-001: Local Integrated Evidence-to-Scenario Workflow*. DeWitt Research Laboratory working paper. Document ID `DRL-TR-2026-001`. Repository path: `docs/10-research/reports/TR-2026-001-integrated-workflow.md`.
+DeWitt, Christopher Noxon. 2026. *Technical Report TR-2026-001: Local Integrated Evidence-to-Scenario Workflow*. DeWitt Research Laboratory working paper. Document ID `DRL-TR-2026-001`. Repository path: `docs/10-research/reports/TR-2026-001-integrated-workflow.md`.
 
 ## Abstract
 

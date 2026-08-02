@@ -3,7 +3,7 @@ document_id: DRL-PRG-095
 title: "Release Dashboard and Weekly Program Review"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-27
 
 ## Purpose
 
-Give DeWitt a one-page, evidence-backed view of program health. Update this
+Give the Director a one-page, evidence-backed view of program health. Update this
 dashboard in `WORKLOG.md` weekly and before any public claim.
 
 ## Weekly review agenda (30–45 minutes)

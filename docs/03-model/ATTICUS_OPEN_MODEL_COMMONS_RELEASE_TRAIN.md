@@ -3,7 +3,7 @@ document_id: DRL-MOD-016
 title: "Atticus Open Model Commons Release Train"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

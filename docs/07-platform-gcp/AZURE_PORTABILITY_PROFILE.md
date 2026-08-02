@@ -3,7 +3,7 @@ document_id: DRL-CLOUD-002
 title: "Azure Optional Portability Profile"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

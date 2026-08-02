@@ -3,7 +3,7 @@ document_id: DRL-ROOT-CONDUCT
 title: "Community Code of Conduct"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -21,7 +21,7 @@ Participants must disclose material conflicts, preserve provenance, respect lice
 
 ## Enforcement
 
-Report conduct concerns through the private community contact published by DRL. DeWitt or delegated maintainers may warn, restrict, remove content, revoke roles/access, or ban participation, considering severity, safety, pattern, and repair. Confidentiality is respected as far as practical while providing fair process. Retaliation against reporters is prohibited.
+Report conduct concerns through the private community contact published by DRL. The Director or delegated maintainers may warn, restrict, remove content, revoke roles/access, or ban participation, considering severity, safety, pattern, and repair. Confidentiality is respected as far as practical while providing fair process. Retaliation against reporters is prohibited.
 
 ## Scope
 

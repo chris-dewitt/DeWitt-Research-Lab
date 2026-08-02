@@ -3,7 +3,7 @@ document_id: DRL-MOD-014
 title: "Atticus Open Model Release, Packaging, and Distribution Plan"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

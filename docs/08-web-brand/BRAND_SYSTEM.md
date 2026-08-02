@@ -3,7 +3,7 @@ document_id: DRL-WEB-002
 title: "DeWitt Research Laboratory Brand System"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -15,7 +15,7 @@ last_updated: 2026-07-26
 - formal: DeWitt Research Laboratory;
 - common: DeWitt Research Lab;
 - compact: DRL, used as a secondary mark only;
-- founder line: Founded and directed by DeWitt, Applied AI Researcher.
+- founder line: Founded and directed by Christopher Noxon DeWitt, Applied AI Researcher.
 
 ## Mission line
 

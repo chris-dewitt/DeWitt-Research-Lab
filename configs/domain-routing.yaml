@@ -1,46 +1,46 @@
 schema_version: 1.0.0
-canonical_domain: dwit-labs.com
-canonical_origin: https://www.dwit-labs.com
+canonical_domain: dewitt-labs.com
+canonical_origin: https://www.dewitt-labs.com
 apex_behavior:
-  host: dwit-labs.com
+  host: dewitt-labs.com
   action: permanent_redirect
-  target: https://www.dwit-labs.com
+  target: https://www.dewitt-labs.com
 institutional_site:
-  host: www.dwit-labs.com
+  host: www.dewitt-labs.com
   platform: Wix
   role: canonical-public-institutional-site
-  status: registered-and-selected
+  status: live
 applications:
   - id: atticus
-    host: atticus.dwit-labs.com
+    host: atticus.dewitt-labs.com
     role: public-atticus-console
     status: planned
   - id: atlas
-    host: atlas.dwit-labs.com
+    host: atlas.dewitt-labs.com
     role: macro-research-application
     status: planned
   - id: fedlens
-    host: fedlens.dwit-labs.com
+    host: fedlens.dewitt-labs.com
     role: monetary-policy-application
     status: planned
   - id: balancelab
-    host: balancelab.dwit-labs.com
+    host: balancelab.dewitt-labs.com
     role: synthetic-scenario-application
     status: planned
   - id: evalforge
-    host: evalforge.dwit-labs.com
+    host: evalforge.dewitt-labs.com
     role: evaluation-application
     status: planned
   - id: docs
-    host: docs.dwit-labs.com
+    host: docs.dewitt-labs.com
     role: versioned-documentation
     status: planned
   - id: status
-    host: status.dwit-labs.com
+    host: status.dewitt-labs.com
     role: public-status
     status: planned
   - id: api
-    host: api.dwit-labs.com
+    host: api.dewitt-labs.com
     role: public-api-gateway
     status: conditional
 policies:

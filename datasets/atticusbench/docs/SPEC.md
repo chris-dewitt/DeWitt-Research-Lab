@@ -3,7 +3,7 @@ document_id: DRL-ATB-001
 title: "AtticusBench V1 Specification"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

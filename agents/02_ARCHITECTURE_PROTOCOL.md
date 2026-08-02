@@ -3,7 +3,7 @@ document_id: DRL-AGT-002
 title: "Agent Mission 02: Architecture, Protocol, and Shared Packages"
 version: 3.1.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -71,7 +71,7 @@ This mission must preserve DRL's open-by-construction identity. Read `OPEN_RESEA
 - Making MCP the internal source of truth.
 - Adding fields that carry hidden reasoning or raw secret content.
 
-    For each trigger, write the ADR first, mark it `PROPOSED`, identify alternatives and consequences, and wait for DeWitt's approval before implementation. The agent may prepare a nonbinding spike in an isolated path if the ADR explicitly allows it.
+    For each trigger, write the ADR first, mark it `PROPOSED`, identify alternatives and consequences, and wait for the Director's approval before implementation. The agent may prepare a nonbinding spike in an isolated path if the ADR explicitly allows it.
 
     ## Verification matrix
 

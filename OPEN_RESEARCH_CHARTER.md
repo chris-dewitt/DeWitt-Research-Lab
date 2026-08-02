@@ -3,7 +3,7 @@ document_id: DRL-OSS-006
 title: "Open Research and Open Technology Charter"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

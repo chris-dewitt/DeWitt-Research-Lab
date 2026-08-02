@@ -3,7 +3,7 @@ document_id: DRL-OSS-004
 title: "Contributor Experience, Issue Ladder, and Mentorship"
 version: 3.3.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-08-01
 
 ## Design principle
 
-Contributing to DRL should feel like entering a well-run research laboratory: the problem is legible, the safety and evidence standards are visible, the environment works, and the contribution teaches something. Contributors must not need private credentials, paid model APIs, or access to DeWitt's personal data to make meaningful progress.
+Contributing to DRL should feel like entering a well-run research laboratory: the problem is legible, the safety and evidence standards are visible, the environment works, and the contribution teaches something. Contributors must not need private credentials, paid model APIs, or access to the Director's personal data to make meaningful progress.
 
 ## First-hour path
 

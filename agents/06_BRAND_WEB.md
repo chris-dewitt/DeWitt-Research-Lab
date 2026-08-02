@@ -3,7 +3,7 @@ document_id: DRL-AGT-006
 title: "Agent Mission 06: Brand, Laboratory Website, and Public Experience"
 version: 4.0.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -27,7 +27,7 @@ The agent must not silently reinterpret the laboratory. Missing or contradictory
 - Commit after coherent work packages; avoid one giant undifferentiated commit.
 - Rebase or merge the latest integration branch before final verification.
 - Open a pull request containing requirement IDs, changed contracts, ADRs, test evidence, security/privacy impact, documentation impact, known limitations, and exact handoff state.
-- Never merge the pull request yourself unless DeWitt has explicitly delegated that authority for the specific PR.
+- Never merge the pull request yourself unless the Director has explicitly delegated that authority for the specific PR.
 
 ## Universal constraints
 
@@ -137,6 +137,6 @@ The public site is deployment-ready, accurately represents the laboratory, expos
 Implement evidence-derived artifact cards, Open Stack lineage, contributor credit, reproduce/fork/contribute actions, model/runtime identity, exception notices, and accessible cream-on-black open-research visual language.
 
 
-### WP-06-10 — Wix canonical site and `dwit-labs.com` integration
+### WP-06-10 — Wix canonical site and `dewitt-labs.com` integration
 
-Implement the canonical Wix institutional site contract at `www.dwit-labs.com`: information architecture, cream-on-black visual translation, truthful maturity/status, application launch surfaces, repository-backed content workflow, SEO/canonical metadata, consent continuity, mobile/accessibility validation, and fallback behavior. Build or document bounded custom elements only where they improve the Wix experience; do not place core Atticus or specialist applications exclusively in iframes. Produce Wix editor instructions, content inventory, page map, redirect map, and a deployment/handoff checklist that another operator can execute without source-code access.
+Implement the canonical Wix institutional site contract at `www.dewitt-labs.com`: information architecture, cream-on-black visual translation, truthful maturity/status, application launch surfaces, repository-backed content workflow, SEO/canonical metadata, consent continuity, mobile/accessibility validation, and fallback behavior. Build or document bounded custom elements only where they improve the Wix experience; do not place core Atticus or specialist applications exclusively in iframes. Produce Wix editor instructions, content inventory, page map, redirect map, and a deployment/handoff checklist that another operator can execute without source-code access.

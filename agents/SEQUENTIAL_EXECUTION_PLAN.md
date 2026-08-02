@@ -3,7 +3,7 @@ document_id: DRL-AGT-901
 title: "Sequential Agent Execution Plan"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -75,7 +75,7 @@ Codex, Claude Code, Cursor, Copilot, and Gemini may all execute missions. The re
 
 ## Human checkpoints
 
-DeWitt must review at minimum:
+The Director must review at minimum:
 
 - base-model selection;
 - public identity/brand constitution;

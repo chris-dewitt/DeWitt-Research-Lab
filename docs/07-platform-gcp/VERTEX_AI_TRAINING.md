@@ -3,7 +3,7 @@ document_id: DRL-GCP-007
 title: "Vertex AI Custom Training and Experiment Pipeline"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

@@ -3,7 +3,7 @@ document_id: DRL-MODE-103
 title: "Atticus Edge Model Card Template"
 version: 3.0.0
 status: DRAFT
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

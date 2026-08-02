@@ -3,7 +3,7 @@ document_id: DRL-AUD-001
 title: "Foundation Audit and Deepening Report"
 version: 2.0.0
 status: RELEASE CANDIDATE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

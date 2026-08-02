@@ -61,13 +61,13 @@ def register_foundation_tools(
                     "Laboratory mission",
                     "2026-07-27",
                     "AI for Good. AI for all. Intelligence of the people and for the people.",
-                    "https://www.dwit-labs.com",
+                    "https://www.dewitt-labs.com",
                     {"topic": str(arguments.get("topic", ""))},
                 )
             ],
             message=(
                 "DeWitt Research Laboratory is an independent, one-person open applied-AI "
-                "research initiative led by DeWitt."
+                "research initiative led by Christopher Noxon DeWitt."
             ),
         ),
     )

@@ -301,7 +301,7 @@ issues:
     mission: 5
     evidence_owner: Platform
     labels: [domain, security]
-    title: Connect and verify dwit-labs.com
+    title: Connect and verify dewitt-labs.com
     status: QUEUED
     dependencies: [DRL-021]
     body: .github/ISSUE_BODIES/DRL-022.md

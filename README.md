@@ -3,17 +3,17 @@ document_id: DRL-ROOT-001
 title: "DeWitt Research Laboratory Monorepo"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
 
 # DeWitt Research Laboratory
 
-**Canonical website:** [www.dwit-labs.com](https://www.dwit-labs.com)  
+**Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
 **AI for Good. AI for all. Intelligence of the people and for the people.**
 
-DeWitt Research Laboratory (DRL) is an independent open research initiative founded and directed by DeWitt. DRL is **open by construction**. Open models, open-source software, public evaluation, local operation, and reproducible teaching artifacts are central to the laboratory's identity—not an afterthought. DRL is governed by the [Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md). The laboratory studies and builds inspectable, useful, locally operable artificial-intelligence systems. Its central platform is **Atticus**, an open-weight assistant and orchestration system that guides users through the laboratory and coordinates specialist systems for economic research, Federal Reserve analysis, quantitative scenario modeling, and AI evaluation.
+DeWitt Research Laboratory (DRL) is an independent open research initiative founded and directed by Christopher Noxon DeWitt. DRL is **open by construction**. Open models, open-source software, public evaluation, local operation, and reproducible teaching artifacts are central to the laboratory's identity—not an afterthought. DRL is governed by the [Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md). The laboratory studies and builds inspectable, useful, locally operable artificial-intelligence systems. Its central platform is **Atticus**, an open-weight assistant and orchestration system that guides users through the laboratory and coordinates specialist systems for economic research, Federal Reserve analysis, quantitative scenario modeling, and AI evaluation.
 
 This repository is both a runnable monorepo foundation and a controlled
 specification system. It includes a local, deterministic vertical slice in
@@ -26,7 +26,7 @@ of truth without silently changing the architecture.
 ## Read this first
 
 1. [`LABORATORY_BIBLE.md`](LABORATORY_BIBLE.md) — highest-level product, research, architecture, governance, and delivery authority.
-2. [`DIRECTORS_MEMO.md`](DIRECTORS_MEMO.md) — active decisions, blockers, risks, and questions requiring DeWitt.
+2. [`DIRECTORS_MEMO.md`](DIRECTORS_MEMO.md) — active decisions, blockers, risks, and questions requiring the Director.
 3. [`AGENTS.md`](AGENTS.md) — mandatory operating rules for every coding agent.
 4. [`docs/00-program/SPECIFICATION_MAP.md`](docs/00-program/SPECIFICATION_MAP.md) — map of every controlled document and its authority.
 5. [`docs/00-program/90_DAY_EXECUTION_PLAN.md`](docs/00-program/90_DAY_EXECUTION_PLAN.md) — first execution program after repository upload.
@@ -94,7 +94,7 @@ agents/                 sequential agent missions and handoff records
 - **Python environment:** `uv` workspaces and locked dependencies.
 - **JavaScript environment:** `pnpm` workspaces.
 - **Local integration:** Docker Compose.
-- **Public institute:** Wix at `https://www.dwit-labs.com`, using the registered `dwit-labs.com` domain.
+- **Public institute:** Wix at `https://www.dewitt-labs.com`, using the registered `dewitt-labs.com` domain.
 - **Interactive applications and cloud:** Firebase/App Hosting or other approved Google-hosted frontends, Cloud Run, Cloud Run GPU, Vertex AI custom jobs, Cloud SQL PostgreSQL, Cloud Storage, Pub/Sub or Cloud Tasks, Secret Manager, Artifact Registry, Cloud Logging and Monitoring.
 - **Canonical integration plan:** [`docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md`](docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md).
 
@@ -104,7 +104,7 @@ agents/                 sequential agent missions and handoff records
 2. Authoritative financial and statistical calculations run in deterministic tools, not free-form model text.
 3. Every material answer can expose sources, calculation lineage, model identity, tool calls, and uncertainty.
 4. Consequential actions require explicit approval under a published risk-tier model.
-5. Public demos are isolated from DeWitt's private runner and private data.
+5. Public demos are isolated from the Director's private runner and private data.
 6. The system is usable without paid commercial model APIs in its core path.
 7. Every release includes evaluation evidence, limitations, security notes, and reproducibility materials.
 8. Major decisions require an approved ADR.
@@ -143,8 +143,9 @@ See [`LICENSE-STRATEGY.md`](LICENSE-STRATEGY.md). This repository does not provi
 ## Current repository status
 
 **Status:** Runnable foundation. Atticus and every specialist have a deterministic
-local vertical slice with executable tests. Public inference, trained Core/Edge
-weights, private-device pairing, Wix publication, and production cloud services
+local vertical slice with executable tests. The canonical public Wix site is live
+at [www.dewitt-labs.com](https://www.dewitt-labs.com). Public inference, trained
+Core/Edge weights, private-device pairing, and production cloud services
 remain planned work. Every feature must report its actual maturity honestly:
 `specified`, `prototype`, `alpha`, `beta`, `release candidate`, or `stable`.
 

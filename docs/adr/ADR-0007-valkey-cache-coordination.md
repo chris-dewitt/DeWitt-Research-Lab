@@ -3,7 +3,7 @@ document_id: DRL-ADR-0007
 title: "Proposed Valkey Default for Cache and Ephemeral Coordination"
 version: 0.1.0
 status: IN REVIEW
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

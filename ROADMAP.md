@@ -3,13 +3,13 @@ document_id: DRL-ROOT-ROADMAP
 title: "V1 Coordinated Roadmap"
 version: 4.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
 # V1 Coordinated Roadmap
 
-**Canonical public destination:** `https://www.dwit-labs.com` (registered domain; Wix institutional site).
+**Canonical public destination:** `https://www.dewitt-labs.com` (registered domain; Wix institutional site).
 
 **Current execution entrypoint:** `docs/00-program/FIRST_SPRINT_PLAN.md` (M1 bootstrap issues DRL-001–006). Machine issue register: `requirements/issue-register.yaml`.
 
@@ -71,7 +71,7 @@ The V1 program includes one coordinated open-commons thread: Atticus Core and Ed
 
 ## Domain and Wix launch track
 
-- Connect and verify `www.dwit-labs.com`; establish apex redirect and HTTPS.
+- Connect and verify `www.dewitt-labs.com`; establish apex redirect and HTTPS.
 - Implement the institute-first Wix shell, mission, systems overview, research, open-source, teaching, About, Contact, and truthful status/launch pages.
 - Establish application subdomains and shared navigation/design/consent contracts.
 - Publish Atticus and specialist applications as independent open-source experiences, not iframe-only demos.

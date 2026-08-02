@@ -3,7 +3,7 @@ document_id: DRL-OSS-008
 title: "Atticus Open Model Commons and Community Research Program"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

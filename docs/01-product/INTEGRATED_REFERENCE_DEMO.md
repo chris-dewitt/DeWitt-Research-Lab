@@ -3,7 +3,7 @@ document_id: DRL-PRD-005
 title: "Integrated Reference Demonstration Specification"
 version: 2.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 

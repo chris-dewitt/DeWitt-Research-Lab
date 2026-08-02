@@ -3,7 +3,7 @@ document_id: DRL-AGT-005
 title: "Agent Mission 05: Google Cloud Platform and Infrastructure"
 version: 4.0.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -27,7 +27,7 @@ The agent must not silently reinterpret the laboratory. Missing or contradictory
 - Commit after coherent work packages; avoid one giant undifferentiated commit.
 - Rebase or merge the latest integration branch before final verification.
 - Open a pull request containing requirement IDs, changed contracts, ADRs, test evidence, security/privacy impact, documentation impact, known limitations, and exact handoff state.
-- Never merge the pull request yourself unless DeWitt has explicitly delegated that authority for the specific PR.
+- Never merge the pull request yourself unless the Director has explicitly delegated that authority for the specific PR.
 
 ## Universal constraints
 
@@ -61,7 +61,7 @@ This mission must preserve DRL's open-by-construction identity. Read `OPEN_RESEA
 
 - Missions 00–03 merged.
 - Core protocol and security boundaries approved.
-- Google Cloud billing account and target organization/project arrangement identified by DeWitt; no credentials are committed.
+- Google Cloud billing account and target organization/project arrangement identified by the Director; no credentials are committed.
 - Cost envelope and environment policy approved.
 
 ## Owned paths
@@ -133,4 +133,4 @@ Run the director-gated OpenTofu and Valkey spikes defined in ADR-0006 and ADR-00
 
 ### WP-05-08 — Domain, DNS, TLS, and Wix/cloud routing
 
-Inventory the privately held registrar/DNS arrangement without committing secrets; implement the reviewed mapping for `www.dwit-labs.com`, the apex redirect, and DRL application subdomains. Add certificate, CORS, CSP, cookie-scope, non-indexing, monitoring, rollback, and dangling-DNS checks. Coordinate with Mission 06 so Wix and Google-hosted applications promote as one release while retaining independent failure domains. Evidence must include a redacted zone plan, HTTPS/redirect test report, link/canonical test results, and operator runbook exercise.
+Inventory the privately held registrar/DNS arrangement without committing secrets; implement the reviewed mapping for `www.dewitt-labs.com`, the apex redirect, and DRL application subdomains. Add certificate, CORS, CSP, cookie-scope, non-indexing, monitoring, rollback, and dangling-DNS checks. Coordinate with Mission 06 so Wix and Google-hosted applications promote as one release while retaining independent failure domains. Evidence must include a redacted zone plan, HTTPS/redirect test report, link/canonical test results, and operator runbook exercise.

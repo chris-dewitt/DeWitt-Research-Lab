@@ -3,7 +3,7 @@ document_id: DRL-ATT-107
 title: "Atticus Control Plane System Specification"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -19,7 +19,7 @@ last_updated: 2026-07-26
     ## 2. Users and jobs
 
     - Public visitors exploring DRL through bounded anonymous or authenticated sessions.
-- DeWitt using a private account and paired local runner.
+- The Director using a private account and paired local runner.
 - Contributors integrating skills, tools, and specialist services.
 - Operators investigating traces, incidents, cost, and model regressions.
 - Researchers evaluating planning, routing, permission compliance, and synthesis.

@@ -3,7 +3,7 @@ document_id: DRL-RSH-FAIL-002
 title: "Failure Record SETUP-0001: Nonportable Python Executable Assumption"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

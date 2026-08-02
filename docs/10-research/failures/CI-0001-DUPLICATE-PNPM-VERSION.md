@@ -3,7 +3,7 @@ document_id: DRL-RSH-FAIL-001
 title: "Failure Record CI-0001: Duplicate pnpm Version Sources"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

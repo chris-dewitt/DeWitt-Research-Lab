@@ -3,7 +3,7 @@ document_id: DRL-LOC-106
 title: "Atticus Local Runner System Specification"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-29
 ---
 
@@ -18,7 +18,7 @@ last_updated: 2026-07-29
 
     ## 2. Users and jobs
 
-    - DeWitt operating Atticus privately on Windows.
+    - The Director operating Atticus privately on Windows.
 - Open-source users installing a personal node.
 - Local tool and plugin developers.
 - Security reviewers and operators.

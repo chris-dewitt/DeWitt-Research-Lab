@@ -3,7 +3,7 @@ document_id: DRL-SEC-008
 title: "Multi-Tenancy, Privacy, and Data Subject Controls"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

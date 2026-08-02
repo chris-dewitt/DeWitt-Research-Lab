@@ -3,7 +3,7 @@ document_id: DRL-EVL-107
 title: "EvalForge System Specification"
 version: 3.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-28
 ---
 

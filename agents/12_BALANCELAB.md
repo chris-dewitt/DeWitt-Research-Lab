@@ -3,7 +3,7 @@ document_id: DRL-AGT-012
 title: "Agent Mission 12: BalanceLab AI Deterministic Scenario Laboratory"
 version: 3.0.0
 status: APPROVED EXECUTION MISSION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -27,7 +27,7 @@ The agent must not silently reinterpret the laboratory. Missing or contradictory
 - Commit after coherent work packages; avoid one giant undifferentiated commit.
 - Rebase or merge the latest integration branch before final verification.
 - Open a pull request containing requirement IDs, changed contracts, ADRs, test evidence, security/privacy impact, documentation impact, known limitations, and exact handoff state.
-- Never merge the pull request yourself unless DeWitt has explicitly delegated that authority for the specific PR.
+- Never merge the pull request yourself unless the Director has explicitly delegated that authority for the specific PR.
 
 ## Universal constraints
 

@@ -3,7 +3,7 @@ document_id: DRL-ATL-107
 title: "Atlas System Specification"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

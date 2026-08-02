@@ -3,7 +3,7 @@ document_id: DRL-ADR-0002
 title: "Google-First Cloud"
 version: 1.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Decision
 
-Colab and Vertex AI support training; Cloud Run, Cloud SQL, Cloud Storage, Artifact Registry, Secret Manager, Firebase Authentication, and Terraform support the computational and interactive application platform. Wix at `www.dwit-labs.com` is the canonical institutional site under ADR-0008.
+Colab and Vertex AI support training; Cloud Run, Cloud SQL, Cloud Storage, Artifact Registry, Secret Manager, Firebase Authentication, and Terraform support the computational and interactive application platform. Wix at `www.dewitt-labs.com` is the canonical institutional site under ADR-0008.
 
 ## Consequences
 

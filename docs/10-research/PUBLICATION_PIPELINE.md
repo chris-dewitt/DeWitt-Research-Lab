@@ -3,7 +3,7 @@ document_id: DRL-RES-003
 title: "Publication and Replication Pipeline"
 version: 2.1.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 

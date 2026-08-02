@@ -3,7 +3,7 @@ document_id: DRL-ROOT-TRADEMARK
 title: "DeWitt Research Laboratory Trademark Policy"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -36,4 +36,4 @@ Forks should choose a distinct name and clearly state modifications, maintenance
 
 ## Reporting misuse
 
-Use the contact mechanism published in the official repository/site. Do not place personal contact details in generated templates until DeWitt chooses them.
+Use the contact mechanism published in the official repository/site. Do not place personal contact details in generated templates until the Director chooses them.

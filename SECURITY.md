@@ -3,7 +3,7 @@ document_id: DRL-ROOT-SECURITY
 title: "Security Policy"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Reporting a vulnerability
 
-Do not open a public issue for exploitable vulnerabilities, private-data exposure, credential leaks, or bypasses of policy/approval boundaries. Use the private security-reporting mechanism published in the canonical GitHub repository or website. If no mechanism is yet configured, contact DeWitt through a private channel already published by DRL; do not guess an address.
+Do not open a public issue for exploitable vulnerabilities, private-data exposure, credential leaks, or bypasses of policy/approval boundaries. Use the private security-reporting mechanism published in the canonical GitHub repository or website. If no mechanism is yet configured, contact the Director through a private channel already published by DRL; do not guess an address.
 
 Include affected version/commit, environment, reproduction, impact, prerequisites, logs with secrets removed, and a safe proof of concept. Do not access data that is not yours, persist beyond the minimum demonstration, degrade service, or publicly disclose before coordination.
 

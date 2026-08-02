@@ -3,7 +3,7 @@ document_id: DRL-ACC-001
 title: "DeWitt Research Laboratory V1 Release Criteria"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -14,7 +14,7 @@ V1 is approved only when every critical criterion has evidence and no release bl
 
 ## Website and brand
 
-- `https://www.dwit-labs.com` resolves over HTTPS as the canonical Wix institutional site and the apex redirects correctly;
+- `https://www.dewitt-labs.com` resolves over HTTPS as the canonical Wix institutional site and the apex redirects correctly;
 - institutional homepage and required routes complete;
 - cream-on-black design system consistent and accessible;
 - traditional navigation independent of Atticus;

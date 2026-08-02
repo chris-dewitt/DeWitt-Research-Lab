@@ -3,7 +3,7 @@ document_id: DRL-ARC-014
 title: "Deployment Architecture and Environment Promotion"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -22,7 +22,7 @@ Use separate Google Cloud/Firebase projects for stage and production. Production
 
 ## Deployment units
 
-- Wix for the canonical institutional site at `www.dwit-labs.com`;
+- Wix for the canonical institutional site at `www.dewitt-labs.com`;
 - Firebase/App Hosting or approved Google-hosted frontend deployments for Atticus, specialist apps, docs, and advanced interactive workspaces;
 - Cloud Run services for APIs;
 - Cloud Run Jobs or Vertex custom jobs for batch work;

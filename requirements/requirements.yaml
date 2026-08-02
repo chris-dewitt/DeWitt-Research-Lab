@@ -592,7 +592,7 @@ requirements:
   - release-artifact
   status: APPROVED-FOUNDATION
 - id: DRL-PLT-004
-  statement: Wix at www.dwit-labs.com shall deliver the canonical institutional site; approved Google-hosted frontends shall
+  statement: Wix at www.dewitt-labs.com shall deliver the canonical institutional site; approved Google-hosted frontends shall
     deliver interactive DRL applications and documentation.
   owner: Platform
   canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md
@@ -1145,7 +1145,7 @@ requirements:
   - release-artifact
   status: APPROVED-FOUNDATION
 - id: DRL-WEB-011
-  statement: The canonical public laboratory origin shall be https://www.dwit-labs.com and the apex domain shall redirect
+  statement: The canonical public laboratory origin shall be https://www.dewitt-labs.com and the apex domain shall redirect
     to it.
   owner: Web/Brand
   canonical_spec: docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md

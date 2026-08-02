@@ -3,7 +3,7 @@ document_id: DRL-ADR-0000
 title: "ADR Template"
 version: 1.0.0
 status: DRAFT
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -30,5 +30,5 @@ last_updated: 2026-07-26
 
 - Proposed by:
 - Date:
-- Approved by DeWitt:
+- Approved by the Director:
 - Status:

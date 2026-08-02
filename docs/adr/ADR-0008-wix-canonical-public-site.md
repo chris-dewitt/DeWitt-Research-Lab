@@ -1,21 +1,21 @@
 ---
 document_id: DRL-ADR-0008
-title: "Use Wix at www.dwit-labs.com as the Canonical Institutional Site"
+title: "Use Wix at www.dewitt-labs.com as the Canonical Institutional Site"
 version: 1.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
-# ADR-0008: Use Wix at `www.dwit-labs.com` as the canonical institutional site
+# ADR-0008: Use Wix at `www.dewitt-labs.com` as the canonical institutional site
 
 ## Context
 
-DeWitt has registered `dwit-labs.com` and acquired a Wix website. The previous foundation assumed Firebase App Hosting would deliver the entire laboratory website. DRL now has a real public domain and an available institutional publishing platform.
+The Director has registered `dewitt-labs.com` and acquired a Wix website. The previous foundation assumed Firebase App Hosting would deliver the entire laboratory website. DRL now has a real public domain and an available institutional publishing platform.
 
 ## Decision
 
-`https://www.dwit-labs.com` is the canonical public institutional origin, hosted on Wix for V1. The apex redirects to the canonical `www` origin.
+`https://www.dewitt-labs.com` is the canonical public institutional origin, hosted on Wix for V1. The apex redirects to the canonical `www` origin.
 
 Atticus and specialist computational experiences remain open-source applications deployed under DRL subdomains or linked routes. Wix is not required to host GPU inference, streaming traces, authenticated private tooling, deterministic scenario computation, or the complete application runtime.
 

@@ -3,7 +3,7 @@ document_id: DRL-PRG-003
 title: "Master Dependency-Ordered Build Plan"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -130,7 +130,7 @@ Exit gate: selected Atticus models beat their bases on DRL tasks without unaccep
 
 ## Phase 7 — Private local runner
 
-**Outcome:** DeWitt can use Atticus locally without exposing the machine publicly.
+**Outcome:** The Director can use Atticus locally without exposing the machine publicly.
 
 Deliver:
 

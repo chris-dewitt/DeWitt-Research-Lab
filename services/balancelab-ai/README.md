@@ -3,7 +3,7 @@ document_id: DRL-BAL-100
 title: "BalanceLab AI Project README"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

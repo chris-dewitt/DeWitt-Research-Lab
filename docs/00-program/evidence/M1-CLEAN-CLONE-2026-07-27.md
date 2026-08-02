@@ -3,7 +3,7 @@ document_id: DRL-PRG-EVD-001
 title: "M1 Clean-Clone Bootstrap and Demo Evidence"
 version: 1.0.0
 status: RELEASE CANDIDATE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 

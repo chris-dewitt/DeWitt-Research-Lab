@@ -3,7 +3,7 @@ document_id: DRL-LOC-107
 title: "Local Runner Tools and Sandbox"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

@@ -3,7 +3,7 @@ document_id: DRL-WEB-013
 title: "Content Model, Repository Publishing, and Search"
 version: 3.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -38,7 +38,7 @@ Draft content can preview in PR but does not publish to production without publi
 
 ## Wix publishing bridge
 
-Wix is the public editorial surface at `www.dwit-labs.com`; Git remains the source of truth for controlled technical and research artifacts. A publishing bridge may export approved summaries, artifact cards, release metadata, status, and links into Wix. It must support preview, field validation, idempotency, rollback, and public-status filtering.
+Wix is the public editorial surface at `www.dewitt-labs.com`; Git remains the source of truth for controlled technical and research artifacts. A publishing bridge may export approved summaries, artifact cards, release metadata, status, and links into Wix. It must support preview, field validation, idempotency, rollback, and public-status filtering.
 
 Wix-authored editorial pages may be indexed or archived into the repository when they become part of a research, teaching, or release record. Editorial convenience never changes controlled-document status.
 

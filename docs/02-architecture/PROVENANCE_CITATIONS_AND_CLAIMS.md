@@ -3,7 +3,7 @@ document_id: DRL-ARC-011
 title: "Provenance, Citations, Claims, and Calculation Lineage"
 version: 2.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

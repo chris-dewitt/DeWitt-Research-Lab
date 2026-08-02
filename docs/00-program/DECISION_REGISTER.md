@@ -3,7 +3,7 @@ document_id: DRL-PRG-007
 title: "Foundation Decision Register"
 version: 4.0.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
 ---
 
@@ -15,7 +15,7 @@ last_updated: 2026-07-27
 | ID | Decision | Status | Consequence |
 |---|---|---|---|
 | D-001 | Formal name is DeWitt Research Laboratory | Approved | institutional brand and namespace |
-| D-002 | DRL is an independent research initiative led by DeWitt | Approved | institute-first, founder-visible presentation |
+| D-002 | DRL is an independent research initiative led by Christopher Noxon DeWitt | Approved | institute-first, founder-visible presentation |
 | D-003 | Atticus is the laboratory's central intelligence and orchestration layer | Approved | specialist systems expose formal tools/contracts |
 | D-004 | Monorepo | Approved | one dependency graph and coordinated release |
 | D-005 | First-class languages: Python, TypeScript, SQL, Bash, Terraform | Approved | tooling and hiring signal |
@@ -26,7 +26,7 @@ last_updated: 2026-07-27
 | D-010 | Public model weights released when upstream terms permit | Approved | release pipeline includes weights/quantizations |
 | D-011 | Limited anonymous access plus expanded authenticated public Atticus | Approved | quotas, isolation, retention controls |
 | D-012 | Public users may explicitly donate traces | Approved in principle | consent, quarantine, review required |
-| D-013 | Governance is benevolent-dictator-led by DeWitt | Approved | delegated maintainers but final director authority |
+| D-013 | Governance is benevolent-dictator-led by the Director | Approved | delegated maintainers but final director authority |
 | D-014 | Sponsors may participate but cannot control roadmap | Approved | sponsorship disclosure and independence |
 | D-015 | Mixed licensing strategy with Apache 2.0 software default | Approved | separate model/data/docs/trademark terms |
 | D-016 | Major architecture decisions require recorded approval | Approved | ADR enforcement |
@@ -34,7 +34,7 @@ last_updated: 2026-07-27
 | D-018 | V1 launches as one coordinated public program | Approved | internal RCs, public simultaneous release |
 | D-019 | Visual direction is cream on black, research terminal/workstation/tmux | Approved | design system |
 | D-020 | Primary audience includes collaborators, tinkerers, students, academics, learners, teachers | Approved | educational and contribution features |
-| D-021 | `www.dwit-labs.com` is the canonical institutional website and Wix is its V1 publishing platform | Approved | domain, Wix, DNS, editorial, and application integration contract |
+| D-021 | `www.dewitt-labs.com` is the canonical institutional website and Wix is its V1 publishing platform | Approved | domain, Wix, DNS, editorial, and application integration contract |
 | D-022 | Core interactive DRL applications use first-class DRL subdomains and remain independently deployable/open-source | Approved | Wix is a front door, not the sole runtime |
 | D-023 | DRL remains an honest one-person independent initiative until its legal or contributor status actually changes | Approved | no fictional staff, corporate status, accreditation, or scale |
 | D-024 | The repository ships controlled documentation and a runnable local vertical slice | Approved | tests and demo code accompany specifications |

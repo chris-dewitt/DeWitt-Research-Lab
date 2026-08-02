@@ -3,7 +3,7 @@ document_id: DRL-AGT-900
 title: "Sequential Agent Handoff Template"
 version: 3.0.0
 status: APPROVED OPERATING PROCEDURE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

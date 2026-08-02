@@ -3,7 +3,7 @@ document_id: DRL-OSS-021
 title: "Open Source Identity Upgrade and Coverage Audit"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 

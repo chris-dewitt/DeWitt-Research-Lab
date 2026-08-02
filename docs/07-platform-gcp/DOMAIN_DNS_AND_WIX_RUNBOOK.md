@@ -3,7 +3,7 @@ document_id: DRL-PLT-011
 title: "Domain, DNS, TLS, and Wix Operations Runbook"
 version: 1.0.0
 status: APPROVED OPERATING PROCEDURE
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Purpose
 
-This runbook operationalizes the registered domain `dwit-labs.com`, the Wix institutional website, and DRL application subdomains without committing credentials or registrar-specific secrets.
+This runbook operationalizes the registered domain `dewitt-labs.com`, the Wix institutional website, and DRL application subdomains without committing credentials or registrar-specific secrets.
 
 ## Pre-change inventory
 
@@ -34,8 +34,8 @@ Export or screenshot the pre-change zone in a secure private location. Redact ac
 1. Create a change ticket with objective, exact records, TTLs, validation steps, rollback, and owner.
 2. Lower TTL only when necessary and far enough in advance to matter.
 3. Connect the existing domain to Wix using the selected, documented connection method.
-4. Confirm `www.dwit-labs.com` resolves to Wix and presents a valid certificate.
-5. Configure `dwit-labs.com` to redirect permanently to `https://www.dwit-labs.com`.
+4. Confirm `www.dewitt-labs.com` resolves to Wix and presents a valid certificate.
+5. Configure `dewitt-labs.com` to redirect permanently to `https://www.dewitt-labs.com`.
 6. Verify mail and unrelated records remain intact.
 7. Add application subdomain records only when the target service and certificate flow exist.
 8. Verify DNS from multiple resolvers and networks.
@@ -48,13 +48,13 @@ The exact record type depends on the hosting service and must come from the curr
 
 | Hostname | Purpose | Target ownership | V1 state |
 |---|---|---|---|
-| `dwit-labs.com` | apex redirect | Wix or redirect service | required |
-| `www.dwit-labs.com` | canonical institutional site | Wix | required |
-| `atticus.dwit-labs.com` | public Atticus console | Google/Firebase/Cloud Run frontend | required for integrated V1 |
-| `docs.dwit-labs.com` | versioned docs | Google/static deployment | required or approved route alternative |
-| `status.dwit-labs.com` | public status | independent status/static page | required or approved route alternative |
+| `dewitt-labs.com` | apex redirect | Wix or redirect service | required |
+| `www.dewitt-labs.com` | canonical institutional site | Wix | required |
+| `atticus.dewitt-labs.com` | public Atticus console | Google/Firebase/Cloud Run frontend | required for integrated V1 |
+| `docs.dewitt-labs.com` | versioned docs | Google/static deployment | required or approved route alternative |
+| `status.dewitt-labs.com` | public status | independent status/static page | required or approved route alternative |
 | specialist subdomains | public system experiences | Google-hosted applications | deploy as systems become public |
-| `api.dwit-labs.com` | versioned API gateway | Google Cloud | only when gateway exists |
+| `api.dewitt-labs.com` | versioned API gateway | Google Cloud | only when gateway exists |
 
 Do not publish dangling DNS records to unclaimed cloud resources. Remove abandoned custom-domain mappings promptly.
 
@@ -62,11 +62,11 @@ Do not publish dangling DNS records to unclaimed cloud resources. Remove abandon
 
 - Registrar and Wix accounts require strong unique passwords and MFA.
 - Domain transfer lock remains enabled except during an approved transfer.
-- DNS change access is limited to DeWitt and explicitly delegated operators.
+- DNS change access is limited to the Director and explicitly delegated operators.
 - CAA records are evaluated before production certificate issuance.
 - DNSSEC is enabled when compatible with the selected DNS operating model and tested recovery procedures.
 - Staging and preview hostnames require access control or non-indexing and must not share production cookies.
-- Cookies use narrow domain scope; avoid `.dwit-labs.com` unless a reviewed cross-subdomain use case requires it.
+- Cookies use narrow domain scope; avoid `.dewitt-labs.com` unless a reviewed cross-subdomain use case requires it.
 - CORS uses explicit origins and methods; wildcard credentials are prohibited.
 - CSP is defined independently for Wix and external apps, with minimal frame and script allowances.
 
@@ -74,7 +74,7 @@ Do not publish dangling DNS records to unclaimed cloud resources. Remove abandon
 
 - connected-domain status shows healthy;
 - no Wix-branded temporary URL is presented as canonical;
-- page canonical URLs use `www.dwit-labs.com`;
+- page canonical URLs use `www.dewitt-labs.com`;
 - application launch links are HTTPS and point to approved subdomains;
 - external embeds have fallback links and are tested on mobile;
 - custom code does not contain secrets;

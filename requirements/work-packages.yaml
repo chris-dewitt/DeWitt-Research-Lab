@@ -995,7 +995,7 @@ work_packages:
 - id: WP-05-08
   mission: 5
   title: Implement domain, DNS, TLS, Wix/cloud subdomain routing, monitoring, rollback,
-    and cross-origin security evidence for dwit-labs.com.
+    and cross-origin security evidence for dewitt-labs.com.
   status: PLANNED
   branch: null
   issue: null
@@ -1003,7 +1003,7 @@ work_packages:
   evidence: []
 - id: WP-06-10
   mission: 6
-  title: Build the canonical Wix institutional site at www.dwit-labs.com and integrate
+  title: Build the canonical Wix institutional site at www.dewitt-labs.com and integrate
     truthful application launch, repository content, brand, consent, SEO, accessibility,
     and fallback behavior.
   status: PLANNED

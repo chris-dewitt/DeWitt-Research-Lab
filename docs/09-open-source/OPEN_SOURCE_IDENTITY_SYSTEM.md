@@ -3,7 +3,7 @@ document_id: DRL-OSS-015
 title: "Open Source Institutional Identity System"
 version: 3.2.0
 status: APPROVED FOUNDATION
-owner: DeWitt
+owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
@@ -25,7 +25,7 @@ Neither statement may stand alone. Public-interest language without inspectable 
 
 ## Narrative hierarchy
 
-1. **Laboratory:** DeWitt Research Laboratory is an independent research initiative founded and directed by DeWitt.
+1. **Laboratory:** DeWitt Research Laboratory is an independent research initiative founded and directed by Christopher Noxon DeWitt.
 2. **Mission:** useful intelligence should be understandable, modifiable, and accessible beyond large institutions.
 3. **Atticus:** Atticus operates the laboratory and is itself a public research program in open agent models, orchestration, permissions, and local-first computing.
 4. **Specialists:** Atlas, FedLens, BalanceLab AI, and EvalForge are inspectable specialist systems and research instruments.

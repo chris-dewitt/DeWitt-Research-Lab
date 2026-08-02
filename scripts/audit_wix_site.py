@@ -366,7 +366,7 @@ def main() -> int:
     for url in [u for u in urls if u.rstrip("/") != home.rstrip("/")][: args.max_pages]:
         audit_page(url, is_home=False)
 
-    order = {"GAP": 0, "UNVERIFIED": 1, "PASS": 2, "INFO": 3}
+    order = {s: i for i, s in enumerate(("GAP", "UNVERIFIED", "PASS", "INFO"))}
     findings.sort(key=lambda f: order.get(f[0], 9))
     lines = ["# Wix site audit — punch list", "",
              f"Site: https://{SITE_HOST}/  |  read-only audit", ""]

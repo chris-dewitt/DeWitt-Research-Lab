@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.10.0
+version: 4.11.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-01
+last_updated: 2026-08-03
 ---
 
 
@@ -16,10 +16,10 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 ## Current program state
 
-- M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
-  (DRL-016 landed via corrective PR #20).
-- Active mission: **15 Research/Community** — DRL-029 contributor routes in review
-  (DRL-028 TR-2026-001 merged).
+- M2–M3 specialist slices through DRL-020/028/029 on `main`; Claude identity and
+  Wix audit tooling merged (#26–#27).
+- Active mission: **06 Brand/Web / DRL-021** — mission-line doc sync, CMS install,
+  cream-on-black Wix rebuild in progress (`cursor/drl-021-wix-rebuild-mission-ad29`).
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -47,7 +47,10 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 13 / DRL-019 | Cursor cloud agent | `cursor/drl-019-signed-replays-ad29` | 2026-08-01 | MERGED | PR #22 |
 | 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
-| 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
+| 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | MERGED | PR #25 |
+| docs / identity | Claude Code | `claude/latex-quant-research-format-duc6cm` | 2026-08-02 | MERGED | PR #26 |
+| web / Wix audit | Claude Code | `claude/wix-api-key-env-8yd9fs` | 2026-08-02 | MERGED | PR #27 |
+| 06 / DRL-021 | Cursor cloud agent | `cursor/drl-021-wix-rebuild-mission-ad29` | 2026-08-03 | IN PROGRESS | pending |
 
 ## Weekly dashboard snapshot — 2026-07-27
 

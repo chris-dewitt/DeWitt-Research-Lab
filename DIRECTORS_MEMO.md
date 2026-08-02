@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.5.0
+version: 1.6.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-02
+last_updated: 2026-08-03
 ---
 
 # Director's Decision and Escalation Ledger
@@ -73,6 +73,8 @@ the Director's approval.
 | RES-010 | Include GitHub milestones, issues, CI, agent sequencing, and a 90-day plan. | The Director | 2026-07-27 | Repository is execution-ready after upload. |
 | RES-011 | Correct the canonical domain spelling to `dewitt-labs.com`; the public Wix site is live at `https://www.dewitt-labs.com`. | The Director | 2026-08-02 | All documentation, DNS, and subdomains use the corrected spelling; earlier `dwit-labs.com` references were typos. |
 | RES-012 | Record the founder's full name as Christopher Noxon DeWitt; operational documents refer to "the Director." | The Director | 2026-08-02 | Founder-identity lines use the full name; governance and process text uses the Director. |
+| RES-013 | Canonical public mission line is Aria's wording: **Intelligence for Good. Intelligence for all.** | The Director | 2026-08-03 | Replaces prior dual line ("AI for Good…" / "Intelligence of the people…") in brand, homepage, and audit expectations. |
+| RES-014 | Rebuild the public Wix site cream-on-black from repository brand specs; install Wix CMS with planned collections. | The Director | 2026-08-03 | Keep Aria mission line; backup duplicate retained (`DRL Aria Backup 2026-08-03`); CMS collections seeded for Systems. |
 
 ## Current blockers
 
@@ -82,7 +84,7 @@ the Director's approval.
 - No Google Cloud project or billing identity is configured.
 - No production secrets or credentials belong in this archive.
 - Core and Edge upstream models remain an evidence-based selection gate.
-- The public Wix site is live at `https://www.dewitt-labs.com`; ongoing content and DNS changes remain actions in the Director's accounts.
+- The public Wix site is live at `https://www.dewitt-labs.com`; cream-on-black rebuild and domain cutover remain in progress after RES-014 (Aria backup site retained).
 - GitHub milestones/issues from the Mission 00 register are ready to file but
   not yet created on the remote (gh write is operator-owned).
 

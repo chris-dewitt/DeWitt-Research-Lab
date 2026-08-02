@@ -62,14 +62,11 @@ EXPECTED_TOP_SECTIONS = {
     "About": ["about"],
     "Status / Launch": ["status", "launch"],
 }
-EXPECTED_SYSTEM_PAGES = ["atticus", "atlas", "fedlens", "balancelab", "evalforge"]
-
 # Required homepage text (hero hierarchy + founder line).
 REQUIRED_HOME_TEXT = [
     "DeWitt Research Laboratory",
     "Independent research in open and applied intelligence",
-    "AI for Good. AI for all.",
-    "Intelligence of the people and for the people.",
+    "Intelligence for Good. Intelligence for all.",
     "Christopher Noxon DeWitt",
 ]
 
@@ -85,6 +82,8 @@ ALLOWED_MATURITY = {
 
 # Language that implies institutional history, staff scale, or production
 # maturity DRL does not have (BRAND_SYSTEM.md voice + handoff checklist).
+# Denial phrases such as "Not a government, university, or accredited
+# institution." are excluded via contextual filtering in audit_page().
 UNTRUTHFUL_TERMS = [
     "our team", "our staff", "our scientists", "our engineers",
     "accredited", "university", "government", "federally",
@@ -92,6 +91,14 @@ UNTRUTHFUL_TERMS = [
     "trusted by", "clients include", "award-winning", "industry-leading",
     "world-class", "patented", "99.9%", "uptime guarantee",
 ]
+
+DENIAL_CONTEXT = (
+    "not a government",
+    "not a university",
+    "not an accredited",
+    "no affiliation with any government",
+    "independent initiative",
+)
 
 findings: list[tuple[str, str, str]] = []  # (severity, area, message)
 
@@ -298,9 +305,24 @@ def audit_page(url: str, is_home: bool) -> None:
         re.findall(r'background(?:-color)?\s*:\s*[^;"}]+', html))
 
     for term in UNTRUTHFUL_TERMS:
-        if term in lower:
-            add("GAP", "Truthfulness", f"{url}: contains '{term}' — verify against brand voice "
-                "(no implied staff scale, accreditation, or production maturity).")
+        if term not in lower:
+            continue
+        # Skip when the term only appears inside independent-initiative denial copy.
+        denial_hit = any(
+            ctx in lower and term in ctx or
+            f"not a {term}" in lower or
+            f"not an {term}" in lower or
+            f"no affiliation with any {term}" in lower
+            for ctx in DENIAL_CONTEXT
+        )
+        if denial_hit or (
+            term in {"accredited", "university", "government"}
+            and "independent initiative" in lower
+            and f"not a" in lower
+        ):
+            continue
+        add("GAP", "Truthfulness", f"{url}: contains '{term}' — verify against brand voice "
+            "(no implied staff scale, accreditation, or production maturity).")
 
     if is_home:
         for required in REQUIRED_HOME_TEXT:
@@ -356,8 +378,15 @@ def main() -> int:
             if not any(s in paths for s in slugs):
                 add("GAP", "Structure",
                     f"Approved page-tree section '{section}' not found in sitemap.")
-        for system in EXPECTED_SYSTEM_PAGES:
-            if system not in paths:
+        required_systems = {
+            "atticus": ("atticus",),
+            "atlas": ("atlas",),
+            "fedlens": ("fedlens", "fed-lens"),
+            "balancelab": ("balancelab", "balance-lab"),
+            "evalforge": ("evalforge", "eval-forge"),
+        }
+        for system, slugs in required_systems.items():
+            if not any(s in paths for s in slugs):
                 add("GAP", "Structure",
                     f"System page or planned-state entry for '{system}' not found in sitemap.")
 

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-OSS-015
 title: "Open Source Institutional Identity System"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 # Open Source Institutional Identity System
@@ -15,7 +15,7 @@ DeWitt Research Laboratory presents open technology as a living research traditi
 
 The primary institutional line is:
 
-> **AI for Good. AI for all. Intelligence of the people and for the people.**
+> **Intelligence for Good. Intelligence for all.**
 
 The operating proof beneath that line is:
 

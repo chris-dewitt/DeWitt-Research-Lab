@@ -1,10 +1,10 @@
 ---
 document_id: DRL-BIB-001
 title: "DeWitt Research Laboratory Bible"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 
@@ -36,7 +36,7 @@ Existing code is not automatically correct merely because it exists. An agent en
 **Founder and director:** Christopher Noxon DeWitt  
 **Public professional identity:** Applied AI Researcher  
 **Location:** Charlotte, North Carolina  
-**Mission:** *AI for Good. AI for all. Intelligence of the people and for the people.*
+**Mission:** *Intelligence for Good. Intelligence for all.*
 
 DRL is clearly the Director's laboratory while presenting itself as a credible independent research institution capable of welcoming collaborators, tinkerers, students, academics, learners, and teachers. Open models, open-source software, public evaluation, local operation, and reproducible teaching are visible institutional pillars. The laboratory does not merely publish source after building; it designs systems so other people can inspect, modify, run, evaluate, and teach from them. It should feel as though the Director discovered an abandoned technical institute, restored its terminals, and took command—without fabricating a history, staff, affiliation, government authority, accreditation, or scale that does not exist.
 

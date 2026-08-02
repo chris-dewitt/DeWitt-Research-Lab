@@ -1,13 +1,22 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.7.0
+version: 4.8.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-02
+last_updated: 2026-08-03
 ---
 
 # Foundation Changelog
+
+## 2026-08-03 — Mission line, Wix CMS, cream-on-black rebuild prep (DRL-021)
+
+- Canonical public mission line is now Aria's wording:
+  **Intelligence for Good. Intelligence for all.** (RES-013).
+- Wix CMS installed on the live institutional site; planned collections created
+  and Systems seeded with truthful prototype maturity (RES-014).
+- Audit script updated for hyphenated system slugs and denial-context
+  truthfulness filtering.
 
 ## 2026-08-02 — Canonical domain correction, live site, and founder identity
 

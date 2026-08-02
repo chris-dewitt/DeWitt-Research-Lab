@@ -60,7 +60,7 @@ def register_foundation_tools(
                     "DeWitt Research Laboratory",
                     "Laboratory mission",
                     "2026-07-27",
-                    "AI for Good. AI for all. Intelligence of the people and for the people.",
+                    "Intelligence for Good. Intelligence for all.",
                     "https://www.dewitt-labs.com",
                     {"topic": str(arguments.get("topic", ""))},
                 )

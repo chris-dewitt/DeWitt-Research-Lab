@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-004
 title: "Homepage Detailed Specification"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 
@@ -20,8 +20,7 @@ This homepage is implemented at **`https://www.dewitt-labs.com`** in Wix. Intera
 DEWITT RESEARCH LABORATORY
 Independent research in open and applied intelligence.
 
-AI for Good. AI for all.
-Intelligence of the people and for the people.
+Intelligence for Good. Intelligence for all.
 
 [Enter the laboratory] [Read the research thesis]
 ```

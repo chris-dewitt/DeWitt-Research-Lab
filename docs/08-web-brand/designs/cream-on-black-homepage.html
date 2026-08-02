@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DeWitt Research Laboratory</title>
+<meta name="description" content="Independent research in open and applied intelligence. Intelligence for Good. Intelligence for all." />
+<style>
+:root {
+  --bg: #0b0c0a;
+  --bg-panel: #121410;
+  --bg-paper: #ece6d8;
+  --cream: #ece6d8;
+  --cream-muted: #b9b2a2;
+  --border: #2a2d27;
+  --border-active: #6e7466;
+  --amber: #d4a45a;
+  --signal: #8fbf88;
+  --danger: #c47b6a;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 70% -10%, #1a1d17 0%, var(--bg) 55%),
+              linear-gradient(180deg, #0e100d 0%, var(--bg) 40%, #080906 100%);
+  color: var(--cream);
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  line-height: 1.55;
+  min-height: 100vh;
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(236,230,216,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(236,230,216,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.55), transparent 70%);
+}
+a { color: var(--amber); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { position: relative; z-index: 1; max-width: 1120px; margin: 0 auto; padding: 0 1.25rem; }
+.meta {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.78rem; letter-spacing: 0.04em; color: var(--cream-muted);
+}
+header.shell {
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  background: rgba(11,12,10,0.85);
+  position: sticky; top: 0; z-index: 5;
+}
+.shell-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: 0.85rem 0; flex-wrap: wrap;
+}
+.wordmark {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  font-weight: 600; font-size: 1.05rem; color: var(--cream); letter-spacing: 0.02em;
+}
+nav { display: flex; flex-wrap: wrap; gap: 0.85rem 1.1rem; }
+nav a { color: var(--cream-muted); font-size: 0.92rem; }
+nav a:hover { color: var(--cream); text-decoration: none; }
+.hero {
+  min-height: calc(100vh - 64px);
+  display: grid; align-content: center;
+  padding: 4.5rem 0 3.5rem;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute; right: -8%; top: 18%; width: 52%; height: 58%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(212,164,90,0.14), transparent 45%),
+    linear-gradient(135deg, transparent 40%, rgba(143,191,136,0.08) 100%);
+  border: 1px solid rgba(236,230,216,0.08);
+  clip-path: polygon(8% 0, 100% 0, 100% 86%, 72% 100%, 0 78%, 0 18%);
+  z-index: -1;
+}
+.lab-id { margin-bottom: 1.25rem; color: var(--signal); }
+.brand {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.05; margin: 0 0 1rem; max-width: 14ch;
+  font-weight: 600; letter-spacing: -0.02em;
+}
+.lede {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--cream-muted); max-width: 36rem; margin: 0 0 1.25rem;
+}
+.mission {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  margin: 0 0 2rem; max-width: 28rem;
+}
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.8rem 1.15rem; border: 1px solid var(--cream);
+  color: var(--bg); background: var(--cream); font-weight: 500;
+  font-size: 0.95rem; text-decoration: none;
+}
+.btn:hover { text-decoration: none; filter: brightness(0.95); }
+.btn.ghost {
+  background: transparent; color: var(--cream); border-color: var(--border-active);
+}
+section.block { padding: 4rem 0; border-top: 1px solid var(--border); }
+h2 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 0.75rem; font-weight: 600;
+}
+.section-lede { color: var(--cream-muted); max-width: 40rem; margin: 0 0 1.75rem; }
+.systems {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;
+}
+.system {
+  border: 1px solid var(--border); padding: 1rem 1rem 1.15rem; background: rgba(18,20,16,0.7);
+}
+.system h3 {
+  margin: 0 0 0.35rem; font-size: 1.05rem; font-family: Georgia, "Iowan Old Style", Palatino, serif; font-weight: 600;
+}
+.system p { margin: 0 0 0.75rem; color: var(--cream-muted); font-size: 0.92rem; }
+.badge {
+  display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 0.72rem;
+  border: 1px solid var(--border-active); padding: 0.15rem 0.45rem; color: var(--amber);
+}
+.two-col { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; }
+@media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } .hero::after { display: none; } }
+.paper {
+  background: var(--bg-paper); color: #1c1a16; padding: 1.35rem 1.4rem; border: 1px solid #d6cfbf;
+}
+.paper h3 { margin: 0 0 0.5rem; font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif; }
+.paper .meta { color: #5e584c; }
+.paper p { margin: 0.6rem 0 0; }
+footer {
+  border-top: 1px solid var(--border); padding: 2.5rem 0 3rem; margin-top: 1rem;
+}
+.footer-grid { display: grid; gap: 1rem; }
+.disclosure { color: var(--cream-muted); max-width: 40rem; font-size: 0.95rem; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 0.85rem 1.2rem; }
+.footer-links a { color: var(--cream-muted); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body::before { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="shell">
+  <div class="wrap shell-inner">
+    <a class="wordmark" href="#top">DeWitt Research Laboratory</a>
+    <nav aria-label="Primary">
+      <a href="#laboratory">Laboratory</a>
+      <a href="#systems">Systems</a>
+      <a href="#research">Research</a>
+      <a href="#open-source">Open Source</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#failure-museum">Failure Museum</a>
+      <a href="#about">About</a>
+      <a href="#status">Status</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap" aria-label="Hero">
+    <p class="meta lab-id">LAB_ID: 01 · NODE: CHARLOTTE · STATUS: PROTOTYPE</p>
+    <h1 class="brand">DeWitt Research Laboratory</h1>
+    <p class="lede">Independent research in open and applied intelligence.</p>
+    <p class="mission">Intelligence for Good. Intelligence for all.</p>
+    <div class="cta">
+      <a class="btn" href="#laboratory">Enter the Laboratory</a>
+      <a class="btn ghost" href="#open-source">Explore Open Source</a>
+      <a class="btn ghost" href="#atticus">Launch Atticus</a>
+    </div>
+  </section>
+
+  <section class="block" id="laboratory">
+    <div class="wrap">
+      <p class="meta">SECTION / LABORATORY</p>
+      <h2>Laboratory thesis</h2>
+      <p class="section-lede">Atticus is the open-weight guide and operator. Specialist systems own research, policy analysis, deterministic modeling, and evaluation. Open models and open software are institutional commitments. Safety, traceability, evaluation, and human agency matter as much as capability.</p>
+      <div class="two-col">
+        <div>
+          <p>DeWitt Research Laboratory is an independent initiative: one researcher building in public. It is not a university, company research division, government laboratory, or fictional staff organization. Ambition is institutional; present operation is personal, practical, and open to serious collaborators.</p>
+        </div>
+        <div class="paper">
+          <p class="meta">CURRENT TRANSMISSION</p>
+          <h3>TR-2026-001 · Integrated workflow</h3>
+          <p class="meta">STATUS: PROTOTYPE · DATE: 2026</p>
+          <p>Technical report on the linked evidence-to-scenario workflow across Atticus, Atlas, FedLens, BalanceLab, and EvalForge.</p>
+          <p><a href="https://github.com/chris-dewitt/DeWitt-Research-Lab-Foundation">Access repository evidence →</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="systems">
+    <div class="wrap">
+      <p class="meta">SECTION / SYSTEMS</p>
+      <h2>Systems map</h2>
+      <p class="section-lede">Five connected systems with truthful maturity labels. Primary applications launch on DRL subdomains when deployed; until then, pages remain useful with documentation and prototype evidence.</p>
+      <div class="systems">
+        <article class="system" id="atticus">
+          <h3>Atticus</h3>
+          <p>Open-weight guide and laboratory operator.</p>
+          <span class="badge">MATURITY: PROTOTYPE</span>
+        </article>
+        <article class="system" id="atlas">
+          <h3>Atlas</h3>
+          <p>Macro and market evidence research.</p>
+          <span class="badge">MATURITY: PROTOTYPE</span>
+        </article>
+        <article class="system" id="fedlens">
+          <h3>FedLens</h3>
+          <p>Federal Reserve research and policy archive analysis.</p>
+          <span class="badge">MATURITY: PROTOTYPE</span>
+        </article>
+        <article class="system" id="balancelab">
+          <h3>BalanceLab AI</h3>
+          <p>Deterministic financial-scenario laboratory.</p>
+          <span class="badge">MATURITY: PROTOTYPE</span>
+        </article>
+        <article class="system" id="evalforge">
+          <h3>EvalForge</h3>
+          <p>Evaluation and reliability program.</p>
+          <span class="badge">MATURITY: PROTOTYPE</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="research">
+    <div class="wrap">
+      <p class="meta">SECTION / RESEARCH</p>
+      <h2>Research</h2>
+      <p class="section-lede">Working papers, experiments, model and dataset releases, replications, and negative results. Repository documents remain the technical source of truth.</p>
+    </div>
+  </section>
+
+  <section class="block" id="open-source">
+    <div class="wrap">
+      <p class="meta">SECTION / OPEN SOURCE</p>
+      <h2>Open by construction</h2>
+      <p class="section-lede">Software, models, datasets, benchmarks, Open Stack upstream credit, and contributor routes. Prefer precise maturity language: specified, prototype, experimental, or production-ready only with evidence.</p>
+      <p><a href="https://github.com/chris-dewitt/DeWitt-Research-Lab-Foundation">GitHub monorepo →</a></p>
+    </div>
+  </section>
+
+  <section class="block" id="teaching">
+    <div class="wrap">
+      <p class="meta">SECTION / TEACHING</p>
+      <h2>Teaching</h2>
+      <p class="section-lede">Guides, workshops, and pathways for students and tinkerers. The integrated workflow teaching lab documents how evidence becomes scenarios and evaluations.</p>
+    </div>
+  </section>
+
+  <section class="block" id="failure-museum">
+    <div class="wrap">
+      <p class="meta">SECTION / FAILURE MUSEUM</p>
+      <h2>Failure Museum</h2>
+      <p class="section-lede">Public records of failure → detection → fix → regression. Honesty about broken paths is part of the laboratory’s open identity.</p>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap two-col">
+      <div>
+        <p class="meta">SECTION / ABOUT</p>
+        <h2>Christopher Noxon DeWitt</h2>
+        <p class="section-lede">Founder and Director. Applied AI Researcher in Charlotte, North Carolina. Background in statistics, economics, applied data science, quantitative financial analysis, and software development.</p>
+        <p>He founded DeWitt Research Laboratory as an independent, one-person initiative for tinkering with, studying, and building open and publicly useful artificial intelligence.</p>
+      </div>
+      <div>
+        <p class="meta">GOVERNANCE</p>
+        <h2>Independent initiative</h2>
+        <p class="section-lede">Not a government, university, or accredited institution. Contact and collaboration routes are published with privacy, security, and governance links.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="status">
+    <div class="wrap">
+      <p class="meta">SECTION / STATUS</p>
+      <h2>Status / Launch</h2>
+      <p class="section-lede">Public systems are prototype unless a release manifest says otherwise. Launch Atticus and specialist applications on DRL subdomains when live; otherwise use documentation and signed replays.</p>
+      <span class="badge">NODE: CHARLOTTE / STATUS: PROTOTYPE</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <p class="disclosure">This is an independent initiative. Not a government, university, or accredited institution.</p>
+    <div class="footer-links">
+      <a href="https://github.com/chris-dewitt/DeWitt-Research-Lab-Foundation">GitHub</a>
+      <a href="#status">Status</a>
+      <a href="#about">Contact</a>
+      <a href="#about">Governance</a>
+      <a href="#about">Security</a>
+      <a href="#about">Privacy</a>
+    </div>
+    <p class="meta">NODE: CHARLOTTE / STATUS: PROTOTYPE · www.dewitt-labs.com</p>
+  </div>
+</footer>
+</body>
+</html>

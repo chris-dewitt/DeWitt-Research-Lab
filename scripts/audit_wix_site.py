@@ -32,6 +32,7 @@ import sys
 import urllib.error
 import urllib.request
 from html.parser import HTMLParser
+from typing import Any
 
 SITE_HOST = "www.dewitt-labs.com"
 APEX_HOST = "dewitt-labs.com"
@@ -99,8 +100,9 @@ def add(severity: str, area: str, message: str) -> None:
     findings.append((severity, area, message))
 
 
-def http(url: str, *, body: dict | None = None, headers: dict | None = None,
-         follow_redirects: bool = True, timeout: int = 30):
+def http(url: str, *, body: dict[str, Any] | None = None,
+         headers: dict[str, str] | None = None, follow_redirects: bool = True,
+         timeout: int = 30) -> tuple[int, dict[str, str], str]:
     """GET (or POST when body given) returning (status, headers, text)."""
     if not url.startswith("https://"):
         raise ValueError(f"refusing non-https URL: {url}")
@@ -111,10 +113,10 @@ def http(url: str, *, body: dict | None = None, headers: dict | None = None,
     ctx = ssl.create_default_context()
 
     class NoRedirect(urllib.request.HTTPRedirectHandler):
-        def redirect_request(self, *args, **kwargs):
+        def redirect_request(self, *args: Any, **kwargs: Any) -> None:
             return None
 
-    handlers = [urllib.request.HTTPSHandler(context=ctx)]
+    handlers: list[urllib.request.BaseHandler] = [urllib.request.HTTPSHandler(context=ctx)]
     if not follow_redirects:
         handlers.append(NoRedirect())
     opener = urllib.request.build_opener(*handlers)
@@ -127,7 +129,8 @@ def http(url: str, *, body: dict | None = None, headers: dict | None = None,
         return 0, {}, f"network error: {e}"
 
 
-def wix_api(path: str, body: dict, site_id: str | None) -> tuple[int, dict | str]:
+def wix_api(path: str, body: dict[str, Any],
+            site_id: str | None) -> tuple[int, dict[str, Any] | str]:
     headers = {"Authorization": os.environ["WIX_API_KEY"]}
     if site_id:
         headers["wix-site-id"] = site_id
@@ -135,9 +138,10 @@ def wix_api(path: str, body: dict, site_id: str | None) -> tuple[int, dict | str
         headers["wix-account-id"] = os.environ["WIX_ACCOUNT_ID"]
     status, _, text = http(API_BASE + path, body=body, headers=headers)
     try:
-        return status, json.loads(text)
+        parsed = json.loads(text)
     except json.JSONDecodeError:
         return status, text[:500]
+    return status, parsed if isinstance(parsed, dict) else text[:500]
 
 
 def discover_site_id() -> str | None:
@@ -153,9 +157,11 @@ def discover_site_id() -> str | None:
     for s in sites:
         blob = json.dumps(s).lower()
         if APEX_HOST in blob:
-            return s.get("id")
+            sid = s.get("id")
+            return sid if isinstance(sid, str) else None
     if len(sites) == 1:
-        return sites[0].get("id")
+        sid = sites[0].get("id")
+        return sid if isinstance(sid, str) else None
     add("UNVERIFIED", "API access",
         f"Could not identify the {SITE_HOST} site among {len(sites)} sites; set WIX_SITE_ID.")
     return None
@@ -234,26 +240,31 @@ class TextAndStyle(HTMLParser):
         self.hrefs: list[str] = []
         self.css: list[str] = []
         self._skip = 0
+        self._in_style = False
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         d = dict(attrs)
-        if tag in ("script",):
+        if tag == "script":
             self._skip += 1
         if tag == "style":
             self._skip += 1
             self._in_style = True
-        if "style" in d:
-            self.css.append(d["style"])
-        if tag == "a" and d.get("href"):
-            self.hrefs.append(d["href"])
+        style = d.get("style")
+        if style:
+            self.css.append(style)
+        href = d.get("href")
+        if tag == "a" and href:
+            self.hrefs.append(href)
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         if tag in ("script", "style") and self._skip:
             self._skip -= 1
+        if tag == "style":
+            self._in_style = False
 
-    def handle_data(self, data):
+    def handle_data(self, data: str) -> None:
         if self._skip:
-            if getattr(self, "_in_style", False):
+            if self._in_style:
                 self.css.append(data)
             return
         if data.strip():

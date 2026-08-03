@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.6.0
+version: 1.7.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-03
@@ -9,7 +9,7 @@ last_updated: 2026-08-03
 
 # Director's Decision and Escalation Ledger
 
-This is the mandatory living decision ledger for DeWitt Research Laboratory.
+This is the mandatory living decision ledger for DeWitt Research Workshop.
 It is not promotional copy. Every human or coding agent must read it before
 making a material change and update it when work exposes an inconsistency,
 blocker, risk, missing assumption, cost commitment, or decision requiring
@@ -17,16 +17,18 @@ the Director's approval.
 
 ## Director's standing context
 
-- DRL is **DeWitt Research Laboratory**, singular.
-- DRL is an independent initiative: one founder tinkering, researching, and
+- The public identity is **DeWitt Research Workshop** (RES-014, superseding RES-003).
+  `DRL` is retired as a public mark and survives only as the internal identifier
+  prefix in document, requirement, and code IDs.
+- The workshop is an independent initiative: one founder tinkering, researching, and
   building applied AI in public. It must never imply nonexistent staff,
   accreditation, institutional history, scale, or employer affiliation.
 - The canonical public domain is `https://www.dewitt-labs.com`.
-- Wix is the institutional and editorial front door.
-- Atticus and computational systems remain independently deployable,
-  open-source applications under DRL subdomains.
+- Wix is the public and editorial front door.
+- Atticus and the computational projects remain independently deployable,
+  open-source applications under workshop subdomains.
 - Atticus is the deepest initial implementation and the operator of the
-  laboratory.
+  workshop.
 - Atlas, FedLens, BalanceLab AI, and EvalForge must have working vertical-slice
   implementations, honest maturity labels, and stable contracts.
 - Google Cloud is the primary deployment target.
@@ -56,6 +58,7 @@ the Director's approval.
 | DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. | Run the documented bake-off; do not select by brand preference. Scaffold register + fixture report landed (DRL-012); no winner declared. | Evidence gate — scaffold only |
 | DIR-005 | Public access | What anonymous and authenticated quotas apply? | Higher limits improve exploration but increase abuse and cost. | Use fixture/replay mode by default; open bounded inference only after load and abuse testing. | Evidence gate |
 | DIR-006 | Legal | When should DRL form a legal entity or register marks? | Formation adds cost and administration but may help contracts and liability separation. | Continue truthful independent-initiative language; obtain professional advice before contracts or material revenue. | Deferred Director/legal decision |
+| DIR-007 | Legal/brand | Does the RES-014 rename extend to the claimed trademarks? | `NOTICE`, `TRADEMARK_POLICY.md`, and `LICENSE-STRATEGY.md` still claim "DeWitt Research Laboratory" and `DRL` as marks. Renaming a claimed mark is not a copy edit: it abandons accrued use of the old name and restarts it under the new one. Retaining both is also valid — the old name can stay as a prior mark while the public identity moves. | Do not rewrite the legal documents on brand grounds alone. Either retain "DeWitt Research Laboratory" as a prior/legacy mark and add "DeWitt Research Workshop" alongside it, or take advice before consolidating. Ties to DIR-006. | Director decision required — legal documents deliberately left unrenamed |
 
 ## Approved resolutions
 
@@ -74,6 +77,7 @@ the Director's approval.
 | RES-011 | Correct the canonical domain spelling to `dewitt-labs.com`; the public Wix site is live at `https://www.dewitt-labs.com`. | The Director | 2026-08-02 | All documentation, DNS, and subdomains use the corrected spelling; earlier `dwit-labs.com` references were typos. |
 | RES-012 | Record the founder's full name as Christopher Noxon DeWitt; operational documents refer to "the Director." | The Director | 2026-08-02 | Founder-identity lines use the full name; governance and process text uses the Director. |
 | RES-013 | Change the mission line to "Intelligence for Good. Intelligence for All." | The Director | 2026-08-03 | Replaces "AI for Good. AI for all. Intelligence of the people and for the people."; the second sentence is retired entirely. `BRAND_SYSTEM.md` remains the canonical owner; all documents and code quoting the line were updated and a test now enforces agreement. |
+| RES-014 | Rename the public identity to **DeWitt Research Workshop** and drop "Laboratory" from public framing. | The Director | 2026-08-03 | **Supersedes RES-003.** Positioning is one person's workshop, not a research institute — this enforces RES-004 rather than changing it. Register is understated academic. `DRL` is retired as a public mark but retained as the internal identifier prefix (`DRL-WEB-002`) and code namespace. The canonical domain `dewitt-labs.com` is unchanged (RES-002/RES-011 stand); the name/domain mismatch is accepted and must not be explained in copy. Palette, typography, and terminal grammar are unchanged; institutional chrome is now a prohibited motif. Legal and trademark documents (`NOTICE`, `TRADEMARK_POLICY.md`, `LICENSE-STRATEGY.md`) were deliberately **not** renamed — see DIR-007. |
 
 ## Current blockers
 

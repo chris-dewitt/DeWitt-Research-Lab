@@ -10,7 +10,7 @@ last_updated: 2026-07-26
 
     # Atticus Core
 
-    **Role in DeWitt Research Laboratory:** Primary open-weight Atticus model release for routing, tool use, grounded synthesis, coding, and research.
+    **Role in DeWitt Research Workshop:** Primary open-weight Atticus model release for routing, tool use, grounded synthesis, coding, and research.
 
     The model family is specified; the upstream candidate remains benchmark and license gated.
 

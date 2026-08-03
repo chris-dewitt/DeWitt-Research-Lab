@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: DeWitt Research Laboratory Public API
+  title: DeWitt Research Workshop Public API
   version: 1.0.0-foundation
   description: >-
     Contract-first public and authenticated API surface for Atticus and specialist services.

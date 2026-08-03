@@ -27,7 +27,7 @@ automation. He is completing graduate study in applied data science and
 continues independent study across machine learning, open models, agent
 systems, computing, mathematics, and economic inequality.
 
-He established DeWitt Research Laboratory to create a coherent home for that
+He established DeWitt Research Workshop to create a coherent home for that
 work: Atticus, an inspectable AI guide and operator; Atlas, a macro and market
 evidence system; FedLens, a Federal Reserve research system; BalanceLab AI, a
 deterministic financial-scenario laboratory; and EvalForge, an evaluation and

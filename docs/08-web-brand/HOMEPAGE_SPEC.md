@@ -17,7 +17,7 @@ This homepage is implemented at **`https://www.dewitt-labs.com`** in Wix. Intera
 ## Hero
 
 ```text
-DEWITT RESEARCH LABORATORY
+DEWITT RESEARCH WORKSHOP
 Independent research in open and applied intelligence.
 
 Intelligence for Good. Intelligence for All.

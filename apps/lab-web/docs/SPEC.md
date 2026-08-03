@@ -1,6 +1,6 @@
 ---
 document_id: DRL-WEB-107
-title: "DeWitt Research Laboratory Web System Specification"
+title: "DeWitt Research Workshop Web System Specification"
 version: 4.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
@@ -8,13 +8,13 @@ last_updated: 2026-07-26
 ---
 
 
-    # DeWitt Research Laboratory Web System Specification
+    # DeWitt Research Workshop Web System Specification
 
     ## 1. Purpose and authority
 
     The DRL interactive web platform complements the canonical Wix institutional site at `https://www.dewitt-labs.com` and makes advanced laboratory experiences legible at multiple depths: a visitor understands the institution in under a minute; a collaborator finds an entry point; an engineer inspects architecture and evidence; a researcher reproduces work; and Atticus guides all of them without replacing ordinary navigation.
 
-    This document defines V1 product boundaries, behavior, interfaces, invariants, quality attributes, and evidence for DeWitt Research Laboratory Web. Laboratory-wide protocol, security, privacy, data, and release policies remain controlling.
+    This document defines V1 product boundaries, behavior, interfaces, invariants, quality attributes, and evidence for DeWitt Research Workshop Web. Laboratory-wide protocol, security, privacy, data, and release policies remain controlling.
 
     ## 2. Users and jobs
 

@@ -16,7 +16,7 @@ The public institutional website is the registered domain **`https://www.dewitt-
 
 ## Creative direction
 
-A credible independent research institute rendered as a modern financial research workstation. The atmosphere references `tmux`, Bloomberg-like density, academic working papers, UNIX terminals, and declassified technical archives without becoming a costume.
+One person's research workshop rendered as a modern financial research workstation. The atmosphere references `tmux`, Bloomberg-like density, academic working papers, UNIX terminals, and declassified technical archives without becoming a costume.
 
 **Palette:** cream on near-black. Accent color is restrained and functional—amber, muted signal red, or phosphor green may identify status, focus, or system family but never overwhelm the cream/black foundation.
 

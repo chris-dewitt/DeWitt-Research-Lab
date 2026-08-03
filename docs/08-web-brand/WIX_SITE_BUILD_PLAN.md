@@ -11,9 +11,9 @@ last_updated: 2026-08-03
 
 ## Objective
 
-Build `www.dewitt-labs.com` into the credible public home of DeWitt Research Laboratory: an independent open research initiative that feels like a financial research workstation, academic institute, and restored 1980s computing laboratory without sacrificing clarity, accessibility, or truthfulness.
+Build `www.dewitt-labs.com` into the credible public home of DeWitt Research Workshop: an independent open research initiative that feels like a financial research workstation, scholar's study, and restored 1980s computing bench without sacrificing clarity, accessibility, or truthfulness.
 
-The Wix site introduces DRL. Atticus guides visitors after the laboratory is understood. The site sells no fictional institutional history and never implies government, university, accreditation, staff, or production maturity that does not exist.
+The site introduces the workshop. Atticus guides visitors after the workshop is understood. The site sells no fictional institutional history and never implies government, university, accreditation, staff, or production maturity that does not exist.
 
 ## Wix page tree
 
@@ -103,7 +103,7 @@ Deferred or open:
 
 ### Header
 
-- compact DRL wordmark;
+- compact wordmark;
 - primary links: Laboratory, Systems, Research, Open Source, Teaching, About;
 - utility actions: `Launch Atticus`, search, system status;
 - keyboard-visible focus and mobile menu;
@@ -127,12 +127,12 @@ Deferred or open:
 
 ## Homepage composition
 
-### 1. Hero: the institute exists
+### 1. Hero: what this is
 
 Required text hierarchy:
 
 ```text
-DEWITT RESEARCH LABORATORY
+DEWITT RESEARCH WORKSHOP
 Independent research in open and applied intelligence.
 
 Intelligence for Good. Intelligence for All.
@@ -140,24 +140,24 @@ Intelligence for Good. Intelligence for All.
 
 Primary actions:
 
-- Enter the Laboratory
+- Enter the Workshop
 - Explore Open Source
 - Launch Atticus
 
 The hero may show a low-motion systems map, terminal cursor, or research telemetry. It must load without an external application and retain useful content when JavaScript or model services fail.
 
-### 2. Laboratory thesis
+### 2. What the workshop is for
 
 Explain in plain language:
 
 - Atticus is the open-weight guide and operator;
-- specialist systems own research, policy analysis, deterministic modeling, and evaluation;
-- open models and open software are institutional commitments;
+- separate projects handle research, policy analysis, deterministic modeling, and evaluation;
+- open models and open software are standing commitments;
 - safety, traceability, evaluation, and human agency matter as much as capability.
 
 ### 3. Systems map
 
-Show Atticus at the orchestration center with Atlas, FedLens, BalanceLab, and EvalForge as specialist systems. Each node displays current maturity from controlled metadata and routes to a system page.
+Show Atticus at the orchestration center with Atlas, FedLens, BalanceLab, and EvalForge as separate projects. Each node displays current maturity from controlled metadata and routes to a system page.
 
 ### 4. Current transmission
 
@@ -177,9 +177,9 @@ Every card links to an actual artifact or a truthful planned-state page.
 
 ### 6. Atticus invitation
 
-Introduce Atticus as guide and copilot, not as the laboratory itself. Suggested actions:
+Introduce Atticus as guide and copilot, not as the workshop itself. Suggested actions:
 
-- Take the laboratory tour
+- Take the tour
 - Explain the architecture
 - Replay the integrated workflow
 - Find a contribution task
@@ -201,7 +201,7 @@ Show one real failure record with failure, detection, correction, and regression
 
 ### 9. Founder/director
 
-A restrained introduction to Christopher Noxon DeWitt as founder, director, and Applied AI Researcher. Link to research interests, biography, résumé, GitHub, and contact. Finance/quantitative background supports the work but does not dominate the institutional homepage.
+A restrained introduction to Christopher Noxon DeWitt as founder, director, and Applied AI Researcher. Link to research interests, biography, résumé, GitHub, and contact. Finance/quantitative background supports the work but does not dominate the homepage.
 
 ## System page template
 
@@ -216,7 +216,7 @@ Every system page contains:
 7. Evaluation and limitations.
 8. Contribution tasks.
 9. Research and teaching references.
-10. Return path to the laboratory and related systems.
+10. Return path to the workshop and related projects.
 
 ## Research page template
 
@@ -264,7 +264,7 @@ Each item records canonical ID, title, summary, maturity/status, source URL, can
 
 - launch actions open first-class HTTPS subdomains;
 - same-tab is preferred for ordinary navigation; new-tab use is disclosed and reserved for external repositories or model hubs;
-- external app chrome includes `Return to Laboratory`;
+- external app chrome includes `Return to Workshop`;
 - Wix shows live/replay/planned state before launch;
 - service unavailability routes to documentation or signed replay rather than a dead screen;
 - no privileged token appears in query parameters;

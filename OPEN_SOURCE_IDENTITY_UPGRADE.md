@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Purpose
 
-This document records the third foundation iteration of DeWitt Research Laboratory. The iteration makes open models, open-source software, public evaluation, self-hosting, reproducible research, and reciprocal community participation visible across the laboratory's identity, architecture, release system, website, model program, contributor experience, and acceptance gates.
+This document records the third foundation iteration of DeWitt Research Workshop. The iteration makes open models, open-source software, public evaluation, self-hosting, reproducible research, and reciprocal community participation visible across the laboratory's identity, architecture, release system, website, model program, contributor experience, and acceptance gates.
 
 The change is not a cosmetic addition of badges or license files. It changes what counts as a complete DRL product. A system cannot represent the laboratory merely because its code is public. It must expose a meaningful modification surface, identify upstream work accurately, publish evidence, provide a local or self-hosted path, and invite inspection and contribution.
 

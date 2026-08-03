@@ -52,7 +52,7 @@ last_updated: 2026-07-26
 ## Applications and embeds
 
 - [ ] Primary application buttons point to approved HTTPS DRL subdomains.
-- [ ] Every external app has a return-to-laboratory path.
+- [ ] Every external app has a return-to-workshop path.
 - [ ] Embeds are bounded, public, and non-privileged.
 - [ ] Every embed has fallback content and a direct link.
 - [ ] Mobile height, scrolling, keyboard, and failure states are tested.

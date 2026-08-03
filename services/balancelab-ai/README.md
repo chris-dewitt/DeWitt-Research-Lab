@@ -10,7 +10,7 @@ last_updated: 2026-07-27
 
     # BalanceLab AI
 
-    **Role in DeWitt Research Laboratory:** Transparent deterministic balance-sheet scenario engine with a strictly artifact-bound AI explanation layer.
+    **Role in DeWitt Research Workshop:** Transparent deterministic balance-sheet scenario engine with a strictly artifact-bound AI explanation layer.
 
     Runnable deterministic synthetic-bank prototype with explicit repricing betas, rate shocks, hand-verifiable NII change, calculation lineage, boundary validation, and regression tests. It is educational—not a production ALM model.
 

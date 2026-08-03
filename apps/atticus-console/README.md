@@ -10,7 +10,7 @@ last_updated: 2026-07-26
 
     # Atticus Console
 
-    **Role in DeWitt Research Laboratory:** Reusable TypeScript client and component system for conversation, events, approvals, evidence, artifacts, and tmux-inspired panes.
+    **Role in DeWitt Research Workshop:** Reusable TypeScript client and component system for conversation, events, approvals, evidence, artifacts, and tmux-inspired panes.
 
     UI contract defined; final acceptance occurs within the integrated lab-web experience.
 

@@ -14,11 +14,11 @@ maturity: prototype
 
 ## Citation
 
-DeWitt, Christopher Noxon. 2026. *Technical Report TR-2026-001: Local Integrated Evidence-to-Scenario Workflow*. DeWitt Research Laboratory working paper. Document ID `DRL-TR-2026-001`. Repository path: `docs/10-research/reports/TR-2026-001-integrated-workflow.md`.
+DeWitt, Christopher Noxon. 2026. *Technical Report TR-2026-001: Local Integrated Evidence-to-Scenario Workflow*. DeWitt Research Workshop working paper. Document ID `DRL-TR-2026-001`. Repository path: `docs/10-research/reports/TR-2026-001-integrated-workflow.md`.
 
 ## Abstract
 
-This report documents the first reproducible Atticus-integrated research vertical slice in the DeWitt Research Laboratory (DRL) monorepo. A deterministic local runtime gathers synthetic Atlas macro evidence, compares synthetic FedLens communications with passage citations, projects a BalanceLab bear-steepener on an educational bank, evaluates the trajectory with EvalForge, and links the five artifacts under one task digest. The work is **prototype** maturity: fixture data only, no trained Atticus Core/Edge weights, no production signing identity, and no live public deployment.
+This report documents the first reproducible Atticus-integrated research vertical slice in the DeWitt Research Workshop (DRL) monorepo. A deterministic local runtime gathers synthetic Atlas macro evidence, compares synthetic FedLens communications with passage citations, projects a BalanceLab bear-steepener on an educational bank, evaluates the trajectory with EvalForge, and links the five artifacts under one task digest. The work is **prototype** maturity: fixture data only, no trained Atticus Core/Edge weights, no production signing identity, and no live public deployment.
 
 ## 1. Question and scope
 

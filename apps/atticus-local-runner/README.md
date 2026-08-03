@@ -10,7 +10,7 @@ last_updated: 2026-07-29
 
     # Atticus Local Runner
 
-    **Role in DeWitt Research Laboratory:** Installable private execution node for scoped local files, repositories, shell profiles, voice, and applications.
+    **Role in DeWitt Research Workshop:** Installable private execution node for scoped local files, repositories, shell profiles, voice, and applications.
 
     Central V1 feature with a strict security bar. The current prototype provides canonical approved-root listing plus redacted `inspect_text`/`read_text`, size and binary limits, traversal/symlink denial, and exact-digest atomic text-write proposals. Writes now flow through `ApprovedWriteFlow`: an expiring, actor-identified, workspace-scoped approval grant bound to the exact proposal digest, with a redacted append-only local audit log; expired, re-bound, or changed-workspace applies are denied and audited. Pairing, voice, sandboxed commands, OS credential storage, and signed updates remain planned. The public website never pairs to the Director’s real runner.
 

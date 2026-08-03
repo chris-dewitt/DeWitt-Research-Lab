@@ -14,7 +14,7 @@ last_updated: 2026-07-27
 
 | ID | Decision | Status | Consequence |
 |---|---|---|---|
-| D-001 | Formal name is DeWitt Research Laboratory | Approved | institutional brand and namespace |
+| D-001 | Formal name is DeWitt Research Workshop | Approved | institutional brand and namespace |
 | D-002 | DRL is an independent research initiative led by Christopher Noxon DeWitt | Approved | institute-first, founder-visible presentation |
 | D-003 | Atticus is the laboratory's central intelligence and orchestration layer | Approved | specialist systems expose formal tools/contracts |
 | D-004 | Monorepo | Approved | one dependency graph and coordinated release |

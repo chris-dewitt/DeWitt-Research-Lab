@@ -57,7 +57,7 @@ def register_foundation_tools(
             evidence=[
                 EvidenceItem(
                     "drl-mission",
-                    "DeWitt Research Laboratory",
+                    "DeWitt Research Workshop",
                     "Laboratory mission",
                     "2026-07-27",
                     "Intelligence for Good. Intelligence for All.",
@@ -66,7 +66,7 @@ def register_foundation_tools(
                 )
             ],
             message=(
-                "DeWitt Research Laboratory is an independent, one-person open applied-AI "
+                "DeWitt Research Workshop is an independent, one-person open applied-AI "
                 "research initiative led by Christopher Noxon DeWitt."
             ),
         ),

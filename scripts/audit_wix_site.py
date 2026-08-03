@@ -67,7 +67,7 @@ EXPECTED_SYSTEM_PAGES = ["atticus", "atlas", "fedlens", "balancelab", "evalforge
 
 # Required homepage text (hero hierarchy + founder line).
 REQUIRED_HOME_TEXT = [
-    "DeWitt Research Laboratory",
+    "DeWitt Research Workshop",
     "Independent research in open and applied intelligence",
     "Intelligence for Good. Intelligence for All.",
     "Christopher Noxon DeWitt",

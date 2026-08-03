@@ -12,7 +12,7 @@ last_updated: 2026-07-28
 
     ## 1. Purpose and authority
 
-    EvalForge makes DeWitt Research Laboratory claims testable. It defines versioned evaluation suites, executes local and cloud experiments, stores immutable evidence, compares candidates with accepted baselines, calibrates human and model judges, generates reports, and enforces pull-request and release gates.
+    EvalForge makes DeWitt Research Workshop claims testable. It defines versioned evaluation suites, executes local and cloud experiments, stores immutable evidence, compares candidates with accepted baselines, calibrates human and model judges, generates reports, and enforces pull-request and release gates.
 
     This document defines V1 product boundaries, behavior, interfaces, invariants, quality attributes, and evidence for EvalForge. Laboratory-wide protocol, security, privacy, data, and release policies remain controlling.
 

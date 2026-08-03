@@ -1,6 +1,6 @@
 ---
 document_id: DRL-BIB-001
-title: "DeWitt Research Laboratory Bible"
+title: "DeWitt Research Workshop Bible"
 version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
@@ -8,11 +8,11 @@ last_updated: 2026-08-03
 ---
 
 
-# DeWitt Research Laboratory Bible
+# DeWitt Research Workshop Bible
 
 ## 1. Authority and purpose
 
-This document is the laboratory-wide constitution for DeWitt Research Laboratory. It defines the institution, its research thesis, product portfolio, architecture principles, safety posture, model program, open-source operating model, website experience, governance, and criteria for a legitimate V1 release. Project documents add implementation detail, but they may not contradict this Bible without an approved Architecture Decision Record (ADR).
+This document is the laboratory-wide constitution for DeWitt Research Workshop. It defines the institution, its research thesis, product portfolio, architecture principles, safety posture, model program, open-source operating model, website experience, governance, and criteria for a legitimate V1 release. Project documents add implementation detail, but they may not contradict this Bible without an approved Architecture Decision Record (ADR).
 
 When two sources conflict, use this order of authority:
 
@@ -29,7 +29,7 @@ Existing code is not automatically correct merely because it exists. An agent en
 
 ## 2. Institutional identity
 
-**Formal name:** DeWitt Research Laboratory  
+**Formal name:** DeWitt Research Workshop  
 **Common name:** DeWitt Research Lab  
 **Short mark:** DRL  
 **Type:** Independent open research and open technology initiative  

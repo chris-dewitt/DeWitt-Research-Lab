@@ -10,7 +10,7 @@ last_updated: 2026-07-27
 
     # Atticus Control Plane
 
-    **Role in DeWitt Research Laboratory:** Policy-governed orchestration that plans, routes, invokes specialists, manages approvals, and synthesizes results.
+    **Role in DeWitt Research Workshop:** Policy-governed orchestration that plans, routes, invokes specialists, manages approvals, and synthesizes results.
 
     Runnable local prototype with deterministic planning, risk policy, exact-call approvals, state transitions, specialist routing, evidence-preserving synthesis, EvalForge submission, CLI, HTTP adapter, tests, and container build. It is not yet a trained model runtime or production public service.
 

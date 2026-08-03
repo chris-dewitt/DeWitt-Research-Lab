@@ -1,6 +1,6 @@
 ---
 document_id: DRL-WEB-002
-title: "DeWitt Research Laboratory Brand System"
+title: "DeWitt Research Workshop Brand System"
 version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
@@ -8,30 +8,62 @@ last_updated: 2026-08-03
 ---
 
 
-# DeWitt Research Laboratory Brand System
+# DeWitt Research Workshop Brand System
+
+## Positioning
+
+This is one person's workshop, not an institute. The register is a scholar's
+study: careful, curious, citation-minded, plainly the work of a single
+practitioner. It is not a startup, not a lab with staff, and not a research
+organisation with an institutional voice.
+
+Enforcing this is the point of `RES-004` — describe the work as an independent
+initiative run by one person tinkering, researching, and building applied AI in
+public. Institutional inflation is a defect, not a style preference.
 
 ## Name hierarchy
 
-- formal: DeWitt Research Laboratory;
-- common: DeWitt Research Lab;
-- compact: DRL, used as a secondary mark only;
-- founder line: Founded and directed by Christopher Noxon DeWitt, Applied AI Researcher.
+- formal: DeWitt Research Workshop;
+- common: DeWitt Research Workshop, or "the workshop" in running copy;
+- founder line: Built and maintained by Christopher Noxon DeWitt, Applied AI Researcher.
+
+`DRL` is retired as a public mark. It survives only as the internal identifier
+prefix in controlled-document IDs (`DRL-WEB-002`), requirement IDs, and code
+namespaces, where it is an opaque key rather than a name. Do not introduce it
+into public copy, page furniture, or interface chrome.
+
+The canonical domain remains `dewitt-labs.com`. A domain is an address, not a
+mission statement, and no copy should explain or apologise for the mismatch.
 
 ## Mission line
 
 **Intelligence for Good. Intelligence for All.**
 
-Use as institutional mission, not repeated promotional slogan on every card.
+Use as the workshop's mission, not a repeated promotional slogan on every card.
 
 ## Voice
 
 - thoughtful, serious, direct;
+- plainly one person: prefer "I" and "the workshop" over "we" and "our team";
 - inviting to learners and collaborators;
 - technically literate without jargon performance;
 - openly enthusiastic about good work;
 - skeptical of hype;
 - clear about maturity and limitations;
 - occasionally witty in interface copy, never during errors or security warnings.
+
+### Register
+
+Describe what exists and what it does. Do not describe what it would sound like
+if it were bigger.
+
+- prefer concrete nouns and working verbs to capability abstractions;
+- prefer "I built", "this runs", "this does not work yet" to "delivers",
+  "empowers", "leverages";
+- never use absolute capability claims — "fully", "complete", "all", "total" —
+  unless the claim is measured and the measurement is linked;
+- no present-tense promises about unbuilt work; planned things are labelled planned;
+- an ordinary update is an ordinary update, not a breakthrough.
 
 ## Visual motifs
 
@@ -42,6 +74,10 @@ Use as institutional mission, not repeated promotional slogan on every card.
 - paper-like cream panels for research documents;
 - monospaced metadata with readable sans/serif body;
 - measured use of archival stamps such as `PUBLIC RELEASE` only when truthful.
+
+The palette, typography, and terminal grammar are unchanged. What goes is the
+institutional chrome layered on top of them: authority furniture that implies an
+organisation, an operations centre, or a scale that does not exist.
 
 ## Prohibited motifs
 
@@ -54,9 +90,28 @@ Use as institutional mission, not repeated promotional slogan on every card.
 - skill percentage bars;
 - logo wall as proof of competence.
 
+### Institutional chrome (also prohibited)
+
+Authority furniture that implies an organisation or operations centre:
+
+- uptime, availability, or SLA figures unless a monitor produces them and the
+  source is linked — `UPTIME: 99.9%` is a fabricated metric;
+- operations-centre framing: node counts, mission-control status boards, or
+  "systems nominal" language covering work that is one person's prototypes;
+- evidence stamps, seals, or classification-style badges applied for texture
+  rather than to record a real, dated verification;
+- spec-sheet capability tables that assert completeness;
+- "our team", "our researchers", "our engineers", or any plural that invents staff;
+- section headings that name a department rather than a thing that exists.
+
 ## Project identities
 
-Projects share DRL design grammar but have subtle signals:
+These are projects on a workbench, not divisions of an organisation. Call them
+projects or by name; do not call them "specialist research nodes", "our systems",
+or anything that implies a department behind each one. Each carries its own
+maturity label, and most are prototypes — say so.
+
+Projects share the workshop's design grammar but have subtle signals:
 
 - Atticus: cream/amber, execution graph, voice line;
 - Atlas: cream/cool gray, time-series/evidence map;

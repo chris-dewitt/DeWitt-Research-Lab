@@ -10,7 +10,7 @@ last_updated: 2026-07-26
 
     # Atticus Edge
 
-    **Role in DeWitt Research Laboratory:** Small open-weight Atticus model for local routing, constrained tool proposals, voice responsiveness, offline guidance, and escalation.
+    **Role in DeWitt Research Workshop:** Small open-weight Atticus model for local routing, constrained tool proposals, voice responsiveness, offline guidance, and escalation.
 
     Designed in parallel with Core; its local latency, memory, and escalation claims must be independently earned.
 

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ADR-0008
 title: "Use Wix at www.dewitt-labs.com as the Canonical Institutional Site"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 # ADR-0008: Use Wix at `www.dewitt-labs.com` as the canonical institutional site
@@ -29,6 +29,24 @@ Firebase/App Hosting and Google Cloud remain approved for interactive frontends,
 - Controlled technical documentation remains repository-authoritative.
 - Wix may author editorial content, events, collaboration pages, and public introductions.
 - A future migration to Wix Headless, a fully custom Next.js institutional site, or unified membership requires another ADR and redirect plan.
+
+## Implementation status (2026-08-03)
+
+The decision is implemented. `https://www.dewitt-labs.com` is live on Wix with the apex
+redirecting to the canonical `www` origin, and the institutional page tree is published.
+
+Two consequences recorded above are not yet satisfied and remain open release work:
+
+- *"Primary applications use first-class subdomains rather than iframe-only delivery."*
+  No application subdomain resolves yet; `atticus.dewitt-labs.com` is unallocated and
+  launch actions route to Wix pages. Nothing is delivered by iframe, so the decision is
+  not violated, but the subdomain contract is unfulfilled.
+- *"Wix and external applications need one design, navigation, consent, SEO, and status
+  contract."* The consent and status contracts are not published; privacy, governance,
+  security, and license routes exist as footer text without targets.
+
+No part of this ADR is superseded by the as-built site. See
+`docs/08-web-brand/WIX_SITE_BUILD_PLAN.md` §As-built state for the page-level record.
 
 ## Superseded assumption
 

@@ -1,6 +1,6 @@
 ---
 document_id: DRL-PRD-001
-title: "DeWitt Research Laboratory V1 Product Requirements"
+title: "DeWitt Research Workshop V1 Product Requirements"
 version: 2.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
@@ -8,7 +8,7 @@ last_updated: 2026-07-26
 ---
 
 
-# DeWitt Research Laboratory V1 Product Requirements
+# DeWitt Research Workshop V1 Product Requirements
 
 ## Product vision
 

@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## Objective
 
-Deliver one coordinated, public, open-source V1 of DeWitt Research Laboratory in which Atticus—using open weights—operates a polished public laboratory, coordinates four functioning specialist systems, and supports an optional secure local runner.
+Deliver one coordinated, public, open-source V1 of DeWitt Research Workshop in which Atticus—using open weights—operates a polished public laboratory, coordinates four functioning specialist systems, and supports an optional secure local runner.
 
 ## Business and research outcomes
 

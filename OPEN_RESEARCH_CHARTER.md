@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Constitutional position
 
-DeWitt Research Laboratory is not simply a portfolio whose source code happens to be visible. Open models, open-source software, reproducible experiments, and public teaching artifacts are part of the laboratory's institutional identity and research method. The laboratory exists to help ordinary people inspect, run, question, modify, and learn from useful AI systems. Openness is therefore a design constraint applied before architecture and release decisions—not a packaging task performed after the interesting work is complete.
+DeWitt Research Workshop is not simply a portfolio whose source code happens to be visible. Open models, open-source software, reproducible experiments, and public teaching artifacts are part of the laboratory's institutional identity and research method. The laboratory exists to help ordinary people inspect, run, question, modify, and learn from useful AI systems. Openness is therefore a design constraint applied before architecture and release decisions—not a packaging task performed after the interesting work is complete.
 
 The governing phrase is:
 

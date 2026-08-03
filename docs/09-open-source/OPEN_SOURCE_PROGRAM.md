@@ -11,7 +11,7 @@ last_updated: 2026-07-26
 
 ## Goal
 
-Make DeWitt Research Laboratory useful to people who never use the official hosted website. The monorepo is a public research instrument containing applications, standalone packages, models, datasets, benchmarks, deployment profiles, teaching material, and reproducible experiments. Open-source work is not a separate outreach lane; it is the method by which DRL builds credibility and distributes capability.
+Make DeWitt Research Workshop useful to people who never use the official hosted website. The monorepo is a public research instrument containing applications, standalone packages, models, datasets, benchmarks, deployment profiles, teaching material, and reproducible experiments. Open-source work is not a separate outreach lane; it is the method by which DRL builds credibility and distributes capability.
 
 The program operates under the root `OPEN_RESEARCH_CHARTER.md` and the artifact-specific standards in this directory.
 

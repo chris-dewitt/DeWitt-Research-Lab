@@ -1,21 +1,21 @@
 ---
 document_id: DRL-OSS-015
 title: "Open Source Institutional Identity System"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 # Open Source Institutional Identity System
 
 ## Identity thesis
 
-DeWitt Research Laboratory presents open technology as a living research tradition rather than a software-distribution tactic. The laboratory's personality combines an independent academic institute, a financial research workstation, a public technical archive, and a late-night systems laboratory. The cream-on-black visual system communicates seriousness; the open artifact system communicates trust.
+DeWitt Research Workshop presents open technology as a living research tradition rather than a software-distribution tactic. The laboratory's personality combines an independent academic institute, a financial research workstation, a public technical archive, and a late-night systems laboratory. The cream-on-black visual system communicates seriousness; the open artifact system communicates trust.
 
 The primary institutional line is:
 
-> **AI for Good. AI for all. Intelligence of the people and for the people.**
+> **Intelligence for Good. Intelligence for All.**
 
 The operating proof beneath that line is:
 
@@ -25,7 +25,7 @@ Neither statement may stand alone. Public-interest language without inspectable 
 
 ## Narrative hierarchy
 
-1. **Laboratory:** DeWitt Research Laboratory is an independent research initiative founded and directed by Christopher Noxon DeWitt.
+1. **Laboratory:** DeWitt Research Workshop is an independent research initiative founded and directed by Christopher Noxon DeWitt.
 2. **Mission:** useful intelligence should be understandable, modifiable, and accessible beyond large institutions.
 3. **Atticus:** Atticus operates the laboratory and is itself a public research program in open agent models, orchestration, permissions, and local-first computing.
 4. **Specialists:** Atlas, FedLens, BalanceLab AI, and EvalForge are inspectable specialist systems and research instruments.

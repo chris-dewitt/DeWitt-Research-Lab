@@ -10,7 +10,7 @@ last_updated: 2026-07-27
 
     # Atlas
 
-    **Role in DeWitt Research Laboratory:** Time-aware macroeconomic and market research returning provenance-rich evidence and reproducible artifacts.
+    **Role in DeWitt Research Workshop:** Time-aware macroeconomic and market research returning provenance-rich evidence and reproducible artifacts.
 
     Runnable point-in-time fixture prototype. It enforces publication-time eligibility and returns provenance-bearing macro and market observations. Live public-source ingestion remains planned.
 

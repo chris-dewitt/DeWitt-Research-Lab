@@ -473,7 +473,7 @@ requirements:
   - release-artifact
   status: APPROVED-FOUNDATION
 - id: DRL-WEB-001
-  statement: The public site shall introduce DeWitt Research Laboratory before Atticus.
+  statement: The public site shall introduce DeWitt Research Workshop before Atticus.
   owner: Web/Brand
   canonical_spec: docs/08-web-brand/
   priority: V1-MUST

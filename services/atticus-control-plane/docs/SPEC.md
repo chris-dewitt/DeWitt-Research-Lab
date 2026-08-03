@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
     ## 1. Purpose and authority
 
-    Atticus is the operating intelligence of DeWitt Research Laboratory. The control plane turns a user objective into a bounded, inspectable workflow; selects models and skills; obtains policy decisions and approvals; calls specialist systems and tools; recovers from expected failures; and produces a grounded result with a visible execution summary.
+    Atticus is the operating intelligence of DeWitt Research Workshop. The control plane turns a user objective into a bounded, inspectable workflow; selects models and skills; obtains policy decisions and approvals; calls specialist systems and tools; recovers from expected failures; and produces a grounded result with a visible execution summary.
 
     This document defines V1 product boundaries, behavior, interfaces, invariants, quality attributes, and evidence for Atticus Control Plane. Laboratory-wide protocol, security, privacy, data, and release policies remain controlling.
 

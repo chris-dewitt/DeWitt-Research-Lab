@@ -59,7 +59,7 @@ Wix supports connecting an existing domain, custom elements, embedded URLs, Velo
 The Wix site owns the following public surfaces for V1:
 
 - canonical homepage and laboratory mission;
-- institute-first brand system and navigation;
+- workshop-first brand system and navigation;
 - high-level system pages and launch links;
 - research abstracts, essays, announcements, and teaching index;
 - founder/director profile and résumé entry point;
@@ -123,7 +123,7 @@ Wix and external DRL applications must appear to belong to one laboratory withou
 
 Required continuity:
 
-- `DeWitt Research Laboratory` wordmark and canonical mission language;
+- `DeWitt Research Workshop` wordmark and canonical mission language;
 - cream-on-black base palette;
 - shared typography and spacing guidance;
 - consistent system names and maturity labels;

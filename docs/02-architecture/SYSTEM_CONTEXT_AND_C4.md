@@ -12,7 +12,7 @@ last_updated: 2026-07-26
 
 ## System context
 
-DeWitt Research Laboratory is a public research and software platform used by anonymous visitors, authenticated public researchers, contributors, the Director as private operator, and administrators. It integrates public data providers, model runtimes, Google Cloud services, GitHub, and optional local tools.
+DeWitt Research Workshop is a public research and software platform used by anonymous visitors, authenticated public researchers, contributors, the Director as private operator, and administrators. It integrates public data providers, model runtimes, Google Cloud services, GitHub, and optional local tools.
 
 ### External actors and systems
 

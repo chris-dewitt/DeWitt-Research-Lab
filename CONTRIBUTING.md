@@ -1,13 +1,13 @@
 ---
 document_id: DRL-ROOT-CONTRIB
-title: "Contributing to DeWitt Research Laboratory"
+title: "Contributing to DeWitt Research Workshop"
 version: 3.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
 ---
 
-# Contributing to DeWitt Research Laboratory
+# Contributing to DeWitt Research Workshop
 
 ## Welcome and scope
 

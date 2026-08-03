@@ -1,18 +1,18 @@
 ---
 document_id: DRL-BIB-001
-title: "DeWitt Research Laboratory Bible"
-version: 4.0.0
+title: "DeWitt Research Workshop Bible"
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 
-# DeWitt Research Laboratory Bible
+# DeWitt Research Workshop Bible
 
 ## 1. Authority and purpose
 
-This document is the laboratory-wide constitution for DeWitt Research Laboratory. It defines the institution, its research thesis, product portfolio, architecture principles, safety posture, model program, open-source operating model, website experience, governance, and criteria for a legitimate V1 release. Project documents add implementation detail, but they may not contradict this Bible without an approved Architecture Decision Record (ADR).
+This document is the laboratory-wide constitution for DeWitt Research Workshop. It defines the institution, its research thesis, product portfolio, architecture principles, safety posture, model program, open-source operating model, website experience, governance, and criteria for a legitimate V1 release. Project documents add implementation detail, but they may not contradict this Bible without an approved Architecture Decision Record (ADR).
 
 When two sources conflict, use this order of authority:
 
@@ -29,14 +29,14 @@ Existing code is not automatically correct merely because it exists. An agent en
 
 ## 2. Institutional identity
 
-**Formal name:** DeWitt Research Laboratory  
+**Formal name:** DeWitt Research Workshop  
 **Common name:** DeWitt Research Lab  
 **Short mark:** DRL  
 **Type:** Independent open research and open technology initiative  
 **Founder and director:** Christopher Noxon DeWitt  
 **Public professional identity:** Applied AI Researcher  
 **Location:** Charlotte, North Carolina  
-**Mission:** *AI for Good. AI for all. Intelligence of the people and for the people.*
+**Mission:** *Intelligence for Good. Intelligence for All.*
 
 DRL is clearly the Director's laboratory while presenting itself as a credible independent research institution capable of welcoming collaborators, tinkerers, students, academics, learners, and teachers. Open models, open-source software, public evaluation, local operation, and reproducible teaching are visible institutional pillars. The laboratory does not merely publish source after building; it designs systems so other people can inspect, modify, run, evaluate, and teach from them. It should feel as though the Director discovered an abandoned technical institute, restored its terminals, and took command—without fabricating a history, staff, affiliation, government authority, accreditation, or scale that does not exist.
 

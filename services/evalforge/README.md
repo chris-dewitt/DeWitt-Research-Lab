@@ -10,7 +10,7 @@ last_updated: 2026-07-28
 
     # EvalForge
 
-    **Role in DeWitt Research Laboratory:** Laboratory-wide evaluation, regression, evidence, and release-gate platform.
+    **Role in DeWitt Research Workshop:** Laboratory-wide evaluation, regression, evidence, and release-gate platform.
 
     Runnable deterministic prototype that checks required trajectory events, citation presence, policy-bypass absence, and legal terminal state. Also ships a held-out **permission and trajectory** suite (`run_permission_trajectory_suite`) with separate terminal/trajectory scores, allow/deny/approval/injection slices, and a zero-tolerance unauthorized-action gate. Broader benchmark, judge-calibration, CI comparison, and hidden-set capabilities remain planned.
 

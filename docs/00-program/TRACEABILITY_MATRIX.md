@@ -65,7 +65,7 @@ This matrix is generated from `requirements/requirements.yaml` and is completed 
 | DRL-EVL-008 — Release reports shall include failures and limitations, not only successful examples. | Evaluation | `docs/05-evaluation/` / `docs/10-research/` | DRL-028 | `TR-2026-001-integrated-workflow.md` | `tests/docs/test_technical_report.py` | limitations + degraded replay refs | TR-2026-001 | PARTIAL |
 | DRL-EVL-009 — Replay evaluation shall verify that displayed artifacts correspond to the captured run. | Evaluation | `docs/05-evaluation/` | DRL-019 | `verify_replay_bundle` digest checks | `tests/evalforge/test_signed_replays.py` | schema+HMAC | signed replay fixtures | PARTIAL |
 | DRL-EVL-010 — Baseline thresholds shall be set before observing final release candidates or changed only by approved rationale. | Evaluation | `docs/05-evaluation/` | — | — | — | — | — | APPROVED-FOUNDATION |
-| DRL-WEB-001 — The public site shall introduce DeWitt Research Laboratory before Atticus. | Web/Brand | `docs/08-web-brand/` | — | — | — | — | — | APPROVED-FOUNDATION |
+| DRL-WEB-001 — The public site shall introduce DeWitt Research Workshop before Atticus. | Web/Brand | `docs/08-web-brand/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-WEB-002 — The visual system shall be cream on black with research-workstation/tmux influence and remain accessible. | Web/Brand | `docs/08-web-brand/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-WEB-003 — Traditional navigation and documentation shall work without chat. | Web/Brand | `docs/08-web-brand/` | — | — | — | — | — | APPROVED-FOUNDATION |
 | DRL-WEB-004 — Public demos shall identify live, cached, simulated, and replayed output truthfully. | Web/Brand | `docs/08-web-brand/` | — | — | — | — | — | APPROVED-FOUNDATION |

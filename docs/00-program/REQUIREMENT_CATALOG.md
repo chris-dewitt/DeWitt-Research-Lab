@@ -65,7 +65,7 @@ This controlled catalog contains **132** approved V1 requirements. The machine-r
 | DRL-EVL-008 | Release reports shall include failures and limitations, not only successful examples. | Evaluation | `docs/05-evaluation/` |
 | DRL-EVL-009 | Replay evaluation shall verify that displayed artifacts correspond to the captured run. | Evaluation | `docs/05-evaluation/` |
 | DRL-EVL-010 | Baseline thresholds shall be set before observing final release candidates or changed only by approved rationale. | Evaluation | `docs/05-evaluation/` |
-| DRL-WEB-001 | The public site shall introduce DeWitt Research Laboratory before Atticus. | Web/Brand | `docs/08-web-brand/` |
+| DRL-WEB-001 | The public site shall introduce DeWitt Research Workshop before Atticus. | Web/Brand | `docs/08-web-brand/` |
 | DRL-WEB-002 | The visual system shall be cream on black with research-workstation/tmux influence and remain accessible. | Web/Brand | `docs/08-web-brand/` |
 | DRL-WEB-003 | Traditional navigation and documentation shall work without chat. | Web/Brand | `docs/08-web-brand/` |
 | DRL-WEB-004 | Public demos shall identify live, cached, simulated, and replayed output truthfully. | Web/Brand | `docs/08-web-brand/` |

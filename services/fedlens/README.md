@@ -10,7 +10,7 @@ last_updated: 2026-07-27
 
     # FedLens
 
-    **Role in DeWitt Research Laboratory:** Federal Reserve communications and policy research with exact document comparison, temporal retrieval, NLP, and reproducible event studies.
+    **Role in DeWitt Research Workshop:** Federal Reserve communications and policy research with exact document comparison, temporal retrieval, NLP, and reproducible event studies.
 
     Runnable synthetic-corpus prototype with as-of document selection, exact document identity, deterministic language diff, and a disclosed teaching lexicon. Public Federal Reserve ingestion and statistical NLP remain planned.
 

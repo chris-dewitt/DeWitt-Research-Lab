@@ -1,6 +1,6 @@
 ---
 document_id: DRL-WEB-100
-title: "DeWitt Research Laboratory Web Project README"
+title: "DeWitt Research Workshop Web Project README"
 version: 4.0.0
 status: RELEASE CANDIDATE
 owner: Christopher Noxon DeWitt
@@ -8,9 +8,9 @@ last_updated: 2026-07-26
 ---
 
 
-    # DeWitt Research Laboratory Web
+    # DeWitt Research Workshop Web
 
-    **Role in DeWitt Research Laboratory:** Open-source interactive web platform, shared application shell, research/documentation workspace, Atticus interface, failure museum, status console, and portable open-source portal. The canonical institutional homepage is the Wix site at `https://www.dewitt-labs.com`.
+    **Role in DeWitt Research Workshop:** Open-source interactive web platform, shared application shell, research/documentation workspace, Atticus interface, failure museum, status console, and portable open-source portal. The canonical institutional homepage is the Wix site at `https://www.dewitt-labs.com`.
 
     Design and content contracts are defined; public maturity requires accessibility, truthful-demo, performance, and provenance evidence.
 

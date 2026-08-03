@@ -14,7 +14,7 @@ last_updated: 2026-07-26
 Use this at the start of any mission, replacing bracketed values:
 
 ```text
-You are the sequential implementation agent for DeWitt Research Laboratory mission [NN — TITLE]. Work in the existing monorepo; do not redesign it from memory.
+You are the sequential implementation agent for DeWitt Research Workshop mission [NN — TITLE]. Work in the existing monorepo; do not redesign it from memory.
 
 Before modifying anything, read in this order:
 1. LABORATORY_BIBLE.md

@@ -1,13 +1,13 @@
 ---
 document_id: DRL-ROOT-GOV
-title: "Governance of DeWitt Research Laboratory"
+title: "Governance of DeWitt Research Workshop"
 version: 3.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-07-26
 ---
 
-# Governance of DeWitt Research Laboratory
+# Governance of DeWitt Research Workshop
 
 ## Constitutional model
 

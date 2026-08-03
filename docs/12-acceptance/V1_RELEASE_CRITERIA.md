@@ -1,6 +1,6 @@
 ---
 document_id: DRL-ACC-001
-title: "DeWitt Research Laboratory V1 Release Criteria"
+title: "DeWitt Research Workshop V1 Release Criteria"
 version: 4.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
@@ -8,7 +8,7 @@ last_updated: 2026-07-26
 ---
 
 
-# DeWitt Research Laboratory V1 Release Criteria
+# DeWitt Research Workshop V1 Release Criteria
 
 V1 is approved only when every critical criterion has evidence and no release blocker remains.
 

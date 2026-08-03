@@ -2,7 +2,7 @@
 document_id: DRL-HO-WIX-20260803
 title: "Handoff: Wix Site Audit Remediation and Auditor Defect Fixes"
 version: 1.0.0
-status: PROTOTYPE
+status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-03
 ---

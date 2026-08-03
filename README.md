@@ -1,17 +1,17 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Laboratory Monorepo"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-03
 ---
 
 
 # DeWitt Research Laboratory
 
 **Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
-**AI for Good. AI for all. Intelligence of the people and for the people.**
+**Intelligence for Good. Intelligence for All.**
 
 DeWitt Research Laboratory (DRL) is an independent open research initiative founded and directed by Christopher Noxon DeWitt. DRL is **open by construction**. Open models, open-source software, public evaluation, local operation, and reproducible teaching artifacts are central to the laboratory's identity—not an afterthought. DRL is governed by the [Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md). The laboratory studies and builds inspectable, useful, locally operable artificial-intelligence systems. Its central platform is **Atticus**, an open-weight assistant and orchestration system that guides users through the laboratory and coordinates specialist systems for economic research, Federal Reserve analysis, quantitative scenario modeling, and AI evaluation.
 

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-019
 title: "Wix Institutional Site Build Plan and Page Blueprint"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 # Wix Institutional Site Build Plan and Page Blueprint
@@ -94,8 +94,7 @@ Required text hierarchy:
 DEWITT RESEARCH LABORATORY
 Independent research in open and applied intelligence.
 
-AI for Good. AI for all.
-Intelligence of the people and for the people.
+Intelligence for Good. Intelligence for All.
 ```
 
 Primary actions:

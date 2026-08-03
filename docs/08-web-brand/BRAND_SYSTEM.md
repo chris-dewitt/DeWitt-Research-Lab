@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-002
 title: "DeWitt Research Laboratory Brand System"
-version: 2.0.0
+version: 3.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-03
 ---
 
 
@@ -19,7 +19,7 @@ last_updated: 2026-07-26
 
 ## Mission line
 
-**AI for Good. AI for all. Intelligence of the people and for the people.**
+**Intelligence for Good. Intelligence for All.**
 
 Use as institutional mission, not repeated promotional slogan on every card.
 

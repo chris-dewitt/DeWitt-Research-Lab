@@ -68,8 +68,7 @@ EXPECTED_SYSTEM_PAGES = ["atticus", "atlas", "fedlens", "balancelab", "evalforge
 REQUIRED_HOME_TEXT = [
     "DeWitt Research Laboratory",
     "Independent research in open and applied intelligence",
-    "AI for Good. AI for all.",
-    "Intelligence of the people and for the people.",
+    "Intelligence for Good. Intelligence for All.",
     "Christopher Noxon DeWitt",
 ]
 

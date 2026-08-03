@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.5.0
+version: 1.6.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-02
+last_updated: 2026-08-03
 ---
 
 # Director's Decision and Escalation Ledger
@@ -73,6 +73,7 @@ the Director's approval.
 | RES-010 | Include GitHub milestones, issues, CI, agent sequencing, and a 90-day plan. | The Director | 2026-07-27 | Repository is execution-ready after upload. |
 | RES-011 | Correct the canonical domain spelling to `dewitt-labs.com`; the public Wix site is live at `https://www.dewitt-labs.com`. | The Director | 2026-08-02 | All documentation, DNS, and subdomains use the corrected spelling; earlier `dwit-labs.com` references were typos. |
 | RES-012 | Record the founder's full name as Christopher Noxon DeWitt; operational documents refer to "the Director." | The Director | 2026-08-02 | Founder-identity lines use the full name; governance and process text uses the Director. |
+| RES-013 | Change the mission line to "Intelligence for Good. Intelligence for All." | The Director | 2026-08-03 | Replaces "AI for Good. AI for all. Intelligence of the people and for the people."; the second sentence is retired entirely. `BRAND_SYSTEM.md` remains the canonical owner; all documents and code quoting the line were updated and a test now enforces agreement. |
 
 ## Current blockers
 

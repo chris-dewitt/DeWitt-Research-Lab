@@ -32,6 +32,7 @@ import sys
 import urllib.error
 import urllib.request
 from html.parser import HTMLParser
+from http.client import HTTPException
 from typing import Any
 
 SITE_HOST = "www.dewitt-labs.com"
@@ -84,12 +85,24 @@ ALLOWED_MATURITY = {
 
 # Language that implies institutional history, staff scale, or production
 # maturity DRL does not have (BRAND_SYSTEM.md voice + handoff checklist).
+#
+# These must match phrases that ASSERT affiliation or maturity. Bare nouns like
+# "university" or "accredited" appear in the required independent-initiative
+# disclosure ("Not a government, university, or accredited institution"), so
+# matching them alone flags a compliance item as a violation.
 UNTRUTHFUL_TERMS = [
     "our team", "our staff", "our scientists", "our engineers",
-    "accredited", "university", "government", "federally",
+    "accredited by", "accredited institution of", "in partnership with the university",
+    "university of", "government agency", "government-backed", "federally funded",
     "production-ready", "enterprise-grade", "battle-tested",
     "trusted by", "clients include", "award-winning", "industry-leading",
     "world-class", "patented", "99.9%", "uptime guarantee",
+]
+
+# Sentences containing these are truthful disclaimers; never flag terms inside them.
+DISCLAIMER_MARKERS = [
+    "not a government", "independent initiative", "not affiliated",
+    "is not a university", "no accreditation",
 ]
 
 findings: list[tuple[str, str, str]] = []  # (severity, area, message)
@@ -124,18 +137,21 @@ def http(url: str, *, body: dict[str, Any] | None = None,
             return resp.status, dict(resp.headers), resp.read().decode("utf-8", "replace")
     except urllib.error.HTTPError as e:
         return e.code, dict(e.headers), e.read().decode("utf-8", "replace")
-    except (urllib.error.URLError, OSError) as e:
+    except (urllib.error.URLError, OSError, HTTPException) as e:
+        # HTTPException covers truncated chunked responses (IncompleteRead), which
+        # are not OSError subclasses and would otherwise abort the whole run.
         return 0, {}, f"network error: {e}"
 
 
-def wix_api(path: str, body: dict[str, Any],
-            site_id: str | None) -> tuple[int, dict[str, Any] | str]:
+def wix_api(path: str, body: dict[str, Any], site_id: str | None,
+            method: str = "POST") -> tuple[int, dict[str, Any] | str]:
     headers = {"Authorization": os.environ["WIX_API_KEY"]}
     if site_id:
         headers["wix-site-id"] = site_id
     if os.environ.get("WIX_ACCOUNT_ID"):
         headers["wix-account-id"] = os.environ["WIX_ACCOUNT_ID"]
-    status, _, text = http(API_BASE + path, body=body, headers=headers)
+    payload = body if method == "POST" else None
+    status, _, text = http(API_BASE + path, body=payload, headers=headers)
     try:
         parsed = json.loads(text)
     except json.JSONDecodeError:
@@ -167,10 +183,17 @@ def discover_site_id() -> str | None:
 
 
 def audit_collections(site_id: str) -> None:
-    status, data = wix_api("/wix-data/v2/collections/query", {}, site_id)
+    # Collections are listed via GET; the /collections/query POST route returns 404.
+    status, data = wix_api("/wix-data/v2/collections", {}, site_id, method="GET")
     if status != 200 or not isinstance(data, dict):
-        add("UNVERIFIED", "CMS",
-            f"Collections query failed (HTTP {status}): {json.dumps(data)[:300]}")
+        blob = json.dumps(data)
+        if "WDE0110" in blob:
+            add("UNVERIFIED", "CMS",
+                "Wix CMS app is not installed for this site, so no collections exist. "
+                "Install it before auditing content collections.")
+        else:
+            add("UNVERIFIED", "CMS",
+                f"Collections query failed (HTTP {status}): {blob[:300]}")
         return
     cols = data.get("collections", [])
     names = {c.get("id", ""): c for c in cols}
@@ -281,6 +304,45 @@ def luminance(hexcolor: str) -> float:
     return 0.2126 * r + 0.7152 * g + 0.0722 * b
 
 
+def flag_untruthful(text: str) -> list[str]:
+    """Return untruthful terms present in `text`, ignoring truthful disclaimers.
+
+    Terms inside a sentence that also carries a disclaimer marker (e.g. "This is an
+    independent initiative. Not a government, university, or accredited institution.")
+    are compliance content, not violations, and must not be reported.
+    """
+    hits: list[str] = []
+    for sentence in re.split(r"(?<=[.!?])\s+", text):
+        low = sentence.lower()
+        if any(marker in low for marker in DISCLAIMER_MARKERS):
+            continue
+        hits.extend(term for term in UNTRUTHFUL_TERMS if term in low)
+    return sorted(set(hits))
+
+
+def resolve_theme_colors(html: str) -> tuple[str | None, str | None]:
+    """Resolve the page canvas and foreground colours from Wix CSS variables.
+
+    Wix paints sections via custom properties rather than literal hex in inline
+    style attributes, so reading inline hex alone misreports the palette. Prefer
+    the explicit --wst-base-N-color tokens, then fall back to the numbered
+    --color_NN palette (color_11 is the section background, color_10 the text).
+    """
+    def rgb_triplet(name: str) -> str | None:
+        m = re.search(rf"--{name}\s*:\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)", html)
+        if not m:
+            return None
+        return "#{:02x}{:02x}{:02x}".format(*(int(g) for g in m.groups()))
+
+    def hex_token(name: str) -> str | None:
+        m = re.search(rf"--{name}\s*:\s*(#[0-9a-fA-F]{{3,8}})", html)
+        return m.group(1) if m else None
+
+    canvas = hex_token("wst-base-1-color") or rgb_triplet("color_11")
+    foreground = hex_token("wst-base-2-color") or rgb_triplet("color_10")
+    return canvas, foreground
+
+
 def audit_page(url: str, is_home: bool) -> None:
     status, _, html = http(url)
     if status == 0:
@@ -293,13 +355,10 @@ def audit_page(url: str, is_home: bool) -> None:
     parser.feed(html)
     text = " ".join(parser.text)
     lower = text.lower()
-    css = " ".join(parser.css) + " " + " ".join(
-        re.findall(r'background(?:-color)?\s*:\s*[^;"}]+', html))
 
-    for term in UNTRUTHFUL_TERMS:
-        if term in lower:
-            add("GAP", "Truthfulness", f"{url}: contains '{term}' — verify against brand voice "
-                "(no implied staff scale, accreditation, or production maturity).")
+    for term in flag_untruthful(text):
+        add("GAP", "Truthfulness", f"{url}: contains '{term}' — verify against brand voice "
+            "(no implied staff scale, accreditation, or production maturity).")
 
     if is_home:
         for required in REQUIRED_HOME_TEXT:
@@ -309,15 +368,16 @@ def audit_page(url: str, is_home: bool) -> None:
             if not any(link in h.lower() for h in parser.hrefs) and link not in lower:
                 add("GAP", "Content", f"No visible '{link}' link/text found on homepage "
                     "(required before initial publication).")
-        bgs = re.findall(r"background(?:-color)?\s*:\s*(#[0-9a-fA-F]{3,6})", css)
-        light = [b for b in bgs if luminance(b) > 0.6]
-        dark = [b for b in bgs if luminance(b) < 0.25]
+        canvas, fg = resolve_theme_colors(html)
         add("INFO", "Brand",
-            f"Homepage background colors observed: {sorted(set(bgs)) or 'none inline'} "
-            f"(dark={len(dark)}, light={len(light)})")
-        if bgs and len(light) > len(dark):
-            add("GAP", "Brand", "Homepage backgrounds are predominantly light — spec requires "
-                "near-black canvas with warm cream foreground (cream-on-black).")
+            f"Resolved theme: canvas={canvas or 'unknown'} foreground={fg or 'unknown'}")
+        if canvas and luminance(canvas) > 0.35:
+            add("GAP", "Brand",
+                f"Page canvas {canvas} is not near-black — spec requires a near-black "
+                "canvas with warm cream foreground (cream-on-black).")
+        elif canvas and fg and luminance(fg) < 0.6:
+            add("GAP", "Brand",
+                f"Foreground {fg} is not a warm cream against canvas {canvas}.")
         fonts = sorted(set(re.findall(r"font-family\s*:\s*([^;\"}]+)", html.lower())))[:10]
         add("INFO", "Brand", f"Font families observed: {fonts or 'none found in inline CSS'}")
 
@@ -338,7 +398,8 @@ def main() -> int:
 
     # Apex redirect (handoff checklist §Domain).
     status, headers, _ = http(f"https://{APEX_HOST}/", follow_redirects=False)
-    loc = headers.get("Location", "")
+    # HTTP/2 lowercases header names, so look the header up case-insensitively.
+    loc = next((v for k, v in headers.items() if k.lower() == "location"), "")
     if status in (301, 308) and SITE_HOST in loc:
         add("PASS", "Domain", f"Apex redirects permanently to {loc}")
     elif status == 0:
@@ -355,8 +416,11 @@ def main() -> int:
             if not any(s in paths for s in slugs):
                 add("GAP", "Structure",
                     f"Approved page-tree section '{section}' not found in sitemap.")
+        # Slugs are hyphenated on the live site (/fed-lens, /balance-lab-ai), so
+        # normalise both sides before comparing.
+        flat = re.sub(r"[-_]", "", paths)
         for system in EXPECTED_SYSTEM_PAGES:
-            if system not in paths:
+            if re.sub(r"[-_]", "", system) not in flat:
                 add("GAP", "Structure",
                     f"System page or planned-state entry for '{system}' not found in sitemap.")
 

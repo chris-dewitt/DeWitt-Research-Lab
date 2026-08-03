@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-002
 title: "DeWitt Research Laboratory Brand System"
-version: 3.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-03

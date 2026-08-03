@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-019
 title: "Wix Institutional Site Build Plan and Page Blueprint"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-03
@@ -57,6 +57,47 @@ Status / Launch
 ```
 
 The initial Wix release may combine shallow sections, but it must retain stable paths or redirects so pages can expand without link breakage.
+
+## As-built state (verified 2026-08-03)
+
+The site is live. This section records what shipped against the blueprint above; the
+blueprint remains the target, and every deferred item below is open work, not a
+silently accepted change.
+
+Shipped and verified:
+
+- 14 pages covering all eight top-level sections plus a page per specialist system:
+  `/`, `/laboratory`, `/systems`, `/research`, `/open-source`, `/teaching`,
+  `/failure-museum`, `/about`, `/status`, `/atticus`, `/atlas`, `/fed-lens`,
+  `/balance-lab-ai`, `/eval-forge`.
+- Near-black canvas `#0D0F0E`; IBM Plex Sans for body and JetBrains Mono for metadata.
+- Apex `dewitt-labs.com` redirects permanently to the canonical `www` origin.
+- Independent-initiative disclosure on every page.
+- Footer terminal line `Node: Charlotte / Status: Prototype`, no invented classification.
+- Wix CMS installed with all eight collections created; `Systems` populated with five
+  items, each carrying `maturity: prototype` and a verified date.
+
+Deferred or open:
+
+- Page content is authored statically and does not yet bind to the CMS, so maturity
+  labels shown to visitors are not read from the `Systems` collection.
+- Seven collections (`ResearchArtifacts`, `OpenArtifacts`, `TeachingResources`,
+  `FailureRecords`, `PeopleAndContributors`, `Announcements`, `ExternalLaunchTargets`)
+  exist but hold no items, so the research, open-source, and failure surfaces are not
+  yet evidence-backed.
+- `atticus.dewitt-labs.com`, `docs.`, and `status.` do not resolve; launch actions
+  currently route to Wix pages and do not display live/replay/planned state.
+- Governance, Security, Privacy, License, Documentation, and Model Hub appear in the
+  footer as text without links.
+- The footer carries `NODE: 01 // UPTIME: 99.9%`. No uptime monitoring produces this
+  figure, so it is a fabricated live metric — a prohibited motif under `BRAND_SYSTEM.md`.
+  It must be removed or replaced with a measured value and its source.
+- The site foreground is the amber accent `#D4B34F` rather than the warm cream the visual
+  system specifies. `BRAND_SYSTEM.md` reserves the accent for state, selection, links, and
+  system family; using it as general body colour needs either a site correction or an
+  explicit Director amendment to the visual system.
+- Sub-pages under Laboratory, Research, Open Source, Teaching, and About are combined
+  into their section pages, as this section permits.
 
 ## Global shell
 

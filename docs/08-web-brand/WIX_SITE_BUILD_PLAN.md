@@ -1,62 +1,66 @@
 ---
 document_id: DRL-WEB-019
-title: "Wix Institutional Site Build Plan and Page Blueprint"
-version: 1.2.0
+title: "Wix Site Build Plan and Page Blueprint"
+version: 2.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-03
 ---
 
-# Wix Institutional Site Build Plan and Page Blueprint
+# Wix Site Build Plan and Page Blueprint
 
 ## Objective
 
-Build `www.dewitt-labs.com` into the credible public home of DeWitt Research Workshop: an independent open research initiative that feels like a financial research workstation, scholar's study, and restored 1980s computing bench without sacrificing clarity, accessibility, or truthfulness.
+Build `www.dewitt-labs.com` into the credible public home of DeWitt Research Workshop: one person's applied AI workshop, rendered as a research workstation and scholar's study on a restored 1980s computing bench, without sacrificing clarity, accessibility, or truthfulness.
 
 The site introduces the workshop. Atticus guides visitors after the workshop is understood. The site sells no fictional institutional history and never implies government, university, accreditation, staff, or production maturity that does not exist.
 
 ## Wix page tree
 
+Five pages. The tree is deliberately shallow: a section only exists when there is
+real content behind it, because an empty section overstates the work exactly as a
+fabricated metric does.
+
 ```text
-Home
-Laboratory
-  Mission and research thesis
-  Systems map
-  Methods and principles
-Systems
-  Atticus
-  Atlas
-  FedLens
-  BalanceLab AI
-  EvalForge
-Research
-  Working papers
-  Experiments and notebooks
-  Model and dataset releases
-  Replications and negative results
-Open Source
-  Software
-  Models
-  Datasets
-  Benchmarks
-  Open Stack
-  Contribute
-Teaching
-  Guides and courses
-  Workshops and lectures
-  Student/tinkerer pathways
-Failure Museum
-About
-  Christopher Noxon DeWitt / Founder and Director
-  Governance
-  Contact and collaborate
-Status / Launch
-  Launch Atticus
-  System status
-  Documentation
+Home            /            the bench — what is being worked on now
+Projects        /projects    the five projects, each with honest maturity
+Writing         /writing     technical reports, notes, and what broke
+Open Source     /open-source packages, services, and how to run them
+About           /about       the person, contact, disclosure
 ```
 
-The initial Wix release may combine shallow sections, but it must retain stable paths or redirects so pages can expand without link breakage.
+### Why this shape
+
+An eight-section tree implies eight departments. One person's workshop has work,
+not departments, so the navigation is organised around artifacts that exist:
+
+- **Teaching** is retired until a real guide exists. Reinstate it as `/teaching`
+  the day there is one.
+- **Status** is retired. A workshop has no operations centre; that page created a
+  dashboard-shaped vacuum that a fabricated uptime figure filled. Per-project state
+  belongs on project cards, sourced from the `Systems` collection.
+- **Failure Museum** folds into `/writing` as "what broke". A museum is a building;
+  a workshop has a shelf of things that did not work. This is the most honest
+  surface available and should not be hidden behind its own wing.
+- **Laboratory** and **Systems** merge into `/projects`. The thesis that lived on
+  the Laboratory page belongs on the homepage, in plain language.
+
+### Redirects
+
+Retired paths must redirect permanently so existing links and search results survive:
+
+```text
+/laboratory      -> /projects
+/systems         -> /projects
+/research        -> /writing
+/failure-museum  -> /writing#what-broke
+/teaching        -> /writing        (until reinstated)
+/status          -> /projects
+/atticus, /atlas, /fed-lens, /balance-lab-ai, /eval-forge  -> retained
+```
+
+Individual project pages keep their existing paths. Sections may deepen later, but
+only behind real content.
 
 ## As-built state (verified 2026-08-03)
 
@@ -104,17 +108,21 @@ Deferred or open:
 ### Header
 
 - compact wordmark;
-- primary links: Laboratory, Systems, Research, Open Source, Teaching, About;
-- utility actions: `Launch Atticus`, search, system status;
+- primary links: Projects, Writing, Open Source, About;
+- utility actions: search only. No launch or status action while no
+  application subdomain resolves;
 - keyboard-visible focus and mobile menu;
 - no oversized sticky header that consumes the workstation viewport.
 
 ### Footer
 
 - canonical address and independent-initiative disclosure;
-- GitHub, model hub, documentation, contact, governance, security, privacy, license, status;
+- GitHub, documentation, contact, governance, security, privacy, license —
+  every one a working link, never plain text;
 - active public release and updated date from controlled metadata;
-- small terminal-style line such as `NODE: CHARLOTTE / STATUS: <evidence>` without fake classified markings.
+- small terminal-style line such as `Node: Charlotte / Status: Prototype`,
+  carrying only evidence-backed state. No uptime, availability, or SLA figure
+  may appear unless a monitor produces it and its source is linked.
 
 ### Visual system
 
@@ -127,6 +135,10 @@ Deferred or open:
 
 ## Homepage composition
 
+Five blocks, not nine. The homepage is a workbench, not a lobby: a visitor should
+know within ten seconds that this is one person doing applied AI in the open, and
+should be able to see what is on the bench this month.
+
 ### 1. Hero: what this is
 
 Required text hierarchy:
@@ -138,89 +150,76 @@ Independent research in open and applied intelligence.
 Intelligence for Good. Intelligence for All.
 ```
 
-Primary actions:
+One line of plain first-person orientation beneath it, naming the person and the
+work. Primary actions, in this order:
 
-- Enter the Workshop
-- Explore Open Source
-- Launch Atticus
+- See what I'm building
+- Read the current work
+- Browse the code
 
-The hero may show a low-motion systems map, terminal cursor, or research telemetry. It must load without an external application and retain useful content when JavaScript or model services fail.
+No "Launch Atticus" in the hero while Atticus has no launchable target. A button
+must not promise an action the site cannot perform.
 
-### 2. What the workshop is for
+The hero may show a low-motion bench, terminal cursor, or project list. It must
+load without an external application and stay useful when JavaScript or model
+services fail.
 
-Explain in plain language:
+### 2. On the bench
 
-- Atticus is the open-weight guide and operator;
-- separate projects handle research, policy analysis, deterministic modeling, and evaluation;
-- open models and open software are standing commitments;
-- safety, traceability, evaluation, and human agency matter as much as capability.
+The distinguishing block. What is being worked on right now, in first person,
+with a real date — not a status board. Two or three items maximum, each naming
+the thing and its current state honestly, including what is unfinished.
 
-### 3. Systems map
+This replaces both the institutional thesis and the "current transmission"
+framing. `Last touched 3 Aug` is a workshop; `STATUS: OPERATIONAL` is an institute.
 
-Show Atticus at the orchestration center with Atlas, FedLens, BalanceLab, and EvalForge as separate projects. Each node displays current maturity from controlled metadata and routes to a system page.
+### 3. Featured work
 
-### 4. Current transmission
+Exactly one substantive artifact, presented properly rather than as a teaser card:
+a technical report, a release, a benchmark, or a replay. It links to the full
+reading experience on `/writing` and shows enough — title, abstract opening,
+date, maturity — to be worth the space. Do not inflate an ordinary update into a
+result.
 
-Feature exactly one substantive current item: model release, benchmark report, working paper, integrated replay, or call for collaborators. Include methods/evidence links and do not inflate ordinary updates into research breakthroughs.
+### 4. Projects
 
-### 5. Open by construction
+The five projects as a compact list, each with its name, one honest sentence, and
+its current maturity read from the `Systems` collection. Atticus is identified as
+the guide and operator, not as the workshop itself. Every entry routes to its
+project page.
 
-Show five evidence-backed pillars:
+No systems map with orchestration centre framing, and no capability tiles
+asserting completeness.
 
-- open-weight models;
-- open-source software;
-- public evaluation;
-- local/self-hosted operation;
-- reproducible research and teaching.
+### 5. Open source and contact
 
-Every card links to an actual artifact or a truthful planned-state page.
+Where the code actually is, what can be installed and run today, and how to reach
+the workshop. Links point at real repositories, packages, and services, or at a
+truthful planned-state page. Ends with the independent-initiative disclosure.
 
-### 6. Atticus invitation
+## Project page template
 
-Introduce Atticus as guide and copilot, not as the workshop itself. Suggested actions:
+Every project page contains:
 
-- Take the tour
-- Explain the architecture
-- Replay the integrated workflow
-- Find a contribution task
-
-The full experience opens at `atticus.dewitt-labs.com` or an approved route. A Wix teaser must be bounded and contain a direct fallback link.
-
-### 7. Research, teaching, and collaboration
-
-Provide distinct entry points for:
-
-- collaborators and maintainers;
-- tinkerers and open-source developers;
-- students and independent learners;
-- teachers and academic researchers.
-
-### 8. Failure museum preview
-
-Show one real failure record with failure, detection, correction, and regression-test links. Do not invent an incident for visual drama.
-
-### 9. Founder/director
-
-A restrained introduction to Christopher Noxon DeWitt as founder, director, and Applied AI Researcher. Link to research interests, biography, résumé, GitHub, and contact. Finance/quantitative background supports the work but does not dominate the homepage.
-
-## System page template
-
-Every system page contains:
-
-1. Problem and public value.
-2. Current maturity and last verified date.
-3. Signature workflow.
+1. What it does and who it is for, in plain language.
+2. Current maturity and last verified date, from the `Systems` collection.
+3. The signature workflow, described concretely.
 4. Architecture and trust boundary.
-5. Live/replay/documentation launch controls.
+5. Run, replay, or documentation controls — labelled live, replay, or planned.
 6. Open-source artifacts and upstream lineage.
-7. Evaluation and limitations.
+7. Evaluation results and honest limitations, including what does not work.
 8. Contribution tasks.
-9. Research and teaching references.
+9. Related writing.
 10. Return path to the workshop and related projects.
 
-## Research page template
+Sections 2 and 7 are mandatory. A project page without a maturity label and a
+limitations section is not publishable.
 
-- controlled title, authors, status, version, and date;
+## Writing page template
+
+Applies to technical reports and notes on `/writing`.
+
+- controlled title, author, status, version, and date;
 - abstract and plain-language summary;
 - methods and limitations;
 - code/data/model/benchmark links;
@@ -228,6 +227,10 @@ Every system page contains:
 - reproduce action;
 - correction history;
 - related failures or negative results.
+
+The "what broke" shelf lives on the same page. Each entry records the failure, how
+it was detected, what corrected it, and the regression test that keeps it fixed.
+Do not invent an incident for visual drama, and do not hide a real one.
 
 Wix may present the editorial page while canonical technical artifacts live in repository-backed documentation or external release hosts.
 

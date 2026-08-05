@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.11.0
+version: 4.12.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -48,7 +48,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
-| 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | IN PROGRESS | — |
+| 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -77,6 +77,19 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-04 — DRL-021 evidence-first academic positioning
+
+- Branch: `lovesong/docs/drl-021-positioning-cleanup`
+- Implementation commit: `71d5b55`
+- Reconciled controlled site/product/app-shell docs around replay +
+  `TR-2026-001`, academic evaluation, visible degraded/no-winner evidence, and
+  planned Atticus state.
+- Validators PASS; 31 focused tests PASS; 198 executable full-suite tests PASS.
+  One unchanged Windows symlink test requires a host with symlink privilege.
+- Handoff: `agents/handoffs/2026-08-04-drl-021-positioning.md`
+- Next: Director/Wix operator implements and captures DRL-021 visual, link,
+  accessibility, and rollback evidence; issue remains `QUEUED` until then.
 
 ### 2026-08-01 — DRL-029 contributor routes and good-first issues
 

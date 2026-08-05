@@ -21,8 +21,6 @@ QUOTING_PATHS = [
     "README.md",
     "LABORATORY_BIBLE.md",
     "docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md",
-    "docs/08-web-brand/WIX_SITE_BUILD_PLAN.md",
-    "docs/08-web-brand/HOMEPAGE_SPEC.md",
     "services/atticus-control-plane/src/atticus_control_plane/tools.py",
     "scripts/audit_wix_site.py",
 ]

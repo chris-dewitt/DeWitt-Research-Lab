@@ -1,122 +1,57 @@
 ---
 document_id: DRL-PRD-002
-title: "User Personas and End-to-End Journeys"
-version: 2.1.0
+title: "Academic Portfolio Audiences and Journeys"
+version: 3.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
 ---
 
-# User Personas and End-to-End Journeys
+# Academic Portfolio Audiences and Journeys
 
-## Priority order
+## Faculty member or prospective adviser
 
-The public website is an evidence-first academic workshop. Its primary journey
-serves people evaluating the Director's research judgment. It is mostly
-read-only: contribution routes remain available, but the site does not lead
-with recruitment.
+**Question:** Is this student asking worthwhile computer-science questions and
+building credible systems to investigate them?
 
-1. Academic evaluator: research peer, prospective mentor or PhD adviser, or
-   grant reviewer.
-2. Research-oriented employer or technical leader.
-3. Curious developer, tinkerer, student, or teacher.
-4. Future contributor.
-5. The Director using the site as a public research record.
+**Journey:** Home -> education and interests -> selected research -> methods,
+evidence, limitations, and code -> current direction -> CV/contact.
 
-## Persona: The academic evaluator
+## Admissions or research-program reader
 
-**Goal:** decide whether the research questions, methods, and engineering are
-serious enough to merit mentorship, doctoral study, funding, or further
-conversation.
+**Question:** Does Christopher's applied-data-science background support a clear
+and credible progression toward deeper computer-science study?
 
-**Needs:** a crisp thesis, a real run, a substantial report, methods,
-limitations, provenance, negative results, code, and a direct contact route.
+**Journey:** Home -> current UNC-Chapel Hill program -> research interests ->
+technical report and projects -> future direction -> About/CV.
 
-**Journey:** homepage -> signed recorded run -> success/degraded comparison ->
-`TR-2026-001` -> methods and limitations -> source/reproduction bundle -> About
-and contact.
+## Research peer
 
-Success means this visitor can explain what the Director investigates, what the
-current prototype proves, what it does not prove, and why the next research
-question matters. The visitor must not need Atticus, an account, or a live model.
+**Question:** Is the work reproducible, technically interesting, and honest
+about what it proves?
 
-## Persona: The research-oriented employer
+**Journey:** Research -> `TR-2026-001` -> recorded run -> source, methods,
+negative results, and next questions -> contact.
 
-**Goal:** judge whether the Director can engineer and evaluate complex systems,
-not merely describe them.
+## Relevant technical employer
 
-**Needs:** fast evidence, architecture, tradeoffs, code quality, failure
-handling, quantitative discipline, and a concise profile.
+**Question:** Can Christopher design, connect, test, and explain complex systems?
 
-**Journey:** homepage -> recorded run -> trace and architecture -> degraded case
--> report -> projects -> About/contact.
+**Journey:** Home -> selected projects -> architecture/evaluation -> recorded
+demonstration -> About/CV/contact.
 
-Quantitative financial analysis is useful supporting context. No employer name
-or confidential work appears in the public material.
+## Developer or curious reader
 
-## Persona: The curious developer or tinkerer
+**Question:** What can I inspect or run?
 
-**Goal:** inspect or run a reusable component or the integrated fixture demo.
+**Journey:** Projects -> source/repository -> local setup -> tests and artifacts.
 
-**Needs:** truthful maturity, simple commands, transparent dependencies,
-architecture, licenses, and bounded examples.
+## Cross-cutting requirements
 
-**Journey:** homepage -> replay -> Projects or Open Source -> repository -> local
-quickstart -> tests and artifact docs.
-
-## Persona: The student or teacher
-
-**Goal:** understand agent orchestration, evidence lineage, evaluation, or
-deterministic quantitative modeling by seeing a real system work.
-
-**Needs:** plain-language explanations, visible failure cases, a reproducible
-exercise, glossary links, and citation/license guidance.
-
-**Journey:** Writing -> integrated workflow lab -> recorded trace -> exercise ->
-technical report and further reading.
-
-Teaching material lives under Writing/Methods until the collection is large and
-maintained enough to justify a standalone Teaching route.
-
-## Persona: The future contributor
-
-**Goal:** determine whether a bounded issue is worth taking on.
-
-**Needs:** governance, architecture, local setup, issue quality, attribution,
-and maintainer expectations.
-
-**Journey:** Open Source -> contribution guide -> architecture/spec -> local mock
-setup -> good-first issue -> pull request.
-
-This route is deliberately secondary. The homepage may expose Open Source but
-must not imply that the workshop is recruiting a team or that collaboration is
-required to validate the work.
-
-## Persona: The Director as public notebook keeper
-
-**Goal:** preserve a coherent, dated public record of research questions,
-experiments, decisions, results, failures, and next steps.
-
-**Needs:** repository-authoritative sources, stable identifiers, correction
-history, honest maturity labels, and low-friction publication.
-**Journey:** controlled document or signed artifact -> validation -> reviewed
-publication -> Wix summary/link -> later correction or supersession.
-
-## Private operator journey
-
-Private Atticus use remains separate from the public website. The local runner,
-private files, approvals, device pairing, and local logs never become public
-site content or public-site authority.
-
-## Cross-cutting journey requirements
-
-Every journey specifies:
-
-- entry and exit;
-- anonymous, authenticated, or local identity;
-- required services and a no-service fallback;
-- data collected and retained;
-- errors and recovery;
-- keyboard, screen-reader, reduced-motion, and mobile alternatives;
-- artifact identity, maturity, and last verification;
-- evaluation events and cost guardrails.
+- The first screen identifies the person, current degree, university, and
+  computer-science direction.
+- Independent work never implies university supervision or endorsement.
+- Professional context never exposes employer identity or confidential work.
+- Every project shows Christopher's role, maturity, evidence, limitations, and
+  next question.
+- Every journey works without chat, sign-in, or a live model.

@@ -1,150 +1,77 @@
 ---
 document_id: DRL-PRD-001
-title: "DeWitt Research Workshop V1 Product Requirements"
-version: 2.1.0
+title: "Christopher Noxon DeWitt Academic Portfolio Requirements"
+version: 3.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
 ---
 
-# DeWitt Research Workshop V1 Product Requirements
+# Christopher Noxon DeWitt Academic Portfolio Requirements
 
-## Product vision
+## Product definition
 
-DeWitt Research Workshop V1 is an open, evidence-first academic portfolio and
-public research record. It shows what Christopher Noxon DeWitt wants to
-investigate, why the questions matter, and that he can engineer the complex
-systems needed to investigate them.
+The public website is Christopher Noxon DeWitt's personal academic portfolio.
+It presents him as a working graduate student building serious technical work,
+not as the director of a fictional laboratory or institution.
 
-The public research thesis is:
+## Core narrative
 
-> **Engineering complex systems for open, inspectable intelligence.**
+- Christopher is a student in the Master of Applied Data Science program at the
+  University of North Carolina at Chapel Hill.
+- He engineers complex systems at work and studies them part time.
+- His independent work explores intelligent systems, agent orchestration,
+  evidence, evaluation, reproducibility, and deterministic computation.
+- He hopes to move from applied data science toward graduate work in computer
+  science.
 
-The workshop publishes runnable software, signed replays, technical reports,
-methods, negative results, and reproducibility evidence. Atticus and the four
-specialist projects form the current research program; they do not imply a
-staffed institute or a production service.
+## Audience
 
-## Primary audiences
+Faculty, prospective advisers and admissions readers, conference-oriented
+researchers, research peers, and relevant technical employers. The portfolio
+must withstand expert scrutiny without inflating credentials or affiliations.
 
-1. **Academic evaluators:** research peers, prospective mentors or PhD advisers,
-   and grant reviewers assessing research direction, rigor, and potential.
-2. **Research-oriented employers and technical leaders** assessing systems
-   engineering, quantitative reasoning, and research judgment.
-3. **Developers and tinkerers** inspecting or running open components.
-4. **Students and teachers** using transparent examples and the integrated
-   workflow lab.
-5. **Future contributors** seeking a bounded path after they understand the work.
+## Required experience
 
-## Product promise
+Within one minute a visitor understands Christopher's current education,
+technical interests, selected work, and future direction. The visitor can then:
 
-Without chatting, signing in, or waiting for a live model, a visitor can:
+- read research and technical reports;
+- inspect projects, architecture, code, methods, and limitations;
+- watch a recorded prototype run;
+- see negative results and unresolved questions;
+- reach an approved CV, GitHub profile, or contact route.
 
-- understand the research thesis;
-- **Watch a recorded run** in both success and degraded states;
-- **Read TR-2026-001** with methods, limitations, citation, and source links;
-- see why the Stage-B model bake-off declared no winner;
-- inspect project maturity, architecture, code, and reproducibility evidence;
-- understand the Director's background and contact him about research,
-  mentorship, PhD, grant, or relevant employment opportunities.
+## Information architecture
 
-## Public website requirements
+- **Home:** personal introduction, education, interests, selected work, direction.
+- **Research:** reports, methods, experiments, notes, and recorded evidence.
+- **Projects:** selected systems with Christopher's role and honest maturity.
+- **About:** background, current study, future goals, CV/contact.
 
-### Five-page Wix front door
+## Principles
 
-- **Home:** thesis, recorded run, technical report, research questions, negative
-  results, project index, and brief founder/contact context.
-- **Projects:** Atticus, Atlas, FedLens, BalanceLab AI, and EvalForge with honest
-  maturity, interfaces, evidence, and limitations.
-- **Writing:** `TR-2026-001`, research notes, the integrated workflow teaching
-  lab, failure records, and negative results.
-- **Open Source:** runnable code, licenses, upstream lineage, local setup,
-  reproducibility evidence, and secondary contributor routes.
-- **About:** founder profile, research interests, quantitative-finance
-  background, Charlotte location, independent-initiative disclosure, and
-  contact.
+- Personal clarity before project branding.
+- Specific evidence before grand claims.
+- Academic ambition with accurate current credentials.
+- Independent projects are not labeled UNC-Chapel Hill research or coursework
+  unless verified.
+- No employer name or confidential work.
+- No fictional laboratory, team, hosted Atticus service, or collaborator funnel.
+- Failures and limitations strengthen the record when presented with method and
+  next steps.
 
-The page tree stays shallow until real content justifies another route.
+## Selected evidence
 
-### Evidence hierarchy
+`TR-2026-001`, signed recorded runs, the Stage-B no-selection result, source
+code, and reproducibility materials are strong portfolio artifacts. They appear
+under Research or Projects rather than defining the site's identity.
 
-The homepage's first two actions are **Watch a recorded run** and **Read
-TR-2026-001**, in that order. The signed replay viewer exposes success and
-degraded runs and identifies demo-HMAC signatures as structural prototype
-evidence. The report is a complete reading experience, not a teaser card.
+## Success measures
 
-Failures are not hidden. The degraded replay and the Stage-B no-winner result
-are homepage-level evidence because they demonstrate evaluation discipline and
-bounded claims.
-
-### Atticus boundary
-
-Atticus is currently a research artifact being documented. A public
-`atticus.dewitt-labs.com` application address may be reserved, but every link is
-labeled **planned** until deployment, security, consent, quota, and fallback
-evidence exists. The public site contains no `Launch Atticus` promise without a
-real public service.
-
-## Platform capabilities retained for V1
-
-- repository-backed controlled-content publishing;
-- signed and versioned replay artifacts;
-- traditional navigation that works without chat or client enhancement;
-- accessible responsive design and truthful loading/error/replay states;
-- public Atticus only after bounded tools, quotas, isolation, consent, and abuse
-  controls meet their separate acceptance gates;
-- a Windows-first private/local runner that remains outside the public trust
-  boundary;
-- open-weight Core and Edge research programs, with upstream selection governed
-  by the documented bake-off rather than brand preference;
-- Atlas, FedLens, BalanceLab AI, and EvalForge vertical slices;
-- research, model, data, safety, license, and reproducibility reporting.
-
-## Product principles
-
-- Evidence before claims; real capability before simulated capability.
-- Replays are clearly labeled and remain useful when live services are absent.
-- Progressive disclosure: useful in 60 seconds, inspectable for hours.
-- Public data and synthetic financial models only.
-- Open-weight core; provider fallback is disclosed and optional.
-- A model does not receive more authority because the interface is conversational.
-- Failure, uncertainty, and no-winner decisions are research outputs.
-- The site is read-mostly for now; mentorship and serious inquiry are welcome,
-  while active collaborator recruitment is not a homepage objective.
-
-## V1 non-goals
-
-- unrestricted public general-purpose agent;
-- claiming a hosted Atticus service before one exists;
-- real-world financial advice or production bank modeling;
-- public access to the Director's local runner;
-- training a foundation model from scratch;
-- fictional staff, departments, institutional history, or fabricated metrics;
-- an unreviewed community plugin marketplace;
-- persistent GPU capacity solely for visual smoothness.
-
-## Product metrics
-
-### Academic comprehension
-
-- time to reach a recorded run and `TR-2026-001`;
-- ability to state the research thesis, current evidence, and limitations;
-- navigation from claim to method, source, code, and negative result;
-- serious research, mentorship, PhD, grant, or relevant employment inquiries.
-
-### Quality
-
-- replay verification and workflow task success;
-- citation support and trace completeness;
-- deterministic calculation consistency;
-- clean-checkout reproduction success;
-- accessibility audit results and cold-state fallback success.
-
-### Safety and operations
-
-- unauthorized actions and cross-tenant leakage: target zero;
-- abuse-block efficacy and cost per bounded public workflow when enabled;
-- incident count, recovery time, and stale/public-claim detection.
-
-Metrics are never fabricated or silently collected. Analytics and research-trace
-donation use separate consent and data paths.
+- a qualified reader can summarize Christopher's research interests and
+  trajectory accurately;
+- selected work leads cleanly to methods, code, evidence, and limitations;
+- serious academic or relevant professional inquiries reach Christopher;
+- the site remains readable, accessible, responsive, and useful without chat or
+  a live backend.

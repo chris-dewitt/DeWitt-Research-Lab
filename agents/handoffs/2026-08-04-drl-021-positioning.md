@@ -1,13 +1,19 @@
 ---
 document_id: DRL-HO-021-20260804
-title: "Handoff: DRL-021 Evidence-First Academic Positioning"
-version: 1.0.0
+title: "Handoff: DRL-021 Personal Academic Portfolio"
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
 ---
 
-# Handoff: DRL-021 Evidence-First Academic Positioning
+# Handoff: DRL-021 Personal Academic Portfolio
+
+> **Correction:** RES-016 supersedes the workshop-first public-site framing
+> recorded in implementation commit `71d5b55`. The final branch presents
+> `www.dewitt-labs.com` as Christopher Noxon DeWitt's personal academic
+> portfolio. The earlier framing remains visible in Git history only and must
+> not be implemented in Wix.
 
 ## Handoff identity
 
@@ -25,20 +31,20 @@ last_updated: 2026-08-04
   website context, with the repository/code side in scope and Wix operation out
   of scope.
 - Actual result: reconciled the controlled identity, audience, product, Wix,
-  application-shell, issue, and validation documents around an evidence-first
-  academic workshop. Added a regression test for the hierarchy and made existing
-  document validators UTF-8 safe on Windows.
+  application-shell, issue, and validation documents around Christopher Noxon
+  DeWitt's personal academic portfolio, current UNC-Chapel Hill degree, complex
+  systems interests, and intended computer-science trajectory.
 - Status: `COMPLETE` for the document cleanup; DRL-021 remains `QUEUED` because
   Wix editor implementation and visual evidence are still outstanding.
-- Scope/approval: the Director's instructions in the initiating request are
-  recorded as RES-015. No architecture or trust-boundary change was made.
+- Scope/approval: RES-016 supersedes the public-site positioning in RES-014 and
+  RES-015. No architecture or trust-boundary change was made.
 
 ## Work packages and requirements
 
 | Work package | Requirement IDs | Status | Commit | Evidence |
 |---|---|---|---|---|
 | Academic audience and evidence hierarchy | DRL-WEB-001 | COMPLETE | `71d5b55` | Brand, PRD, personas, Bible, homepage, copy |
-| Five-page Wix workshop and fallback contract | DRL-WEB-006 | COMPLETE (docs) | `71d5b55` | Wix plan, integration spec, issue criteria |
+| Four-page personal portfolio contract | DRL-WEB-006 | COMPLETE (docs) | corrective commit | Wix plan, integration spec, issue criteria |
 | Replay/report application-shell alignment | DRL-WEB-003, DRL-WEB-004 | COMPLETE (docs) | `71d5b55` | `apps/lab-web/docs/*` |
 | Positioning regression guard | DRL-WEB-001, DRL-WEB-006 | COMPLETE | `71d5b55` | `tests/docs/test_website_positioning.py` |
 
@@ -46,10 +52,9 @@ last_updated: 2026-08-04
 
 Compatible editorial clarification:
 
-- Canonical Wix routes are Home, Projects, Writing, Open Source, and About;
+- Canonical Wix routes are Home, Research, Projects, and About;
   retired broad paths redirect into that tree.
-- The first public actions are **Watch a recorded run** and **Read
-  TR-2026-001**.
+- The first public actions are **View my research** and **Explore my projects**.
 - Atticus is a documented research artifact and its public subdomain remains
   `planned`.
 
@@ -59,7 +64,7 @@ contract changed.
 ## Decisions and assumptions
 
 - ADRs: none required; hosting and cross-host boundaries remain ADR-0008.
-- Director decisions consumed: RES-013, RES-014, RES-015.
+- Director decisions consumed: RES-016, which supersedes prior public-site framing.
 - Retained assumptions: Wix is the canonical editorial origin; the repository is
   the technical source of truth; the live editor is Director-operated.
 - Invalidated assumptions: collaborator-first homepage, institute-first voice,

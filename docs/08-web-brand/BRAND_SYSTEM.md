@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-002
 title: "DeWitt Research Workshop Brand System"
-version: 2.2.0
+version: 2.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -12,31 +12,33 @@ last_updated: 2026-08-04
 
 ## Positioning
 
-This is one person's workshop, not an institute. The register is a scholar's
-study: careful, curious, citation-minded, plainly the work of a single
-practitioner. It is not a startup, not a lab with staff, and not a research
-organisation with an institutional voice.
+This is Christopher Noxon DeWitt's personal academic portfolio. It is not the
+website of a laboratory, institute, workshop, startup, agency, or team. The
+register is direct, personal, and academically serious without pretending that
+student work is an institution.
 
-The public site functions as an academic portfolio, workshop, and public
-research record. It should leave a research peer, prospective mentor or PhD
-adviser, grant reviewer, or research-oriented employer with two conclusions:
-the Director asks worthwhile systems questions, and he can build the machinery
-needed to investigate them.
+The site explains three things plainly: he is a student in the Master of Applied
+Data Science program at the University of North Carolina at Chapel Hill; he
+engineers complex systems at work and studies them part time; and he hopes to
+move from data science toward graduate work in computer science. Research,
+software, technical reports, and recorded runs demonstrate that trajectory.
 
 Enforcing this is the point of `RES-004` — describe the work as an independent
 initiative run by one person tinkering, researching, and building applied AI in
 public. Institutional inflation is a defect, not a style preference.
 
-## Name hierarchy
+## Public name hierarchy
 
-- formal: DeWitt Research Workshop;
-- common: DeWitt Research Workshop, or "the workshop" in running copy;
-- founder line: Built and maintained by Christopher Noxon DeWitt, Applied AI Researcher.
+- site title: Christopher Noxon DeWitt;
+- descriptor: Academic Portfolio;
+- education line: Master of Applied Data Science student, University of North
+  Carolina at Chapel Hill;
+- optional project/repository label: DeWitt Research Workshop, used only when
+  naming the repository or a specific body of work.
 
-`DRL` is retired as a public mark. It survives only as the internal identifier
-prefix in controlled-document IDs (`DRL-WEB-002`), requirement IDs, and code
-namespaces, where it is an opaque key rather than a name. Do not introduce it
-into public copy, page furniture, or interface chrome.
+Do not place DeWitt Research Workshop, DeWitt Research Laboratory, or `DRL` in
+the site masthead, hero, navigation, or description metadata. Those names may
+survive as internal repository identifiers.
 
 The canonical domain remains `dewitt-labs.com`. A domain is an address, not a
 mission statement, and no copy should explain or apologise for the mismatch.
@@ -45,28 +47,28 @@ mission statement, and no copy should explain or apologise for the mismatch.
 
 **Intelligence for Good. Intelligence for All.**
 
-Use as the workshop's mission, not a repeated promotional slogan on every card.
+This remains a repository/project mission. It is not the personal portfolio's
+headline or required homepage copy.
 
-## Research thesis
+## Portfolio statement
 
-**Engineering complex systems for open, inspectable intelligence.**
+> I engineer complex systems at work and study them part time through UNC-Chapel
+> Hill's Master of Applied Data Science program. I hope to continue from data
+> science into graduate work in computer science.
 
-Use this as the website headline and the shortest answer to "what do you do?"
-Evidence must follow immediately: a recorded run, a technical report, a method,
-or a result. In first-person supporting copy, "I engineer complex systems" is
-preferred to a capability list.
+This statement may be edited for rhythm, but not converted into a laboratory
+mission, corporate value proposition, or claim that the Director already holds
+the next degree he hopes to pursue.
 
 ## Audience and invitation posture
 
-Primary: academic evaluators, research peers and mentors, prospective PhD
-advisers, grant reviewers, and research-oriented employers. Secondary:
-developers, learners, and future contributors. The site is mostly read-only for
-now. It may invite mentorship, research conversation, PhD opportunities, and
-relevant work without presenting an open call for collaborators.
+Primary: faculty, prospective advisers or admissions readers, research peers,
+and relevant employers trying to understand the Director's education,
+interests, trajectory, and work. Secondary: developers and curious readers.
+The site is read-mostly and does not recruit collaborators.
 
-Quantitative financial analysis is supporting context, not the headline.
-Charlotte is a truthful location and a possible point of local academic
-connection, not the main proposition. Do not identify an employer.
+Work context may be described as engineering complex systems and quantitative
+financial analysis. Do not identify an employer or expose employer work.
 
 ## Voice
 

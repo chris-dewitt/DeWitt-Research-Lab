@@ -1,17 +1,17 @@
 ---
 document_id: DRL-WEB-018
-title: "Canonical Domain, Wix Workshop Site, and Application Integration"
-version: 1.2.0
+title: "Canonical Domain, Personal Portfolio, and Application Integration"
+version: 1.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
 ---
 
-# Canonical Domain, Wix Workshop Site, and Application Integration
+# Canonical Domain, Personal Portfolio, and Application Integration
 
 ## Recorded assets and binding decision
 
-The Director has registered **`dewitt-labs.com`** and has acquired a Wix site. The canonical public workshop address is:
+The Director has registered **`dewitt-labs.com`** and has acquired a Wix site. Christopher Noxon DeWitt's canonical public portfolio address is:
 
 ```text
 https://www.dewitt-labs.com
@@ -19,22 +19,22 @@ https://www.dewitt-labs.com
 
 **Status (2026-08-02):** the Wix site is live at the canonical address. Earlier documentation used the misspelling `dwit-labs.com`; that spelling is retired and must not appear in DNS, links, metadata, or copy (see `DIRECTORS_MEMO.md` RES-011).
 
-This is existing infrastructure, not a placeholder. The Wix site is the
-canonical editorial front door for V1: workshop identity, public mission,
-recorded-run and report discovery, project summaries, writing and methods, open
-artifacts, founder context, and honest links to available or planned applications.
+This is existing infrastructure, not a placeholder. The Wix site is Christopher
+Noxon DeWitt's personal academic portfolio: education, research interests,
+selected work, projects, future direction, CV/contact, and honest links to
+available or planned evidence.
 
 The apex domain `https://dewitt-labs.com` shall redirect permanently to the canonical `www` origin unless a later approved ADR selects the apex as canonical. All public documents, model cards, package metadata, social profiles, repository descriptions, and release manifests shall use the canonical address and avoid competing primary URLs.
 
 ## Architectural principle
 
-Wix is the **workshop publishing and discovery layer**. It is not required to
+Wix is the **personal portfolio publishing and discovery layer**. It is not required to
 become the execution environment for every computational service.
 
 Serious interactive systems remain independently deployable, open-source applications and services. They are linked through DRL-controlled subdomains and a shared design, navigation, authentication, consent, telemetry, and provenance contract.
 
 ```text
-www.dewitt-labs.com          Wix workshop site and editorial front door
+www.dewitt-labs.com          Christopher Noxon DeWitt academic portfolio
 atticus.dewitt-labs.com      planned public Atticus application
 atlas.dewitt-labs.com        Atlas research experience
 fedlens.dewitt-labs.com      FedLens policy archive and analysis
@@ -64,7 +64,7 @@ Wix supports connecting an existing domain, custom elements, embedded URLs, Velo
 
 The Wix site owns the following public surfaces for V1:
 
-- canonical homepage, research thesis, and workshop mission;
+- canonical personal homepage, education, research interests, and direction;
 - workshop-first brand system and navigation;
 - high-level system pages and launch links;
 - recorded-run and technical-report discovery;
@@ -134,7 +134,7 @@ Required continuity:
 - cream-on-black base palette;
 - shared typography and spacing guidance;
 - consistent system names and maturity labels;
-- persistent `Return to Workshop` link from every external application;
+- persistent `Return to Portfolio` link from every external application;
 - consistent links for Research, Open Source, Systems, Teaching, About, and Status;
 - visible hostname changes for security-sensitive actions;
 - no deceptive recreation of Wix browser chrome or authentication UI.
@@ -208,7 +208,7 @@ Wix and external applications share one public privacy narrative and event taxon
 
 ## SEO, discovery, and canonical content
 
-- `www.dewitt-labs.com` is the canonical workshop origin.
+- `www.dewitt-labs.com` is the canonical personal-portfolio origin.
 - Wix pages use canonical tags and stable human-readable paths.
 - External application pages use their own canonical subdomain URLs.
 - Duplicate technical content is either summarized on Wix with a canonical link to docs or generated from the repository with explicit canonical ownership.
@@ -234,8 +234,8 @@ A model outage must not make the workshop website disappear.
 
 1. Connect `www.dewitt-labs.com` to the Wix site.
 2. Establish apex redirect and HTTPS.
-3. Implement the five-page shell, workshop thesis, recorded-run and report links,
-   projects, writing/methods, open-source overview, About, and Contact.
+3. Implement Home, Research, Projects, and About with education, interests,
+   selected evidence, future direction, CV, and Contact.
 4. Publish only truthful project maturity labels.
 5. Add temporary launch links to repository documentation and replay assets.
 
@@ -269,10 +269,10 @@ V1 domain and Wix integration is complete only when:
 - DNS inventory, change procedure, rollback, and ownership are documented;
 - staging and preview origins are not indexed;
 - the website truthfully distinguishes live, replayed, cached, simulated, and planned systems;
-- a clean-room academic evaluator can enter at Wix, understand the research
-  thesis, watch a success or degraded replay, read `TR-2026-001`, inspect methods
-  and limitations, and reach source or contact without confusion. A planned
-  Atticus service is never required for this flow.
+- a faculty member or admissions reader can enter at Wix, understand
+  Christopher's current degree, interests, selected work, and intended
+  computer-science direction, then reach methods, source, CV, or contact without
+  confusion. A planned Atticus service is never required for this flow.
 
 ## Authoritative Wix references
 

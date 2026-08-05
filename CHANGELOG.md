@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.8.0
+version: 4.9.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -9,7 +9,20 @@ last_updated: 2026-08-04
 
 # Foundation Changelog
 
-## 2026-08-04 — Evidence-first academic website contract
+## 2026-08-04 — Personal academic portfolio correction
+
+- Recorded RES-016, superseding the workshop-first public-site positioning from
+  RES-015. `www.dewitt-labs.com` is Christopher Noxon DeWitt's personal academic
+  portfolio.
+- Centered the current Master of Applied Data Science program at the University
+  of North Carolina at Chapel Hill, professional interest in complex systems,
+  and intended progression toward graduate work in computer science.
+- Reduced the Wix contract to Home, Research, Projects, and About. Reports,
+  recorded runs, software, and Atticus are selected portfolio evidence.
+- Replaced the previous positioning guard with tests for the personal identity,
+  education, action order, university-claim boundary, and planned Atticus state.
+
+## 2026-08-04 — Evidence-first academic website contract (superseded by RES-016)
 
 - Recorded RES-015 and aligned the controlled public-site contract around the
   research thesis **Engineering complex systems for open, inspectable

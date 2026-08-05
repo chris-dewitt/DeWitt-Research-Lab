@@ -1,7 +1,7 @@
 ---
 document_id: DRL-BIB-001
 title: "DeWitt Research Workshop Bible"
-version: 4.2.0
+version: 4.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -34,26 +34,20 @@ Existing code is not automatically correct merely because it exists. An agent en
 **Internal identifier prefix:** DRL
 **Type:** Independent open research and open technology initiative  
 **Founder and director:** Christopher Noxon DeWitt  
-**Public professional identity:** Applied AI Researcher  
+**Public identity:** Christopher Noxon DeWitt, academic portfolio
 **Location:** Charlotte, North Carolina  
 **Mission:** *Intelligence for Good. Intelligence for All.*
 
-The workshop is one researcher's public laboratory notebook and engineering
-portfolio. It is built first for people evaluating research judgment: research
-peers, prospective mentors or PhD advisers, grant reviewers, and
-research-oriented employers. Developers and learners remain welcome, while
-active contributor recruitment is secondary until the work and its governance
-are ready to support it. Open models, open-source software, public evaluation,
-local operation, and reproducible methods are visible pillars.
+The workshop name describes this repository and independent body of projects.
+It is not the public identity of `www.dewitt-labs.com`. The canonical website is
+Christopher Noxon DeWitt's personal academic portfolio: he is a student in the
+Master of Applied Data Science program at the University of North Carolina at
+Chapel Hill, engineers complex systems at work, studies them part time, and
+hopes to move toward graduate work in computer science.
 
-The public research thesis is:
-
-> **Engineering complex systems for open, inspectable intelligence.**
-
-The workshop proves that thesis with artifacts: recorded runs, technical
-reports, source code, methods, negative results, and limitations. It never
-fabricates history, staff, affiliation, government authority, accreditation, or
-scale.
+Projects, reports, recorded runs, source code, methods, negative results, and
+limitations are portfolio evidence. They never fabricate history, staff,
+affiliation, university endorsement, accreditation, or scale.
 
 ### 2.1 Workshop voice
 
@@ -469,9 +463,8 @@ Public APIs may expose REST, streaming HTTP, CLIs, Python/TypeScript SDKs, and M
 
 DRL uses a Google-first deployment strategy for V1.
 
-- **Wix at `www.dewitt-labs.com`:** canonical workshop site and editorial front
-  door for research discovery, recorded runs, writing, project summaries, open
-  artifacts, founder context, and evidence links.
+- **Wix at `www.dewitt-labs.com`:** Christopher Noxon DeWitt's canonical
+  personal academic portfolio and editorial front door.
 - **Firebase/App Hosting and Google-hosted frontends:** open-source Atticus and specialist applications, documentation, trace viewers, and advanced research workspaces under DRL subdomains.
 - **Cloud Run:** CPU-based APIs, control plane, specialist services, and bounded workers.
 - **Cloud Run GPU:** scale-to-zero public open-weight inference where cold-start tradeoffs are acceptable.
@@ -525,42 +518,31 @@ Required controls include:
 
 ## 17. Website and public presentation
 
-The canonical public workshop address is **`https://www.dewitt-labs.com`**. Wix
-is the editorial and discovery layer. Repository-backed viewers and any future
-interactive services remain independently deployable open-source applications
-connected through workshop subdomains and a shared public-experience contract.
-
-The website is an evidence-first academic portfolio and public research record,
-not a résumé card grid, startup funnel, or simulated institute.
+The canonical public address is **`https://www.dewitt-labs.com`**. It is
+Christopher Noxon DeWitt's personal academic portfolio, hosted on Wix. It is not
+the public face of a laboratory, institute, workshop, startup, or team.
 
 ### 17.1 Required top-level areas
 
 - Home
+- Research
 - Projects
-- Writing
-- Open Source
 - About
-
-Teaching material, failure records, model/data notes, and documentation live
-inside those five honest shelves until their volume warrants a dedicated route.
 
 ### 17.2 Experience sequence
 
-The homepage introduces the workshop and its research thesis before Atticus. Its
-two primary actions, in order, are **Watch a recorded run** and **Read
-TR-2026-001**. The replay must offer the signed success and degraded cases; the
-report must expose methods, limitations, citation, and code. The current Stage-B
-model bake-off appears as an honest no-winner result with the reasons no
-candidate was selected.
-
-Atticus is presented as a research artifact being documented. A visitor never
-needs to chat to understand the site, and no `Launch Atticus` action appears
-until a real public target exists.
+The homepage leads with the Director's name, current UNC-Chapel Hill degree,
+interest in complex systems, working/student context, and goal of further
+graduate work in computer science. Its primary actions are **View my research**
+and **Explore my projects**. Atticus, `TR-2026-001`, recorded runs, and bake-off
+results appear as selected evidence below that personal introduction.
 
 ### 17.3 Signature experiences
 
-- a signed recorded-run viewer with success and degraded cases;
-- `TR-2026-001` as a full reading experience;
+- a clear academic profile and current-study narrative;
+- selected research with `TR-2026-001` as a full reading experience;
+- selected projects with the Director's role, maturity, and next question;
+- an optional recorded-run viewer with success and degraded cases;
 - an agent trace view showing tools, policy checks, specialists, and evidence;
 - Atlas source-to-claim evidence views;
 - FedLens document diffs and meeting timeline;
@@ -569,17 +551,16 @@ until a real public target exists.
 - a visible failure record documenting detection, effect, and regression evidence;
 - the Stage-B bake-off board with no winner and the six blocking reasons;
 - research questions and methods that clarify the academic agenda;
-- guided reading paths for academic evaluators, research-oriented employers,
-  developers, and learners;
+- a clear path from applied data science toward computer-science research;
 - replayable demos when live inference is cold or budget-limited.
 
 Every metric displayed must be generated from an auditable source. Placeholder metrics are labeled; fabricated counts are prohibited.
 
 ### 17.4 Canonical host and Wix integration
 
-- `www.dewitt-labs.com` is the canonical workshop origin; the apex redirects to it.
-- Wix owns the mission, research introductions, project summaries, writing index,
-  open-source index, founder profile, and evidence launch links.
+- `www.dewitt-labs.com` is the canonical personal-portfolio origin; the apex redirects to it.
+- Wix owns the personal introduction, education, research/project summaries,
+  academic direction, profile, CV/contact, and evidence links.
 - Interactive systems use first-class subdomains when deployed; primary
   application experiences are not iframe-only. `atticus.dewitt-labs.com` is
   planned and must not be described as live before deployment evidence exists.

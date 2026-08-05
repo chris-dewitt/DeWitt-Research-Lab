@@ -10,7 +10,7 @@ last_updated: 2026-08-04
 
 # Evidence State and Optional Public Status
 
-The canonical five-page Wix site has no standalone status route. Project cards
+The canonical personal portfolio has no standalone status route. Project cards
 show maturity and last verification; recorded-run and report pages show artifact
 state. A separate public status application is justified only after monitored
 services exist.

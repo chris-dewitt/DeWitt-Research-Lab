@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.8.0
+version: 1.9.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -25,10 +25,12 @@ the Director's approval.
   accreditation, institutional history, scale, or employer affiliation.
 - The canonical public domain is `https://www.dewitt-labs.com`.
 - Wix is the public and editorial front door.
-- The public website is an evidence-first academic workshop and portfolio. Its
-  primary audience is a research peer, prospective mentor or PhD adviser, grant
-  reviewer, or research-oriented employer. Its first actions are to watch a
-  recorded run and read `TR-2026-001`; contributor recruitment is secondary.
+- The public website is **Christopher Noxon DeWitt's personal academic
+  portfolio**, not the website of a research laboratory, institute, or workshop.
+  It centers his current Master of Applied Data Science study at the University
+  of North Carolina at Chapel Hill, the complex systems he engineers and studies,
+  and his goal of moving toward graduate work in computer science. Projects and
+  reports are evidence inside that story, not the identity of the site.
 - Atticus and the computational projects remain independently deployable,
   open-source applications under workshop subdomains.
 - Atticus is the deepest initial implementation and the operator of the
@@ -83,6 +85,7 @@ the Director's approval.
 | RES-013 | Change the mission line to "Intelligence for Good. Intelligence for All." | The Director | 2026-08-03 | Replaces "AI for Good. AI for all. Intelligence of the people and for the people."; the second sentence is retired entirely. `BRAND_SYSTEM.md` remains the canonical owner; all documents and code quoting the line were updated and a test now enforces agreement. |
 | RES-014 | Rename the public identity to **DeWitt Research Workshop** and drop "Laboratory" from public framing. | The Director | 2026-08-03 | **Supersedes RES-003.** Positioning is one person's workshop, not a research institute — this enforces RES-004 rather than changing it. Register is understated academic. `DRL` is retired as a public mark but retained as the internal identifier prefix (`DRL-WEB-002`) and code namespace. The canonical domain `dewitt-labs.com` is unchanged (RES-002/RES-011 stand); the name/domain mismatch is accepted and must not be explained in copy. Palette, typography, and terminal grammar are unchanged; institutional chrome is now a prohibited motif. Legal and trademark documents (`NOTICE`, `TRADEMARK_POLICY.md`, `LICENSE-STRATEGY.md`) were deliberately **not** renamed — see DIR-007. |
 | RES-015 | Position the public website as an evidence-first academic workshop and public research record. | The Director | 2026-08-04 | Retains the RES-013 mission and RES-014 name. The research thesis is "Engineering complex systems for open, inspectable intelligence." The homepage leads to a signed recorded run and `TR-2026-001`, makes degraded evidence and the Stage-B no-winner result visible, and treats contributor routes as secondary. Atticus is a documented research artifact; `atticus.dewitt-labs.com` remains planned until a service is actually deployed. Quantitative-finance experience and Charlotte provide supporting context without employer identification or institutional overstatement. |
+| RES-016 | Make `www.dewitt-labs.com` Christopher Noxon DeWitt's personal academic portfolio. | The Director | 2026-08-04 | **Supersedes the public-website positioning in RES-014 and RES-015.** The site title is the Director's name with the descriptor "Academic Portfolio," not DeWitt Research Workshop/Laboratory. It states that he is a student in the Master of Applied Data Science program at the University of North Carolina at Chapel Hill, engineers complex systems at work, studies them part time, and hopes to move toward graduate work in computer science. Research reports, replays, software, and Atticus are portfolio evidence. The RES-013 line may remain a repository/project mission but is not the website headline. No employer is named. |
 
 ## Current blockers
 

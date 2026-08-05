@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Workshop Monorepo"
-version: 4.3.0
+version: 4.4.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -13,7 +13,11 @@ last_updated: 2026-08-04
 **Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
 **Intelligence for Good. Intelligence for All.**
 
-> **Engineering complex systems for open, inspectable intelligence.**
+The canonical website is Christopher Noxon DeWitt's personal academic portfolio.
+He is a student in the Master of Applied Data Science program at the University
+of North Carolina at Chapel Hill, engineers complex systems professionally, and
+hopes to continue from data science toward graduate work in computer science.
+The repository is one body of evidence within that portfolio.
 
 This is one person's workshop. Christopher Noxon DeWitt builds and tests
 open-weight AI systems in the open. The workshop is **open by construction**:

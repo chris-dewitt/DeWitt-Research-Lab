@@ -1,7 +1,7 @@
 ---
 document_id: DRL-AGT-006
 title: "Agent Mission 06: Brand, Workshop Website, and Public Experience"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED EXECUTION MISSION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -11,12 +11,11 @@ last_updated: 2026-08-04
 
 ## Mission objective
 
-Implement the cream-on-black workshop website and design system as a serious
-academic workbench. The site must make the Director's research judgment legible
-through evidence: a recorded run and `TR-2026-001` are the first actions;
-degraded evidence and inconclusive evaluation remain visible; Atticus is a
-documented artifact until a public service exists. It must remain fast,
-accessible, responsive, and truthful.
+Implement Christopher Noxon DeWitt's cream-on-black personal academic portfolio.
+The site leads with his current UNC-Chapel Hill Master of Applied Data Science
+study, interest in complex systems, selected work, and intended progression
+toward graduate work in computer science. Projects and evidence support that
+story. It must remain fast, accessible, responsive, and truthful.
 
 
 ## Operating contract
@@ -88,9 +87,9 @@ This mission must preserve DRL's open-by-construction identity. Read `OPEN_RESEA
 Implement cream-on-black tokens, typography, spacing, terminal panes, data tables, diagrams, status/trace primitives, focus/keyboard states, motion-reduction behavior, and story/demo fixtures.
 
 ### WP-06-02 — Information architecture and content engine
-Build the five-page workshop tree (Home, Projects, Writing, Open Source, About),
-evidence viewers, project pages, founder page, and a controlled content model
-sourced from repository documents. Do not create empty department-shaped pages.
+Build the four-page personal portfolio (Home, Research, Projects, About),
+selected evidence viewers, project pages, profile/CV paths, and a controlled
+content model sourced from repository documents.
 
 ### WP-06-03 — Atticus public console
 Implement anonymous/authenticated entry states, guided tours, command palette, session/consent controls, tool trace, evidence panel, approval rendering, evaluation summary, graceful cold-start and replay fallback, and mobile behavior.
@@ -101,10 +100,9 @@ Create signed/versioned replay manifests, deterministic curated demonstrations, 
 ### WP-06-05 — Accessibility, performance, privacy, and analytics
 Meet WCAG-oriented keyboard, screen-reader, contrast, reduced-motion, form, chart, and status semantics; enforce performance budgets; implement consent-aware product analytics and operational telemetry disclosures.
 
-### WP-06-06 — Academic, research-employer, learner, and contributor journeys
-Test the academic-evaluator journey first: workshop thesis to recorded run to
-technical report to methods/limitations and contact. Preserve deep technical
-routes for developers and learners; keep contributor recruitment secondary.
+### WP-06-06 — Faculty, admissions, research-peer, and employer journeys
+Test the personal journey first: current education and interests to selected
+research/projects, methods/limitations, future direction, CV, and contact.
 
 
 ### WP-06-07 — Open Source portal and model commons
@@ -148,11 +146,11 @@ Implement evidence-derived artifact cards, Open Stack lineage, contributor credi
 
 ### WP-06-10 — Wix canonical site and `dewitt-labs.com` integration
 
-Implement the canonical Wix workshop site contract at `www.dewitt-labs.com`:
-evidence-first information architecture, cream-on-black visual translation,
-truthful maturity/status, recorded-run and report launch surfaces,
-repository-backed content workflow, SEO/canonical metadata, consent continuity,
-mobile/accessibility validation, and fallback behavior. Build or document
+Implement the canonical personal academic portfolio at `www.dewitt-labs.com`:
+education-first information architecture, cream-on-black visual translation,
+selected research/project evidence, repository-backed content workflow,
+SEO/canonical metadata, mobile/accessibility validation, and fallback behavior.
+Build or document
 bounded custom elements only where they improve the Wix experience; do not
 place primary applications exclusively in iframes. Produce Wix editor
 instructions, content inventory, page map, redirect map, and a deployment/handoff

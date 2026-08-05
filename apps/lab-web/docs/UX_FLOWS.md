@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-108
 title: "Website User Flows"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -9,13 +9,14 @@ last_updated: 2026-08-04
 
 # Website User Flows
 
-## Academic evaluator — primary
+## Faculty member or prospective adviser — primary
 
-Wix Home -> **Watch a recorded run** -> success/degraded comparison ->
-`TR-2026-001` -> methods/limitations -> source/reproduction -> About/contact.
+Wix Home -> current UNC-Chapel Hill degree and research direction -> Research ->
+`TR-2026-001` -> methods/limitations -> source or recorded run -> About/contact.
 
 No account, chat, or live backend is required. Success means the visitor can
-state the research question, implemented evidence, limitations, and next step.
+state Christopher's current education, interests, selected work, and intended
+computer-science direction.
 
 ## Research-oriented employer
 

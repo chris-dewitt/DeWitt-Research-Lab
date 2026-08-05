@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-020
 title: "Wix Editor Build, Review, and Handoff Checklist"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -27,9 +27,9 @@ last_updated: 2026-08-04
 
 ## Site structure
 
-- [ ] Home, Projects, Writing, Open Source, and About exist; retired broad routes redirect into this tree.
-- [ ] **Watch a recorded run** and **Read TR-2026-001** are the first actions.
-- [ ] Success/degraded evidence and the Stage-B no-winner reasons are visible.
+- [ ] Home, Research, Projects, and About exist; retired broad routes redirect into this tree.
+- [ ] **View my research** and **Explore my projects** are the first actions.
+- [ ] The first viewport states the current UNC-Chapel Hill degree and intended computer-science direction.
 - [ ] Atticus and every specialist has a page or truthful planned-state entry.
 - [ ] Header and footer navigation are consistent.
 - [ ] The site is understandable without opening Atticus.
@@ -79,7 +79,7 @@ last_updated: 2026-08-04
 
 ## SEO and sharing
 
-- [ ] Canonical URLs use `www.dewitt-labs.com` for workshop pages.
+- [ ] Canonical URLs use `www.dewitt-labs.com` for personal portfolio pages.
 - [ ] Application pages use their own canonical subdomain URLs.
 - [ ] Sitemap and robots behavior are reviewed.
 - [ ] Page titles and descriptions are unique and accurate.

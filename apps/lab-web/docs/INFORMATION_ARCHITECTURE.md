@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-104
 title: "Workshop Web Information Architecture"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -16,9 +16,8 @@ last_updated: 2026-08-04
 ```text
 www.dewitt-labs.com/
   Home
+  Research
   Projects
-  Writing
-  Open Source
   About
 ```
 
@@ -47,7 +46,7 @@ The evidence application keeps a small contextual nav:
 - Projects
 - Methods
 - Source
-- Return to Workshop
+- Return to Portfolio
 
 It does not reproduce the entire Wix navigation tree or pretend to be an
 operations console.

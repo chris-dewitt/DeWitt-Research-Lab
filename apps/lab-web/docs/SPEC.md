@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-107
 title: "DeWitt Research Workshop Web System Specification"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
@@ -11,7 +11,7 @@ last_updated: 2026-08-04
 
 ## 1. Purpose and authority
 
-The open `lab-web` application complements the canonical Wix workshop at
+The open `lab-web` application complements Christopher Noxon DeWitt's canonical personal portfolio at
 `https://www.dewitt-labs.com`. Its first V1 responsibility is to make
 repository-authoritative evidence usable on the web: signed replay viewing,
 technical-report reading, trace inspection, and reproducibility links.
@@ -22,7 +22,7 @@ replace the canonical site or imply that Atticus is a hosted service.
 
 ## 2. Users and jobs
 
-- Academic evaluators inspect a recorded run, report, methods, and limitations.
+- Faculty, prospective advisers, admissions readers, and research peers inspect selected reports, methods, and limitations.
 - Research-oriented employers inspect architecture, failure handling, and code.
 - Developers and learners inspect traces, reproduce fixtures, and follow source.
 - The Director publishes controlled artifacts and maintains the public record.

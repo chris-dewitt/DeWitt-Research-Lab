@@ -1,54 +1,40 @@
 ---
 document_id: DRL-WEB-021
-title: "Founder and Director Profile"
-version: 1.1.0
+title: "Personal Academic Profile"
+version: 2.0.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-04
 ---
 
-# Founder and Director
+# Christopher Noxon DeWitt
 
 ## Short profile
 
-Christopher Noxon DeWitt is an applied AI researcher in Charlotte, North
-Carolina. He engineers complex systems across agents, evidence, evaluation, and
-deterministic quantitative modeling. He created DeWitt Research Workshop as an
-independent, one-person home for publishing the questions, code, experiments,
-failures, and next steps behind that work.
+Christopher Noxon DeWitt is a student in the Master of Applied Data Science
+program at the University of North Carolina at Chapel Hill. He engineers
+complex systems at work and studies them part time, with the goal of moving from
+data science toward further graduate work in computer science.
 
 ## Full profile
 
-The Director's work sits at the intersection of artificial intelligence,
-statistical modeling, economics, research engineering, and public technology.
-His background includes quantitative financial analysis, balance-sheet and
-interest-rate-risk analysis, forecasting, data pipelines, econometrics, Python,
-SQL, and technical automation. That experience informs the workshop's emphasis
-on evidence lineage, deterministic calculations, explicit trust boundaries, and
-evaluation; it is supporting context rather than the workshop's headline.
+Christopher's interests sit at the intersection of applied data science,
+computer science, artificial intelligence, statistical modeling, economics,
+and software engineering. His professional background includes quantitative
+financial analysis, forecasting, data pipelines, Python, SQL, and technical
+automation.
 
-He established DeWitt Research Workshop to investigate how complex AI systems
-can remain inspectable and useful: Atticus as a guide and orchestration research
-artifact; Atlas for macro evidence; FedLens for cited Federal Reserve analysis;
-BalanceLab AI for deterministic financial scenarios; and EvalForge for
-evaluation and permission testing.
+His independent projects explore agent orchestration, evidence lineage,
+evaluation, reproducibility, and deterministic quantitative tools. This
+portfolio collects that work so readers can see the questions, implementations,
+methods, limitations, and next steps together.
 
-The workshop is an academic portfolio and public research record. It exists to
-show what the Director wants to study, what he is passionate about, what he can
-build, and where the evidence remains incomplete. It is one researcher working
-in public, not a university, company research division, government laboratory,
-or fictional team.
-
-The Director welcomes serious conversations about research, mentorship,
-doctoral study in computer science, grants, and relevant research or engineering
-roles. The workshop is not currently presented as a collaborator recruitment
-program. Charlotte is a genuine location and a possible point of local academic
-connection, not the main research claim.
+Christopher is currently completing the Master of Applied Data Science program
+at UNC-Chapel Hill. After this degree, he hopes to continue toward graduate work
+in computer science and deepen his study of complex intelligent systems.
 
 ## Disclosure
 
-The workshop is independent of the Director's employer. Public work uses public,
-synthetic, personally owned, or appropriately licensed material and never
-discloses confidential employer, customer, or production information. Employer
-names, exact employment dates, résumé links, photographs, and contact channels
-require final public-content review before publication.
+Independent projects are not described as university research or coursework
+unless that relationship is verified. Public material never names Christopher's
+employer or includes confidential employer, customer, or production information.

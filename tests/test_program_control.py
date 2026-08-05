@@ -54,6 +54,6 @@ def test_ci_has_one_pnpm_version_source() -> None:
     workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
     package = (ROOT / "package.json").read_text(encoding="utf-8")
     assert '"packageManager": "pnpm@' in package
-    action = workflow.split("uses: pnpm/action-setup@v4", maxsplit=1)[1]
+    action = workflow.split("uses: pnpm/action-setup@v6.0.9", maxsplit=1)[1]
     action = action.split("- uses: actions/setup-node", maxsplit=1)[0]
     assert "version:" not in action

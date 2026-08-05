@@ -31,7 +31,7 @@ are still accurate. Prefer the full body files over this summary table.
 | DRL-018 | M3 | integration, atticus | Run evidence-to-scenario integrated workflow | one trace linking Atlas, FedLens, BalanceLab, report, and evaluation |
 | DRL-019 | M3 | evalforge, release | Publish signed success and degraded replays | reproducible replay manifests and evaluation reports |
 | DRL-020 | M3 | documentation, teaching | Publish integrated workflow teaching guide | clean notebook/guide with exercises and no private data |
-| DRL-021 | M4 | wix, design | Build canonical Wix institutional pages | page map, copy, mobile captures, truthful status, fallback links |
+| DRL-021 | M4 | wix, design | Build canonical evidence-first Wix workshop pages | five-page map, replay/report-first copy, mobile captures, truthful state, fallback links |
 | DRL-022 | M4 | domain, security | Connect and verify `dewitt-labs.com` | DNS, apex redirect, TLS, CORS/CSP/cookie and rollback report |
 | DRL-023 | M4 | gcp, infra | Create budget-capped GCP development topology | Director-approved project, budget, identities, deletion and cost plan |
 | DRL-024 | M4 | gcp, atticus | Deploy authenticated Atticus prototype to Cloud Run | health, auth, scale-to-zero, max instances, logs, rollback, cost |

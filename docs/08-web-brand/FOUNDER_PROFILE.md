@@ -1,47 +1,54 @@
 ---
 document_id: DRL-WEB-021
 title: "Founder and Director Profile"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-04
 ---
 
 # Founder and Director
 
 ## Short profile
 
-Christopher Noxon DeWitt is an Applied AI Researcher in Charlotte, North Carolina, with a
-background in statistics, economics, applied data science, quantitative
-financial analysis, and software development. He founded DeWitt Research
-Laboratory as an independent, one-person initiative for tinkering with,
-studying, and building open and publicly useful artificial intelligence.
+Christopher Noxon DeWitt is an applied AI researcher in Charlotte, North
+Carolina. He engineers complex systems across agents, evidence, evaluation, and
+deterministic quantitative modeling. He created DeWitt Research Workshop as an
+independent, one-person home for publishing the questions, code, experiments,
+failures, and next steps behind that work.
 
 ## Full profile
 
-The Director's work sits at the intersection of artificial intelligence, statistical
-modeling, economics, quantitative finance, research engineering, and public
-technology. His experience includes balance-sheet and interest-rate-risk
-analysis, forecasting, data pipelines, econometrics, Python, SQL, and technical
-automation. He is completing graduate study in applied data science and
-continues independent study across machine learning, open models, agent
-systems, computing, mathematics, and economic inequality.
+The Director's work sits at the intersection of artificial intelligence,
+statistical modeling, economics, research engineering, and public technology.
+His background includes quantitative financial analysis, balance-sheet and
+interest-rate-risk analysis, forecasting, data pipelines, econometrics, Python,
+SQL, and technical automation. That experience informs the workshop's emphasis
+on evidence lineage, deterministic calculations, explicit trust boundaries, and
+evaluation; it is supporting context rather than the workshop's headline.
 
-He established DeWitt Research Workshop to create a coherent home for that
-work: Atticus, an inspectable AI guide and operator; Atlas, a macro and market
-evidence system; FedLens, a Federal Reserve research system; BalanceLab AI, a
-deterministic financial-scenario laboratory; and EvalForge, an evaluation and
-reliability program.
+He established DeWitt Research Workshop to investigate how complex AI systems
+can remain inspectable and useful: Atticus as a guide and orchestration research
+artifact; Atlas for macro evidence; FedLens for cited Federal Reserve analysis;
+BalanceLab AI for deterministic financial scenarios; and EvalForge for
+evaluation and permission testing.
 
-DRL is intentionally honest about its scale. It is currently one researcher
-building in public, not a university, company research division, government
-laboratory, or fictional staff. The ambition is institutional; the present
-operation is personal, practical, and open to serious collaborators.
+The workshop is an academic portfolio and public research record. It exists to
+show what the Director wants to study, what he is passionate about, what he can
+build, and where the evidence remains incomplete. It is one researcher working
+in public, not a university, company research division, government laboratory,
+or fictional team.
+
+The Director welcomes serious conversations about research, mentorship,
+doctoral study in computer science, grants, and relevant research or engineering
+roles. The workshop is not currently presented as a collaborator recruitment
+program. Charlotte is a genuine location and a possible point of local academic
+connection, not the main research claim.
 
 ## Disclosure
 
-DRL is independent of the Director's employer. Public work uses public, synthetic,
-personally owned, or appropriately licensed material and must never disclose
-confidential employer, customer, or production information. Employment names,
-exact dates, résumé links, photographs, and contact channels require a final
-public-content review before publication.
+The workshop is independent of the Director's employer. Public work uses public,
+synthetic, personally owned, or appropriately licensed material and never
+discloses confidential employer, customer, or production information. Employer
+names, exact employment dates, résumé links, photographs, and contact channels
+require final public-content review before publication.

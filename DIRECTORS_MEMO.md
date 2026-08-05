@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.7.0
+version: 1.8.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
 # Director's Decision and Escalation Ledger
@@ -25,6 +25,10 @@ the Director's approval.
   accreditation, institutional history, scale, or employer affiliation.
 - The canonical public domain is `https://www.dewitt-labs.com`.
 - Wix is the public and editorial front door.
+- The public website is an evidence-first academic workshop and portfolio. Its
+  primary audience is a research peer, prospective mentor or PhD adviser, grant
+  reviewer, or research-oriented employer. Its first actions are to watch a
+  recorded run and read `TR-2026-001`; contributor recruitment is secondary.
 - Atticus and the computational projects remain independently deployable,
   open-source applications under workshop subdomains.
 - Atticus is the deepest initial implementation and the operator of the
@@ -78,6 +82,7 @@ the Director's approval.
 | RES-012 | Record the founder's full name as Christopher Noxon DeWitt; operational documents refer to "the Director." | The Director | 2026-08-02 | Founder-identity lines use the full name; governance and process text uses the Director. |
 | RES-013 | Change the mission line to "Intelligence for Good. Intelligence for All." | The Director | 2026-08-03 | Replaces "AI for Good. AI for all. Intelligence of the people and for the people."; the second sentence is retired entirely. `BRAND_SYSTEM.md` remains the canonical owner; all documents and code quoting the line were updated and a test now enforces agreement. |
 | RES-014 | Rename the public identity to **DeWitt Research Workshop** and drop "Laboratory" from public framing. | The Director | 2026-08-03 | **Supersedes RES-003.** Positioning is one person's workshop, not a research institute — this enforces RES-004 rather than changing it. Register is understated academic. `DRL` is retired as a public mark but retained as the internal identifier prefix (`DRL-WEB-002`) and code namespace. The canonical domain `dewitt-labs.com` is unchanged (RES-002/RES-011 stand); the name/domain mismatch is accepted and must not be explained in copy. Palette, typography, and terminal grammar are unchanged; institutional chrome is now a prohibited motif. Legal and trademark documents (`NOTICE`, `TRADEMARK_POLICY.md`, `LICENSE-STRATEGY.md`) were deliberately **not** renamed — see DIR-007. |
+| RES-015 | Position the public website as an evidence-first academic workshop and public research record. | The Director | 2026-08-04 | Retains the RES-013 mission and RES-014 name. The research thesis is "Engineering complex systems for open, inspectable intelligence." The homepage leads to a signed recorded run and `TR-2026-001`, makes degraded evidence and the Stage-B no-winner result visible, and treats contributor routes as secondary. Atticus is a documented research artifact; `atticus.dewitt-labs.com` remains planned until a service is actually deployed. Quantitative-finance experience and Charlotte provide supporting context without employer identification or institutional overstatement. |
 
 ## Current blockers
 

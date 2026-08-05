@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Workshop Monorepo"
-version: 4.2.0
+version: 4.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
 
@@ -12,6 +12,8 @@ last_updated: 2026-08-03
 
 **Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
 **Intelligence for Good. Intelligence for All.**
+
+> **Engineering complex systems for open, inspectable intelligence.**
 
 This is one person's workshop. Christopher Noxon DeWitt builds and tests
 open-weight AI systems in the open. The workshop is **open by construction**:
@@ -101,7 +103,9 @@ make serve       # run the Atticus control-plane server locally
 
 ### Atticus
 
-Atticus is the laboratory's user-facing guide, open-weight model family, agent runtime, and permissioned orchestration layer. It exists in two public model sizes from the beginning:
+Atticus is the workshop's documented research artifact, planned open-weight model
+family, agent runtime, and permissioned orchestration layer. The program studies
+two model sizes from the beginning:
 
 - **Atticus Core:** approximately 8–10B class, optimized for multi-step routing, tool use, research synthesis, coding assistance, and laboratory operation.
 - **Atticus Edge:** approximately 2–4B class, optimized for local intent routing, voice responsiveness, constrained tool use, offline guidance, and escalation to Core.
@@ -141,7 +145,7 @@ agents/                 sequential agent missions and handoff records
 - **Python environment:** `uv` workspaces and locked dependencies.
 - **JavaScript environment:** `pnpm` workspaces.
 - **Local integration:** Docker Compose.
-- **Public institute:** Wix at `https://www.dewitt-labs.com`, using the registered `dewitt-labs.com` domain.
+- **Public workshop:** Wix at `https://www.dewitt-labs.com`, using the registered `dewitt-labs.com` domain.
 - **Interactive applications and cloud:** Firebase/App Hosting or other approved Google-hosted frontends, Cloud Run, Cloud Run GPU, Vertex AI custom jobs, Cloud SQL PostgreSQL, Cloud Storage, Pub/Sub or Cloud Tasks, Secret Manager, Artifact Registry, Cloud Logging and Monitoring.
 - **Canonical integration plan:** [`docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md`](docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md).
 
@@ -156,7 +160,7 @@ agents/                 sequential agent missions and handoff records
 7. Every release includes evaluation evidence, limitations, security notes, and reproducibility materials.
 8. Major decisions require an approved ADR.
 9. Agents never merge their own work, claim unrun tests, or silently weaken requirements.
-10. The laboratory does not pretend to be larger, older, accredited, governmental, or institutional in a way that is false.
+10. The workshop does not pretend to be larger, older, accredited, governmental, or staffed in a way that is false.
 
 ## Development entry points
 
@@ -198,4 +202,4 @@ remain planned work. Every feature must report its actual maturity honestly:
 
 ## Open-source identity, not an appendix
 
-DRL's institutional identity is implemented through the [Open Research Charter](OPEN_RESEARCH_CHARTER.md), [Open Source Identity System](docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md), [Atticus Open Model Commons](docs/03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md), and [Open Technology Catalog](docs/09-open-source/OPEN_TECHNOLOGY_CATALOG.md). Public releases must expose the modification surface, self-host path, evidence, upstream lineage, and contributor routes. Run `make open-check` to validate these promises.
+The workshop's open identity is implemented through the [Open Research Charter](OPEN_RESEARCH_CHARTER.md), [Open Source Identity System](docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md), [Atticus Open Model Commons](docs/03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md), and [Open Technology Catalog](docs/09-open-source/OPEN_TECHNOLOGY_CATALOG.md). Public releases must expose the modification surface, self-host path, evidence, upstream lineage, and contributor routes. Run `make open-check` to validate these promises.

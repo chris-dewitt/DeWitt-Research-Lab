@@ -1,13 +1,30 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.7.0
+version: 4.8.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-02
+last_updated: 2026-08-04
 ---
 
 # Foundation Changelog
+
+## 2026-08-04 — Evidence-first academic website contract
+
+- Recorded RES-015 and aligned the controlled public-site contract around the
+  research thesis **Engineering complex systems for open, inspectable
+  intelligence.**
+- Made **Watch a recorded run** and **Read TR-2026-001** the first website
+  actions; required the signed degraded replay and Stage-B no-winner evidence to
+  remain visible.
+- Reframed Atticus as a documented research artifact with a planned application
+  address, placed teaching under Writing/Methods, and kept contributor routes
+  secondary to academic evidence and serious inquiry.
+- Reconciled the five-page Wix blueprint, product/persona documents,
+  application-shell contracts, DRL-021 traceability, and UTF-8-safe validation.
+- Added `tests/docs/test_website_positioning.py` to guard the thesis, action
+  order, negative-results visibility, planned Atticus state, and contributor
+  posture.
 
 ## 2026-08-02 — Canonical domain correction, live site, and founder identity
 

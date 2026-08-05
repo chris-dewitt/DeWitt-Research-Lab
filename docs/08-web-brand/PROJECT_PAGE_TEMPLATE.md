@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-007
 title: "Project Page and Case Study Template"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
 
@@ -28,11 +28,11 @@ last_updated: 2026-07-26
 6. Key engineering decisions and alternatives.
 7. Evaluation and operational results.
 8. Security/privacy.
-9. Failure museum entries.
+9. Related failures and negative results.
 10. Open-source packages/APIs.
 11. Reproduction and deployment.
 12. Lessons, limitations, roadmap.
-13. Contribution opportunities.
+13. Secondary contribution route.
 
 Project page loads content from project-controlled docs and release manifests. A project cannot claim stable status if its manifest says prototype.
 

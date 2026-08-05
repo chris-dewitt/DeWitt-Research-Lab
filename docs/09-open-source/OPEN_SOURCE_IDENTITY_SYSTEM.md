@@ -1,17 +1,17 @@
 ---
 document_id: DRL-OSS-015
-title: "Open Source Institutional Identity System"
-version: 3.3.0
+title: "Open Source Workshop Identity System"
+version: 3.4.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
-# Open Source Institutional Identity System
+# Open Source Workshop Identity System
 
 ## Identity thesis
 
-DeWitt Research Workshop presents open technology as a living research tradition rather than a software-distribution tactic. The laboratory's personality combines an independent academic institute, a financial research workstation, a public technical archive, and a late-night systems laboratory. The cream-on-black visual system communicates seriousness; the open artifact system communicates trust.
+DeWitt Research Workshop presents open technology as a living research tradition rather than a software-distribution tactic. Its personality combines one researcher's academic workshop, a financial research workstation, a public technical archive, and a late-night systems bench. The cream-on-black visual system communicates seriousness; the open artifact system communicates trust.
 
 The primary institutional line is:
 
@@ -25,12 +25,12 @@ Neither statement may stand alone. Public-interest language without inspectable 
 
 ## Narrative hierarchy
 
-1. **Laboratory:** DeWitt Research Workshop is an independent research initiative founded and directed by Christopher Noxon DeWitt.
+1. **Workshop:** DeWitt Research Workshop is an independent research initiative founded and directed by Christopher Noxon DeWitt.
 2. **Mission:** useful intelligence should be understandable, modifiable, and accessible beyond large institutions.
 3. **Atticus:** Atticus operates the laboratory and is itself a public research program in open agent models, orchestration, permissions, and local-first computing.
 4. **Specialists:** Atlas, FedLens, BalanceLab AI, and EvalForge are inspectable specialist systems and research instruments.
 5. **Commons:** software, model artifacts, datasets, benchmark methods, schemas, teaching material, and failure evidence are released for use and improvement.
-6. **Community:** collaborators are credited participants in the research program, not unpaid background labor.
+6. **Community:** contributor routes remain available and credited, but the public website does not manufacture an active recruitment campaign.
 7. **Upstream:** DRL visibly acknowledges and contributes to the projects that make its work possible.
 
 ## Public identity vocabulary
@@ -69,7 +69,7 @@ Open identity appears through behavior, not decoration:
 - every artifact card states license, maturity, hardware, cost assumptions, and last verification date;
 - closed or restricted elements display a plain-language exception rather than disappearing.
 
-## Institutional rituals
+## Workshop rituals
 
 DRL maintains recurring public rituals that reinforce the identity:
 
@@ -88,4 +88,9 @@ A public repository does not qualify a project for the Open Source portal unless
 
 ## Identity acceptance tests
 
-A representative student, open-source maintainer, researcher, and hiring manager must each be able to explain DRL's open model and software commitments after a five-minute site walkthrough. At least one participant should complete a local quickstart without private assistance. The test report records confusion, broken expectations, and terminology errors.
+A representative academic evaluator, research-oriented hiring manager, developer,
+and learner must each be able to explain the workshop's open model and software
+commitments after a five-minute site walkthrough. The evaluator must be able to
+reach a recorded run and `TR-2026-001` without searching. At least one technical
+participant should complete a local quickstart without private assistance. The
+test report records confusion, broken expectations, and terminology errors.

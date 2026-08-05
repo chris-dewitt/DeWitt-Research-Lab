@@ -27,7 +27,7 @@ required = [
 ]
 for r in required:
     req(r)
-config = yaml.safe_load((ROOT / "configs/domain-routing.yaml").read_text())
+config = yaml.safe_load((ROOT / "configs/domain-routing.yaml").read_text(encoding="utf-8"))
 if config.get("canonical_origin") != "https://www.dewitt-labs.com":
     errors.append("wrong canonical origin")
 if config.get("institutional_site", {}).get("platform") != "Wix":
@@ -44,10 +44,12 @@ for rel in (
     "docs/08-web-brand/HOMEPAGE_SPEC.md",
     "docs/12-acceptance/V1_RELEASE_CRITERIA.md",
 ):
-    text = (ROOT / rel).read_text()
+    text = (ROOT / rel).read_text(encoding="utf-8")
     if "www.dewitt-labs.com" not in text:
         errors.append(f"canonical domain absent: {rel}")
-requirements = yaml.safe_load((ROOT / "requirements/requirements.yaml").read_text())["requirements"]
+requirements = yaml.safe_load(
+    (ROOT / "requirements/requirements.yaml").read_text(encoding="utf-8")
+)["requirements"]
 ids = {r["id"] for r in requirements}
 for rid in (
     "DRL-WEB-011",

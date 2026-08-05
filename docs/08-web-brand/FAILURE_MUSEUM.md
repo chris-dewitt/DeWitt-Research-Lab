@@ -1,18 +1,20 @@
 ---
 document_id: DRL-WEB-009
-title: "Failure Museum Product Specification"
-version: 2.1.0
+title: "Failure and Negative Results Record"
+version: 2.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-04
 ---
 
 
-# Failure Museum Product Specification
+# Failure and Negative Results Record
 
 ## Purpose
 
-Show that DRL treats failures as research evidence and regression assets.
+Show that the workshop treats failures as research evidence and regression
+assets. Public entries live under Writing/Methods; no standalone museum route is
+required until the record is large enough to justify one.
 
 ## Record fields
 

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-BIB-001
 title: "DeWitt Research Workshop Bible"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
 
@@ -27,22 +27,42 @@ When two sources conflict, use this order of authority:
 
 Existing code is not automatically correct merely because it exists. An agent encountering a conflict must stop the affected decision, record the conflict, propose alternatives, and request approval. It must not quietly choose the easiest implementation.
 
-## 2. Institutional identity
+## 2. Workshop identity
 
 **Formal name:** DeWitt Research Workshop  
-**Common name:** DeWitt Research Lab  
-**Short mark:** DRL  
+**Common name:** DeWitt Research Workshop or the workshop
+**Internal identifier prefix:** DRL
 **Type:** Independent open research and open technology initiative  
 **Founder and director:** Christopher Noxon DeWitt  
 **Public professional identity:** Applied AI Researcher  
 **Location:** Charlotte, North Carolina  
 **Mission:** *Intelligence for Good. Intelligence for All.*
 
-DRL is clearly the Director's laboratory while presenting itself as a credible independent research institution capable of welcoming collaborators, tinkerers, students, academics, learners, and teachers. Open models, open-source software, public evaluation, local operation, and reproducible teaching are visible institutional pillars. The laboratory does not merely publish source after building; it designs systems so other people can inspect, modify, run, evaluate, and teach from them. It should feel as though the Director discovered an abandoned technical institute, restored its terminals, and took command—without fabricating a history, staff, affiliation, government authority, accreditation, or scale that does not exist.
+The workshop is one researcher's public laboratory notebook and engineering
+portfolio. It is built first for people evaluating research judgment: research
+peers, prospective mentors or PhD advisers, grant reviewers, and
+research-oriented employers. Developers and learners remain welcome, while
+active contributor recruitment is secondary until the work and its governance
+are ready to support it. Open models, open-source software, public evaluation,
+local operation, and reproducible methods are visible pillars.
 
-### 2.1 Institutional voice
+The public research thesis is:
 
-DRL communicates with academic seriousness, technical precision, human warmth, and restrained wit. It does not use startup superlatives, inflated claims, fake scarcity, or empty phrases such as “revolutionary AI platform.” It demonstrates claims with running software, reproducible experiments, benchmark reports, source lineage, and honest limitations.
+> **Engineering complex systems for open, inspectable intelligence.**
+
+The workshop proves that thesis with artifacts: recorded runs, technical
+reports, source code, methods, negative results, and limitations. It never
+fabricates history, staff, affiliation, government authority, accreditation, or
+scale.
+
+### 2.1 Workshop voice
+
+The workshop communicates with academic seriousness, technical precision, human
+warmth, and restrained wit. Public copy uses the Director's first-person voice
+where appropriate. It does not use startup superlatives, inflated claims, fake
+scarcity, or empty phrases such as “revolutionary AI platform.” It demonstrates
+claims with running software, reproducible experiments, benchmark reports,
+source lineage, degraded runs, and honest limitations.
 
 ### 2.2 Visual identity
 
@@ -449,7 +469,9 @@ Public APIs may expose REST, streaming HTTP, CLIs, Python/TypeScript SDKs, and M
 
 DRL uses a Google-first deployment strategy for V1.
 
-- **Wix at `www.dewitt-labs.com`:** canonical institutional site, editorial front door, research discovery, teaching, collaboration, and launch surface.
+- **Wix at `www.dewitt-labs.com`:** canonical workshop site and editorial front
+  door for research discovery, recorded runs, writing, project summaries, open
+  artifacts, founder context, and evidence links.
 - **Firebase/App Hosting and Google-hosted frontends:** open-source Atticus and specialist applications, documentation, trace viewers, and advanced research workspaces under DRL subdomains.
 - **Cloud Run:** CPU-based APIs, control plane, specialist services, and bounded workers.
 - **Cloud Run GPU:** scale-to-zero public open-weight inference where cold-start tradeoffs are acceptable.
@@ -503,50 +525,64 @@ Required controls include:
 
 ## 17. Website and public presentation
 
-The canonical public laboratory address is **`https://www.dewitt-labs.com`**. The Director has registered the domain and acquired the Wix site. Wix is the institute-first editorial and discovery layer; Atticus and specialist systems remain real, independently deployable open-source applications connected through DRL subdomains and a shared public-experience contract.
+The canonical public workshop address is **`https://www.dewitt-labs.com`**. Wix
+is the editorial and discovery layer. Repository-backed viewers and any future
+interactive services remain independently deployable open-source applications
+connected through workshop subdomains and a shared public-experience contract.
 
-The website is a living laboratory, not a résumé card grid.
+The website is an evidence-first academic portfolio and public research record,
+not a résumé card grid, startup funnel, or simulated institute.
 
 ### 17.1 Required top-level areas
 
-- Laboratory
-- Systems
-- Research
+- Home
+- Projects
+- Writing
 - Open Source
-- Models and Data
-- Benchmarks
-- Teaching
-- Failure Museum
-- Console
 - About
-- Documentation
+
+Teaching material, failure records, model/data notes, and documentation live
+inside those five honest shelves until their volume warrants a dedicated route.
 
 ### 17.2 Experience sequence
 
-The homepage introduces DRL before Atticus. It establishes mission, research thesis, and system map; then invites the visitor to ask Atticus for a tour or demonstration.
+The homepage introduces the workshop and its research thesis before Atticus. Its
+two primary actions, in order, are **Watch a recorded run** and **Read
+TR-2026-001**. The replay must offer the signed success and degraded cases; the
+report must expose methods, limitations, citation, and code. The current Stage-B
+model bake-off appears as an honest no-winner result with the reasons no
+candidate was selected.
 
-Atticus appears as a docked terminal pane or command palette. Traditional navigation remains fully available. A visitor must never need to chat to understand the site.
+Atticus is presented as a research artifact being documented. A visitor never
+needs to chat to understand the site, and no `Launch Atticus` action appears
+until a real public target exists.
 
 ### 17.3 Signature experiences
 
-- tmux-inspired resizable panes that remain accessible;
-- a live architecture and system-status map;
-- an agent trace graph showing tools, policy checks, and specialists;
+- a signed recorded-run viewer with success and degraded cases;
+- `TR-2026-001` as a full reading experience;
+- an agent trace view showing tools, policy checks, specialists, and evidence;
 - Atlas source-to-claim evidence views;
 - FedLens document diffs and meeting timeline;
 - BalanceLab scenario controls and calculation audit;
 - EvalForge baseline-versus-candidate reports;
-- a failure museum documenting detection, fix, and regression test;
-- guided tours for collaborators, students, academics, teachers, hiring managers, and maintainers;
+- a visible failure record documenting detection, effect, and regression evidence;
+- the Stage-B bake-off board with no winner and the six blocking reasons;
+- research questions and methods that clarify the academic agenda;
+- guided reading paths for academic evaluators, research-oriented employers,
+  developers, and learners;
 - replayable demos when live inference is cold or budget-limited.
 
 Every metric displayed must be generated from an auditable source. Placeholder metrics are labeled; fabricated counts are prohibited.
 
 ### 17.4 Canonical host and Wix integration
 
-- `www.dewitt-labs.com` is the canonical institutional origin; the apex redirects to it.
-- Wix owns the mission, research introductions, teaching index, collaboration surfaces, founder profile, and system launch pages.
-- Interactive systems use first-class subdomains such as `atticus.dewitt-labs.com`; primary application experiences are not iframe-only.
+- `www.dewitt-labs.com` is the canonical workshop origin; the apex redirects to it.
+- Wix owns the mission, research introductions, project summaries, writing index,
+  open-source index, founder profile, and evidence launch links.
+- Interactive systems use first-class subdomains when deployed; primary
+  application experiences are not iframe-only. `atticus.dewitt-labs.com` is
+  planned and must not be described as live before deployment evidence exists.
 - Controlled technical documents remain repository-authoritative and may be summarized or published into Wix through validated workflows.
 - Wix and external applications share design tokens, navigation, status language, consent, analytics taxonomy, canonical-link policy, and truthful maturity labels.
 - Authentication continuity is not assumed from visual continuity; privileged DRL sessions remain governed by the application identity model until a separate SSO ADR is approved.

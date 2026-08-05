@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-016
 title: "Open Source Portal, Model Commons, and Open Stack Website Experience"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
 # Open Source Portal, Model Commons, and Open Stack Website Experience
@@ -15,13 +15,17 @@ The website must make openness visible within the first two minutes. Visitors sh
 
 ## Homepage signals
 
-The homepage introduces the laboratory first, then displays an institutional strip:
+After the recorded run and `TR-2026-001`, the homepage exposes a restrained open-research line:
 
 ```text
 OPEN MODELS / OPEN SOFTWARE / PUBLIC EVALUATION / LOCAL OPERATION / REPRODUCIBLE RESEARCH
 ```
 
-A featured panel presents **Atticus Open Model Commons** with direct links to model cards, weights, benchmark reports, local quickstarts, and the current candidate/release status. The panel must distinguish planned, experimental, release-candidate, and public-release artifacts.
+The Open Source page presents **Atticus Open Model Commons** with direct links to
+model cards, weights when released, benchmark reports, local quickstarts, and
+current candidate/release status. It distinguishes planned, experimental,
+release-candidate, and public-release artifacts. This catalog does not outrank
+the homepage's evidence-first academic journey.
 
 The homepage also contains a restrained Open Stack acknowledgment: “DRL is built with and contributes to open technologies.” It links to the full ledger rather than using a meaningless logo wall.
 

@@ -291,7 +291,7 @@ issues:
     mission: 6
     evidence_owner: Brand/Web
     labels: [wix, design]
-    title: Build canonical Wix institutional pages
+    title: Build canonical evidence-first Wix workshop pages
     status: QUEUED
     dependencies: [DRL-003]
     body: .github/ISSUE_BODIES/DRL-021.md

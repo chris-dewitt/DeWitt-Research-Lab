@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-007
 title: "Foundation Decision Register"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-04
 ---
 
 
@@ -14,8 +14,8 @@ last_updated: 2026-07-27
 
 | ID | Decision | Status | Consequence |
 |---|---|---|---|
-| D-001 | Formal name is DeWitt Research Workshop | Approved | institutional brand and namespace |
-| D-002 | DRL is an independent research initiative led by Christopher Noxon DeWitt | Approved | institute-first, founder-visible presentation |
+| D-001 | Formal public name is DeWitt Research Workshop | Approved | personal-but-academic workshop identity; `DRL` remains an internal identifier only |
+| D-002 | The workshop is an independent research initiative led by Christopher Noxon DeWitt | Approved | founder-visible, one-person presentation without institutional inflation |
 | D-003 | Atticus is the laboratory's central intelligence and orchestration layer | Approved | specialist systems expose formal tools/contracts |
 | D-004 | Monorepo | Approved | one dependency graph and coordinated release |
 | D-005 | First-class languages: Python, TypeScript, SQL, Bash, Terraform | Approved | tooling and hiring signal |
@@ -33,8 +33,8 @@ last_updated: 2026-07-27
 | D-017 | Agents work on feature branches and open pull requests | Approved | no direct-to-main work |
 | D-018 | V1 launches as one coordinated public program | Approved | internal RCs, public simultaneous release |
 | D-019 | Visual direction is cream on black, research terminal/workstation/tmux | Approved | design system |
-| D-020 | Primary audience includes collaborators, tinkerers, students, academics, learners, teachers | Approved | educational and contribution features |
-| D-021 | `www.dewitt-labs.com` is the canonical institutional website and Wix is its V1 publishing platform | Approved | domain, Wix, DNS, editorial, and application integration contract |
+| D-020 | Primary public-site audiences are academic evaluators, research peers and mentors, prospective PhD advisers, grant reviewers, and research-oriented employers; developers and learners are secondary | Approved | evidence and methodology precede contributor and teaching funnels |
+| D-021 | `www.dewitt-labs.com` is the canonical workshop website and Wix is its V1 publishing platform | Approved | domain, Wix, DNS, editorial, and application integration contract |
 | D-022 | Core interactive DRL applications use first-class DRL subdomains and remain independently deployable/open-source | Approved | Wix is a front door, not the sole runtime |
 | D-023 | DRL remains an honest one-person independent initiative until its legal or contributor status actually changes | Approved | no fictional staff, corporate status, accreditation, or scale |
 | D-024 | The repository ships controlled documentation and a runnable local vertical slice | Approved | tests and demo code accompany specifications |
@@ -42,6 +42,7 @@ last_updated: 2026-07-27
 | D-026 | Google Cloud is the reference production architecture and Azure is an optional portable deployment profile | Approved | local/open contracts must not depend exclusively on either cloud |
 | D-027 | `DIRECTORS_MEMO.md` is the mandatory living escalation and decision ledger | Approved | agents update it rather than silently assuming material decisions |
 | D-028 | GitHub issues, milestones, CI, agent sequencing, and a 90-day plan ship with the foundation | Approved | repository can move directly from upload to execution |
+| D-029 | The public website leads with a recorded run and `TR-2026-001`; failures and inconclusive evaluations remain visible | Approved | evidence-first academic journey, quiet contributor posture, and no live-service claim for Atticus before deployment |
 
 ## Open decision gates
 

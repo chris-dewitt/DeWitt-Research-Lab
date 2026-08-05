@@ -1,162 +1,151 @@
 ---
 document_id: DRL-WEB-107
 title: "DeWitt Research Workshop Web System Specification"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
+# DeWitt Research Workshop Web System Specification
 
-    # DeWitt Research Workshop Web System Specification
+## 1. Purpose and authority
 
-    ## 1. Purpose and authority
+The open `lab-web` application complements the canonical Wix workshop at
+`https://www.dewitt-labs.com`. Its first V1 responsibility is to make
+repository-authoritative evidence usable on the web: signed replay viewing,
+technical-report reading, trace inspection, and reproducibility links.
 
-    The DRL interactive web platform complements the canonical Wix institutional site at `https://www.dewitt-labs.com` and makes advanced laboratory experiences legible at multiple depths: a visitor understands the institution in under a minute; a collaborator finds an entry point; an engineer inspects architecture and evidence; a researcher reproduces work; and Atticus guides all of them without replacing ordinary navigation.
+Wix explains the research program and links to evidence. `lab-web` renders
+advanced evidence and future workspaces that do not fit Wix well. It does not
+replace the canonical site or imply that Atticus is a hosted service.
 
-    This document defines V1 product boundaries, behavior, interfaces, invariants, quality attributes, and evidence for DeWitt Research Workshop Web. Laboratory-wide protocol, security, privacy, data, and release policies remain controlling.
+## 2. Users and jobs
 
-    ## 2. Users and jobs
+- Academic evaluators inspect a recorded run, report, methods, and limitations.
+- Research-oriented employers inspect architecture, failure handling, and code.
+- Developers and learners inspect traces, reproduce fixtures, and follow source.
+- The Director publishes controlled artifacts and maintains the public record.
+- Future contributors reach governance and setup after understanding the work.
 
-    - Collaborators and open-source contributors.
-- Students, teachers, academics, and independent learners.
-- Applied AI hiring managers and technical reviewers.
-- The Director publishing and operating the laboratory.
-- Anonymous and authenticated public Atticus users.
+## 3. V1 capabilities
 
-    ## 3. V1 capabilities
+- Signed success/degraded replay viewer with transcript fallback.
+- Full `TR-2026-001` reading experience.
+- Trace, policy, evidence, calculation, and evaluation panes.
+- Repository-backed project, writing, method, and open-artifact indexes.
+- Truthful maturity and live/replayed/cached/illustrative/planned state labels.
+- Architecture and source views with direct return navigation to Wix.
+- Local/self-hosted operation with no private service dependency.
+- Future Atticus console components behind explicit deployment and safety gates.
 
-    - Portable laboratory/application shell that shares identity with the Wix institutional site.
-- Repository-backed documentation and advanced research workspaces under DRL subdomains.
-- Project pages generated from controlled documents and signed evidence.
-- Public Atticus console with tours, replays, and bounded live workflows.
-- Research archive for papers, notebooks, datasets, models, benchmarks, and reports.
-- Open-source portal for repositories, packages, releases, roadmaps, and contribution.
-- System status and metrics from signed artifacts.
-- Failure museum linked to regression tests.
-- Global command palette and optional tmux-inspired workspace.
-- Founder/researcher page and tasteful résumé context.
-- Consent, privacy, history, account, device, and trace-donation controls.
+## 4. Explicit non-goals
 
-    ## 4. Explicit non-goals
+- Replacing Wix as the canonical editorial origin without an approved ADR.
+- Claiming `atticus.dewitt-labs.com` is live before deployment evidence exists.
+- Making chat, authentication, or a warm model required for public research.
+- Generic résumé template, startup funnel, or collaborator recruitment portal.
+- Fake terminal output, fabricated metrics, or invented institutional scale.
+- Arbitrary public code execution or access to private/local tools.
+- Hand-maintained duplicate facts that drift from repository sources.
+- Making primary computational applications iframe-only.
 
-    - Generic résumé template or startup marketing funnel.
-- Chat-only navigation.
-- Fake terminal output or fabricated metrics.
-- Autoplay sound, excessive scanlines, inaccessible motion, or government impersonation.
-- Arbitrary public code or external-write execution.
-- Hand-maintained duplicate project facts that drift from repository sources.
-- Replacing the canonical Wix institutional site without an approved ADR.
-- Making primary authenticated or computational applications iframe-only.
+## 5. Logical architecture
 
-    ## 5. Logical architecture
-
-    ```text
-Next.js App Router
-  |-- shared application chrome + controlled MDX renderer
-  |-- Wix publishing payload/widget adapters
-  |-- DRL design system + terminal/workspace components
-  |-- Atticus console client and SSE event reducer
-  |-- signed replay and artifact renderer
-  |-- project/research/open-source indexes
-  |-- auth, consent, analytics, and account controls
-  |-- server/BFF for safe API mediation
-       -> Atticus and specialist APIs
-       -> signed reports / status / releases
+```text
+Next.js application shell
+  |-- controlled document and report renderer
+  |-- signed replay verifier and timeline
+  |-- evidence, trace, policy, calculation, and evaluation panes
+  |-- project/writing/open-artifact indexes
+  |-- Wix link and canonical-metadata adapters
+  |-- optional future session/consent/account boundary
+       -> public Atticus API only after separate release approval
 ```
 
-    ## 6. Canonical workflows
+## 6. Canonical workflows
 
-    ### Explore normally
-Visitors use navigation, search, project cards, or command palette. Core content and contribution paths work without an active model.
+### Inspect a recorded run
 
-### Ask Atticus
-The console creates a bounded session; plan, policy, tool, evidence, artifact, and evaluation events render in accessible panes; the final result links to canonical documents.
+Open success replay -> verify manifest -> inspect trace/evidence/evaluation ->
+switch to degraded replay -> compare outcome -> open source or report.
 
-### Guided tour
-A visitor selects a persona or subject; the tour advances through real pages and signed traces, remains shareable, and can be resumed.
+### Read the report
+
+Open `TR-2026-001` -> read abstract/methods/limitations -> inspect linked replay
+and code -> copy citation or reproduction path.
+
+### Explore a project
+
+Open project -> read research question and maturity -> inspect strongest artifact
+-> review failure/limitation -> return to Wix or follow source.
 
 ### Publish
-Merged controlled documents and signed release artifacts trigger validation of frontmatter, links, claims, evidence, accessibility, and routes before deployment.
 
-    ## 7. Interfaces and integration
+Merged controlled documents and signed artifacts pass frontmatter, links, claim,
+evidence, accessibility, and route validation before publication.
 
-    - Controlled content manifest and document metadata.
-- Public Atticus session, task, run, event, trace, and approval APIs.
-- Signed replay, report, status, metric, model, dataset, and release schemas.
-- Authentication, consent, analytics, and account services.
-- No browser-side credentials to private backends.
+### Future Atticus session
 
-    Cross-project requests and results use DRL protocol envelopes. Every request carries schema version, identity/session, correlation, policy context, deadline, and idempotency metadata where applicable. Internal types may be richer but cannot silently change public semantics.
+A bounded live session is enabled only after identity, quota, consent, policy,
+abuse, cost, unavailable-state, and deployment gates pass. Until then the UI
+shows replay or planned state.
 
-    ## 8. Invariants
+## 7. Interfaces
 
-    - Core content and navigation work without Atticus or client enhancement.
-- Metrics identify artifact, source, and date.
-- Live, replayed, cached, and illustrative states are distinct.
-- Cream-on-black design meets contrast and user preferences.
-- No public visitor reaches private/local tools.
+- controlled content manifests and document metadata;
+- signed replay, report, evaluation, model, dataset, and release schemas;
+- public artifact URLs and Wix return/canonical links;
+- future Atticus task, run, event, trace, approval, auth, and consent APIs;
+- no browser-side credentials to private backends.
+
+Cross-project requests and results use versioned protocol envelopes. Internal
+types may be richer but cannot silently change public semantics.
+
+## 8. Invariants
+
+- Core content and navigation work without Atticus or client enhancement.
+- Replay verification never upgrades a demo HMAC to production trust.
+- Metrics identify artifact, source, date, and method.
+- Live, replayed, cached, illustrative, and planned states are distinct.
+- No public visitor reaches private or local tools.
 - Consent precedes optional analytics or content capture.
 - Every public research claim links to methods, evidence, and limitations.
-- Production builds exclude secrets and private drafts.
+- Production builds exclude secrets, private drafts, and employer material.
 
-    ## 9. Quality attributes
+## 9. Quality attributes
 
-    - **Correctness:** typed inputs and verifiable artifacts, not ungrounded prose.
-    - **Traceability:** operational steps can be reconstructed without storing hidden chain-of-thought.
-    - **Security:** least privilege, deny by default, bounded egress, and approval for consequential actions.
-    - **Privacy:** collection minimization and separation of public, DRL-private, and local-personal data.
-    - **Reliability:** deadlines, cancellation, retry budgets, idempotency, and truthful degraded states.
-    - **Accessibility:** public workflows support keyboard, screen readers, reduced motion, contrast, and mobile use.
-    - **Portability:** Docker/open fixtures for baseline; Google Cloud is reference production, not a mandatory local dependency.
-    - **Evaluability:** every headline claim maps to a versioned suite and release gate.
+- **Correctness:** typed inputs and verifiable artifacts.
+- **Traceability:** reconstructable operational events without hidden reasoning.
+- **Security:** least privilege, deny by default, bounded egress.
+- **Privacy:** collection minimization and public/private/local separation.
+- **Reliability:** truthful degraded states and static fallbacks.
+- **Accessibility:** keyboard, screen reader, reduced motion, contrast, zoom, and
+  mobile support.
+- **Portability:** local/open fixtures; no mandatory managed-cloud dependency.
+- **Evaluability:** every headline claim maps to a versioned artifact or gate.
 
-    ## 10. Milestones
+## 10. Milestones
 
-    - M1 design tokens, components, content renderer, and validation.
-- M2 homepage, project template, research and open-source indexes.
-- M3 signed replay, architecture visualizations, and status console.
-- M4 public Atticus console, authentication, consent, and quotas.
-- M5 failure museum, guided tours, founder and résumé.
-- M6 accessibility, performance, security, SEO, content, and coordinated launch.
+- M1 tokens, components, document renderer, and validation.
+- M2 signed replay viewer and `TR-2026-001` reading experience.
+- M3 project, writing, and open-artifact indexes plus Wix return contract.
+- M4 future bounded Atticus session behind release gates.
+- M5 accessibility, performance, security, SEO, and coordinated launch evidence.
 
-    ## 11. V1 acceptance
+## 11. V1 acceptance
 
-    - All required pages and controlled content pass build validation.
-- WCAG-aligned automated and manual keyboard, screen-reader, contrast, and reduced-motion review passes.
-- Performance budgets pass on representative mobile and desktop.
-- Atticus replay and bounded live integrated demo succeed.
-- All public metrics resolve to valid signed artifacts.
-- Consent, analytics, auth, session isolation, and abuse controls pass.
-- Preview, production, domain, TLS, and rollback are tested.
+- Success and degraded replays verify and render with transcript fallbacks.
+- `TR-2026-001` renders with methods, limitations, citation, and source links.
+- Academic evaluator reaches both artifacts from Wix without search or sign-in.
+- WCAG-oriented and representative mobile/desktop review passes.
+- Every public state and metric is evidence-backed and dated.
+- Preview, production, canonical metadata, TLS, Wix return, and rollback are tested.
 
-    ## 12. Principal risks and controls
+## 12. Open identity
 
-    - Style overwhelms usability: strict component/motion budgets and user testing.
-- Content drift: generated indexes and source-of-truth links.
-- Demo failure or cost: signed replays and truthful cold-state UX.
-- Accessibility regression: CI plus manual release audit.
-- Institutional overstatement: transparent independent-initiative and founder language.
-
-    ## 13. Change control
-
-    An ADR is mandatory for public API changes, authority or trust-boundary changes, persistence/retention changes, rights/licensing changes, critical evaluation threshold changes, and deployment topology changes. Behavior-preserving internal refactors use ordinary review.
-
-## Open-source identity requirements
-
-- Open models, open-source software, public evaluation, local operation, and reproducible research must be visible without opening a footer or README.
-- Every project page identifies upstream models/software, artifact licenses, maturity, local/self-hosted path, evaluation evidence, and contribution entry points.
-- The public Atticus interface exposes the active model identity, version, routing mode, and whether output is live, replayed, cached, or illustrative.
-- A dedicated Open Source portal presents Atticus model releases, datasets, packages, benchmarks, upstream contributions, self-hosting profiles, open exceptions, and independent replications.
-- A `REPRODUCE` action is generated from tested release metadata rather than hand-authored marketing commands.
-- The website credits upstream projects through a useful dependency graph, not a logo wall or implied endorsement.
-
-
-## 14. Wix and domain integration
-
-- `www.dewitt-labs.com` is the canonical institute and editorial origin.
-- This project supplies open-source application shells, docs, advanced workspaces, release/status data, and bounded widgets to Wix.
-- Deployments use approved DRL subdomains and include visible return navigation.
-- Authentication and authorization are application responsibilities; Wix membership does not implicitly grant privileged access.
-- Cross-host links, canonical metadata, consent, CORS/CSP, cookie scope, and unavailable-service fallbacks are testable release requirements.
-- See `../../../docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md`.
+Every artifact identifies source, upstream foundations, license, maturity,
+local/self-hosted path, evaluation evidence, and open exceptions. Reproduce
+actions are generated from tested metadata. Contributor entry points remain
+available but secondary to evidence inspection. A visible **Open Source portal**
+route returns visitors to the canonical Wix catalog.

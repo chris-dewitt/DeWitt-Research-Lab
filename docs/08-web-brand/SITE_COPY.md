@@ -1,24 +1,16 @@
 ---
 document_id: DRL-WEB-022
 title: "Site Copy Draft for the Five-Page Workshop Build"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
 # Site copy draft
 
-Page-by-page copy for the five-page tree in `WIX_SITE_BUILD_PLAN.md` v2.0.0.
-
-**Status: DRAFT, not applied.** No site write is authorised. This document exists so
-copy can be reviewed and edited before anything touches Wix.
-
-Everything below is written to `BRAND_SYSTEM.md` v2.1.0: first person, understated
-academic, no absolute capability claims, no invented plurals, no institutional chrome.
-Bracketed `[…]` text marks a decision only the Director can make.
-
----
+Page-by-page copy for `WIX_SITE_BUILD_PLAN.md`. This is a repository artifact,
+not authorization to edit Wix. Bracketed text is an implementation note.
 
 ## Home — `/`
 
@@ -26,209 +18,170 @@ Bracketed `[…]` text marks a decision only the Director can make.
 
 ```text
 DEWITT RESEARCH WORKSHOP
-Independent research in open and applied intelligence.
+Engineering complex systems for open, inspectable intelligence.
 
-Intelligence for Good. Intelligence for All.
+I build agents, evidence pipelines, deterministic models, and the evaluations
+that keep them honest. This is the public record of that work.
+
+[Watch a recorded run] [Read TR-2026-001]
 ```
 
-Orientation line beneath:
+> Intelligence for Good. Intelligence for All.
 
-> I'm Chris DeWitt. I build and test open-weight AI systems in the open — one person,
-> working in public, with the failures left in.
+### A run you can inspect
 
-Actions: `See what I'm building` → `/projects` · `Read the current work` → `/writing`
-· `Browse the code` → `/open-source`
-
-### On the bench
-
-> **On the bench**
+> **One workflow, two honest outcomes.**
 >
-> What I'm working on right now. Dates are real; so is the half-finished part.
+> Watch Atticus route a research question through public evidence, cited policy
+> analysis, a deterministic scenario, and evaluation. Then switch to the
+> degraded run and see what happens when part of the evidence path fails.
+>
+> Recorded prototype · deterministic fixtures · signed with a demo HMAC key
+>
+> `Watch the success run` · `Watch the degraded run` · `Read the transcript`
 
-- **The evidence-to-scenario workflow** — *last touched 3 August 2026*
-  Five projects chained into one run: pull evidence, cite it, model a scenario,
-  evaluate the result. It works end to end on my machine with deterministic fixtures.
-  It is not a service, and the planner standing in for Atticus Core is rule-based
-  until the model bake-off finishes.
+[Bind these links to the DRL-019 public replay artifacts. Explain that the demo
+key validates package structure, not production identity.]
 
-- **Signed replay packaging** — *in progress*
-  Recording runs so someone else can replay exactly what happened, including the
-  degraded case. Currently signed with a demo key — not a production signing
-  identity, so treat the signatures as structural, not trustworthy.
-
-- **Choosing the models behind Atticus** — *open question*
-  Running a documented bake-off rather than picking by brand. No winner declared.
-
-### Featured work
+### Read the method, not just the result
 
 > **TR-2026-001 — Local Integrated Evidence-to-Scenario Workflow**
 > Technical report · prototype · 1 August 2026
 >
-> A working description of how the five projects compose into a single local
-> workflow: what each one contributes, where the trust boundaries sit, and what the
-> evaluation actually shows. Written to be reproduced, not admired.
+> A working description of how five projects compose into one local workflow:
+> what each contributes, where the trust boundaries sit, what the evaluation
+> shows, and what it does not show.
 >
-> `Read the report` → `/writing#tr-2026-001`
+> `Read TR-2026-001` · `Methods and limitations` · `View source`
+
+### Questions on the bench
+
+> I am interested in the systems around intelligence: how agents earn authority,
+> how evidence survives a multi-step workflow, how deterministic tools constrain
+> language models, and how evaluation catches failure before a demo becomes a
+> claim.
+
+> **Stage-B model bake-off — no winner.**
+>
+> Six release-gate findings prevented a selection. That is the result: the
+> candidates did not yet earn the role. `See the board and all six reasons`.
 
 ### Projects
 
-> **Projects**
+- **Atticus** — a documented guide and orchestration research artifact. Prototype;
+  the public hosted service is planned, not live.
+- **Atlas** — macro evidence gathering with provenance attached. Prototype.
+- **FedLens** — Federal Reserve analysis with passage-level citations. Prototype.
+- **BalanceLab AI** — deterministic quantitative scenarios with fixed seeds.
+  Prototype.
+- **EvalForge** — evaluation and permission testing for the rest. Prototype.
+
+[Maturity and last-verified dates bind to controlled metadata.]
+
+### About the work
+
+> I'm Christopher Noxon DeWitt, an applied AI researcher in Charlotte. My
+> background includes quantitative financial analysis, which is why this work is
+> unusually strict about evidence, deterministic calculations, and failure
+> boundaries. It informs the research; it is not the headline.
 >
-> Five things I'm building. All prototypes — that label is accurate, not modest.
+> Serious conversations about research, mentorship, doctoral study, grants, or
+> relevant work are welcome. [Contact route pending DIR-003.]
 
-| | |
-|---|---|
-| **Atticus** | The guide and operator that runs the others. Open-weight. *Prototype.* |
-| **Atlas** | Macro research and evidence gathering. *Prototype.* |
-| **FedLens** | Federal Reserve policy analysis with passage-level citations. *Prototype.* |
-| **BalanceLab AI** | Deterministic scenario modelling with fixed seeds. *Prototype.* |
-| **EvalForge** | Evaluation and permission testing for the rest. *Prototype.* |
-
-Maturity values bind to the `Systems` collection; do not hand-type them.
-
-### Open source and contact
-
-> Everything here is open source. The code is on GitHub, the packages install
-> locally, and the research documents live in the same repository as the software
-> that produced them.
->
-> If you want to run it, start with the repository. If you want to talk, [contact
-> route TBD — see DIR-003].
-
-> This is an independent initiative. Not a government, university, or accredited
-> institution.
-
----
+> Independent initiative. Not a university, company research division,
+> government laboratory, or accredited institution.
 
 ## Projects — `/projects`
 
-> **Projects**
+> **Five projects, one research program.**
 >
-> Five projects, built to work together and to run on one machine. Each is a
-> prototype: the interfaces will change, and I'll say so on the page when they do.
->
-> Atticus is the operator — it plans and runs work across the other four. The rest
-> are specialists that do one thing each.
+> These prototypes study how evidence, policy, deterministic tools, agent
+> orchestration, and evaluation fit together. Each page shows what exists, how it
+> was tested, what failed, and what remains planned.
 
-Then the five cards, each linking to its page, each showing maturity and last
-verified date from the `Systems` collection.
+Each project page includes research question, workflow, architecture, trust
+boundary, maturity, last verification, replay/read/run/planned actions, methods,
+limitations, source, license, upstream lineage, and related writing.
 
-Per-project one-liners:
+Atticus copy:
 
-- **Atticus** — Plans a piece of work, calls the right project, and keeps a trace of
-  what it did. Open-weight, locally runnable, currently driven by a rule-based
-  planner rather than a trained model.
-- **Atlas** — Gathers macro evidence from public sources and hands it downstream with
-  its provenance attached.
-- **FedLens** — Reads Federal Reserve material and answers with passage-level
-  citations, so a claim can be checked against its source.
-- **BalanceLab AI** — Runs quantitative scenarios deterministically: fixed seeds, same
-  inputs, same numbers.
-- **EvalForge** — Tests the others: whether the answer holds up, and whether the
-  permission boundaries did.
-
----
+> **Atticus** plans a bounded piece of work, calls the appropriate project, and
+> preserves a trace of what happened. The current integrated prototype uses a
+> rule-based planner while the model bake-off remains unresolved. Atticus is a
+> research artifact being documented; `atticus.dewitt-labs.com` is planned.
 
 ## Writing — `/writing`
 
-> **Writing**
+> **Technical reports, notes, methods, and things that broke.**
 >
-> Technical reports and notes. Fewer, longer, and reproducible in preference to
-> frequent.
+> Fewer, longer, and reproducible in preference to frequent.
 
-### TR-2026-001 {#tr-2026-001}
+`TR-2026-001` receives a full reading experience with abstract, plain-language
+summary, methods, limitations, code/artifact links, citation, license, and
+correction history.
 
-Full reading experience on the page: title, authors, status, version, date, abstract,
-plain-language summary, methods, limitations, links to code and data, citation block,
-and correction history. Not a teaser card.
+### Methods and teaching
 
-> **TR-2026-001: Local Integrated Evidence-to-Scenario Workflow**
-> Christopher Noxon DeWitt · prototype · v1.0.0 · 1 August 2026
+> **Integrated Workflow Lab**
 >
-> Cite as: DeWitt, Christopher Noxon. 2026. *Technical Report TR-2026-001: Local
-> Integrated Evidence-to-Scenario Workflow*. DeWitt Research Workshop working paper.
-> Document ID `DRL-TR-2026-001`.
+> A reproducible guide to the fixture workflow, its evidence chain, exercises,
+> and expected limitations. Teaching material stays here until there is enough
+> maintained work for its own page.
 
-### What broke {#what-broke}
+### What broke
 
-> **What broke**
+> **Degraded replay**
 >
-> Things that failed, and what I did about them. This shelf is not decoration — every
-> entry is real, and each one has a test that keeps it fixed.
->
-> [Populate from `FailureRecords`. Start with the degraded-replay case, which is
-> already captured as a fixture. Do not invent entries to fill the section: if there
-> is one honest record, publish one.]
+> The failure is part of the record. See where the workflow degraded, how the
+> system represented uncertainty, and which regression evidence keeps that path
+> visible.
 
----
+> **Stage-B model bake-off: no winner**
+>
+> Read the six blocking reasons, candidate evidence, and next experiment. No
+> candidate is promoted by brand preference.
 
 ## Open Source — `/open-source`
 
-> **Open source**
+> **Open enough to inspect, run, and disagree with.**
 >
-> All of it. The models are open-weight, the code is open-source, and the research
-> documents ship in the same repository as the software that produced them.
+> The code is open-source; model artifacts are described precisely as
+> open-weight when that is what their terms permit; evaluations and research
+> records are public; the fixture workflow runs locally without a cloud account.
 
-> **Run it locally**
->
-> The workflow runs on one machine with deterministic fixtures — no cloud account, no
-> API key, no inference bill.
->
-> ```
-> [install and run commands — pull the real ones from the repository README
-> rather than writing them here]
-> ```
-
-> **What's in the repository**
->
-> - **Packages** — `atticus-sdk`, `drl-ai-core`, `drl-protocol`, `evalforge-sdk`
-> - **Services** — Atticus control plane, Atlas, FedLens, BalanceLab AI, EvalForge
-> - **Applications** — Atticus console, local runner
-> - **Research** — technical reports, in the same tree as the code
->
-> Identifier prefixes like `DRL-` are internal keys, not a brand.
-
-> **Contributing**
->
-> Good-first issues are labelled in the repository. Corrections to the research
-> documents are as welcome as code.
-
-Upstream projects are credited without implying endorsement. Do not claim "full
-access to all core components" or similar absolutes.
-
----
+Show verified install/run commands, repository structure, licenses, upstream
+lineage, hardware assumptions, maturity, reproduction bundles, and open
+exceptions. Contributor guidance and good-first issues appear after the local
+run path as a secondary invitation.
 
 ## About — `/about`
 
-> **About**
+> **Christopher Noxon DeWitt**
 >
-> I'm Christopher Noxon DeWitt, an applied AI researcher. This is my workshop: one
-> person building and testing open-weight AI systems in public, in Charlotte.
+> Applied AI researcher in Charlotte, North Carolina. I engineer complex systems
+> across agents, evidence, evaluation, and deterministic quantitative modeling.
 >
-> My background is quantitative and financial, which is why the projects lean toward
-> evidence, policy, and deterministic modelling. It informs the work; it isn't the
-> point of it.
+> My background spans statistics, economics, applied data science, software
+> development, and quantitative financial analysis. I built this workshop to
+> make the questions, code, experiments, failures, and next steps inspectable in
+> one place.
 >
-> I care about systems people can actually run, inspect, and disagree with. That's
-> why the models are open-weight, why the failures are published, and why every
-> maturity label says prototype until it earns otherwise.
+> I am interested in research mentorship, doctoral study, grants, and relevant
+> research or engineering roles. The workshop is not currently recruiting a
+> team.
 
-> **Contact** — [route TBD, see DIR-003]
-> **Security** — [`security@dewitt-labs.com` once created; see DIR-003]
-> **Governance** · **License** · **Privacy** — link to the published documents
+`Contact` · `GitHub` · `Research interests` · `Curriculum vitae when approved`
 
-> This is an independent initiative. Not a government, university, or accredited
-> institution.
+Do not name an employer. Preserve the independent-initiative disclosure and link
+working Governance, License, Privacy, and Security routes.
 
----
+## Copy rules
 
-## Copy rules for whoever applies this
-
-1. No absolute capability claims. "Fully deployable", "full traceability", "full
-   access to all core components" are prohibited unless measured and linked.
-2. No plural that invents staff. Not "our team", "our researchers", "we deliver".
-3. No fabricated metrics. `UPTIME: 99.9%` must be deleted, not restyled.
-4. Maturity labels bind to the `Systems` collection. Never hand-typed, never two
-   different labels on one page.
-5. No button that promises an action the site cannot perform.
-6. Do not repeat one sentence across five cards to fill space. Cut the cards instead.
+1. Put evidence immediately after the thesis.
+2. Use first person; never invent a staff, department, or institutional history.
+3. No absolute capabilities, fabricated metrics, or unlabeled simulation.
+4. No button promises an action that does not exist.
+5. `Watch a recorded run` and `Read TR-2026-001` remain the first actions.
+6. Failures, limitations, and the no-winner result remain visible.
+7. Contribution is available but not the homepage's dominant invitation.
+8. Employer names and confidential work never appear.

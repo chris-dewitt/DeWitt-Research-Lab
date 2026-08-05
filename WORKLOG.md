@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.10.0
+version: 4.11.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-01
+last_updated: 2026-08-04
 ---
 
 
@@ -18,8 +18,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **15 Research/Community** — DRL-029 contributor routes in review
-  (DRL-028 TR-2026-001 merged).
+- Active mission: **06 Brand/Web** — DRL-021 evidence-first academic website
+  documentation cleanup. Wix editor implementation remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -48,6 +48,19 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
+| 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | IN PROGRESS | — |
+
+## Active scope — DRL-021 documentation cleanup
+
+- Scope: reconcile the controlled identity, audience, website, and application-shell
+  documents around an evidence-first academic workshop; update traceability and
+  regression checks in the same change.
+- Dependencies retained: the Wix editor and deployment remain outside this branch;
+  DRL-021 stays `QUEUED` until its visual and operational acceptance evidence exists.
+- Exit criteria: recorded replay and TR-2026-001 are the canonical first actions;
+  academic evaluation is the primary journey; degraded evidence and the Stage-B
+  no-winner result are visible; Atticus is labeled as a documented research artifact;
+  targeted documentation tests pass; exact evidence and remaining work are handed off.
 
 ## Weekly dashboard snapshot — 2026-07-27
 

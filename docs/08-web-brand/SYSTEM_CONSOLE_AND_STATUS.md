@@ -1,16 +1,21 @@
 ---
 document_id: DRL-WEB-010
-title: "Laboratory System Console and Public Status"
-version: 2.0.0
+title: "Evidence State and Optional Public Status"
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
 
-# Laboratory System Console and Public Status
+# Evidence State and Optional Public Status
 
-## Public console
+The canonical five-page Wix site has no standalone status route. Project cards
+show maturity and last verification; recorded-run and report pages show artifact
+state. A separate public status application is justified only after monitored
+services exist.
+
+## Future public status surface
 
 - current release manifests;
 - service live/replay/degraded status;
@@ -19,7 +24,7 @@ last_updated: 2026-07-26
 - recent evaluation summaries;
 - actual document/model/dataset/package counts;
 - planned maintenance/incidents;
-- link to detailed status page.
+- link to evidence, incident, or maintenance detail.
 
 ## Accuracy
 

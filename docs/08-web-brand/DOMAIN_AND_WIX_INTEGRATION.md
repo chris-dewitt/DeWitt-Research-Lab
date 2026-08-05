@@ -1,17 +1,17 @@
 ---
 document_id: DRL-WEB-018
-title: "Canonical Domain, Wix Institutional Site, and Application Integration"
-version: 1.1.0
+title: "Canonical Domain, Wix Workshop Site, and Application Integration"
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-02
+last_updated: 2026-08-04
 ---
 
-# Canonical Domain, Wix Institutional Site, and Application Integration
+# Canonical Domain, Wix Workshop Site, and Application Integration
 
 ## Recorded assets and binding decision
 
-The Director has registered **`dewitt-labs.com`** and has acquired a Wix site. The canonical public laboratory address is:
+The Director has registered **`dewitt-labs.com`** and has acquired a Wix site. The canonical public workshop address is:
 
 ```text
 https://www.dewitt-labs.com
@@ -19,19 +19,23 @@ https://www.dewitt-labs.com
 
 **Status (2026-08-02):** the Wix site is live at the canonical address. Earlier documentation used the misspelling `dwit-labs.com`; that spelling is retired and must not appear in DNS, links, metadata, or copy (see `DIRECTORS_MEMO.md` RES-011).
 
-This is existing DRL infrastructure, not a placeholder. The Wix site is the canonical institutional front door for V1: laboratory identity, public mission, research publishing, project discovery, teaching, collaboration, founder profile, news, and clear launch points into Atticus and the specialist applications.
+This is existing infrastructure, not a placeholder. The Wix site is the
+canonical editorial front door for V1: workshop identity, public mission,
+recorded-run and report discovery, project summaries, writing and methods, open
+artifacts, founder context, and honest links to available or planned applications.
 
 The apex domain `https://dewitt-labs.com` shall redirect permanently to the canonical `www` origin unless a later approved ADR selects the apex as canonical. All public documents, model cards, package metadata, social profiles, repository descriptions, and release manifests shall use the canonical address and avoid competing primary URLs.
 
 ## Architectural principle
 
-Wix is the **institutional publishing and discovery layer**. It is not required to become the execution environment for every DRL service.
+Wix is the **workshop publishing and discovery layer**. It is not required to
+become the execution environment for every computational service.
 
 Serious interactive systems remain independently deployable, open-source applications and services. They are linked through DRL-controlled subdomains and a shared design, navigation, authentication, consent, telemetry, and provenance contract.
 
 ```text
-www.dewitt-labs.com          Wix institutional site and editorial front door
-atticus.dewitt-labs.com      public Atticus laboratory console
+www.dewitt-labs.com          Wix workshop site and editorial front door
+atticus.dewitt-labs.com      planned public Atticus application
 atlas.dewitt-labs.com        Atlas research experience
 fedlens.dewitt-labs.com      FedLens policy archive and analysis
 balancelab.dewitt-labs.com   BalanceLab AI scenario workstation
@@ -47,7 +51,9 @@ Subdomains are planned namespaces, not claims that each service is already deplo
 
 The split preserves four goals simultaneously:
 
-1. **Use the purchased Wix platform immediately.** DRL can publish a polished laboratory identity, research pages, teaching material, calls for collaborators, and updates before every application is finished.
+1. **Use the purchased Wix platform immediately.** The Director can publish a
+   polished academic workshop, signed replays, technical writing, methods, and
+   honest project updates before every application is finished.
 2. **Keep the computational systems real.** Atticus, Atlas, FedLens, BalanceLab, and EvalForge can use the frameworks, deployment targets, streaming interfaces, GPU runtimes, and security controls their work requires.
 3. **Preserve open-source forkability.** The monorepo remains the authoritative source for application code, documentation, schemas, training materials, and reproducible demonstrations. A contributor does not need Wix to run the laboratory locally.
 4. **Avoid brittle primary-app embedding.** Small widgets may be embedded, but core experiences should open as first-class applications under DRL subdomains rather than operate as deeply nested iframe products.
@@ -58,12 +64,13 @@ Wix supports connecting an existing domain, custom elements, embedded URLs, Velo
 
 The Wix site owns the following public surfaces for V1:
 
-- canonical homepage and laboratory mission;
+- canonical homepage, research thesis, and workshop mission;
 - workshop-first brand system and navigation;
 - high-level system pages and launch links;
-- research abstracts, essays, announcements, and teaching index;
+- recorded-run and technical-report discovery;
+- research abstracts, essays, announcements, methods, and teaching material;
 - founder/director profile and résumé entry point;
-- collaboration, contribution, sponsorship, and contact pages;
+- serious-inquiry and contact paths, with contribution secondary under Open Source;
 - open-source overview and links into evidence-rich artifact pages;
 - mailing-list, event, or membership features if deliberately enabled;
 - SEO metadata, social cards, canonical URLs, and public redirects;
@@ -111,7 +118,7 @@ The following may begin in Wix and be archived or indexed in the repository when
 - concise homepage copy;
 - announcements and event pages;
 - visually composed feature stories;
-- collaborator spotlights;
+- research notes and local academic event notices when material;
 - newsletter landing pages;
 - lightweight educational introductions.
 
@@ -119,7 +126,7 @@ No automated synchronization may publish a controlled document as `PUBLIC RELEAS
 
 ## Navigation and visual continuity
 
-Wix and external DRL applications must appear to belong to one laboratory without pretending to be one runtime.
+Wix and external applications must appear to belong to one workshop without pretending to be one runtime.
 
 Required continuity:
 
@@ -127,7 +134,7 @@ Required continuity:
 - cream-on-black base palette;
 - shared typography and spacing guidance;
 - consistent system names and maturity labels;
-- persistent `Return to Laboratory` link from every external application;
+- persistent `Return to Workshop` link from every external application;
 - consistent links for Research, Open Source, Systems, Teaching, About, and Status;
 - visible hostname changes for security-sensitive actions;
 - no deceptive recreation of Wix browser chrome or authentication UI.
@@ -201,7 +208,7 @@ Wix and external applications share one public privacy narrative and event taxon
 
 ## SEO, discovery, and canonical content
 
-- `www.dewitt-labs.com` is the canonical institutional origin.
+- `www.dewitt-labs.com` is the canonical workshop origin.
 - Wix pages use canonical tags and stable human-readable paths.
 - External application pages use their own canonical subdomain URLs.
 - Duplicate technical content is either summarized on Wix with a canonical link to docs or generated from the repository with explicit canonical ownership.
@@ -212,22 +219,23 @@ Wix and external applications share one public privacy narrative and event taxon
 
 The Wix site must remain useful when model services are cold, rate-limited, or unavailable. It shall always provide:
 
-- the laboratory mission;
+- the workshop thesis and mission;
 - research and system documentation;
 - current maturity/status labels;
 - replay demonstrations;
-- contact and contribution routes;
+- contact and secondary contribution routes;
 - incident or maintenance notices.
 
-A model outage must not make the laboratory website disappear.
+A model outage must not make the workshop website disappear.
 
 ## Implementation phases
 
-### Phase A — Domain and institutional launch
+### Phase A — Domain and workshop launch
 
 1. Connect `www.dewitt-labs.com` to the Wix site.
 2. Establish apex redirect and HTTPS.
-3. Implement brand shell, laboratory mission, systems overview, open-source overview, research index, About, Contact, and Status link.
+3. Implement the five-page shell, workshop thesis, recorded-run and report links,
+   projects, writing/methods, open-source overview, About, and Contact.
 4. Publish only truthful project maturity labels.
 5. Add temporary launch links to repository documentation and replay assets.
 
@@ -261,7 +269,10 @@ V1 domain and Wix integration is complete only when:
 - DNS inventory, change procedure, rollback, and ownership are documented;
 - staging and preview origins are not indexed;
 - the website truthfully distinguishes live, replayed, cached, simulated, and planned systems;
-- a clean-room visitor can enter at Wix, understand DRL, launch Atticus, inspect evidence, and return without confusion.
+- a clean-room academic evaluator can enter at Wix, understand the research
+  thesis, watch a success or degraded replay, read `TR-2026-001`, inspect methods
+  and limitations, and reach source or contact without confusion. A planned
+  Atticus service is never required for this flow.
 
 ## Authoritative Wix references
 

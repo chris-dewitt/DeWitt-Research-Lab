@@ -1,0 +1,63 @@
+name: publish-replays
+
+# Builds the static replay viewer and publishes it to GitHub Pages.
+#
+# This deliberately needs no cloud account, GPU, or inference budget: the replay
+# bundles are signed JSON in the repository, and the viewer is static HTML. It is
+# the one public application surface that is not blocked on DIR-002.
+#
+# The build verifies every bundle's manifest signature and artifact digests before
+# rendering, so a tampered recording fails the workflow rather than being
+# published under a claim of provenance.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "services/evalforge/fixtures/signed_replays/**"
+      - "services/evalforge/src/evalforge_service/replay_site.py"
+      - "scripts/build_replay_site.py"
+      - ".github/workflows/publish-replays.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel a half-finished deployment of the live site.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
+          enable-cache: true
+      - name: Sync Python workspace
+        run: uv sync --all-packages --locked
+      - name: Verify replay bundles and build the viewer
+        run: uv run python scripts/build_replay_site.py --out site/replays --metadata
+      - name: Check the build produced pages
+        run: |
+          test -s site/replays/index.html
+          test -s site/replays/success.html
+          test -s site/replays/degraded.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/replays
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

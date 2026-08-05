@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo bakeoff bakeoff-json serve docs-check program-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo bakeoff bakeoff-json replay-site serve docs-check program-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -16,6 +16,9 @@ demo:
 
 bakeoff:
 	uv run python scripts/run_bakeoff.py
+
+replay-site:
+	uv run python scripts/build_replay_site.py --out site/replays --metadata
 
 bakeoff-json:
 	uv run python scripts/run_bakeoff.py --json

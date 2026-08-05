@@ -48,7 +48,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
-| 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | IN PROGRESS — RES-016 CORRECTION | — |
+| 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -79,8 +79,12 @@ Append completed handoffs below this line. Never place credentials, private data
 
 ### 2026-08-04 — DRL-021 evidence-first academic positioning
 
-> Superseded during review by RES-016. The branch is being corrected to a
-> personal academic portfolio before push or pull request.
+> Superseded during review by RES-016. The branch was corrected to a personal
+> academic portfolio before push or pull request.
+
+- Correction commit: `00b7eea`
+- Final contract: personal identity and UNC-Chapel Hill study first; Research,
+  Projects, and About; reports/replays/software as selected evidence.
 
 - Branch: `lovesong/docs/drl-021-positioning-cleanup`
 - Implementation commit: `71d5b55`

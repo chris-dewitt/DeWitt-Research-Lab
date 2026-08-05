@@ -21,8 +21,9 @@ last_updated: 2026-08-04
 - Branch: `lovesong/docs/drl-021-positioning-cleanup`
 - Pull request: not opened; branch is local and not pushed
 - Starting commit: `37cf127`
-- Implementation commit: `71d5b55`
-- Started / completed UTC: `2026-08-05T03:11:02Z` / `2026-08-05T03:36:48Z`
+- Initial implementation commit: `71d5b55` (public positioning superseded)
+- Corrective implementation commit: `00b7eea`
+- Started / completed UTC: `2026-08-05T03:11:02Z` / `2026-08-05T04:02:45Z`
 - Environment: Windows, PowerShell, Python 3.14; Wix editor not touched
 
 ## Objective and result
@@ -43,10 +44,10 @@ last_updated: 2026-08-04
 
 | Work package | Requirement IDs | Status | Commit | Evidence |
 |---|---|---|---|---|
-| Academic audience and evidence hierarchy | DRL-WEB-001 | COMPLETE | `71d5b55` | Brand, PRD, personas, Bible, homepage, copy |
-| Four-page personal portfolio contract | DRL-WEB-006 | COMPLETE (docs) | corrective commit | Wix plan, integration spec, issue criteria |
-| Replay/report application-shell alignment | DRL-WEB-003, DRL-WEB-004 | COMPLETE (docs) | `71d5b55` | `apps/lab-web/docs/*` |
-| Positioning regression guard | DRL-WEB-001, DRL-WEB-006 | COMPLETE | `71d5b55` | `tests/docs/test_website_positioning.py` |
+| Personal education and trajectory hierarchy | DRL-WEB-001 | COMPLETE | `00b7eea` | Brand, PRD, personas, Bible, homepage, copy |
+| Four-page personal portfolio contract | DRL-WEB-006 | COMPLETE (docs) | `00b7eea` | Wix plan, integration spec, issue criteria |
+| Replay/report application-shell alignment | DRL-WEB-003, DRL-WEB-004 | COMPLETE (docs) | `00b7eea` | `apps/lab-web/docs/*` |
+| Positioning regression guard | DRL-WEB-001, DRL-WEB-006 | COMPLETE | `00b7eea` | `tests/docs/test_website_positioning.py` |
 
 ## Public contracts changed
 
@@ -75,11 +76,11 @@ contract changed.
 
 | Check | Result | Notes |
 |---|---|---|
-| `python scripts/validate_foundation.py` | PASS | 352 docs, 132 requirements, 122 work packages, 26/26 schema examples, 16 missions |
+| `python scripts/validate_foundation.py` | PASS | 353 docs, 132 requirements, 122 work packages, 26/26 schema examples, 16 missions |
 | `python scripts/validate_program.py` | PASS | 30 issues, 122 work packages, acyclic dependencies |
 | `python scripts/validate_open_identity.py` | PASS | 26 V1 requirements, 10 stack records |
 | `python scripts/validate_domain_wix.py` | PASS | canonical domain/Wix contract |
-| focused pytest command from DRL-021 | PASS | 31 tests |
+| focused pytest command from DRL-021 | PASS | 22 tests after RES-016 correction |
 | `python -m ruff check` on changed Python | PASS | no findings |
 | full pytest excluding unsupported symlink setup | PASS | 198 test bodies; one Windows symlink test deselected |
 | full unfiltered pytest | HOST LIMITATION | only failure was `WinError 1314` while the test tried to create a symlink; assertion did not run |
@@ -135,16 +136,17 @@ python -m pytest -q -p no:cacheprovider -k "not test_workspace_rejects_symlink_e
 
 ## Next-agent start instructions
 
-1. Check out `lovesong/docs/drl-021-positioning-cleanup` at or after `71d5b55`.
-2. Read in order: `DIRECTORS_MEMO.md` RES-015 -> `BRAND_SYSTEM.md` ->
+1. Check out `lovesong/docs/drl-021-positioning-cleanup` at or after `00b7eea`.
+2. Read in order: `DIRECTORS_MEMO.md` RES-016 -> `BRAND_SYSTEM.md` ->
    `PORTFOLIO_V1_PRD.md` -> `HOMEPAGE_SPEC.md` -> `WIX_SITE_BUILD_PLAN.md` ->
    `SITE_COPY.md` -> `.github/ISSUE_BODIES/DRL-021.md`.
 3. Run the focused pytest command and four repository validators above.
 4. The Wix operator implements the page tree and collects DRL-021 acceptance
    evidence; do not deploy Atticus or create a live-service claim as part of that
    editorial task.
-5. Preserve the canonical mission, research thesis, action order, negative
-   results, one-person voice, and planned Atticus state.
+5. Preserve the personal identity, exact current-degree language, **View my
+   research** / **Explore my projects** action order, university/employer
+   boundaries, and planned Atticus state.
 
 ## Attestation
 

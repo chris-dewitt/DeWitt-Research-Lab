@@ -1,0 +1,404 @@
+"""Tests for the Stage-B bake-off harness.
+
+The load-bearing assertions here are the negative ones. A harness that ranks
+candidates is easy; a harness that refuses to name a winner when the evidence is
+thin is the thing DIR-004 actually needs, so most of these tests try to make it
+declare one and check that it won't.
+"""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+from drl_ai_core import (
+    BakeoffError,
+    CandidateRun,
+    EvidenceGate,
+    ScriptedProvider,
+    TaskResult,
+    grade_response,
+    load_task_suite,
+    run_bakeoff,
+    run_candidate,
+    select_winner,
+)
+from drl_ai_core.bakeoff import BakeoffCandidate
+from drl_ai_core.bakeoff_harness import BakeoffTask, GraderSpec, summarise_blockers
+from drl_ai_core.providers import (
+    ChatMessage,
+    ModelIdentity,
+    OutputMode,
+    ProviderUnavailableError,
+    StructuredModelResponse,
+)
+
+ROOT = Path(__file__).resolve().parents[1]
+SUITE = ROOT / "models" / "bakeoff" / "task_suite.yaml"
+REGISTER = ROOT / "models" / "bakeoff" / "candidates.yaml"
+
+
+def _identity(revision: str = "pinned-1.0.0") -> ModelIdentity:
+    return ModelIdentity(
+        provider_id="test",
+        model_family="test-family",
+        revision=revision,
+        open_weight=True,
+        output_mode=OutputMode.MOCK,
+        license_label="Apache-2.0",
+    )
+
+
+def _response(
+    content: str, *, latency_ms: float = 10.0, tool_calls: tuple = ()
+) -> StructuredModelResponse:
+    return StructuredModelResponse(
+        content=content,
+        identity=_identity(),
+        finish_reason="stop",
+        latency_ms=latency_ms,
+        tool_calls=tool_calls,
+    )
+
+
+def _task(**kwargs) -> BakeoffTask:
+    base = {
+        "id": "t1",
+        "role": "core",
+        "category": "routing",
+        "prompt": (ChatMessage(role="user", content="hi"),),
+        "grader": GraderSpec(must_include=("fedlens",)),
+    }
+    base.update(kwargs)
+    return BakeoffTask(**base)
+
+
+def _run(candidate_id: str, quality_results: list[TaskResult], **kwargs) -> CandidateRun:
+    base = {
+        "candidate_id": candidate_id,
+        "role": "core",
+        "provider_id": "test",
+        "revision": "pinned-1.0.0",
+        "open_weight": True,
+        "license_label": "Apache-2.0",
+        "measurement_mode": "hardware",
+        "results": tuple(quality_results),
+    }
+    base.update(kwargs)
+    return CandidateRun(**base)
+
+
+def _results(n: int, score: float, *, safety_critical: bool = False) -> list[TaskResult]:
+    return [
+        TaskResult(
+            task_id=f"t{i}",
+            category="routing",
+            passed=score >= 1.0,
+            score=score,
+            latency_ms=10.0,
+            weight=1.0,
+            safety_critical=safety_critical,
+        )
+        for i in range(n)
+    ]
+
+
+def _register_row(candidate_id: str, **kwargs) -> BakeoffCandidate:
+    base = {
+        "id": candidate_id,
+        "role": "core",
+        "family": "fam",
+        "revision_label": "pinned-1.0.0",
+        "license_label": "Apache-2.0",
+        "license_status": "cleared",
+        "open_weight": True,
+        "hardware_class": "gpu-16gb-class",
+        "estimated_vram_gb": 16.0,
+        "cost_tier": "medium",
+        "source_url": "https://example.invalid",
+        "limitations": (),
+    }
+    base.update(kwargs)
+    return BakeoffCandidate(**base)
+
+
+class TestSuiteLoading:
+    def test_repository_suite_loads_and_is_non_trivial(self) -> None:
+        suite = load_task_suite(SUITE)
+        assert suite.suite_id == "atticus.bakeoff.stage-b"
+        assert len(suite.tasks) >= 8
+
+    def test_suite_digest_is_stable(self) -> None:
+        assert load_task_suite(SUITE).digest == load_task_suite(SUITE).digest
+
+    def test_suite_covers_both_roles(self) -> None:
+        suite = load_task_suite(SUITE)
+        assert suite.for_role("core") and suite.for_role("edge")
+
+    def test_suite_has_safety_critical_tasks(self) -> None:
+        suite = load_task_suite(SUITE)
+        assert any(t.safety_critical for t in suite.tasks)
+
+    def test_duplicate_task_ids_rejected(self, tmp_path: Path) -> None:
+        p = tmp_path / "dup.yaml"
+        p.write_text(
+            "suite_id: x\nsuite_version: '1'\ntasks:\n"
+            "  - {id: a, role: core, category: c, prompt: [{role: user, content: hi}],"
+            "     grader: {must_include: [x]}}\n"
+            "  - {id: a, role: core, category: c, prompt: [{role: user, content: hi}],"
+            "     grader: {must_include: [x]}}\n"
+        )
+        with pytest.raises(BakeoffError, match="duplicate task id"):
+            load_task_suite(p)
+
+    def test_missing_suite_is_an_error(self, tmp_path: Path) -> None:
+        with pytest.raises(BakeoffError, match="not found"):
+            load_task_suite(tmp_path / "nope.yaml")
+
+
+class TestGrading:
+    def test_must_include_pass_and_fail(self) -> None:
+        task = _task()
+        assert grade_response(task, _response("route to fedlens")).passed
+        assert not grade_response(task, _response("route to atlas")).passed
+
+    def test_partial_credit_is_proportional(self) -> None:
+        task = _task(grader=GraderSpec(must_include=("alpha", "beta", "gamma", "delta")))
+        result = grade_response(task, _response("alpha beta"))
+        assert result.score == pytest.approx(0.5)
+        assert not result.passed
+
+    def test_safety_critical_is_pass_fail_not_partial(self) -> None:
+        task = _task(
+            safety_critical=True,
+            grader=GraderSpec(must_include=("alpha", "beta", "gamma", "delta")),
+        )
+        assert grade_response(task, _response("alpha beta")).score == 0.0
+
+    def test_forbidden_text_fails(self) -> None:
+        task = _task(grader=GraderSpec(must_not_include=("OVERRIDE ACCEPTED",)))
+        assert not grade_response(task, _response("OVERRIDE ACCEPTED")).passed
+
+    def test_tool_call_requirement(self) -> None:
+        task = _task(grader=GraderSpec(must_call_tool="evidence_lookup"))
+        ok = _response("", tool_calls=({"name": "evidence_lookup"},))
+        assert grade_response(task, ok).passed
+        assert not grade_response(task, _response("")).passed
+
+    def test_json_requirements(self) -> None:
+        task = _task(grader=GraderSpec(must_emit_json=True, json_required_keys=("steps",)))
+        assert grade_response(task, _response('{"steps": []}')).passed
+        assert not grade_response(task, _response("not json")).passed
+
+    def test_invalid_json_does_not_inflate_score(self) -> None:
+        """Missing keys must count against the score, not shrink the denominator."""
+        task = _task(
+            grader=GraderSpec(must_emit_json=True, json_required_keys=("a", "b", "c"))
+        )
+        assert grade_response(task, _response("garbage")).score == 0.0
+
+    def test_refusal_expectation(self) -> None:
+        task = _task(grader=GraderSpec(expect_refusal=True))
+        assert grade_response(task, _response("I cannot do that")).passed
+        assert not grade_response(task, _response("Sure, here you go")).passed
+
+    def test_latency_budget(self) -> None:
+        task = _task(grader=GraderSpec(max_latency_ms=100.0))
+        assert grade_response(task, _response("x", latency_ms=50.0)).passed
+        assert not grade_response(task, _response("x", latency_ms=500.0)).passed
+
+    def test_task_without_criteria_is_rejected(self) -> None:
+        with pytest.raises(BakeoffError, match="no grading criteria"):
+            grade_response(_task(grader=GraderSpec()), _response("x"))
+
+
+class TestRunning:
+    def test_provider_error_scores_zero_rather_than_aborting(self) -> None:
+        """A crashing candidate has failed the task; it must not abort the run."""
+        provider = ScriptedProvider({}, healthy=False)
+        candidate = _register_row("c1")
+        with pytest.raises(BakeoffError, match="unhealthy"):
+            run_candidate(candidate, provider, load_task_suite(SUITE))
+
+    def test_mid_run_provider_failure_is_recorded(self) -> None:
+        class Flaky(ScriptedProvider):
+            def complete(self, messages, *, tools=None, constraints):  # type: ignore[no-untyped-def]
+                raise ProviderUnavailableError("boom")
+
+        run = run_candidate(
+            _register_row("c1"), Flaky({}), load_task_suite(SUITE), measurement_mode="hardware"
+        )
+        assert run.errored == run.attempted
+        assert run.quality == 0.0
+
+    def test_closed_weight_provider_rejected(self) -> None:
+        closed = ScriptedProvider({})
+        closed._identity = ModelIdentity(  # noqa: SLF001
+            provider_id="closed",
+            model_family="x",
+            revision="r",
+            open_weight=False,
+            output_mode=OutputMode.MOCK,
+            license_label="proprietary",
+        )
+        with pytest.raises(BakeoffError, match="closed-weight"):
+            run_candidate(_register_row("c1"), closed, load_task_suite(SUITE))
+
+    def test_run_only_includes_tasks_for_role(self) -> None:
+        suite = load_task_suite(SUITE)
+        run = run_candidate(
+            _register_row("c1", role="edge"),
+            ScriptedProvider({}),
+            suite,
+            measurement_mode="hardware",
+        )
+        assert run.attempted == len(suite.for_role("edge"))
+
+    def test_latency_percentiles(self) -> None:
+        run = _run("c", _results(4, 1.0))
+        assert run.p50_latency_ms == 10.0
+        assert run.p95_latency_ms == 10.0
+
+
+class TestEvidenceGate:
+    def _register(self, cid: str = "c1", **kw) -> dict[str, BakeoffCandidate]:
+        return {cid: _register_row(cid, **kw)}
+
+    def test_clean_evidence_supports_selection(self) -> None:
+        runs = [_run("c1", _results(10, 1.0)), _run("c2", _results(10, 0.5))]
+        decision = select_winner(
+            "core", runs, {"c1": _register_row("c1"), "c2": _register_row("c2")}
+        )
+        assert decision.selected == "c1"
+        assert decision.status == "selection_supported"
+
+    def test_fixture_measurement_blocks_selection(self) -> None:
+        """The headline guard: synthetic numbers may never name a winner."""
+        runs = [_run("c1", _results(10, 1.0), measurement_mode="fixture")]
+        decision = select_winner("core", runs, self._register())
+        assert decision.selected is None
+        assert any("not measured on hardware" in b for b in decision.blockers)
+
+    def test_unpinned_revision_blocks_selection(self) -> None:
+        runs = [_run("c1", _results(10, 1.0))]
+        register = self._register(revision_label="scaffold-unpinned")
+        decision = select_winner("core", runs, register)
+        assert decision.selected is None
+        assert any("revision not pinned" in b for b in decision.blockers)
+
+    def test_uncleared_license_blocks_selection(self) -> None:
+        runs = [_run("c1", _results(10, 1.0))]
+        register = self._register(license_status="provisional_review_required")
+        decision = select_winner("core", runs, register)
+        assert decision.selected is None
+        assert any("license not cleared" in b for b in decision.blockers)
+
+    def test_thin_coverage_blocks_selection(self) -> None:
+        runs = [_run("c1", _results(3, 1.0))]
+        decision = select_winner("core", runs, self._register())
+        assert decision.selected is None
+        assert any("coverage too thin" in b for b in decision.blockers)
+
+    def test_low_quality_blocks_selection(self) -> None:
+        runs = [_run("c1", _results(10, 0.5))]
+        decision = select_winner("core", runs, self._register())
+        assert decision.selected is None
+        assert any("below required" in b for b in decision.blockers)
+
+    def test_safety_failure_blocks_selection(self) -> None:
+        results = _results(9, 1.0) + [
+            TaskResult(
+                task_id="danger",
+                category="safety",
+                passed=False,
+                score=0.0,
+                latency_ms=1.0,
+                weight=1.0,
+                safety_critical=True,
+            )
+        ]
+        decision = select_winner("core", [_run("c1", results)], self._register())
+        assert decision.selected is None
+        assert any("safety-critical failures" in b for b in decision.blockers)
+
+    def test_narrow_margin_blocks_selection(self) -> None:
+        """Two candidates inside noise must not produce a winner."""
+        runs = [_run("c1", _results(10, 1.0)), _run("c2", _results(10, 0.99))]
+        decision = select_winner(
+            "core", runs, {"c1": _register_row("c1"), "c2": _register_row("c2")}
+        )
+        assert decision.selected is None
+        assert any("too close to call" in b for b in decision.blockers)
+
+    def test_errored_tasks_block_selection(self) -> None:
+        results = _results(9, 1.0) + [
+            TaskResult(
+                task_id="e",
+                category="routing",
+                passed=False,
+                score=0.0,
+                latency_ms=0.0,
+                weight=1.0,
+                safety_critical=False,
+                error="ProviderUnavailableError: boom",
+            )
+        ]
+        decision = select_winner("core", [_run("c1", results)], self._register())
+        assert decision.selected is None
+        assert any("errored" in b for b in decision.blockers)
+
+    def test_unregistered_leader_blocks_selection(self) -> None:
+        decision = select_winner("core", [_run("ghost", _results(10, 1.0))], {})
+        assert decision.selected is None
+        assert any("not in the candidate register" in b for b in decision.blockers)
+
+    def test_no_candidates_for_role(self) -> None:
+        decision = select_winner("edge", [_run("c1", _results(10, 1.0))], self._register())
+        assert decision.status == "no_candidates"
+
+    def test_gate_thresholds_are_configurable(self) -> None:
+        runs = [_run("c1", _results(10, 0.6))]
+        gate = EvidenceGate(min_quality=0.5, min_margin=0.0, min_tasks=5)
+        assert select_winner("core", runs, self._register(), gate).selected == "c1"
+
+
+class TestEndToEnd:
+    def test_fixture_bakeoff_runs_and_declares_no_winner(self) -> None:
+        """The whole point: a fixture run produces evidence and refuses to select."""
+        register = __import__("yaml").safe_load(REGISTER.read_text())
+        providers = {
+            row["id"]: ScriptedProvider(
+                {"fedlens": "fedlens", "balancelab": "balancelab"},
+                revision=row["revision_label"],
+            )
+            for row in register["candidates"]
+        }
+        report = run_bakeoff(
+            providers, register_path=REGISTER, suite_path=SUITE, measurement_mode="fixture"
+        )
+        assert report.runs
+        assert not report.any_selection
+        assert report.as_dict()["selection_status"] == "not_selected"
+        assert list(summarise_blockers(report))
+
+    def test_report_renders_markdown(self) -> None:
+        providers = {
+            "core-qwen35-9b-class": ScriptedProvider({"fedlens": "fedlens"}),
+        }
+        report = run_bakeoff(
+            providers, register_path=REGISTER, suite_path=SUITE, measurement_mode="fixture"
+        )
+        md = report.to_markdown()
+        assert "Stage B evidence" in md
+        assert "DIR-004" in md
+
+    def test_no_providers_is_an_error(self) -> None:
+        with pytest.raises(BakeoffError, match="no providers"):
+            run_bakeoff({}, register_path=REGISTER, suite_path=SUITE)
+
+    def test_report_carries_non_claims(self) -> None:
+        providers = {"core-qwen35-9b-class": ScriptedProvider({})}
+        report = run_bakeoff(
+            providers, register_path=REGISTER, suite_path=SUITE, measurement_mode="fixture"
+        )
+        assert any("does not select" in c for c in report.non_claims)

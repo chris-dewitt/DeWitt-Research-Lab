@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo serve docs-check program-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo bakeoff bakeoff-json serve docs-check program-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -13,6 +13,12 @@ doctor:
 
 demo:
 	uv run --package atticus-control-plane atticus-demo --public
+
+bakeoff:
+	uv run python scripts/run_bakeoff.py
+
+bakeoff-json:
+	uv run python scripts/run_bakeoff.py --json
 
 serve:
 	uv run --package atticus-control-plane atticus-server

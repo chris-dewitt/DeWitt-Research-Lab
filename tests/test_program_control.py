@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -51,9 +52,18 @@ def test_representative_issue_bodies_are_executable(body_name: str) -> None:
 
 
 def test_ci_has_one_pnpm_version_source() -> None:
+    """package.json#packageManager must be the only source of the pnpm version.
+
+    Locating the step by action version pinned this test to `@v4` and broke it on a
+    routine bump to `@v6.0.9`. The action's own version is irrelevant to the
+    invariant — what matters is that the step does not also declare `version:`,
+    which makes pnpm/action-setup reject the workflow.
+    """
     workflow = (ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8")
     package = (ROOT / "package.json").read_text(encoding="utf-8")
     assert '"packageManager": "pnpm@' in package
-    action = workflow.split("uses: pnpm/action-setup@v4", maxsplit=1)[1]
-    action = action.split("- uses: actions/setup-node", maxsplit=1)[0]
+
+    match = re.search(r"uses:\s*pnpm/action-setup@\S+", workflow)
+    assert match, "ci.yml no longer sets up pnpm via pnpm/action-setup"
+    action = workflow[match.end() :].split("- uses: actions/setup-node", maxsplit=1)[0]
     assert "version:" not in action

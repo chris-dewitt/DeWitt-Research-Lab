@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Workshop Monorepo"
-version: 4.1.0
+version: 4.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-03
@@ -13,15 +13,62 @@ last_updated: 2026-08-03
 **Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
 **Intelligence for Good. Intelligence for All.**
 
-DeWitt Research Workshop (DRL) is an independent open research initiative founded and directed by Christopher Noxon DeWitt. DRL is **open by construction**. Open models, open-source software, public evaluation, local operation, and reproducible teaching artifacts are central to the laboratory's identity—not an afterthought. DRL is governed by the [Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md). The laboratory studies and builds inspectable, useful, locally operable artificial-intelligence systems. Its central platform is **Atticus**, an open-weight assistant and orchestration system that guides users through the laboratory and coordinates specialist systems for economic research, Federal Reserve analysis, quantitative scenario modeling, and AI evaluation.
+This is one person's workshop. Christopher Noxon DeWitt builds and tests
+open-weight AI systems in the open. The workshop is **open by construction**:
+the models are open-weight, the code is open-source, the evaluation is public,
+and everything runs locally — not as an afterthought, but as the reason the rest
+of it is arranged the way it is. Governed by the
+[Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md).
 
-This repository is both a runnable monorepo foundation and a controlled
-specification system. It includes a local, deterministic vertical slice in
-which Atticus routes research work across Atlas, FedLens, BalanceLab AI, and
-EvalForge while preserving policy, approval, evidence, and trace boundaries.
-It is designed so sequential agentic developers—Codex, Claude Code, Cursor,
-GitHub Copilot, Gemini, and human contributors—can build from a common source
-of truth without silently changing the architecture.
+**Atticus** is the operator: it plans a piece of work and routes it across four
+specialist projects — Atlas (macro evidence), FedLens (Fed policy with
+passage-level citations), BalanceLab AI (deterministic scenario modelling), and
+EvalForge (evaluation and permission testing).
+
+Everything here is **prototype** maturity. That label is accurate, not modest.
+
+## Quickstart
+
+The whole workflow runs on one machine with deterministic fixtures. No cloud
+account, no API key, no inference bill.
+
+```bash
+make bootstrap   # uv sync + pnpm install
+make doctor      # check your toolchain
+make demo        # run the integrated workflow end to end
+```
+
+`make demo` runs a real evidence-to-scenario pass: Atlas supplies macro
+evidence, FedLens reads an FOMC communication and cites it, BalanceLab applies a
+rate shock, and EvalForge scores the result. It prints the evidence count, the
+score, and — deliberately — its own limitations.
+
+Expect roughly this:
+
+```text
+DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION
+STATE: completed
+...
+EVIDENCE: 5 items
+EVALFORGE: 1.0
+LIMITATIONS:
+- Macro, market, and Fed inputs are synthetic fixtures for local development.
+- BalanceLab uses a simplified educational repricing model, not production bank data.
+```
+
+Those limitations are the point. The inputs are synthetic fixtures, and the
+planner driving Atticus is rule-based — it stands in for Atticus Core until the
+model bake-off picks a real one. What the demo proves is that the contracts,
+policy boundaries, evidence lineage, and evaluation plumbing compose correctly,
+not that the numbers mean anything about the world.
+
+### Other useful targets
+
+```bash
+make verify      # all validators + tests, the same gate CI runs
+make test        # pytest only
+make serve       # run the Atticus control-plane server locally
+```
 
 ## Read this first
 

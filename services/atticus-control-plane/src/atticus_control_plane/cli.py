@@ -37,7 +37,7 @@ def main() -> int:
     if args.json:
         print(json.dumps(result.to_dict(), indent=2, default=str))
     else:
-        print("DEWITT RESEARCH LABORATORY // ATTICUS LOCAL FOUNDATION")
+        print("DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION")
         print(f"STATE: {result.state.value}")
         print()
         print(result.summary)

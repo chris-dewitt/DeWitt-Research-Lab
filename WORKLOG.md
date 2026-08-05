@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.15.0
+version: 4.16.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -19,8 +19,9 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
 - Active mission: **15 Research/Community** — DRL-031 Computational Finance
-  of Intelligence program and agent execution plan. DRL-021 documentation is
-  ready for review; Wix editor implementation remains Director-operated.
+  of Intelligence planning is complete on `main`. The next research packet is
+  `CFI-002`; it has not yet been filed or started. Wix editor implementation
+  remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -50,7 +51,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
-| 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | READY FOR REVIEW | — |
+| 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -96,6 +97,7 @@ Append completed handoffs below this line. Never place credentials, private data
 
 - Branch: `lovesong/research/drl-031-computational-finance-intelligence`
 - Implementation commit: `cf4a98f`
+- Main integration commit: `402bf9c` (Director-approved direct merge; no PR)
 - Established one program, Belief Diffusion as its shared methods bridge, and
   three paper tracks with sequential task packets and human gates.
 - Validators PASS; 12 focused tests and all 26 documentation tests PASS; Ruff,
@@ -104,6 +106,8 @@ Append completed handoffs below this line. Never place credentials, private data
   publication action occurred.
 - Handoff:
   `agents/handoffs/2026-08-05-drl-031-computational-finance-plan.md`
+- Integration handoff:
+  `agents/handoffs/2026-08-05-drl-031-main-integration.md`
 - Next: file and execute `CFI-002` only—the primary-source literature and
   novelty matrix. `CFI-005` is the first later experimental implementation
   issue and remains dependency-gated.

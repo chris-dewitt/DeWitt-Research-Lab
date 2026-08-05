@@ -57,7 +57,7 @@ def test_program_names_first_agent_packet_and_issue_registration() -> None:
     )
     issue = next(item for item in register["issues"] if item["id"] == "DRL-031")
     assert issue["mission"] == 15
-    assert issue["status"] == "EVIDENCE_READY"
+    assert issue["status"] == "COMPLETE"
     assert issue["dependencies"] == ["DRL-028"]
 
     memo = (ROOT / "DIRECTORS_MEMO.md").read_text(encoding="utf-8")

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-001
 title: "Specification Map and Authority Index"
-version: 2.1.0
+version: 2.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-05
 ---
 
 
@@ -42,6 +42,7 @@ This document tells agents where requirements live and prevents the “same rule
 | Evaluation release gates | `docs/05-evaluation/RELEASE_EVALUATION_GATES.md` |
 | GCP deployment | `docs/07-platform-gcp/PLATFORM_ARCHITECTURE.md` and Terraform |
 | Website design | `docs/08-web-brand/WEBSITE_PRODUCT_AND_DESIGN_SPEC.md` |
+| Academic research program | `docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md` |
 | Open-source operations | `docs/09-open-source/OPEN_SOURCE_PROGRAM.md` |
 | Agent sequence | `agents/SEQUENTIAL_EXECUTION_PLAN.md` |
 | V1 acceptance | `docs/12-acceptance/V1_RELEASE_CRITERIA.md` |

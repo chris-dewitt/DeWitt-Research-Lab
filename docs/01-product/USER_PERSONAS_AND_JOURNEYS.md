@@ -1,69 +1,57 @@
 ---
 document_id: DRL-PRD-002
-title: "User Personas and End-to-End Journeys"
-version: 2.0.0
+title: "Academic Portfolio Audiences and Journeys"
+version: 3.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
+# Academic Portfolio Audiences and Journeys
 
-# User Personas and End-to-End Journeys
+## Faculty member or prospective adviser
 
-## Persona: The collaborator
+**Question:** Is this student asking worthwhile computer-science questions and
+building credible systems to investigate them?
 
-**Goal:** determine whether DRL is worth contributing to and find a tractable issue.  
-**Needs:** architecture clarity, setup instructions, roadmap, governance, issue quality, maintainer responsiveness.  
-**Journey:** homepage → open-source portal → system architecture → contributor tour with Atticus → good-first issue → local mock setup → PR.
+**Journey:** Home -> education and interests -> selected research -> methods,
+evidence, limitations, and code -> current direction -> CV/contact.
 
-Success means the collaborator can identify the purpose of the work, run tests without paid APIs, understand ownership, and submit a change without asking the Director to explain the entire repository.
+## Admissions or research-program reader
 
-## Persona: The tinkerer
+**Question:** Does Christopher's applied-data-science background support a clear
+and credible progression toward deeper computer-science study?
 
-**Goal:** install a reusable component or run a demo.  
-**Needs:** simple commands, examples, transparent dependencies, small packages, API stability.  
-**Journey:** package catalog → EvalForge or policy-engine page → install command → example notebook/CLI → API reference.
+**Journey:** Home -> current UNC-Chapel Hill program -> research interests ->
+technical report and projects -> future direction -> About/CV.
 
-## Persona: The student or learner
+## Research peer
 
-**Goal:** understand agents, RAG, evaluation, post-training, or quantitative AI by seeing it work.  
-**Needs:** plain-language explanations, diagrams, guided tours, glossary, reproducible notebooks, visible failure cases.  
-**Journey:** teaching portal → “How Atticus uses tools” tour → trace replay → short lesson → notebook exercise.
+**Question:** Is the work reproducible, technically interesting, and honest
+about what it proves?
 
-## Persona: The academic or applied researcher
+**Journey:** Research -> `TR-2026-001` -> recorded run -> source, methods,
+negative results, and next questions -> contact.
 
-**Goal:** assess methodology, reproduce results, or extend a benchmark.  
-**Needs:** dataset/version details, statistical analysis, baseline definitions, ablations, code and environment locks, limitations.  
-**Journey:** research archive → AtticusBench paper/report → dataset card → replication package → issue/discussion.
+## Relevant technical employer
 
-## Persona: The teacher
+**Question:** Can Christopher design, connect, test, and explain complex systems?
 
-**Goal:** use DRL material in a class.  
-**Needs:** stable lesson pages, learning objectives, estimated time, prerequisites, datasets, licenses, answer guidance, accessible alternatives.  
-**Journey:** teaching portal → module → instructor notes → student exercise → citation/license guidance.
+**Journey:** Home -> selected projects -> architecture/evaluation -> recorded
+demonstration -> About/CV/contact.
 
-## Persona: The hiring manager
+## Developer or curious reader
 
-**Goal:** quickly judge the Director's ability to design and operate AI systems.  
-**Needs:** concise value proposition, three strong workflows, architecture, measurable evidence, code quality, résumé.  
-**Journey:** homepage → two-minute systems tour → Atticus trace → EvalForge report → founder profile/résumé → GitHub.
+**Question:** What can I inspect or run?
 
-## Persona: The Director, private operator
+**Journey:** Projects -> source/repository -> local setup -> tests and artifacts.
 
-**Goal:** use Atticus as a trusted local copilot and operate DRL.  
-**Needs:** voice, repository workflows, private files, model selection, approvals, local logs, cloud/local control.  
-**Journey:** local runner starts → voice request → local intent/permission → repository/file action → approval → result and audit.
+## Cross-cutting requirements
 
-## Cross-cutting journey requirements
-
-Every journey must specify:
-
-- entry and exit;
-- anonymous/authenticated/local identity;
-- required services;
-- cold-start/offline behavior;
-- data collected and retained;
-- errors and recovery;
-- accessibility alternatives;
-- evaluation events;
-- cost guardrails.
+- The first screen identifies the person, current degree, university, and
+  computer-science direction.
+- Independent work never implies university supervision or endorsement.
+- Professional context never exposes employer identity or confidential work.
+- Every project shows Christopher's role, maturity, evidence, limitations, and
+  next question.
+- Every journey works without chat, sign-in, or a live model.

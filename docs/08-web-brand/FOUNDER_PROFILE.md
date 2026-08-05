@@ -1,47 +1,40 @@
 ---
 document_id: DRL-WEB-021
-title: "Founder and Director Profile"
-version: 1.0.0
+title: "Personal Academic Profile"
+version: 2.0.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-04
 ---
 
-# Founder and Director
+# Christopher Noxon DeWitt
 
 ## Short profile
 
-Christopher Noxon DeWitt is an Applied AI Researcher in Charlotte, North Carolina, with a
-background in statistics, economics, applied data science, quantitative
-financial analysis, and software development. He founded DeWitt Research
-Laboratory as an independent, one-person initiative for tinkering with,
-studying, and building open and publicly useful artificial intelligence.
+Christopher Noxon DeWitt is a student in the Master of Applied Data Science
+program at the University of North Carolina at Chapel Hill. He engineers
+complex systems at work and studies them part time, with the goal of moving from
+data science toward further graduate work in computer science.
 
 ## Full profile
 
-The Director's work sits at the intersection of artificial intelligence, statistical
-modeling, economics, quantitative finance, research engineering, and public
-technology. His experience includes balance-sheet and interest-rate-risk
-analysis, forecasting, data pipelines, econometrics, Python, SQL, and technical
-automation. He is completing graduate study in applied data science and
-continues independent study across machine learning, open models, agent
-systems, computing, mathematics, and economic inequality.
+Christopher's interests sit at the intersection of applied data science,
+computer science, artificial intelligence, statistical modeling, economics,
+and software engineering. His professional background includes quantitative
+financial analysis, forecasting, data pipelines, Python, SQL, and technical
+automation.
 
-He established DeWitt Research Workshop to create a coherent home for that
-work: Atticus, an inspectable AI guide and operator; Atlas, a macro and market
-evidence system; FedLens, a Federal Reserve research system; BalanceLab AI, a
-deterministic financial-scenario laboratory; and EvalForge, an evaluation and
-reliability program.
+His independent projects explore agent orchestration, evidence lineage,
+evaluation, reproducibility, and deterministic quantitative tools. This
+portfolio collects that work so readers can see the questions, implementations,
+methods, limitations, and next steps together.
 
-DRL is intentionally honest about its scale. It is currently one researcher
-building in public, not a university, company research division, government
-laboratory, or fictional staff. The ambition is institutional; the present
-operation is personal, practical, and open to serious collaborators.
+Christopher is currently completing the Master of Applied Data Science program
+at UNC-Chapel Hill. After this degree, he hopes to continue toward graduate work
+in computer science and deepen his study of complex intelligent systems.
 
 ## Disclosure
 
-DRL is independent of the Director's employer. Public work uses public, synthetic,
-personally owned, or appropriately licensed material and must never disclose
-confidential employer, customer, or production information. Employment names,
-exact dates, résumé links, photographs, and contact channels require a final
-public-content review before publication.
+Independent projects are not described as university research or coursework
+unless that relationship is verified. Public material never names Christopher's
+employer or includes confidential employer, customer, or production information.

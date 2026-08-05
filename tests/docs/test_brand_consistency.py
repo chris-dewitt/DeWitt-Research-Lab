@@ -21,8 +21,6 @@ QUOTING_PATHS = [
     "README.md",
     "LABORATORY_BIBLE.md",
     "docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md",
-    "docs/08-web-brand/WIX_SITE_BUILD_PLAN.md",
-    "docs/08-web-brand/HOMEPAGE_SPEC.md",
     "services/atticus-control-plane/src/atticus_control_plane/tools.py",
     "scripts/audit_wix_site.py",
 ]
@@ -44,7 +42,7 @@ HISTORY_EXEMPT = {"DIRECTORS_MEMO.md", "CHANGELOG.md", "WORKLOG.md"}
 
 def canonical_mission_line() -> str:
     """Extract the mission line from its canonical owner, BRAND_SYSTEM.md."""
-    text = BRAND_SYSTEM.read_text()
+    text = BRAND_SYSTEM.read_text(encoding="utf-8")
     match = re.search(r"##\s*Mission line\s*\n+\*\*(.+?)\*\*", text, re.S)
     assert match, "BRAND_SYSTEM.md no longer declares a '## Mission line' section"
     return match.group(1).strip()
@@ -70,7 +68,7 @@ def test_canonical_mission_line_is_declared() -> None:
 @pytest.mark.parametrize("rel", QUOTING_PATHS)
 def test_quoting_files_match_canonical_mission_line(rel: str) -> None:
     line = canonical_mission_line()
-    text = (ROOT / rel).read_text()
+    text = (ROOT / rel).read_text(encoding="utf-8")
     assert line in text, (
         f"{rel} does not contain the canonical mission line {line!r} from BRAND_SYSTEM.md. "
         "Update it, or drop it from QUOTING_PATHS if it should no longer carry the line."
@@ -86,7 +84,7 @@ def test_no_retired_mission_line_survives_anywhere() -> None:
             continue
         if path.match("agents/handoffs/*"):
             continue
-        text = path.read_text(errors="replace")
+        text = path.read_text(encoding="utf-8", errors="replace")
         for retired in RETIRED_MISSION_LINES:
             if retired in text:
                 offenders.append(f"{path.relative_to(ROOT)}: {retired!r}")

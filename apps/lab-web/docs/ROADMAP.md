@@ -1,60 +1,60 @@
 ---
 document_id: DRL-WEB-105
-title: "DRL Web Build Roadmap"
-version: 3.0.0
+title: "Workshop Web Build Roadmap"
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
+# Workshop Web Build Roadmap
 
-    # DRL Web Build Roadmap
+## Delivery philosophy
 
-    ## Delivery philosophy
+The web experience is built as thin verified vertical slices. Each slice
+includes contracts, implementation, tests, accessibility, documentation,
+artifact evidence, and rollback.
 
-    DRL Web is built as thin verified vertical slices. Each slice includes contracts, implementation, tests, telemetry, documentation, demo evidence, and rollback—not an isolated subsystem no user can exercise.
+## Workstreams
 
-    ## Workstreams
+- Design system and controlled-content engine.
+- Signed success/degraded replay viewer with transcript fallback.
+- `TR-2026-001` report reader.
+- Project, method, and open-artifact views.
+- Wix return navigation and canonical metadata.
+- Future Atticus console behind deployment, consent, policy, and abuse gates.
+- Accessibility, performance, SEO, privacy, and release evidence.
 
-    - Design system and content engine.
-- Institutional, project, research, and open-source pages.
-- Signed replay and architecture visualization.
-- Atticus console.
-- Status, metrics, and failure museum.
-- Auth, consent, and analytics.
-- Accessibility, performance, SEO, and release.
+## Dependency order
 
-    ## Dependency order
+Tokens/content validation -> report reader -> signed replay viewer -> Wix evidence
+links -> project/method/open views -> future live Atticus/auth -> optional public
+status -> exhaustive release audit.
 
-    Tokens/components/content validation → static institutional shell → project/research views → replay console → live Atticus/auth → status/failure/analytics → exhaustive release audit.
+## Cross-project dependencies
 
-    ## Cross-project dependencies
+- controlled documents and signed artifacts;
+- replay manifests and evaluation reports;
+- project maturity and source metadata;
+- Wix/domain integration;
+- brand, security, privacy, and open-artifact policies.
 
-    - Controlled documents and signed artifacts.
-- Atticus public API and replay manifests.
-- Specialist project outputs.
-- Firebase App Hosting and Terraform.
-- Brand/design specifications.
-- Security and privacy policies.
+## Release evidence
 
-    ## Release evidence
+- content/provenance validation;
+- success/degraded replay verification;
+- report, source, citation, and fallback links;
+- accessibility, performance, visual, and end-to-end reports;
+- consent/privacy verification where applicable;
+- deployment and rollback evidence.
 
-    - Content/provenance validation.
-- Accessibility and performance reports.
-- Visual and E2E snapshots.
-- Signed integrated demo.
-- Consent/privacy verification.
-- Deployment and rollback evidence.
-- Launch content checklist.
+## Explicitly deferred
 
-    ## Explicitly deferred
+- public live Atticus before its separate gates pass;
+- standalone status or failure-museum sites;
+- community social network and unrestricted user-generated pages;
+- native mobile app, elaborate 3D scenes, autoplay media;
+- commercial billing/marketplace;
+- full multilingual localization beyond architecture readiness.
 
-    - Community social network.
-- Unrestricted user-generated pages.
-- Native mobile app.
-- Elaborate 3D scenes.
-- Autoplay media.
-- Commercial billing/marketplace.
-- Full multilingual localization beyond architecture readiness.
-
-    Deferred work may appear on the public roadmap but cannot be implied by V1 marketing. Agents must not widen authority or scope “helpfully.”
+Deferred work may appear only as clearly labeled planned work.

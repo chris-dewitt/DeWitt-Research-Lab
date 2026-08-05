@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.10.0
+version: 4.15.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-01
+last_updated: 2026-08-05
 ---
 
 
@@ -18,8 +18,9 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **15 Research/Community** — DRL-029 contributor routes in review
-  (DRL-028 TR-2026-001 merged).
+- Active mission: **15 Research/Community** — DRL-031 Computational Finance
+  of Intelligence program and agent execution plan. DRL-021 documentation is
+  ready for review; Wix editor implementation remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -48,6 +49,32 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-020 | Cursor cloud agent | `cursor/drl-020-teaching-guide-ad29` | 2026-08-01 | MERGED | PR #23 |
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
+| 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
+| 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | READY FOR REVIEW | — |
+
+## Active scope — DRL-021 documentation cleanup
+
+- Scope: make the public site Christopher Noxon DeWitt's personal academic
+  portfolio, centered on his UNC-Chapel Hill Master of Applied Data Science
+  study, complex-systems work/interests, and intended computer-science trajectory.
+- Dependencies retained: the Wix editor and deployment remain outside this branch;
+  DRL-021 stays `QUEUED` until its visual and operational acceptance evidence exists.
+- Exit criteria: personal identity and current education lead; **View my
+  research** and **Explore my projects** are the first actions; projects are
+  evidence; university and employer boundaries are explicit; tests pass.
+
+## Active scope — DRL-031 Computational Finance of Intelligence
+
+- Scope: record the Director-approved research program linking belief
+  diffusion to optimal stopping, linguistic framing and no-arbitrage belief
+  repair, and market-based multi-agent aggregation.
+- Dependencies: public or synthetic data with recorded rights; deterministic
+  financial calculations; preregistered primary metrics; agents remain
+  sequential and may not publish, reinterpret hypotheses, or claim results
+  without Director/reviewer gates.
+- Exit criteria: controlled program plan, agent-ready task graph, issue
+  registration, decision records, research-program index update, validation,
+  and an exact next-agent start packet. No experiment result is claimed.
 
 ## Weekly dashboard snapshot — 2026-07-27
 
@@ -64,6 +91,42 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-05 — DRL-031 Computational Finance of Intelligence plan
+
+- Branch: `lovesong/research/drl-031-computational-finance-intelligence`
+- Implementation commit: `cf4a98f`
+- Established one program, Belief Diffusion as its shared methods bridge, and
+  three paper tracks with sequential task packets and human gates.
+- Validators PASS; 12 focused tests and all 26 documentation tests PASS; Ruff,
+  open-identity validation, secret/placeholder scan, and diff check PASS.
+- No dataset, model, external API, cloud resource, experiment, result claim, or
+  publication action occurred.
+- Handoff:
+  `agents/handoffs/2026-08-05-drl-031-computational-finance-plan.md`
+- Next: file and execute `CFI-002` only—the primary-source literature and
+  novelty matrix. `CFI-005` is the first later experimental implementation
+  issue and remains dependency-gated.
+
+### 2026-08-04 — DRL-021 evidence-first academic positioning
+
+> Superseded during review by RES-016. The branch was corrected to a personal
+> academic portfolio before push or pull request.
+
+- Correction commit: `00b7eea`
+- Final contract: personal identity and UNC-Chapel Hill study first; Research,
+  Projects, and About; reports/replays/software as selected evidence.
+
+- Branch: `lovesong/docs/drl-021-positioning-cleanup`
+- Implementation commit: `71d5b55`
+- Reconciled controlled site/product/app-shell docs around replay +
+  `TR-2026-001`, academic evaluation, visible degraded/no-winner evidence, and
+  planned Atticus state.
+- Validators PASS; 31 focused tests PASS; 198 executable full-suite tests PASS.
+  One unchanged Windows symlink test requires a host with symlink privilege.
+- Handoff: `agents/handoffs/2026-08-04-drl-021-positioning.md`
+- Next: Director/Wix operator implements and captures DRL-021 visual, link,
+  accessibility, and rollback evidence; issue remains `QUEUED` until then.
 
 ### 2026-08-01 — DRL-029 contributor routes and good-first issues
 

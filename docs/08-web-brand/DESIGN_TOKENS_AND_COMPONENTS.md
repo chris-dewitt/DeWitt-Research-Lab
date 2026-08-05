@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-003
 title: "Design Tokens and Component Inventory"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
 
@@ -31,7 +31,7 @@ color.system.atticus / atlas / fedlens / balance / eval
 
 Typography:
 
-- display/institution: restrained sans or serif;
+- display/workshop: restrained sans or serif;
 - body: high-readability sans/serif;
 - metadata/code: mono;
 - numeric tables: tabular figures.
@@ -40,7 +40,7 @@ Spacing, radius, shadow, z-index, motion duration, and chart tokens are centrali
 
 ## Component inventory
 
-- institutional header/status strip;
+- compact workshop header and evidence-state strip;
 - command palette;
 - pane manager;
 - document viewer with margin metadata;

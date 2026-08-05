@@ -1,129 +1,77 @@
 ---
 document_id: DRL-PRD-001
-title: "DeWitt Research Workshop V1 Product Requirements"
-version: 2.0.0
+title: "Christopher Noxon DeWitt Academic Portfolio Requirements"
+version: 3.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
+# Christopher Noxon DeWitt Academic Portfolio Requirements
 
-# DeWitt Research Workshop V1 Product Requirements
+## Product definition
 
-## Product vision
+The public website is Christopher Noxon DeWitt's personal academic portfolio.
+It presents him as a working graduate student building serious technical work,
+not as the director of a fictional laboratory or institution.
 
-DRL V1 is a public, open-source research laboratory operated by Atticus. It gives visitors a compelling way to explore real AI systems, gives contributors usable software and documentation, gives learners transparent examples, and gives the Director a credible body of applied-AI research.
+## Core narrative
 
-## Primary audiences
+- Christopher is a student in the Master of Applied Data Science program at the
+  University of North Carolina at Chapel Hill.
+- He engineers complex systems at work and studies them part time.
+- His independent work explores intelligent systems, agent orchestration,
+  evidence, evaluation, reproducibility, and deterministic computation.
+- He hopes to move from applied data science toward graduate work in computer
+  science.
 
-1. **Collaborators and maintainers** seeking a serious open-source project with clear contribution boundaries.
-2. **Tinkerers and builders** wanting reusable agent, evaluation, retrieval, and quantitative components.
-3. **Students and learners** wanting transparent demonstrations and teaching materials.
-4. **Academics and applied researchers** interested in benchmarks, datasets, model post-training, and reproducibility.
-5. **Teachers** seeking examples and course-ready material.
-6. **Hiring managers and technical leaders** evaluating the Director's engineering and research judgment.
-7. **Potential sponsors, consulting clients, or training partners** seeking credible expertise without roadmap control.
+## Audience
 
-## Product promise
+Faculty, prospective advisers and admissions readers, conference-oriented
+researchers, research peers, and relevant technical employers. The portfolio
+must withstand expert scrutiny without inflating credentials or affiliations.
 
-A visitor can understand the laboratory without chat, ask Atticus to guide them, inspect live or replayed workflows, see the evidence and evaluation behind claims, run bounded public demonstrations, navigate code and documentation, and learn how to contribute.
+## Required experience
 
-## Required V1 capabilities
+Within one minute a visitor understands Christopher's current education,
+technical interests, selected work, and future direction. The visitor can then:
 
-### Laboratory platform
+- read research and technical reports;
+- inspect projects, architecture, code, methods, and limitations;
+- watch a recorded prototype run;
+- see negative results and unresolved questions;
+- reach an approved CV, GitHub profile, or contact route.
 
-- institutional website with mission, systems map, research archive, open-source portal, models/data, benchmarks, teaching, failure museum, console, about, and documentation;
-- repository-backed content publishing;
-- public status and release manifests;
-- command palette and guided tours;
-- accessible responsive design.
+## Information architecture
 
-### Public Atticus
+- **Home:** personal introduction, education, interests, selected work, direction.
+- **Research:** reports, methods, experiments, notes, and recorded evidence.
+- **Projects:** selected systems with Christopher's role and honest maturity.
+- **About:** background, current study, future goals, CV/contact.
 
-- anonymous sessions with strict quotas and allowlisted tools;
-- authenticated sessions with saved public projects/history and transparent retention;
-- laboratory documentation Q&A with citations;
-- guided tours;
-- specialist routing;
-- live and replayed demonstrations;
-- visible plan, tool calls, policy checks, sources, costs, and evaluation summary;
-- open-weight inference path.
+## Principles
 
-### Private Atticus
+- Personal clarity before project branding.
+- Specific evidence before grand claims.
+- Academic ambition with accurate current credentials.
+- Independent projects are not labeled UNC-Chapel Hill research or coursework
+  unless verified.
+- No employer name or confidential work.
+- No fictional laboratory, team, hosted Atticus service, or collaborator funnel.
+- Failures and limitations strengthen the record when presented with method and
+  next steps.
 
-- Windows-first local runner;
-- device pairing/revocation;
-- outbound-only communication;
-- local voice adapter;
-- approved-directory file search;
-- repository inspection, test, and patch preparation;
-- local approval and audit;
-- fully local inference option for supported tasks.
+## Selected evidence
 
-### Models and research
+`TR-2026-001`, signed recorded runs, the Stage-B no-selection result, source
+code, and reproducibility materials are strong portfolio artifacts. They appear
+under Research or Projects rather than defining the site's identity.
 
-- Atticus Core and Edge research programs;
-- published model artifacts when licensing permits;
-- AtticusBench development and held-out evaluation sets;
-- training and evaluation recipes;
-- model, data, safety, and reproducibility reports.
+## Success measures
 
-### Specialist systems
-
-- Atlas public macro research vertical slice;
-- FedLens official-document comparison and timeline vertical slice;
-- BalanceLab deterministic synthetic scenario vertical slice;
-- EvalForge standalone SDK, CLI, report, and CI gate.
-
-## Product principles
-
-- Real capability over simulated capability; replays are clearly labeled.
-- Progressive disclosure: useful in 60 seconds, inspectable for hours.
-- Public data and synthetic financial models only.
-- Open-weight core; provider fallback is disclosed and optional.
-- A model does not receive more authority because the interface is conversational.
-- The interface teaches how the system works.
-- Failure and uncertainty are product features, not hidden embarrassment.
-
-## V1 non-goals
-
-- unrestricted public general-purpose agent;
-- real-world financial advice or production bank modeling;
-- public access to the Director's local runner;
-- training a foundation model from scratch;
-- full enterprise organization administration;
-- an unreviewed community plugin marketplace;
-- supporting all clouds and runtimes;
-- persistent GPU capacity solely for visual smoothness.
-
-## Product metrics
-
-### Engagement
-
-- completion of guided tours and demos;
-- documentation and repository navigation;
-- contribution funnel from issue view to accepted PR;
-- teaching-material usage;
-- repeat authenticated use.
-
-### Quality
-
-- public workflow task success;
-- route/tool accuracy;
-- citation support;
-- trace completeness;
-- deterministic calculation consistency;
-- accessibility audit score;
-- setup success from clean checkout.
-
-### Safety and operations
-
-- unauthorized actions: target zero;
-- cross-tenant leakage: target zero;
-- abuse-block efficacy;
-- cost per completed public workflow;
-- p50/p95 time to first useful output;
-- cold-start fallback success;
-- incident count and recovery time.
-
-Metrics are not silently collected. Analytics and research donation use separate consent and data paths.
+- a qualified reader can summarize Christopher's research interests and
+  trajectory accurately;
+- selected work leads cleanly to methods, code, evidence, and limitations;
+- serious academic or relevant professional inquiries reach Christopher;
+- the site remains readable, accessible, responsive, and useful without chat or
+  a live backend.

@@ -1,17 +1,21 @@
 ---
 document_id: DRL-AGT-006
-title: "Agent Mission 06: Brand, Laboratory Website, and Public Experience"
-version: 4.0.0
+title: "Agent Mission 06: Brand, Workshop Website, and Public Experience"
+version: 4.2.0
 status: APPROVED EXECUTION MISSION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
-# Agent Mission 06: Brand, Laboratory Website, and Public Experience
+# Agent Mission 06: Brand, Workshop Website, and Public Experience
 
 ## Mission objective
 
-Implement the cream-on-black DRL website and design system as a serious research terminal—not a generic portfolio skin. The site must introduce the laboratory first, make Atticus the guide, communicate five connected systems at multiple depths, and remain fast, accessible, responsive, and truthful.
+Implement Christopher Noxon DeWitt's cream-on-black personal academic portfolio.
+The site leads with his current UNC-Chapel Hill Master of Applied Data Science
+study, interest in complex systems, selected work, and intended progression
+toward graduate work in computer science. Projects and evidence support that
+story. It must remain fast, accessible, responsive, and truthful.
 
 
 ## Operating contract
@@ -83,7 +87,9 @@ This mission must preserve DRL's open-by-construction identity. Read `OPEN_RESEA
 Implement cream-on-black tokens, typography, spacing, terminal panes, data tables, diagrams, status/trace primitives, focus/keyboard states, motion-reduction behavior, and story/demo fixtures.
 
 ### WP-06-02 — Information architecture and content engine
-Build laboratory-first homepage, systems map, project pages, research archive, open-source portal, founder page, documentation browser, failure museum, system console, and controlled content model sourced from repository documents.
+Build the four-page personal portfolio (Home, Research, Projects, About),
+selected evidence viewers, project pages, profile/CV paths, and a controlled
+content model sourced from repository documents.
 
 ### WP-06-03 — Atticus public console
 Implement anonymous/authenticated entry states, guided tours, command palette, session/consent controls, tool trace, evidence panel, approval rendering, evaluation summary, graceful cold-start and replay fallback, and mobile behavior.
@@ -94,8 +100,9 @@ Create signed/versioned replay manifests, deterministic curated demonstrations, 
 ### WP-06-05 — Accessibility, performance, privacy, and analytics
 Meet WCAG-oriented keyboard, screen-reader, contrast, reduced-motion, form, chart, and status semantics; enforce performance budgets; implement consent-aware product analytics and operational telemetry disclosures.
 
-### WP-06-06 — Recruiter, researcher, learner, and contributor journeys
-Test each priority persona against timed comprehension and task scenarios; revise hierarchy and content until the lab can be understood in under two minutes while preserving deep technical routes.
+### WP-06-06 — Faculty, admissions, research-peer, and employer journeys
+Test the personal journey first: current education and interests to selected
+research/projects, methods/limitations, future direction, CV, and contact.
 
 
 ### WP-06-07 — Open Source portal and model commons
@@ -139,4 +146,12 @@ Implement evidence-derived artifact cards, Open Stack lineage, contributor credi
 
 ### WP-06-10 — Wix canonical site and `dewitt-labs.com` integration
 
-Implement the canonical Wix institutional site contract at `www.dewitt-labs.com`: information architecture, cream-on-black visual translation, truthful maturity/status, application launch surfaces, repository-backed content workflow, SEO/canonical metadata, consent continuity, mobile/accessibility validation, and fallback behavior. Build or document bounded custom elements only where they improve the Wix experience; do not place core Atticus or specialist applications exclusively in iframes. Produce Wix editor instructions, content inventory, page map, redirect map, and a deployment/handoff checklist that another operator can execute without source-code access.
+Implement the canonical personal academic portfolio at `www.dewitt-labs.com`:
+education-first information architecture, cream-on-black visual translation,
+selected research/project evidence, repository-backed content workflow,
+SEO/canonical metadata, mobile/accessibility validation, and fallback behavior.
+Build or document
+bounded custom elements only where they improve the Wix experience; do not
+place primary applications exclusively in iframes. Produce Wix editor
+instructions, content inventory, page map, redirect map, and a deployment/handoff
+checklist that another operator can execute without source-code access.

@@ -1,234 +1,109 @@
 ---
 document_id: DRL-WEB-022
-title: "Site Copy Draft for the Five-Page Workshop Build"
-version: 1.0.0
+title: "Personal Academic Portfolio Site Copy"
+version: 2.0.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
-# Site copy draft
+# Personal academic portfolio site copy
 
-Page-by-page copy for the five-page tree in `WIX_SITE_BUILD_PLAN.md` v2.0.0.
+This copy is for review and manual Wix use. It does not authorize a Wix write.
 
-**Status: DRAFT, not applied.** No site write is authorised. This document exists so
-copy can be reviewed and edited before anything touches Wix.
-
-Everything below is written to `BRAND_SYSTEM.md` v2.1.0: first person, understated
-academic, no absolute capability claims, no invented plurals, no institutional chrome.
-Bracketed `[…]` text marks a decision only the Director can make.
-
----
-
-## Home — `/`
-
-### Hero
+## Home
 
 ```text
-DEWITT RESEARCH WORKSHOP
-Independent research in open and applied intelligence.
+CHRISTOPHER NOXON DEWITT
+Academic Portfolio
 
-Intelligence for Good. Intelligence for All.
+I am a student in the Master of Applied Data Science program at the University
+of North Carolina at Chapel Hill. I engineer complex systems at work and study
+them part time, with the goal of moving from data science toward graduate work
+in computer science.
+
+[View my research] [Explore my projects]
 ```
 
-Orientation line beneath:
+### Research interests
 
-> I'm Chris DeWitt. I build and test open-weight AI systems in the open — one person,
-> working in public, with the failures left in.
+> I am interested in the systems around intelligent software: how agents use
+> tools, how evidence survives a multi-step workflow, how deterministic
+> components constrain probabilistic models, and how evaluation makes complex
+> systems easier to trust and improve.
 
-Actions: `See what I'm building` → `/projects` · `Read the current work` → `/writing`
-· `Browse the code` → `/open-source`
-
-### On the bench
-
-> **On the bench**
->
-> What I'm working on right now. Dates are real; so is the half-finished part.
-
-- **The evidence-to-scenario workflow** — *last touched 3 August 2026*
-  Five projects chained into one run: pull evidence, cite it, model a scenario,
-  evaluate the result. It works end to end on my machine with deterministic fixtures.
-  It is not a service, and the planner standing in for Atticus Core is rule-based
-  until the model bake-off finishes.
-
-- **Signed replay packaging** — *in progress*
-  Recording runs so someone else can replay exactly what happened, including the
-  degraded case. Currently signed with a demo key — not a production signing
-  identity, so treat the signatures as structural, not trustworthy.
-
-- **Choosing the models behind Atticus** — *open question*
-  Running a documented bake-off rather than picking by brand. No winner declared.
-
-### Featured work
+### Selected research
 
 > **TR-2026-001 — Local Integrated Evidence-to-Scenario Workflow**
-> Technical report · prototype · 1 August 2026
 >
-> A working description of how the five projects compose into a single local
-> workflow: what each one contributes, where the trust boundaries sit, and what the
-> evaluation actually shows. Written to be reproduced, not admired.
+> An independent technical report describing a prototype workflow that combines
+> evidence gathering, citation, deterministic scenario analysis, orchestration,
+> and evaluation. It includes the method, limitations, and links to the code and
+> recorded run.
 >
-> `Read the report` → `/writing#tr-2026-001`
+> `Read the report` · `Watch the recorded run`
 
-### Projects
+### Selected projects
 
-> **Projects**
+> These are projects I use to study complex systems in practice. They are
+> prototypes, and I document what works, what fails, and what I want to test next.
+
+- **Atticus** — orchestration and agent-system research.
+- **Atlas** — macroeconomic evidence gathering and provenance.
+- **FedLens** — cited analysis of Federal Reserve material.
+- **BalanceLab AI** — deterministic quantitative scenario modeling.
+- **EvalForge** — evaluation and permission testing.
+
+### Current direction
+
+> My current graduate study is in applied data science. Over time, I hope to move
+> deeper into computer science, especially the design and evaluation of complex
+> intelligent systems.
+
+## Research — `/research`
+
+> **Research and technical writing**
 >
-> Five things I'm building. All prototypes — that label is accurate, not modest.
+> Reports, methods, experiments, and notes from my independent work and studies.
+> Each item says what it is, what evidence supports it, and where it remains
+> incomplete.
 
-| | |
-|---|---|
-| **Atticus** | The guide and operator that runs the others. Open-weight. *Prototype.* |
-| **Atlas** | Macro research and evidence gathering. *Prototype.* |
-| **FedLens** | Federal Reserve policy analysis with passage-level citations. *Prototype.* |
-| **BalanceLab AI** | Deterministic scenario modelling with fixed seeds. *Prototype.* |
-| **EvalForge** | Evaluation and permission testing for the rest. *Prototype.* |
-
-Maturity values bind to the `Systems` collection; do not hand-type them.
-
-### Open source and contact
-
-> Everything here is open source. The code is on GitHub, the packages install
-> locally, and the research documents live in the same repository as the software
-> that produced them.
->
-> If you want to run it, start with the repository. If you want to talk, [contact
-> route TBD — see DIR-003].
-
-> This is an independent initiative. Not a government, university, or accredited
-> institution.
-
----
+Feature `TR-2026-001`, methods, citation, source, recorded demonstration, and
+negative results. Do not label independent work as UNC-Chapel Hill coursework.
 
 ## Projects — `/projects`
 
 > **Projects**
 >
-> Five projects, built to work together and to run on one machine. Each is a
-> prototype: the interfaces will change, and I'll say so on the page when they do.
->
-> Atticus is the operator — it plans and runs work across the other four. The rest
-> are specialists that do one thing each.
+> Software and research artifacts I have built to learn how complex systems are
+> designed, connected, tested, and explained.
 
-Then the five cards, each linking to its page, each showing maturity and last
-verified date from the `Systems` collection.
-
-Per-project one-liners:
-
-- **Atticus** — Plans a piece of work, calls the right project, and keeps a trace of
-  what it did. Open-weight, locally runnable, currently driven by a rule-based
-  planner rather than a trained model.
-- **Atlas** — Gathers macro evidence from public sources and hands it downstream with
-  its provenance attached.
-- **FedLens** — Reads Federal Reserve material and answers with passage-level
-  citations, so a claim can be checked against its source.
-- **BalanceLab AI** — Runs quantitative scenarios deterministically: fixed seeds, same
-  inputs, same numbers.
-- **EvalForge** — Tests the others: whether the answer holds up, and whether the
-  permission boundaries did.
-
----
-
-## Writing — `/writing`
-
-> **Writing**
->
-> Technical reports and notes. Fewer, longer, and reproducible in preference to
-> frequent.
-
-### TR-2026-001 {#tr-2026-001}
-
-Full reading experience on the page: title, authors, status, version, date, abstract,
-plain-language summary, methods, limitations, links to code and data, citation block,
-and correction history. Not a teaser card.
-
-> **TR-2026-001: Local Integrated Evidence-to-Scenario Workflow**
-> Christopher Noxon DeWitt · prototype · v1.0.0 · 1 August 2026
->
-> Cite as: DeWitt, Christopher Noxon. 2026. *Technical Report TR-2026-001: Local
-> Integrated Evidence-to-Scenario Workflow*. DeWitt Research Workshop working paper.
-> Document ID `DRL-TR-2026-001`.
-
-### What broke {#what-broke}
-
-> **What broke**
->
-> Things that failed, and what I did about them. This shelf is not decoration — every
-> entry is real, and each one has a test that keeps it fixed.
->
-> [Populate from `FailureRecords`. Start with the degraded-replay case, which is
-> already captured as a fixture. Do not invent entries to fill the section: if there
-> is one honest record, publish one.]
-
----
-
-## Open Source — `/open-source`
-
-> **Open source**
->
-> All of it. The models are open-weight, the code is open-source, and the research
-> documents ship in the same repository as the software that produced them.
-
-> **Run it locally**
->
-> The workflow runs on one machine with deterministic fixtures — no cloud account, no
-> API key, no inference bill.
->
-> ```
-> [install and run commands — pull the real ones from the repository README
-> rather than writing them here]
-> ```
-
-> **What's in the repository**
->
-> - **Packages** — `atticus-sdk`, `drl-ai-core`, `drl-protocol`, `evalforge-sdk`
-> - **Services** — Atticus control plane, Atlas, FedLens, BalanceLab AI, EvalForge
-> - **Applications** — Atticus console, local runner
-> - **Research** — technical reports, in the same tree as the code
->
-> Identifier prefixes like `DRL-` are internal keys, not a brand.
-
-> **Contributing**
->
-> Good-first issues are labelled in the repository. Corrections to the research
-> documents are as welcome as code.
-
-Upstream projects are credited without implying endorsement. Do not claim "full
-access to all core components" or similar absolutes.
-
----
+Each page shows the problem, my role, architecture, current maturity, selected
+evidence, limitations, source, and next question. Atticus is a project, not a
+host, assistant, or site identity.
 
 ## About — `/about`
 
-> **About**
+> I am Christopher Noxon DeWitt, a student in the Master of Applied Data Science
+> program at the University of North Carolina at Chapel Hill.
 >
-> I'm Christopher Noxon DeWitt, an applied AI researcher. This is my workshop: one
-> person building and testing open-weight AI systems in public, in Charlotte.
+> I work with complex systems professionally and study them part time. My
+> background includes quantitative financial analysis, statistics, economics,
+> applied data science, software development, Python, SQL, and technical
+> automation. I am especially interested in agent systems, evaluation,
+> reproducibility, and the boundary between data science and computer science.
 >
-> My background is quantitative and financial, which is why the projects lean toward
-> evidence, policy, and deterministic modelling. It informs the work; it isn't the
-> point of it.
->
-> I care about systems people can actually run, inspect, and disagree with. That's
-> why the models are open-weight, why the failures are published, and why every
-> maturity label says prototype until it earns otherwise.
+> After my current studies, I hope to continue toward graduate work in computer
+> science.
 
-> **Contact** — [route TBD, see DIR-003]
-> **Security** — [`security@dewitt-labs.com` once created; see DIR-003]
-> **Governance** · **License** · **Privacy** — link to the published documents
+Add approved contact, GitHub, CV/resume, and LinkedIn links when available. Do
+not name an employer or imply university endorsement of independent projects.
 
-> This is an independent initiative. Not a government, university, or accredited
-> institution.
+## Copy rules
 
----
-
-## Copy rules for whoever applies this
-
-1. No absolute capability claims. "Fully deployable", "full traceability", "full
-   access to all core components" are prohibited unless measured and linked.
-2. No plural that invents staff. Not "our team", "our researchers", "we deliver".
-3. No fabricated metrics. `UPTIME: 99.9%` must be deleted, not restyled.
-4. Maturity labels bind to the `Systems` collection. Never hand-typed, never two
-   different labels on one page.
-5. No button that promises an action the site cannot perform.
-6. Do not repeat one sentence across five cards to fill space. Cut the cards instead.
+1. The site is Christopher's academic portfolio.
+2. Lead with current study and direction, not a lab name or slogan.
+3. Use “I,” not “we.”
+4. Projects are evidence, not departments.
+5. Keep UNC-Chapel Hill affiliation exact and limited to the degree program.
+6. Never expose employer identity or confidential work.

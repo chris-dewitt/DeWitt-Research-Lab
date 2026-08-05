@@ -473,7 +473,7 @@ requirements:
   - release-artifact
   status: APPROVED-FOUNDATION
 - id: DRL-WEB-001
-  statement: The public site shall introduce DeWitt Research Workshop before Atticus.
+  statement: The public site shall introduce Christopher Noxon DeWitt, his UNC-Chapel Hill Master of Applied Data Science study, complex-systems interests, and intended progression toward graduate computer-science work before presenting projects or services.
   owner: Web/Brand
   canonical_spec: docs/08-web-brand/
   priority: V1-MUST
@@ -519,7 +519,7 @@ requirements:
   - release-artifact
   status: APPROVED-FOUNDATION
 - id: DRL-WEB-006
-  statement: The site shall provide project, research, open-source, founder, failure-museum, and system-console routes.
+  statement: The canonical Wix site shall provide Home, Research, Projects, and About routes, with selected reports, recorded runs, source, methods, and limitations nested as personal portfolio evidence.
   owner: Web/Brand
   canonical_spec: docs/08-web-brand/
   priority: V1-MUST

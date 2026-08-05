@@ -1,85 +1,73 @@
 ---
 document_id: DRL-WEB-004
-title: "Homepage Detailed Specification"
-version: 4.1.0
+title: "Personal Academic Portfolio Homepage Specification"
+version: 5.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-04
 ---
 
+# Personal Academic Portfolio Homepage Specification
 
-# Homepage Detailed Specification
+## Purpose
 
-## Canonical implementation
-
-This homepage is implemented at **`https://www.dewitt-labs.com`** in Wix. Interactive previews may use bounded custom elements or public embeds, but primary Atticus and specialist experiences launch on DRL application subdomains. The homepage must remain complete and useful when those services are cold or unavailable.
+The homepage at `https://www.dewitt-labs.com` introduces Christopher Noxon
+DeWitt, not a laboratory or workshop. It should read like a clear academic
+portfolio for a working graduate student.
 
 ## Hero
 
 ```text
-DEWITT RESEARCH WORKSHOP
-Independent research in open and applied intelligence.
+CHRISTOPHER NOXON DEWITT
+Academic Portfolio
 
-Intelligence for Good. Intelligence for All.
+I am a student in the Master of Applied Data Science program at the University
+of North Carolina at Chapel Hill. I engineer complex systems at work and study
+them part time, with the goal of moving from data science toward graduate work
+in computer science.
 
-[Enter the laboratory] [Read the research thesis]
+[View my research] [Explore my projects]
 ```
 
-Background: slow, subtle system diagram showing Atticus and specialist nodes. No animation required for comprehension.
+Optional third text link: `About me`.
 
-Metadata strip:
+Do not put DeWitt Research Workshop/Laboratory, `DRL`, Atticus, a mission slogan,
+or a simulated terminal status line above this introduction.
 
-```text
-NODE: CHARLOTTE / STATUS: ACTIVE / RELEASE: <actual> / OPEN SYSTEMS: <actual>
-```
+## Homepage order
 
-## Systems map
+1. **Introduction** — name, current degree, working/student context, and future
+   direction.
+2. **Research interests** — complex systems, artificial intelligence, agent
+   systems, evaluation, reproducibility, evidence, and related computer-science
+   questions.
+3. **Selected research** — lead with `TR-2026-001`; state that it is independent
+   prototype work, not UNC-Chapel Hill coursework unless that is actually true.
+4. **Selected projects** — Atticus, Atlas, FedLens, BalanceLab AI, and EvalForge
+   as projects Christopher built or is developing.
+5. **Recorded demonstration** — an optional featured artifact supporting a
+   project, with success/degraded states and prototype limitations.
+6. **Current direction** — what he is learning now and why he hopes to pursue
+   further graduate work in computer science.
+7. **Contact** — a simple route for academic or relevant professional contact.
 
-Hover/focus reveals problem, maturity, live/replay state, latest release. Modes:
+An **Open Source portal** link may appear within Projects for source, licenses,
+and local-run details; it is not a primary navigation identity.
 
-- mission;
-- architecture;
-- data flow;
-- evaluation;
-- local/cloud trust boundary.
+## Truth rules
 
-## Featured research
+- Never imply UNC-Chapel Hill sponsors, supervises, endorses, or owns independent
+  work unless a source explicitly establishes that relationship.
+- Never name an employer or show employer-confidential work.
+- Use first person. Do not invent a team, institute, laboratory, workshop staff,
+  public Atticus service, or collaborator program.
+- Projects show maturity and limitations. They support the portfolio; they do
+  not become the site's identity.
+- The page works without chat, sign-in, animation, or a live backend.
 
-One current substantial artifact: AtticusBench report, model release, evaluation paper, or integrated demonstration. Show abstract, methods/evidence links, and replication button.
+## Visual direction
 
-## Atticus invitation
-
-Atticus is introduced after DRL:
-
-> Atticus operates the laboratory. Ask him to explain a system, begin a guided tour, or replay the integrated research workflow.
-
-Suggested commands are real and versioned.
-
-## Open source
-
-Show up to five high-value artifacts with install/run command, license, maturity, and use case. Avoid showing empty repositories.
-
-## Failure museum
-
-Feature one failure with a short timeline: failure → detection → fix → regression test. Link full record.
-
-## Founder
-
-Short biography, research interests, location, résumé/GitHub/contact. No long personal story on homepage.
-
-## Open-source identity requirements
-
-- Open models, open-source software, public evaluation, local operation, and reproducible research must be visible without opening a footer or README.
-- Every project page identifies upstream models/software, artifact licenses, maturity, local/self-hosted path, evaluation evidence, and contribution entry points.
-- The public Atticus interface exposes the active model identity, version, routing mode, and whether output is live, replayed, cached, or illustrative.
-- A dedicated Open Source portal presents Atticus model releases, datasets, packages, benchmarks, upstream contributions, self-hosting profiles, open exceptions, and independent replications.
-- A `REPRODUCE` action is generated from tested release metadata rather than hand-authored marketing commands.
-- The website credits upstream projects through a useful dependency graph, not a logo wall or implied endorsement.
-
-## Wix launch requirements
-
-- Domain, HTTPS, canonical URL, apex redirect, social cards, favicon, robots, and sitemap are verified before public launch.
-- System cards link to approved subdomains or clearly labeled replay/documentation pages.
-- Wix status labels are sourced from controlled release metadata rather than manually optimistic copy.
-- The homepage contains a visible Open Source path and a direct `Launch Atticus` action without making chat mandatory.
-- Any embedded teaser has a plain link fallback and passes mobile, keyboard, reduced-motion, and unavailable-backend testing.
+Keep the cream-on-black research-terminal aesthetic, but make it serve a
+personal academic portfolio: generous reading space, restrained metadata,
+selected diagrams or traces, and no institutional chrome. The person's name and
+educational story must be clearer than the visual theme.

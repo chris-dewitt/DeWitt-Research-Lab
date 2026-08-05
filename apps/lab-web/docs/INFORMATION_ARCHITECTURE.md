@@ -1,71 +1,84 @@
 ---
 document_id: DRL-WEB-104
-title: "DRL Web Information Architecture"
-version: 3.1.0
+title: "Workshop Web Information Architecture"
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-04
 ---
 
+# Workshop Web Information Architecture
 
-# DRL Web Information Architecture
+## Host responsibilities
+
+### Canonical Wix origin
+
+```text
+www.dewitt-labs.com/
+  Home
+  Research
+  Projects
+  About
+```
+
+Wix owns orientation, editorial summaries, founder context, and links to public
+evidence. It does not own privileged application sessions.
+
+### `lab-web` evidence application
+
+```text
+/replays/{id}            signed run viewer and transcript
+/reports/tr-2026-001     full report reader
+/projects/{slug}         advanced artifact/evidence view
+/methods/{slug}          reproducibility and teaching view
+/open/{type}/{slug}      source, license, lineage, and local path
+```
+
+Future routes such as `/atticus` or `atticus.dewitt-labs.com` remain planned
+until their deployment and trust-boundary gates pass.
 
 ## Primary navigation
 
-- **Laboratory:** mission, principles, systems map, program, founder.
-- **Systems:** Atticus, Atlas, FedLens, BalanceLab AI, EvalForge.
-- **Research:** papers, technical reports, notebooks, experiments, datasets, benchmarks, model releases.
-- **Open Source:** repositories, packages, starter kits, plugin registry, roadmap, contribution.
-- **Learn:** guided tours, tutorials, seminars, glossaries, teaching collections.
-- **Console:** Atticus, signed demonstrations, status, and methods.
+The evidence application keeps a small contextual nav:
 
-## Canonical routes
+- Recorded Runs
+- Report
+- Projects
+- Methods
+- Source
+- Return to Portfolio
 
-```text
-/
-/laboratory
-/laboratory/principles
-/laboratory/founder
-/systems
-/systems/{slug}
-/systems/{slug}/{architecture|security|evaluations|roadmap}
-/research
-/research/{type}/{slug}
-/open-source
-/open-source/contribute
-/open-source/roadmap
-/learn
-/console
-/console/replays/{id}
-/failures
-/status
-/privacy
-/telemetry
-```
+It does not reproduce the entire Wix navigation tree or pretend to be an
+operations console.
 
-## Project-page layers
+## Evidence-page layers
 
-1. Identity, problem, and user.
-2. Measured proof points with artifact dates.
-3. Launch, replay, watch, read, and contribute actions.
-4. Signature workflow and interactive architecture.
-5. Engineering decisions and ADRs.
-6. Evaluation, security, limitations, and failure cases.
-7. Repository, install, docs, methods, research, and roadmap.
+1. Identity, research question, maturity, and recorded/live/planned state.
+2. Plain-language result and limitation.
+3. Trace, source, calculation, and evaluation evidence.
+4. Success/degraded comparison or negative result.
+5. Methods, reproducibility, environment, and artifact digest.
+6. Architecture, security, and trust boundaries.
+7. Source, license, upstream lineage, related writing, and return path.
 
 ## Content states
 
-Every public asset carries maturity (`experimental`, `alpha`, `beta`, `stable`, `archived`, `historical`), publication status (`draft`, `review`, `public`), version, owner, and last-verified date. “Stable” means a declared interface is stable, not that scientific conclusions are final.
+Every public asset carries maturity (`experimental`, `prototype`, `alpha`,
+`beta`, `stable`, `archived`, or `historical`), publication status, version,
+owner, last-verified date, and runtime state (`live`, `replayed`, `cached`,
+`illustrative`, or `planned`). “Stable” describes a declared interface, not
+scientific finality.
 
-## Search and command palette
+## Search and keyboard navigation
 
-Search covers titles, abstracts, tags, systems, methods, authors, document IDs, releases, and technologies. It excludes private drafts and user traces. Command actions are typed navigation or bounded demo commands and remain keyboard and screen-reader usable.
+Search covers public titles, abstracts, tags, projects, methods, document IDs,
+releases, and technologies. It excludes private drafts and user traces. All
+search, replay, tab, disclosure, comparison, and return actions are keyboard and
+screen-reader usable.
 
-## Open-source identity requirements
+## Open identity
 
-- Open models, open-source software, public evaluation, local operation, and reproducible research must be visible without opening a footer or README.
-- Every project page identifies upstream models/software, artifact licenses, maturity, local/self-hosted path, evaluation evidence, and contribution entry points.
-- The public Atticus interface exposes the active model identity, version, routing mode, and whether output is live, replayed, cached, or illustrative.
-- A dedicated Open Source portal presents Atticus model releases, datasets, packages, benchmarks, upstream contributions, self-hosting profiles, open exceptions, and independent replications.
-- A `REPRODUCE` action is generated from tested release metadata rather than hand-authored marketing commands.
-- The website credits upstream projects through a useful dependency graph, not a logo wall or implied endorsement.
+Evidence pages expose source, artifact rights, upstream lineage, modification
+surface, local/self-hosted path, evaluation, hardware/cost assumptions, and open
+exceptions. `REPRODUCE` is generated from tested metadata, not hand-authored
+marketing copy.

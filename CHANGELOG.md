@@ -1,13 +1,56 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.7.0
+version: 4.10.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-02
+last_updated: 2026-08-05
 ---
 
 # Foundation Changelog
+
+## 2026-08-05 — Computational Finance of Intelligence research program
+
+- Recorded RES-017 and DRL-031 for a three-paper academic research program
+  spanning optimal stopping, no-arbitrage belief repair, and market-based
+  human/machine aggregation.
+- Made Belief Diffusion the shared methods bridge rather than a required fourth
+  paper.
+- Added a sequential agent task graph with explicit novelty, data/ethics,
+  protocol, confirmatory-analysis, claim, and publication gates.
+- Defined a 30-day visible-foundation tranche that authorizes planning and
+  synthetic methods artifacts, not data acquisition, model experiments, cloud
+  spend, or empirical claims.
+
+## 2026-08-04 — Personal academic portfolio correction
+
+- Recorded RES-016, superseding the workshop-first public-site positioning from
+  RES-015. `www.dewitt-labs.com` is Christopher Noxon DeWitt's personal academic
+  portfolio.
+- Centered the current Master of Applied Data Science program at the University
+  of North Carolina at Chapel Hill, professional interest in complex systems,
+  and intended progression toward graduate work in computer science.
+- Reduced the Wix contract to Home, Research, Projects, and About. Reports,
+  recorded runs, software, and Atticus are selected portfolio evidence.
+- Replaced the previous positioning guard with tests for the personal identity,
+  education, action order, university-claim boundary, and planned Atticus state.
+
+## 2026-08-04 — Evidence-first academic website contract (superseded by RES-016)
+
+- Recorded RES-015 and aligned the controlled public-site contract around the
+  research thesis **Engineering complex systems for open, inspectable
+  intelligence.**
+- Made **Watch a recorded run** and **Read TR-2026-001** the first website
+  actions; required the signed degraded replay and Stage-B no-winner evidence to
+  remain visible.
+- Reframed Atticus as a documented research artifact with a planned application
+  address, placed teaching under Writing/Methods, and kept contributor routes
+  secondary to academic evidence and serious inquiry.
+- Reconciled the five-page Wix blueprint, product/persona documents,
+  application-shell contracts, DRL-021 traceability, and UTF-8-safe validation.
+- Added `tests/docs/test_website_positioning.py` to guard the thesis, action
+  order, negative-results visibility, planned Atticus state, and contributor
+  posture.
 
 ## 2026-08-02 — Canonical domain correction, live site, and founder identity
 

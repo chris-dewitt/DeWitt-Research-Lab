@@ -1,10 +1,10 @@
 ---
 document_id: DRL-REF-001
 title: "Technical Reference Register"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-05
 ---
 
 # Technical Reference Register
@@ -80,6 +80,28 @@ This register records primary technical sources that underpin volatile implement
 | Model Context Protocol | official MCP specification/security guidance | optional interoperability with explicit trust boundaries | MCP implementation |
 | JSON Schema 2020-12 | official JSON Schema specification | canonical DRL contracts | schema tooling lock |
 | OpenAPI 3.1 | official OpenAPI specification | HTTP contracts | API generation/validation |
+
+## Computational Finance of Intelligence novelty boundary (verified 2026-08-05)
+
+These records are research-boundary controls, not evidence that a DRL proposal
+is novel or that a reported result will replicate. The current synthesis and
+source-by-source overlap assessment live in
+`docs/10-research/CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md`. Preprints and workshop
+records are volatile and must be re-opened before G1 review and protocol freeze.
+
+| Topic | Primary source | Foundation use | Revalidate before |
+|---|---|---|---|
+| Sequential model-belief trajectories | `https://arxiv.org/abs/2606.30850` (BayesBench) | Direct collision control for sequential evidence, Bayesian comparison, and latent framing | 2026-09-05 and G1 |
+| Linguistic/numeric sequential belief state | `https://arxiv.org/abs/2604.18576` (BLF) | Direct collision control for logit-space linguistic belief updating and calibration | 2026-09-05 and G1 |
+| Observable learned reasoning stopper | `https://arxiv.org/abs/2606.30852` (LearnStop) | Contribution-collapsing control for the original Paper I hypothesis | 2026-09-05 and any Paper I redesign |
+| Metareasoning and value of computation | `https://arxiv.org/abs/1207.5879`, `https://arxiv.org/abs/1711.06892` | Foundational control for computation selection and resource-rational planning | Paper I question freeze |
+| Outcome-free coherence audit and repair | `https://openreview.net/forum?id=U27ZfUx7JE` | Contribution-collapsing control for Dutch-book auditing, coherent projection, and coherence/calibration separation | 2026-09-05 and G1 |
+| Payoff-preserving LLM framing | `https://arxiv.org/abs/2503.04840` | Direct collision control for context framing with fixed game structure | 2026-09-05 and Paper II protocol freeze |
+| Option replication and no-arbitrage oracle | `https://www.journals.uchicago.edu/doi/10.1086/260062`, `https://doi.org/10.2307/3003143` | Established finance baseline; never represent the pricing restrictions as a new contribution | Paper II protocol freeze |
+| Private-signal AI-agent prediction markets | `https://arxiv.org/abs/2604.20050` | Contribution-collapsing control for Paper III's broad aggregation question | 2026-09-05 and any Paper III redesign |
+| Correlated LLM errors and market monoculture | `https://arxiv.org/abs/2606.26583`, `https://arxiv.org/abs/2606.13038` | Contribution-collapsing control for shared-error, effective-diversity, and prompt-diversity claims | 2026-09-05 and any Paper III redesign |
+| Incentive-compatible LLM wagering aggregation | `https://arxiv.org/abs/2607.04389` (WALLA) | Direct mechanism-design collision control | 2026-09-05 and any Paper III redesign |
+| Consensus, cascades, and market scoring rules | `https://doi.org/10.1080/01621459.1974.10480137`, `https://doi.org/10.1086/261849`, `https://hanson.gmu.edu/mktscore.pdf` | Foundational coupled-belief and information-market baselines | Paper III question freeze |
 
 ## Recording current assumptions
 

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.10.0
+version: 1.11.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -65,6 +65,7 @@ the Director's approval.
 | DIR-005 | Public access | What anonymous and authenticated quotas apply? | Higher limits improve exploration but increase abuse and cost. | Use fixture/replay mode by default; open bounded inference only after load and abuse testing. | Evidence gate |
 | DIR-006 | Legal | When should DRL form a legal entity or register marks? | Formation adds cost and administration but may help contracts and liability separation. | Continue truthful independent-initiative language; obtain professional advice before contracts or material revenue. | Deferred Director/legal decision |
 | DIR-007 | Legal/brand | Does the RES-014 rename extend to the claimed trademarks? | `NOTICE`, `TRADEMARK_POLICY.md`, and `LICENSE-STRATEGY.md` still claim "DeWitt Research Laboratory" and `DRL` as marks. Renaming a claimed mark is not a copy edit: it abandons accrued use of the old name and restarts it under the new one. Retaining both is also valid — the old name can stay as a prior mark while the public identity moves. | Do not rewrite the legal documents on brand grounds alone. Either retain "DeWitt Research Laboratory" as a prior/legacy mark and add "DeWitt Research Workshop" alongside it, or take advice before consolidating. Ties to DIR-006. | Director decision required — legal documents deliberately left unrenamed |
+| DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | Director G1 decision required; DRL-032 blocked |
 
 ## Approved resolutions
 
@@ -99,6 +100,10 @@ the Director's approval.
 - The public Wix site is live at `https://www.dewitt-labs.com`; ongoing content and DNS changes remain actions in the Director's accounts.
 - GitHub milestones/issues from the Mission 00 register are ready to file but
   not yet created on the remote (gh write is operator-owned).
+- CFI-002 found contribution-level collisions with current primary work. Paper
+  I and Paper III may not proceed under their original novelty claims, and
+  Paper II must narrow its claim, until DIR-008 and independent G1 review are
+  resolved. The approved questions in RES-017 remain unchanged meanwhile.
 
 ## Current implementation truth
 

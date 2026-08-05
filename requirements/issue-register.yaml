@@ -415,7 +415,11 @@ issues:
     evidence_owner: Research/Community
     labels: [research, documentation, publication]
     title: Build the CFI primary-source literature and novelty matrix
-    status: IN_PROGRESS
+    status: BLOCKED
     dependencies: [DRL-031]
     body: .github/ISSUE_BODIES/DRL-032.md
     requirements: [DRL-DAT-002, DRL-EVL-004, DRL-EVL-008, DRL-OPS-003, DRL-OSS-003]
+    director_decisions: [RES-017, DIR-008]
+    evidence:
+      - docs/10-research/CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md
+      - docs/references/TECHNICAL_REFERENCE_REGISTER.md

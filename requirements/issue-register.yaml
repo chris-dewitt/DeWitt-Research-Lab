@@ -400,7 +400,11 @@ issues:
     evidence_owner: Research/Community
     labels: [research, program, publication]
     title: Establish the Computational Finance of Intelligence research program
-    status: IN_PROGRESS
+    status: EVIDENCE_READY
     dependencies: [DRL-028]
     body: .github/ISSUE_BODIES/DRL-031.md
     requirements: [DRL-DAT-002, DRL-EVL-004, DRL-EVL-008, DRL-OPS-003, DRL-OSS-003]
+    evidence:
+      - docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md
+      - tests/docs/test_computational_finance_research_program.py
+      - agents/handoffs/2026-08-05-drl-031-computational-finance-plan.md

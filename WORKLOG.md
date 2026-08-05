@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.14.0
+version: 4.15.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -50,7 +50,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
-| 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | IN PROGRESS | — |
+| 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | READY FOR REVIEW | — |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -91,6 +91,22 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-05 — DRL-031 Computational Finance of Intelligence plan
+
+- Branch: `lovesong/research/drl-031-computational-finance-intelligence`
+- Implementation commit: `cf4a98f`
+- Established one program, Belief Diffusion as its shared methods bridge, and
+  three paper tracks with sequential task packets and human gates.
+- Validators PASS; 12 focused tests and all 26 documentation tests PASS; Ruff,
+  open-identity validation, secret/placeholder scan, and diff check PASS.
+- No dataset, model, external API, cloud resource, experiment, result claim, or
+  publication action occurred.
+- Handoff:
+  `agents/handoffs/2026-08-05-drl-031-computational-finance-plan.md`
+- Next: file and execute `CFI-002` only—the primary-source literature and
+  novelty matrix. `CFI-005` is the first later experimental implementation
+  issue and remains dependency-gated.
 
 ### 2026-08-04 — DRL-021 evidence-first academic positioning
 

@@ -49,6 +49,10 @@ def test_drl_032_is_blocked_without_rewriting_approved_questions() -> None:
     assert issue["status"] == "BLOCKED"
     assert issue["director_decisions"] == ["RES-017", "DIR-008"]
     assert REVIEW.relative_to(ROOT).as_posix() in issue["evidence"]
+    assert (
+        "agents/handoffs/2026-08-05-drl-032-cfi-literature-novelty.md"
+        in issue["evidence"]
+    )
 
     plan = (
         ROOT / "docs" / "10-research" / "COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md"

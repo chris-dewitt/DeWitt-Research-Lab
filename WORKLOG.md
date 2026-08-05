@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.18.0
+version: 4.19.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -111,6 +111,25 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-05 — DRL-032 CFI primary-source novelty review
+
+- Branch: `lovesong/research/drl-032-cfi-literature-novelty`
+- Registration commit: `eaae47c`
+- Research-record commit: `1797c0e`
+- Produced a 31-record structured primary-source review, claim collision matrix,
+  revalidation gates, G1 options, and document tests.
+- G1 stop triggered: Papers I and III are contribution-collided as worded;
+  Paper II remains the recommended flagship only after narrowing and
+  independent review. DRL-032 is `BLOCKED`, not complete.
+- Validators PASS; 17 focused tests and all 30 documentation tests PASS; Ruff,
+  open-identity, domain/Wix, secret, and diff checks PASS.
+- No data, participant, model, API, cloud, experiment, result, venue, or
+  publication action occurred.
+- Handoff:
+  `agents/handoffs/2026-08-05-drl-032-cfi-literature-novelty.md`
+- Next: the Director resolves DIR-008; agents must not change primary questions
+  or begin experiments before that G1 decision.
 
 ### 2026-08-05 — DRL-031 Computational Finance of Intelligence plan
 

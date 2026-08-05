@@ -423,3 +423,5 @@ issues:
     evidence:
       - docs/10-research/CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md
       - docs/references/TECHNICAL_REFERENCE_REGISTER.md
+      - tests/docs/test_cfi_primary_source_novelty_review.py
+      - agents/handoffs/2026-08-05-drl-032-cfi-literature-novelty.md

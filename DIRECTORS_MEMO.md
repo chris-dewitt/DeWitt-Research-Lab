@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.9.0
+version: 1.10.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-08-05
 ---
 
 # Director's Decision and Escalation Ledger
@@ -86,6 +86,7 @@ the Director's approval.
 | RES-014 | Rename the public identity to **DeWitt Research Workshop** and drop "Laboratory" from public framing. | The Director | 2026-08-03 | **Supersedes RES-003.** Positioning is one person's workshop, not a research institute — this enforces RES-004 rather than changing it. Register is understated academic. `DRL` is retired as a public mark but retained as the internal identifier prefix (`DRL-WEB-002`) and code namespace. The canonical domain `dewitt-labs.com` is unchanged (RES-002/RES-011 stand); the name/domain mismatch is accepted and must not be explained in copy. Palette, typography, and terminal grammar are unchanged; institutional chrome is now a prohibited motif. Legal and trademark documents (`NOTICE`, `TRADEMARK_POLICY.md`, `LICENSE-STRATEGY.md`) were deliberately **not** renamed — see DIR-007. |
 | RES-015 | Position the public website as an evidence-first academic workshop and public research record. | The Director | 2026-08-04 | Retains the RES-013 mission and RES-014 name. The research thesis is "Engineering complex systems for open, inspectable intelligence." The homepage leads to a signed recorded run and `TR-2026-001`, makes degraded evidence and the Stage-B no-winner result visible, and treats contributor routes as secondary. Atticus is a documented research artifact; `atticus.dewitt-labs.com` remains planned until a service is actually deployed. Quantitative-finance experience and Charlotte provide supporting context without employer identification or institutional overstatement. |
 | RES-016 | Make `www.dewitt-labs.com` Christopher Noxon DeWitt's personal academic portfolio. | The Director | 2026-08-04 | **Supersedes the public-website positioning in RES-014 and RES-015.** The site title is the Director's name with the descriptor "Academic Portfolio," not DeWitt Research Workshop/Laboratory. It states that he is a student in the Master of Applied Data Science program at the University of North Carolina at Chapel Hill, engineers complex systems at work, studies them part time, and hopes to move toward graduate work in computer science. Research reports, replays, software, and Atticus are portfolio evidence. The RES-013 line may remain a repository/project mission but is not the website headline. No employer is named. |
+| RES-017 | Establish **Computational Finance of Intelligence** as the Director's three-paper academic research program, with Belief Diffusion as the shared methods bridge. | The Director | 2026-08-05 | The approved tracks are: optimal stopping and the option value of thinking; linguistic framing plus no-arbitrage belief repair; and market-based aggregation of human and machine beliefs. The program is portfolio research, not a separate institution or a claim of completed results. Agents may execute bounded task packets, but the Director retains authority over hypotheses, data eligibility, confirmatory protocols, claims, authorship, and publication. |
 
 ## Current blockers
 

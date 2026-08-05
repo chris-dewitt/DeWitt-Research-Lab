@@ -1,13 +1,26 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.9.0
+version: 4.10.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-08-05
 ---
 
 # Foundation Changelog
+
+## 2026-08-05 — Computational Finance of Intelligence research program
+
+- Recorded RES-017 and DRL-031 for a three-paper academic research program
+  spanning optimal stopping, no-arbitrage belief repair, and market-based
+  human/machine aggregation.
+- Made Belief Diffusion the shared methods bridge rather than a required fourth
+  paper.
+- Added a sequential agent task graph with explicit novelty, data/ethics,
+  protocol, confirmatory-analysis, claim, and publication gates.
+- Defined a 30-day visible-foundation tranche that authorizes planning and
+  synthetic methods artifacts, not data acquisition, model experiments, cloud
+  spend, or empirical claims.
 
 ## 2026-08-04 — Personal academic portfolio correction
 

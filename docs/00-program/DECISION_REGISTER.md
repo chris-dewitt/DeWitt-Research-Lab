@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-007
 title: "Foundation Decision Register"
-version: 4.2.0
+version: 4.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-08-05
 ---
 
 
@@ -43,6 +43,7 @@ last_updated: 2026-08-04
 | D-027 | `DIRECTORS_MEMO.md` is the mandatory living escalation and decision ledger | Approved | agents update it rather than silently assuming material decisions |
 | D-028 | GitHub issues, milestones, CI, agent sequencing, and a 90-day plan ship with the foundation | Approved | repository can move directly from upload to execution |
 | D-029 | The public website leads with the Director's name, current UNC-Chapel Hill degree, interest in complex systems, and computer-science trajectory | Approved | research, reports, replays, and software are selected portfolio evidence rather than the site's institutional identity |
+| D-030 | Computational Finance of Intelligence is the approved three-paper academic research program; Belief Diffusion is its shared methods bridge | Approved | Mission 15 uses `docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md` for agent task order, research gates, and evidence expectations |
 
 ## Open decision gates
 

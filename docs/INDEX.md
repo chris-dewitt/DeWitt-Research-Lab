@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DOC-002
 title: "Controlled Documentation Index"
-version: 3.1.0
+version: 3.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-05
 ---
 
 # Controlled Documentation Index
@@ -51,3 +51,11 @@ Some older seed documents may remain under unnumbered domain paths for history. 
 - `03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md` — Core/Edge public model program.
 - `08-web-brand/OPEN_SOURCE_PORTAL_AND_COMMONS.md` — public portal and model commons experience.
 - `09-open-source/V1_OPEN_SOURCE_SHOWCASE.md` — signature end-to-end demonstration and clean-room companion test.
+
+## Current academic research program
+
+- `10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md` — approved
+  three-paper plan, Belief Diffusion methods bridge, research gates, and
+  sequential agent task graph.
+- `10-research/RESEARCH_PROGRAM.md` — publication forms, standards, and
+  relationship to the broader Atticus research lines.

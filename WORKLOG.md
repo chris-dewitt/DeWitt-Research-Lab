@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.13.0
+version: 4.14.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-08-05
 ---
 
 
@@ -18,8 +18,9 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **06 Brand/Web** — DRL-021 personal academic portfolio
-  correction under RES-016. Wix editor implementation remains Director-operated.
+- Active mission: **15 Research/Community** — DRL-031 Computational Finance
+  of Intelligence program and agent execution plan. DRL-021 documentation is
+  ready for review; Wix editor implementation remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -49,6 +50,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-028 | Cursor cloud agent | `cursor/drl-028-technical-report-ad29` | 2026-08-01 | MERGED | PR #24 |
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
+| 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | IN PROGRESS | — |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -60,6 +62,19 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 - Exit criteria: personal identity and current education lead; **View my
   research** and **Explore my projects** are the first actions; projects are
   evidence; university and employer boundaries are explicit; tests pass.
+
+## Active scope — DRL-031 Computational Finance of Intelligence
+
+- Scope: record the Director-approved research program linking belief
+  diffusion to optimal stopping, linguistic framing and no-arbitrage belief
+  repair, and market-based multi-agent aggregation.
+- Dependencies: public or synthetic data with recorded rights; deterministic
+  financial calculations; preregistered primary metrics; agents remain
+  sequential and may not publish, reinterpret hypotheses, or claim results
+  without Director/reviewer gates.
+- Exit criteria: controlled program plan, agent-ready task graph, issue
+  registration, decision records, research-program index update, validation,
+  and an exact next-agent start packet. No experiment result is claimed.
 
 ## Weekly dashboard snapshot — 2026-07-27
 

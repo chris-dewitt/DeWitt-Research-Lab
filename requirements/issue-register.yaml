@@ -1,5 +1,5 @@
-schema_version: 1.0.0
-generated_at: '2026-07-27'
+schema_version: 1.1.0
+generated_at: '2026-08-05'
 description: >
   Machine-readable GitHub issue register for Mission 00. Each issue maps to
   exactly one primary mission and one evidence owner. Bodies live under
@@ -394,3 +394,13 @@ issues:
     dependencies: [DRL-027, DRL-028, DRL-029]
     body: .github/ISSUE_BODIES/DRL-030.md
     requirements: [DRL-SYS-010]
+  - id: DRL-031
+    milestone: M4
+    mission: 15
+    evidence_owner: Research/Community
+    labels: [research, program, publication]
+    title: Establish the Computational Finance of Intelligence research program
+    status: IN_PROGRESS
+    dependencies: [DRL-028]
+    body: .github/ISSUE_BODIES/DRL-031.md
+    requirements: [DRL-DAT-002, DRL-EVL-004, DRL-EVL-008, DRL-OPS-003, DRL-OSS-003]

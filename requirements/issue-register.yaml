@@ -1,4 +1,4 @@
-schema_version: 1.1.0
+schema_version: 1.2.0
 generated_at: '2026-08-05'
 description: >
   Machine-readable GitHub issue register for Mission 00. Each issue maps to
@@ -409,3 +409,13 @@ issues:
       - tests/docs/test_computational_finance_research_program.py
       - agents/handoffs/2026-08-05-drl-031-computational-finance-plan.md
       - agents/handoffs/2026-08-05-drl-031-main-integration.md
+  - id: DRL-032
+    milestone: M4
+    mission: 15
+    evidence_owner: Research/Community
+    labels: [research, documentation, publication]
+    title: Build the CFI primary-source literature and novelty matrix
+    status: IN_PROGRESS
+    dependencies: [DRL-031]
+    body: .github/ISSUE_BODIES/DRL-032.md
+    requirements: [DRL-DAT-002, DRL-EVL-004, DRL-EVL-008, DRL-OPS-003, DRL-OSS-003]

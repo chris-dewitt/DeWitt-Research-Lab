@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.16.0
+version: 4.17.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -18,10 +18,10 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **15 Research/Community** — DRL-031 Computational Finance
-  of Intelligence planning is complete on `main`. The next research packet is
-  `CFI-002`; it has not yet been filed or started. Wix editor implementation
-  remains Director-operated.
+- Active mission: **15 Research/Community** — DRL-032 / CFI-002 primary-source
+  literature and novelty review. DRL-031 planning is complete on `main`; no
+  dataset acquisition, implementation, or experiment is authorized by DRL-032.
+  Wix editor implementation remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
   scaffold only — no winner).
@@ -52,6 +52,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
+| 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | IN PROGRESS | — |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -76,6 +77,18 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 - Exit criteria: controlled program plan, agent-ready task graph, issue
   registration, decision records, research-program index update, validation,
   and an exact next-agent start packet. No experiment result is claimed.
+
+## Active scope — DRL-032 / CFI-002 literature and novelty review
+
+- Scope: execute a dated, reproducible, primary-source review for Belief
+  Diffusion and Papers I–III; map proposed claims to closest work; record
+  conflicts, gaps, novelty risk, revalidation dates, and keep/narrow/merge/stop
+  recommendations.
+- Dependencies: DRL-031 and RES-017. Search snippets and secondary sources may
+  aid discovery but cannot support an evidentiary matrix entry.
+- Exit criteria: controlled novelty matrix, search ledger, technical-reference
+  update, reviewer checklist, validation, and exact handoff. No data, model,
+  experiment, venue, or public novelty claim.
 
 ## Weekly dashboard snapshot — 2026-07-27
 

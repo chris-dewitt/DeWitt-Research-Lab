@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.11.0
+version: 1.12.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -43,6 +43,13 @@ the Director's approval.
 - The repository must contain both controlled specifications and runnable code.
 - Major changes move through issues, feature branches, pull requests, tests,
   handoffs, and Director review.
+- The canonical GitHub repository is the Director-owned private repository
+  `chris-dewitt/DeWitt-Research-Lab`. It remains private through the end of
+  September 2026 while public-ready evidence is prepared. GitHub branch
+  protection and rulesets are intentionally not enabled; repository process,
+  review, and validation remain mandatory operating policy.
+- `director@dewitt-labs.com` is the only public contact address used by the
+  portfolio and repository, including responsible security reports.
 
 ## How agents use this ledger
 
@@ -58,14 +65,14 @@ the Director's approval.
 
 | ID | Area | Question | Options and consequence | Agent recommendation | Status |
 |---|---|---|---|---|---|
-| DIR-001 | Repository | What GitHub owner and repository slug will host DRL? | Personal account is simplest; an organization provides cleaner long-term governance. Observed push redirect to `chris-dewitt/DeWitt-Research-Lab-Foundation` (legacy lowercase remote still resolves). | Confirm personal slug casing/org as canonical or schedule org transfer; preserve transferability. | Director confirmation required (remote exists; identity not finalized) |
+| DIR-001 | Repository | What GitHub owner and repository slug will host DRL? | Personal account is simplest; an organization provides cleaner long-term governance. Observed push redirect to `chris-dewitt/DeWitt-Research-Lab-Foundation` (legacy lowercase remote still resolves). | Confirm personal slug casing/org as canonical or schedule org transfer; preserve transferability. | RESOLVED — RES-018 |
 | DIR-002 | GCP | What projects, billing account, and primary US region will be used? | Separate dev/stage/prod/research projects reduce blast radius but require more setup. | Begin with one budget-capped development project, then create isolated production and research projects before public beta. | Director input required before deployment |
-| DIR-003 | Security | What public address receives vulnerability reports? | A dedicated alias protects personal workflow and supports policy publication. | Create `security@dewitt-labs.com` before public launch. | Director input required |
+| DIR-003 | Security | What public address receives vulnerability reports? | A dedicated alias protects personal workflow and supports policy publication. | Create `security@dewitt-labs.com` before public launch. | RESOLVED — RES-019; use `director@dewitt-labs.com` only |
 | DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. | Run the documented bake-off; do not select by brand preference. Scaffold register + fixture report landed (DRL-012); no winner declared. | Evidence gate — scaffold only |
 | DIR-005 | Public access | What anonymous and authenticated quotas apply? | Higher limits improve exploration but increase abuse and cost. | Use fixture/replay mode by default; open bounded inference only after load and abuse testing. | Evidence gate |
 | DIR-006 | Legal | When should DRL form a legal entity or register marks? | Formation adds cost and administration but may help contracts and liability separation. | Continue truthful independent-initiative language; obtain professional advice before contracts or material revenue. | Deferred Director/legal decision |
 | DIR-007 | Legal/brand | Does the RES-014 rename extend to the claimed trademarks? | `NOTICE`, `TRADEMARK_POLICY.md`, and `LICENSE-STRATEGY.md` still claim "DeWitt Research Laboratory" and `DRL` as marks. Renaming a claimed mark is not a copy edit: it abandons accrued use of the old name and restarts it under the new one. Retaining both is also valid — the old name can stay as a prior mark while the public identity moves. | Do not rewrite the legal documents on brand grounds alone. Either retain "DeWitt Research Laboratory" as a prior/legacy mark and add "DeWitt Research Workshop" alongside it, or take advice before consolidating. Ties to DIR-006. | Director decision required — legal documents deliberately left unrenamed |
-| DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | Director G1 decision required; DRL-032 blocked |
+| DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | RESOLVED — RES-020; independent G1 review remains required |
 
 ## Approved resolutions
 
@@ -88,22 +95,25 @@ the Director's approval.
 | RES-015 | Position the public website as an evidence-first academic workshop and public research record. | The Director | 2026-08-04 | Retains the RES-013 mission and RES-014 name. The research thesis is "Engineering complex systems for open, inspectable intelligence." The homepage leads to a signed recorded run and `TR-2026-001`, makes degraded evidence and the Stage-B no-winner result visible, and treats contributor routes as secondary. Atticus is a documented research artifact; `atticus.dewitt-labs.com` remains planned until a service is actually deployed. Quantitative-finance experience and Charlotte provide supporting context without employer identification or institutional overstatement. |
 | RES-016 | Make `www.dewitt-labs.com` Christopher Noxon DeWitt's personal academic portfolio. | The Director | 2026-08-04 | **Supersedes the public-website positioning in RES-014 and RES-015.** The site title is the Director's name with the descriptor "Academic Portfolio," not DeWitt Research Workshop/Laboratory. It states that he is a student in the Master of Applied Data Science program at the University of North Carolina at Chapel Hill, engineers complex systems at work, studies them part time, and hopes to move toward graduate work in computer science. Research reports, replays, software, and Atticus are portfolio evidence. The RES-013 line may remain a repository/project mission but is not the website headline. No employer is named. |
 | RES-017 | Establish **Computational Finance of Intelligence** as the Director's three-paper academic research program, with Belief Diffusion as the shared methods bridge. | The Director | 2026-08-05 | The approved tracks are: optimal stopping and the option value of thinking; linguistic framing plus no-arbitrage belief repair; and market-based aggregation of human and machine beliefs. The program is portfolio research, not a separate institution or a claim of completed results. Agents may execute bounded task packets, but the Director retains authority over hypotheses, data eligibility, confirmatory protocols, claims, authorship, and publication. |
+| RES-018 | Use `chris-dewitt/DeWitt-Research-Lab` as the permanent Director-owned repository; keep it private through 2026-09-30 and do not enable GitHub branch protection or rulesets. | The Director | 2026-08-05 | The former `DeWitt-Research-Lab-Foundation` slug is retired. Public-readiness work targets the end of September. Feature branches, review, tests, and handoffs remain policy requirements even though GitHub does not technically enforce them. |
+| RES-019 | Use `director@dewitt-labs.com` as the only public contact address. | The Director | 2026-08-05 | Portfolio contact, research inquiries, employment or academic inquiries, and responsible security reports all route to the same address. Agents must not invent or recommend additional public aliases unless the Director reopens the decision. |
+| RES-020 | Approve DIR-008 Option A for the CFI program. | The Director | 2026-08-05 | Narrow Paper II into the first flagship; treat Dutch-book repair as a baseline rather than the contribution; authorize bounded re-scoping of Paper I around active information acquisition and Paper III around identifiable coupled belief dynamics or registered replication. No experiment bypasses independent G1 review. |
+| RES-021 | Publish sanitized display artifacts from a separate public repository while the authoritative research repository remains private. | The Director | 2026-08-05 | `chris-dewitt/DeWitt-Research-Artifacts` is the approved public deployment mirror. Only generated files admitted by the publication allowlist may be exported. The first artifact is the experimental replay viewer; papers require separate release approval and allowlist changes. ADR-0009 governs the boundary. |
 
 ## Current blockers
 
-- DIR-001 remains open for Director confirmation even though a GitHub remote
-  currently resolves to `chris-dewitt/dewitt-research-lab-foundation`. Agents
-  must not treat that remote as a final org/governance decision until confirmed.
 - No Google Cloud project or billing identity is configured.
 - No production secrets or credentials belong in this archive.
 - Core and Edge upstream models remain an evidence-based selection gate.
 - The public Wix site is live at `https://www.dewitt-labs.com`; ongoing content and DNS changes remain actions in the Director's accounts.
 - GitHub milestones/issues from the Mission 00 register are ready to file but
-  not yet created on the remote (gh write is operator-owned).
-- CFI-002 found contribution-level collisions with current primary work. Paper
-  I and Paper III may not proceed under their original novelty claims, and
-  Paper II must narrow its claim, until DIR-008 and independent G1 review are
-  resolved. The approved questions in RES-017 remain unchanged meanwhile.
+  not yet created on the remote.
+- CFI-002 found contribution-level collisions with current primary work.
+  RES-020 resolves the Director disposition, but independent G1 review and the
+  bounded re-scoping packets remain required before experiments proceed.
+- The public artifact repository, Pages source, and cross-repository publishing
+  credential are not configured yet. No artifact is live until DRL-033 records
+  the exact public URL and a read-back of the deployed files.
 
 ## Current implementation truth
 
@@ -117,6 +127,11 @@ evidence lineage, integrated orchestration, and evaluation plumbing. It is not
 yet a public production service, a trained Atticus model release, or a deployed
 Wix site. Signed success/degraded replay fixtures exist as prototype packages
 (DRL-019) using a demo HMAC key — not production signing identity.
+
+The original same-repository GitHub Pages build succeeded at `1feda7f`, but
+deployment was rejected because the canonical repository is private on a plan
+without private-repository Pages. RES-021 approves a separate allowlisted public
+deployment mirror; it is not yet live.
 
 ## Release check
 

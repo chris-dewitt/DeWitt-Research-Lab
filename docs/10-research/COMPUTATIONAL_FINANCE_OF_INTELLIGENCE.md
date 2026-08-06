@@ -1,7 +1,7 @@
 ---
 document_id: DRL-RES-005
 title: "Computational Finance of Intelligence: Research Program and Agent Execution Plan"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -494,17 +494,20 @@ Prioritize Paper II because deterministic payoff equivalence and pricing
 invariants support fast falsifiable progress. Complete CFI-201 through CFI-205.
 Release a pilot report whether the effect is positive, null, mixed, or invalid.
 
-### Months 3–7 — flagship optimal-stopping study
+### Months 3–7 — redesigned active-information-acquisition study
 
-Complete CFI-101 through CFI-106. The discrete model is required; continuous
-time is optional. A failed human-data reproduction or unidentifiable state model
-is a reportable result and blocks confirmatory claims rather than being hidden.
+Return Paper I to G1 scoping around costly active information acquisition over
+a calibrated belief state. Do not execute the original learned-stopping
+hypothesis. After the redesigned question passes its own novelty review,
+complete a revised CFI-101 through CFI-106 sequence. The discrete model is
+required; continuous time is optional.
 
 ### Months 6–12 — market study and integrated program
 
-Complete CFI-301 through CFI-306 after the shared bridge is stable. Reuse the
-belief schema and coherence diagnostics rather than creating incompatible paper
-pipelines. End the academic year with independent reproduction attempts and a
+Return Paper III to G1 scoping around identifiable coupled stochastic belief
+dynamics or a registered replication. Complete a revised CFI-301 through
+CFI-306 only after the new question passes review and the shared bridge is
+stable. End the academic year with independent reproduction attempts and a
 portfolio synthesis explaining what survived contact with evidence.
 
 ## 13. Cost and compute posture
@@ -515,18 +518,20 @@ smallest adequate local/open-weight model set. Every run plan declares a hard
 time, token, API, storage, and cloud-cost budget. Crossing an approved budget or
 adding a paid provider requires a Director decision and cost record.
 
-## 14. First next-agent packet
+## 14. First next-agent packet after RES-020
 
-The next agent should execute **CFI-002 only**.
+The next research agent should execute an **independent G1 review of CFI-002**
+and draft two bounded re-scoping packets. It must not begin an experiment.
 
-**Objective:** Produce a current, primary-source literature and novelty matrix
-for the bridge and all three paper tracks without changing their approved
-questions.
+**Objective:** Independently verify the collision matrix; test the narrowed
+Paper II flagship novelty sentence; and search nearest neighbors for Paper I's
+active-information-acquisition redesign and Paper III's identifiable coupled-
+dynamics or registered-replication route.
 
 **Read order:**
 
 1. `LABORATORY_BIBLE.md` sections 3, 9, 10, 17, 18, 20, and 23;
-2. `DIRECTORS_MEMO.md` RES-016 and RES-017;
+2. `DIRECTORS_MEMO.md` RES-016, RES-017, and RES-020;
 3. this document;
 4. `RESEARCH_ETHICS_AND_INTEGRITY.md`;
 5. `OPEN_RESEARCH_PUBLICATION_AND_REPLICATION.md`;
@@ -534,13 +539,14 @@ questions.
 7. `agents/15_RESEARCH_COMMUNITY.md`;
 8. latest accepted handoff and `WORKLOG.md`.
 
-**Owned output:** a new dated reference matrix under
-`docs/10-research/` or `research/cfi/registry/`, plus updates to the technical
-reference register for volatile assumptions.
+**Owned output:** an independent G1 review record, a narrowed Paper II claim
+packet, and separate Paper I/Paper III nearest-neighbor scoping notes, plus
+updates to the technical reference register for volatile assumptions.
 
-**Acceptance evidence:** search protocol, inclusion/exclusion criteria, primary
-sources, claim-to-source mapping, nearest competing work, unresolved novelty
-risks, revalidation dates, and reviewer checklist.
+**Acceptance evidence:** reviewer identity or agent boundary, source-by-source
+confirmation or correction, search protocol, primary sources, closest competing
+work for each redesign, unresolved risks, revalidation dates, and explicit
+pass/revise/stop recommendations.
 
 **Stop conditions:** paywalled evidence with no inspectable primary source;
 unclear dataset/model license; a competing paper that substantially collapses a

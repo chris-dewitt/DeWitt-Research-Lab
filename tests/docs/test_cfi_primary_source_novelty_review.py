@@ -47,7 +47,7 @@ def test_drl_032_is_blocked_without_rewriting_approved_questions() -> None:
     )
     issue = next(item for item in register["issues"] if item["id"] == "DRL-032")
     assert issue["status"] == "BLOCKED"
-    assert issue["director_decisions"] == ["RES-017", "DIR-008"]
+    assert issue["director_decisions"] == ["RES-017", "DIR-008", "RES-020"]
     assert REVIEW.relative_to(ROOT).as_posix() in issue["evidence"]
     assert (
         "agents/handoffs/2026-08-05-drl-032-cfi-literature-novelty.md"
@@ -68,7 +68,8 @@ def test_decision_and_reference_controls_record_revalidation_gate() -> None:
         ROOT / "docs" / "references" / "TECHNICAL_REFERENCE_REGISTER.md"
     ).read_text(encoding="utf-8")
     assert "| DIR-008 | CFI research |" in memo
-    assert "DRL-032 blocked" in memo
+    assert "RES-020 | Approve DIR-008 Option A" in memo
+    assert "independent G1 review" in memo
     assert "Computational Finance of Intelligence novelty boundary" in references
     assert "2026-09-05 and G1" in references
     assert "Contribution-collapsing control for the original Paper I hypothesis" in references

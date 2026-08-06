@@ -93,7 +93,7 @@ test.
 | ID | Action this sprint |
 |---|---|
 | DIR-001 | Confirm GitHub owner/slug matches the live remote or record transfer intent |
-| DIR-003 | Confirm or create `security@dewitt-labs.com` (or interim contact in SECURITY.md) |
+| DIR-003 | RESOLVED by RES-019: publish `director@dewitt-labs.com` as the only public contact |
 | DIR-002 | Not required to *code*; required before any `terraform apply` |
 
 Do not invent resolutions. Update `DIRECTORS_MEMO.md` when the Director decides.

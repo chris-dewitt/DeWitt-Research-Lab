@@ -1,7 +1,7 @@
 ---
 document_id: DRL-RES-006
 title: "Computational Finance of Intelligence: Primary-Source Novelty Review"
-version: 1.0.0
+version: 1.1.0
 status: IN REVIEW
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -20,8 +20,9 @@ bridge and three paper questions in
 **G1 stop condition triggered on 2026-08-05.** Recent primary work
 substantially overlaps the proposed contributions of Paper I and Paper III and
 occupies part of Paper II's coherence-repair contribution. The approved
-questions have not been silently renamed. DRL-032 is blocked at G1 pending the
-Director's disposition in DIR-008.
+questions have not been silently renamed. The Director approved Option A in
+RES-020 on 2026-08-05. DRL-032 remains blocked pending independent G1 review
+and the two bounded re-scoping packets authorized by that resolution.
 
 No dataset, participant record, model, API, experiment, simulation, cloud
 resource, or publication venue was used or selected in this review.
@@ -214,6 +215,11 @@ until a dedicated search finds a precise unoccupied estimand.
 
 ## 6. G1 options for the Director
 
+**Director disposition (2026-08-05): Option A approved in RES-020.** The
+alternatives remain below as institutional history. Approval selects the
+research direction; it does not replace independent G1 review, establish
+novelty, authorize data acquisition, or authorize an experiment.
+
 ### Option A - Recommended: preserve the program and authorize a narrow redesign
 
 1. Make Paper II the first full paper and require its novelty statement to be
@@ -291,9 +297,10 @@ An independent G1 reviewer must answer each item with evidence:
 ## 9. CFI-002 closure boundary
 
 The literature artifact, collision record, search protocol, technical-reference
-update, and reviewer checklist are complete enough for Director review. The
-research packet is not scientifically closed: DIR-008 must select a disposition,
-and independent G1 review must confirm or revise the matrix. Until then:
+update, and reviewer checklist are complete enough for review. RES-020 selects
+Option A, but the research packet is not scientifically closed: independent G1
+review must confirm or revise the matrix and the redesigns need fresh nearest-
+neighbor searches. Until then:
 
 - CFI-003 dataset-rights work may be planned but not used to evade G1;
 - CFI-004 schema work and all experimental packets remain dependency-gated;

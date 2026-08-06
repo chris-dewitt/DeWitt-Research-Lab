@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PRG-007
 title: "Foundation Decision Register"
-version: 4.3.0
+version: 4.4.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -44,6 +44,10 @@ last_updated: 2026-08-05
 | D-028 | GitHub issues, milestones, CI, agent sequencing, and a 90-day plan ship with the foundation | Approved | repository can move directly from upload to execution |
 | D-029 | The public website leads with the Director's name, current UNC-Chapel Hill degree, interest in complex systems, and computer-science trajectory | Approved | research, reports, replays, and software are selected portfolio evidence rather than the site's institutional identity |
 | D-030 | Computational Finance of Intelligence is the approved three-paper academic research program; Belief Diffusion is its shared methods bridge | Approved | Mission 15 uses `docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md` for agent task order, research gates, and evidence expectations |
+| D-031 | `chris-dewitt/DeWitt-Research-Lab` is the permanent Director-owned repository; it remains private through 2026-09-30 without GitHub branch protection or rulesets | Approved | GitHub does not enforce the repository operating contract; branches, review, tests, and handoffs remain mandatory policy |
+| D-032 | Sanitized portfolio evidence is published through the separate public deployment mirror `chris-dewitt/DeWitt-Research-Artifacts` | Approved | only generated allowlisted artifacts cross the private/public boundary; ADR-0009 governs publication |
+| D-033 | `director@dewitt-labs.com` is the only public contact address | Approved | academic, employment, research, portfolio, and responsible security inquiries use one address |
+| D-034 | CFI follows DIR-008 Option A | Approved | narrowed Paper II becomes the first flagship; Papers I and III return to bounded novelty scoping; independent G1 review still gates experiments |
 
 ## Open decision gates
 

@@ -55,7 +55,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
 | 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | BLOCKED — independent G1 review after RES-020 | — |
-| 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | IN PROGRESS | — |
+| 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | READY FOR REVIEW — EXTERNAL SETUP PENDING | `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
 
 ## Active scope — DRL-033 public artifact mirror
 

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.16.0
+version: 4.19.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -18,13 +18,14 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **15 Research/Community** — DRL-031 Computational Finance
-  of Intelligence planning is complete on `main`. The next research packet is
-  `CFI-002`; it has not yet been filed or started. Wix editor implementation
-  remains Director-operated.
+- Active mission: **15 Research/Community** — DRL-032 / CFI-002 is blocked at
+  G1 after the primary-source review found contribution-level collisions for
+  Papers I and III and part of Paper II. DRL-031 planning is complete on
+  `main`; no dataset acquisition, implementation, or experiment is authorized
+  by DRL-032. Wix editor implementation remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-001, DIR-003, DIR-002 (deploy), DIR-004 (model bake-off;
-  scaffold only — no winner).
+  scaffold only — no winner), and DIR-008 (CFI G1 disposition).
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
@@ -52,6 +53,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-029 | Cursor cloud agent | `cursor/drl-029-contributor-routes-ad29` | 2026-08-01 | IN REVIEW | PR #25 |
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
+| 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | BLOCKED — G1 DIR-008 | — |
 
 ## Active scope — DRL-021 documentation cleanup
 
@@ -77,6 +79,23 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   registration, decision records, research-program index update, validation,
   and an exact next-agent start packet. No experiment result is claimed.
 
+## Active scope — DRL-032 / CFI-002 literature and novelty review
+
+- Scope: execute a dated, reproducible, primary-source review for Belief
+  Diffusion and Papers I–III; map proposed claims to closest work; record
+  conflicts, gaps, novelty risk, revalidation dates, and keep/narrow/merge/stop
+  recommendations.
+- Dependencies: DRL-031 and RES-017. Search snippets and secondary sources may
+  aid discovery but cannot support an evidentiary matrix entry.
+- Exit criteria: controlled novelty matrix, search ledger, technical-reference
+  update, reviewer checklist, validation, and exact handoff. No data, model,
+  experiment, venue, or public novelty claim.
+- Stop recorded 2026-08-05: LearnStop directly overlaps Paper I's primary
+  hypothesis; recent AI-agent prediction-market, monoculture, and wagering work
+  directly overlaps Paper III; formal Dutch-book audit and repair work narrows
+  Paper II. DIR-008 now owns the G1 disposition. Approved questions remain
+  unchanged until the Director decides.
+
 ## Weekly dashboard snapshot — 2026-07-27
 
 | Field | Value |
@@ -92,6 +111,25 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-05 — DRL-032 CFI primary-source novelty review
+
+- Branch: `lovesong/research/drl-032-cfi-literature-novelty`
+- Registration commit: `eaae47c`
+- Research-record commit: `1797c0e`
+- Produced a 31-record structured primary-source review, claim collision matrix,
+  revalidation gates, G1 options, and document tests.
+- G1 stop triggered: Papers I and III are contribution-collided as worded;
+  Paper II remains the recommended flagship only after narrowing and
+  independent review. DRL-032 is `BLOCKED`, not complete.
+- Validators PASS; 17 focused tests and all 30 documentation tests PASS; Ruff,
+  open-identity, domain/Wix, secret, and diff checks PASS.
+- No data, participant, model, API, cloud, experiment, result, venue, or
+  publication action occurred.
+- Handoff:
+  `agents/handoffs/2026-08-05-drl-032-cfi-literature-novelty.md`
+- Next: the Director resolves DIR-008; agents must not change primary questions
+  or begin experiments before that G1 decision.
 
 ### 2026-08-05 — DRL-031 Computational Finance of Intelligence plan
 

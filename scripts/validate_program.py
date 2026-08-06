@@ -69,11 +69,11 @@ def validate_issue_register() -> None:
         "COMPLETE",
         "BLOCKED",
     }
-    expected_ids = {f"DRL-{number:03d}" for number in range(1, 32)}
+    expected_ids = {f"DRL-{number:03d}" for number in range(1, 33)}
     actual_ids = set(issue_by_id)
     if actual_ids != expected_ids:
         error(
-            "issue register IDs differ from DRL-001..DRL-031: "
+            "issue register IDs differ from DRL-001..DRL-032: "
             f"missing={sorted(expected_ids - actual_ids)}, "
             f"extra={sorted(actual_ids - expected_ids)}"
         )
@@ -205,7 +205,7 @@ def main() -> int:
             print(f"ERROR: {message}", file=sys.stderr)
         print(f"PROGRAM VALIDATION FAILED ({len(ERRORS)} errors)", file=sys.stderr)
         return 1
-    print("PROGRAM VALIDATION PASSED (31 issues, 122 work packages, acyclic dependencies)")
+    print("PROGRAM VALIDATION PASSED (32 issues, 122 work packages, acyclic dependencies)")
     return 0
 
 

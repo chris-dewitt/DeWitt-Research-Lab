@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0.0",
+  "exception_id": "DRL-OEX-0001",
+  "artifact_id": "drl-replay-viewer-public-deployment",
+  "reason_category": "operational",
+  "public_summary": "The authoritative research repository remains private through September 2026 while an explicitly sanitized static replay viewer is published as portfolio evidence. The deployment mirror is public-only and is not represented as the preferred source for modification during this period.",
+  "open_substitute": "The public mirror includes rendered success and degraded replays, machine-readable release metadata, exact source revision, per-file SHA-256 digests, licenses, limitations, and local static-host instructions. The preferred source is scheduled to become public by 2026-09-30.",
+  "approved_by": "Christopher Noxon DeWitt",
+  "approved_at": "2026-08-05T20:00:00-04:00",
+  "review_by": "2026-09-30",
+  "status": "active"
+}

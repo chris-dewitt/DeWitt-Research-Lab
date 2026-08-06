@@ -1,7 +1,7 @@
 ---
 document_id: DRL-EVL-103
 title: "EvalForge Demonstration and Portfolio Specification"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-01
@@ -18,6 +18,14 @@ last_updated: 2026-08-01
     ## Signature story
 
     A visitor compares two Atticus configurations. EvalForge runs the same held-out tool-use and citation cases, displays paired quality, latency, cost, and security changes, reveals failure slices, and issues a PR-style recommendation tied to exact artifacts.
+
+    ## Public identity
+
+The replay viewer is evidence inside Christopher Noxon DeWitt's academic
+portfolio. It leads with his name, uses first-person authorship on the index,
+links back to `https://www.dewitt-labs.com`, and describes UNC-Chapel Hill only
+as educational context without implying university endorsement. It is not
+presented as the website of a laboratory, institute, company, or team.
 
     ## Modes
 

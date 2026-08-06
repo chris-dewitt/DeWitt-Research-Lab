@@ -245,9 +245,11 @@ def _page(title: str, body: str) -> str:
 def _footer() -> str:
     return (
         "<footer>\n"
-        "<p>DeWitt Research Workshop · Node: Charlotte / Status: Prototype</p>\n"
-        "<p>This is an independent initiative. Not a government, university, or "
-        "accredited institution.</p>\n"
+        "<p>Christopher Noxon DeWitt · Charlotte, North Carolina · "
+        "Status: Prototype</p>\n"
+        "<p>Independent student research artifact. UNC-Chapel Hill is identified "
+        "for educational context and does not endorse this project.</p>\n"
+        '<p><a href="https://www.dewitt-labs.com">Return to academic portfolio →</a></p>\n'
         "</footer>"
     )
 
@@ -308,7 +310,8 @@ def render_bundle_page(bundle: ReplayBundle) -> str:
     tool_calls = sum(1 for e in bundle.trace if e.get("event_type") == "tool_started")
 
     parts = [
-        '<p class="kicker"><a href="index.html">← all replays</a></p>',
+        '<p class="kicker"><a href="index.html">← all recorded runs</a> · '
+        '<a href="https://www.dewitt-labs.com">academic portfolio</a></p>',
         f"<h1>{_esc(bundle.name)} replay</h1>",
         '<p class="lede">A recorded run of the evidence-to-scenario workflow, '
         "replayed from a signed bundle. Every step below is what actually "
@@ -382,7 +385,7 @@ def render_bundle_page(bundle: ReplayBundle) -> str:
         "integrity, not as an attestation of trust.</div>",
         _footer(),
     ]
-    return _page(f"{bundle.name} replay — DeWitt Research Workshop", "\n".join(parts))
+    return _page(f"{bundle.name} replay — Christopher Noxon DeWitt", "\n".join(parts))
 
 
 def render_index(bundles: list[ReplayBundle]) -> str:
@@ -407,13 +410,14 @@ def render_index(bundles: list[ReplayBundle]) -> str:
         )
 
     body = [
-        '<p class="kicker">DeWitt Research Workshop</p>',
-        "<h1>Recorded runs</h1>",
-        '<p class="lede">Atticus plans a piece of research, routes it across four '
-        "specialists, and an evaluator scores the result. These are signed "
-        "recordings of that happening — the plan, the policy decisions, each "
-        "specialist call, the evidence returned, and the digests linking it all "
-        "together. They replay without a model, a GPU, or an API key.</p>",
+        '<p class="kicker">Christopher Noxon DeWitt · Academic Portfolio</p>',
+        "<h1>Recorded research runs</h1>",
+        '<p class="lede">I built Atticus and EvalForge to study how bounded AI '
+        "systems plan research, route work across specialist tools, preserve "
+        "evidence lineage, and remain inspectable when something fails. These "
+        "signed recordings expose the plan, policy decisions, specialist calls, "
+        "returned evidence, evaluation, and linked digests. They replay without "
+        "a model, GPU, or API key.</p>",
         '<div class="note">Everything here is <strong>prototype</strong> maturity. '
         "Inputs are synthetic fixtures for local development, and the planner "
         "standing in for Atticus Core is rule-based until the model bake-off "
@@ -423,7 +427,7 @@ def render_index(bundles: list[ReplayBundle]) -> str:
         '<div class="cards">' + "".join(cards) + "</div>",
         _footer(),
     ]
-    return _page("Recorded runs — DeWitt Research Workshop", "\n".join(body))
+    return _page("Recorded research runs — Christopher Noxon DeWitt", "\n".join(body))
 
 
 def build_site(

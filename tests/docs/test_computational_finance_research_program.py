@@ -48,7 +48,9 @@ def test_program_bounds_agent_research_authority() -> None:
 
 def test_program_names_first_agent_packet_and_issue_registration() -> None:
     text = PLAN.read_text(encoding="utf-8")
-    assert "The next agent should execute **CFI-002 only**" in text
+    assert "independent G1 review of CFI-002" in text
+    assert "It must not begin an experiment" in text
+    assert "Paper II flagship novelty sentence" in text
     assert "CFI-003" in text
     assert "CFI-901" in text
 
@@ -62,3 +64,4 @@ def test_program_names_first_agent_packet_and_issue_registration() -> None:
 
     memo = (ROOT / "DIRECTORS_MEMO.md").read_text(encoding="utf-8")
     assert "RES-017" in memo
+    assert "RES-020" in memo

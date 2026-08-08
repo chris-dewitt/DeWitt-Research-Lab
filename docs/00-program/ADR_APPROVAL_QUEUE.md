@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PRG-094
 title: "ADR and Director Approval Queue"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-07-27
@@ -17,8 +17,6 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 
 | Priority | ID | Question | Status | Blocking | Recommended next evidence |
 |---:|---|---|---|---|---|
-| P0 | DIR-001 | Confirm GitHub owner/repository slug | Director input | Remote identity / transferability | Accept personal repo or create org + transfer plan |
-| P0 | DIR-003 | Public vulnerability contact address | Director input | SECURITY.md publication | Create `security@dewitt-labs.com` or document interim |
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |
@@ -37,6 +35,11 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 ADR-0001 monorepo · ADR-0002 Google Cloud primary · ADR-0003 Atticus model family
 program · ADR-0004 permission engine · ADR-0005 mixed licensing · ADR-0008 Wix
 canonical public site · RES-001–RES-010 in `DIRECTORS_MEMO.md`.
+
+ADR-0009 and RES-018 through RES-021 were approved on 2026-08-05. DIR-001,
+DIR-003, and DIR-008 were resolved by RES-018, RES-019, and RES-020
+respectively. Preserve their full history in `DIRECTORS_MEMO.md`; they are no
+longer approval-queue items.
 
 ## Agent rules for this queue
 

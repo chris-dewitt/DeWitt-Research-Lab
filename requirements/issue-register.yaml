@@ -419,9 +419,27 @@ issues:
     dependencies: [DRL-031]
     body: .github/ISSUE_BODIES/DRL-032.md
     requirements: [DRL-DAT-002, DRL-EVL-004, DRL-EVL-008, DRL-OPS-003, DRL-OSS-003]
-    director_decisions: [RES-017, DIR-008]
+    director_decisions: [RES-017, DIR-008, RES-020]
     evidence:
       - docs/10-research/CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md
       - docs/references/TECHNICAL_REFERENCE_REGISTER.md
       - tests/docs/test_cfi_primary_source_novelty_review.py
       - agents/handoffs/2026-08-05-drl-032-cfi-literature-novelty.md
+  - id: DRL-033
+    milestone: M4
+    mission: 14
+    evidence_owner: Release QA
+    labels: [infra, release, web, security]
+    title: Publish an allowlisted public replay artifact mirror
+    status: IN_PROGRESS
+    dependencies: [DRL-019]
+    body: .github/ISSUE_BODIES/DRL-033.md
+    requirements: [DRL-SEC-006, DRL-EVL-009, DRL-WEB-004, DRL-OSS-008, DRL-OSS-016]
+    director_decisions: [RES-018, RES-019, RES-021]
+    evidence:
+      - docs/adr/ADR-0009-public-artifact-deployment-mirror.md
+      - docs/09-open-source/PUBLIC_ARTIFACT_PUBLICATION.md
+      - configs/public-artifact-export.yaml
+      - configs/open-exceptions/DRL-OEX-0001.json
+      - scripts/prepare_public_replay_release.py
+      - tests/test_public_artifact_export.py

@@ -33,12 +33,15 @@ def test_workspace_rejects_symlink_escape_and_skips_symlinks_in_listing(
     outside = tmp_path.parent / "outside-secret.txt"
     outside.write_text("api_key=should-never-leak\n", encoding="utf-8")
     link = tmp_path / "escape.txt"
-    link.symlink_to(outside)
     nested = tmp_path / "nested"
     nested.mkdir()
     (nested / "ok.txt").write_text("ok\n", encoding="utf-8")
     nested_link = nested / "alias.txt"
-    nested_link.symlink_to(outside)
+    try:
+        link.symlink_to(outside)
+        nested_link.symlink_to(outside)
+    except OSError as exc:
+        pytest.skip(f"symlink creation is unavailable: {exc}")
 
     workspace = SandboxedWorkspace(tmp_path)
     with pytest.raises(PermissionError):

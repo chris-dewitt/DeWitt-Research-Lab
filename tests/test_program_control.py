@@ -29,7 +29,7 @@ def test_program_validator_passes() -> None:
 def test_issue_register_has_one_owner_and_evidence_owner_per_issue() -> None:
     register = yaml.safe_load((ROOT / "requirements/issue-register.yaml").read_text())
     issues = register["issues"]
-    assert len(issues) == 32
+    assert len(issues) == 33
     assert len({issue["id"] for issue in issues}) == len(issues)
     for issue in issues:
         assert isinstance(issue["mission"], int)
@@ -46,6 +46,7 @@ def test_issue_register_has_one_owner_and_evidence_owner_per_issue() -> None:
         "DRL-030.md",
         "DRL-031.md",
         "DRL-032.md",
+        "DRL-033.md",
     ],
 )
 def test_representative_issue_bodies_are_executable(body_name: str) -> None:

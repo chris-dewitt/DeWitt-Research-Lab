@@ -119,7 +119,7 @@ class TestRendering:
         for name in success.linked_workflow.get("links", {}):
             assert name in page
 
-    def test_independent_initiative_disclosure_on_every_page(
+    def test_portfolio_identity_and_disclosure_on_every_page(
         self, success: ReplayBundle, degraded: ReplayBundle
     ) -> None:
         for page in (
@@ -127,7 +127,10 @@ class TestRendering:
             render_bundle_page(degraded),
             render_index([success, degraded]),
         ):
-            assert "independent initiative" in page
+            assert "Christopher Noxon DeWitt" in page
+            assert "www.dewitt-labs.com" in page
+            assert "Independent student research artifact" in page
+            assert "does not endorse this project" in page
 
     def test_index_links_each_bundle(self, success: ReplayBundle, degraded: ReplayBundle) -> None:
         index = render_index([success, degraded])
@@ -182,7 +185,9 @@ class TestBuild:
         build_site(BUNDLES, a)
         build_site(BUNDLES, b)
         for name in ("index.html", "success.html", "degraded.html"):
-            assert (a / name).read_text() == (b / name).read_text()
+            assert (a / name).read_text(encoding="utf-8") == (b / name).read_text(
+                encoding="utf-8"
+            )
 
     def test_metadata_describes_what_was_published(
         self, success: ReplayBundle, degraded: ReplayBundle

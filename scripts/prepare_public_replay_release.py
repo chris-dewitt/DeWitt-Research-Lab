@@ -90,6 +90,10 @@ def _read_exception(policy_path: Path, artifact: dict[str, Any]) -> dict[str, An
     if policy_path != DEFAULT_POLICY:
         exception_path = policy_path.parents[1] / artifact["open_exception"]
     exception = json.loads(exception_path.read_text(encoding="utf-8"))
+    if not isinstance(exception, dict):
+        raise PublicArtifactError(
+            f"open exception must be a JSON object: {exception_path}"
+        )
     if exception["artifact_id"] != artifact["artifact_id"]:
         raise PublicArtifactError("open exception does not match the artifact")
     if exception["status"] != "active":

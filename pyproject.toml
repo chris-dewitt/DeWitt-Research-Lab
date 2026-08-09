@@ -47,6 +47,10 @@ select = ["E", "F", "I", "B", "UP", "S"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+# Put the repository root on sys.path so tests can import helper modules from
+# `scripts/` (a PEP 420 namespace package). Without this, a single test doing
+# `from scripts.x import y` fails at collection and aborts the entire run.
+pythonpath = ["."]
 
 [tool.mypy]
 python_version = "3.12"

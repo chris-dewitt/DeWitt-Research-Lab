@@ -113,6 +113,11 @@ class ModelPlanner:
         self.max_steps = max_steps
         self._validator = build_tool_plan_validator()
         self._by_name = {tool.name: tool for tool in catalog}
+        #: What produced the most recent plan: "model", or the reason it fell back.
+        #: Configuration alone does not prove a model planned anything, so callers
+        #: that report which planner ran must read this rather than the class name.
+        self.last_plan_source: str = "not-run"
+
 
     def plan(self, request: TaskRequest) -> list[ToolCall]:
         try:
@@ -120,17 +125,23 @@ class ModelPlanner:
                 build_planning_messages(request, self.catalog),
                 constraints=self.constraints,
             )
-        except ProviderError:
+        except ProviderError as exc:
             # The model is unreachable or refused. A planning outage must not
             # take down the run; the deterministic path still works.
+            self.last_plan_source = f"fallback: provider unavailable ({type(exc).__name__})"
             return self.fallback.plan(request)
 
         payload = self._parse(response.content)
         if payload is None:
+            self.last_plan_source = "fallback: response failed plan schema"
             return self.fallback.plan(request)
 
         calls = self._to_calls(request, payload)
-        return calls if calls else self.fallback.plan(request)
+        if not calls:
+            self.last_plan_source = "fallback: plan contained no known tools"
+            return self.fallback.plan(request)
+        self.last_plan_source = "model"
+        return calls
 
     def _parse(self, content: str) -> dict[str, Any] | None:
         """Validate the completion against the plan schema.

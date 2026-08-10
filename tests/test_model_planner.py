@@ -235,3 +235,39 @@ class TestHttpProvider:
         provider = HttpOpenAICompatibleProvider(model="m")
         with pytest.raises(ValueError, match="messages cannot be empty"):
             provider.complete([], constraints=CompletionConstraints())
+
+
+class TestPlanSourceDisclosure:
+    """Configuration is not proof a model planned anything.
+
+    The planner falls back silently by design, so a run that never reached the
+    model would otherwise be indistinguishable from one that did.
+    """
+
+    def test_successful_plan_reports_model(self) -> None:
+        content = plan_json([
+            {"tool_name": "atlas.research_snapshot", "arguments": {}, "risk_tier": 1}
+        ])
+        planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG)
+        planner.plan(request())
+        assert planner.last_plan_source == "model"
+
+    def test_provider_failure_is_named(self) -> None:
+        planner = ModelPlanner(gateway_for(StubProvider(fail=True)), CATALOG)
+        planner.plan(request())
+        assert "provider unavailable" in planner.last_plan_source
+
+    def test_schema_failure_is_named(self) -> None:
+        planner = ModelPlanner(gateway_for(StubProvider("garbage")), CATALOG)
+        planner.plan(request())
+        assert "failed plan schema" in planner.last_plan_source
+
+    def test_unknown_tools_are_named(self) -> None:
+        content = plan_json([{"tool_name": "made.up", "arguments": {}, "risk_tier": 0}])
+        planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG)
+        planner.plan(request())
+        assert "no known tools" in planner.last_plan_source
+
+    def test_source_is_unset_before_running(self) -> None:
+        planner = ModelPlanner(gateway_for(StubProvider()), CATALOG)
+        assert planner.last_plan_source == "not-run"

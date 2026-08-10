@@ -52,6 +52,12 @@ Rules:
 """
 
 
+def _short_reason(exc: Exception, limit: int = 240) -> str:
+    """Render a provider failure as one actionable line."""
+    text = " ".join(str(exc).split())
+    return text if len(text) <= limit else text[: limit - 1] + "\u2026"
+
+
 def _catalog_block(catalog: tuple[ToolDefinition, ...]) -> str:
     lines = []
     for tool in catalog:
@@ -128,7 +134,12 @@ class ModelPlanner:
         except ProviderError as exc:
             # The model is unreachable or refused. A planning outage must not
             # take down the run; the deterministic path still works.
-            self.last_plan_source = f"fallback: provider unavailable ({type(exc).__name__})"
+            #
+            # Record the gateway's message, not just the exception class. The
+            # gateway aggregates per-provider detail into the message, and that
+            # detail is the difference between "connection refused", "timed out",
+            # and "404 on the path" — three problems with three different fixes.
+            self.last_plan_source = f"fallback: {_short_reason(exc)}"
             return self.fallback.plan(request)
 
         payload = self._parse(response.content)

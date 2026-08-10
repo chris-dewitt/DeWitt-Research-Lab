@@ -252,10 +252,16 @@ class TestPlanSourceDisclosure:
         planner.plan(request())
         assert planner.last_plan_source == "model"
 
-    def test_provider_failure_is_named(self) -> None:
+    def test_provider_failure_reports_the_underlying_reason(self) -> None:
+        """The class name alone is useless; the cause must survive."""
         planner = ModelPlanner(gateway_for(StubProvider(fail=True)), CATALOG)
         planner.plan(request())
-        assert "provider unavailable" in planner.last_plan_source
+        assert "stub is down" in planner.last_plan_source
+
+    def test_long_reasons_are_truncated(self) -> None:
+        planner = ModelPlanner(gateway_for(StubProvider(fail=True)), CATALOG)
+        planner.plan(request())
+        assert len(planner.last_plan_source) <= 260
 
     def test_schema_failure_is_named(self) -> None:
         planner = ModelPlanner(gateway_for(StubProvider("garbage")), CATALOG)

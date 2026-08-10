@@ -19,6 +19,7 @@ from .bakeoff_harness import (
     summarise_blockers,
 )
 from .gateway import ModelGateway
+from .http_provider import HttpOpenAICompatibleProvider, strip_reasoning
 from .mock_provider import MockOpenWeightProvider
 from .providers import (
     ChatMessage,
@@ -56,6 +57,7 @@ __all__ = [
     "CompletionConstraints",
     "EvidenceGate",
     "GraderSpec",
+    "HttpOpenAICompatibleProvider",
     "MockOpenWeightProvider",
     "ModelGateway",
     "ModelIdentity",
@@ -85,6 +87,7 @@ __all__ = [
     "run_bakeoff_scaffold",
     "run_candidate",
     "select_winner",
+    "strip_reasoning",
     "summarise_blockers",
     "validate_against_schema",
 ]

@@ -7,7 +7,8 @@ import json
 
 from drl_protocol import TaskRequest
 
-from .runtime import build_local_runtime
+from .model_planner import ModelPlanner
+from .runtime import build_runtime_from_env
 
 DEFAULT_OBJECTIVE = (
     "Using the latest available public inflation evidence and Federal Reserve "
@@ -25,6 +26,23 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def describe_planner(runtime: object) -> str:
+    """Report which planner actually ran.
+
+    The model planner falls back to fixtures on any failure, so a silent
+    fallback would otherwise look exactly like success. Naming the planner and
+    the model makes the difference observable in the output itself.
+    """
+    planner = getattr(runtime, "planner", None)
+    if not isinstance(planner, ModelPlanner):
+        return "deterministic fixture planner (set ATTICUS_MODEL to use a model)"
+    identity = planner.gateway.provider().identity
+    configured = f"{identity.revision} ({identity.runtime})"
+    if planner.last_plan_source == "model":
+        return f"model planner via {configured}"
+    return f"{configured} configured, but plan came from {planner.last_plan_source}"
+
+
 def main() -> int:
     args = build_parser().parse_args()
     request = TaskRequest(
@@ -33,11 +51,13 @@ def main() -> int:
         public_session=args.public,
         as_of=args.as_of,
     )
-    result = build_local_runtime().run(request)
+    runtime = build_runtime_from_env()
+    result = runtime.run(request)
     if args.json:
         print(json.dumps(result.to_dict(), indent=2, default=str))
     else:
         print("DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION")
+        print(f"PLANNER: {describe_planner(runtime)}")
         print(f"STATE: {result.state.value}")
         print()
         print(result.summary)

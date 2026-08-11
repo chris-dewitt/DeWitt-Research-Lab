@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v6.0.9
+      - uses: pnpm/action-setup@v6.0.10
         # Read the exact version from package.json#packageManager. Supplying a
         # second version here makes pnpm/action-setup reject the workflow.
       - uses: actions/setup-node@v4

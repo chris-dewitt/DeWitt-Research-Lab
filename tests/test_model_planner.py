@@ -277,3 +277,37 @@ class TestPlanSourceDisclosure:
     def test_source_is_unset_before_running(self) -> None:
         planner = ModelPlanner(gateway_for(StubProvider()), CATALOG)
         assert planner.last_plan_source == "not-run"
+
+
+class TestTimeoutBudget:
+    """A local 20B+ model needs far longer than a hosted endpoint's 30s."""
+
+    def test_default_is_generous_enough_for_local_inference(self) -> None:
+        from atticus_control_plane.runtime import (
+            DEFAULT_MODEL_TIMEOUT_SECONDS,
+            build_model_backed_runtime,
+        )
+
+        runtime = build_model_backed_runtime(model="test:0b")
+        assert runtime.planner.constraints.timeout_seconds == DEFAULT_MODEL_TIMEOUT_SECONDS
+        assert DEFAULT_MODEL_TIMEOUT_SECONDS >= 120
+
+    def test_timeout_is_overridable(self) -> None:
+        from atticus_control_plane.runtime import build_model_backed_runtime
+
+        runtime = build_model_backed_runtime(model="test:0b", timeout_seconds=600.0)
+        assert runtime.planner.constraints.timeout_seconds == 600.0
+
+    def test_unparseable_env_timeout_falls_back_to_default(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """A typo in the env var must not silently produce a zero budget."""
+        from atticus_control_plane.runtime import (
+            DEFAULT_MODEL_TIMEOUT_SECONDS,
+            build_runtime_from_env,
+        )
+
+        monkeypatch.setenv("ATTICUS_MODEL", "test:0b")
+        monkeypatch.setenv("ATTICUS_MODEL_TIMEOUT", "not-a-number")
+        runtime = build_runtime_from_env()
+        assert runtime.planner.constraints.timeout_seconds == DEFAULT_MODEL_TIMEOUT_SECONDS

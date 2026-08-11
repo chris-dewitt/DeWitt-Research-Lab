@@ -9,6 +9,7 @@ from tempfile import gettempdir
 from atlas_service import AtlasService, FileObservationCache, PublicFixtureAdapter
 from balancelab_ai import ScenarioEngine
 from drl_ai_core import HttpOpenAICompatibleProvider, ModelGateway
+from drl_ai_core.providers import CompletionConstraints
 from evalforge_service import EvalForge
 from fedlens_service import FedLensService
 
@@ -61,6 +62,15 @@ def build_local_open_weight_gateway() -> ModelGateway:
 #: expose this shape, so switching runtime is configuration, not code.
 DEFAULT_MODEL_BASE_URL = "http://localhost:11434/v1"
 
+#: Planning budget for a locally hosted model, in seconds.
+#:
+#: The 30s default from CompletionConstraints suits a hosted endpoint and is far
+#: too tight for local inference: a cold load of a 20B+ model can take minutes
+#: before the first token, and CPU-bound generation is slower still. A generous
+#: ceiling costs nothing when the model is fast and prevents a spurious fallback
+#: when it is not.
+DEFAULT_MODEL_TIMEOUT_SECONDS = 180.0
+
 
 def build_http_model_gateway(
     *,
@@ -91,6 +101,7 @@ def build_model_backed_runtime(
     model: str,
     base_url: str | None = None,
     license_label: str = "unreviewed",
+    timeout_seconds: float | None = None,
 ) -> AtticusOrchestrator:
     """Build the local runtime with an open-weight model doing the planning.
 
@@ -102,7 +113,15 @@ def build_model_backed_runtime(
     gateway = build_http_model_gateway(
         model=model, base_url=base_url, license_label=license_label
     )
-    orchestrator.planner = ModelPlanner(gateway, orchestrator.registry.catalog())
+    constraints = CompletionConstraints(
+        temperature=0.0,
+        max_output_tokens=1024,
+        require_open_weight=True,
+        timeout_seconds=timeout_seconds or DEFAULT_MODEL_TIMEOUT_SECONDS,
+    )
+    orchestrator.planner = ModelPlanner(
+        gateway, orchestrator.registry.catalog(), constraints=constraints
+    )
     return orchestrator
 
 
@@ -116,8 +135,14 @@ def build_runtime_from_env() -> AtticusOrchestrator:
     model = os.environ.get("ATTICUS_MODEL", "").strip()
     if not model:
         return build_local_runtime()
+    raw_timeout = os.environ.get("ATTICUS_MODEL_TIMEOUT", "").strip()
+    try:
+        timeout = float(raw_timeout) if raw_timeout else None
+    except ValueError:
+        timeout = None
     return build_model_backed_runtime(
         model=model,
         base_url=os.environ.get("ATTICUS_MODEL_BASE_URL") or None,
         license_label=os.environ.get("ATTICUS_MODEL_LICENSE", "unreviewed"),
+        timeout_seconds=timeout,
     )

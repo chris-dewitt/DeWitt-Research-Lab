@@ -88,6 +88,12 @@ class StructuredModelResponse:
     usage: dict[str, int] = field(default_factory=dict)
     tool_calls: tuple[dict[str, Any], ...] = ()
     structured: dict[str, Any] = field(default_factory=dict)
+    #: How the completion was carried, not what it said: whether it streamed,
+    #: how many chunks arrived, time to first token. Diagnosing a slow local
+    #: endpoint needs this, and total latency alone cannot supply it — a long
+    #: wait before the first token and a long steady generation are different
+    #: faults with different fixes.
+    transport: dict[str, Any] = field(default_factory=dict)
 
     def disclosure(self) -> dict[str, Any]:
         payload = self.identity.disclosure()
@@ -98,6 +104,8 @@ class StructuredModelResponse:
                 "usage": dict(self.usage),
             }
         )
+        if self.transport:
+            payload["transport"] = dict(self.transport)
         return payload
 
 

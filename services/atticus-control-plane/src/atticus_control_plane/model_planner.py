@@ -113,8 +113,11 @@ class ModelPlanner:
         self.gateway = gateway
         self.catalog = catalog
         self.fallback = fallback or FixturePlanner()
+        # 2048 rather than 1024: a reasoning-capable model spends tokens on
+        # thinking before it emits the plan, and a budget that runs out mid-
+        # reasoning yields an empty completion rather than a short one.
         self.constraints = constraints or CompletionConstraints(
-            temperature=0.0, max_output_tokens=1024, require_open_weight=True
+            temperature=0.0, max_output_tokens=2048, require_open_weight=True
         )
         self.max_steps = max_steps
         self._validator = build_tool_plan_validator()
@@ -140,6 +143,17 @@ class ModelPlanner:
             # detail is the difference between "connection refused", "timed out",
             # and "404 on the path" — three problems with three different fixes.
             self.last_plan_source = f"fallback: {_short_reason(exc)}"
+            return self.fallback.plan(request)
+
+        if not response.content.strip():
+            # Distinct from a schema failure and fixed differently. A reasoning
+            # model that spends its whole budget thinking returns nothing once
+            # the chain-of-thought is stripped; the fix is more headroom or
+            # thinking disabled, not a better prompt.
+            self.last_plan_source = (
+                "fallback: model returned no content after reasoning was stripped "
+                f"(finish_reason={response.finish_reason})"
+            )
             return self.fallback.plan(request)
 
         payload = self._parse(response.content)

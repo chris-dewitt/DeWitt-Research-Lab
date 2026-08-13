@@ -232,14 +232,18 @@ class TestTheTimeoutIsAStallTimeout:
     def test_steady_output_outlives_the_stall_timeout(self) -> None:
         """The whole point: slow is not dead.
 
-        Six chunks 50ms apart run 300ms — well past the 200ms stall timeout —
-        and must succeed, because no single gap exceeds it. A wall-clock
-        deadline of the same length would have killed this run.
+        Sixteen chunks 100ms apart run about 1.6s — well past the 1s stall
+        timeout — and must succeed, because no single gap comes near it. A
+        wall-clock deadline of the same length would have killed this run.
+
+        The 10x margin between the gap and the timeout is deliberate: a loaded
+        runner stretches sleeps, and a test that fails when CI is busy would be
+        measuring the runner rather than the provider.
         """
-        chunks = [text_delta(c) for c in "{}"] + [text_delta(PLAN), finish()]
-        with local_endpoint(sse(chunks, delay=0.05)) as (url, _):
-            response = ask(provider_at(url, stall_timeout=0.2), timeout=30.0)
-        assert response.content.endswith("}")
+        chunks = [text_delta(" ") for _ in range(15)] + [text_delta(PLAN), finish()]
+        with local_endpoint(sse(chunks, delay=0.1)) as (url, _):
+            response = ask(provider_at(url, stall_timeout=1.0), timeout=60.0)
+        assert response.content == PLAN
 
     def test_silence_past_the_stall_timeout_fails(self) -> None:
         with local_endpoint(sse([text_delta("{")], hang_after=2.0)) as (url, _):

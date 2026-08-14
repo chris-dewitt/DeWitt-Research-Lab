@@ -73,11 +73,29 @@ uv run python -c "from drl_ai_core import run_bakeoff_scaffold; import json; pri
 
 ## Running it for real
 
-1. Pin exact revisions in `candidates.yaml` and clear each `license_status`.
-2. Stand up an open-weight endpoint per candidate and return it from
-   `build_providers` in `scripts/run_bakeoff.py`, replacing the scripted fixtures.
-3. Run with `--measurement-mode hardware` on the target hardware class.
-4. Review the blockers. If the gate still refuses, it is telling you the evidence
+1. Pin exact revisions in `candidates.yaml` and clear each `license_status`. A
+   status that still hedges — `pending`, `provisional`, `unconfirmed` — reads as
+   uncleared, which is the point.
+2. Stand up an open-weight endpoint for **at least two** candidates in the role
+   and give each one a `serving` block in `candidates.yaml`:
+
+   ```yaml
+   serving:
+     runtime: ollama
+     model: gemma4:26b
+     base_url: http://localhost:11434/v1   # optional
+     quantization: Q4_K_M                  # optional
+   ```
+
+   Two is not a formality. A field of one clears every other condition and the
+   margin check is skipped when there is no runner-up, so a single served
+   candidate would otherwise win by default. Candidates without a `serving`
+   block are skipped, not scored zero.
+3. Confirm each endpoint answers first: `uv run python scripts/probe_model.py`.
+4. Run `uv run python scripts/run_bakeoff.py --live --measurement-mode hardware`
+   on the target hardware class. `--measurement-mode hardware` without `--live`
+   is refused; scripted providers did not measure anything.
+5. Review the blockers. If the gate still refuses, it is telling you the evidence
    is not yet good enough — extend the suite or fix the setup rather than
    lowering the thresholds.
-5. Take the report to the Director. **The harness never closes DIR-004 on its own.**
+6. Take the report to the Director. **The harness never closes DIR-004 on its own.**

@@ -54,6 +54,12 @@ candidates:
     estimated_vram_gb: 16
     cost_tier: medium
     source_url: https://ollama.com/library/gemma4
+    # The only candidate actually stood up. Presence of this block is what puts
+    # it in a `--live` run; the others are skipped until someone serves them.
+    serving:
+      runtime: ollama
+      model: gemma4:26b
+      quantization: Q4_K_M
     limitations:
       - Reported parameters 25.8B, Q4_K_M, 262144 context (ollama show, 2026-08-09).
       - License read from the packaged model card, not the upstream publisher page;

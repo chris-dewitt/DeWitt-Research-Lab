@@ -21,6 +21,21 @@ DEFAULT_REGISTER = (
 
 
 @dataclass(frozen=True, slots=True)
+class ServingSpec:
+    """Where a candidate can actually be reached, when one has been stood up.
+
+    Its presence is the whole switch for a live run. A candidate without a
+    ``serving`` block is skipped rather than scored zero — nobody has served it,
+    which is not the same as it having failed.
+    """
+
+    runtime: str
+    model: str
+    base_url: str | None = None
+    quantization: str | None = None
+
+
+@dataclass(frozen=True, slots=True)
 class BakeoffCandidate:
     id: str
     role: str
@@ -34,6 +49,25 @@ class BakeoffCandidate:
     source_url: str
     limitations: tuple[str, ...]
     revision_label: str
+    serving: ServingSpec | None = None
+
+
+def parse_serving(raw: Any) -> ServingSpec | None:
+    """Read a candidate's ``serving`` block, if it has one."""
+    if not isinstance(raw, dict):
+        return None
+    runtime = str(raw.get("runtime", "")).strip()
+    model = str(raw.get("model", "")).strip()
+    if not runtime or not model:
+        raise ValueError("serving block requires both 'runtime' and 'model'")
+    base_url = raw.get("base_url")
+    quantization = raw.get("quantization")
+    return ServingSpec(
+        runtime=runtime,
+        model=model,
+        base_url=str(base_url) if base_url else None,
+        quantization=str(quantization) if quantization else None,
+    )
 
 
 def load_bakeoff_register(path: Path | None = None) -> dict[str, Any]:
@@ -60,6 +94,7 @@ def _candidate(row: dict[str, Any]) -> BakeoffCandidate:
         source_url=str(row["source_url"]),
         limitations=tuple(str(item) for item in row.get("limitations", [])),
         revision_label=str(row.get("revision_label", "unpinned")),
+        serving=parse_serving(row.get("serving")),
     )
 
 

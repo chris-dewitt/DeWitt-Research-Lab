@@ -1,10 +1,10 @@
 ---
 document_id: DRL-TR-2026-002
 title: "Technical Report TR-2026-002: Evidence-Gated Model Selection"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-08
+last_updated: 2026-08-13
 citation_key: dewitt2026tr002
 maturity: prototype
 ---
@@ -26,11 +26,11 @@ hides the decision that actually matters, which is whether the measurement was
 good enough to support a selection at all. This report describes a harness that
 separates those two questions. Candidates are run against a fixed task suite and
 graded deterministically, producing a ranking; the ranking is then passed through
-an **evidence gate** that can refuse to name a winner. The gate encodes eight
+an **evidence gate** that can refuse to name a winner. The gate encodes nine
 blocking conditions — measurement provenance, revision pinning, license clearance,
 suite coverage, execution completeness, a quality floor, zero safety-critical
-failures, and a minimum margin over the runner-up — and a failure on any one
-returns "no selection" together with the reasons. No score, however favourable,
+failures, a minimum field of candidates, and a minimum margin over the runner-up —
+and a failure on any one returns "no selection" together with the reasons. No score, however favourable,
 overrides a blocked gate. Running the harness on the current candidate register
 returns no winner for either role, blocked by six concrete reasons. That null
 result is the report's only empirical claim.
@@ -100,6 +100,7 @@ unrecorded.
 | Errored tasks | 0 | A crash is missing evidence, not a low score |
 | Weighted quality | ≥ 0.80 | Floor below which ranking is uninformative |
 | Safety-critical failures | 0 | Not tradeable against aggregate quality |
+| Candidates for the role | ≥ 2 | A field of one is a measurement, not a comparison |
 | Margin over runner-up | ≥ 0.05 | Two candidates inside noise means no winner |
 
 Thresholds are configurable; the conditions are not optional. When any fails,
@@ -177,8 +178,9 @@ uv run pytest -q tests/test_bakeoff_harness.py
 ```
 
 A hardware run additionally requires pinned revisions and cleared licenses in
-`candidates.yaml`, live open-weight endpoints returned from `build_providers` in
-`scripts/run_bakeoff.py`, and `--measurement-mode hardware`.
+`candidates.yaml`, a `serving` block on each candidate that has been stood up,
+and `--live --measurement-mode hardware`. At least two candidates for a role must
+be served before either can be selected.
 
 If the gate still refuses after a hardware run, that is the instrument reporting
 that the evidence is insufficient. The correct response is to extend the suite or
@@ -186,8 +188,27 @@ correct the setup, not to lower the thresholds.
 
 ## 8. Corrections and supersession
 
-No corrections. This report will be superseded when a hardware run produces
-measured evidence.
+**v1.1.0.** Two defects in the gate were found while wiring the first live
+endpoint, and both are recorded here rather than quietly repaired.
+
+1. *A field of one could win.* The margin condition was the only comparative
+   gate, and `select_winner` skips it when there is no runner-up. Every other
+   condition is satisfiable by a single candidate, so serving one endpoint and
+   running the suite in hardware mode would have named it the winner on no
+   comparison at all. A `min_candidates` condition (default 2) now blocks this.
+   The defect was unreachable while every run was fixture-mode, because the
+   measurement-provenance condition blocked those runs first; adding a live path
+   is what exposed it.
+2. *A hedged license read as cleared.* License clearance tested exact membership
+   in a set of known-uncleared states. A register row reading
+   `reported_apache_2_0_pending_confirmation` says plainly that nobody has
+   confirmed the license, matched no entry, and passed. Clearance now fails on
+   any hedging marker in the status string.
+
+Neither defect changes §5: that run was fixture-mode and blocked on measurement
+provenance regardless. The eight-condition count in v1.0.0 is superseded by nine.
+
+This report will be superseded when a hardware run produces measured evidence.
 
 ## 9. Related requirements
 

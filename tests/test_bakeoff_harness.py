@@ -9,8 +9,10 @@ declare one and check that it won't.
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import pytest
+import yaml
 from drl_ai_core import (
     BakeoffError,
     CandidateRun,
@@ -24,7 +26,14 @@ from drl_ai_core import (
     select_winner,
 )
 from drl_ai_core.bakeoff import BakeoffCandidate
-from drl_ai_core.bakeoff_harness import BakeoffTask, GraderSpec, summarise_blockers
+from drl_ai_core.bakeoff_harness import (
+    BakeoffTask,
+    GraderSpec,
+    build_live_providers,
+    license_is_cleared,
+    load_candidates,
+    summarise_blockers,
+)
 from drl_ai_core.providers import (
     ChatMessage,
     ModelIdentity,
@@ -357,9 +366,69 @@ class TestEvidenceGate:
         assert decision.status == "no_candidates"
 
     def test_gate_thresholds_are_configurable(self) -> None:
-        runs = [_run("c1", _results(10, 0.6))]
+        runs = [_run("c1", _results(10, 0.6)), _run("c2", _results(10, 0.4))]
+        register = {"c1": _register_row("c1"), "c2": _register_row("c2")}
         gate = EvidenceGate(min_quality=0.5, min_margin=0.0, min_tasks=5)
+        assert select_winner("core", runs, register, gate).selected == "c1"
+
+    def test_a_field_of_one_cannot_produce_a_winner(self) -> None:
+        """A single candidate is not a bake-off, however well it scores.
+
+        The margin check is the only comparative gate and it is skipped when
+        there is no runner-up. Without this condition, standing up one endpoint
+        and running the suite against it would clear everything else and name a
+        winner on no comparison at all.
+        """
+        runs = [_run("c1", _results(10, 1.0))]
+        decision = select_winner("core", runs, self._register())
+        assert decision.selected is None
+        assert any("required to compare" in b for b in decision.blockers)
+
+    def test_a_field_of_one_is_allowed_only_by_explicit_configuration(self) -> None:
+        """Lowering the bar has to be a deliberate act, recorded in the gate."""
+        runs = [_run("c1", _results(10, 1.0))]
+        gate = EvidenceGate(min_candidates=1)
         assert select_winner("core", runs, self._register(), gate).selected == "c1"
+
+    def test_a_hedged_license_status_does_not_read_as_cleared(self) -> None:
+        """The register's own words are the evidence, not an exact-match list.
+
+        `reported_apache_2_0_pending_confirmation` says nobody confirmed the
+        license; it previously matched no known uncleared state and passed.
+        """
+        runs = [_run("c1", _results(10, 1.0)), _run("c2", _results(10, 0.5))]
+        register = {
+            "c1": _register_row("c1", license_status="reported_apache_2_0_pending_confirmation"),
+            "c2": _register_row("c2"),
+        }
+        decision = select_winner("core", runs, register)
+        assert decision.selected is None
+        assert any("license not cleared" in b for b in decision.blockers)
+
+    @pytest.mark.parametrize(
+        "status",
+        [
+            "cleared",
+            "apache_2_0_confirmed",
+            "mit_verified_by_counsel",
+        ],
+    )
+    def test_genuinely_cleared_statuses_still_pass(self, status: str) -> None:
+        assert license_is_cleared(status)
+
+    @pytest.mark.parametrize(
+        "status",
+        [
+            "",
+            "unknown",
+            "provisional_review_required",
+            "reported_apache_2_0_pending_confirmation",
+            "APACHE-2.0 (UNCONFIRMED)",
+            "unreviewed",
+        ],
+    )
+    def test_hedged_statuses_are_refused(self, status: str) -> None:
+        assert not license_is_cleared(status)
 
 
 class TestEndToEnd:
@@ -402,3 +471,110 @@ class TestEndToEnd:
             providers, register_path=REGISTER, suite_path=SUITE, measurement_mode="fixture"
         )
         assert any("does not select" in c for c in report.non_claims)
+
+
+class TestLiveProviderWiring:
+    """A live bake-off must be reachable from configuration, not a source edit.
+
+    Requiring someone to patch the runner to swap in real endpoints puts a code
+    change between the workshop and its own evidence. The register already
+    describes each candidate; it is also where "and here is where this one is
+    running" belongs.
+    """
+
+    def _register(self, tmp_path: Path, rows: list[dict[str, Any]]) -> Path:
+        path = tmp_path / "candidates.yaml"
+        path.write_text(
+            yaml.safe_dump({"selection_status": "not_selected", "candidates": rows}),
+            encoding="utf-8",
+        )
+        return path
+
+    def _row(self, candidate_id: str, **extra: Any) -> dict[str, Any]:
+        row: dict[str, Any] = {
+            "id": candidate_id,
+            "role": "core",
+            "family": "fam",
+            "revision_label": "pinned-1.0.0",
+            "license_label": "Apache-2.0",
+            "license_status": "cleared",
+            "open_weight": True,
+            "hardware_class": "gpu",
+            "estimated_vram_gb": 16,
+            "cost_tier": "medium",
+            "source_url": "https://example.invalid",
+        }
+        row.update(extra)
+        return row
+
+    def test_only_served_candidates_get_providers(self, tmp_path: Path) -> None:
+        """Nobody having served a model is not the same as that model failing."""
+        register = self._register(
+            tmp_path,
+            [
+                self._row("served", serving={"runtime": "ollama", "model": "m:1b"}),
+                self._row("not-served"),
+            ],
+        )
+        providers = build_live_providers(register)
+        assert set(providers) == {"served"}
+
+    def test_identity_is_taken_from_the_register_not_the_endpoint(
+        self, tmp_path: Path
+    ) -> None:
+        """A local server cannot attest to the license or revision it loaded."""
+        register = self._register(
+            tmp_path,
+            [
+                self._row(
+                    "c1",
+                    revision_label="pinned-sha256:abcd",
+                    license_label="Apache-2.0",
+                    serving={"runtime": "vllm", "model": "whatever-the-server-calls-it"},
+                )
+            ],
+        )
+        identity = build_live_providers(register)["c1"].identity
+        assert identity.revision == "pinned-sha256:abcd"
+        assert identity.license_label == "Apache-2.0"
+        assert identity.runtime == "vllm"
+
+    def test_base_url_override_wins(self, tmp_path: Path) -> None:
+        register = self._register(
+            tmp_path,
+            [
+                self._row(
+                    "c1",
+                    serving={
+                        "runtime": "ollama",
+                        "model": "m",
+                        "base_url": "http://localhost:11434/v1",
+                    },
+                )
+            ],
+        )
+        provider = build_live_providers(register, base_url_override="http://127.0.0.1:8000/v1")["c1"]
+        assert provider.base_url == "http://127.0.0.1:8000/v1"  # type: ignore[attr-defined]
+
+    def test_an_incomplete_serving_block_is_an_error_not_a_skip(self, tmp_path: Path) -> None:
+        """Silently skipping a typo'd block would look identical to not serving it."""
+        register = self._register(tmp_path, [self._row("c1", serving={"runtime": "ollama"})])
+        with pytest.raises(ValueError, match="requires both"):
+            build_live_providers(register)
+
+    def test_the_real_register_serves_exactly_what_has_been_stood_up(self) -> None:
+        providers = build_live_providers(REGISTER)
+        assert set(providers) == {"core-gemma4-26b"}
+
+    def test_a_live_run_of_the_real_register_still_cannot_select(self) -> None:
+        """One served candidate is a measurement, not a bake-off.
+
+        This is the case `--live` makes reachable for the first time: hardware
+        mode clears the one condition fixtures never could, so the field-size
+        gate is what stands between a single local run and a declared winner.
+        """
+        register = load_candidates(REGISTER)
+        runs = [_run("core-gemma4-26b", _results(12, 1.0))]
+        decision = select_winner("core", runs, register)
+        assert decision.selected is None
+        assert any("required to compare" in b for b in decision.blockers)

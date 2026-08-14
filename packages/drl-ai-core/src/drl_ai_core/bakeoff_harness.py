@@ -29,7 +29,8 @@ from typing import Any
 
 import yaml
 
-from .bakeoff import BakeoffCandidate, load_bakeoff_register
+from .bakeoff import BakeoffCandidate, load_bakeoff_register, parse_serving
+from .http_provider import DEFAULT_STALL_TIMEOUT_SECONDS, HttpOpenAICompatibleProvider
 from .providers import (
     ChatMessage,
     CompletionConstraints,
@@ -41,11 +42,41 @@ from .security import canonical_digest
 
 DEFAULT_SUITE_PATH = Path("models/bakeoff/task_suite.yaml")
 
+#: Where a locally served candidate is assumed to be, absent a register entry.
+DEFAULT_LOCAL_BASE_URL = "http://localhost:11434/v1"
+
 #: Revision labels that mean "nobody pinned this yet".
 UNPINNED_REVISION_LABELS = frozenset({"scaffold-unpinned", "", "unpinned", "latest"})
 
 #: License states that have not cleared review.
 UNCLEARED_LICENSE_STATES = frozenset({"provisional_review_required", "unknown", "pending"})
+
+#: Substrings that mean a license state is still provisional whatever else it says.
+#:
+#: Exact membership was not enough. A register row reading
+#: ``reported_apache_2_0_pending_confirmation`` states plainly that nobody has
+#: confirmed the license, yet it matched no entry in the set above and so read as
+#: cleared. Matching the hedge rather than the whole string means a new way of
+#: writing "not confirmed yet" is caught by default instead of silently passing.
+UNCLEARED_LICENSE_MARKERS = (
+    "pending",
+    "provisional",
+    "unconfirmed",
+    "unreviewed",
+    "review_required",
+    "review-required",
+    "unknown",
+)
+
+
+def license_is_cleared(status: str) -> bool:
+    """Return False when a license status still carries a hedge."""
+    normalized = status.strip().lower()
+    if not normalized:
+        return False
+    if normalized in UNCLEARED_LICENSE_STATES:
+        return False
+    return not any(marker in normalized for marker in UNCLEARED_LICENSE_MARKERS)
 
 
 class BakeoffError(RuntimeError):
@@ -470,17 +501,36 @@ class EvidenceGate:
     min_quality: float = 0.80
     min_margin: float = 0.05
     min_tasks: int = 8
+    #: How many candidates must have run for this role before one can win.
+    #:
+    #: A field of one is not a bake-off. Without this, standing up a single
+    #: endpoint and running the suite against it would clear every other
+    #: condition and name a winner — the margin check is the only comparative
+    #: gate, and it is skipped when there is no runner-up. Selecting a base model
+    #: against no alternative is precisely the premature winner this class exists
+    #: to prevent.
+    min_candidates: int = 2
     require_pinned_revision: bool = True
     require_cleared_license: bool = True
     require_hardware_measurement: bool = True
     forbid_safety_failures: bool = True
 
     def evaluate(
-        self, run: CandidateRun, runner_up: CandidateRun | None, register_row: BakeoffCandidate
+        self,
+        run: CandidateRun,
+        runner_up: CandidateRun | None,
+        register_row: BakeoffCandidate,
+        *,
+        field_size: int,
     ) -> tuple[str, ...]:
         """Return the reasons this candidate may not be selected. Empty means clear."""
         blockers: list[str] = []
 
+        if field_size < self.min_candidates:
+            blockers.append(
+                f"only {field_size} candidate(s) ran for role {run.role!r}; "
+                f"{self.min_candidates} required to compare"
+            )
         if run.attempted < self.min_tasks:
             blockers.append(
                 f"suite coverage too thin: {run.attempted} tasks run, "
@@ -502,8 +552,8 @@ class EvidenceGate:
             blockers.append(
                 f"revision not pinned (label {register_row.revision_label!r})"
             )
-        if self.require_cleared_license and (
-            register_row.license_status.strip().lower() in UNCLEARED_LICENSE_STATES
+        if self.require_cleared_license and not license_is_cleared(
+            register_row.license_status
         ):
             blockers.append(
                 f"license not cleared (status {register_row.license_status!r})"
@@ -575,7 +625,7 @@ def select_winner(
             blockers=(f"{leader.candidate_id} is not in the candidate register",),
         )
 
-    blockers = criteria.evaluate(leader, runner_up, row)
+    blockers = criteria.evaluate(leader, runner_up, row, field_size=len(scoped))
     if blockers:
         return SelectionDecision(
             role=role,
@@ -702,17 +752,12 @@ def run_bakeoff(
     absent runner is not the same as a failing model, and conflating them would
     quietly penalise candidates nobody has stood up yet.
     """
-    register_raw = load_bakeoff_register(register_path)
-    candidates = [
-        BakeoffCandidate(**_candidate_fields(row))
-        for row in register_raw.get("candidates", [])
-    ]
-    register = {c.id: c for c in candidates}
+    register = load_candidates(register_path)
     suite = load_task_suite(suite_path)
     criteria = gate or EvidenceGate()
 
     runs: list[CandidateRun] = []
-    for candidate in candidates:
+    for candidate in register.values():
         provider = providers.get(candidate.id)
         if provider is None:
             continue
@@ -751,6 +796,15 @@ def run_bakeoff(
     )
 
 
+def load_candidates(register_path: Path | None = None) -> dict[str, BakeoffCandidate]:
+    """Read the candidate register into typed rows, keyed by candidate id."""
+    raw = load_bakeoff_register(register_path)
+    candidates = [
+        BakeoffCandidate(**_candidate_fields(row)) for row in raw.get("candidates", [])
+    ]
+    return {candidate.id: candidate for candidate in candidates}
+
+
 def _candidate_fields(row: Mapping[str, Any]) -> dict[str, Any]:
     """Project a register row onto BakeoffCandidate's fields."""
     return {
@@ -766,7 +820,50 @@ def _candidate_fields(row: Mapping[str, Any]) -> dict[str, Any]:
         "cost_tier": str(row.get("cost_tier", "")),
         "source_url": str(row.get("source_url", "")),
         "limitations": tuple(row.get("limitations", ())),
+        "serving": parse_serving(row.get("serving")),
     }
+
+
+def build_live_providers(
+    register_path: Path | None = None,
+    *,
+    base_url_override: str | None = None,
+    stall_timeout: float = DEFAULT_STALL_TIMEOUT_SECONDS,
+    stream: bool = True,
+) -> dict[str, ModelProvider]:
+    """Build a provider for every candidate the register says has been served.
+
+    Running a live bake-off previously meant editing the runner's source to swap
+    in real providers. That put a code change between the workshop and its own
+    evidence, which is the wrong shape for something meant to be re-run: the
+    register already describes the candidates, so it is also where "and here is
+    where this one is running" belongs.
+
+    Identity is taken from the register, never from the endpoint. A local server
+    cannot attest to the license or the exact revision of the weights it loaded,
+    so the recorded ``revision_label`` and ``license_label`` are what the report
+    discloses — and the evidence gate reads the same fields. A register that
+    lies produces a blocked selection, not a quiet one.
+    """
+    providers: dict[str, ModelProvider] = {}
+    for candidate in load_candidates(register_path).values():
+        serving = candidate.serving
+        if serving is None:
+            continue
+        providers[candidate.id] = HttpOpenAICompatibleProvider(
+            model=serving.model,
+            base_url=base_url_override or serving.base_url or DEFAULT_LOCAL_BASE_URL,
+            provider_id=f"live::{candidate.id}",
+            model_family=candidate.family,
+            revision=candidate.revision_label,
+            license_label=candidate.license_label,
+            open_weight=candidate.open_weight,
+            quantization=serving.quantization,
+            runtime=serving.runtime,
+            stream=stream,
+            stall_timeout=stall_timeout,
+        )
+    return providers
 
 
 def summarise_blockers(report: BakeoffReport) -> Iterable[str]:

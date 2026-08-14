@@ -1,7 +1,7 @@
 ---
 document_id: DRL-OPS-007
 title: "Local Model Runbook"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-13
@@ -49,6 +49,31 @@ uv run python scripts/probe_model.py --model gemma4:26b
 | plan schema | It generates, but will not hold the JSON contract | Try a larger model or an instruct variant |
 
 The probe reports time to first token separately from total time. They are different faults: a long wait before the first token is a cold model load; a long steady generation is throughput.
+
+## Measure it
+
+Once the probe passes, the same endpoint can run the Stage-B bake-off suite for real. Declare where the candidate is served in `models/bakeoff/candidates.yaml`:
+
+```yaml
+  - id: core-gemma4-26b
+    # ...
+    serving:
+      runtime: ollama
+      model: gemma4:26b
+      quantization: Q4_K_M
+```
+
+Then:
+
+```
+uv run python scripts/run_bakeoff.py --live --measurement-mode hardware
+```
+
+A candidate with a `serving` block is included; one without is skipped, because nobody having served a model is not the same as that model failing. Identity comes from the register, never from the endpoint — a local server cannot attest to the license or exact revision of the weights it loaded.
+
+`--measurement-mode hardware` without `--live` is refused. Labelling scripted providers as hardware-measured would defeat the one gate condition fixtures can never otherwise clear.
+
+**A live run will not name a winner, and that is correct.** The evidence gate requires at least two candidates for a role before either can win: a field of one is a measurement, not a bake-off. Standing up a second endpoint is what makes a selection possible, and DIR-004 still requires Director review of the evidence either way.
 
 ## Why the timeout is a stall timeout
 

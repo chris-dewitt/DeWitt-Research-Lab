@@ -9,6 +9,7 @@ from tempfile import gettempdir
 from atlas_service import AtlasService, FileObservationCache, PublicFixtureAdapter
 from balancelab_ai import ScenarioEngine
 from drl_ai_core import HttpOpenAICompatibleProvider, ModelGateway
+from drl_ai_core.http_provider import DEFAULT_STALL_TIMEOUT_SECONDS, THINKING_OFF_HINTS
 from drl_ai_core.providers import CompletionConstraints
 from evalforge_service import EvalForge
 from fedlens_service import FedLensService
@@ -62,14 +63,35 @@ def build_local_open_weight_gateway() -> ModelGateway:
 #: expose this shape, so switching runtime is configuration, not code.
 DEFAULT_MODEL_BASE_URL = "http://localhost:11434/v1"
 
-#: Planning budget for a locally hosted model, in seconds.
+#: Runaway ceiling on a single planning call, in seconds.
 #:
-#: The 30s default from CompletionConstraints suits a hosted endpoint and is far
-#: too tight for local inference: a cold load of a 20B+ model can take minutes
-#: before the first token, and CPU-bound generation is slower still. A generous
-#: ceiling costs nothing when the model is fast and prevents a spurious fallback
-#: when it is not.
-DEFAULT_MODEL_TIMEOUT_SECONDS = 180.0
+#: This is not an estimate of how long the model *ought* to take. Because the
+#: provider streams, a stalled endpoint is caught by the stall timeout in a
+#: couple of minutes regardless of this number, so the total budget only has to
+#: be large enough that a slow-but-working local model is never killed
+#: mid-generation. Fifteen minutes clears CPU-bound generation on a 26B model.
+DEFAULT_MODEL_TIMEOUT_SECONDS = 900.0
+
+#: Seconds of silence from the endpoint before the call is declared dead.
+DEFAULT_MODEL_STALL_TIMEOUT_SECONDS = DEFAULT_STALL_TIMEOUT_SECONDS
+
+#: Env values read as true for boolean switches.
+_TRUTHY = {"1", "true", "yes", "on"}
+
+
+def _flag(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() in _TRUTHY
+
+
+def _positive_float(name: str) -> float | None:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return None
+    try:
+        value = float(raw)
+    except ValueError:
+        return None
+    return value if value > 0 else None
 
 
 def build_http_model_gateway(
@@ -78,6 +100,9 @@ def build_http_model_gateway(
     base_url: str | None = None,
     license_label: str = "unreviewed",
     quantization: str | None = None,
+    stream: bool = True,
+    stall_timeout: float | None = None,
+    disable_thinking: bool = False,
 ) -> ModelGateway:
     """Build a gateway backed by a locally hosted open-weight model.
 
@@ -91,6 +116,9 @@ def build_http_model_gateway(
         model_family=model.split(":", 1)[0],
         license_label=license_label,
         quantization=quantization,
+        stream=stream,
+        stall_timeout=stall_timeout or DEFAULT_MODEL_STALL_TIMEOUT_SECONDS,
+        extra_payload=dict(THINKING_OFF_HINTS) if disable_thinking else None,
     )
     return ModelGateway({provider.identity.provider_id: provider},
                         primary=provider.identity.provider_id)
@@ -102,6 +130,10 @@ def build_model_backed_runtime(
     base_url: str | None = None,
     license_label: str = "unreviewed",
     timeout_seconds: float | None = None,
+    stall_timeout_seconds: float | None = None,
+    max_output_tokens: int = 2048,
+    stream: bool = True,
+    disable_thinking: bool = False,
 ) -> AtticusOrchestrator:
     """Build the local runtime with an open-weight model doing the planning.
 
@@ -111,11 +143,16 @@ def build_model_backed_runtime(
     """
     orchestrator = build_local_runtime()
     gateway = build_http_model_gateway(
-        model=model, base_url=base_url, license_label=license_label
+        model=model,
+        base_url=base_url,
+        license_label=license_label,
+        stream=stream,
+        stall_timeout=stall_timeout_seconds,
+        disable_thinking=disable_thinking,
     )
     constraints = CompletionConstraints(
         temperature=0.0,
-        max_output_tokens=1024,
+        max_output_tokens=max_output_tokens,
         require_open_weight=True,
         timeout_seconds=timeout_seconds or DEFAULT_MODEL_TIMEOUT_SECONDS,
     )
@@ -130,19 +167,28 @@ def build_runtime_from_env() -> AtticusOrchestrator:
 
     Unset means the deterministic fixture path, which is the default everywhere
     including CI. Setting the variable is the single switch that puts a model
-    behind Atticus.
+    behind Atticus. The rest are escape hatches for a runtime that behaves
+    differently from the defaults:
+
+    ``ATTICUS_MODEL_BASE_URL``      non-default endpoint (vLLM, LM Studio, ...)
+    ``ATTICUS_MODEL_LICENSE``       license recorded in the disclosure
+    ``ATTICUS_MODEL_TIMEOUT``       total ceiling on one planning call
+    ``ATTICUS_MODEL_STALL_TIMEOUT`` silence tolerated before declaring it dead
+    ``ATTICUS_MODEL_MAX_TOKENS``    output budget for the plan
+    ``ATTICUS_MODEL_NO_STREAM``     fall back to one blocking request
+    ``ATTICUS_MODEL_NO_THINKING``   ask a reasoning model to answer directly
     """
     model = os.environ.get("ATTICUS_MODEL", "").strip()
     if not model:
         return build_local_runtime()
-    raw_timeout = os.environ.get("ATTICUS_MODEL_TIMEOUT", "").strip()
-    try:
-        timeout = float(raw_timeout) if raw_timeout else None
-    except ValueError:
-        timeout = None
+    max_tokens = _positive_float("ATTICUS_MODEL_MAX_TOKENS")
     return build_model_backed_runtime(
         model=model,
         base_url=os.environ.get("ATTICUS_MODEL_BASE_URL") or None,
         license_label=os.environ.get("ATTICUS_MODEL_LICENSE", "unreviewed"),
-        timeout_seconds=timeout,
+        timeout_seconds=_positive_float("ATTICUS_MODEL_TIMEOUT"),
+        stall_timeout_seconds=_positive_float("ATTICUS_MODEL_STALL_TIMEOUT"),
+        max_output_tokens=int(max_tokens) if max_tokens else 2048,
+        stream=not _flag("ATTICUS_MODEL_NO_STREAM"),
+        disable_thinking=_flag("ATTICUS_MODEL_NO_THINKING"),
     )

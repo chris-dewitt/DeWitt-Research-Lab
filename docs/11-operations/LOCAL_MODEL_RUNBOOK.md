@@ -84,6 +84,14 @@ The provider streams, so the two questions are asked separately:
 - **stall timeout** (default 120s) — "is anything still arriving?" Fires when no byte has arrived for that long. This is what catches a dead endpoint.
 - **total timeout** (default 900s) — a runaway ceiling on the whole call. It is not an estimate of how long the model ought to need.
 
+## What the planner does not wait for
+
+Two costs on the planning path are paid in wall clock the operator sits through, and neither buys anything.
+
+**Tokens after the plan closes.** A plan is a JSON document, so it is finished at its closing brace. `ATTICUS_MODEL_MAX_TOKENS` has to leave headroom for a reasoning model to think before it answers, and a small local model routinely spends the rest of that headroom restating the plan in prose — text the schema validator then discards. The planner closes the stream at the closing brace instead; local runtimes cancel the generation when the client disconnects. A planning run that ended this way reports `finish_reason: client_stop` rather than `stop`, and no token counts, because the usage figures arrive on a terminal chunk that never came. This applies to the planner and to structured-output repairs, not to the probe — `probe_model.py` reads to the end on purpose, since tokens/sec is one of the numbers it exists to measure.
+
+**Loading the model to ask whether it is up.** The health probe asks `GET /models`, which every OpenAI-compatible runtime answers from its registry without touching a weight file. Only if the route is missing, or the runtime names the loaded model differently from the tag requested, does it fall back to a one-token completion — which on a cold 26B means loading the whole model to produce a token that is thrown away. That fallback used to be the only path, and under a five-second connect timeout it reported healthy-but-cold endpoints as dead, which aborts a bake-off candidate before a single task runs.
+
 ## Environment
 
 | Variable | Effect |

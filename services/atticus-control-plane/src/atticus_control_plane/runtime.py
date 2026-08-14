@@ -155,6 +155,11 @@ def build_model_backed_runtime(
         max_output_tokens=max_output_tokens,
         require_open_weight=True,
         timeout_seconds=timeout_seconds or DEFAULT_MODEL_TIMEOUT_SECONDS,
+        # A plan is a JSON document, so it is finished at its closing brace.
+        # `max_output_tokens` has to leave room for a reasoning model to think,
+        # and without this that headroom becomes wall clock the operator waits
+        # through while the model explains a plan the parser is about to drop.
+        stop_after_json=True,
     )
     orchestrator.planner = ModelPlanner(
         gateway, orchestrator.registry.catalog(), constraints=constraints

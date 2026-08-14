@@ -96,6 +96,10 @@ class ModelGateway:
                     usage=dict(response.usage),
                     tool_calls=response.tool_calls,
                     structured=structured,
+                    # Rebuilding the response must not quietly drop how it was
+                    # carried: a fallback route is exactly when transport
+                    # telemetry is worth reading.
+                    transport=dict(response.transport),
                 )
             return response
 

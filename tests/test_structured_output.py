@@ -18,6 +18,7 @@ from drl_ai_core import (
     StructuredModelResponse,
     StructuredOutputError,
     StructuredOutputValidator,
+    clip_middle,
     contains_injection_marker,
     extract_json_candidate,
 )
@@ -31,6 +32,8 @@ class ScriptedProvider:
     def __init__(self, payloads: list[str]) -> None:
         self.payloads = list(payloads)
         self.calls = 0
+        self.prompts: list[str] = []
+        self.constraints: list[CompletionConstraints] = []
         self._identity = ModelIdentity(
             provider_id="scripted-open-weight",
             model_family="atticus-core",
@@ -54,9 +57,11 @@ class ScriptedProvider:
         tools: list[dict[str, Any]] | None = None,
         constraints: CompletionConstraints,
     ) -> StructuredModelResponse:
-        del tools, constraints
+        del tools
         # Repair messages must keep invalid content quarantined as data.
         joined = "\n".join(message.content for message in messages)
+        self.prompts.append(joined)
+        self.constraints.append(constraints)
         assert "INVALID_OUTPUT_BEGIN" in joined
         assert "FIXED_SCHEMA" in joined
         assert not any(
@@ -183,6 +188,71 @@ def test_injection_cannot_bypass_schema_via_extra_fields() -> None:
     result = validator.parse(payload)
     assert result.ok is False
     assert any("additional" in issue.message.lower() for issue in result.issues)
+
+
+VALID_PLAN = (
+    '{"task_id":"x","steps":[{"tool_name":"laboratory.guide","arguments":{},"risk_tier":0}]}'
+)
+
+
+def test_clip_middle_keeps_both_ends_and_announces_the_gap() -> None:
+    clipped = clip_middle("A" * 400 + "B" * 400, 120)
+    assert clipped.startswith("A")
+    assert clipped.endswith("B")
+    assert "[680 characters elided]" in clipped
+    # The budget covers the kept text; the marker is what explains the gap.
+    assert len(clipped.replace("\n", "")) < 200
+
+
+def test_short_output_is_sent_whole() -> None:
+    assert clip_middle("{}", 2000) == "{}"
+
+
+def test_a_runaway_completion_is_not_resent_in_full() -> None:
+    """Every repair attempt pays for the invalid output again as prompt tokens."""
+    runaway = "Here is the plan you asked for. " * 400
+    provider = ScriptedProvider([VALID_PLAN])
+    validator = StructuredOutputValidator(PLAN_SCHEMA, max_invalid_chars=500)
+    result = validator.parse_with_repair(runaway, provider=provider)
+
+    assert result.ok is True
+    sent = provider.prompts[0]
+    assert "INVALID_OUTPUT_BEGIN" in sent
+    assert "characters elided" in sent
+    # The whole point: the repair prompt is bounded by the cap, not by whatever
+    # the model happened to generate.
+    assert len(sent) < len(runaway)
+
+
+def test_the_trace_records_what_was_withheld() -> None:
+    provider = ScriptedProvider([VALID_PLAN])
+    validator = StructuredOutputValidator(PLAN_SCHEMA, max_invalid_chars=100)
+    result = validator.parse_with_repair("x" * 5000, provider=provider)
+
+    requested = [
+        event for event in result.trace if event.event_type == "structured_repair_requested"
+    ]
+    assert requested[0].attributes["invalid_chars"] == 5000
+    assert requested[0].attributes["invalid_chars_sent"] < 5000
+
+
+def test_repairs_stop_generating_once_the_json_closes() -> None:
+    """A repair returns a JSON document; tokens after it are paid for and dropped."""
+    provider = ScriptedProvider([VALID_PLAN])
+    validator = StructuredOutputValidator(PLAN_SCHEMA)
+    validator.parse_with_repair(
+        "not json",
+        provider=provider,
+        constraints=CompletionConstraints(max_output_tokens=2048),
+    )
+    assert provider.constraints[0].stop_after_json is True
+    # Nothing else about the caller's budget is quietly rewritten.
+    assert provider.constraints[0].max_output_tokens == 2048
+
+
+def test_an_invalid_cap_is_refused() -> None:
+    with pytest.raises(ValueError, match="max_invalid_chars"):
+        StructuredOutputValidator(PLAN_SCHEMA, max_invalid_chars=0)
 
 
 def test_mock_provider_can_be_used_as_repair_backend() -> None:

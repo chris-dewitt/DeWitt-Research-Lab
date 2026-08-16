@@ -119,10 +119,23 @@ UNTRUTHFUL_TERMS = [
     "world-class", "patented", "99.9%", "uptime guarantee",
 ]
 
-# Sentences containing these are truthful disclaimers; never flag terms inside them.
+# Sentences containing these are required or truthful content; never flag terms
+# inside them.
+#
+# Two kinds. The disclosure ("independent initiative. Not a government,
+# university, or accredited institution") contains the words it disclaims, so
+# matching them there would flag a compliance item as a violation.
+#
+# The enrolment statement is the same trap from the other direction. RES-016
+# requires the affiliation stated exactly — "the Master of Applied Data Science
+# program at the University of North Carolina at Chapel Hill" — and `university
+# of` is on the untruthful list to catch invented affiliation. Being a student
+# somewhere is not a claim that the work is endorsed there, and the auditor must
+# not report the wording the specification mandates.
 DISCLAIMER_MARKERS = [
     "not a government", "independent initiative", "not affiliated",
     "is not a university", "no accreditation",
+    "master of applied data science", "i am a student", "student in the",
 ]
 
 # Authority furniture BRAND_SYSTEM.md prohibits by name: framing that implies an

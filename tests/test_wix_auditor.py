@@ -43,6 +43,22 @@ class TestTruthfulnessMatching:
     def test_staff_scale_claim_is_flagged(self) -> None:
         assert "our team" in audit.flag_untruthful("Our team of researchers built this.")
 
+    def test_the_required_enrolment_statement_is_not_a_violation(self) -> None:
+        """RES-016 mandates this wording; the auditor must not report it as a gap.
+
+        `university of` is on the untruthful list to catch invented affiliation.
+        Being enrolled somewhere is not a claim that the work is endorsed there.
+        """
+        text = (
+            "I am a student in the Master of Applied Data Science program at the "
+            "University of North Carolina at Chapel Hill."
+        )
+        assert audit.flag_untruthful(text) == []
+
+    def test_an_invented_affiliation_is_still_flagged(self) -> None:
+        text = "This research is conducted in partnership with the University of Somewhere."
+        assert "university of" in audit.flag_untruthful(text)
+
     def test_disclaimer_does_not_mask_a_separate_sentence(self) -> None:
         text = f"{DISCLOSURE} Our team is enterprise-grade."
         hits = audit.flag_untruthful(text)

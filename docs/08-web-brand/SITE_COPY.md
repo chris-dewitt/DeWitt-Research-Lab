@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.0.0
+version: 3.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-16
@@ -12,23 +12,21 @@ last_updated: 2026-08-16
 Paste-ready copy for manual Wix use. This does not authorize a Wix write; nothing
 here is applied to the live site by any tool in this repository.
 
-Version 3.0.0 replaces the outline in 2.0.0 with finished text, and reduces the
-tree from four pages to three. It is written against the live site as audited on
-2026-08-16, so it says what to remove as well as what to write.
+Version 3.1.0 replaces the outline in 2.0.0 with finished text for all four
+approved pages. It is written against the live site as audited on 2026-08-16, so
+it says what to remove as well as what to write.
 
-## The one deviation from RES-016
+## Page tree
 
-RES-016 approves four pages: Home, Research, Projects, About. This draft writes
-**three** — Home, Projects, About — and puts TR-2026-001 on Projects.
+Four pages, as RES-016 approves them: Home, Research, Projects, About.
 
-The reason is that there is one report. A Research page holding a single item,
-next to a Projects page describing the same work, splits thin material across two
-thin pages. When a second report exists, Research earns its own page and the
-TR-2026-001 block moves there unchanged.
-
-This is a deviation to accept or reject, not a decision already made. The
-auditor still expects `/research`, and will report it missing until either the
-page exists or this deviation is approved into RES-016.
+An earlier draft of this document proposed three, folding Research into Projects
+on the grounds that a Research page holding one report next to a Projects page
+describing the same work splits thin material across two thin pages. That
+reasoning rested on there being one report. There are two — TR-2026-001 and
+TR-2026-002 — and the second is the stronger of them, because its result is a
+null one. The premise was wrong, so the deviation is withdrawn and the approved
+tree stands unchanged.
 
 ## Before you paste: what comes off the site
 
@@ -88,9 +86,8 @@ in computer science.
 ```
 
 RES-016 fixes both the labels and their order: research first, projects second.
-Both must resolve. While `/research` is deferred, *View my research* goes to the
-TR-2026-001 section on `/projects` and *Explore my projects* to the top of the
-same page. Neither resolves today.
+*View my research* goes to `/research`, *Explore my projects* to `/projects`.
+Neither resolves today — both are dead buttons on the live site.
 
 ## Opening statement
 
@@ -133,20 +130,18 @@ Open questions
 
 ## Selected work
 
+A summary and a link. Report detail lives on `/research`, once — spreading
+abstracts, limitations, and figures across pages is how the fabricated block
+came to sit on three pages at the same time.
+
 ```text
-TR-2026-001 — Local Integrated Evidence-to-Scenario Workflow
+Research
 
-An independent technical report documenting one reproducible workflow: a local
-runtime gathers synthetic macroeconomic evidence, compares synthetic Federal
-Reserve communications with passage-level citations, projects a bear-steepener
-scenario against an educational bank balance sheet, evaluates the resulting
-trajectory, and links all five artifacts under a single task digest.
+Two working papers: one documenting a traceable evidence-to-scenario workflow,
+one describing a model-selection harness whose evidence gate currently refuses to
+name a winner — and why that is the correct outcome.
 
-The report is prototype maturity and says so: fixture data only, no trained
-model weights, no production signing identity, and no live public deployment.
-It includes the method, the limitations, and the source.
-
-[ Read the report ]
+[ Read the research ]
 ```
 
 ## What I am working on
@@ -181,7 +176,119 @@ Delete `NODE: 01 // UPTIME: 99.9%`. Fix the GitHub URL to
 
 ---
 
-# Page 2 — Projects
+# Page 2 — Research
+
+The whole page, as markdown. This is where report detail lives; Home summarizes
+it and Projects points at it.
+
+```markdown
+# Research
+
+Independent technical reports from my own work. Each says what was done, what the
+evidence supports, and where it stops. Both are prototype-maturity working papers,
+not peer-reviewed publications, and neither is coursework for my degree program.
+
+---
+
+## TR-2026-001 — Local Integrated Evidence-to-Scenario Workflow
+
+**Working paper · prototype · v1.0.0 · August 2026**
+
+Can specialist components be coordinated so that every claim at the end is
+traceable to the evidence or calculation that produced it?
+
+This report documents one reproducible workflow. A local runtime gathers synthetic
+macroeconomic evidence, compares synthetic Federal Reserve communications with
+passage-level citations, projects a bear-steepener scenario against an educational
+bank balance sheet, evaluates the resulting trajectory, and links all five
+artifacts under a single task digest. Every step emits a typed envelope and every
+policy decision is recorded, so the path from a final statement back to its source
+is inspectable rather than asserted.
+
+**Limitations.** Fixture data throughout — no live economic APIs, no production
+bank data. No trained model weights. Signatures in the recorded runs are valid
+only inside the local laboratory context and are not intended for verification by
+anyone else.
+
+[Read the report] · [Source]
+
+---
+
+## TR-2026-002 — Evidence-Gated Model Selection
+
+**Working paper · prototype · draft · v1.1.0 · August 2026**
+
+Model selection is usually reported as a ranking: score the candidates, take the
+highest. That framing hides the question that comes first — whether the
+measurement was good enough to support choosing at all.
+
+This report describes a harness that separates the two. Candidates run against a
+fixed task suite and are graded deterministically, which produces a ranking. The
+ranking then passes through an evidence gate of nine blocking conditions:
+measurement provenance, revision pinning, license clearance, suite coverage,
+execution completeness, a quality floor, zero safety-critical failures, a minimum
+field of candidates, and a minimum margin over the runner-up. A failure on any one
+returns "no selection" together with its reasons. No score overrides a blocked
+gate.
+
+**Result: no winner.** Run against the current candidate register, the gate
+refuses to select for either role. The core role is blocked by six reasons at
+once — quality below the floor, safety-critical failures on citation refusal and
+credential refusal, an unpinned revision, an uncleared license, fixture rather
+than hardware measurement, and a margin of zero over the runner-up. The edge role
+falls below the eight-task coverage minimum with a safety-critical failure
+recorded. That null result is the report's only empirical claim.
+
+**Limitations.** The candidates here are scripted fixtures that perform no
+inference; they exercise the harness, not any model. Three of them tied exactly,
+an artifact of their sharing one script, reported rather than suppressed. The
+suite is twelve tasks — a starting instrument, not a decisive one. The thresholds
+are asserted from judgment rather than derived from a power analysis, and no claim
+is made that the gate conditions are complete.
+
+[Read the report] · [Source]
+
+---
+
+## What is not settled
+
+No base model has been selected. The gate above is the reason, and it is working
+as intended: a selection made on one candidate, against no alternative, on a
+license that has not been confirmed, is the premature result the gate exists to
+refuse.
+
+Two things have to happen before that changes. A second candidate has to be
+served, because a field of one is a measurement and not a comparison. And the
+license status of the leading candidate has to be confirmed against the publisher
+rather than the packaged model card, because a hedged status is not a cleared one.
+
+## Recorded runs
+
+The workflow in TR-2026-001 has recorded runs, including a deliberately degraded
+one — a run that fails is evidence about the system, not an outcome to hide. The
+signatures they carry are demo signatures, valid inside the local laboratory
+context only.
+
+Runs are generated from the repository. There is no hosted player yet, so this
+section links to the source rather than to a page that does not exist.
+```
+
+### Link targets
+
+| Placeholder | Target |
+| --- | --- |
+| TR-2026-001 → Read the report | `blob/main/docs/10-research/reports/TR-2026-001-integrated-workflow.md` |
+| TR-2026-002 → Read the report | `blob/main/docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md` |
+| Both → Source | repository root |
+
+Confirm the repository name before pasting: GitHub reports the project as moved
+from `DeWitt-Research-Lab-Foundation` to `DeWitt-Research-Lab`. The old address
+redirects, so both work today; pick the canonical one deliberately rather than
+inheriting it from an old link.
+
+---
+
+# Page 3 — Projects
 
 ## Intro
 
@@ -193,31 +300,20 @@ tested, and explained. All of it is prototype work. Each entry says what exists,
 what it runs on, and where it stops.
 ```
 
-## The report
+## Pointing at the research
 
-Place the TR-2026-001 block from the homepage here in full, followed by:
+Projects does not restate a report. Each entry names the report that used it, and
+the link does the rest:
 
 ```text
-Method
-
-A deterministic local runtime composes five components behind one orchestrator.
-Every step emits a typed envelope, every policy decision is recorded, and the
-artifacts are linked under one digest so a claim can be traced back to the
-evidence or calculation that produced it.
-
-Limitations
-
-Fixture data throughout — no live economic APIs and no production bank data.
-No trained model weights: the open-weight selection is still open. Signatures in
-the recorded runs are valid inside the local laboratory context only, and are not
-intended for verification by anyone else.
-
-Source · Recorded run
+Used in TR-2026-001 · Read the research
 ```
 
-Point *Source* at the repository. Do not add *Recorded run* until a page exists
-to receive it: the replay site is generated into `site/replays` and is not
-published anywhere yet.
+Atticus carries a second line, because the selection harness evaluates it:
+
+```text
+Evaluated by the harness in TR-2026-002
+```
 
 ## The five projects
 
@@ -268,7 +364,7 @@ Then remove `/systems` from the navigation.
 
 ---
 
-# Page 3 — About
+# Page 4 — About
 
 ```text
 About
@@ -319,6 +415,7 @@ requires new evidence to be true.
 | Claim in the copy | Source |
 | --- | --- |
 | TR-2026-001 title, scope, method, limitations | `docs/10-research/reports/TR-2026-001-integrated-workflow.md` |
+| TR-2026-002 nine gate conditions, no-winner result, six blockers, twelve tasks, tied candidates | `docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md` §§2–6 |
 | All five projects are `prototype` | `docs/00-program/CURRENT_STATE_BASELINE.md` |
 | Model weights are `specified`, selection open | `docs/00-program/CURRENT_STATE_BASELINE.md`, DIR-004 / G-001 |
 | Selection cannot rest on one candidate or an unconfirmed license | `packages/drl-ai-core/src/drl_ai_core/bakeoff_harness.py` (`EvidenceGate`) |

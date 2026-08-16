@@ -74,10 +74,76 @@ class TestThemeColorResolution:
 
 
 class TestSlugNormalisation:
-    def test_hyphenated_live_slugs_match_expected_system_names(self) -> None:
+    def test_hyphenated_live_slugs_match_approved_sections(self) -> None:
         import re
 
-        paths = "/atticus /atlas /fed-lens /balance-lab-ai /eval-forge"
+        paths = "/research-and-writing /projects /about-me"
         flat = re.sub(r"[-_]", "", paths)
-        for system in audit.EXPECTED_SYSTEM_PAGES:
-            assert re.sub(r"[-_]", "", system) in flat, system
+        for slugs in audit.EXPECTED_TOP_SECTIONS.values():
+            assert any(re.sub(r"[-_]", "", s) in flat for s in slugs), slugs
+
+
+class TestPageTreeFollowsRES016:
+    """The tree shrank when RES-016 made this a portfolio, not a workshop site.
+
+    Scoring against the superseded eight-section plan produced eleven findings
+    that pointed away from the approved site. These pin the contract so it
+    cannot drift back.
+    """
+
+    def test_workshop_sections_are_no_longer_expected(self) -> None:
+        for retired in ("Laboratory", "Teaching", "Failure Museum", "Status / Launch"):
+            assert retired not in audit.EXPECTED_TOP_SECTIONS
+
+    def test_the_approved_three_sections_are_expected(self) -> None:
+        assert set(audit.EXPECTED_TOP_SECTIONS) == {"Research", "Projects", "About"}
+
+    def test_hero_no_longer_requires_the_superseded_slogan(self) -> None:
+        """RES-016: lead with the person, not a lab name or a slogan."""
+        joined = " ".join(audit.REQUIRED_HOME_TEXT)
+        assert "Christopher Noxon DeWitt" in joined
+        assert "Workshop" not in joined
+        assert "Intelligence for Good" not in joined
+
+    def test_institutional_link_requirements_are_dropped(self) -> None:
+        assert set(audit.REQUIRED_SITE_LINKS) == {"github", "privacy", "contact"}
+
+
+class TestInstitutionalChrome:
+    def test_operations_centre_framing_is_flagged(self) -> None:
+        assert "specialist research nodes" in audit.flag_chrome(
+            "Specialist research nodes designed for open-weight intelligence."
+        )
+
+    def test_uptime_framing_is_flagged(self) -> None:
+        assert "uptime" in audit.flag_chrome("NODE: 01 // UPTIME: 99.9%")
+
+    def test_ordinary_project_copy_is_not_flagged(self) -> None:
+        text = "These are projects I use to study complex systems in practice."
+        assert audit.flag_chrome(text) == []
+
+
+class TestLookalikeSourceLinks:
+    def test_hyphenated_github_domain_is_caught(self) -> None:
+        """A typo here sends the source-code link to somebody else's domain."""
+        hosts = audit.lookalike_github_hosts(["http://www.git-hub.com/chris-dewitt"])
+        assert hosts == ["www.git-hub.com"]
+
+    def test_real_github_links_pass(self) -> None:
+        assert audit.lookalike_github_hosts(
+            ["https://github.com/chris-dewitt", "https://www.github.com/chris-dewitt",
+             "https://chris-dewitt.github.io/"]
+        ) == []
+
+    def test_unrelated_links_are_ignored(self) -> None:
+        assert audit.lookalike_github_hosts(
+            ["mailto:someone@example.com", "https://www.dewitt-labs.com/projects"]
+        ) == []
+
+
+class TestEvidenceForNumbers:
+    def test_a_reported_percentage_is_surfaced(self) -> None:
+        assert audit.PERCENT_CLAIM.findall("Deterministic pass rate achieved 94.2%") == ["94.2%"]
+
+    def test_prose_without_numbers_is_quiet(self) -> None:
+        assert audit.PERCENT_CLAIM.findall("The report documents its limitations.") == []

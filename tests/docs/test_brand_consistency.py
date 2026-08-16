@@ -17,12 +17,19 @@ ROOT = Path(__file__).resolve().parents[2]
 BRAND_SYSTEM = ROOT / "docs" / "08-web-brand" / "BRAND_SYSTEM.md"
 
 # Files that quote the mission line and must stay in agreement with BRAND_SYSTEM.md.
+# Files that carry the mission line and must quote it exactly.
+#
+# `scripts/audit_wix_site.py` used to be one of them, because it required the
+# line in the homepage hero. BRAND_SYSTEM.md's own mission-line section says the
+# opposite — "This remains a repository/project mission. It is not the personal
+# portfolio's headline or required homepage copy" — so the auditor now has no
+# reason to carry it, and requiring it there put the auditor in conflict with the
+# document it audits against.
 QUOTING_PATHS = [
     "README.md",
     "LABORATORY_BIBLE.md",
     "docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md",
     "services/atticus-control-plane/src/atticus_control_plane/tools.py",
-    "scripts/audit_wix_site.py",
 ]
 
 # Mission lines that have been retired and must not reappear anywhere.

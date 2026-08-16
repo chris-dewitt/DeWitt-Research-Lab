@@ -38,7 +38,10 @@ import urllib.error
 import urllib.request
 from html.parser import HTMLParser
 from http.client import HTTPException
+from pathlib import Path
 from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
 
 SITE_HOST = "www.dewitt-labs.com"
 APEX_HOST = "dewitt-labs.com"
@@ -124,11 +127,37 @@ DISCLAIMER_MARKERS = [
 
 # Authority furniture BRAND_SYSTEM.md prohibits by name: framing that implies an
 # organisation or an operations centre behind one person's prototypes.
+#
+# "laboratory use only" and "non-public release" are classification-style stamps,
+# and on a page anyone can load they are also false.
 PROHIBITED_CHROME = [
     "specialist research nodes", "research nodes", "systems nominal",
     "mission control", "operations centre", "operations center",
     "uptime", "our systems", "our researchers", "our lab",
+    "laboratory use only", "non-public release", "laboratory alpha",
 ]
+
+#: An operations-centre badge: `NODE: 01 //`, `CORE: I //`, `UNIT: 3 |`.
+#:
+#: Matched by shape rather than by wording. The first version of this check
+#: listed `uptime` literally, and the string it was written for came back as
+#: `CORE: I // STATUS: ACTIVE` — same badge, different nouns, invisible to a
+#: word list.
+OPS_BADGE = re.compile(r"\b(?:CORE|NODE|UNIT|SYSTEM|SECTOR)\s*[:#]\s*[A-Z0-9IVX]{1,4}\b")
+
+#: Report identifiers a site might cite: TR-2026-001, REF-2026-001, LOG-2026-X.
+IDENTIFIER = re.compile(r"\b[A-Z]{2,8}[-_]\d{4}[-_][A-Z0-9]{1,8}\b")
+
+#: A citation head: "DeWitt, C. (2026)" or "Noxon, J. & DeWitt, C. (2024)".
+#:
+#: The surname class allows interior capitals and apostrophes, because the one
+#: surname this site is guaranteed to carry is intercapped.
+_SURNAME = r"[A-Z][A-Za-z'’-]+"
+_INITIALS = r"[A-Z]\.(?:\s*[A-Z]\.)?"
+CITATION = re.compile(
+    rf"\b{_SURNAME},\s*{_INITIALS}"
+    rf"(?:\s*(?:&|and)\s*{_SURNAME},\s*{_INITIALS})?\s*\(\d{{4}}\)"
+)
 
 #: Any percentage on the page. Not a violation on its own — a result with a
 #: linked source is fine — but a number presented as a finding needs one.
@@ -360,6 +389,51 @@ def flag_chrome(text: str) -> list[str]:
     return sorted({phrase for phrase in PROHIBITED_CHROME if phrase in lowered})
 
 
+def known_document_ids(root: Path | None = None) -> frozenset[str]:
+    """Every report identifier the repository actually defines.
+
+    Read from front matter and filenames under ``docs/``, so the set is whatever
+    exists rather than a list to keep in step by hand. Only the head of each file
+    is scanned: an identifier mentioned in passing inside a document is a
+    reference, not a declaration, and treating it as one would let a citation
+    validate itself.
+    """
+    base = (root or ROOT) / "docs"
+    if not base.is_dir():
+        return frozenset()
+    found: set[str] = set()
+    for path in base.rglob("*.md"):
+        found.update(IDENTIFIER.findall(path.name.upper()))
+        try:
+            head = path.read_text(encoding="utf-8", errors="replace")[:400]
+        except OSError:
+            continue
+        found.update(IDENTIFIER.findall(head.upper()))
+    return frozenset(found)
+
+
+def unknown_identifiers(text: str, known: frozenset[str]) -> list[str]:
+    """Return report identifiers on the page that no repository document defines."""
+    return sorted(set(IDENTIFIER.findall(text.upper())) - known)
+
+
+def unsourced_citations(text: str, known: frozenset[str]) -> list[str]:
+    """Return citations with no repository document identifier beside them.
+
+    Every publication behind this site is a self-published working paper that
+    carries its own document id. A citation naming a journal, a volume, or an
+    archive, with no id within reach of it, is citing something that does not
+    exist here.
+    """
+    upper = text.upper()
+    out: list[str] = []
+    for match in CITATION.finditer(text):
+        window = upper[match.start() : match.start() + 240]
+        if not any(identifier in window for identifier in known):
+            out.append(match.group(0))
+    return sorted(set(out))
+
+
 def lookalike_github_hosts(hrefs: list[str]) -> list[str]:
     """Return link hosts that read as GitHub but are not github.com.
 
@@ -423,6 +497,20 @@ def audit_page(url: str, is_home: bool) -> None:
     for phrase in flag_chrome(text):
         add("GAP", "Voice", f"{url}: contains '{phrase}' — institutional chrome prohibited by "
             "BRAND_SYSTEM.md (no operations-centre framing over one person's prototypes).")
+
+    for badge in sorted(set(OPS_BADGE.findall(text)))[:3]:
+        add("GAP", "Voice", f"{url}: carries an operations-centre badge ('{badge}'). "
+            "Renaming the nouns does not change what it implies.")
+
+    known = known_document_ids()
+    for identifier in unknown_identifiers(text, known)[:5]:
+        add("GAP", "Evidence", f"{url}: cites '{identifier}', which no document in this "
+            "repository defines. A report reference must resolve to docs/10-research/reports/.")
+
+    for citation in unsourced_citations(text, known)[:5]:
+        add("GAP", "Evidence", f"{url}: carries the citation '{citation}…' with no repository "
+            "document id beside it. Every publication here is a self-published working paper; "
+            "a journal or archive citation is citing something that does not exist.")
 
     for host in lookalike_github_hosts(parser.hrefs):
         add("GAP", "Links", f"{url}: links to '{host}', which is not GitHub. "

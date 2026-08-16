@@ -1,13 +1,34 @@
 ---
 document_id: DRL-AGT-904
 title: "Agent Mission Index"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-16
 ---
 
 # Agent Mission Index
+
+## What these files are
+
+Instruction files for AI coding agents. Not job descriptions, and not an
+org chart.
+
+Each numbered file is a prompt: the scope an agent is given when it works on
+that part of the repository, the constraints it has to hold to, and the evidence
+it must produce before the work counts as done. "Program Director", "Document
+Control", and "Release QA" name *missions* in that sense — a slice of work with
+its own rules — rather than roles held by people.
+
+One person operates all sixteen: Christopher Noxon DeWitt. There is no staff and
+no department behind the numbering. It exists because sixteen narrow prompts
+produce better work than one broad one, and because constraints written down in
+advance can be checked afterwards against what was actually done.
+
+The "director decisions" referenced throughout are his own. They are recorded in
+`DECISION_REGISTER.md` and `DIRECTORS_MEMO.md` so that a decision and its
+reasoning outlive the conversation that produced it — including the ones that
+were later reversed, which are kept rather than deleted.
 
 ## Mission order
 

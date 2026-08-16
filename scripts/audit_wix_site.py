@@ -2,12 +2,17 @@
 """Read-only audit of the live Wix site against approved DRL web specs.
 
 Compares www.dewitt-labs.com and its Wix CMS collections against:
-- docs/08-web-brand/BRAND_SYSTEM.md (cream-on-black, prohibited motifs, voice)
-- docs/08-web-brand/WIX_SITE_BUILD_PLAN.md (page tree, homepage composition,
-  CMS collections, required pre-publication content)
+- docs/08-web-brand/BRAND_SYSTEM.md (cream-on-black, prohibited motifs, voice,
+  prohibited institutional chrome)
+- docs/08-web-brand/SITE_COPY.md (RES-016 page tree, identity, copy rules)
 - docs/08-web-brand/WIX_EDITOR_HANDOFF_CHECKLIST.md (domain, structure, truthful
   maturity labels)
 - docs/09-open-source/OPEN_SOURCE_MATURITY_MODEL.md (allowed maturity vocabulary)
+
+The page tree and homepage text come from RES-016, which replaced the
+workshop-first `WIX_SITE_BUILD_PLAN.md` with a personal academic portfolio. The
+CMS collection list still follows the build plan: the collections exist and are
+provisioned, and emptying them is a separate decision from shrinking the site.
 
 Environment:
   WIX_API_KEY      required for CMS checks (Authorization header, never printed)
@@ -50,31 +55,43 @@ EXPECTED_COLLECTIONS = [
     "ExternalLaunchTargets",
 ]
 
-# Approved page tree (WIX_SITE_BUILD_PLAN.md) as slug fragments to look for in
-# the sitemap. The plan allows shallow initial sections, so top-level sections
-# are GAPs when missing while sub-pages are NOTEs.
+# Approved page tree, as slug fragments to look for in the sitemap.
+#
+# RES-016 replaced the workshop-first build plan with a personal academic
+# portfolio, and the page tree shrank with it: Home, Research, Projects, About.
+# The eight-section tree and the page-per-system expectation this used to carry
+# came from the superseded plan, and scoring against them produced eleven
+# findings that pointed away from the approved site rather than toward it.
+#
+# A page outside this set is a NOTE, not a GAP. The contract says which pages
+# must exist, not which must not — but on a portfolio being deliberately kept
+# small, an unlisted page is worth a decision.
 EXPECTED_TOP_SECTIONS = {
-    "Laboratory": ["laboratory", "lab"],
-    "Systems": ["systems", "system"],
     "Research": ["research"],
-    "Open Source": ["open-source", "opensource", "open_source"],
-    "Teaching": ["teaching", "learn"],
-    "Failure Museum": ["failure-museum", "failure"],
+    "Projects": ["projects", "project"],
     "About": ["about"],
-    "Status / Launch": ["status", "launch"],
 }
-EXPECTED_SYSTEM_PAGES = ["atticus", "atlas", "fedlens", "balancelab", "evalforge"]
 
-# Required homepage text (hero hierarchy + founder line).
+# Required homepage text (RES-016 identity).
+#
+# The hero no longer carries a lab name or a slogan: leading with either is what
+# RES-016 corrected. Only the identity is required here — the degree-programme
+# wording is governed by SITE_COPY.md, which an auditor cannot check for
+# exactness without asserting one phrasing over another.
 REQUIRED_HOME_TEXT = [
-    "DeWitt Research Workshop",
-    "Independent research in open and applied intelligence",
-    "Intelligence for Good. Intelligence for All.",
     "Christopher Noxon DeWitt",
+    "Academic Portfolio",
 ]
 
-# Required pre-publication links/content anywhere on the site.
-REQUIRED_SITE_LINKS = ["github", "privacy", "contact", "governance", "security", "status"]
+# Required links/content anywhere on the homepage.
+#
+# Governance, security, and status pages belonged to the institutional site.
+# A portfolio needs to say who to contact, where the code is, and what happens
+# to visitor data.
+REQUIRED_SITE_LINKS = ["github", "privacy", "contact"]
+
+#: A page carrying less than this much visible text is a stub, not a page.
+MIN_PAGE_TEXT_CHARS = 400
 
 # Allowed maturity vocabulary (OPEN_SOURCE_MATURITY_MODEL.md) plus truthful
 # planned-state wording from the build plan.
@@ -104,6 +121,18 @@ DISCLAIMER_MARKERS = [
     "not a government", "independent initiative", "not affiliated",
     "is not a university", "no accreditation",
 ]
+
+# Authority furniture BRAND_SYSTEM.md prohibits by name: framing that implies an
+# organisation or an operations centre behind one person's prototypes.
+PROHIBITED_CHROME = [
+    "specialist research nodes", "research nodes", "systems nominal",
+    "mission control", "operations centre", "operations center",
+    "uptime", "our systems", "our researchers", "our lab",
+]
+
+#: Any percentage on the page. Not a violation on its own — a result with a
+#: linked source is fine — but a number presented as a finding needs one.
+PERCENT_CLAIM = re.compile(r"\b\d{1,3}\.\d%|\b\d{1,3}%")
 
 findings: list[tuple[str, str, str]] = []  # (severity, area, message)
 
@@ -320,6 +349,37 @@ def flag_untruthful(text: str) -> list[str]:
     return sorted(set(hits))
 
 
+def flag_chrome(text: str) -> list[str]:
+    """Return institutional-chrome phrases present in ``text``.
+
+    Separate from :func:`flag_untruthful` because the fix is different. An
+    untruthful term is a claim to withdraw; chrome is decoration to delete — the
+    site is not lying about an operations centre so much as dressing as one.
+    """
+    lowered = text.lower()
+    return sorted({phrase for phrase in PROHIBITED_CHROME if phrase in lowered})
+
+
+def lookalike_github_hosts(hrefs: list[str]) -> list[str]:
+    """Return link hosts that read as GitHub but are not github.com.
+
+    A hyphen in the wrong place sends a portfolio's source-code link to somebody
+    else's domain, and it reads as correct in the editor. This is the one link
+    defect worth failing an audit over, because the reader who follows it has no
+    way to know it was a typo.
+    """
+    bad: list[str] = []
+    for href in hrefs:
+        host = re.sub(r"^[a-z]+://", "", href.strip().lower()).split("/")[0]
+        host = host.split("@")[-1].split(":")[0]
+        if not host or host.endswith(("github.com", "github.io")):
+            continue
+        stripped = host.replace("-", "").replace("_", "")
+        if "github" in stripped:
+            bad.append(host)
+    return sorted(set(bad))
+
+
 def resolve_theme_colors(html: str) -> tuple[str | None, str | None]:
     """Resolve the page canvas and foreground colours from Wix CSS variables.
 
@@ -359,6 +419,22 @@ def audit_page(url: str, is_home: bool) -> None:
     for term in flag_untruthful(text):
         add("GAP", "Truthfulness", f"{url}: contains '{term}' — verify against brand voice "
             "(no implied staff scale, accreditation, or production maturity).")
+
+    for phrase in flag_chrome(text):
+        add("GAP", "Voice", f"{url}: contains '{phrase}' — institutional chrome prohibited by "
+            "BRAND_SYSTEM.md (no operations-centre framing over one person's prototypes).")
+
+    for host in lookalike_github_hosts(parser.hrefs):
+        add("GAP", "Links", f"{url}: links to '{host}', which is not GitHub. "
+            "Check for a typo in the source-code link.")
+
+    for claim in sorted(set(PERCENT_CLAIM.findall(text)))[:5]:
+        add("UNVERIFIED", "Evidence", f"{url}: states '{claim}'. A number presented as a result "
+            "needs a linked source; confirm it is reproducible from the repository.")
+
+    if len(text) < MIN_PAGE_TEXT_CHARS:
+        add("GAP", "Structure", f"{url} has {len(text)} characters of visible text — it is a "
+            "stub. Either give it content or take it out of the navigation.")
 
     if is_home:
         for required in REQUIRED_HOME_TEXT:
@@ -411,25 +487,32 @@ def main() -> int:
     urls, sitemap_ok = fetch_sitemap()
     if sitemap_ok:
         add("INFO", "Structure", f"Sitemap pages ({len(urls)}): " + ", ".join(urls))
-        paths = " ".join(urls).lower()
-        for section, slugs in EXPECTED_TOP_SECTIONS.items():
-            if not any(s in paths for s in slugs):
-                add("GAP", "Structure",
-                    f"Approved page-tree section '{section}' not found in sitemap.")
-        # Slugs are hyphenated on the live site (/fed-lens, /balance-lab-ai), so
+        # Slugs are hyphenated on the live site (/about-me, /open-source), so
         # normalise both sides before comparing.
-        flat = re.sub(r"[-_]", "", paths)
-        for system in EXPECTED_SYSTEM_PAGES:
-            if re.sub(r"[-_]", "", system) not in flat:
+        flat = re.sub(r"[-_]", "", " ".join(urls).lower())
+        for section, slugs in EXPECTED_TOP_SECTIONS.items():
+            if not any(re.sub(r"[-_]", "", s) in flat for s in slugs):
                 add("GAP", "Structure",
-                    f"System page or planned-state entry for '{system}' not found in sitemap.")
+                    f"Approved page-tree section '{section}' not found in sitemap "
+                    "(RES-016: Home, Research, Projects, About).")
+        approved = {re.sub(r"[-_]", "", s) for slugs in EXPECTED_TOP_SECTIONS.values()
+                    for s in slugs}
+        home = f"https://{SITE_HOST}"
+        for url in urls:
+            slug = re.sub(r"[-_]", "", url.rstrip("/").rsplit("/", 1)[-1].lower())
+            if url.rstrip("/") == home.rstrip("/") or not slug:
+                continue
+            if slug not in approved:
+                add("NOTE", "Structure",
+                    f"{url} is not in the approved page tree. Keeping the portfolio small "
+                    "is deliberate; decide whether this page stays.")
 
     home = f"https://{SITE_HOST}/"
     audit_page(home, is_home=True)
     for url in [u for u in urls if u.rstrip("/") != home.rstrip("/")][: args.max_pages]:
         audit_page(url, is_home=False)
 
-    order = {s: i for i, s in enumerate(("GAP", "UNVERIFIED", "PASS", "INFO"))}
+    order = {s: i for i, s in enumerate(("GAP", "UNVERIFIED", "NOTE", "PASS", "INFO"))}
     findings.sort(key=lambda f: order.get(f[0], 9))
     lines = ["# Wix site audit — punch list", "",
              f"Site: https://{SITE_HOST}/  |  read-only audit", ""]

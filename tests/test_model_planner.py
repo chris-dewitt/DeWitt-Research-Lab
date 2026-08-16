@@ -41,6 +41,7 @@ class StubProvider:
         self.fail = fail
         self.healthy = healthy
         self.seen: list[ChatMessage] = []
+        self.budget: CompletionConstraints | None = None
         self._identity = ModelIdentity(
             provider_id="stub", model_family="stub", revision="v0",
             open_weight=True, output_mode=OutputMode.MOCK, license_label="Apache-2.0",
@@ -57,6 +58,7 @@ class StubProvider:
         if self.fail:
             raise ProviderUnavailableError("stub is down")
         self.seen = list(messages)
+        self.budget = constraints
         return StructuredModelResponse(
             content=self.content, identity=self._identity,
             finish_reason="stop", latency_ms=1.0,
@@ -136,6 +138,21 @@ class TestDegradation:
         content = plan_json([{"tool_name": "made.up", "arguments": {}, "risk_tier": 0}])
         planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG)
         assert planner.plan(request()) == FixturePlanner().plan(request())
+
+    def test_the_default_budget_stops_the_model_at_the_plan(self) -> None:
+        """The 2048-token headroom is for thinking, not for prose after the plan."""
+        provider = StubProvider(plan_json([]))
+        planner = ModelPlanner(gateway_for(provider), CATALOG)
+        planner.plan(request())
+        assert provider.budget is not None
+        assert provider.budget.stop_after_json is True
+        assert provider.budget.max_output_tokens == 2048
+
+    def test_an_explicit_budget_is_left_alone(self) -> None:
+        provider = StubProvider(plan_json([]))
+        budget = CompletionConstraints(max_output_tokens=256)
+        ModelPlanner(gateway_for(provider), CATALOG, constraints=budget).plan(request())
+        assert provider.budget == budget
 
     def test_empty_catalog_is_rejected(self) -> None:
         with pytest.raises(ValueError, match="catalog cannot be empty"):
@@ -297,6 +314,13 @@ class TestTimeoutBudget:
 
         runtime = build_model_backed_runtime(model="test:0b", timeout_seconds=600.0)
         assert runtime.planner.constraints.timeout_seconds == 600.0
+
+    def test_the_wired_runtime_stops_the_model_at_the_plan(self) -> None:
+        """The budget the real planning path uses, not just the class default."""
+        from atticus_control_plane.runtime import build_model_backed_runtime
+
+        runtime = build_model_backed_runtime(model="test:0b")
+        assert runtime.planner.constraints.stop_after_json is True
 
     def test_unparseable_env_timeout_falls_back_to_default(
         self, monkeypatch: pytest.MonkeyPatch

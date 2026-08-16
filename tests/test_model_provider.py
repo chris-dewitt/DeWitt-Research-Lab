@@ -14,6 +14,7 @@ from drl_ai_core import (
     OutputMode,
     ProviderTimeoutError,
     ProviderUnavailableError,
+    StructuredModelResponse,
 )
 from drl_protocol import RunState, TaskRequest
 
@@ -72,6 +73,37 @@ def test_gateway_falls_back_and_discloses_fallback() -> None:
     assert response.identity.provider_id == "fallback"
     assert response.structured["fallback_from"] == "primary"
     assert response.structured["fallback_errors"]
+
+
+def test_gateway_keeps_transport_telemetry_across_a_fallback() -> None:
+    """A fallback route is exactly when how the call was carried is worth reading."""
+
+    class Streaming(MockOpenWeightProvider):
+        def complete(self, messages, **kwargs):  # type: ignore[no-untyped-def]
+            response = super().complete(messages, **kwargs)
+            return StructuredModelResponse(
+                content=response.content,
+                identity=response.identity,
+                finish_reason=response.finish_reason,
+                latency_ms=response.latency_ms,
+                usage=dict(response.usage),
+                transport={"streamed": True, "chunks": 7, "early_stop": True},
+            )
+
+    gateway = ModelGateway(
+        {
+            "primary": MockOpenWeightProvider(provider_id="primary", fail_closed=True),
+            "fallback": Streaming(provider_id="fallback"),
+        },
+        primary="primary",
+        fallback="fallback",
+    )
+
+    response = gateway.complete([ChatMessage("user", "Need a plan")])
+
+    assert response.structured["fallback_from"] == "primary"
+    assert response.transport == {"streamed": True, "chunks": 7, "early_stop": True}
+    assert response.disclosure()["transport"]["chunks"] == 7
 
 
 def test_gateway_rejects_closed_weight_when_open_required() -> None:

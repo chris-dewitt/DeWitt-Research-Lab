@@ -4,7 +4,7 @@ One adapter covers every local runtime worth using — Ollama, vLLM, LM Studio, 
 ``llama-server`` all expose the same ``/v1/chat/completions`` shape — so the
 workshop can change runtime without changing code.
 
-Three behaviours here are deliberate rather than incidental:
+Four behaviours here are deliberate rather than incidental:
 
 **Completions are streamed, and the timeout is a stall timeout.** A single
 blocking request with a wall-clock deadline is the wrong instrument for local
@@ -14,6 +14,14 @@ genuinely dead endpoint take longer to detect. Streaming separates the two
 questions. ``stall_timeout`` asks "is anything still arriving?" and fails fast
 when nothing is; ``constraints.timeout_seconds`` is a runaway ceiling on the
 whole call, not a guess at how long the model ought to need.
+
+**A JSON answer ends at its closing brace.** When the caller sets
+``constraints.stop_after_json``, the stream is closed the moment one complete
+JSON value has been generated. Everything a model writes after that — the prose
+restatement, the second example, the apology — is generated at full cost and
+then dropped by the parser, and on a local runtime that cost is the wall clock
+the operator is waiting on. Closing the connection tells the runtime to abandon
+the rest of the generation.
 
 **Reasoning traces are discarded, never recorded.** Reasoning-capable models
 return internal thinking either in a separate ``reasoning`` field or fenced in
@@ -60,6 +68,8 @@ __all__ = [
 
 #: Fenced reasoning blocks emitted inline by some reasoning models.
 _THINK_BLOCK = re.compile(r"<think>.*?</think>\s*", re.DOTALL | re.IGNORECASE)
+_THINK_OPEN = "<think>"
+_THINK_CLOSE = "</think>"
 
 #: Keys under which runtimes return separate reasoning content.
 _REASONING_KEYS = ("reasoning", "reasoning_content", "thinking")
@@ -98,6 +108,71 @@ def strip_reasoning(text: str) -> str:
     return cleaned.strip()
 
 
+class _JsonSpanTracker:
+    """Report when a complete top-level JSON value has been generated.
+
+    Fed the content deltas as they arrive, one at a time, so the decision costs
+    a single pass over the stream rather than re-parsing the whole accumulated
+    text on every chunk.
+
+    Two details keep it honest. It tracks JSON strings, so a brace inside a
+    string value does not close the document. And it ignores everything inside a
+    ``<think>`` block, because a reasoning model routinely writes braces while
+    thinking — stopping there would cut the model off before it wrote the answer.
+    """
+
+    def __init__(self) -> None:
+        self._pending = ""
+        self._in_think = False
+        self._depth = 0
+        self._in_string = False
+        self._escaped = False
+        self.complete = False
+
+    def feed(self, piece: str) -> None:
+        if self.complete:
+            return
+        text = self._pending + piece
+        index = 0
+        while index < len(text):
+            char = text[index]
+            if char == "<" and not self._in_string:
+                tag = _THINK_CLOSE if self._in_think else _THINK_OPEN
+                rest = text[index:].lower()
+                if rest.startswith(tag):
+                    self._in_think = not self._in_think
+                    index += len(tag)
+                    continue
+                if tag.startswith(rest):
+                    # A tag split across chunks. Hold it back rather than
+                    # reading a half-arrived "<thi" as ordinary content.
+                    break
+            if not self._in_think:
+                self._consume(char)
+                if self.complete:
+                    self._pending = ""
+                    return
+            index += 1
+        self._pending = text[index:]
+
+    def _consume(self, char: str) -> None:
+        if self._in_string:
+            if self._escaped:
+                self._escaped = False
+            elif char == "\\":
+                self._escaped = True
+            elif char == '"':
+                self._in_string = False
+            return
+        if char == '"':
+            self._in_string = True
+        elif char in "{[":
+            self._depth += 1
+        elif char in "}]" and self._depth:
+            self._depth -= 1
+            self.complete = self._depth == 0
+
+
 class _StreamState:
     """Accumulates a chat completion from server-sent delta chunks."""
 
@@ -108,6 +183,12 @@ class _StreamState:
         self.tool_calls: dict[int, dict[str, str]] = {}
         self.chunks = 0
         self.first_token_ms: float | None = None
+        self.early_stop = False
+        self._json = _JsonSpanTracker()
+
+    @property
+    def json_complete(self) -> bool:
+        return self._json.complete
 
     def text(self) -> str:
         return "".join(self.parts)
@@ -142,6 +223,7 @@ class _StreamState:
             if self.first_token_ms is None:
                 self.first_token_ms = elapsed_ms
             self.parts.append(piece)
+            self._json.feed(piece)
 
         # Reasoning deltas are dropped on arrival, not collected and filtered
         # later: content that is never accumulated cannot leak into the trace.
@@ -234,15 +316,16 @@ class HttpOpenAICompatibleProvider:
             raise ProviderUnavailableError(f"refusing non-local plaintext endpoint: {url}")
         return url
 
-    def _request(self, url: str, payload: dict[str, Any]) -> urllib.request.Request:
+    def _request(self, url: str, payload: dict[str, Any] | None) -> urllib.request.Request:
         headers = {"Content-Type": "application/json"}
         if self.api_key:
             headers["Authorization"] = f"Bearer {self.api_key}"
+        data = None if payload is None else json.dumps(payload).encode()
         return urllib.request.Request(  # noqa: S310 - scheme checked in _url
-            url, data=json.dumps(payload).encode(), headers=headers
+            url, data=data, headers=headers
         )
 
-    def _open(self, url: str, payload: dict[str, Any], timeout: float) -> HTTPResponse:
+    def _open(self, url: str, payload: dict[str, Any] | None, timeout: float) -> HTTPResponse:
         """Open the connection, translating transport failures into provider errors."""
         request = self._request(url, payload)
         try:
@@ -271,6 +354,16 @@ class HttpOpenAICompatibleProvider:
         """Send one non-streaming request and return the decoded JSON object."""
         url = self._url(path)
         with self._open(url, payload, timeout) as response:
+            try:
+                body = response.read().decode("utf-8", "replace")
+            except (TimeoutError, OSError, HTTPException) as exc:
+                raise self._read_failure(url, exc, timeout) from exc
+        return _decode_object(body)
+
+    def _get(self, path: str, timeout: float) -> dict[str, Any]:
+        """Fetch one JSON document, sending no body."""
+        url = self._url(path)
+        with self._open(url, None, timeout) as response:
             try:
                 body = response.read().decode("utf-8", "replace")
             except (TimeoutError, OSError, HTTPException) as exc:
@@ -310,9 +403,23 @@ class HttpOpenAICompatibleProvider:
                 yield line
 
     def _stream(
-        self, path: str, payload: dict[str, Any], total_timeout: float
+        self,
+        path: str,
+        payload: dict[str, Any],
+        total_timeout: float,
+        *,
+        stop_after_json: bool = False,
     ) -> tuple[_StreamState, float]:
-        """Consume a server-sent-event completion stream into accumulated state."""
+        """Consume a server-sent-event completion stream into accumulated state.
+
+        With ``stop_after_json`` the loop leaves as soon as one complete JSON
+        value has been generated, closing the response. Local runtimes cancel a
+        generation when the client disconnects, so the tokens after the closing
+        brace are never produced; a runtime that does not cancel still stops
+        costing this caller anything. Usage counts arrive on a terminal chunk
+        that an early stop never sees — a call that stops early reports no
+        token counts rather than guessed ones.
+        """
         url = self._url(path)
         started = time.perf_counter()
         deadline = time.monotonic() + total_timeout
@@ -338,6 +445,9 @@ class HttpOpenAICompatibleProvider:
                 if _error_of(chunk):
                     raise ProviderUnavailableError(f"endpoint reported: {_error_of(chunk)}")
                 state.absorb(chunk, (time.perf_counter() - started) * 1000)
+                if stop_after_json and state.json_complete:
+                    state.early_stop = True
+                    break
 
         if not state.chunks and buffered:
             state.absorb(_decode_object("".join(buffered)), (time.perf_counter() - started) * 1000)
@@ -346,7 +456,28 @@ class HttpOpenAICompatibleProvider:
         return state, (time.perf_counter() - started) * 1000
 
     def health(self) -> bool:
-        """Probe the endpoint. Never raises — an unhealthy provider is a False."""
+        """Probe the endpoint. Never raises — an unhealthy provider is a False.
+
+        Ask the catalogue before asking the model. ``GET /models`` is answered
+        from the runtime's registry without touching a weight file, so a healthy
+        endpoint answers in milliseconds. The one-token completion below instead
+        *loads the model*: on a cold 26B that is minutes of disk and RAM work to
+        produce a token that is then thrown away — and since the probe runs under
+        ``connect_timeout``, it would time out and report a perfectly good
+        endpoint as dead. That false negative is expensive upstream, where an
+        unhealthy provider aborts a bake-off candidate before a single task runs.
+
+        The listing is used only as a fast *yes*. A runtime that does not serve
+        the route, or that names the loaded model differently from the tag we
+        asked for, falls through to the completion probe rather than being
+        called dead over a naming mismatch.
+        """
+        try:
+            listed = _model_ids(self._get("/models", timeout=self.connect_timeout))
+        except (ProviderUnavailableError, ProviderTimeoutError):
+            listed = frozenset()
+        if self.model in listed:
+            return True
         try:
             self._post(
                 "/chat/completions",
@@ -407,12 +538,21 @@ class HttpOpenAICompatibleProvider:
         self, payload: dict[str, Any], constraints: CompletionConstraints
     ) -> StructuredModelResponse:
         state, latency_ms = self._stream(
-            "/chat/completions", payload, constraints.timeout_seconds
+            "/chat/completions",
+            payload,
+            constraints.timeout_seconds,
+            stop_after_json=constraints.stop_after_json,
         )
+        if state.early_stop:
+            # The model did not stop; we did. Saying "stop" here would credit
+            # the model with an ending it never wrote.
+            finish_reason = "client_stop"
+        else:
+            finish_reason = state.finish_reason or "stop"
         return StructuredModelResponse(
             content=strip_reasoning(state.text()),
             identity=self._identity,
-            finish_reason=state.finish_reason or "stop",
+            finish_reason=finish_reason,
             latency_ms=latency_ms,
             usage=state.usage,
             tool_calls=tuple(
@@ -423,6 +563,7 @@ class HttpOpenAICompatibleProvider:
                 "streamed": True,
                 "chunks": state.chunks,
                 "first_token_ms": state.first_token_ms,
+                "early_stop": state.early_stop,
             },
         )
 
@@ -464,7 +605,12 @@ class HttpOpenAICompatibleProvider:
             latency_ms=latency_ms,
             usage=_coerce_counts(body.get("usage") or {}),
             tool_calls=tuple(tool_calls),
-            transport={"streamed": False, "chunks": 1, "first_token_ms": latency_ms},
+            transport={
+                "streamed": False,
+                "chunks": 1,
+                "first_token_ms": latency_ms,
+                "early_stop": False,
+            },
         )
 
 
@@ -476,6 +622,18 @@ def _error_of(chunk: dict[str, Any]) -> str:
     if isinstance(error, str) and error:
         return error[:300]
     return ""
+
+
+def _model_ids(body: dict[str, Any]) -> frozenset[str]:
+    """Return the model ids in an OpenAI-shaped ``/models`` listing."""
+    data = body.get("data")
+    if not isinstance(data, list):
+        return frozenset()
+    return frozenset(
+        str(entry["id"])
+        for entry in data
+        if isinstance(entry, dict) and isinstance(entry.get("id"), str)
+    )
 
 
 def _decode_object(body: str) -> dict[str, Any]:

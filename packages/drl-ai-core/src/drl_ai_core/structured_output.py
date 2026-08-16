@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import re
 from collections.abc import Callable, Mapping, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any
 
 from jsonschema import Draft202012Validator
@@ -135,6 +135,27 @@ def validate_against_schema(instance: Any, schema: Mapping[str, Any]) -> list[Va
     return issues
 
 
+def clip_middle(text: str, limit: int) -> str:
+    """Shorten ``text`` to ``limit`` characters, eliding the middle.
+
+    A repair prompt has to show the model what it got wrong, and that is nearly
+    always visible in how the output opens and how it ends. The middle of a
+    runaway generation is not: it is the part the model padded, and re-sending
+    it costs prompt tokens on every attempt in the repair budget. Both ends are
+    kept, weighted toward the opening, where the structure the schema rejects
+    usually sits; the tail shows whether the output was truncated.
+
+    The elision is announced in the text so the model is not left to infer that
+    a document ended where it did not.
+    """
+    if len(text) <= limit:
+        return text
+    head = (limit * 2) // 3
+    tail = limit - head
+    elided = len(text) - limit
+    return f"{text[:head]}\n...[{elided} characters elided]...\n{text[len(text) - tail:]}"
+
+
 def contains_injection_marker(text: str) -> bool:
     """Return True when untrusted text includes common instruction-injection markers."""
 
@@ -151,12 +172,16 @@ class StructuredOutputValidator:
         *,
         max_repair_attempts: int = 2,
         reject_injection_markers: bool = True,
+        max_invalid_chars: int = 2000,
     ) -> None:
         if max_repair_attempts < 0:
             raise ValueError("max_repair_attempts cannot be negative")
+        if max_invalid_chars <= 0:
+            raise ValueError("max_invalid_chars must be positive")
         self.schema = dict(schema)
         self.max_repair_attempts = max_repair_attempts
         self.reject_injection_markers = reject_injection_markers
+        self.max_invalid_chars = max_invalid_chars
         Draft202012Validator.check_schema(self.schema)
 
     def parse(self, text: str) -> StructuredParseResult:
@@ -183,6 +208,10 @@ class StructuredOutputValidator:
         """Validate ``text`` and request bounded repairs from ``provider`` if needed."""
 
         constraints = constraints or CompletionConstraints()
+        # A repair returns a JSON document and nothing else, so any token the
+        # model generates after it closes is paid for and then discarded.
+        if not constraints.stop_after_json:
+            constraints = replace(constraints, stop_after_json=True)
         trace = [
             StructuredTraceEvent(
                 "structured_parse_started",
@@ -209,6 +238,10 @@ class StructuredOutputValidator:
                         "attempt": repair_index,
                         "issue_count": len(result.issues),
                         "injection_marker_detected": contains_injection_marker(current),
+                        "invalid_chars": len(current),
+                        "invalid_chars_sent": len(
+                            clip_middle(current, self.max_invalid_chars)
+                        ),
                     },
                 )
             )
@@ -362,6 +395,7 @@ class StructuredOutputValidator:
         context_messages: Sequence[ChatMessage],
     ) -> list[ChatMessage]:
         issue_lines = "\n".join(f"- {issue.path}: {issue.message}" for issue in issues) or "- $"
+        invalid_text = clip_middle(invalid_text, self.max_invalid_chars)
         # Keep prior user/assistant turns as context, but never as elevated system policy.
         history = [
             message

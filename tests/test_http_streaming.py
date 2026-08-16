@@ -38,8 +38,15 @@ Responder = Callable[[BaseHTTPRequestHandler], None]
 
 
 @contextlib.contextmanager
-def local_endpoint(responder: Responder) -> Iterator[tuple[str, list[dict[str, Any]]]]:
-    """Serve one scripted response on loopback; yield its base URL and requests seen."""
+def local_endpoint(
+    responder: Responder, *, on_get: Responder | None = None
+) -> Iterator[tuple[str, list[dict[str, Any]]]]:
+    """Serve one scripted response on loopback; yield its base URL and requests seen.
+
+    ``on_get`` answers ``GET`` routes such as ``/models``. Left unset, the
+    handler has no ``do_GET`` at all, which is how a runtime that does not serve
+    the catalogue route behaves.
+    """
     recorded: list[dict[str, Any]] = []
 
     class Handler(BaseHTTPRequestHandler):
@@ -56,6 +63,14 @@ def local_endpoint(responder: Responder) -> Iterator[tuple[str, list[dict[str, A
             recorded.append(json.loads(body or b"{}"))
             with contextlib.suppress(BrokenPipeError, ConnectionResetError):
                 responder(self)
+
+        if on_get is not None:
+
+            def do_GET(self) -> None:  # noqa: N802 - BaseHTTPRequestHandler contract
+                recorded.append({"method": "GET", "path": self.path})
+                with contextlib.suppress(BrokenPipeError, ConnectionResetError):
+                    assert on_get is not None
+                    on_get(self)
 
     server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
     server.daemon_threads = True
@@ -125,11 +140,16 @@ def provider_at(base_url: str, **kwargs: Any) -> HttpOpenAICompatibleProvider:
 
 
 def ask(
-    provider: HttpOpenAICompatibleProvider, *, timeout: float = 30.0
+    provider: HttpOpenAICompatibleProvider,
+    *,
+    timeout: float = 30.0,
+    stop_after_json: bool = False,
 ) -> Any:
     return provider.complete(
         [ChatMessage(role="user", content="plan this")],
-        constraints=CompletionConstraints(timeout_seconds=timeout),
+        constraints=CompletionConstraints(
+            timeout_seconds=timeout, stop_after_json=stop_after_json
+        ),
     )
 
 
@@ -226,6 +246,132 @@ class TestReasoningIsNeverAccumulated:
         with local_endpoint(sse(chunks)) as (url, _):
             response = ask(provider_at(url))
         assert response.transport["first_token_ms"] is not None
+
+
+class TestGenerationStopsAtTheClosingBrace:
+    """A JSON answer is finished when its brace closes.
+
+    The first two tests are deliberately written as timing assertions rather
+    than content ones. The server sends the payload and then holds the stream
+    open well past the stall timeout, so a provider that waits for the model to
+    finish times out and a provider that stops at the brace returns. Asserting
+    on the text alone would pass either way — including the version that
+    patiently reads every wasted token.
+    """
+
+    def test_the_stream_closes_once_the_payload_is_complete(self) -> None:
+        with local_endpoint(sse([text_delta(PLAN)], hang_after=2.0)) as (url, _):
+            response = ask(provider_at(url, stall_timeout=0.3), stop_after_json=True)
+        assert response.content == PLAN
+        # We ended the call, not the model. Reporting "stop" would credit the
+        # model with an ending it never wrote.
+        assert response.finish_reason == "client_stop"
+        assert response.transport["early_stop"] is True
+
+    def test_without_the_flag_the_provider_waits_for_the_model(self) -> None:
+        with local_endpoint(sse([text_delta(PLAN)], hang_after=2.0)) as (url, _):
+            with pytest.raises(ProviderTimeoutError, match="stalled"):
+                ask(provider_at(url, stall_timeout=0.3))
+
+    def test_trailing_prose_is_never_read(self) -> None:
+        chunks = [text_delta(PLAN), *(text_delta(" Let me explain.") for _ in range(3))]
+        with local_endpoint(sse([*chunks, finish()])) as (url, _):
+            response = ask(provider_at(url), stop_after_json=True)
+        assert response.content == PLAN
+
+    def test_braces_while_thinking_do_not_end_the_answer(self) -> None:
+        """A reasoning model drafts JSON in its scratchpad; that is not the answer."""
+        chunks = [
+            text_delta('<think>maybe {"steps": []} covers it</think>'),
+            text_delta(PLAN),
+            finish(),
+        ]
+        with local_endpoint(sse(chunks)) as (url, _):
+            response = ask(provider_at(url), stop_after_json=True)
+        assert response.content == PLAN
+
+    def test_a_think_tag_split_across_chunks_is_still_recognised(self) -> None:
+        """Deltas break wherever the tokenizer breaks, including mid-tag."""
+        chunks = [
+            text_delta("<thi"),
+            text_delta('nk>{"draft": true}'),
+            text_delta("</thi"),
+            text_delta("nk>"),
+            text_delta(PLAN),
+            finish(),
+        ]
+        with local_endpoint(sse(chunks)) as (url, _):
+            response = ask(provider_at(url), stop_after_json=True)
+        assert response.content == PLAN
+
+    def test_a_brace_inside_a_string_does_not_end_the_answer(self) -> None:
+        payload = '{"task_id": "t}1", "note": "he said \\"}\\" once", "steps": []}'
+        chunks = [text_delta(piece) for piece in (payload[:20], payload[20:])]
+        with local_endpoint(sse([*chunks, finish()])) as (url, _):
+            response = ask(provider_at(url), stop_after_json=True)
+        assert response.content == payload
+
+    def test_a_complete_payload_still_reports_the_models_own_ending(self) -> None:
+        """Stopping early is the exception; nothing changes when the model finishes."""
+        with local_endpoint(sse([text_delta(PLAN), finish()])) as (url, _):
+            response = ask(provider_at(url))
+        assert response.finish_reason == "stop"
+        assert response.transport["early_stop"] is False
+
+
+def models_listing(*ids: str) -> Responder:
+    """Respond as an OpenAI-compatible ``GET /models`` catalogue."""
+
+    def respond(handler: BaseHTTPRequestHandler) -> None:
+        body = {"object": "list", "data": [{"id": i, "object": "model"} for i in ids]}
+        plain_json(body)(handler)
+
+    return respond
+
+
+class TestHealthDoesNotLoadTheModel:
+    """Health is a question about the endpoint, not an excuse to load weights.
+
+    The completion probe answers it by generating a token, which on a cold
+    local model means loading the whole thing — minutes of work under a five
+    second timeout, so a healthy endpoint reports dead. The catalogue answers
+    the same question from the runtime's registry.
+    """
+
+    def test_a_listed_model_is_healthy_without_a_completion(self) -> None:
+        # The POST responder here sends an empty stream: if health fell through
+        # to a completion, it would fail rather than quietly pass.
+        with local_endpoint(sse([], done=False), on_get=models_listing("test-model")) as (
+            url,
+            seen,
+        ):
+            assert provider_at(url).health() is True
+        assert [record.get("method") for record in seen] == ["GET"]
+        assert str(seen[0]["path"]).endswith("/models")
+
+    def test_an_unlisted_model_falls_through_to_the_completion_probe(self) -> None:
+        """A runtime may name the loaded model differently from the tag we asked for.
+
+        That is a naming mismatch, not a dead endpoint, so it costs a probe
+        rather than a false negative.
+        """
+        with local_endpoint(
+            plain_json({"choices": [{"message": {"content": "ok"}}]}),
+            on_get=models_listing("some-other-model"),
+        ) as (url, seen):
+            assert provider_at(url).health() is True
+        assert [record.get("method") for record in seen] == ["GET", None]
+
+    def test_a_runtime_without_the_catalogue_route_still_reports_healthy(self) -> None:
+        with local_endpoint(plain_json({"choices": [{"message": {"content": "ok"}}]})) as (
+            url,
+            seen,
+        ):
+            assert provider_at(url).health() is True
+        assert [record.get("method") for record in seen] == [None]
+
+    def test_a_dead_endpoint_is_still_unhealthy(self) -> None:
+        assert provider_at("http://127.0.0.1:1/v1").health() is False
 
 
 class TestTheTimeoutIsAStallTimeout:

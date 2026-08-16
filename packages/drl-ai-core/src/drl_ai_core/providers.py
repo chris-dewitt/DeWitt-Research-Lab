@@ -67,6 +67,20 @@ class CompletionConstraints:
     temperature: float = 0.0
     require_open_weight: bool = True
     allow_commercial_fallback: bool = False
+    #: Stop reading as soon as one complete JSON value has been generated.
+    #:
+    #: ``max_output_tokens`` is a ceiling, not a target, and a local model asked
+    #: for JSON routinely emits the object and then keeps going — restating the
+    #: plan in prose, adding a second example, apologising. Every token after the
+    #: closing brace is generated at full cost and then discarded by the parser.
+    #: With this set, a provider that streams may close the connection at that
+    #: brace; the runtime abandons the rest of the generation.
+    #:
+    #: Only set it where the response *is* a JSON document. On a completion
+    #: whose text merely contains JSON, this truncates the answer. Providers that
+    #: cannot stream ignore it — the tokens are already spent by the time the
+    #: body arrives.
+    stop_after_json: bool = False
 
     def __post_init__(self) -> None:
         if self.timeout_seconds <= 0:

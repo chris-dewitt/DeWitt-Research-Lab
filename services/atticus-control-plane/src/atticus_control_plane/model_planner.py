@@ -116,8 +116,16 @@ class ModelPlanner:
         # 2048 rather than 1024: a reasoning-capable model spends tokens on
         # thinking before it emits the plan, and a budget that runs out mid-
         # reasoning yields an empty completion rather than a short one.
+        #
+        # The headroom is a ceiling for the thinking, not a target for the plan.
+        # `stop_after_json` collects the ceiling back: a plan is complete at its
+        # closing brace, and a model that carries on explaining it afterwards is
+        # spending the operator's wall clock on text this planner discards.
         self.constraints = constraints or CompletionConstraints(
-            temperature=0.0, max_output_tokens=2048, require_open_weight=True
+            temperature=0.0,
+            max_output_tokens=2048,
+            require_open_weight=True,
+            stop_after_json=True,
         )
         self.max_steps = max_steps
         self._validator = build_tool_plan_validator()

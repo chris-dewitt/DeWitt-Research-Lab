@@ -454,3 +454,8 @@ issues:
     body: .github/ISSUE_BODIES/DRL-034.md
     requirements: [DRL-SYS-010, DRL-SEC-006, DRL-OSS-001, DRL-OSS-002, DRL-OSS-004, DRL-OSS-008, DRL-OSS-016]
     director_decisions: [RES-018, RES-019, DIR-009]
+    evidence:
+      - docs/12-acceptance/PUBLIC_REPOSITORY_READINESS.md
+      - scripts/validate_public_repository.py
+      - tests/test_public_repository.py
+      - agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md

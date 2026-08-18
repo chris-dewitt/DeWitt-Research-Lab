@@ -56,7 +56,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
 | 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | BLOCKED — independent G1 review after RES-020 | — |
 | 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | MERGED — DEPLOYMENT READ-BACK PENDING | PR #45; `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
-| 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | handoff pending commit |
+| 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
 
 ## Active scope — DRL-034 public repository readiness
 
@@ -140,6 +140,25 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-17 — DRL-034 public repository source curation
+
+- Branch: `lovesong/chore/drl-034-public-repository-readiness`
+- Implementation commit: `9fa2d58e0bf1e394ef99976bec55e33ed9660eec`
+- Curated the personal academic-research landing page, citation/package
+  metadata, truthful maturity labels, historical evidence, generated manifest,
+  current Actions runtimes, and GitHub About metadata.
+- Added a fail-closed tracked-source audit. It passes across 645 files; the
+  release mode intentionally blocks on 16 commits covered by DIR-009.
+- Full local suite: 351 passed, 2 expected Windows symlink skips; validators,
+  Ruff, strict mypy, Bandit, Node scaffold checks, integrated demo, manifest,
+  and diff checks passed. Docker is unavailable locally; remote CI is pending.
+- Repository visibility remains private through 2026-09-30. No history rewrite,
+  force-push, cloud deployment, Wix edit, model/data release, or research claim
+  occurred.
+- Handoff:
+  `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md`
+- Next: review remote CI, then resolve DIR-009 before public visibility.
 
 ### 2026-08-05 — DRL-032 CFI primary-source novelty review
 

@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo bakeoff bakeoff-json replay-site serve docs-check program-check open-check domain-check schema-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo bakeoff bakeoff-json replay-site serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -41,7 +41,13 @@ domain-check:
 schema-check:
 	uv run python scripts/validate_foundation.py
 
-verify: docs-check program-check open-check domain-check test
+public-check:
+	uv run python scripts/validate_public_repository.py
+
+public-release-check:
+	uv run python scripts/validate_public_repository.py --release
+
+verify: docs-check program-check open-check domain-check public-check test
 
 format:
 	uv run ruff format scripts tests packages services apps/atticus-local-runner

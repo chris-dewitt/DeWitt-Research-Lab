@@ -1,70 +1,72 @@
 ---
 document_id: DRL-PRG-091
-title: "Mission 00 Current-State Baseline"
-version: 1.2.0
+title: "Current-State Baseline"
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-01
+last_updated: 2026-08-17
 ---
 
-# Mission 00 Current-State Baseline
+# Current-State Baseline
 
-This baseline records what exists on the inherited foundation commit so later
-agents do not confuse specification density with product maturity.
+This baseline separates implemented evidence from specifications and planned
+work. It is a repository truth statement, not a V1 or production-release claim.
 
-## Authority snapshot
+## Identity and authority
 
-| Class | State |
+| Item | Current state |
 |---|---|
-| Laboratory Bible / AGENTS / Director's Memo | Present and binding |
-| Controlled program docs | Present under `docs/00-program/` |
-| Machine requirements | `requirements/requirements.yaml` — 132 APPROVED-FOUNDATION requirements |
-| Work packages | `requirements/work-packages.yaml` — 122 packages, Mission 00 previously PLANNED |
-| Schemas/examples | 26/26 schema-example pairs present |
-| ADRs | ADR-0001–0005 and ADR-0008 approved/foundation; ADR-0006/0007 IN REVIEW |
+| Repository | `chris-dewitt/DeWitt-Research-Lab` |
+| Public identity | Christopher Noxon DeWitt's independent academic research portfolio |
+| Institutional boundary | Independent work outside UNC coursework; no employer or university representation |
+| Public contact | `director@dewitt-labs.com` |
+| Website | [`www.dewitt-labs.com`](https://www.dewitt-labs.com), live personal portfolio |
+| Source visibility | Private through 2026-09-30 under RES-018 |
+| Binding sources | `LABORATORY_BIBLE.md`, `AGENTS.md`, `DIRECTORS_MEMO.md`, approved specifications and ADRs |
 
-## Implementation maturity (honest)
+## Implementation maturity
 
-| Surface | Maturity | Evidence |
+| Surface | Maturity | Evidence boundary |
 |---|---|---|
-| Atticus control plane | `prototype` | Deterministic planner, policy, approvals, orchestration, CLI, HTTP adapter; DRL-018 linked workflow |
-| Atlas / FedLens / BalanceLab / EvalForge | `prototype` | M3 adapters/corpus/citations/scenarios composed into Atticus runtime |
-| Local runner safety primitives | `prototype` | Traversal/symlink rejection; approval-bound writes |
-| Protocol package | `prototype` | Pydantic models + JSON Schemas |
-| lab-web / atticus-console | `specified` | Placeholder package scripts only |
-| Atticus Core / Edge weights | `specified` | Bake-off gate open (DIR-004 / G-001) |
-| GCP / Azure deploy | `specified` | Terraform/Bicep starters; no live project |
-| Wix / DNS | `specified` | Runbooks and validators; not published |
-| Teaching lab (integrated workflow) | `prototype` | `docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md` |
+| Atticus control plane | `prototype` | Deterministic planner, policy, approvals, orchestration, CLI, HTTP adapter, and public fixture demo |
+| Atlas, FedLens, BalanceLab, EvalForge | `prototype` | Runnable adapters and deterministic fixture paths composed into Atticus |
+| Local runner safety primitives | `prototype` | Traversal and symlink rejection plus approval-bound writes |
+| DRL protocol package | `prototype` | Typed models, JSON Schemas, examples, and contract tests |
+| Replay viewer and public artifact exporter | `prototype` | Signed success/degraded fixtures, static build, allowlisted release envelope |
+| Technical reports and teaching lab | `prototype evidence` | Reproducible documents and linked test or replay evidence |
+| lab-web and atticus-console | `specified` | Package commands declare implementation pending; no implemented UI |
+| Atticus Core and Edge weights | `specified` | No upstream selection, training run, or released weight artifact |
+| Cloud deployment | `specified` | Infrastructure starters only; no live DRL project or approved spend |
 
 ## Repository operations
 
-| Item | Observed state | Consequence |
+| Item | Current state | Evidence |
 |---|---|---|
-| Git remote | Redirects to `chris-dewitt/DeWitt-Research-Lab-Foundation` | DIR-001 still needs Director confirmation in the Memo |
-| Default branch | `main` only | `integration/v1` not yet created (DRL-001) |
-| CI workflow | `.github/workflows/ci.yml` present | Branch protection / required checks not yet proven on GitHub |
-| Issue system | Seed backlog in `.github/ISSUE_BACKLOG.md` | GitHub issues/milestones not yet created |
-| Handoffs | Foundation entry in `WORKLOG.md` | No Mission 00 reservation before this baseline |
+| Default branch | `main` | Canonical remote branch |
+| CI | Foundation workflow green on draft PR #46 | GitHub Actions run `32092338028` |
+| Issue program | DRL-001 through DRL-034 recorded | `requirements/issue-register.yaml` and issue bodies |
+| Public-source gate | Implemented and remotely green on PR #46 | `scripts/validate_public_repository.py` and tests |
+| Branch protection | Deliberately not enabled | RES-018 |
+| Public history gate | Blocked on Director choice | DIR-009; reachable commits contain an institutional author address |
 
-## Distinction table for agents
+## What is not claimed
 
-| Kind | Meaning in this repo |
-|---|---|
-| Specified behavior | Controlled docs / schemas / acceptance criteria |
-| Existing behavior | Runnable Python vertical slice and validators |
-| Missing behavior | Production signing keys, trained models, web UIs, cloud deploy, Wix publish |
-| Conflicting behavior | Director Memo previously said “no GitHub remote”; remote now exists — escalate, do not silently rewrite identity |
-| Tests that prove behavior | `tests/`, `make demo`, foundation/open/domain validators |
-| Unverified claims | Any public “live” or “open-weight production” statement |
+- The repository is not V1, production-ready, or presently public.
+- Placeholder Node package scripts are not application tests.
+- No DRL open-weight model release exists yet.
+- Fixture demonstrations are not live-user or production-system evidence.
+- Infrastructure templates are not proof of a deployed cloud environment.
 
-## Baseline commands
+## Reproduce the current source checks
 
 ```bash
-make doctor
-make demo
+uv sync --all-packages --locked
 make verify
-uv run pytest -q
+make lint
+make typecheck
+make security
+make public-check
 ```
 
-Baseline is not a release claim. It is the starting truth for Mission 00 and M1.
+`make public-release-check` additionally inspects reachable Git-author metadata
+and is expected to remain blocked until DIR-009 is resolved.

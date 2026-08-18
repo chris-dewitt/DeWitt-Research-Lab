@@ -228,9 +228,7 @@ except Exception as exc:
     error(f"Cannot validate requirements registry: {exc}")
 
 try:
-    wp_doc = yaml.safe_load(
-        (ROOT / "requirements/work-packages.yaml").read_text(encoding="utf-8")
-    )
+    wp_doc = yaml.safe_load((ROOT / "requirements/work-packages.yaml").read_text(encoding="utf-8"))
     work_packages = wp_doc["work_packages"]
     wp_ids = [w["id"] for w in work_packages]
     if len(work_packages) < 95:
@@ -294,9 +292,7 @@ try:
         error("OpenAPI contract must use 3.1")
     if len(api.get("paths", {})) < 8:
         error("OpenAPI contract is unexpectedly shallow")
-    for ref in re.findall(
-        r"\$ref:\s*['\"]?([^'\"\s}]+)", openapi_path.read_text(encoding="utf-8")
-    ):
+    for ref in re.findall(r"\$ref:\s*['\"]?([^'\"\s}]+)", openapi_path.read_text(encoding="utf-8")):
         if ref.startswith("#") or "://" in ref:
             continue
         ref_file = (openapi_path.parent / ref.split("#", 1)[0]).resolve()
@@ -333,18 +329,15 @@ try:
     text = json.dumps(quotas)
     if "250" not in text or "150" not in text:
         error("Quota/cost configuration does not preserve $150 warning / $250 hard planning cap")
-    routing = yaml.safe_load(
-        (ROOT / "configs/model-routing.yaml").read_text(encoding="utf-8")
-    )
+    routing = yaml.safe_load((ROOT / "configs/model-routing.yaml").read_text(encoding="utf-8"))
     if "open" not in json.dumps(routing).lower():
         error("Model routing configuration does not explicitly preserve open-weight path")
 except Exception as exc:
     error(f"Cannot validate key configurations: {exc}")
 
-# No obviously stale generated validation claims.
-for stale in ("PACKAGE_MANIFEST.json", "VALIDATION_REPORT.md"):
-    if not (ROOT / stale).exists():
-        warn(f"{stale} will be generated during final packaging")
+# Source manifests are intentionally generated into ignored ``site/`` output
+# during CI or release packaging. Historical reports may remain in source, but
+# current validation authority comes from the commands executed for this commit.
 
 print(f"Controlled documents: {controlled_count}")
 print(f"Requirements: {len(requirements) if 'requirements' in locals() else 0}")

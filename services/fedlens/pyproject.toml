@@ -2,11 +2,18 @@
 name = "fedlens-service"
 version = "0.3.0"
 description = "Federal Reserve communication analysis starter for DRL"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Christopher Noxon DeWitt" }]
 requires-python = ">=3.12,<3.14"
 dependencies = [
   "drl-ai-core",
   "pyyaml>=6.0",
 ]
+
+[project.urls]
+Homepage = "https://www.dewitt-labs.com"
+Repository = "https://github.com/chris-dewitt/DeWitt-Research-Lab"
 
 [tool.uv.sources]
 drl-ai-core = { workspace = true }

@@ -32,15 +32,13 @@ def load_yaml(relative: str) -> dict[str, Any]:
     return value
 
 
-def validate_issue_register() -> None:
+def validate_issue_register() -> int:
     register = load_yaml("requirements/issue-register.yaml")
     requirements = cast(
         list[dict[str, Any]],
         load_yaml("requirements/requirements.yaml").get("requirements", []),
     )
-    labels = cast(
-        list[dict[str, Any]], load_yaml(".github/labels.yml").get("labels", [])
-    )
+    labels = cast(list[dict[str, Any]], load_yaml(".github/labels.yml").get("labels", []))
 
     known_requirements = {
         item_id for item in requirements if isinstance((item_id := item.get("id")), str)
@@ -52,14 +50,10 @@ def validate_issue_register() -> None:
     issues = cast(list[dict[str, Any]], register.get("issues", []))
 
     milestone_ids = {
-        milestone_id
-        for item in milestones
-        if isinstance((milestone_id := item.get("id")), str)
+        milestone_id for item in milestones if isinstance((milestone_id := item.get("id")), str)
     }
     issue_by_id: dict[str, dict[str, Any]] = {
-        issue_id: item
-        for item in issues
-        if isinstance((issue_id := item.get("id")), str)
+        issue_id: item for item in issues if isinstance((issue_id := item.get("id")), str)
     }
     allowed_issue_statuses = {
         "READY",
@@ -69,11 +63,12 @@ def validate_issue_register() -> None:
         "COMPLETE",
         "BLOCKED",
     }
-    expected_ids = {f"DRL-{number:03d}" for number in range(1, 34)}
+    expected_ids = {f"DRL-{number:03d}" for number in range(1, len(issue_by_id) + 1)}
     actual_ids = set(issue_by_id)
     if actual_ids != expected_ids:
+        last_expected = f"DRL-{len(issue_by_id):03d}"
         error(
-            "issue register IDs differ from DRL-001..DRL-033: "
+            f"issue register IDs differ from DRL-001..{last_expected}: "
             f"missing={sorted(expected_ids - actual_ids)}, "
             f"extra={sorted(actual_ids - expected_ids)}"
         )
@@ -149,9 +144,10 @@ def validate_issue_register() -> None:
                 ready.append(child)
     if visited != len(actual_ids):
         error("issue dependency graph contains a cycle")
+    return len(actual_ids)
 
 
-def validate_work_packages() -> None:
+def validate_work_packages() -> int:
     packages = cast(
         list[dict[str, Any]],
         load_yaml("requirements/work-packages.yaml").get("work_packages", []),
@@ -176,6 +172,7 @@ def validate_work_packages() -> None:
             for relative in evidence:
                 if not (ROOT / str(relative)).exists():
                     error(f"{package_id}: evidence path does not exist: {relative}")
+    return len(ids)
 
 
 def validate_pnpm_pin() -> None:
@@ -197,15 +194,18 @@ def validate_pnpm_pin() -> None:
 
 
 def main() -> int:
-    validate_issue_register()
-    validate_work_packages()
+    issue_count = validate_issue_register()
+    work_package_count = validate_work_packages()
     validate_pnpm_pin()
     if ERRORS:
         for message in ERRORS:
             print(f"ERROR: {message}", file=sys.stderr)
         print(f"PROGRAM VALIDATION FAILED ({len(ERRORS)} errors)", file=sys.stderr)
         return 1
-    print("PROGRAM VALIDATION PASSED (33 issues, 122 work packages, acyclic dependencies)")
+    print(
+        f"PROGRAM VALIDATION PASSED ({issue_count} issues, "
+        f"{work_package_count} work packages, acyclic dependencies)"
+    )
     return 0
 
 

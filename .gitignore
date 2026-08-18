@@ -27,3 +27,6 @@ data/private/
 
 # Static replay viewer build output
 /site/
+
+# Generated source-manifest output (legacy root path included defensively)
+/PACKAGE_MANIFEST.json

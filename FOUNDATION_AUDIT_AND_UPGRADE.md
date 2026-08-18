@@ -1,14 +1,19 @@
 ---
 document_id: DRL-AUD-001
-title: "Foundation Audit and Deepening Report"
-version: 2.0.0
-status: RELEASE CANDIDATE
+title: "Historical Foundation Audit and Deepening Report (2026-07-26 Snapshot)"
+version: 2.1.0
+status: ARCHIVED
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-17
 ---
 
 
-# Foundation Audit and Deepening Report
+# Historical Foundation Audit and Deepening Report
+
+> **Archived evidence:** This report records the 2026-07-26 foundation
+> deepening. It is retained for provenance, not as a claim about current release
+> readiness. Consult the current-state baseline, latest CI, and accepted
+> handoffs for present evidence.
 
 ## Executive finding
 

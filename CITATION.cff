@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software or its research artifacts, please cite the repository
+  and the specific report or release manifest you relied upon.
+title: DeWitt Research Lab
+type: software
+authors:
+  - family-names: DeWitt
+    given-names: Christopher Noxon
+repository-code: https://github.com/chris-dewitt/DeWitt-Research-Lab
+url: https://www.dewitt-labs.com
+license: Apache-2.0
+abstract: >-
+  A one-person open research monorepo for inspectable agent orchestration,
+  deterministic specialist systems, evidence provenance, evaluation, and
+  computational-finance research methods.
+keywords:
+  - agentic systems
+  - artificial intelligence
+  - computational finance
+  - data science
+  - evaluation
+  - reproducible research

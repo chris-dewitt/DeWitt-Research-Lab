@@ -1,5 +1,5 @@
-schema_version: 1.2.0
-generated_at: '2026-08-05'
+schema_version: 1.3.0
+generated_at: '2026-08-17'
 description: >
   Machine-readable GitHub issue register for Mission 00. Each issue maps to
   exactly one primary mission and one evidence owner. Bodies live under
@@ -443,3 +443,19 @@ issues:
       - configs/open-exceptions/DRL-OEX-0001.json
       - scripts/prepare_public_replay_release.py
       - tests/test_public_artifact_export.py
+  - id: DRL-034
+    milestone: M4
+    mission: 14
+    evidence_owner: Release QA
+    labels: [release, security, documentation, open-source]
+    title: Curate the authoritative repository for public visibility
+    status: BLOCKED
+    dependencies: [DRL-029]
+    body: .github/ISSUE_BODIES/DRL-034.md
+    requirements: [DRL-SYS-010, DRL-SEC-006, DRL-OSS-001, DRL-OSS-002, DRL-OSS-004, DRL-OSS-008, DRL-OSS-016]
+    director_decisions: [RES-018, RES-019, DIR-009]
+    evidence:
+      - docs/12-acceptance/PUBLIC_REPOSITORY_READINESS.md
+      - scripts/validate_public_repository.py
+      - tests/test_public_repository.py
+      - agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md

@@ -1,55 +1,44 @@
 ---
 document_id: DRL-CON-100
 title: "Atticus Console Project README"
-version: 3.0.0
-status: RELEASE CANDIDATE
+version: 3.1.0
+status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-17
 ---
 
+# Atticus Console
 
-    # Atticus Console
+**Maturity:** `specified`
 
-    **Role in DeWitt Research Workshop:** Reusable TypeScript client and component system for conversation, events, approvals, evidence, artifacts, and tmux-inspired panes.
+This directory specifies a reusable TypeScript interface for conversation,
+events, approvals, evidence, artifacts, and terminal-inspired panes. It is not
+currently implemented: the package commands report `implementation pending`,
+and no component library or UI test suite exists here yet.
 
-    UI contract defined; final acceptance occurs within the integrated lab-web experience.
+## Intended scope
 
-    This directory is an independently testable part of the DRL monorepo. It inherits the laboratory constitution in [`LABORATORY_BIBLE.md`](../../LABORATORY_BIBLE.md), the agent contract in [`AGENTS.md`](../../AGENTS.md), and canonical protocol/security/data contracts under [`schemas/`](../../schemas). Project specifications below govern this component; a conflict with an approved laboratory-wide document requires an ADR rather than an improvised compromise.
+- Provide reusable state and components for the future lab-web application.
+- Present safe operational summaries, not hidden model reasoning.
+- Make permission, failure, empty, loading, and cold-start states inspectable.
+- Meet keyboard, accessible-name, contrast, reduced-motion, and responsive
+  layout requirements before any release claim.
 
-    ## Scope boundary
+## Current developer check
 
-    - Standalone development shell and reusable state/components.
-- Lab-web consumes this package rather than duplicating console behavior.
-- Only safe operational summaries are displayed; hidden reasoning is out of scope.
+```bash
+pnpm install --frozen-lockfile
+pnpm --filter @drl/atticus-console lint
+pnpm --filter @drl/atticus-console typecheck
+pnpm --filter @drl/atticus-console test
+pnpm --filter @drl/atticus-console build
+```
 
-    ## Target developer entry point
+These commands verify only the declared scaffold state.
 
-    ```bash
-    pnpm install --frozen-lockfile && pnpm --filter @drl/atticus-console test
-    ```
+## Required reading
 
-    The baseline setup and tests must work with open or mocked providers and fixture data. Paid APIs may enhance development but cannot be mandatory for ordinary contributors or the fast CI suite.
-
-    ## Required reading
-
-    - [`docs/SPEC.md`](docs/SPEC.md)
+- [`docs/SPEC.md`](docs/SPEC.md)
 - [`docs/STATE_AND_EVENTS.md`](docs/STATE_AND_EVENTS.md)
 - [`docs/ACCESSIBILITY_AND_SECURITY.md`](docs/ACCESSIBILITY_AND_SECURITY.md)
 - [`docs/ROADMAP.md`](docs/ROADMAP.md)
-
-    ## Health standard
-
-    A healthy project has deterministic setup, typed interfaces, explicit configuration, structured logs, trace propagation, realistic fixtures, security-negative tests, documented failure behavior, and a public demo that does not depend on private data. “It works on my machine” is not release evidence.
-
-    ## Contribution and change control
-
-    Feature work occurs on a feature branch and enters through a pull request. Public API, authority boundaries, retention, permissions, model routing, deployment topology, or licensing changes require a director-approved ADR before implementation. Generated artifacts require source and reproduction instructions.
-
-    ## V1 exit evidence
-
-    - project acceptance criteria and cross-project contracts pass;
-    - timeout, cancellation, retry, idempotency, and error paths are exercised;
-    - security/privacy controls are verified by negative tests;
-    - public demonstrations are bounded, accessible, and reproducible;
-    - the integrated reference workflow can invoke this component and receive a traceable result;
-    - release, rollback, and operator runbooks are usable by someone other than the author.

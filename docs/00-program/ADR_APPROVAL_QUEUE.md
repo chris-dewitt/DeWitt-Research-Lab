@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-094
 title: "ADR and Director Approval Queue"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-17
 ---
 
 # ADR and Director Approval Queue
@@ -17,6 +17,7 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 
 | Priority | ID | Question | Status | Blocking | Recommended next evidence |
 |---:|---|---|---|---|---|
+| P1 | DIR-009 | Rewrite Git history or accept institutional author-address exposure | Director input | Public repository visibility | Confirm rewrite coordination and rollback, or record explicit risk acceptance |
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |
@@ -40,6 +41,9 @@ ADR-0009 and RES-018 through RES-021 were approved on 2026-08-05. DIR-001,
 DIR-003, and DIR-008 were resolved by RES-018, RES-019, and RES-020
 respectively. Preserve their full history in `DIRECTORS_MEMO.md`; they are no
 longer approval-queue items.
+
+DIR-009 must be resolved before changing the authoritative repository from
+private to public. It does not block source-tree curation or review.
 
 ## Agent rules for this queue
 

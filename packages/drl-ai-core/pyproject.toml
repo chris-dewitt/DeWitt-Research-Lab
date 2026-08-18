@@ -2,11 +2,18 @@
 name = "drl-ai-core"
 version = "0.4.0"
 description = "Shared deterministic AI infrastructure for DeWitt Research Laboratory"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Christopher Noxon DeWitt" }]
 requires-python = ">=3.12,<3.14"
 dependencies = [
   "jsonschema>=4.0",
   "pyyaml>=6.0",
 ]
+
+[project.urls]
+Homepage = "https://www.dewitt-labs.com"
+Repository = "https://github.com/chris-dewitt/DeWitt-Research-Lab"
 
 [build-system]
 requires = ["hatchling"]

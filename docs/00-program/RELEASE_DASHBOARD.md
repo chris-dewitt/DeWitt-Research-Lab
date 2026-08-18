@@ -1,62 +1,59 @@
 ---
 document_id: DRL-PRG-095
 title: "Release Dashboard and Weekly Program Review"
-version: 1.0.0
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-17
 ---
 
 # Release Dashboard and Weekly Program Review
 
 ## Purpose
 
-Give the Director a one-page, evidence-backed view of program health. Update this
-dashboard in `WORKLOG.md` weekly and before any public claim.
+Give the Director a concise, evidence-backed view of program health. Update the
+dashboard weekly and before any public claim.
 
-## Weekly review agenda (30–45 minutes)
+## Weekly review agenda
 
-1. **Director's Memo** — new/closed decisions, blockers, assumed silence check.
-2. **Critical path** — which mission/issue is active; what it unblocks.
-3. **Evidence** — commands run, CI status, demo transcript age.
-4. **Risks** — exposure ≥15 items from `RISK_REGISTER.md`.
-5. **Cost** — cloud/model spend vs budget (or `$0` if undeployed).
-6. **Claims** — any public text lacking evidence or maturity labels.
-7. **Next single issue** — only one dependency-unblocking issue named.
+1. Director decisions, blockers, and the assumed-silence check.
+2. Active issue and the dependency it unblocks.
+3. Exact local and CI evidence for the current revision.
+4. Material risks and privacy or public-claim drift.
+5. Cloud and model spend, including `$0` when undeployed.
+6. Claims that lack evidence or an honest maturity label.
+7. The next single dependency-unblocking issue.
 
-## Dashboard fields
+## Dashboard — 2026-08-17
 
-| Field | Current value (update weekly) |
+| Field | Current value |
 |---|---|
-| Date (UTC) | 2026-07-27 |
-| Active milestone | M1 Repository Online and Trusted |
-| Active mission | 00 Program Director |
-| Active issue | DRL-001 (after filing) |
-| Integration branch | *to create* `integration/v1` |
-| Last green `make verify` | 2026-07-27 at `0eaabd7` (clean clone; 25 tests) |
-| Open P0 Director decisions | DIR-001, DIR-003 |
-| Open P1 ADRs | ADR-0006, ADR-0007; DIR-002 |
-| Prototype surfaces | Atticus + specialists + local-runner primitives |
-| Specified-only surfaces | lab-web, atticus-console, model weights, Wix live, GCP live |
-| Cloud spend (period) | $0 (no project configured) |
-| Public claims requiring caution | Do not call platform V1.0; label fixture demos as simulated/replay |
-| Top risk this week | R-01 scope; R-12 unverified agent completeness; R-07 docs drift |
-| Next unblocking issue | DRL-001 → DRL-002 → DRL-003 |
+| Active milestone | M4 Public Research Foundation |
+| Active issue | DRL-034 public-repository readiness |
+| Working branch | `lovesong/chore/drl-034-public-repository-readiness` |
+| Last green remote foundation CI | Draft PR #46, run `32092338028` |
+| Open P1 Director decisions | DIR-002 cloud scope; DIR-009 Git-history author metadata |
+| Evidence-ready prototypes | Atticus integrated path, specialist fixtures, replay viewer/export, reports, teaching lab |
+| Specified-only surfaces | lab-web, atticus-console, Atticus Core/Edge weights, live cloud deployment |
+| Website | `www.dewitt-labs.com` is live; portfolio content remains Director-edited in Wix |
+| Repository visibility | Private through 2026-09-30 under RES-018 |
+| Cloud/model spend | `$0` recorded; no live project or model training authorized |
+| Public-claim boundary | Do not call the system V1, production, or an open-weight model release |
+| Top release blocker | Resolve DIR-009 before the repository visibility change |
+| Next unblocking issue | Complete review and merge of DRL-034 |
 
-## Release readiness scorecard (preview ≠ V1)
+## Release-readiness scorecard
 
-| Gate family | M1 target | V1 target | Status |
+| Gate family | Public-source milestone | V1 target | Current state |
 |---|---|---|---|
-| Repo trust / CI | Required | Required | In progress |
-| Clean-clone demo | Required | Required | Linux evidence ready; Windows pending |
-| Protocol/policy tests | Started | Hard gate | Pending DRL-005 |
-| Open-weight production path | Not required | Required | Blocked on bake-off |
-| Wix + domain | Not required | Required | Blocked on accounts |
-| GCP budget-capped deploy | Not required | Preview in M4 | Blocked on DIR-002 |
-| Clean-room no-paid-API | Local fixture OK | Full matrix | Fixture only |
+| Source content and metadata | Required | Required | DRL-034 draft PR #46 remotely green |
+| Automated public-source audit | Required | Required | Implemented and green in run `32092338028` |
+| Git-history privacy | Required | Required | Blocked on DIR-009 |
+| CI and reproducibility | Required | Required | All three DRL-034 jobs green |
+| Protocol and policy behavior | Useful evidence | Hard gate | Prototype tests present |
+| Open-weight production path | Not required | Required | Selection gate open |
+| Wix portfolio | Linked identity surface | Linked identity surface | Live; independently edited |
+| Cloud deployment | Not required | Preview target | No deployment authorized |
 
-## Cadence artifacts
-
-- Weekly: append a dated dashboard snapshot under `WORKLOG.md`.
-- Biweekly: one small demonstration (fixture demo acceptable if labeled).
-- Per PR: commands + results in the PR template; update Memo if material.
+Public-source readiness is a bounded milestone. It does not imply V1 readiness
+or authorize changing repository visibility before the date in RES-018.

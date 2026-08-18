@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ACC-003
 title: "Public Repository Readiness Checklist"
-version: 1.0.0
+version: 1.1.0
 status: IN REVIEW
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-17
@@ -41,7 +41,7 @@ reachable Git-author-metadata gate.
 | Package metadata consistency | Automated | Public-source audit and package TOML |
 | Honest prototype/scaffold maturity | Ready for review | Current-state baseline and component READMEs |
 | Generated manifest excluded from source | Automated | `scripts/generate_manifest.py`, CI artifact |
-| Current dependency/action baseline | Ready for CI | Locked uv/pnpm toolchains and Node 24 actions |
+| Current dependency/action baseline | Complete | GitHub Actions run `32092338028` passed all three jobs |
 | Reachable Git-author metadata | **Blocked** | DIR-009 |
 | Remote branch cleanup | Awaiting explicit deletion approval | 22 branches are merged and no open PR references them |
 | Repository About description, homepage, and topics | Complete | GitHub repository metadata updated 2026-08-17 |

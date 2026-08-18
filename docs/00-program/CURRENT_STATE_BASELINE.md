@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PRG-091
 title: "Current-State Baseline"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-17
@@ -43,9 +43,9 @@ work. It is a repository truth statement, not a V1 or production-release claim.
 | Item | Current state | Evidence |
 |---|---|---|
 | Default branch | `main` | Canonical remote branch |
-| CI | Foundation workflow green on merged PR #45 | GitHub Actions run `31935774484` |
+| CI | Foundation workflow green on draft PR #46 | GitHub Actions run `32092338028` |
 | Issue program | DRL-001 through DRL-034 recorded | `requirements/issue-register.yaml` and issue bodies |
-| Public-source gate | Implemented on DRL-034 branch | `scripts/validate_public_repository.py` and tests |
+| Public-source gate | Implemented and remotely green on PR #46 | `scripts/validate_public_repository.py` and tests |
 | Branch protection | Deliberately not enabled | RES-018 |
 | Public history gate | Blocked on Director choice | DIR-009; reachable commits contain an institutional author address |
 

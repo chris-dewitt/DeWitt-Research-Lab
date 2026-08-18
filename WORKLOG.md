@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.22.0
+version: 4.23.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-17
@@ -152,13 +152,15 @@ Append completed handoffs below this line. Never place credentials, private data
   release mode intentionally blocks on 16 commits covered by DIR-009.
 - Full local suite: 351 passed, 2 expected Windows symlink skips; validators,
   Ruff, strict mypy, Bandit, Node scaffold checks, integrated demo, manifest,
-  and diff checks passed. Docker is unavailable locally; remote CI is pending.
+  and diff checks passed. GitHub Actions run `32092338028` passed all three
+  jobs, including the container build unavailable locally.
 - Repository visibility remains private through 2026-09-30. No history rewrite,
   force-push, cloud deployment, Wix edit, model/data release, or research claim
   occurred.
 - Handoff:
   `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md`
-- Next: review remote CI, then resolve DIR-009 before public visibility.
+- Draft PR: #46.
+- Next: review PR #46, then resolve DIR-009 before public visibility.
 
 ### 2026-08-05 — DRL-032 CFI primary-source novelty review
 

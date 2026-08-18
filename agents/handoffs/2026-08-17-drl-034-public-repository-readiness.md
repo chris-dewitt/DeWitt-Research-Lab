@@ -1,7 +1,7 @@
 ---
 document_id: DRL-HO-034-20260817
 title: "Handoff: DRL-034 Public Repository Readiness"
-version: 1.0.0
+version: 1.1.0
 status: IN REVIEW
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-17
@@ -15,7 +15,8 @@ last_updated: 2026-08-17
 - Branch: `lovesong/chore/drl-034-public-repository-readiness`
 - Implementation commit: `9fa2d58e0bf1e394ef99976bec55e33ed9660eec`
 - Handoff commit: the commit containing this file
-- Pull request: pending draft creation
+- Pull request: draft PR #46,
+  `https://github.com/chris-dewitt/DeWitt-Research-Lab/pull/46`
 - Prepared: 2026-08-17 America/New_York
 
 ## 2. Objective completed
@@ -28,7 +29,7 @@ public-source boundary locally and in CI.
 
 This is source-tree readiness, not public release. The repository remains
 private under RES-018. DRL-034 is blocked at the release boundary until DIR-009
-is resolved and the draft PR's remote CI passes.
+is resolved. Draft PR #46 is remotely green.
 
 ## 3. Files and interfaces changed
 
@@ -91,16 +92,17 @@ visibility, branch-protection rule, or research finding changed.
 | tracked-source manifest generation | PASS; 645 entries written to ignored `site/source-manifest.json` |
 | staged `git diff --check` | PASS |
 | local Docker build | NOT RUN; Docker executable is not installed on this workstation |
+| GitHub Actions run `32092338028` | PASS; Python/contracts/public audit 39s, Node scaffolds 18s, Atticus container 27s |
 
 Two pre-existing Windows symlink security tests skipped only because this host
-does not grant symlink creation privilege. The CI Linux run remains responsible
-for executing those deny-path assertions and the container build.
+does not grant symlink creation privilege. GitHub Actions passed the Linux test
+path and container build.
 
 ## 6. Deployment and migration notes
 
 There is no runtime deployment or migration. The repository remains private.
-The draft PR must run the updated GitHub Actions jobs before merge. At the
-approved release date, follow
+Draft PR #46 passed all three updated GitHub Actions jobs. At the approved
+release date, follow
 `docs/12-acceptance/PUBLIC_REPOSITORY_READINESS.md`, including anonymous clone
 and link read-back.
 
@@ -119,7 +121,7 @@ GitHub repository metadata was updated out of band and verified:
 1. DIR-009 blocks public visibility: 16 reachable commits carry an institutional
    author address. Do not rewrite or force-push without explicit approval and a
    coordinated backup/rollback plan.
-2. Remote CI is pending the draft PR. Local Docker evidence is unavailable.
+2. Local Docker evidence is unavailable, but the remote container job passed.
 3. The two TypeScript packages remain explicit scaffolds, not implemented apps
    or meaningful lint/type/test/build suites.
 4. GitHub secret scanning and push protection remain disabled while the
@@ -136,13 +138,14 @@ Three temporary pytest/Ruff cache directories created by a failed sandboxed
 run were removed after their absolute paths were verified inside the workspace;
 they contained no authoritative data and can be regenerated.
 
-This handoff is the intended source change after implementation commit
-`9fa2d58`. No other uncommitted source artifacts should remain.
+This handoff and its CI-evidence update are the intended source changes after
+implementation commit `9fa2d58`. No other uncommitted source artifacts should
+remain.
 
 ## 9. Next dependency-unblocking task
 
-Review the draft PR and its remote CI. Then obtain an explicit Director choice
-for DIR-009. If the Director also authorizes deleting the 22 verified merged
+Review draft PR #46. Then obtain an explicit Director choice for DIR-009. If
+the Director also authorizes deleting the 22 verified merged
 branches, repeat the merged/open-PR checks immediately before deletion. Do not
 change repository visibility before 2026-09-30 or treat source readiness as V1.
 

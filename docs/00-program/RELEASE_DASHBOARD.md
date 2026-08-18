@@ -1,7 +1,7 @@
 ---
 document_id: DRL-PRG-095
 title: "Release Dashboard and Weekly Program Review"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-17
@@ -31,7 +31,7 @@ dashboard weekly and before any public claim.
 | Active milestone | M4 Public Research Foundation |
 | Active issue | DRL-034 public-repository readiness |
 | Working branch | `lovesong/chore/drl-034-public-repository-readiness` |
-| Last green remote foundation CI | PR #45, run `31935774484` |
+| Last green remote foundation CI | Draft PR #46, run `32092338028` |
 | Open P1 Director decisions | DIR-002 cloud scope; DIR-009 Git-history author metadata |
 | Evidence-ready prototypes | Atticus integrated path, specialist fixtures, replay viewer/export, reports, teaching lab |
 | Specified-only surfaces | lab-web, atticus-console, Atticus Core/Edge weights, live cloud deployment |
@@ -46,10 +46,10 @@ dashboard weekly and before any public claim.
 
 | Gate family | Public-source milestone | V1 target | Current state |
 |---|---|---|---|
-| Source content and metadata | Required | Required | DRL-034 in review |
-| Automated public-source audit | Required | Required | Implemented on DRL-034 branch |
+| Source content and metadata | Required | Required | DRL-034 draft PR #46 remotely green |
+| Automated public-source audit | Required | Required | Implemented and green in run `32092338028` |
 | Git-history privacy | Required | Required | Blocked on DIR-009 |
-| CI and reproducibility | Required | Required | Existing CI green; DRL-034 run pending PR |
+| CI and reproducibility | Required | Required | All three DRL-034 jobs green |
 | Protocol and policy behavior | Useful evidence | Hard gate | Prototype tests present |
 | Open-weight production path | Not required | Required | Selection gate open |
 | Wix portfolio | Linked identity surface | Linked identity surface | Live; independently edited |

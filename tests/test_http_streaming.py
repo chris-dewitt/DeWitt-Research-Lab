@@ -19,6 +19,7 @@ import json
 import sys
 import threading
 import time
+import urllib.error
 from collections.abc import Callable, Iterator
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -405,9 +406,15 @@ class TestTheTimeoutIsAStallTimeout:
 
     def test_a_dead_port_is_unavailable_not_timed_out(self) -> None:
         """Connection refused is a different fault from silence, and reads as one."""
+        # Some Windows security stacks silently filter even unused loopback
+        # ports, converting the intended refusal into a real timeout. This test
+        # targets the provider's deterministic transport-error classification;
+        # the surrounding tests retain live-socket coverage.
+        refusal = urllib.error.URLError(ConnectionRefusedError("connection refused"))
         provider = provider_at("http://127.0.0.1:1/v1")
-        with pytest.raises(ProviderUnavailableError, match="cannot reach"):
-            ask(provider, timeout=5.0)
+        with mock.patch("urllib.request.urlopen", side_effect=refusal):
+            with pytest.raises(ProviderUnavailableError, match="cannot reach"):
+                ask(provider, timeout=5.0)
 
 
 class TestStreamFailuresAreLegible:

@@ -34,8 +34,8 @@ last_updated: 2026-07-26
 - tests/**
 - .github/workflows/**
 - docs/**/INDEX.md
-- PACKAGE_MANIFEST.json
-- VALIDATION_REPORT.md
+- `site/source-manifest.json` (generated in CI/release jobs; not tracked)
+- historical validation reports and current CI evidence
 - DOCUMENT_CONTROL.md
 
     Ownership means primary modification responsibility for this mission. Small necessary changes outside these paths require explicit notation in the worklog; changes to another project's public contract require its owner mission or an ADR.

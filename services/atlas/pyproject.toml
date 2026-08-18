@@ -2,8 +2,15 @@
 name = "atlas-service"
 version = "0.2.0"
 description = "Point-in-time macro evidence starter for DeWitt Research Laboratory"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Christopher Noxon DeWitt" }]
 requires-python = ">=3.12,<3.14"
 dependencies = ["drl-ai-core"]
+
+[project.urls]
+Homepage = "https://www.dewitt-labs.com"
+Repository = "https://github.com/chris-dewitt/DeWitt-Research-Lab"
 
 [tool.uv.sources]
 drl-ai-core = { workspace = true }

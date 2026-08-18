@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.20.0
+version: 4.22.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-05
+last_updated: 2026-08-17
 ---
 
 
@@ -18,15 +18,15 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **14 Release QA** — DRL-033 is implementing the Director-
-  approved, allowlisted public artifact mirror while the authoritative
-  repository remains private. CFI DIR-008 Option A is approved in RES-020;
-  independent G1 review still gates experiments. Wix editor implementation
-  remains Director-operated.
+- Active mission: **14 Release QA** — DRL-034 source-tree curation is ready for
+  review while the authoritative repository remains private. Public visibility
+  is date-gated by RES-018 and blocked by DIR-009. CFI DIR-008 Option A remains
+  subject to independent G1 review. Wix editor implementation remains
+  Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-002 (GCP deploy), DIR-004 (model bake-off; scaffold only —
-  no winner), independent CFI G1 review, and the Director-owned GitHub setup
-  needed to create/configure the DRL-033 public mirror and publishing secret.
+  no winner), DIR-009 (Git-history author metadata), independent CFI G1 review,
+  and final public-artifact deployment read-back.
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
@@ -55,7 +55,22 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 06 / DRL-021 docs | Codex | `lovesong/docs/drl-021-positioning-cleanup` | 2026-08-05T03:11:02Z | READY FOR REVIEW | — |
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
 | 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | BLOCKED — independent G1 review after RES-020 | — |
-| 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | READY FOR REVIEW — EXTERNAL SETUP PENDING | `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
+| 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | MERGED — DEPLOYMENT READ-BACK PENDING | PR #45; `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
+| 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | handoff pending commit |
+
+## Active scope — DRL-034 public repository readiness
+
+- Scope: make the authoritative repository safe, legible, and truthful before
+  its approved public-visibility date without changing that date or declaring
+  the platform V1.
+- Dependencies: RES-018 repository/visibility decision; RES-019 single public
+  contact; DRL-029 contributor routes; merged PR #45 repository framing.
+- Exit criteria: evidence-first README; public-repository audit in local and CI
+  gates; current package/citation metadata; no stale generated manifest claim;
+  historical validation artifacts clearly labeled; current Actions runtimes;
+  exact security, privacy, licensing, test, and handoff evidence. Existing UNC
+  author-email history remains a Director decision because remediation rewrites
+  published Git history.
 
 ## Active scope — DRL-033 public artifact mirror
 

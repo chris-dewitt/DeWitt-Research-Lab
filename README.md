@@ -1,212 +1,201 @@
 ---
 document_id: DRL-ROOT-001
-title: "DeWitt Research Workshop Monorepo"
-version: 4.4.0
+title: "DeWitt Research Lab Monorepo"
+version: 5.0.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-08-17
 ---
 
+# DeWitt Research Lab
 
-# DeWitt Research Workshop
-
-One person's workshop for building and testing open-weight AI systems in the
-open. "Workshop" names the body of work, not an organisation: there is no team,
-and the projects below are a workbench rather than a product line.
-
-**Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
-**Project mission:** Intelligence for Good. Intelligence for All.
+One person's technical workshop for studying how intelligent systems plan,
+use tools, preserve evidence, and fail safely.
 
 I am Christopher Noxon DeWitt, a student in the Master of Applied Data Science
 program at the University of North Carolina at Chapel Hill. I engineer complex
-systems professionally and hope to continue from data science toward graduate
-work in computer science. The website is my personal academic portfolio; this
-repository is one body of evidence within it.
+systems professionally and want to continue toward graduate work in computer
+science. This repository contains independent work outside UNC coursework; it
+does not represent my employer or the university.
 
-The workshop is **open by construction**: the models are open-weight, the code
-is open-source, the evaluation is public, and everything runs locally — not as
-an afterthought, but as the reason the rest of it is arranged the way it is.
-Governed by the
-[Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md).
+**Academic portfolio:** [www.dewitt-labs.com](https://www.dewitt-labs.com)
 
-**Atticus** is the operator: it plans a piece of work and routes it across four
-specialist projects — Atlas (macro evidence), FedLens (Fed policy with
-passage-level citations), BalanceLab AI (deterministic scenario modelling), and
-EvalForge (evaluation and permission testing).
+**Project mission:** Intelligence for Good. Intelligence for All.
 
-Everything here is **prototype** maturity. That label is accurate, not modest.
+## What this repository is
 
-## Quickstart
+This is a working research monorepo, not a company, institution, or finished
+product. It contains a runnable local prototype, technical reports, research
+plans, evaluation fixtures, and the specifications used to keep implementation
+claims honest.
 
-The whole workflow runs on one machine with deterministic fixtures. No cloud
-account, no API key, no inference bill.
+The current prototype uses deterministic fixtures and a rule-based planner. It
+does **not** include trained Atticus weights, public inference, a production
+cloud deployment, or completed empirical papers. Those are planned or
+evidence-gated work, and they are labeled that way throughout the repository.
 
-```bash
-make bootstrap   # uv sync + pnpm install
-make doctor      # check your toolchain
-make demo        # run the integrated workflow end to end
-```
+## Start with the evidence
 
-`make demo` runs a real evidence-to-scenario pass: Atlas supplies macro
-evidence, FedLens reads an FOMC communication and cites it, BalanceLab applies a
-rate shock, and EvalForge scores the result. It prints the evidence count, the
-score, and — deliberately — its own limitations.
+| Artifact | What it is | Maturity |
+|---|---|---|
+| [`TR-2026-001`](docs/10-research/reports/TR-2026-001-integrated-workflow.md) | Technical report for the local evidence-to-scenario workflow | `prototype report` |
+| [`TR-2026-002`](docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md) | Evidence-gated account of the model-selection process and its no-winner state | `working report` |
+| [Integrated workflow teaching lab](docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md) | Guided reproduction using synthetic inputs | `prototype` |
+| [Computational Finance of Intelligence](docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md) | Research program connecting stochastic belief dynamics, optimal stopping, finance, cognition, and AI | `research plan; no empirical result claimed` |
+| [Model bake-off](models/bakeoff/README.md) | Candidate registry, harness, license gates, and measured limitations | `prototype; no winner selected` |
+| [Signed replay fixtures](services/evalforge/fixtures/signed_replays/README.md) | Success and degraded recorded runs with fixture-integrity checks | `prototype fixture` |
 
-Expect roughly this:
+## Run the local prototype
 
-```text
-DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION
-STATE: completed
-...
-EVIDENCE: 5 items
-EVALFORGE: 1.0
-LIMITATIONS:
-- Macro, market, and Fed inputs are synthetic fixtures for local development.
-- BalanceLab uses a simplified educational repricing model, not production bank data.
-```
-
-Those limitations are the point. The inputs are synthetic fixtures, and the
-planner driving Atticus is rule-based — it stands in for Atticus Core until the
-model bake-off picks a real one. What the demo proves is that the contracts,
-policy boundaries, evidence lineage, and evaluation plumbing compose correctly,
-not that the numbers mean anything about the world.
-
-### Other useful targets
+Requirements: Python 3.12 or 3.13 and
+[`uv`](https://docs.astral.sh/uv/). The core demonstration does not require a
+cloud account, commercial model API, or private dataset.
 
 ```bash
-make verify      # all validators + tests, the same gate CI runs
-make test        # pytest only
-make serve       # run the Atticus control-plane server locally
+uv sync --all-packages --locked
+uv run --package atticus-control-plane atticus-demo --public
+uv run pytest
 ```
 
-## Read this first
-
-1. [`LABORATORY_BIBLE.md`](LABORATORY_BIBLE.md) — highest-level product, research, architecture, governance, and delivery authority.
-2. [`DIRECTORS_MEMO.md`](DIRECTORS_MEMO.md) — active decisions, blockers, risks, and questions requiring the Director.
-3. [`AGENTS.md`](AGENTS.md) — mandatory operating rules for every coding agent.
-4. [`docs/00-program/SPECIFICATION_MAP.md`](docs/00-program/SPECIFICATION_MAP.md) — map of every controlled document and its authority.
-5. [`docs/00-program/90_DAY_EXECUTION_PLAN.md`](docs/00-program/90_DAY_EXECUTION_PLAN.md) — first execution program after repository upload.
-6. [`docs/00-program/MASTER_BUILD_PLAN.md`](docs/00-program/MASTER_BUILD_PLAN.md) — dependency-ordered implementation program.
-7. [`docs/12-acceptance/V1_RELEASE_CRITERIA.md`](docs/12-acceptance/V1_RELEASE_CRITERIA.md) — evidence required before the platform may be called V1.0.
-8. [`agents/SEQUENTIAL_EXECUTION_PLAN.md`](agents/SEQUENTIAL_EXECUTION_PLAN.md) — exact order and handoff protocol for agentic developers.
-
-## Platform at a glance
-
-```text
-                                PUBLIC / PRIVATE USERS
-                                          |
-                                  DeWitt Lab Web
-                                  Atticus Console
-                                          |
-                               ATTICUS CONTROL PLANE
-                     plan | route | policy | approvals | memory
-                       /             |              |             \
-                  ATLAS          FEDLENS      BALANCELAB AI      TOOLS
-             macro research    Fed policy       deterministic   local/MCP
-                       \             |              /
-                              EVALFORGE
-                offline evals | online monitoring | CI gates
-```
-
-### Atticus
-
-Atticus is the workshop's documented research artifact, planned open-weight model
-family, agent runtime, and permissioned orchestration layer. The program studies
-two model sizes from the beginning:
-
-- **Atticus Core:** approximately 8–10B class, optimized for multi-step routing, tool use, research synthesis, coding assistance, and laboratory operation.
-- **Atticus Edge:** approximately 2–4B class, optimized for local intent routing, voice responsiveness, constrained tool use, offline guidance, and escalation to Core.
-
-The final upstream models are selected through a documented bake-off; no brand or model is hard-coded before benchmark, license, hardware, and reproducibility review.
-
-### Specialist systems
-
-- **Atlas:** time-aware macroeconomic and market research.
-- **FedLens:** Federal Reserve documents, policy language, and event-study research.
-- **BalanceLab AI:** synthetic balance-sheet scenarios and deterministic quantitative analysis.
-- **EvalForge:** benchmark, regression, security, RAG, tool-use, and trajectory evaluation.
-
-## Monorepo structure
-
-```text
-apps/                  open-source interactive web, Atticus console, local runner
-services/              Atticus, Atlas, FedLens, BalanceLab, EvalForge
-packages/              protocol, policy, provenance, SDKs, UI, observability
-models/                Atticus Core and Edge release programs
-datasets/              AtticusBench and public trace assets
-research/               papers, notebooks, experiments, replication packages
-infra/                  Terraform, Cloud Run, Vertex AI, Firebase, Wix/domain integration, observability
-configs/                risk tiers, routing, retention, telemetry, permissions
-schemas/                canonical JSON Schemas and API contracts
-docs/                   laboratory-wide controlled specifications
-agents/                 sequential agent missions and handoff records
-```
-
-## Technology baseline
-
-- **Python:** services, training, evaluation, data engineering, deterministic models.
-- **TypeScript:** Next.js applications, console, SDKs, interactive visualizations.
-- **SQL:** PostgreSQL schemas, provenance, evaluation, and analytical queries.
-- **Bash:** local automation, CI helpers, release and environment scripts.
-- **Terraform:** Google Cloud infrastructure as code.
-- **Python environment:** `uv` workspaces and locked dependencies.
-- **JavaScript environment:** `pnpm` workspaces.
-- **Local integration:** Docker Compose.
-- **Public workshop:** Wix at `https://www.dewitt-labs.com`, using the registered `dewitt-labs.com` domain.
-- **Interactive applications and cloud:** Firebase/App Hosting or other approved Google-hosted frontends, Cloud Run, Cloud Run GPU, Vertex AI custom jobs, Cloud SQL PostgreSQL, Cloud Storage, Pub/Sub or Cloud Tasks, Secret Manager, Artifact Registry, Cloud Logging and Monitoring.
-- **Canonical integration plan:** [`docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md`](docs/08-web-brand/DOMAIN_AND_WIX_INTEGRATION.md).
-
-## Non-negotiable engineering properties
-
-1. Models request actions; deterministic policy code authorizes them.
-2. Authoritative financial and statistical calculations run in deterministic tools, not free-form model text.
-3. Every material answer can expose sources, calculation lineage, model identity, tool calls, and uncertainty.
-4. Consequential actions require explicit approval under a published risk-tier model.
-5. Public demos are isolated from the Director's private runner and private data.
-6. The system is usable without paid commercial model APIs in its core path.
-7. Every release includes evaluation evidence, limitations, security notes, and reproducibility materials.
-8. Major decisions require an approved ADR.
-9. Agents never merge their own work, claim unrun tests, or silently weaken requirements.
-10. The workshop does not pretend to be larger, older, accredited, governmental, or staffed in a way that is false.
-
-## Development entry points
-
-The repository includes specifications, interface contracts, and a tested local
-prototype. It deliberately uses fixture evidence and synthetic financial data;
-it does not pretend to be a production service or trained model release.
+Equivalent Make targets are available:
 
 ```bash
-make bootstrap       # install Python and JavaScript workspaces
-make demo            # run the integrated Atticus research workflow
-make doctor          # verify local toolchain
-make docs-check      # validate controlled documents and links
-make program-check   # validate issue/work-package registers and dependency graph
-make schema-check    # validate JSON Schemas and examples
-make test            # run available tests across workspaces
-make dev             # start local dependency stack as implementation matures
+make doctor
+make demo
+make verify
 ```
 
-## Release philosophy
+The demonstration runs an actual local orchestration path:
 
-V1 is one coordinated public launch, but development is completed through internal release candidates. DRL may not publicly call the platform V1.0 until the integrated demonstration works end to end using open weights:
+1. Atlas supplies time-aware synthetic macro evidence.
+2. FedLens retrieves a fixture FOMC communication with passage citations.
+3. BalanceLab applies a deterministic educational rate scenario.
+4. EvalForge evaluates the completed trajectory and its permission behavior.
 
-> Atticus receives a research question, routes evidence collection to Atlas and FedLens, constructs a synthetic scenario, invokes BalanceLab's deterministic engine, submits the full trace to EvalForge, and returns a cited report with visible calculation and evaluation evidence.
+The reported values are fixture evidence for software behavior, not claims
+about financial markets or real institutions. The planner is rule-based and
+stands in for the future Atticus model program.
 
-## Licensing and monetization
+## Current implementation boundary
 
-The recommended default is Apache License 2.0 for original software, with a mixed strategy for documentation, datasets, model artifacts, and third-party material. Open-source licensing does not prevent DRL from charging for managed hosting, consulting, training, private deployments, custom adapters, support, certification, or premium data services. The DRL name, logos, and marks should be governed separately by a trademark-use policy.
+### Runnable today
 
-See [`LICENSE-STRATEGY.md`](LICENSE-STRATEGY.md). This repository does not provide legal advice; formal releases require license review.
+- typed protocol models and task-state transitions;
+- deterministic policy and approval binding;
+- Atticus local orchestration, CLI, and HTTP adapter;
+- Atlas, FedLens, BalanceLab, and EvalForge prototype slices;
+- local-runner path, symlink, content, and approval controls;
+- model-provider, structured-output, and bake-off harnesses;
+- signed success/degraded replay generation and validation;
+- documentation, program, open-identity, domain, and public-repository validators.
 
-## Current repository status
+### Specified or planned
 
-**Status:** Runnable foundation. Atticus and every specialist have a deterministic
-local vertical slice with executable tests. The canonical public Wix site is live
-at [www.dewitt-labs.com](https://www.dewitt-labs.com). Public inference, trained
-Core/Edge weights, private-device pairing, and production cloud services
-remain planned work. Every feature must report its actual maturity honestly:
-`specified`, `prototype`, `alpha`, `beta`, `release candidate`, or `stable`.
+- trained Atticus Core and Edge model artifacts;
+- the TypeScript lab-web and Atticus console applications;
+- public inference and authenticated user accounts;
+- production Google Cloud infrastructure and application subdomains;
+- empirical Computational Finance of Intelligence results;
+- V1 release status.
 
-## Open-source identity, not an appendix
+The [`current-state baseline`](docs/00-program/CURRENT_STATE_BASELINE.md) and
+[`Director's Memo`](DIRECTORS_MEMO.md) record the detailed implementation truth
+and active blockers.
 
-The workshop's open identity is implemented through the [Open Research Charter](OPEN_RESEARCH_CHARTER.md), [Open Source Identity System](docs/09-open-source/OPEN_SOURCE_IDENTITY_SYSTEM.md), [Atticus Open Model Commons](docs/03-model/ATTICUS_OPEN_MODEL_COMMONS_RELEASE_TRAIN.md), and [Open Technology Catalog](docs/09-open-source/OPEN_TECHNOLOGY_CATALOG.md). Public releases must expose the modification surface, self-host path, evidence, upstream lineage, and contributor routes. Run `make open-check` to validate these promises.
+## System map
+
+```text
+                            LOCAL USER
+                                |
+                   ATTICUS CONTROL PLANE [prototype]
+                 plan | route | policy | approvals
+                    /          |          |          \
+               ATLAS       FEDLENS   BALANCELAB   LOCAL TOOLS
+             [prototype]  [prototype] [prototype] [prototype]
+                    \          |          /
+                         EVALFORGE
+                         [prototype]
+
+       LAB WEB / ATTICUS CONSOLE [specified; implementation pending]
+       ATTICUS CORE / EDGE WEIGHTS [specified; selection gate open]
+```
+
+Atticus coordinates specialist systems; it does not replace their domain logic.
+BalanceLab remains authoritative for its deterministic calculations, and policy
+code—not a language model—decides whether an action is permitted.
+
+## Repository map
+
+```text
+apps/       local runner plus specified-only TypeScript UI shells
+services/   Atticus control plane and four prototype specialist services
+packages/   typed protocol, AI-core utilities, and SDK scaffolds
+models/     bake-off policy, candidate metadata, and future model programs
+datasets/   AtticusBench specifications and controlled fixture structure
+docs/       architecture, security, research, operations, and reports
+schemas/    canonical JSON Schemas and examples
+configs/    permissions, routing, retention, telemetry, and release policy
+infra/      undeployed GCP/Azure infrastructure starters and runbooks
+agents/     prompts and handoffs for sequential coding-agent work
+tests/      unit, integration, security-negative, and document controls
+```
+
+The files under [`agents/`](agents/README.md) are mission prompts for coding
+agents, not staff positions or an organization chart. Christopher operates the
+repository and reviews the resulting evidence.
+
+## Research direction
+
+The broader program studies reliable agentic systems, belief diffusion and
+decision-making, and the intersection of finance, cognition, mathematics, and
+AI. Current research documents distinguish proposals, prior evidence, methods,
+results, and unresolved questions. A plan is not presented as a paper, and a
+prototype run is not presented as an empirical finding.
+
+- [Research program](docs/10-research/RESEARCH_PROGRAM.md)
+- [Computational Finance of Intelligence](docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md)
+- [Primary-source novelty review](docs/10-research/CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md)
+- [Publication and replication standard](docs/10-research/OPEN_RESEARCH_PUBLICATION_AND_REPLICATION.md)
+
+## Development and contribution
+
+The repository is designed to be inspectable and reproducible without paid
+APIs. Before proposing a substantial change, read
+[`CONTRIBUTING.md`](CONTRIBUTING.md), the relevant component specification, and
+the nearest `AGENTS.md`. Public APIs, security boundaries, data/model releases,
+licensing, and cloud topology require recorded review.
+
+Useful checks:
+
+```bash
+make verify                # validators plus Python and Node workspace checks
+make lint                  # Ruff
+make typecheck             # strict mypy
+make security              # Bandit
+make public-check          # tracked-source disclosure and metadata audit
+make public-release-check  # public check plus reachable Git-author metadata
+```
+
+The TypeScript application packages are explicit scaffolds. Their current
+commands validate that declared state but do not constitute an implemented UI
+test suite.
+
+## Licensing and citation
+
+DRL-authored software defaults to Apache License 2.0. Documentation, research,
+datasets, model artifacts, third-party material, and trademarks may carry
+different terms; see [`LICENSE-STRATEGY.md`](LICENSE-STRATEGY.md) and release-
+specific notices. Citation metadata is provided in [`CITATION.cff`](CITATION.cff).
+
+The project is **open by construction** under the
+[`Open Research and Open Technology Charter`](OPEN_RESEARCH_CHARTER.md), but it
+uses terms such as *open-source software*, *open-weight model*, and *public
+artifact* only when the relevant rights and modification surface actually exist.
+
+## Contact
+
+Research, academic, technical, employment, and responsible-security inquiries:
+`director@dewitt-labs.com`.
+
+Please use GitHub issues for reproducible, non-sensitive defects. Do not put
+credentials, private data, or exploitable security details in a public issue.

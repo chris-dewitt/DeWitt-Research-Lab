@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out authoritative source
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Refuse publication from a non-main revision
         if: >-
@@ -46,9 +46,9 @@ jobs:
           exit 1
 
       - name: Set up uv
-        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
-          version: "0.11.12"
+          version: "0.12.3"
           enable-cache: true
 
       - name: Sync Python workspace
@@ -86,7 +86,7 @@ jobs:
           github.event_name == 'workflow_dispatch' &&
           inputs.publish &&
           github.ref == 'refs/heads/main'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: chris-dewitt/DeWitt-Research-Artifacts
           ref: main

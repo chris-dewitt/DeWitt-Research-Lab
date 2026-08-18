@@ -1,13 +1,30 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.10.0
+version: 4.11.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-05
+last_updated: 2026-08-17
 ---
 
 # Foundation Changelog
+
+## 2026-08-17 — Public repository source curation
+
+- Reframed the root README as an evidence-first personal academic research
+  portfolio with explicit prototype, specified, and planned boundaries.
+- Added canonical citation and package metadata plus a fail-closed tracked-source
+  audit for credentials, employer identifiers, private paths, binary artifacts,
+  unsupported maturity claims, and unapproved public contact addresses.
+- Moved the generated source manifest out of Git and into a CI artifact, archived
+  stale validation snapshots, and corrected placeholder UI/model packages that
+  were inaccurately labeled release candidates.
+- Updated GitHub Actions to current Node 24 action generations and made the
+  placeholder Node workspace status explicit in CI.
+- Recorded DIR-009: public visibility remains blocked until the Director chooses
+  a coordinated history rewrite or explicit acceptance of institutional
+  author-address exposure. RES-018 continues to keep the repository private
+  through 2026-09-30.
 
 ## 2026-08-05 — Computational Finance of Intelligence research program
 

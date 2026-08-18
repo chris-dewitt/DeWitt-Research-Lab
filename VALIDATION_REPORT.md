@@ -1,13 +1,18 @@
 ---
 document_id: DRL-VAL-001
-title: "Runnable Foundation Validation Report"
-version: 2.1.0
-status: RELEASE CANDIDATE
+title: "Historical Runnable Foundation Validation Report (2026-07-27 Snapshot)"
+version: 2.2.0
+status: ARCHIVED
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-27
+last_updated: 2026-08-17
 ---
 
-# Runnable Foundation Validation Report
+# Historical Runnable Foundation Validation Report
+
+> **Archived evidence:** This file preserves the validation snapshot recorded
+> on 2026-07-27. It is not current release evidence and must not be used to
+> describe the present repository. Use the latest CI run, accepted handoff, and
+> commands in the root README for current evidence.
 
 ## Scope
 

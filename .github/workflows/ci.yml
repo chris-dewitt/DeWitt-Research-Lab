@@ -15,12 +15,13 @@ concurrency:
 
 jobs:
   contracts-and-docs:
+    name: Python, contracts, and public-source audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
         with:
-          version: "latest"
+          version: "0.12.3"
           enable-cache: true
       - name: Sync Python workspace
         run: uv sync --all-packages --locked
@@ -32,6 +33,8 @@ jobs:
         run: uv run python scripts/validate_open_identity.py
       - name: Domain and Wix validation
         run: uv run python scripts/validate_domain_wix.py
+      - name: Public-source readiness audit
+        run: uv run python scripts/validate_public_repository.py
       - name: Python lint
         run: uv run ruff check scripts tests packages services apps/atticus-local-runner
       - name: Python type check
@@ -42,37 +45,44 @@ jobs:
         run: uv run pytest
       - name: Integrated Atticus smoke test
         run: uv run --package atticus-control-plane atticus-demo --public
-      - name: Upload validation artifacts
+      - name: Generate tracked-source manifest
+        run: uv run python scripts/generate_manifest.py --output site/source-manifest.json
+      - name: Upload tracked-source manifest
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: foundation-validation
-          path: |
-            VALIDATION_REPORT.md
-            PACKAGE_MANIFEST.json
-          if-no-files-found: ignore
+          name: tracked-source-manifest
+          path: site/source-manifest.json
+          if-no-files-found: error
 
   node-workspace:
+    name: Node workspace scaffolds (specified only)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: pnpm/action-setup@v6.0.10
         # Read the exact version from package.json#packageManager. Supplying a
         # second version here makes pnpm/action-setup reject the workflow.
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm -r lint
-      - run: pnpm -r typecheck
-      - run: pnpm -r test
-      - run: pnpm -r build
+      - name: Install declared scaffold dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Confirm scaffold lint declaration
+        run: pnpm -r lint
+      - name: Confirm scaffold type-check declaration
+        run: pnpm -r typecheck
+      - name: Confirm scaffold test declaration
+        run: pnpm -r test
+      - name: Confirm scaffold build declaration
+        run: pnpm -r build
 
   atticus-container:
+    name: Atticus foundation container
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build Atticus foundation image
         run: >-
           docker build

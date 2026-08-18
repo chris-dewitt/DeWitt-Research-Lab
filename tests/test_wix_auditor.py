@@ -43,6 +43,22 @@ class TestTruthfulnessMatching:
     def test_staff_scale_claim_is_flagged(self) -> None:
         assert "our team" in audit.flag_untruthful("Our team of researchers built this.")
 
+    def test_the_required_enrolment_statement_is_not_a_violation(self) -> None:
+        """RES-016 mandates this wording; the auditor must not report it as a gap.
+
+        `university of` is on the untruthful list to catch invented affiliation.
+        Being enrolled somewhere is not a claim that the work is endorsed there.
+        """
+        text = (
+            "I am a student in the Master of Applied Data Science program at the "
+            "University of North Carolina at Chapel Hill."
+        )
+        assert audit.flag_untruthful(text) == []
+
+    def test_an_invented_affiliation_is_still_flagged(self) -> None:
+        text = "This research is conducted in partnership with the University of Somewhere."
+        assert "university of" in audit.flag_untruthful(text)
+
     def test_disclaimer_does_not_mask_a_separate_sentence(self) -> None:
         text = f"{DISCLOSURE} Our team is enterprise-grade."
         hits = audit.flag_untruthful(text)
@@ -139,6 +155,54 @@ class TestLookalikeSourceLinks:
         assert audit.lookalike_github_hosts(
             ["mailto:someone@example.com", "https://www.dewitt-labs.com/projects"]
         ) == []
+
+
+class TestFabricationSurvivesParaphrase:
+    """A rewrite that keeps the invented claim and changes its wording.
+
+    The first version of these checks matched literal strings taken off the live
+    site. An editing pass then reworded every one of them — `NODE: 01 // UPTIME:
+    99.9%` came back as `CORE: I // STATUS: ACTIVE`, `TR-2026-001` became
+    `REF-2026-001`, "500+ trajectories" became "five hundred separate execution
+    cycles" — and the word lists saw none of it. These match by shape instead.
+    """
+
+    def test_a_renamed_operations_badge_is_still_caught(self) -> None:
+        assert audit.OPS_BADGE.findall("CORE: I // STATUS: ACTIVE") == ["CORE: I"]
+        assert audit.OPS_BADGE.findall("NODE: 01 // UPTIME: 99.9%") == ["NODE: 01"]
+
+    def test_ordinary_prose_carries_no_badge(self) -> None:
+        assert audit.OPS_BADGE.findall("The core investigation is source attribution.") == []
+
+    def test_repository_ids_are_read_from_the_repository(self) -> None:
+        """The known set is whatever exists, not a list kept in step by hand."""
+        known = audit.known_document_ids()
+        assert "TR-2026-001" in known
+        assert "TR-2026-002" in known
+
+    def test_an_invented_identifier_scheme_is_caught(self) -> None:
+        known = audit.known_document_ids()
+        text = "ARCHIVE_ENTRY // REF-2026-001 ... see also LOG-2026-X"
+        assert audit.unknown_identifiers(text, known) == ["LOG-2026-X", "REF-2026-001"]
+
+    def test_a_real_report_reference_passes(self) -> None:
+        known = audit.known_document_ids()
+        assert audit.unknown_identifiers("TECHNICAL REPORT TR-2026-002", known) == []
+
+    def test_a_fabricated_journal_citation_is_caught(self) -> None:
+        known = audit.known_document_ids()
+        text = "Noxon, J. & DeWitt, C. (2024). Stochastic Boundaries. Systems Inquiry Journal."
+        assert audit.unsourced_citations(text, known) == ["Noxon, J. & DeWitt, C. (2024)"]
+
+    def test_an_intercapped_surname_does_not_evade_the_check(self) -> None:
+        """The one surname this site is guaranteed to carry is intercapped."""
+        known = audit.known_document_ids()
+        assert audit.unsourced_citations("DeWitt, C. (2025). Agency by Design.", known)
+
+    def test_a_citation_carrying_its_document_id_passes(self) -> None:
+        known = audit.known_document_ids()
+        text = "DeWitt, C. N. (2026). Local Integrated Workflow. Document ID DRL-TR-2026-001."
+        assert audit.unsourced_citations(text, known) == []
 
 
 class TestEvidenceForNumbers:

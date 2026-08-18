@@ -10,20 +10,23 @@ last_updated: 2026-08-04
 
 # DeWitt Research Workshop
 
+One person's workshop for building and testing open-weight AI systems in the
+open. "Workshop" names the body of work, not an organisation: there is no team,
+and the projects below are a workbench rather than a product line.
+
 **Canonical website:** [www.dewitt-labs.com](https://www.dewitt-labs.com)  
-**Intelligence for Good. Intelligence for All.**
+**Project mission:** Intelligence for Good. Intelligence for All.
 
-The canonical website is Christopher Noxon DeWitt's personal academic portfolio.
-He is a student in the Master of Applied Data Science program at the University
-of North Carolina at Chapel Hill, engineers complex systems professionally, and
-hopes to continue from data science toward graduate work in computer science.
-The repository is one body of evidence within that portfolio.
+I am Christopher Noxon DeWitt, a student in the Master of Applied Data Science
+program at the University of North Carolina at Chapel Hill. I engineer complex
+systems professionally and hope to continue from data science toward graduate
+work in computer science. The website is my personal academic portfolio; this
+repository is one body of evidence within it.
 
-This is one person's workshop. Christopher Noxon DeWitt builds and tests
-open-weight AI systems in the open. The workshop is **open by construction**:
-the models are open-weight, the code is open-source, the evaluation is public,
-and everything runs locally — not as an afterthought, but as the reason the rest
-of it is arranged the way it is. Governed by the
+The workshop is **open by construction**: the models are open-weight, the code
+is open-source, the evaluation is public, and everything runs locally — not as
+an afterthought, but as the reason the rest of it is arranged the way it is.
+Governed by the
 [Open Research and Open Technology Charter](OPEN_RESEARCH_CHARTER.md).
 
 **Atticus** is the operator: it plans a piece of work and routes it across four

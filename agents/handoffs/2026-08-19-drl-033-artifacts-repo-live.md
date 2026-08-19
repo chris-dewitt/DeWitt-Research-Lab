@@ -16,7 +16,7 @@ last_updated: 2026-08-19
 - Branch: `cursor/drl-033-artifacts-repo-live-d422`
 - Starting commit: `66e5945b406ac19bee48c95a148d5a776588b379` (`main`)
 - Ending commit: the commit containing this handoff
-- Pull request: opened from this branch
+- Pull request: https://github.com/chris-dewitt/DeWitt-Research-Lab/pull/48
 - Prepared UTC: `2026-08-19T03:20:00Z`
 
 ## 2. Objective completed

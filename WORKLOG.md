@@ -56,7 +56,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
 | 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | BLOCKED — independent G1 review after RES-020 | — |
 | 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | MERGED — DEPLOYMENT READ-BACK PENDING | PR #45; `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
-| 14 / DRL-033 follow-up | Cursor cloud agent | `cursor/drl-033-artifacts-repo-live-d422` | 2026-08-19T03:20:00Z | IN PROGRESS — PUBLIC REPO LIVE | Public repo created; Pages + token pending |
+| 14 / DRL-033 follow-up | Cursor cloud agent | `cursor/drl-033-artifacts-repo-live-d422` | 2026-08-19T03:20:00Z | IN REVIEW — PUBLIC REPO LIVE; PAGES + TOKEN PENDING | PR #48; `agents/handoffs/2026-08-19-drl-033-artifacts-repo-live.md` |
 | 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
 
 ## Active scope — DRL-034 public repository readiness

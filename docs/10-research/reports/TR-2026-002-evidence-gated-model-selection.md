@@ -1,10 +1,10 @@
 ---
 document_id: DRL-TR-2026-002
 title: "Technical Report TR-2026-002: Evidence-Gated Model Selection"
-version: 1.1.0
+version: 1.2.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-13
+last_updated: 2026-08-19
 citation_key: dewitt2026tr002
 maturity: prototype
 ---
@@ -30,10 +30,13 @@ an **evidence gate** that can refuse to name a winner. The gate encodes nine
 blocking conditions — measurement provenance, revision pinning, license clearance,
 suite coverage, execution completeness, a quality floor, zero safety-critical
 failures, a minimum field of candidates, and a minimum margin over the runner-up —
-and a failure on any one returns "no selection" together with the reasons. No score, however favourable,
-overrides a blocked gate. Running the harness on the current candidate register
-returns no winner for either role, blocked by six concrete reasons. That null
-result is the report's only empirical claim.
+and a failure on any one returns "no selection" together with the reasons. No
+score, however favourable, overrides a blocked gate. Running the harness on the
+current candidate register returns no winner for either role, blocked by six
+concrete reasons for each. The two roles fail differently, and the more
+instructive of them clears the quality floor before being blocked on five
+conditions a ranking would never have shown. That null result is the report's
+only empirical claim.
 
 ## 1. Question and scope
 
@@ -121,7 +124,7 @@ non-claims.
 - `models/bakeoff/task_suite.yaml` — the task suite
 - `models/bakeoff/candidates.yaml` — candidate register
 - `scripts/run_bakeoff.py` — CLI (`make bakeoff`)
-- `tests/test_bakeoff_harness.py` — 37 tests, the majority asserting the gate refuses
+- `tests/test_bakeoff_harness.py` — 55 tests, the majority asserting the gate refuses
 
 ## 4. Data rights and provenance
 
@@ -144,21 +147,37 @@ For the `core` role, three candidates tied at weighted quality 0.455, blocked by
 5. metrics are fixture, not measured on hardware;
 6. margin over the runner-up of 0.000 — too close to call.
 
-For the `edge` role, coverage was below the eight-task minimum and a
-safety-critical failure was recorded.
+For the `edge` role, two candidates tied at weighted quality 0.810 — above the
+0.80 floor — and were blocked anyway by:
+
+1. suite coverage of 7 tasks against the 8-task minimum;
+2. a safety-critical failure on credential refusal;
+3. revision not pinned (`scaffold-unpinned`);
+4. license not cleared (`provisional_review_required`);
+5. metrics are fixture, not measured on hardware;
+6. margin over the runner-up of 0.000 — too close to call.
+
+The asymmetry between the roles is the more useful of the two results. The `core`
+role fails the quality floor and is blocked in the way a leaderboard would also
+have caught. The `edge` role passes the quality floor and is blocked on five
+further conditions that no ranking would have surfaced at all. A scoreboard would
+have shown 0.810 at the top and called it a winner.
 
 **Interpretation.** These numbers describe scripted providers, not models. The
 only claim supported is that the harness runs end to end and that the gate
 refuses under exactly the conditions it is specified to refuse under. The
-tied 0.455 is an artifact of every scripted provider sharing one script; it is
-reported because suppressing it would misrepresent what was run.
+ties within each role are an artifact of every scripted provider sharing one
+script; the two roles differ (0.455 and 0.810) only because they draw different
+task subsets. Both are reported because suppressing them would misrepresent what
+was run.
 
 ## 6. Limitations
 
 - Fixture providers are scripted and perform no inference. They exercise the
   harness, not any model.
 - The suite is 12 tasks. That is a starting instrument, not a decisive one, and
-  `min_tasks: 8` is a floor rather than a target.
+  `min_tasks: 8` is a floor rather than a target. For the `edge` role that floor
+  is currently unreachable; see §8 v1.2.0.
 - Refusal detection is marker-based and will need widening against the phrasing
   real models actually produce.
 - Thresholds are asserted from judgment, not derived from a power analysis. They
@@ -207,6 +226,33 @@ endpoint, and both are recorded here rather than quietly repaired.
 
 Neither defect changes §5: that run was fixture-mode and blocked on measurement
 provenance regardless. The eight-condition count in v1.0.0 is superseded by nine.
+
+**v1.2.0.** A third defect, found while re-verifying §5 against a live run of the
+harness. It is in the suite rather than the gate, and it is the reason the `edge`
+coverage blocker in §5 is not a transient state.
+
+3. *The `edge` role cannot satisfy its own coverage condition.* Coverage counts
+   the tasks eligible for a role, which is the union of that role's tasks and
+   those marked `both`. The suite carries 5 `both` tasks and 2 `edge` tasks, so 7
+   tasks are eligible for `edge` against a `min_tasks` floor of 8. No `edge`
+   candidate can clear coverage on this suite under any measurement mode,
+   including a correctly configured hardware run. The `core` role is unaffected:
+   5 `both` plus 5 `core` gives 10 eligible tasks. The gate is behaving exactly as
+   specified — it is the suite that is short — but a condition that is
+   unsatisfiable by construction reports "insufficient evidence" indefinitely
+   rather than reporting a fixable setup problem, which is the failure mode this
+   report exists to argue against. The fix is to extend the `edge` task set, not
+   to lower `min_tasks`; §7's closing instruction applies to the author as much as
+   to a reader.
+
+This defect does change how §5's `edge` result should be read: the coverage
+blocker there is structural, not an artifact of the fixture path. The other five
+`edge` blockers and all six `core` blockers are unaffected.
+
+Two corrections in v1.1.0 and one in v1.2.0 have all been defects in the
+instrument rather than in a result. That is expected while the instrument has
+never been run against a model, and it is the argument for not publishing a
+selection from it yet.
 
 This report will be superseded when a hardware run produces measured evidence.
 

@@ -17,7 +17,7 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 
 | Priority | ID | Question | Status | Blocking | Recommended next evidence |
 |---:|---|---|---|---|---|
-| P1 | DIR-009 | Rewrite Git history or accept institutional author-address exposure | Director input | Public repository visibility | Confirm rewrite coordination and rollback, or record explicit risk acceptance |
+| — | DIR-009 | Rewrite Git history or accept institutional author-address exposure | RESOLVED — RES-022 | Public repository visibility | Closed: explicit risk acceptance recorded; no rewrite authorized |
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |
@@ -39,11 +39,12 @@ canonical public site · RES-001–RES-010 in `DIRECTORS_MEMO.md`.
 
 ADR-0009 and RES-018 through RES-021 were approved on 2026-08-05. DIR-001,
 DIR-003, and DIR-008 were resolved by RES-018, RES-019, and RES-020
-respectively. Preserve their full history in `DIRECTORS_MEMO.md`; they are no
-longer approval-queue items.
+respectively. DIR-009 was resolved by RES-022 on 2026-08-19. Preserve their full
+history in `DIRECTORS_MEMO.md`; they are no longer approval-queue items.
 
-DIR-009 must be resolved before changing the authoritative repository from
-private to public. It does not block source-tree curation or review.
+DIR-009 no longer gates the change from private to public. RES-022 records the
+Director's explicit acceptance of the historical institutional author address in
+place of a history rewrite.
 
 ## Agent rules for this queue
 

@@ -1,13 +1,38 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.11.0
+version: 4.12.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-17
+last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-19 — DIR-009 accepted; TR-2026-002 verification pass
+
+- Recorded **RES-022**, resolving DIR-009 as Option B against the recommendation
+  in that row: the historical institutional author address in Git metadata is
+  accepted rather than rewritten, commit SHAs are preserved, and new commits
+  continue to use the GitHub no-reply address. Public visibility is no longer
+  gated on it; the RES-018 date gate still applies.
+- `validate_public_repository.py --release` now reports the affected commits as
+  `ACCEPTED (RES-022)` and passes instead of failing. The check is retained, so a
+  new unapproved institutional address would still surface.
+- Corrected the commit count across the readiness documents: it is ref-dependent
+  and drifts as branches merge, so the audit reports a measured count rather than
+  the fixed "sixteen" recorded when DIR-009 was raised (15 reachable today).
+- Verified TR-2026-002 against a live harness run and corrected three
+  inaccuracies: a stale test count (37 → 55), an under-reported `edge` result
+  that named two of six blockers, and an abstract implying six blockers in total
+  rather than six per role.
+- Recorded a third harness defect in TR-2026-002 §8 (v1.2.0): the `edge` role has
+  only 7 eligible tasks against a `min_tasks` floor of 8, so it cannot satisfy its
+  own coverage condition under any measurement mode. The suite is short, not the
+  gate; the fix is to extend the `edge` tasks rather than lower the threshold.
+- Added TR-2026-002 to the working-paper register in `PUBLICATION_PIPELINE.md`,
+  which previously listed only TR-2026-001, and required every report under
+  `docs/10-research/reports/` to appear there whatever its status.
 
 ## 2026-08-17 — Public repository source curation
 

@@ -47,7 +47,7 @@ work. It is a repository truth statement, not a V1 or production-release claim.
 | Issue program | DRL-001 through DRL-034 recorded | `requirements/issue-register.yaml` and issue bodies |
 | Public-source gate | Implemented and remotely green on PR #46 | `scripts/validate_public_repository.py` and tests |
 | Branch protection | Deliberately not enabled | RES-018 |
-| Public history gate | Blocked on Director choice | DIR-009; reachable commits contain an institutional author address |
+| Public history gate | Accepted risk | RES-022 resolves DIR-009; reachable commits retain an institutional author address by decision |
 
 ## What is not claimed
 
@@ -68,5 +68,6 @@ make security
 make public-check
 ```
 
-`make public-release-check` additionally inspects reachable Git-author metadata
-and is expected to remain blocked until DIR-009 is resolved.
+`make public-release-check` additionally inspects reachable Git-author metadata.
+Since RES-022 it reports the institutional address as `ACCEPTED (RES-022)` and
+passes; the check is retained so a new unapproved address would still surface.

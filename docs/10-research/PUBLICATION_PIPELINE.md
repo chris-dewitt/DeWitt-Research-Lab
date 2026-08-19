@@ -1,10 +1,10 @@
 ---
 document_id: DRL-RES-003
 title: "Publication and Replication Pipeline"
-version: 2.1.0
+version: 2.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-01
+last_updated: 2026-08-19
 ---
 
 
@@ -21,6 +21,22 @@ A public paper package includes document source/PDF or web version, citation met
 
 ## Current working papers
 
-| ID | Title | Maturity | Path |
-|---|---|---|---|
-| TR-2026-001 | Local Integrated Evidence-to-Scenario Workflow | prototype | `docs/10-research/reports/TR-2026-001-integrated-workflow.md` |
+| ID | Title | Status | Maturity | Path |
+|---|---|---|---|---|
+| TR-2026-001 | Local Integrated Evidence-to-Scenario Workflow | APPROVED FOUNDATION | prototype | `docs/10-research/reports/TR-2026-001-integrated-workflow.md` |
+| TR-2026-002 | Evidence-Gated Model Selection | DRAFT | prototype | `docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md` |
+
+Every report under `docs/10-research/reports/` belongs in this table, whatever
+its status. A working paper that is written but unlisted is invisible to the
+only index a reader is expected to trust.
+
+## Novelty status
+
+A report is not ready for public release until its contribution has been checked
+against primary sources. Current state:
+
+| ID | Novelty record | State |
+|---|---|---|
+| TR-2026-001 | None | Not required while the report claims only a reproducible workflow |
+| TR-2026-002 | `TR-2026-002_NOVELTY_SCAN.md` (DRL-RES-008) | **Preliminary** — 7 records examined, 4 verified; not a G1 review |
+| CFI Papers I-III | `CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md` (DRL-RES-006) | `IN REVIEW`; independent G1 outstanding |

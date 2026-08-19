@@ -32,14 +32,14 @@ dashboard weekly and before any public claim.
 | Active issue | DRL-034 public-repository readiness |
 | Working branch | `lovesong/chore/drl-034-public-repository-readiness` |
 | Last green remote foundation CI | Draft PR #46, run `32092338028` |
-| Open P1 Director decisions | DIR-002 cloud scope; DIR-009 Git-history author metadata |
+| Open P1 Director decisions | DIR-002 cloud scope |
 | Evidence-ready prototypes | Atticus integrated path, specialist fixtures, replay viewer/export, reports, teaching lab |
 | Specified-only surfaces | lab-web, atticus-console, Atticus Core/Edge weights, live cloud deployment |
 | Website | `www.dewitt-labs.com` is live; portfolio content remains Director-edited in Wix |
 | Repository visibility | Private through 2026-09-30 under RES-018 |
 | Cloud/model spend | `$0` recorded; no live project or model training authorized |
 | Public-claim boundary | Do not call the system V1, production, or an open-weight model release |
-| Top release blocker | Resolve DIR-009 before the repository visibility change |
+| Top release blocker | RES-018 date gate; visibility not before 2026-09-30 |
 | Next unblocking issue | Complete review and merge of DRL-034 |
 
 ## Release-readiness scorecard
@@ -48,7 +48,7 @@ dashboard weekly and before any public claim.
 |---|---|---|---|
 | Source content and metadata | Required | Required | DRL-034 draft PR #46 remotely green |
 | Automated public-source audit | Required | Required | Implemented and green in run `32092338028` |
-| Git-history privacy | Required | Required | Blocked on DIR-009 |
+| Git-history privacy | Required | Required | Accepted risk under RES-022 |
 | CI and reproducibility | Required | Required | All three DRL-034 jobs green |
 | Protocol and policy behavior | Useful evidence | Hard gate | Prototype tests present |
 | Open-weight production path | Not required | Required | Selection gate open |

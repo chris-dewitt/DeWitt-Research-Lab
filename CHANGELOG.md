@@ -1,13 +1,68 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.11.0
+version: 4.13.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-17
+last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-19 — Paper II instrument, CFI-003 opening record, TR-2026-002 novelty scan
+
+- Added `research/cfi` (`drl-cfi`), the machine-side instrument for the Paper II
+  track: piecewise-linear payoff primitives with an exact equivalence oracle, a
+  Black-Scholes normative oracle with replication invariants, frame pairs that
+  cannot vary the payoff they describe, and arbitrage detection with minimal
+  coherence repair. Pure Python — no NumPy or SciPy dependency is added.
+  63 tests; strict mypy clean.
+- Coherence detection, repair, repair distance, and the exploiting portfolio all
+  derive from one projection onto the closed cone `{A q : q >= 0}`, implemented
+  as Lawson-Hanson NNLS over a Householder QR least-squares core. Two bounds are
+  documented rather than hidden: a weak arbitrage on the cone boundary reports as
+  coherent, and non-negativity is certified only across the spanned state grid.
+- Recorded the opening CFI-003 candidate-data rights register (DRL-RES-007). Two
+  CPC18 records verified as CC BY 4.0; choices13k carries **no stated licence**
+  and is marked `BLOCKED_RIGHTS`. No dataset was downloaded and G2 stays closed.
+- The register's material finding is construct validity, not licensing: all three
+  candidates record numeric gamble choices with no payoff-preserving linguistic
+  frame and no elicited valuation, so the cleanly licensed ones are still
+  probably unfit for Paper II's human baseline.
+- Recorded a preliminary novelty scan for TR-2026-002 (DRL-RES-008), which had
+  never had one. Seven records examined, four verified. The leaderboard critique
+  is established background, and executable refusing gates already exist in
+  release management and self-improving runtimes, so the report is repositioned:
+  what may remain differentiable is selection-among-candidates combined with
+  non-performance admissibility conditions. The null result is untouched.
+- TR-2026-002 gains a related-work section carrying those findings and a pointer
+  to a better form for its weakest condition: a power-based resolution ratio in
+  place of the asserted `min_margin: 0.05`.
+
+## 2026-08-19 — DIR-009 accepted; TR-2026-002 verification pass
+
+- Recorded **RES-022**, resolving DIR-009 as Option B against the recommendation
+  in that row: the historical institutional author address in Git metadata is
+  accepted rather than rewritten, commit SHAs are preserved, and new commits
+  continue to use the GitHub no-reply address. Public visibility is no longer
+  gated on it; the RES-018 date gate still applies.
+- `validate_public_repository.py --release` now reports the affected commits as
+  `ACCEPTED (RES-022)` and passes instead of failing. The check is retained, so a
+  new unapproved institutional address would still surface.
+- Corrected the commit count across the readiness documents: it is ref-dependent
+  and drifts as branches merge, so the audit reports a measured count rather than
+  the fixed "sixteen" recorded when DIR-009 was raised (15 reachable today).
+- Verified TR-2026-002 against a live harness run and corrected three
+  inaccuracies: a stale test count (37 → 55), an under-reported `edge` result
+  that named two of six blockers, and an abstract implying six blockers in total
+  rather than six per role.
+- Recorded a third harness defect in TR-2026-002 §8 (v1.2.0): the `edge` role has
+  only 7 eligible tasks against a `min_tasks` floor of 8, so it cannot satisfy its
+  own coverage condition under any measurement mode. The suite is short, not the
+  gate; the fix is to extend the `edge` tasks rather than lower the threshold.
+- Added TR-2026-002 to the working-paper register in `PUBLICATION_PIPELINE.md`,
+  which previously listed only TR-2026-001, and required every report under
+  `docs/10-research/reports/` to appear there whatever its status.
 
 ## 2026-08-17 — Public repository source curation
 

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DOC-002
 title: "Controlled Documentation Index"
-version: 3.2.0
+version: 3.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -59,3 +59,11 @@ Some older seed documents may remain under unnumbered domain paths for history. 
   sequential agent task graph.
 - `10-research/RESEARCH_PROGRAM.md` — publication forms, standards, and
   relationship to the broader Atticus research lines.
+- `10-research/CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md` — dated G1 scoping review
+  that narrowed the program; still `IN REVIEW` pending independent G1.
+- `10-research/CFI_CANDIDATE_DATA_RIGHTS_REGISTER.md` — opening CFI-003 record
+  of candidate human datasets. No data acquired; G2 remains closed.
+- `10-research/TR-2026-002_NOVELTY_SCAN.md` — preliminary novelty scan for the
+  evidence-gate report. Not a G1 review.
+- `research/cfi/` — Paper II machine instrument (payoff equivalence, pricing
+  oracle, coherence repair). Contains no experiment, dataset, or result.

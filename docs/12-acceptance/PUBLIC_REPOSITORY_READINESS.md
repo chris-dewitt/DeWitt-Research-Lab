@@ -42,22 +42,28 @@ reachable Git-author-metadata gate.
 | Honest prototype/scaffold maturity | Ready for review | Current-state baseline and component READMEs |
 | Generated manifest excluded from source | Automated | `scripts/generate_manifest.py`, CI artifact |
 | Current dependency/action baseline | Complete | GitHub Actions run `32092338028` passed all three jobs |
-| Reachable Git-author metadata | **Blocked** | DIR-009 |
+| Reachable Git-author metadata | Accepted risk | RES-022 resolves DIR-009; audit reports the count without blocking |
 | Remote branch cleanup | Awaiting explicit deletion approval | 22 branches are merged and no open PR references them |
 | Repository About description, homepage, and topics | Complete | GitHub repository metadata updated 2026-08-17 |
 | Anonymous clone and link verification | Release-day gate | Director or release operator |
 | Repository visibility | Date-gated | RES-018; not before 2026-09-30 |
 
-## Open Decision — DIR-009
+## Resolved Decision — DIR-009
 
-Sixteen reachable commits expose an institutional author address. The Director
-must explicitly choose either a coordinated history rewrite and force-push or
-documented risk acceptance before public visibility changes. Source-tree
-curation may merge without that choice; public release may not.
+Some reachable commits expose an institutional author address (16 when DIR-009
+was raised; 15 reachable today — the figure moves with the ref set). The
+Director chose documented risk acceptance over a coordinated history rewrite in
+**RES-022**: the address stays, commit SHAs are preserved, and new commits
+continue to use the GitHub no-reply address so the exposure does not grow.
+
+`scripts/validate_public_repository.py --release` still counts and reports these
+commits, printing them as `ACCEPTED (RES-022)` rather than failing. The check is
+retained deliberately — a *new* unapproved institutional address would still
+surface. This no longer gates public visibility.
 
 ## Release-day procedure
 
-1. Resolve DIR-009 and record the decision in `DIRECTORS_MEMO.md`.
+1. DIR-009 is resolved by RES-022; confirm the memo still records that acceptance.
 2. Confirm the DRL-034 PR and its required CI checks are merged and green.
 3. Run `make public-release-check` from a clean checkout of `main`.
 4. Remove only remote branches proven merged and not referenced by an open PR.

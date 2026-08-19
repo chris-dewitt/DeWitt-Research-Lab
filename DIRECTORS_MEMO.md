@@ -73,7 +73,7 @@ the Director's approval.
 | DIR-006 | Legal | When should DRL form a legal entity or register marks? | Formation adds cost and administration but may help contracts and liability separation. | Continue truthful independent-initiative language; obtain professional advice before contracts or material revenue. | Deferred Director/legal decision |
 | DIR-007 | Legal/brand | Does the RES-014 rename extend to the claimed trademarks? | `NOTICE`, `TRADEMARK_POLICY.md`, and `LICENSE-STRATEGY.md` still claim "DeWitt Research Laboratory" and `DRL` as marks. Renaming a claimed mark is not a copy edit: it abandons accrued use of the old name and restarts it under the new one. Retaining both is also valid — the old name can stay as a prior mark while the public identity moves. | Do not rewrite the legal documents on brand grounds alone. Either retain "DeWitt Research Laboratory" as a prior/legacy mark and add "DeWitt Research Workshop" alongside it, or take advice before consolidating. Ties to DIR-006. | Director decision required — legal documents deliberately left unrenamed |
 | DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | RESOLVED — RES-020; independent G1 review remains required |
-| DIR-009 | Repository privacy | Should 16 commits whose author metadata exposes a UNC email address be rewritten before the repository becomes public? | A: rewrite all affected reachable history to the GitHub no-reply address, coordinate every open branch, and force-push; this removes the address but changes commit SHAs. B: accept the historical disclosure and preserve commit identity; future commits already use the no-reply address. | Choose A before changing visibility because RES-019 establishes one public contact, but do not rewrite history without the Director's explicit approval. | Director decision required before public visibility |
+| DIR-009 | Repository privacy | Should 16 commits whose author metadata exposes a UNC email address be rewritten before the repository becomes public? | A: rewrite all affected reachable history to the GitHub no-reply address, coordinate every open branch, and force-push; this removes the address but changes commit SHAs. B: accept the historical disclosure and preserve commit identity; future commits already use the no-reply address. | Choose A before changing visibility because RES-019 establishes one public contact, but do not rewrite history without the Director's explicit approval. | RESOLVED — RES-022; Option B chosen against the recommendation |
 
 ## Approved resolutions
 
@@ -100,6 +100,7 @@ the Director's approval.
 | RES-019 | Use `director@dewitt-labs.com` as the only public contact address. | The Director | 2026-08-05 | Portfolio contact, research inquiries, employment or academic inquiries, and responsible security reports all route to the same address. Agents must not invent or recommend additional public aliases unless the Director reopens the decision. |
 | RES-020 | Approve DIR-008 Option A for the CFI program. | The Director | 2026-08-05 | Narrow Paper II into the first flagship; treat Dutch-book repair as a baseline rather than the contribution; authorize bounded re-scoping of Paper I around active information acquisition and Paper III around identifiable coupled belief dynamics or registered replication. No experiment bypasses independent G1 review. |
 | RES-021 | Publish sanitized display artifacts from a separate public repository while the authoritative research repository remains private. | The Director | 2026-08-05 | `chris-dewitt/DeWitt-Research-Artifacts` is the approved public deployment mirror. Only generated files admitted by the publication allowlist may be exported. The first artifact is the experimental replay viewer; papers require separate release approval and allowlist changes. ADR-0009 governs the boundary. |
+| RES-022 | Accept the historical UNC email address in Git author metadata; do not rewrite history. | The Director | 2026-08-19 | **Resolves DIR-009 as Option B, against the recommendation recorded there.** The commits carrying the UNC address in author metadata keep it, and their SHAs are preserved. The count is ref-dependent and drifts as branches merge and are deleted — DIR-009 recorded 16, and 15 are reachable from the current ref set — so the audit reports a measured count rather than a fixed one. The disclosure is a personal academic address already associated with the Director's public identity under RES-016, and the Director judges it not worth invalidating every published SHA, coordinating open branches, and force-pushing shared history. New commits continue to use the GitHub no-reply address, so the exposure does not grow. RES-019 is unaffected: `director@dewitt-labs.com` remains the only *published* contact, and no document, site page, or artifact may present the UNC address as a contact route. DIR-009 no longer blocks public visibility. |
 
 ## Current blockers
 
@@ -115,10 +116,11 @@ the Director's approval.
 - The public artifact repository, Pages source, and cross-repository publishing
   credential are not configured yet. No artifact is live until DRL-033 records
   the exact public URL and a read-back of the deployed files.
-- Sixteen reachable commits expose a UNC email address in Git author metadata.
-  New commits use the GitHub no-reply address. DIR-009 must be resolved before
-  the authoritative repository becomes public; no history rewrite is authorized
-  by repository-curation work alone.
+- Some reachable commits expose a UNC email address in Git author metadata
+  (16 when DIR-009 was raised; 15 reachable today — the figure moves with the
+  ref set). Accepted by RES-022 as a known, deliberate disclosure; no history
+  rewrite is authorized and none is planned. New commits use the GitHub
+  no-reply address. This no longer blocks public visibility.
 
 ## Current implementation truth
 

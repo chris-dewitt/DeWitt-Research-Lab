@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
+
+import pytest
 
 from scripts import generate_manifest
 from scripts import validate_public_repository as audit
@@ -60,3 +63,19 @@ def test_history_gate_reports_count_without_address() -> None:
     finding = findings[0]
     assert institutional not in finding.render()
     assert "1 reachable commits" in finding.render()
+
+
+def test_release_gate_accepts_historical_institutional_address(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """RES-022 accepts the historical address, so it must not fail the gate."""
+    institutional = "student" + "@unc.edu"
+
+    # Still reported, so the exposure stays visible and countable...
+    findings = audit.history_findings_for_emails([institutional])
+    assert len(findings) == 1
+
+    # ...but a --release run exits clean rather than blocking on it.
+    monkeypatch.setattr(audit, "history_findings", lambda: (findings, 1))
+    monkeypatch.setattr(sys, "argv", ["validate_public_repository.py", "--release"])
+    assert audit.main() == 0

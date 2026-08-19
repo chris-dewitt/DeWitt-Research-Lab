@@ -32,6 +32,7 @@ dev = [
 members = [
   "apps/atticus-local-runner",
   "packages/drl-protocol",
+  "research/cfi",
   "packages/drl-ai-core",
   "packages/atticus-sdk",
   "packages/evalforge-sdk",

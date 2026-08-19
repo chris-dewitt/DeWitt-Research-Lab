@@ -29,3 +29,14 @@ A public paper package includes document source/PDF or web version, citation met
 Every report under `docs/10-research/reports/` belongs in this table, whatever
 its status. A working paper that is written but unlisted is invisible to the
 only index a reader is expected to trust.
+
+## Novelty status
+
+A report is not ready for public release until its contribution has been checked
+against primary sources. Current state:
+
+| ID | Novelty record | State |
+|---|---|---|
+| TR-2026-001 | None | Not required while the report claims only a reproducible workflow |
+| TR-2026-002 | `TR-2026-002_NOVELTY_SCAN.md` (DRL-RES-008) | **Preliminary** — 7 records examined, 4 verified; not a G1 review |
+| CFI Papers I-III | `CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md` (DRL-RES-006) | `IN REVIEW`; independent G1 outstanding |

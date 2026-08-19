@@ -1,7 +1,7 @@
 ---
 document_id: DRL-TR-2026-002
 title: "Technical Report TR-2026-002: Evidence-Gated Model Selection"
-version: 1.2.0
+version: 1.3.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
@@ -256,9 +256,48 @@ selection from it yet.
 
 This report will be superseded when a hardware run produces measured evidence.
 
-## 9. Related requirements
+## 9. Related work and novelty status
+
+This report had no novelty review until `docs/10-research/TR-2026-002_NOVELTY_SCAN.md`
+(DRL-RES-008, 2026-08-19). That scan is preliminary — seven records examined,
+four verified — and it is not a G1 review. Its findings change how this report
+should be read, and are summarised here rather than left in a separate file.
+
+**The opening observation is background, not a contribution.** That leaderboard
+reporting obscures whether a measurement supports a selection is the established
+position of an active critique literature, including *The Leaderboard Illusion*
+(Singh et al., 2025, arXiv:2504.20879). §1 of this report should be read as
+restating that consensus, not as advancing it.
+
+**Executable gates that refuse on insufficient evidence already exist.** Two
+verified records implement the pattern in adjacent settings: pre-declared
+machine-checkable acceptance suites that block a release, with a documented
+rejection of a candidate (Soni, 2026, arXiv:2607.13070), and quality gates
+issuing evidence-based PROMOTE/HOLD/ROLLBACK decisions evaluated across 20+
+releases, where evidence coverage is the primary regression discriminator
+(Maiorano, 2026, arXiv:2603.15676). The refusing-gate pattern is therefore not
+claimed here.
+
+**What may remain differentiable** is the pairing of *selection among candidate
+models* with blocking conditions that mix statistical adequacy against
+non-performance admissibility — measurement provenance, revision pinning, and
+licence clearance. Both records above lack all three. That is a narrow claim and
+it stays a hypothesis until a real nearest-neighbour search tests it.
+
+**The margin condition has a known better form.** *Resolution Diagnostics for
+Paired LLM Evaluation* (Kotawala, 2026, arXiv:2605.30315) frames paired
+evaluation as hypothesis testing and reports a power-based resolution ratio,
+which is the analysis §6 admits this report's thresholds lack. Replacing the
+asserted `min_margin: 0.05` with a resolution condition is recommended in the
+scan and is a Director decision, not an editorial one.
+
+None of this touches §5. The null result is that the gate refuses under the
+conditions it specifies, and it stands independently of what is novel about it.
+
+## 10. Related requirements
 
 - `DIR-004` — Atticus Core and Edge model selection; open by construction
 - `DRL-012` — bake-off scaffold and candidate register
+- `DRL-RES-008` — preliminary novelty scan for this report
 - `docs/01-product/PRODUCT_MATURITY_AND_SCOPE.md` — maturity vocabulary
 - `models/bakeoff/README.md` — operating instructions

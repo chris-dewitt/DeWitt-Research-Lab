@@ -1,13 +1,43 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.12.0
+version: 4.13.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-19 — Paper II instrument, CFI-003 opening record, TR-2026-002 novelty scan
+
+- Added `research/cfi` (`drl-cfi`), the machine-side instrument for the Paper II
+  track: piecewise-linear payoff primitives with an exact equivalence oracle, a
+  Black-Scholes normative oracle with replication invariants, frame pairs that
+  cannot vary the payoff they describe, and arbitrage detection with minimal
+  coherence repair. Pure Python — no NumPy or SciPy dependency is added.
+  63 tests; strict mypy clean.
+- Coherence detection, repair, repair distance, and the exploiting portfolio all
+  derive from one projection onto the closed cone `{A q : q >= 0}`, implemented
+  as Lawson-Hanson NNLS over a Householder QR least-squares core. Two bounds are
+  documented rather than hidden: a weak arbitrage on the cone boundary reports as
+  coherent, and non-negativity is certified only across the spanned state grid.
+- Recorded the opening CFI-003 candidate-data rights register (DRL-RES-007). Two
+  CPC18 records verified as CC BY 4.0; choices13k carries **no stated licence**
+  and is marked `BLOCKED_RIGHTS`. No dataset was downloaded and G2 stays closed.
+- The register's material finding is construct validity, not licensing: all three
+  candidates record numeric gamble choices with no payoff-preserving linguistic
+  frame and no elicited valuation, so the cleanly licensed ones are still
+  probably unfit for Paper II's human baseline.
+- Recorded a preliminary novelty scan for TR-2026-002 (DRL-RES-008), which had
+  never had one. Seven records examined, four verified. The leaderboard critique
+  is established background, and executable refusing gates already exist in
+  release management and self-improving runtimes, so the report is repositioned:
+  what may remain differentiable is selection-among-candidates combined with
+  non-performance admissibility conditions. The null result is untouched.
+- TR-2026-002 gains a related-work section carrying those findings and a pointer
+  to a better form for its weakest condition: a power-based resolution ratio in
+  place of the asserted `min_margin: 0.05`.
 
 ## 2026-08-19 — DIR-009 accepted; TR-2026-002 verification pass
 

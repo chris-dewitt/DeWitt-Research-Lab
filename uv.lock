@@ -11,6 +11,7 @@ members = [
     "balancelab-ai",
     "dewitt-research-laboratory",
     "drl-ai-core",
+    "drl-cfi",
     "drl-protocol",
     "evalforge-sdk",
     "evalforge-service",
@@ -235,6 +236,11 @@ requires-dist = [
     { name = "jsonschema", specifier = ">=4.0" },
     { name = "pyyaml", specifier = ">=6.0" },
 ]
+
+[[package]]
+name = "drl-cfi"
+version = "0.1.0"
+source = { editable = "research/cfi" }
 
 [[package]]
 name = "drl-protocol"

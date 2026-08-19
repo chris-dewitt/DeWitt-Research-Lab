@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC_ROOTS = (
     "packages/drl-protocol/src",
     "packages/drl-ai-core/src",
+    "research/cfi/src",
     "services/atlas/src",
     "services/fedlens/src",
     "services/balancelab-ai/src",

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-TR-2026-002
 title: "Technical Report TR-2026-002: Evidence-Gated Model Selection"
-version: 1.3.0
+version: 1.4.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
@@ -124,7 +124,7 @@ non-claims.
 - `models/bakeoff/task_suite.yaml` — the task suite
 - `models/bakeoff/candidates.yaml` — candidate register
 - `scripts/run_bakeoff.py` — CLI (`make bakeoff`)
-- `tests/test_bakeoff_harness.py` — 55 tests, the majority asserting the gate refuses
+- `tests/test_bakeoff_harness.py` — 63 tests, the majority asserting the gate refuses
 
 ## 4. Data rights and provenance
 
@@ -227,6 +227,22 @@ endpoint, and both are recorded here rather than quietly repaired.
 Neither defect changes §5: that run was fixture-mode and blocked on measurement
 provenance regardless. The eight-condition count in v1.0.0 is superseded by nine.
 
+**v1.4.0.** The harness now reports a paired resolution diagnostic alongside each
+decision: the number of tasks required to detect a `min_margin`-sized difference
+at alpha 0.05 and power 0.80, against the suite's effective task count. It is
+reported and never gating, for two reasons. The variance it needs cannot be
+estimated from fixture runs, where every scripted provider shares one script and
+the paired differences are identically zero — the diagnostic says exactly that
+rather than inventing a number. And converting it to a blocking condition at the
+current `min_margin` would require roughly 70 to 500 tasks depending on the real
+variance, against a suite of 12. That is a suite-expansion decision, not a
+threshold edit, and it belongs to the Director.
+
+The asymmetry is worth stating plainly: the margin gate asks whether the observed
+gap clears a threshold, and cannot ask whether a gap that size is detectable at
+all. A suite can pass the first while having no power to support it. The
+diagnostic closes that blind spot in reporting without silently closing the gate.
+
 **v1.2.0.** A third defect, found while re-verifying §5 against a live run of the
 harness. It is in the suite rather than the gate, and it is the reason the `edge`
 coverage blocker in §5 is not a transient state.
@@ -284,17 +300,34 @@ non-performance admissibility — measurement provenance, revision pinning, and
 licence clearance. Both records above lack all three. That is a narrow claim and
 it stays a hypothesis until a real nearest-neighbour search tests it.
 
-**The margin condition has a known better form.** *Resolution Diagnostics for
-Paired LLM Evaluation* (Kotawala, 2026, arXiv:2605.30315) frames paired
-evaluation as hypothesis testing and reports a power-based resolution ratio,
-which is the analysis §6 admits this report's thresholds lack. Replacing the
-asserted `min_margin: 0.05` with a resolution condition is recommended in the
-scan and is a Director decision, not an editorial one.
+**The margin condition has a known better form, now partially adopted.**
+*Resolution Diagnostics for Paired LLM Evaluation* (Kotawala, 2026,
+arXiv:2605.30315) frames paired evaluation as hypothesis testing and reports a
+power-based resolution ratio, which is the analysis §6 admits this report's
+thresholds lack. As of v1.4.0 the harness computes and reports that ratio — see
+§10 — but does not yet gate on it. `min_margin` is unchanged at 0.05.
 
 None of this touches §5. The null result is that the gate refuses under the
 conditions it specifies, and it stands independently of what is novel about it.
 
-## 10. Related requirements
+## 10. Reported resolution diagnostic
+
+`paired_resolution` pairs the leader and runner-up task by task, treats the
+per-task score differences as independent draws with common variance, and
+inverts the standard paired test at alpha 0.05 and power 0.80. It targets the
+gate's own `min_margin` rather than the observed gap, since powering a test on
+the effect just measured is circular.
+
+The independence assumption is the weak point and is stated in the code: tasks
+drawn from one category are unlikely to be independent, so the requirement is
+optimistic and should be read as a floor. The effective task count uses the Kish
+correction, so unequal task weights reduce it below the raw count.
+
+On the current fixture register it reports `Undetermined` for both roles, naming
+the zero-variance cause. That is the correct output and is itself the argument
+for not gating on it yet.
+
+## 11. Related requirements
 
 - `DIR-004` — Atticus Core and Edge model selection; open by construction
 - `DRL-012` — bake-off scaffold and candidate register

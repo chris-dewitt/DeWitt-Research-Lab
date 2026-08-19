@@ -8,6 +8,7 @@ declare one and check that it won't.
 
 from __future__ import annotations
 
+import statistics
 from pathlib import Path
 from typing import Any
 
@@ -32,6 +33,7 @@ from drl_ai_core.bakeoff_harness import (
     build_live_providers,
     license_is_cleared,
     load_candidates,
+    paired_resolution,
     summarise_blockers,
 )
 from drl_ai_core.providers import (
@@ -578,3 +580,140 @@ class TestLiveProviderWiring:
         decision = select_winner("core", runs, register)
         assert decision.selected is None
         assert any("required to compare" in b for b in decision.blockers)
+
+
+# --------------------------------------------------------------------------- #
+# Resolution diagnostic (reported, never gating)
+# --------------------------------------------------------------------------- #
+
+
+def _scored(scores: list[float], *, weights: list[float] | None = None) -> list[TaskResult]:
+    """Build per-task results with explicit scores so pairing is predictable."""
+    resolved = weights if weights is not None else [1.0] * len(scores)
+    return [
+        TaskResult(
+            task_id=f"t{index}",
+            category="routing",
+            passed=score >= 1.0,
+            score=score,
+            latency_ms=10.0,
+            weight=resolved[index],
+            safety_critical=False,
+        )
+        for index, score in enumerate(scores)
+    ]
+
+
+def test_resolution_is_undetermined_when_candidates_share_a_script() -> None:
+    """Fixture providers give identically zero differences, so variance is unestimable."""
+    leader = _run("a", _scored([1.0, 0.5, 0.0, 1.0]))
+    runner_up = _run("b", _scored([1.0, 0.5, 0.0, 1.0]))
+
+    diagnostic = paired_resolution(leader, runner_up, 0.05)
+
+    assert diagnostic is not None
+    assert diagnostic.sigma == 0.0
+    assert diagnostic.required_tasks is None
+    assert diagnostic.resolution_ratio is None
+    assert diagnostic.is_resolved is None
+    assert diagnostic.note is not None
+    assert "variance cannot be estimated" in diagnostic.note
+
+
+def test_resolution_matches_the_closed_form_requirement() -> None:
+    """N* = (z_alpha + z_power)^2 * sigma^2 / delta^2, computed independently here."""
+    leader = _run("a", _scored([1.0, 1.0, 0.0, 0.0, 1.0, 0.0]))
+    runner_up = _run("b", _scored([0.0, 1.0, 1.0, 0.0, 0.0, 1.0]))
+
+    diagnostic = paired_resolution(leader, runner_up, 0.10)
+
+    assert diagnostic is not None
+    differences = [1.0, 0.0, -1.0, 0.0, 1.0, -1.0]
+    expected_sigma = statistics.stdev(differences)
+    z_alpha = statistics.NormalDist().inv_cdf(0.975)
+    z_power = statistics.NormalDist().inv_cdf(0.80)
+    expected_required = ((z_alpha + z_power) ** 2) * expected_sigma**2 / 0.10**2
+
+    assert diagnostic.sigma == pytest.approx(expected_sigma)
+    assert diagnostic.required_tasks == pytest.approx(expected_required)
+    assert diagnostic.resolution_ratio == pytest.approx(6.0 / expected_required)
+
+
+def test_a_small_suite_is_reported_as_unresolved() -> None:
+    """Six noisy tasks cannot resolve a 0.05 gap, and the diagnostic must say so."""
+    leader = _run("a", _scored([1.0, 1.0, 0.0, 0.0, 1.0, 0.0]))
+    runner_up = _run("b", _scored([0.0, 1.0, 1.0, 0.0, 0.0, 1.0]))
+
+    diagnostic = paired_resolution(leader, runner_up, 0.05)
+
+    assert diagnostic is not None
+    assert diagnostic.required_tasks is not None
+    assert diagnostic.required_tasks > 100
+    assert diagnostic.is_resolved is False
+
+
+def test_resolution_uses_the_effective_sample_size_under_unequal_weights() -> None:
+    """A weighted mean of n values has the precision of fewer equally weighted ones."""
+    leader = _run("a", _scored([1.0, 0.0, 1.0]))
+    runner_up = _run("b", _scored([0.0, 1.0, 0.0]))
+    equal = paired_resolution(leader, runner_up, 0.10)
+
+    heavy = _run("a", _scored([1.0, 0.0, 1.0], weights=[9.0, 1.0, 1.0]))
+    light = _run("b", _scored([0.0, 1.0, 0.0], weights=[9.0, 1.0, 1.0]))
+    skewed = paired_resolution(heavy, light, 0.10)
+
+    assert equal is not None and skewed is not None
+    assert equal.effective_tasks == pytest.approx(3.0)
+    assert skewed.effective_tasks < equal.effective_tasks
+
+
+def test_resolution_needs_at_least_two_paired_tasks() -> None:
+    assert paired_resolution(_run("a", _scored([1.0])), _run("b", _scored([0.0])), 0.05) is None
+
+
+def test_resolution_pairs_only_tasks_both_candidates_ran() -> None:
+    leader = _run("a", _scored([1.0, 0.0, 1.0]))
+    runner_up = _run("b", _scored([0.0, 1.0]))  # t0 and t1 only
+
+    diagnostic = paired_resolution(leader, runner_up, 0.10)
+
+    assert diagnostic is not None
+    assert diagnostic.paired_tasks == 2
+
+
+def test_resolution_does_not_change_the_selection_outcome() -> None:
+    """The diagnostic is reported context; it must never add or remove a blocker."""
+    register = {
+        "a": _register_row("a"),
+        "b": _register_row("b"),
+    }
+    leader = _run("a", _scored([1.0] * 10))
+    runner_up = _run("b", _scored([0.0] * 10))
+
+    decision = select_winner("core", [leader, runner_up], register)
+
+    assert decision.resolution is not None
+    # Whatever the resolution says, it contributes no blocker text of its own.
+    assert not any("resolution" in blocker.lower() for blocker in decision.blockers)
+    assert not any("resolve" in blocker.lower() for blocker in decision.blockers)
+
+
+def test_resolution_serialises_into_the_decision_dict() -> None:
+    leader = _run("a", _scored([1.0, 0.0, 1.0, 0.0]))
+    runner_up = _run("b", _scored([0.0, 1.0, 0.0, 1.0]))
+    register = {"a": _register_row("a"), "b": _register_row("b")}
+
+    payload = select_winner("core", [leader, runner_up], register).as_dict()
+
+    assert "resolution" in payload
+    assert payload["resolution"] is not None
+    assert set(payload["resolution"]) == {
+        "paired_tasks",
+        "effective_tasks",
+        "sigma",
+        "target_delta",
+        "required_tasks",
+        "resolution_ratio",
+        "is_resolved",
+        "note",
+    }

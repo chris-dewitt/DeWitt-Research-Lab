@@ -99,8 +99,15 @@ paper finds the common unpaired Cohen-h shortcut off by roughly a factor of two
 in exactly the close-comparison regime a margin gate operates in — which is the
 regime where two candidates tie.
 
-This is recorded as a recommendation. Changing a gate threshold is a material
-change to the instrument and belongs to the Director, not to this scan.
+**Adopted in part on 2026-08-19.** The Director approved reporting the resolution
+ratio as a diagnostic now and deferring any gating decision until a hardware run
+establishes the variance. `min_margin` is unchanged at 0.05. See TR-2026-002 §10.
+
+The deferral is not caution for its own sake. Gating on resolution at the current
+margin would demand roughly 70 to 500 tasks depending on the real variance,
+against a 12-task suite — a suite-expansion decision rather than a threshold
+edit. And the variance cannot be estimated at all from fixture runs, so the
+condition has no input to work from until real models are measured.
 
 ## 6. Limitations and non-claims
 
@@ -119,5 +126,6 @@ change to the instrument and belongs to the Director, not to this scan.
 1. Run a real nearest-neighbour search against C4+C5 before any novelty language
    enters the report.
 2. Open the three unverified records in §3.
-3. Director decides on the `min_margin` recommendation in §5.
+3. ~~Director decides on the `min_margin` recommendation in §5.~~ Done
+   2026-08-19: reported as a diagnostic, gating deferred to a hardware run.
 4. Reframe TR-2026-002 §1 and its abstract so C1 reads as cited background.

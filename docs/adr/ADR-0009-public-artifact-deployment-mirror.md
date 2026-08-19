@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ADR-0009
 title: "Use a Separate Public Repository for Sanitized Deployment Artifacts"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-05
+last_updated: 2026-08-19
 ---
 
 # ADR-0009: Use a separate public repository for sanitized deployment artifacts
@@ -24,7 +24,7 @@ model, cloud account, or private data.
 
 ## Decision
 
-Use the public repository `chris-dewitt/DeWitt-Research-Artifacts` as a
+Use the public repository `chris-dewitt/dewitt-research-artifacts` as a
 deployment-only mirror for sanitized portfolio evidence.
 
 The private repository remains the only preferred modification source and the
@@ -84,7 +84,7 @@ approved public-release state and the allowlist is deliberately amended.
 - No credential, private trace, employer data, user content, model secret, or
   unrestricted repository file may enter the export.
 - The fine-grained token receives contents write only for
-  `DeWitt-Research-Artifacts` and is stored only as a private-repository Actions
+  `dewitt-research-artifacts` and is stored only as a private-repository Actions
   secret named `PUBLIC_ARTIFACT_TOKEN`.
 - The replay renderer is DRL-authored Apache-2.0 software; rendered narrative
   and replay content are distributed under CC-BY-4.0. The public mirror states

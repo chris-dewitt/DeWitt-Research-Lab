@@ -1,10 +1,10 @@
 ---
 document_id: DRL-OSS-022
 title: "Public Artifact Publication Boundary"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-05
+last_updated: 2026-08-19
 ---
 
 # Public Artifact Publication Boundary
@@ -20,7 +20,7 @@ repository early or to publish an unreviewed directory wholesale.
 | Surface | Visibility | Authority | Purpose |
 |---|---|---|---|
 | `chris-dewitt/DeWitt-Research-Lab` | Private through 2026-09-30 | Authoritative preferred source | Code, controlled documents, signed replay fixtures, tests, build policy |
-| `chris-dewitt/DeWitt-Research-Artifacts` | Public | Generated deployment mirror only | Sanitized static pages, release manifest, hashes, public limitations |
+| `chris-dewitt/dewitt-research-artifacts` | Public | Generated deployment mirror only | Sanitized static pages, release manifest, hashes, public limitations |
 | `www.dewitt-labs.com` | Public | Canonical academic portfolio | Personal introduction and links to approved evidence |
 
 The deployment mirror is not a second development repository. Direct edits to
@@ -57,7 +57,7 @@ public repository. A public write requires all of the following:
    limitations, contact, and active open exception;
 5. the workflow is manually dispatched with `publish=true`;
 6. `PUBLIC_ARTIFACT_TOKEN` is a fine-grained credential restricted to contents
-   write on `DeWitt-Research-Artifacts`;
+   write on `dewitt-research-artifacts`;
 7. post-deployment read-back confirms the public URL and file hashes.
 
 Research papers are not implicitly covered by the replay allowlist. Adding a

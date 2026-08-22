@@ -46,7 +46,7 @@ def test_release_contains_only_allowlisted_content_and_public_envelope(
     assert manifest["lifecycle_state"] == "experimental"
     assert manifest["contact"] == "director@dewitt-labs.com"
     assert manifest["source_revision"] == SOURCE_SHA
-    assert manifest["target_repository"] == "chris-dewitt/DeWitt-Research-Artifacts"
+    assert manifest["target_repository"] == "chris-dewitt/dewitt-research-artifacts"
     assert manifest["open_exception"]["exception_id"] == "DRL-OEX-0001"
     assert manifest["licenses"] == {
         "renderer_software": "Apache-2.0",
@@ -128,5 +128,5 @@ def test_workflow_builds_on_push_but_publishes_only_on_manual_dispatch() -> None
     assert "github.ref != 'refs/heads/main'" in workflow
     assert "github.ref == 'refs/heads/main'" in workflow
     assert "secrets.PUBLIC_ARTIFACT_TOKEN" in workflow
-    assert "chris-dewitt/DeWitt-Research-Artifacts" in workflow
+    assert "chris-dewitt/dewitt-research-artifacts" in workflow
     assert "rsync -a --delete --exclude='.git'" in workflow

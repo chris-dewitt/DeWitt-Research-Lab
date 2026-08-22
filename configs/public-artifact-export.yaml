@@ -1,8 +1,8 @@
 schema_version: 1.0.0
 owner: Release QA
-target_repository: chris-dewitt/DeWitt-Research-Artifacts
+target_repository: chris-dewitt/dewitt-research-artifacts
 target_branch: main
-pages_url: https://chris-dewitt.github.io/DeWitt-Research-Artifacts/
+pages_url: https://chris-dewitt.github.io/dewitt-research-artifacts/
 canonical_portfolio_url: https://www.dewitt-labs.com
 contact: director@dewitt-labs.com
 publication_mode: manual_dispatch

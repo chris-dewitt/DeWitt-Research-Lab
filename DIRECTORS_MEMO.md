@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.13.0
+version: 1.14.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-17
+last_updated: 2026-08-19
 ---
 
 # Director's Decision and Escalation Ledger
@@ -99,7 +99,7 @@ the Director's approval.
 | RES-018 | Use `chris-dewitt/DeWitt-Research-Lab` as the permanent Director-owned repository; keep it private through 2026-09-30 and do not enable GitHub branch protection or rulesets. | The Director | 2026-08-05 | The former `DeWitt-Research-Lab-Foundation` slug is retired. Public-readiness work targets the end of September. Feature branches, review, tests, and handoffs remain policy requirements even though GitHub does not technically enforce them. |
 | RES-019 | Use `director@dewitt-labs.com` as the only public contact address. | The Director | 2026-08-05 | Portfolio contact, research inquiries, employment or academic inquiries, and responsible security reports all route to the same address. Agents must not invent or recommend additional public aliases unless the Director reopens the decision. |
 | RES-020 | Approve DIR-008 Option A for the CFI program. | The Director | 2026-08-05 | Narrow Paper II into the first flagship; treat Dutch-book repair as a baseline rather than the contribution; authorize bounded re-scoping of Paper I around active information acquisition and Paper III around identifiable coupled belief dynamics or registered replication. No experiment bypasses independent G1 review. |
-| RES-021 | Publish sanitized display artifacts from a separate public repository while the authoritative research repository remains private. | The Director | 2026-08-05 | `chris-dewitt/DeWitt-Research-Artifacts` is the approved public deployment mirror. Only generated files admitted by the publication allowlist may be exported. The first artifact is the experimental replay viewer; papers require separate release approval and allowlist changes. ADR-0009 governs the boundary. |
+| RES-021 | Publish sanitized display artifacts from a separate public repository while the authoritative research repository remains private. | The Director | 2026-08-05 | `chris-dewitt/dewitt-research-artifacts` is the approved public deployment mirror (live GitHub slug; GitHub equates earlier Title-Case references). Only generated files admitted by the publication allowlist may be exported. The first artifact is the experimental replay viewer; papers require separate release approval and allowlist changes. ADR-0009 governs the boundary. |
 | RES-022 | Accept the historical UNC email address in Git author metadata; do not rewrite history. | The Director | 2026-08-19 | **Resolves DIR-009 as Option B, against the recommendation recorded there.** The commits carrying the UNC address in author metadata keep it, and their SHAs are preserved. The count is ref-dependent and drifts as branches merge and are deleted — DIR-009 recorded 16, and 15 are reachable from the current ref set — so the audit reports a measured count rather than a fixed one. The disclosure is a personal academic address already associated with the Director's public identity under RES-016, and the Director judges it not worth invalidating every published SHA, coordinating open branches, and force-pushing shared history. New commits continue to use the GitHub no-reply address, so the exposure does not grow. RES-019 is unaffected: `director@dewitt-labs.com` remains the only *published* contact, and no document, site page, or artifact may present the UNC address as a contact route. DIR-009 no longer blocks public visibility. |
 
 ## Current blockers
@@ -113,9 +113,12 @@ the Director's approval.
 - CFI-002 found contribution-level collisions with current primary work.
   RES-020 resolves the Director disposition, but independent G1 review and the
   bounded re-scoping packets remain required before experiments proceed.
-- The public artifact repository, Pages source, and cross-repository publishing
-  credential are not configured yet. No artifact is live until DRL-033 records
-  the exact public URL and a read-back of the deployed files.
+- The public artifact repository
+  `chris-dewitt/dewitt-research-artifacts` exists and is public with a `main`
+  branch (created 2026-08-19). GitHub Pages is not enabled yet, and the
+  cross-repository `PUBLIC_ARTIFACT_TOKEN` secret is not configured. No
+  artifact is live until DRL-033 records the exact public URL and a read-back
+  of the deployed files.
 - Some reachable commits expose a UNC email address in Git author metadata
   (16 when DIR-009 was raised; 15 reachable today — the figure moves with the
   ref set). Accepted by RES-022 as a known, deliberate disclosure; no history
@@ -138,7 +141,8 @@ Wix site. Signed success/degraded replay fixtures exist as prototype packages
 The original same-repository GitHub Pages build succeeded at `1feda7f`, but
 deployment was rejected because the canonical repository is private on a plan
 without private-repository Pages. RES-021 approves a separate allowlisted public
-deployment mirror; it is not yet live.
+deployment mirror; the public repository now exists, but Pages and the publish
+token are still outstanding, so no artifact is live.
 
 ## Release check
 

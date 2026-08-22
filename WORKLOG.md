@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.23.0
+version: 4.24.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-17
+last_updated: 2026-08-19
 ---
 
 
@@ -25,8 +25,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-002 (GCP deploy), DIR-004 (model bake-off; scaffold only —
-  no winner), DIR-009 (Git-history author metadata), independent CFI G1 review,
-  and final public-artifact deployment read-back.
+  no winner), independent CFI G1 review, and final public-artifact deployment
+  read-back (Pages + `PUBLIC_ARTIFACT_TOKEN`). DIR-009 is resolved by RES-022.
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
@@ -56,6 +56,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 15 / DRL-031 | Codex | `lovesong/research/drl-031-computational-finance-intelligence` | 2026-08-05T17:00:00Z | MERGED DIRECT | Director-approved `402bf9c` |
 | 15 / DRL-032 / CFI-002 | Codex | `lovesong/research/drl-032-cfi-literature-novelty` | 2026-08-05T23:20:00Z | BLOCKED — independent G1 review after RES-020 | — |
 | 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | MERGED — DEPLOYMENT READ-BACK PENDING | PR #45; `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
+| 14 / DRL-033 follow-up | Cursor cloud agent | `cursor/drl-033-artifacts-repo-live-d422` | 2026-08-19T03:20:00Z | IN REVIEW — PUBLIC REPO LIVE; PAGES + TOKEN PENDING | PR #48; `agents/handoffs/2026-08-19-drl-033-artifacts-repo-live.md` |
 | 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
 
 ## Active scope — DRL-034 public repository readiness
@@ -83,6 +84,12 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   only cross-repository publication; public repository and Pages configuration;
   deployed file/hash read-back; validators, secret scan, PR evidence, and
   handoff. Papers remain excluded until separately approved.
+- Progress (2026-08-19): public repository
+  `chris-dewitt/dewitt-research-artifacts` exists (public, `main`). Configs and
+  workflow now use the live GitHub slug. Remaining Director actions: enable
+  Pages from `main` at `/`, create fine-grained `PUBLIC_ARTIFACT_TOKEN`, store
+  it on the private repo, then `workflow_dispatch` with `publish=true` and
+  hash read-back.
 
 ## Active scope — DRL-021 documentation cleanup
 

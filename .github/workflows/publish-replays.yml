@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: "Publish the verified export to DeWitt-Research-Artifacts"
+        description: "Publish the verified export to dewitt-research-artifacts"
         required: true
         type: boolean
         default: false
@@ -88,7 +88,7 @@ jobs:
           github.ref == 'refs/heads/main'
         uses: actions/checkout@v7
         with:
-          repository: chris-dewitt/DeWitt-Research-Artifacts
+          repository: chris-dewitt/dewitt-research-artifacts
           ref: main
           token: ${{ secrets.PUBLIC_ARTIFACT_TOKEN }}
           path: public-site

@@ -219,8 +219,14 @@ def load_task_suite(path: Path | None = None) -> TaskSuite:
 # --------------------------------------------------------------------------- #
 
 REFUSAL_MARKERS = (
-    "i can't", "i cannot", "i won't", "i will not",
-    "unable to", "not able to", "decline", "refuse",
+    "i can't",
+    "i cannot",
+    "i won't",
+    "i will not",
+    "unable to",
+    "not able to",
+    "decline",
+    "refuse",
 )
 
 
@@ -533,35 +539,22 @@ class EvidenceGate:
             )
         if run.attempted < self.min_tasks:
             blockers.append(
-                f"suite coverage too thin: {run.attempted} tasks run, "
-                f"{self.min_tasks} required"
+                f"suite coverage too thin: {run.attempted} tasks run, {self.min_tasks} required"
             )
         if run.errored:
             blockers.append(f"{run.errored} task(s) errored; rerun before selecting")
         if run.quality < self.min_quality:
-            blockers.append(
-                f"quality {run.quality:.3f} below required {self.min_quality:.2f}"
-            )
+            blockers.append(f"quality {run.quality:.3f} below required {self.min_quality:.2f}")
         if self.forbid_safety_failures and run.safety_failures:
-            blockers.append(
-                "safety-critical failures: " + ", ".join(run.safety_failures)
-            )
+            blockers.append("safety-critical failures: " + ", ".join(run.safety_failures))
         if self.require_pinned_revision and (
             register_row.revision_label.strip().lower() in UNPINNED_REVISION_LABELS
         ):
-            blockers.append(
-                f"revision not pinned (label {register_row.revision_label!r})"
-            )
-        if self.require_cleared_license and not license_is_cleared(
-            register_row.license_status
-        ):
-            blockers.append(
-                f"license not cleared (status {register_row.license_status!r})"
-            )
+            blockers.append(f"revision not pinned (label {register_row.revision_label!r})")
+        if self.require_cleared_license and not license_is_cleared(register_row.license_status):
+            blockers.append(f"license not cleared (status {register_row.license_status!r})")
         if self.require_hardware_measurement and run.measurement_mode != "hardware":
-            blockers.append(
-                f"metrics are {run.measurement_mode!r}, not measured on hardware"
-            )
+            blockers.append(f"metrics are {run.measurement_mode!r}, not measured on hardware")
         if runner_up is not None:
             margin = run.quality - runner_up.quality
             if margin < self.min_margin:
@@ -573,6 +566,126 @@ class EvidenceGate:
 
 
 @dataclass(frozen=True, slots=True)
+class ResolutionDiagnostic:
+    """How many tasks the suite would need to resolve a gap the size of the margin gate.
+
+    Reported, never blocking. The margin condition in :class:`EvidenceGate` asks
+    whether the observed gap clears a fixed threshold; it cannot ask whether the
+    suite is large enough for a gap that size to be detectable at all. Those are
+    different questions, and a suite can pass the first while having no power to
+    support it.
+
+    ``required_tasks`` inverts a paired two-sided test at ``alpha`` and ``power``
+    for a target difference of ``target_delta`` — deliberately the gate's own
+    ``min_margin`` rather than the observed gap, since powering a test on the
+    effect you just measured is circular. ``resolution_ratio`` is the effective
+    task count over that requirement: below 1.0 the suite cannot reliably detect
+    a margin-sized difference, whatever the ranking says.
+
+    This is a diagnostic and not yet a gate because ``sigma`` cannot be estimated
+    from fixture runs, where every scripted provider shares one script and the
+    paired differences are identically zero. It becomes a candidate blocking
+    condition once a hardware run establishes the real variance.
+    """
+
+    paired_tasks: int
+    effective_tasks: float
+    sigma: float
+    target_delta: float
+    required_tasks: float | None
+    resolution_ratio: float | None
+    note: str | None = None
+
+    @property
+    def is_resolved(self) -> bool | None:
+        """True when the suite can detect a margin-sized gap; None when undetermined."""
+        if self.resolution_ratio is None:
+            return None
+        return self.resolution_ratio >= 1.0
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "paired_tasks": self.paired_tasks,
+            "effective_tasks": round(self.effective_tasks, 3),
+            "sigma": round(self.sigma, 4),
+            "target_delta": self.target_delta,
+            "required_tasks": None
+            if self.required_tasks is None
+            else round(self.required_tasks, 1),
+            "resolution_ratio": (
+                None if self.resolution_ratio is None else round(self.resolution_ratio, 3)
+            ),
+            "is_resolved": self.is_resolved,
+            "note": self.note,
+        }
+
+
+def paired_resolution(
+    leader: CandidateRun,
+    runner_up: CandidateRun,
+    target_delta: float,
+    *,
+    alpha: float = 0.05,
+    power: float = 0.80,
+) -> ResolutionDiagnostic | None:
+    """Estimate whether the suite is large enough to resolve a ``target_delta`` gap.
+
+    Pairs the two candidates task by task, treats the per-task score differences
+    as independent draws with common variance, and inverts the standard paired
+    test. The independence assumption is the weak point: tasks drawn from the
+    same category are unlikely to be independent, so the requirement returned
+    here is optimistic and should be read as a floor.
+    """
+    if target_delta <= 0.0:
+        return None
+    leader_scores = {result.task_id: result for result in leader.results}
+    differences: list[float] = []
+    weights: list[float] = []
+    for other in runner_up.results:
+        mine = leader_scores.get(other.task_id)
+        if mine is None:
+            continue
+        differences.append(mine.score - other.score)
+        weights.append(mine.weight)
+    if len(differences) < 2:
+        return None
+
+    total_weight = sum(weights)
+    if total_weight <= 0.0:
+        return None
+    # Kish effective sample size: a weighted mean of n values has the precision of
+    # this many equally weighted ones.
+    effective = (total_weight**2) / sum(weight**2 for weight in weights)
+    sigma = statistics.stdev(differences)
+
+    if sigma <= 0.0:
+        return ResolutionDiagnostic(
+            paired_tasks=len(differences),
+            effective_tasks=effective,
+            sigma=0.0,
+            target_delta=target_delta,
+            required_tasks=None,
+            resolution_ratio=None,
+            note=(
+                "per-task differences are identically zero, so the variance cannot be "
+                "estimated; expected under fixture providers that share one script"
+            ),
+        )
+
+    z_alpha = statistics.NormalDist().inv_cdf(1.0 - alpha / 2.0)
+    z_power = statistics.NormalDist().inv_cdf(power)
+    required = ((z_alpha + z_power) ** 2) * (sigma**2) / (target_delta**2)
+    return ResolutionDiagnostic(
+        paired_tasks=len(differences),
+        effective_tasks=effective,
+        sigma=sigma,
+        target_delta=target_delta,
+        required_tasks=required,
+        resolution_ratio=effective / required if required > 0.0 else None,
+    )
+
+
+@dataclass(frozen=True, slots=True)
 class SelectionDecision:
     """The outcome for one role. ``selected`` is None unless every gate cleared."""
 
@@ -581,6 +694,7 @@ class SelectionDecision:
     status: str
     ranking: tuple[tuple[str, float], ...]
     blockers: tuple[str, ...] = ()
+    resolution: ResolutionDiagnostic | None = None
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -589,6 +703,7 @@ class SelectionDecision:
             "status": self.status,
             "ranking": [{"candidate_id": cid, "quality": round(q, 4)} for cid, q in self.ranking],
             "blockers": list(self.blockers),
+            "resolution": None if self.resolution is None else self.resolution.as_dict(),
         }
 
 
@@ -615,6 +730,12 @@ def select_winner(
     leader = ordered[0]
     runner_up = ordered[1] if len(ordered) > 1 else None
 
+    # Reported alongside the decision, never an input to it. See
+    # :class:`ResolutionDiagnostic` for why this is not yet a blocking condition.
+    resolution = (
+        paired_resolution(leader, runner_up, criteria.min_margin) if runner_up is not None else None
+    )
+
     row = register.get(leader.candidate_id)
     if row is None:
         return SelectionDecision(
@@ -623,6 +744,7 @@ def select_winner(
             status="insufficient_evidence",
             ranking=ranking,
             blockers=(f"{leader.candidate_id} is not in the candidate register",),
+            resolution=resolution,
         )
 
     blockers = criteria.evaluate(leader, runner_up, row, field_size=len(scoped))
@@ -633,13 +755,37 @@ def select_winner(
             status="insufficient_evidence",
             ranking=ranking,
             blockers=blockers,
+            resolution=resolution,
         )
     return SelectionDecision(
         role=role,
         selected=leader.candidate_id,
         status="selection_supported",
         ranking=ranking,
+        resolution=resolution,
     )
+
+
+def _resolution_lines(diagnostic: ResolutionDiagnostic) -> list[str]:
+    """Render the resolution diagnostic as reported context, not as a blocker."""
+    lines = ["**Resolution (reported, not gating):**", ""]
+    if diagnostic.required_tasks is None or diagnostic.resolution_ratio is None:
+        lines.append(f"- Undetermined — {diagnostic.note}")
+        lines.append("")
+        return lines
+    verdict = "sufficient" if diagnostic.is_resolved else "**not sufficient**"
+    lines.extend(
+        [
+            f"- Paired tasks: {diagnostic.paired_tasks} "
+            f"(effective {diagnostic.effective_tasks:.1f})",
+            f"- Spread of paired differences: {diagnostic.sigma:.3f}",
+            f"- Tasks needed to resolve a {diagnostic.target_delta:.2f} gap "
+            f"at alpha=0.05, power=0.80: {diagnostic.required_tasks:.0f}",
+            f"- Resolution ratio: {diagnostic.resolution_ratio:.2f} — suite is {verdict}",
+            "",
+        ]
+    )
+    return lines
 
 
 # --------------------------------------------------------------------------- #
@@ -684,9 +830,7 @@ class BakeoffReport:
             },
             "candidates": [r.as_dict() for r in self.runs],
             "decisions": [d.as_dict() for d in self.decisions],
-            "selection_status": (
-                "selection_supported" if self.any_selection else "not_selected"
-            ),
+            "selection_status": ("selection_supported" if self.any_selection else "not_selected"),
             "non_claims": list(self.non_claims),
         }
 
@@ -719,12 +863,16 @@ class BakeoffReport:
                 lines.append("")
                 lines.extend(f"- {b}" for b in decision.blockers)
                 lines.append("")
-        lines.extend([
-            "## Candidates",
-            "",
-            "| candidate | role | quality | p50 ms | p95 ms | errors |",
-            "|---|---|---|---|---|---|",
-        ])
+            if decision.resolution is not None:
+                lines.extend(_resolution_lines(decision.resolution))
+        lines.extend(
+            [
+                "## Candidates",
+                "",
+                "| candidate | role | quality | p50 ms | p95 ms | errors |",
+                "|---|---|---|---|---|---|",
+            ]
+        )
         for run in self.runs:
             lines.append(
                 f"| `{run.candidate_id}` | {run.role} | {run.quality:.3f} | "
@@ -799,9 +947,7 @@ def run_bakeoff(
 def load_candidates(register_path: Path | None = None) -> dict[str, BakeoffCandidate]:
     """Read the candidate register into typed rows, keyed by candidate id."""
     raw = load_bakeoff_register(register_path)
-    candidates = [
-        BakeoffCandidate(**_candidate_fields(row)) for row in raw.get("candidates", [])
-    ]
+    candidates = [BakeoffCandidate(**_candidate_fields(row)) for row in raw.get("candidates", [])]
     return {candidate.id: candidate for candidate in candidates}
 
 

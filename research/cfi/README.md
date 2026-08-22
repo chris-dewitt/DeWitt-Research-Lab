@@ -69,12 +69,17 @@ grid, so the terminal slope is reported separately via
 
 `COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md` §11 sketches a `research/cfi/` tree
 with `shared/` and per-paper directories, and says an implementation agent may
-create it "in a focused issue after CFI-004 is approved." CFI-004 is not
-approved, and this package was created at the Director's direct instruction
-ahead of that gate. The deviation is recorded here rather than left implicit:
-the Director should either ratify it or relocate the package. The flat module
-layout maps onto the sketched tree as shown in the table above and can be
-expanded into subpackages without changing the public API.
+create it "in a focused issue after CFI-004 is approved." This package was
+created at the Director's direct instruction ahead of that gate, and the
+deviation was **ratified by RES-023 on 2026-08-19**. CFI-004 approval is no
+longer a precondition for the package's existence.
+
+That ratification is scoped to layout only. CFI-004 still governs the
+belief-event schema work it was written for, and G2 (data rights) and G3
+(protocol freeze) are untouched — nothing here is cleared to acquire data or
+freeze an estimand. The flat module layout maps onto the sketched tree as shown
+in the table above and can be expanded into subpackages without changing the
+public API.
 
 ## Reproduction
 

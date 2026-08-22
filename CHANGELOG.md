@@ -1,13 +1,31 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.13.0
+version: 4.14.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-19 — Resolution diagnostic and the research/cfi ratification
+
+- Recorded **RES-023**, ratifying the `research/cfi` package created ahead of the
+  CFI-004 layout gate. Scoped to layout only: CFI-004 still governs the
+  belief-event schema work, and G2 and G3 are untouched.
+- The bake-off harness now reports a **paired resolution diagnostic** with each
+  decision — the tasks required to detect a `min_margin`-sized difference at
+  alpha 0.05 and power 0.80, against the suite's Kish-effective task count. It is
+  reported and never gating.
+- It is not a gate for two stated reasons. The variance cannot be estimated from
+  fixture runs, where every scripted provider shares one script and the paired
+  differences are identically zero; the diagnostic reports that rather than
+  inventing a number. And gating at the current `min_margin` would need roughly
+  70 to 500 tasks depending on real variance, against a suite of 12 — a
+  suite-expansion decision, not a threshold edit. `min_margin` stays at 0.05.
+- This adopts, in diagnostic form, the recommendation in DRL-RES-008 §5 drawn
+  from *Resolution Diagnostics for Paired LLM Evaluation* (arXiv:2605.30315).
 
 ## 2026-08-19 — Paper II instrument, CFI-003 opening record, TR-2026-002 novelty scan
 

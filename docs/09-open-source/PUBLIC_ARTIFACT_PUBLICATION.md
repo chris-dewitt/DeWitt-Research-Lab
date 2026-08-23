@@ -76,12 +76,21 @@ mechanical now stands between a draft and a reader.
 ## Serving the replay viewer
 
 `make replay-site` builds the viewer into `site/replays` — `index.html`,
-`success.html`, `degraded.html`, and `site.json`. With the repository public,
-GitHub Pages can serve those directly; no cross-repository publication step is
-involved. Any static HTTP server works equally well, with no GPU, account,
-database, or paid API required.
+`success.html`, `degraded.html`, and `site.json`. Any static HTTP server serves
+them, with no GPU, account, database, or paid API required.
 
-No Pages workflow is configured. Adding one is a follow-up decision.
+`.github/workflows/publish-pages.yml` publishes them to GitHub Pages on every
+push to `main` that touches the replay bundles, the renderer, the build script,
+or the workflow itself, and on manual dispatch. It is a restoration rather than
+a new design: the same workflow existed before and was correct, and failed only
+because Pages will not serve a private personal repository. Making the source
+public removed that constraint.
+
+The build verifies each bundle's manifest signature and artifact digests before
+rendering, so a tampered recording fails the workflow rather than being
+published under a claim of provenance it does not have. The signature remains a
+published demo HMAC — fixture integrity, not a production signing identity — and
+must not be described as one on the site or anywhere else.
 
 ## Licensing
 

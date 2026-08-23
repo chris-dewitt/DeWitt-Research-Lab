@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo local-models-check bakeoff bakeoff-json replay-site serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -16,6 +16,9 @@ demo:
 
 local-models-check:
 	uv run python scripts/check_local_ollama.py
+
+feeds-refresh:
+	uv run python scripts/refresh_public_feeds.py --print-changes
 
 bakeoff:
 	uv run python scripts/run_bakeoff.py

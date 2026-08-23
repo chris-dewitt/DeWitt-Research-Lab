@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.15.0
+version: 1.16.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-23
@@ -74,6 +74,7 @@ the Director's approval.
 | DIR-007 | Legal/brand | Does the RES-014 rename extend to the claimed trademarks? | `NOTICE`, `TRADEMARK_POLICY.md`, and `LICENSE-STRATEGY.md` still claim "DeWitt Research Laboratory" and `DRL` as marks. Renaming a claimed mark is not a copy edit: it abandons accrued use of the old name and restarts it under the new one. Retaining both is also valid — the old name can stay as a prior mark while the public identity moves. | Do not rewrite the legal documents on brand grounds alone. Either retain "DeWitt Research Laboratory" as a prior/legacy mark and add "DeWitt Research Workshop" alongside it, or take advice before consolidating. Ties to DIR-006. | Director decision required — legal documents deliberately left unrenamed |
 | DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | RESOLVED — RES-020; independent G1 review remains required |
 | DIR-009 | Repository privacy | Should 16 commits whose author metadata exposes a UNC email address be rewritten before the repository becomes public? | A: rewrite all affected reachable history to the GitHub no-reply address, coordinate every open branch, and force-push; this removes the address but changes commit SHAs. B: accept the historical disclosure and preserve commit identity; future commits already use the no-reply address. | Choose A before changing visibility because RES-019 establishes one public contact, but do not rewrite history without the Director's explicit approval. | RESOLVED — RES-022; Option B chosen against the recommendation |
+| DIR-010 | Public feeds | Which live sources may Atlas/FedLens ingest, and is Yahoo Finance allowed? | Official FRED + Treasury + Fed RSS (opt-in store) versus unofficial Yahoo/yfinance scrapes. Yahoo terms forbid unofficial bulk retrieval/redistribution. | Accept ADR-0010: official sources only; fixtures remain default/CI; Yahoo rejected. | IN REVIEW — ADR-0010 |
 
 ## Approved resolutions
 

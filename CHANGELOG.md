@@ -1,13 +1,23 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.18.0
+version: 4.19.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-23
 ---
 
 # Foundation Changelog
+
+## 2026-08-23 — Official public feed pipeline (opt-in)
+
+- `scripts/refresh_public_feeds.py` ingests FRED (CPI, DGS2, DGS10), Treasury
+  par yields, and Federal Reserve monetary-policy press RSS into
+  `data/public-feeds/`.
+- `ATTICUS_LIVE_DATA=1` points Atlas/FedLens at that store. Fixtures remain
+  the default. Yahoo Finance is not a source.
+- Atticus snapshot artifacts include `series_changes` (latest minus prior
+  print). **ADR-0010** / **DIR-010** are in review.
 
 ## 2026-08-23 — Local Atticus run records and integrated demo coverage
 

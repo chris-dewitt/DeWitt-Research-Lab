@@ -55,6 +55,12 @@ class FedLensService:
         corpus = load_fed_corpus(root)
         return cls([item.document for item in corpus.documents])
 
+    @classmethod
+    def from_feed_store(cls, root: Path) -> FedLensService:
+        from .live_store import documents_from_store
+
+        return cls(documents_from_store(root))
+
     @staticmethod
     def fixture_documents() -> list[FedDocument]:
         return [

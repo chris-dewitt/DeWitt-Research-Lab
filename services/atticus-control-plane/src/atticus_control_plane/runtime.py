@@ -23,9 +23,24 @@ from .registry import ToolRegistry
 from .tools import register_foundation_tools
 
 
-def build_m3_specialists() -> tuple[AtlasService, FedLensService, ScenarioEngine]:
-    """Compose M3 fixture specialists (Atlas adapter, FedLens corpus, BalanceLab)."""
+def live_data_enabled() -> bool:
+    """True when the operator opted into the official-feed store."""
+    return _flag("ATTICUS_LIVE_DATA")
 
+
+def feed_store_root() -> Path:
+    raw = os.environ.get("DRL_FEED_ROOT", "").strip()
+    return Path(raw) if raw else Path("data/public-feeds")
+
+
+def build_m3_specialists() -> tuple[AtlasService, FedLensService, ScenarioEngine]:
+    """Compose M3 specialists. Fixtures by default; live store if opted in."""
+
+    if live_data_enabled():
+        root = feed_store_root()
+        atlas = AtlasService.from_feed_store(root)
+        fedlens = FedLensService.from_feed_store(root)
+        return atlas, fedlens, ScenarioEngine()
     cache_root = Path(gettempdir()) / "drl-atlas-public-fixture-cache"
     atlas = AtlasService.from_public_adapter(
         PublicFixtureAdapter(cache=FileObservationCache(cache_root))
@@ -182,6 +197,8 @@ def build_runtime_from_env() -> AtticusOrchestrator:
     ``ATTICUS_MODEL_MAX_TOKENS``    output budget for the plan
     ``ATTICUS_MODEL_NO_STREAM``     fall back to one blocking request
     ``ATTICUS_MODEL_NO_THINKING``   ask a reasoning model to answer directly
+    ``ATTICUS_LIVE_DATA``           use the official-feed store instead of fixtures
+    ``DRL_FEED_ROOT``               store directory (default data/public-feeds)
     """
     model = os.environ.get("ATTICUS_MODEL", "").strip()
     if not model:

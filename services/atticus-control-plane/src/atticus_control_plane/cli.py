@@ -5,13 +5,14 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 from drl_protocol import TaskRequest, TaskResult
 
 from .model_planner import ModelPlanner
 from .run_record import write_run_record
-from .runtime import build_runtime_from_env
+from .runtime import build_runtime_from_env, live_data_enabled
 
 DEFAULT_OBJECTIVE = (
     "Using the latest available public inflation evidence and Federal Reserve "
@@ -23,7 +24,11 @@ DEFAULT_OBJECTIVE = (
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Run the local Atticus foundation demo")
     parser.add_argument("objective", nargs="?", default=DEFAULT_OBJECTIVE)
-    parser.add_argument("--as-of", default="2026-07-24")
+    parser.add_argument(
+        "--as-of",
+        default=None,
+        help="Point-in-time cutoff (default: fixture pin 2026-07-24, or today in live mode)",
+    )
     parser.add_argument("--public", action="store_true", help="Apply public-session policy")
     parser.add_argument("--json", action="store_true", help="Print the complete result as JSON")
     return parser
@@ -109,11 +114,14 @@ def render_human_report(
 
 def main() -> int:
     args = build_parser().parse_args()
+    as_of = args.as_of
+    if as_of is None:
+        as_of = date.today().isoformat() if live_data_enabled() else "2026-07-24"
     request = TaskRequest(
         task_id="atticus-demo",
         objective=args.objective,
         public_session=args.public,
-        as_of=args.as_of,
+        as_of=as_of,
     )
     runtime = build_runtime_from_env()
     result = runtime.run(request, progress=progress_to_stderr)

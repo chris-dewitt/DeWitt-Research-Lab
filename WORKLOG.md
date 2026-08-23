@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.27.0
+version: 4.28.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-23
@@ -150,6 +150,42 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-23 — GitHub Pages 404 diagnosed; deployment claim now verified
+
+- Symptom: `publish-pages` run 32661833466 was green end to end, `deploy-pages`
+  printed `Reported success!` and evaluated the environment URL as
+  `https://chris-dewitt.github.io/DeWitt-Research-Lab/`, and that URL answered
+  404. The repository is public and `has_pages` is `true`.
+- Diagnosis came from the body of the 404, not its status code. GitHub serves
+  two different pages under 404. This one reads **"File not found — the site
+  configured at this address does not contain the requested file"**, which is
+  the response for a site that exists and is empty. The other variant, "There
+  isn't a GitHub Pages site here", is the response when no site is configured.
+  The site is provisioned and serving; it has no `index.html`.
+- Cause: `publish-pages` has run exactly once, at 2026-08-23T19:37Z on
+  `c43241e4`, and the Pages site record was re-created after that. No
+  deployment has landed on the current record, so the current record is empty.
+  Nothing is wrong with the build: `scripts/build_replay_site.py` verified
+  locally on `main` writes `index.html`, `success.html`, `degraded.html`, and
+  `site.json` at the root of the uploaded path, and the workflow already
+  asserts all four are non-empty before upload.
+- The workflow's `push` trigger filters on the replay fixtures, the site
+  builder, and itself. None of those changed in the commits since, which is why
+  it did not re-run on its own. `workflow_dispatch` is the intended path and it
+  is enabled. An agent cannot dispatch it; the integration token returns 403
+  `Resource not accessible by integration`. This is a Director action.
+- Added a post-deploy verification step. `deploy-pages` reports that GitHub
+  accepted a deployment, which is a weaker claim than the edge serving it, and
+  the gap between those two claims is what cost this investigation its time.
+  The step polls the deployment's own `page_url` for a 200 over roughly two
+  minutes and fails the job with the settings check to perform if it never
+  arrives. A workflow that reports a publication it cannot observe is the same
+  unfalsifiable success this laboratory refuses in its evaluation gates.
+- Next: the Director runs `publish-pages` from the Actions tab on `main`. If
+  the new verification step goes red, the deployment is being accepted against
+  a stale site record and the Unpublish / re-enable cycle is the remedy; if it
+  goes green, the viewer has a live URL and the Wix embed can proceed.
 
 ### 2026-08-22 — RES-024 publish the source, retire the artifact mirror
 

@@ -67,3 +67,28 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # `deploy-pages` reports success when GitHub accepts the deployment, which
+      # is not the same claim as the edge serving it. On 2026-08-23 every job in
+      # this workflow was green while the published URL answered 404 with "the
+      # site configured at this address does not contain the requested file" —
+      # the Pages record had been re-created and nothing had been deployed onto
+      # it since. A workflow that reports a publication it cannot observe is
+      # exactly the failure this laboratory refuses elsewhere, so verify.
+      - name: Verify the published site is actually served
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -u
+          code=000
+          for attempt in 1 2 3 4 5 6; do
+            code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 "${PAGE_URL}" || echo 000)"
+            echo "attempt ${attempt}: ${PAGE_URL} -> ${code}"
+            if [ "${code}" = "200" ]; then
+              echo "the published site is serving"
+              exit 0
+            fi
+            sleep 20
+          done
+          echo "::error::${PAGE_URL} never returned 200 (last status ${code}). The deployment was accepted but the site is not being served. Check Settings -> Pages: the site record may have been re-created without a deployment landing on it."
+          exit 1

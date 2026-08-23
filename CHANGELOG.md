@@ -1,13 +1,49 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.16.0
+version: 4.17.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-23 — Competence screen, G1 gate replaced, first revalidation pass
+
+- **RES-025** withdraws the independent-reviewer precondition at the G1 novelty
+  gate and replaces it with a stratum-coverage rule: before any novelty claim is
+  public, the question must be searched in a literature stratum the original
+  review did not cover, and each pass must state its coverage. Blocking the
+  program on recruiting a volunteer stopped it for three weeks; the function the
+  reviewer served is kept, the ceremony is not.
+- Recorded `DRL-RES-009`, the first revalidation pass against the 2026-09-05
+  boundary. It covers the published-journal stratum and is a companion to the
+  2026-08-05 review rather than an edit — rewriting a dated review to match later
+  knowledge would destroy what makes it evidence.
+- The pass justifies RES-025 empirically. The original review's 31 records are
+  overwhelmingly arXiv and OpenReview preprints; four journal-corpus searches
+  surfaced close neighbours on all four tracks it never saw — experimental
+  valuation work in the *Journal of Finance* for Paper II, asymmetric Bayesian
+  updating in *Quantitative Economics* for the bridge, value-of-computation and
+  costly-evidence-gathering work for Paper I, and the entire structured expert
+  judgment field for Paper III.
+- **Paper II gains a numerical-competence screen** (`drl_cfi.competence`), acting
+  on Levy (2026, Journal of Accounting Research), which finds language models
+  have "extremely poor numerical reasoning" on finance tasks. That is a design
+  flaw rather than a novelty collision: Paper II attributes a difference between
+  payoff-equivalent descriptions to wording, which requires the subject to be
+  able to price the claim at all. A subject that cannot price the unframed claim
+  within tolerance is now excluded before its framed answers count, a
+  `PairedValuation` is inadmissible without an attached probe, and the excluded
+  set and reasons are retained rather than dropped — the exclusion rate is itself
+  a finding about the instrument.
+- Dispositions are unchanged: Paper II remains the flagship and its narrowed
+  conjunction survived; Papers I and III remain stopped as worded, with their
+  redesigns now needing a journal-stratum search before approval.
+- 427 tests (11 new). Half the revalidation is explicitly outstanding: the 14
+  dated preprints have not been re-opened, and DRL-RES-009 says so rather than
+  implying the boundary is met.
 
 ## 2026-08-23 — Edge coverage fixed; on-device measurement runbook
 

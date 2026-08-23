@@ -44,6 +44,7 @@ lets the two converge instead of queueing.
 | `pricing` | CFI-202 | Black-Scholes as a normative oracle, parity invariants, implied volatility |
 | `frames` | CFI-201 | Frame taxonomy, and frame pairs that cannot vary the payoff |
 | `coherence` | CFI-204 | Arbitrage detection, minimal coherence repair, exploiting portfolio |
+| `competence` | CFI-205 | Unframed-control screen excluding subjects that cannot price the claim |
 
 ## Two design decisions that bound the claims
 

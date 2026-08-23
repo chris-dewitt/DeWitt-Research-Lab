@@ -240,7 +240,7 @@ Valid terminal or holding states include `NULL_RESULT`, `NEGATIVE_RESULT`,
 | Gate | Required approval or review | What agents must not do before it |
 |---|---|---|
 | G0 Program | Director | Change the three-paper structure or bridge role |
-| G1 Novelty | Director or designated research reviewer | Present novelty as established |
+| G1 Novelty | Director, on a search covering at least two literature strata (RES-025) | Present novelty as established, or treat a single-stratum search as complete |
 | G2 Data | Dataset steward plus ethics/rights second pass | Acquire, transform, or use candidate human data |
 | G3 Protocol | Director/statistical reviewer | Freeze hypotheses, primary metrics, exclusions, or power plan |
 | G4 Confirmatory | Director after pilot report | Inspect or run the confirmatory set |
@@ -300,7 +300,7 @@ perform the final independent review of its own experiment.
 | Role | Primary output | Required independence |
 |---|---|---|
 | Program steward | Registry, dependency graph, decisions, scope control | Director reviews material changes |
-| Literature agent | Dated novelty matrix and claim/source map | Separate reviewer spot-checks primary sources |
+| Literature agent | Dated novelty matrix and claim/source map | Each pass names the strata it searched; a later pass must add one the first missed |
 | Data steward agent | Candidate register, rights, ethics, provenance | Human owner approves dataset eligibility |
 | Methods agent | Formal model, estimands, assumptions, power plan | Statistical second pass before freeze |
 | Implementation agent | Tested simulator, pipeline, schemas, baselines | Cannot certify its own scientific result |

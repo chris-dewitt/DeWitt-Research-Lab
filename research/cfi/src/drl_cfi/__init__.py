@@ -18,6 +18,12 @@ from drl_cfi.coherence import (
     portfolio_cost,
     portfolio_payoffs,
 )
+from drl_cfi.competence import (
+    DEFAULT_RELATIVE_TOLERANCE,
+    CompetenceProbe,
+    ScreenedCohort,
+    screen,
+)
 from drl_cfi.frames import (
     Frame,
     FrameEquivalenceError,
@@ -48,7 +54,9 @@ from drl_cfi.pricing import (
 
 __all__ = [
     "COHERENCE_TOLERANCE",
+    "DEFAULT_RELATIVE_TOLERANCE",
     "Claim",
+    "CompetenceProbe",
     "CoherenceReport",
     "Frame",
     "FrameEquivalenceError",
@@ -71,6 +79,8 @@ __all__ = [
     "portfolio_cost",
     "portfolio_payoffs",
     "price_claim",
+    "screen",
+    "ScreenedCohort",
     "put_call_parity_residual",
     "solve_least_squares",
     "state_grid",

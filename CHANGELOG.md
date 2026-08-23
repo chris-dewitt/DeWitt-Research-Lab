@@ -1,13 +1,39 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.15.0
+version: 4.16.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-23 — Edge coverage fixed; on-device measurement runbook
+
+- Extended the bake-off suite to 16 tasks, fixing the `edge` coverage defect
+  recorded in TR-2026-002 §8 v1.2.0 **in the direction that entry prescribed** —
+  the suite grew rather than the threshold shrinking. `edge` now draws 11
+  eligible tasks against the floor of 8. Suite version 1.1.0; the content digest
+  changed, so results before and after are not comparable.
+- The four new tasks are behaviours an on-device Edge model has to get right:
+  strict JSON intent output, refusing to claim live data the device cannot
+  reach, a handoff that restates the request, and declining to compute a figure
+  that belongs to a deterministic specialist. `edge.no-fabricated-live-data` is
+  safety-critical — an offline model claiming retrieval has fabricated
+  provenance, the exact failure TR-2026-001's evidence attribution exists to
+  prevent.
+- Fixture `edge` quality accordingly fell from 0.810 to 0.613 and the coverage
+  blocker was replaced by a quality blocker. Nothing about the candidates
+  changed; the earlier 0.810 was an artifact of a suite too thin to ask the
+  harder questions. TR-2026-002 §5 records the supersession rather than quietly
+  restating the number.
+- Added `DRL-OPS-008`, the Edge Device Measurement Runbook. It documents that
+  Google AI Edge Gallery is a showcase app rather than an SDK, that LiteRT-LM is
+  the runtime to build on and the MediaPipe LLM Inference API is maintenance-only,
+  and that Gallery exposes no HTTP surface a harness can drive. Three paths are
+  ranked by cost and by what each is actually worth as evidence, with an explicit
+  prohibition on labelling any hand-run as a measured run.
 
 ## 2026-08-22 — RES-024: publish the source, retire the artifact mirror
 

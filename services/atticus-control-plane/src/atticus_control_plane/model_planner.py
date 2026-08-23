@@ -29,7 +29,12 @@ from drl_ai_core import ModelGateway, ProviderError
 from drl_ai_core.providers import ChatMessage, CompletionConstraints
 from drl_protocol import RiskTier, TaskRequest, ToolCall, ToolDefinition
 
-from .planner import FixturePlanner, Planner
+from .planner import (
+    INTEGRATED_SPECIALISTS,
+    FixturePlanner,
+    Planner,
+    needs_integrated_coverage,
+)
 from .structured_plans import build_tool_plan_validator
 
 __all__ = ["ModelPlanner", "build_planning_messages"]
@@ -202,7 +207,7 @@ class ModelPlanner:
             self.last_plan_source = "fallback: plan contained no known tools"
             return self.fallback.plan(request)
         self.last_plan_source = "model"
-        return calls
+        return self._complete_integrated_coverage(request, calls)
 
     def _parse(self, content: str) -> dict[str, Any] | None:
         """Validate the completion against the plan schema.
@@ -245,3 +250,42 @@ class ModelPlanner:
                 )
             )
         return calls
+
+    def _complete_integrated_coverage(
+        self, request: TaskRequest, calls: list[ToolCall]
+    ) -> list[ToolCall]:
+        """Append omitted catalog specialists for the integrated demo.
+
+        A 1.7B model often names EvalForge or one specialist and stops. That is
+        not a new capability: the fixture planner already includes these tools
+        for the same objective. Only catalog tools are added. A model still
+        cannot invent a name that is not registered.
+        """
+        if not needs_integrated_coverage(request.objective):
+            return calls
+        present = {call.tool_name for call in calls}
+        completed = list(calls)
+        for name in INTEGRATED_SPECIALISTS:
+            if name in present:
+                continue
+            definition = self._by_name.get(name)
+            if definition is None:
+                continue
+            arguments = _bind_request_arguments(name, {}, request)
+            if name == _SCENARIO_TOOL:
+                arguments.setdefault("name", _DEFAULT_SCENARIO)
+                arguments.setdefault("short_rate_bps", 25)
+                arguments.setdefault("long_rate_bps", 75)
+            index = len(completed)
+            slug = name.replace(".", "-")
+            completed.append(
+                ToolCall(
+                    call_id=f"{request.task_id}-{index}-{slug}-coverage",
+                    tool_name=name,
+                    arguments=arguments,
+                    risk_tier=RiskTier(definition.risk_tier),
+                )
+            )
+        if len(completed) > len(calls):
+            self.last_plan_source = "model+integrated-coverage"
+        return completed

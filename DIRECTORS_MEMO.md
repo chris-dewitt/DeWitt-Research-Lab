@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.14.0
+version: 1.15.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-19
+last_updated: 2026-08-23
 ---
 
 # Director's Decision and Escalation Ledger
@@ -68,7 +68,7 @@ the Director's approval.
 | DIR-001 | Repository | What GitHub owner and repository slug will host DRL? | Personal account is simplest; an organization provides cleaner long-term governance. Observed push redirect to `chris-dewitt/DeWitt-Research-Lab-Foundation` (legacy lowercase remote still resolves). | Confirm personal slug casing/org as canonical or schedule org transfer; preserve transferability. | RESOLVED — RES-018 |
 | DIR-002 | GCP | What projects, billing account, and primary US region will be used? | Separate dev/stage/prod/research projects reduce blast radius but require more setup. | Begin with one budget-capped development project, then create isolated production and research projects before public beta. | Director input required before deployment |
 | DIR-003 | Security | What public address receives vulnerability reports? | A dedicated alias protects personal workflow and supports policy publication. | Create `security@dewitt-labs.com` before public launch. | RESOLVED — RES-019; use `director@dewitt-labs.com` only |
-| DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. | Run the documented bake-off; do not select by brand preference. Scaffold register + fixture report landed (DRL-012); no winner declared. | Evidence gate — scaffold only |
+| DIR-004 | Models | Which upstream models become Atticus Core and Edge? | License, tool reliability, local performance, quantization, and cost differ materially. A local Qwen/SmolLM3 demo that completes omitted catalog specialists is not a bake-off result. | Run the documented bake-off; do not select by brand preference. Scaffold register + fixture report landed (DRL-012); no winner declared. | Evidence gate — scaffold only |
 | DIR-005 | Public access | What anonymous and authenticated quotas apply? | Higher limits improve exploration but increase abuse and cost. | Use fixture/replay mode by default; open bounded inference only after load and abuse testing. | Evidence gate |
 | DIR-006 | Legal | When should DRL form a legal entity or register marks? | Formation adds cost and administration but may help contracts and liability separation. | Continue truthful independent-initiative language; obtain professional advice before contracts or material revenue. | Deferred Director/legal decision |
 | DIR-007 | Legal/brand | Does the RES-014 rename extend to the claimed trademarks? | `NOTICE`, `TRADEMARK_POLICY.md`, and `LICENSE-STRATEGY.md` still claim "DeWitt Research Laboratory" and `DRL` as marks. Renaming a claimed mark is not a copy edit: it abandons accrued use of the old name and restarts it under the new one. Retaining both is also valid — the old name can stay as a prior mark while the public identity moves. | Do not rewrite the legal documents on brand grounds alone. Either retain "DeWitt Research Laboratory" as a prior/legacy mark and add "DeWitt Research Workshop" alongside it, or take advice before consolidating. Ties to DIR-006. | Director decision required — legal documents deliberately left unrenamed |

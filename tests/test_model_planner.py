@@ -94,7 +94,9 @@ class TestContainment:
         )
         planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG)
         calls = planner.plan(request())
-        assert [c.tool_name for c in calls] == ["atlas.research_snapshot"]
+        names = [c.tool_name for c in calls]
+        assert "shell.exec" not in names
+        assert "atlas.research_snapshot" in names
 
     def test_model_cannot_lower_its_own_risk_tier(self) -> None:
         """The registry's tier wins over whatever the model claimed."""
@@ -112,7 +114,9 @@ class TestContainment:
             [{"tool_name": "atlas.research_snapshot", "arguments": {}, "risk_tier": 1}] * 20
         )
         planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG, max_steps=3)
-        assert len(planner.plan(request())) == 3
+        # Non-integrated objective: coverage must not add extra steps.
+        calls = planner.plan(request("Inspect the latest public CPI release"))
+        assert len(calls) == 3
 
     def test_objective_is_presented_as_data(self) -> None:
         """Prompt-injection surface: the objective must not join the instructions."""
@@ -186,8 +190,10 @@ class TestPlanning:
         assert [c.tool_name for c in calls] == [
             "atlas.research_snapshot",
             "fedlens.compare_latest",
+            "balancelab.run_scenario",
         ]
         assert calls[0].arguments == {"as_of": "2026-08-09"}
+        assert calls[2].arguments["name"] == "bear-steepener"
 
     def test_omitted_as_of_is_taken_from_the_request(self) -> None:
         """A small local model often names the tool and forgets the date."""
@@ -314,7 +320,35 @@ class TestPlanSourceDisclosure:
             [{"tool_name": "atlas.research_snapshot", "arguments": {}, "risk_tier": 1}]
         )
         planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG)
-        planner.plan(request())
+        planner.plan(request("Inspect the latest public CPI release"))
+        assert planner.last_plan_source == "model"
+
+    def test_omitted_specialists_are_filled_for_the_demo_objective(self) -> None:
+        """Qwen often plans one specialist; the demo still needs all three."""
+        content = plan_json(
+            [{"tool_name": "fedlens.compare_latest", "arguments": {}, "risk_tier": 1}]
+        )
+        planner = ModelPlanner(gateway_for(StubProvider(content)), CATALOG)
+        calls = planner.plan(request())
+        assert [c.tool_name for c in calls] == [
+            "fedlens.compare_latest",
+            "atlas.research_snapshot",
+            "balancelab.run_scenario",
+        ]
+        assert planner.last_plan_source == "model+integrated-coverage"
+        assert calls[1].arguments["as_of"] == "2026-08-09"
+        assert calls[2].arguments["name"] == "bear-steepener"
+
+    def test_coverage_cannot_invent_a_tool_absent_from_the_catalog(self) -> None:
+        guide_only = (
+            ToolDefinition("laboratory.guide", "Explain the workshop.", RiskTier.EXPLAIN, True),
+        )
+        content = plan_json(
+            [{"tool_name": "laboratory.guide", "arguments": {}, "risk_tier": 0}]
+        )
+        planner = ModelPlanner(gateway_for(StubProvider(content)), guide_only)
+        calls = planner.plan(request())
+        assert [c.tool_name for c in calls] == ["laboratory.guide"]
         assert planner.last_plan_source == "model"
 
     def test_provider_failure_reports_the_underlying_reason(self) -> None:

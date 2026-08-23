@@ -1,7 +1,7 @@
 ---
 document_id: DRL-OPS-007
 title: "Local Model Runbook"
-version: 1.2.0
+version: 1.3.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-23
@@ -70,7 +70,15 @@ uv run python scripts/probe_model.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --n
 uv run --package atticus-control-plane atticus-demo --public
 ```
 
-Switch to SmolLM3 by setting `ATTICUS_MODEL` to the exact tag `/api/tags` reported. The first output line of the demo reports which planner actually produced the plan, not which one was configured. `model planner via ...` means the model planned. Anything else names the reason it fell back — including a missing tag on this daemon.
+Switch to SmolLM3 by setting `ATTICUS_MODEL` to the exact tag `/api/tags` reported. The first output line of the demo reports which planner actually produced the plan, not which one was configured. `model planner via ...` means the model planned. `plus catalog coverage` means the model planned, and omitted Atlas / FedLens / BalanceLab steps were filled from the live catalog because the objective matched the integrated demo. Anything else names the reason it fell back — including a missing tag on this daemon.
+
+While the run is in progress, stderr prints `progress: <event> <detail>` lines (`planning`, `plan_created`, `tool_started`, `tool_completed`, `evaluating`, `finished`). Those lines name tools and the task id. They never print the objective or tool payloads. When the run ends, a record is written under `runs/atticus/` (override with `ATTICUS_RUN_RECORD_DIR`). The record stores ids and the EvalForge score only. `--json` still prints the full trace on stdout when you ask for it.
+
+```
+Get-Content runs\atticus\atticus-demo-*.json
+```
+
+A completed integrated demo should list `atlas.research_snapshot`, `fedlens.compare_latest`, and `balancelab.run_scenario` under `tools_completed`, five `evidence_ids`, and `evalforge_score: 1.0`. Two evidence items with only FedLens and BalanceLab means the model skipped Atlas and coverage did not run — that is a bug, not a score.
 
 `mistral:latest`, `llama3.2:latest`, and `gemma4:26b` can also be pointed at the same way. They are not this pair, and none of them selects Atticus Core or Edge (**DIR-004**, the still-open Director decision about which models fill those roles).
 
@@ -155,6 +163,7 @@ Two costs on the planning path are paid in wall clock the operator sits through,
 | `ATTICUS_MODEL_MAX_TOKENS` | Output budget for the plan. |
 | `ATTICUS_MODEL_NO_STREAM` | Fall back to one blocking request. |
 | `ATTICUS_MODEL_NO_THINKING` | Ask a reasoning-capable model to answer directly. |
+| `ATTICUS_RUN_RECORD_DIR` | Directory for ids-and-scores run records. Default `runs/atticus`. |
 
 `ATTICUS_MODEL_NO_THINKING` sends both `think: false` (Ollama) and `chat_template_kwargs.enable_thinking: false` (vLLM and other template-driven servers). There is no standard for this. A server that does not recognise a key ignores it; a server that rejects unknown fields will fail the call, which is why it is opt-in rather than the default.
 

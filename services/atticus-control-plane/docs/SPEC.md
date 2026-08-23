@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ATT-107
 title: "Atticus Control Plane System Specification"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-23
 ---
 
 
@@ -99,6 +99,8 @@ Provider timeout triggers bounded retry or approved fallback. Invalid tool argum
 - Retries cannot duplicate consequential effects.
 - Safe trace views omit secrets and prohibited content.
 - Fallback cannot silently weaken privacy, policy, or open-weight deployment commitments.
+- Default local run records persist ids, tool names, and EvalForge scores only; they do not persist objectives, prompts, or tool content.
+- When a model plan omits a catalog specialist required by the integrated demo objective, the planner may append that catalog tool. It cannot invent a tool absent from the registry. Completing omitted demo steps is not model selection.
 
     ## 9. Quality attributes
 

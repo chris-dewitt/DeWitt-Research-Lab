@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Lab Monorepo"
-version: 5.0.1
+version: 5.0.2
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-23
@@ -88,7 +88,8 @@ The reported values are fixture evidence for software behavior, not claims
 about financial markets or real institutions. The planner is rule-based by
 default. To point it at a local Ollama model (Qwen3 1.7B or SmolLM3-3B),
 follow [`docs/11-operations/LOCAL_MODEL_RUNBOOK.md`](docs/11-operations/LOCAL_MODEL_RUNBOOK.md).
-That does not select Atticus Core or Edge.
+That does not select Atticus Core or Edge. A local run prints `progress:`
+lines on stderr and writes an ids-only record under `runs/atticus/`.
 
 ## Current implementation boundary
 

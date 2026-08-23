@@ -25,6 +25,7 @@ from .policy import PolicyEngine
 from .registry import ToolRegistry
 
 CancelCheck = Callable[[], bool]
+ProgressFn = Callable[[str, str], None]
 
 
 class AtticusOrchestrator:
@@ -116,9 +117,15 @@ class AtticusOrchestrator:
         *,
         grants: Iterable[ApprovalGrant] = (),
         cancel_check: CancelCheck | None = None,
+        progress: ProgressFn | None = None,
     ) -> TaskResult:
         self._validate_request(request)
         should_cancel = cancel_check or (lambda: False)
+
+        def emit(event: str, detail: str = "") -> None:
+            # Ids and tool names only. Never the objective or tool payloads.
+            if progress is not None:
+                progress(event, detail)
 
         trace: list[TraceEvent] = []
         evidence: list[EvidenceItem] = []
@@ -128,6 +135,7 @@ class AtticusOrchestrator:
         trace.append(self._event(request, state, "task_received", "Task accepted.", sequence=1))
 
         if should_cancel():
+            emit("finished", "cancelled")
             return self._cancelled_result(
                 request,
                 state=state,
@@ -138,7 +146,9 @@ class AtticusOrchestrator:
             )
 
         state = self._transition(state, RunState.PLANNING)
+        emit("planning", request.task_id)
         plan = self.planner.plan(request)
+        emit("plan_created", f"{len(plan)}-steps")
         trace.append(
             self._event(
                 request,
@@ -151,6 +161,7 @@ class AtticusOrchestrator:
         )
 
         if should_cancel():
+            emit("finished", "cancelled")
             return self._cancelled_result(
                 request,
                 state=state,
@@ -181,6 +192,7 @@ class AtticusOrchestrator:
             )
             if not decision.allowed:
                 state = self._transition(state, RunState.DENIED)
+                emit("finished", state.value)
                 return TaskResult(
                     request.task_id,
                     state,
@@ -200,6 +212,7 @@ class AtticusOrchestrator:
                 ):
                     state = self._transition(state, RunState.AWAITING_APPROVAL)
                     if should_cancel():
+                        emit("finished", "cancelled")
                         return self._cancelled_result(
                             request,
                             state=state,
@@ -220,6 +233,7 @@ class AtticusOrchestrator:
                             call_digest=decision.call_digest,
                         )
                     )
+                    emit("finished", state.value)
                     return TaskResult(
                         request.task_id,
                         state,
@@ -234,6 +248,7 @@ class AtticusOrchestrator:
         failures: list[str] = []
         for call in plan:
             if should_cancel():
+                emit("finished", "cancelled")
                 return self._cancelled_result(
                     request,
                     state=state,
@@ -242,6 +257,7 @@ class AtticusOrchestrator:
                     artifacts=artifacts,
                     message=f"Task cancelled before invoking {call.tool_name}.",
                 )
+            emit("tool_started", call.tool_name)
             trace.append(
                 self._event(
                     request,
@@ -256,6 +272,7 @@ class AtticusOrchestrator:
                 output = self.registry.invoke(call.tool_name, call.arguments)
             except (KeyError, LookupError, TypeError, ValueError) as exc:
                 failures.append(f"{call.tool_name}: {exc}")
+                emit("tool_failed", call.tool_name)
                 trace.append(
                     self._event(
                         request,
@@ -269,6 +286,7 @@ class AtticusOrchestrator:
                 continue
             evidence.extend(output.evidence)
             artifacts.update(output.artifacts)
+            emit("tool_completed", call.tool_name)
             trace.append(
                 self._event(
                     request,
@@ -283,6 +301,7 @@ class AtticusOrchestrator:
 
         if failures and not evidence:
             state = self._transition(state, RunState.FAILED)
+            emit("finished", state.value)
             return TaskResult(
                 request.task_id,
                 state,
@@ -294,6 +313,7 @@ class AtticusOrchestrator:
             )
 
         state = self._transition(state, RunState.EVALUATING)
+        emit("evaluating", request.task_id)
         trace.append(
             self._event(
                 request,
@@ -350,10 +370,14 @@ class AtticusOrchestrator:
         limitations = [
             "Macro, market, and Fed inputs are synthetic fixtures for local development.",
             "BalanceLab uses a simplified educational repricing model, not production bank data.",
-            "DIR-004 (which models become Atticus Core and Edge) is still open; a local model run is not a selection.",
-            "Linked workflow is prototype maturity; signed replay packaging is DRL-019 (signed replay work item).",
+            (
+                "DIR-004 (Core/Edge model selection) is still open; "
+                "a local run is not a selection."
+            ),
+            "Linked workflow is prototype maturity; signed replay is DRL-019.",
         ]
         limitations.extend(failures)
+        emit("finished", state.value)
         return TaskResult(
             request.task_id,
             state,

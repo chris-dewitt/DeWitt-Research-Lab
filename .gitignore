@@ -30,3 +30,6 @@ data/private/
 
 # Generated source-manifest output (legacy root path included defensively)
 /PACKAGE_MANIFEST.json
+
+# Local Atticus run records (ids and scores; never commit contents)
+runs/atticus/*.json

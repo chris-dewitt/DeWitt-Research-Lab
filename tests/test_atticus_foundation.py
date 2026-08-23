@@ -6,7 +6,8 @@ from decimal import Decimal
 import pytest
 from atlas_service import AtlasService
 from atticus_control_plane import ApprovalService, PolicyEngine, build_local_runtime
-from atticus_control_plane.cli import render_human_report
+from atticus_control_plane.cli import main, render_human_report
+from atticus_control_plane.run_record import FORBIDDEN_RECORD_KEYS, write_run_record
 from atticus_control_plane.orchestrator import AtticusOrchestrator
 from atticus_control_plane.registry import ToolOutput, ToolRegistry
 from balancelab_ai import BalanceSheet, RateScenario, ScenarioEngine
@@ -193,10 +194,86 @@ def test_human_report_lists_tools_and_says_evalforge_is_the_score() -> None:
         ],
         evaluation={"score": 1.0},
     )
-    card = render_human_report(result, "model planner via qwen (ollama)")
+    card = render_human_report(
+        result,
+        "model planner via qwen (ollama)",
+        log_path=None,
+    )
     assert "ok  fedlens.compare_latest" in card
     assert "ok  balancelab.run_scenario" in card
     assert "fedlens-doc-1" in card
     assert "EVALFORGE: 1.0" in card
     assert "not a specialist" in card
     assert "--json" in card
+    assert "RUN RECORD: (not written)" in card
+
+
+def test_progress_emits_tool_names_not_the_objective() -> None:
+    request = TaskRequest(
+        "progress-test",
+        "Use inflation and Federal Reserve evidence to run a bear-steepener bank scenario",
+        public_session=True,
+        as_of="2026-07-24",
+    )
+    seen: list[tuple[str, str]] = []
+    result = build_local_runtime().run(request, progress=lambda e, d: seen.append((e, d)))
+    assert result.state is RunState.COMPLETED
+    events = [event for event, _ in seen]
+    assert events[0] == "planning"
+    assert "tool_started" in events
+    assert "tool_completed" in events
+    assert events[-1] == "finished"
+    blob = " ".join(f"{event} {detail}" for event, detail in seen)
+    assert request.objective not in blob
+    assert "atlas.research_snapshot" in blob
+
+
+def test_run_record_persists_ids_not_content(tmp_path) -> None:
+    import json
+
+    request = TaskRequest(
+        "record-test",
+        "Use inflation and Federal Reserve evidence to run a bear-steepener bank scenario",
+        public_session=True,
+        as_of="2026-07-24",
+    )
+    result = build_local_runtime().run(request)
+    path = write_run_record(
+        result,
+        planner_line="deterministic fixture planner",
+        plan_source="fixture",
+        root=tmp_path,
+    )
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    blob = json.dumps(payload)
+    assert not (set(payload) & FORBIDDEN_RECORD_KEYS)
+    assert request.objective not in blob
+    assert result.summary not in blob
+    for item in result.evidence:
+        assert item.content not in blob
+        assert item.evidence_id in payload["evidence_ids"]
+    assert "atlas.research_snapshot" in payload["tools_completed"]
+    assert payload["evalforge_score"] == 1.0
+    assert payload["evidence_count"] == 5
+    assert payload["state"] == "completed"
+
+
+def test_cli_writes_progress_and_a_run_record(
+    tmp_path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setenv("ATTICUS_RUN_RECORD_DIR", str(tmp_path))
+    monkeypatch.delenv("ATTICUS_MODEL", raising=False)
+    monkeypatch.setattr(
+        "sys.argv",
+        ["atticus-demo", "--public"],
+    )
+    assert main() == 0
+    captured = capsys.readouterr()
+    assert "progress: planning atticus-demo" in captured.err
+    assert "progress: tool_started atlas.research_snapshot" in captured.err
+    assert "progress: finished completed" in captured.err
+    assert "run-record:" in captured.err
+    records = list(tmp_path.glob("atticus-demo-*.json"))
+    assert len(records) == 1
+    assert "RUN RECORD:" in captured.out
+    assert "EVIDENCE: 5 items" in captured.out

@@ -76,12 +76,12 @@ No cloud, schema, or production change. Operator-only, on the Windows workstatio
 
 1. `$env:OLLAMA_HOST="http://127.0.0.1:11434"`
 2. Confirm `ollama list` matches `curl.exe http://127.0.0.1:11434/api/tags`
-3. `ollama pull qwen3:1.7b`
+3. `ollama pull hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0`
 4. `ollama pull hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M`
 5. Copy the exact SmolLM3 `name` from `/api/tags` if it differs
-6. `$env:ATTICUS_MODEL="qwen3:1.7b"; $env:ATTICUS_MODEL_NO_THINKING="1"`
+6. `$env:ATTICUS_MODEL="hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0"; $env:ATTICUS_MODEL_NO_THINKING="1"`
 7. `uv run python scripts/check_local_ollama.py`
-8. `uv run python scripts/probe_model.py --model qwen3:1.7b --no-thinking`
+8. `uv run python scripts/probe_model.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --no-thinking`
 9. `uv run --package atticus-control-plane atticus-demo --public`
 10. Read `PLANNER:` — must say `model planner via`. Anything else is a fallback.
 

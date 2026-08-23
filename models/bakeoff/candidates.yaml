@@ -87,23 +87,22 @@ candidates:
   - id: edge-qwen3-1.7b
     role: edge
     family: Qwen 3 1.7B
-    revision_label: "ollama:qwen3:1.7b"
+    revision_label: "ollama:hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0"
     license_label: Apache-2.0
     license_status: provisional_review_required
     open_weight: true
     hardware_class: cpu-or-8gb-gpu
     estimated_vram_gb: 2
     cost_tier: low
-    source_url: https://ollama.com/library/qwen3
+    source_url: https://huggingface.co/Qwen/Qwen3-1.7B-GGUF
     serving:
       runtime: ollama
-      model: qwen3:1.7b
-      quantization: Q4_K_M
+      model: hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0
+      quantization: Q8_0
     limitations:
       - Workstation/edge-class serving profile, not a Core candidate.
-      - Official Ollama tag `qwen3:1.7b` (~1.4 GB Q4_K_M). The Hugging Face
-        GGUF tag `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` is an equivalent family
-        member if that is what the daemon on :11434 actually lists.
+      - Director-pulled tag `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0`. Official
+        `qwen3:1.7b` is the same family if that is what /api/tags lists.
       - Hybrid thinking model; set ATTICUS_MODEL_NO_THINKING=1 for planning.
       - Ollama library tags are not digest pins; confirm `ollama show` before
         treating a live run as revision-pinned evidence.

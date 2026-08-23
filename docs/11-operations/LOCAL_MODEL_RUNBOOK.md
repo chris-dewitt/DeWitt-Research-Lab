@@ -38,11 +38,11 @@ Those two listings must name the same tags. If they do not, stop and fix the hos
 
 Serve an OpenAI-compatible endpoint. Ollama, vLLM, LM Studio, and `llama-server` all expose the same `/v1/chat/completions` shape, so the runtime is configuration rather than code.
 
-Workstation default for this repo is two small open-weight models:
+Workstation default is the pair the Director asked for: **Qwen3 1.7B** and **SmolLM3-3B**.
 
 | Role in the register | Pull tag | Size (approx.) | Notes |
 |---|---|---|---|
-| `edge-qwen3-1.7b` | `qwen3:1.7b` | 1.4 GB | Official Ollama library, Apache-2.0. Equivalent family member: `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` if that is what `/api/tags` lists. |
+| `edge-qwen3-1.7b` | `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` | 1.8 GB | The GGUF already on the Windows CLI library. Official `qwen3:1.7b` is the same family. |
 | `edge-smollm3-3b` | `hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M` | 1.9 GB | Not in the Ollama library. ggml-org GGUF of HuggingFaceTB/SmolLM3-3B (Apache-2.0). Copy the exact `name` from `/api/tags` after the pull if it differs. |
 
 Both are hybrid thinking models. Set `ATTICUS_MODEL_NO_THINKING=1` for planning so the token budget is not spent inside `<think>` blocks.
@@ -51,32 +51,34 @@ PowerShell from the repo root:
 
 ```
 $env:OLLAMA_HOST="http://127.0.0.1:11434"
-ollama pull qwen3:1.7b
+ollama pull hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0
 ollama pull hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M
 curl.exe http://127.0.0.1:11434/api/tags
 uv run python scripts/check_local_ollama.py
 ```
 
+The Qwen pull is only needed if that tag is missing from `/api/tags` on port 11434. `ollama list` showing it is not enough. SmolLM3 was not in either listing yet, so that pull is required.
+
 Or run `scripts/windows/setup-local-models.ps1`, which sets `OLLAMA_HOST` and performs those pulls.
 
-Then point Atticus at one tag and run the demo:
+Then point Atticus at Qwen and run the demo:
 
 ```
-$env:ATTICUS_MODEL="qwen3:1.7b"
+$env:ATTICUS_MODEL="hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0"
 $env:ATTICUS_MODEL_NO_THINKING="1"
-uv run python scripts/probe_model.py --model qwen3:1.7b --no-thinking
+uv run python scripts/probe_model.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --no-thinking
 uv run --package atticus-control-plane atticus-demo --public
 ```
 
 Switch to SmolLM3 by setting `ATTICUS_MODEL` to the exact tag `/api/tags` reported. The first output line of the demo reports which planner actually produced the plan, not which one was configured. `model planner via ...` means the model planned. Anything else names the reason it fell back — including a missing tag on this daemon.
 
-A heavier model already on some workstations (`gemma4:26b`, `llama3.2:latest`) can be used the same way. It is not a substitute for the two edge tags above, and it is not a Core selection.
+`mistral:latest`, `llama3.2:latest`, and `gemma4:26b` can also be pointed at the same way. They are not this pair, and none of them selects Atticus Core or Edge (**DIR-004**, the still-open Director decision about which models fill those roles).
 
 Bash equivalent:
 
 ```
 export OLLAMA_HOST=http://127.0.0.1:11434
-export ATTICUS_MODEL=qwen3:1.7b
+export ATTICUS_MODEL=hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0
 export ATTICUS_MODEL_NO_THINKING=1
 uv run python -m atticus_control_plane.cli
 ```
@@ -86,7 +88,7 @@ uv run python -m atticus_control_plane.cli
 `scripts/probe_model.py` walks the same path the planner takes, one stage at a time, and stops at the first stage that fails:
 
 ```
-uv run python scripts/probe_model.py --model qwen3:1.7b --no-thinking
+uv run python scripts/probe_model.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --no-thinking
 ```
 
 | Stage fails | What it means | What to do |

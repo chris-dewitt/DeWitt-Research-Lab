@@ -13,11 +13,14 @@ REGISTER = ROOT / "models" / "bakeoff" / "candidates.yaml"
 
 
 def test_local_edge_models_are_registered_as_served() -> None:
-    """Qwen3-1.7B and SmolLM3-3B are workstation-served, not a DIR-004 winner."""
+    """Qwen3-1.7B and SmolLM3-3B are workstation-served, not a Core/Edge winner.
+
+    DIR-004 (which models become Atticus Core and Edge) stays open.
+    """
     register = load_bakeoff_register(REGISTER)
     by_id = {row["id"]: row for row in register["candidates"]}
     for candidate_id, expected_model in (
-        ("edge-qwen3-1.7b", "qwen3:1.7b"),
+        ("edge-qwen3-1.7b", "hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0"),
         ("edge-smollm3-3b", "hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M"),
     ):
         row = by_id[candidate_id]

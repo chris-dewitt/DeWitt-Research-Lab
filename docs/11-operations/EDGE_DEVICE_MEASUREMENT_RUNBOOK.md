@@ -84,7 +84,7 @@ OpenAI-compatible endpoint, per DRL-OPS-007, and run the suite against them.
 
 ```bash
 uv run python scripts/check_local_ollama.py
-uv run python scripts/probe_model.py --model qwen3:1.7b --no-thinking
+uv run python scripts/probe_model.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --no-thinking
 uv run python scripts/run_bakeoff.py --live --measurement-mode hardware
 ```
 

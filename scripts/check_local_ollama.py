@@ -4,7 +4,7 @@
 ``ollama list`` and ``GET http://localhost:11434/v1/models`` can disagree on
 Windows when the CLI and the app keep separate libraries. Atticus uses the
 HTTP catalogue. This script reads that catalogue and reports whether the
-local Qwen3 1.7B and SmolLM3-3B tags are present.
+Director's local pair is present: Qwen3 1.7B GGUF and SmolLM3-3B.
 
     uv run python scripts/check_local_ollama.py
     uv run python scripts/check_local_ollama.py --base-url http://127.0.0.1:11434/v1
@@ -36,13 +36,13 @@ LOCAL_FAMILIES: tuple[dict[str, Any], ...] = (
     {
         "id": "edge-qwen3-1.7b",
         "label": "Qwen3 1.7B",
-        "preferred": "qwen3:1.7b",
+        "preferred": "hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0",
         "aliases": (
+            "hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0",
             "qwen3:1.7b",
             "qwen3:1.7b-q4_K_M",
-            "hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0",
         ),
-        "pull": "qwen3:1.7b",
+        "pull": "hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0",
         "no_thinking": True,
     },
     {
@@ -287,7 +287,8 @@ def render_text(report: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "These are workstation/edge tags. They do not select Atticus Core or Edge (DIR-004).",
+            "These are workstation/edge tags. They do not select Atticus Core or "
+            "Edge (DIR-004: which models fill those roles; still open).",
         ]
     )
     return "\n".join(lines)

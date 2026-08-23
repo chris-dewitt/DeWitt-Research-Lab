@@ -19,6 +19,16 @@ last_updated: 2026-08-23
 - Atticus snapshot artifacts include `series_changes` (latest minus prior
   print). **ADR-0010** / **DIR-010** are in review.
 
+## 2026-08-23 — Pages deployment claims are now verified at the edge
+
+- `publish-pages` verifies that the deployed URL actually returns 200 before the
+  job is allowed to succeed. `deploy-pages` reports only that GitHub accepted a
+  deployment; on 2026-08-23 that reported success while the published site
+  answered 404, because the Pages site record had been re-created and no
+  deployment had landed on it since.
+- The build itself was never at fault. Diagnosis and the remaining Director
+  action are recorded in `WORKLOG.md`.
+
 ## 2026-08-23 — Local Atticus run records and integrated demo coverage
 
 - `atticus-demo` prints `progress:` lines on stderr while a run is in flight

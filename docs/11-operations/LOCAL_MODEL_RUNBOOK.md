@@ -1,10 +1,10 @@
 ---
 document_id: DRL-OPS-007
 title: "Local Model Runbook"
-version: 1.1.0
+version: 1.2.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-13
+last_updated: 2026-08-23
 ---
 
 
@@ -12,37 +12,86 @@ last_updated: 2026-08-13
 
 How to put an open-weight model behind the Atticus planner on a workstation, and how to tell what is wrong when it does not answer.
 
-The deterministic fixture planner is the default everywhere, including CI. Nothing here changes that. A model is opt-in, and a model failure degrades to fixtures rather than failing the run.
+The deterministic fixture planner is the default everywhere, including CI. Nothing here changes that. A model is opt-in, and a model failure degrades to fixtures rather than failing the run. Running a small local model does **not** select Atticus Core or Edge. `DIR-004` stays open until a hardware bake-off with pinned revisions and cleared licenses is reviewed.
+
+## Two Ollama libraries on Windows
+
+Atticus talks only to the OpenAI-compatible HTTP daemon:
+
+```
+GET http://127.0.0.1:11434/v1/models
+```
+
+`ollama list` can show a different library. That is the usual failure on Windows when the Ollama app and a second `ollama` process keep separate model stores. Observed example: `ollama list` showed `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` while `curl.exe http://localhost:11434/api/tags` showed `llama3.2:latest` and `gemma4:26b`. Pulls that land in the CLI library never reach Atticus.
+
+Pin the CLI to the daemon Atticus uses **before** listing or pulling:
+
+```
+$env:OLLAMA_HOST="http://127.0.0.1:11434"
+ollama list
+curl.exe http://127.0.0.1:11434/api/tags
+```
+
+Those two listings must name the same tags. If they do not, stop and fix the host; do not pull again into the wrong store.
 
 ## Start it
 
-Serve the model on an OpenAI-compatible endpoint. Ollama, vLLM, LM Studio, and `llama-server` all expose the same `/v1/chat/completions` shape, so the runtime is configuration rather than code.
+Serve an OpenAI-compatible endpoint. Ollama, vLLM, LM Studio, and `llama-server` all expose the same `/v1/chat/completions` shape, so the runtime is configuration rather than code.
+
+Workstation default for this repo is two small open-weight models:
+
+| Role in the register | Pull tag | Size (approx.) | Notes |
+|---|---|---|---|
+| `edge-qwen3-1.7b` | `qwen3:1.7b` | 1.4 GB | Official Ollama library, Apache-2.0. Equivalent family member: `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` if that is what `/api/tags` lists. |
+| `edge-smollm3-3b` | `hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M` | 1.9 GB | Not in the Ollama library. ggml-org GGUF of HuggingFaceTB/SmolLM3-3B (Apache-2.0). Copy the exact `name` from `/api/tags` after the pull if it differs. |
+
+Both are hybrid thinking models. Set `ATTICUS_MODEL_NO_THINKING=1` for planning so the token budget is not spent inside `<think>` blocks.
+
+PowerShell from the repo root:
 
 ```
-ollama serve
-ollama pull gemma4:26b
+$env:OLLAMA_HOST="http://127.0.0.1:11434"
+ollama pull qwen3:1.7b
+ollama pull hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M
+curl.exe http://127.0.0.1:11434/api/tags
+uv run python scripts/check_local_ollama.py
 ```
 
-Then point Atticus at it and run the demo:
+Or run `scripts/windows/setup-local-models.ps1`, which sets `OLLAMA_HOST` and performs those pulls.
+
+Then point Atticus at one tag and run the demo:
 
 ```
-export ATTICUS_MODEL=gemma4:26b            # PowerShell: $env:ATTICUS_MODEL="gemma4:26b"
+$env:ATTICUS_MODEL="qwen3:1.7b"
+$env:ATTICUS_MODEL_NO_THINKING="1"
+uv run python scripts/probe_model.py --model qwen3:1.7b --no-thinking
+uv run --package atticus-control-plane atticus-demo --public
+```
+
+Switch to SmolLM3 by setting `ATTICUS_MODEL` to the exact tag `/api/tags` reported. The first output line of the demo reports which planner actually produced the plan, not which one was configured. `model planner via ...` means the model planned. Anything else names the reason it fell back — including a missing tag on this daemon.
+
+A heavier model already on some workstations (`gemma4:26b`, `llama3.2:latest`) can be used the same way. It is not a substitute for the two edge tags above, and it is not a Core selection.
+
+Bash equivalent:
+
+```
+export OLLAMA_HOST=http://127.0.0.1:11434
+export ATTICUS_MODEL=qwen3:1.7b
+export ATTICUS_MODEL_NO_THINKING=1
 uv run python -m atticus_control_plane.cli
 ```
-
-The first output line reports which planner actually produced the plan, not which one was configured. `model planner via ...` means the model planned. Anything else names the reason it fell back.
 
 ## Diagnose it
 
 `scripts/probe_model.py` walks the same path the planner takes, one stage at a time, and stops at the first stage that fails:
 
 ```
-uv run python scripts/probe_model.py --model gemma4:26b
+uv run python scripts/probe_model.py --model qwen3:1.7b --no-thinking
 ```
 
 | Stage fails | What it means | What to do |
 | --- | --- | --- |
-| reachability | The runtime is not listening, or the tag is not pulled | `ollama ps`, `ollama list`; pass `--base-url` if served elsewhere |
+| reachability | The runtime on this base URL is not listening, or the tag is not in **its** catalogue | `curl.exe http://127.0.0.1:11434/v1/models` and `uv run python scripts/check_local_ollama.py`. Do not trust an unpinned `ollama list`. Pass `--base-url` if served elsewhere |
 | generation, stalled | Nothing arrived at all for the stall window | Check the server log; the request never reached a loaded model |
 | generation, total budget | The model is generating, just slowly | Raise `--timeout`, or use a smaller model |
 | generation, empty completion | The whole budget went on reasoning | `--no-thinking`, or raise `--max-tokens` |
@@ -73,7 +122,7 @@ A candidate with a `serving` block is included; one without is skipped, because 
 
 `--measurement-mode hardware` without `--live` is refused. Labelling scripted providers as hardware-measured would defeat the one gate condition fixtures can never otherwise clear.
 
-**A live run will not name a winner, and that is correct.** The evidence gate requires at least two candidates for a role before either can win: a field of one is a measurement, not a bake-off. Standing up a second endpoint is what makes a selection possible, and DIR-004 still requires Director review of the evidence either way.
+**A live run will not name a winner, and that is correct.** Two workstation edge tags now have `serving` blocks, so a `--live` run can compare them. Licenses remain provisional, the tags are not digest pins, and DIR-004 still requires Director review. Serving is not selection. A `--live` run also includes `core-gemma4-26b` if that block is still in the register.
 
 ## Why the timeout is a stall timeout
 

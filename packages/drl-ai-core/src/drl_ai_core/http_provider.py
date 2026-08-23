@@ -338,15 +338,11 @@ class HttpOpenAICompatibleProvider:
             detail = exc.read().decode("utf-8", "replace")[:300]
             raise ProviderUnavailableError(f"endpoint returned HTTP {exc.code}: {detail}") from exc
         except TimeoutError as exc:
-            raise ProviderTimeoutError(
-                f"no response from {url} within {timeout:.0f}s"
-            ) from exc
+            raise ProviderTimeoutError(f"no response from {url} within {timeout:.0f}s") from exc
         except (urllib.error.URLError, OSError, HTTPException) as exc:
             reason = getattr(exc, "reason", exc)
             if isinstance(reason, TimeoutError):
-                raise ProviderTimeoutError(
-                    f"no response from {url} within {timeout:.0f}s"
-                ) from exc
+                raise ProviderTimeoutError(f"no response from {url} within {timeout:.0f}s") from exc
             raise ProviderUnavailableError(f"cannot reach {url}: {reason}") from exc
         return response
 
@@ -378,9 +374,7 @@ class HttpOpenAICompatibleProvider:
             return ProviderTimeoutError(f"{url} stalled: no data for {timeout:.0f}s")
         return ProviderUnavailableError(f"connection to {url} failed mid-response: {reason}")
 
-    def _stream_lines(
-        self, url: str, payload: dict[str, Any], deadline: float
-    ) -> Iterator[bytes]:
+    def _stream_lines(self, url: str, payload: dict[str, Any], deadline: float) -> Iterator[bytes]:
         """Yield raw response lines, enforcing stall and total-time limits.
 
         The socket timeout is a *per-read* limit, so it is exactly a stall
@@ -455,6 +449,18 @@ class HttpOpenAICompatibleProvider:
             raise ProviderUnavailableError(f"{url} closed the stream without sending any data")
         return state, (time.perf_counter() - started) * 1000
 
+    def catalog_ids(self) -> frozenset[str]:
+        """Return ids from ``GET /models``. Empty if the route is missing or dead.
+
+        This is the catalogue Atticus actually consults. It is not the same as
+        ``ollama list``, which can talk to a different library on the same
+        machine.
+        """
+        try:
+            return _model_ids(self._get("/models", timeout=self.connect_timeout))
+        except (ProviderUnavailableError, ProviderTimeoutError):
+            return frozenset()
+
     def health(self) -> bool:
         """Probe the endpoint. Never raises — an unhealthy provider is a False.
 
@@ -472,10 +478,7 @@ class HttpOpenAICompatibleProvider:
         asked for, falls through to the completion probe rather than being
         called dead over a naming mismatch.
         """
-        try:
-            listed = _model_ids(self._get("/models", timeout=self.connect_timeout))
-        except (ProviderUnavailableError, ProviderTimeoutError):
-            listed = frozenset()
+        listed = self.catalog_ids()
         if self.model in listed:
             return True
         try:

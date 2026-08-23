@@ -4,13 +4,15 @@
 
 suite_id: atticus.bakeoff.scaffold
 suite_version: "1.0.0"
-as_of: "2026-07-29"
+as_of: "2026-08-23"
 selection_status: not_selected
 director_gate: DIR-004
 notes:
   - Shortlist refreshed for scaffold only; exact revisions must be revalidated before a live bake-off.
   - Fixture metrics are synthetic placeholders for CI reproducibility, not measured hardware runs.
   - Commercial/closed-weight candidates are excluded from the V1 production path.
+  - edge-qwen3-1.7b and edge-smollm3-3b have workstation serving tags so a local
+    Ollama daemon can drive Atticus. That is not a DIR-004 selection.
 
 candidates:
   - id: core-qwen35-9b-class
@@ -82,6 +84,58 @@ candidates:
     limitations:
       - Edge latency and noisy-ASR robustness still unmeasured.
 
+  - id: edge-qwen3-1.7b
+    role: edge
+    family: Qwen 3 1.7B
+    revision_label: "ollama:qwen3:1.7b"
+    license_label: Apache-2.0
+    license_status: provisional_review_required
+    open_weight: true
+    hardware_class: cpu-or-8gb-gpu
+    estimated_vram_gb: 2
+    cost_tier: low
+    source_url: https://ollama.com/library/qwen3
+    serving:
+      runtime: ollama
+      model: qwen3:1.7b
+      quantization: Q4_K_M
+    limitations:
+      - Workstation/edge-class serving profile, not a Core candidate.
+      - Official Ollama tag `qwen3:1.7b` (~1.4 GB Q4_K_M). The Hugging Face
+        GGUF tag `hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` is an equivalent family
+        member if that is what the daemon on :11434 actually lists.
+      - Hybrid thinking model; set ATTICUS_MODEL_NO_THINKING=1 for planning.
+      - Ollama library tags are not digest pins; confirm `ollama show` before
+        treating a live run as revision-pinned evidence.
+      - Pulls must land on the daemon answering GET /v1/models, not merely
+        appear in an unpinned `ollama list`.
+
+  - id: edge-smollm3-3b
+    role: edge
+    family: SmolLM3 3B
+    revision_label: "ollama:hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M"
+    license_label: Apache-2.0
+    license_status: provisional_review_required
+    open_weight: true
+    hardware_class: cpu-or-8gb-gpu
+    estimated_vram_gb: 3
+    cost_tier: low
+    source_url: https://huggingface.co/HuggingFaceTB/SmolLM3-3B
+    serving:
+      runtime: ollama
+      model: hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M
+      quantization: Q4_K_M
+    limitations:
+      - Workstation/edge-class serving profile, not a Core candidate.
+      - SmolLM3 is not in the official Ollama library. The serving tag is the
+        ggml-org GGUF conversion of HuggingFaceTB/SmolLM3-3B (Apache-2.0).
+        Confirm the exact name in GET /api/tags after the pull.
+      - Hybrid thinking model; set ATTICUS_MODEL_NO_THINKING=1 for planning.
+      - GGUF conversion provenance is ggml-org, not Hugging Face TB; read both
+        cards before clearing license_status.
+      - Pulls must land on the daemon answering GET /v1/models, not merely
+        appear in an unpinned `ollama list`.
+
   - id: edge-ministral3-3b-class
     role: edge
     family: Ministral 3 3B-class
@@ -141,6 +195,22 @@ fixture_metrics:
     latency_proxy: 0.9
     cost_efficiency: 0.92
     quality_proxy: 0.7
+  edge-qwen3-1.7b:
+    license_clarity: 0.88
+    runtime_fit: 0.9
+    structured_output: 0.62
+    tool_use: 0.6
+    latency_proxy: 0.95
+    cost_efficiency: 0.96
+    quality_proxy: 0.62
+  edge-smollm3-3b:
+    license_clarity: 0.9
+    runtime_fit: 0.9
+    structured_output: 0.64
+    tool_use: 0.62
+    latency_proxy: 0.94
+    cost_efficiency: 0.95
+    quality_proxy: 0.64
   edge-ministral3-3b-class:
     license_clarity: 0.88
     runtime_fit: 0.86

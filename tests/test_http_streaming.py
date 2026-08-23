@@ -148,9 +148,7 @@ def ask(
 ) -> Any:
     return provider.complete(
         [ChatMessage(role="user", content="plan this")],
-        constraints=CompletionConstraints(
-            timeout_seconds=timeout, stop_after_json=stop_after_json
-        ),
+        constraints=CompletionConstraints(timeout_seconds=timeout, stop_after_json=stop_after_json),
     )
 
 
@@ -212,9 +210,7 @@ class TestStreamAccumulation:
         ]
         with local_endpoint(sse([*chunks, finish("tool_calls")])) as (url, _):
             response = ask(provider_at(url))
-        assert response.tool_calls == (
-            {"name": "atlas", "arguments": '{"query": "cpi"}'},
-        )
+        assert response.tool_calls == ({"name": "atlas", "arguments": '{"query": "cpi"}'},)
 
 
 class TestReasoningIsNeverAccumulated:
@@ -350,6 +346,14 @@ class TestHealthDoesNotLoadTheModel:
         assert [record.get("method") for record in seen] == ["GET"]
         assert str(seen[0]["path"]).endswith("/models")
 
+    def test_catalog_ids_reads_the_listing_without_a_completion(self) -> None:
+        with local_endpoint(sse([], done=False), on_get=models_listing("qwen3:1.7b")) as (
+            url,
+            seen,
+        ):
+            assert provider_at(url).catalog_ids() == frozenset({"qwen3:1.7b"})
+        assert [record.get("method") for record in seen] == ["GET"]
+
     def test_an_unlisted_model_falls_through_to_the_completion_probe(self) -> None:
         """A runtime may name the loaded model differently from the tag we asked for.
 
@@ -464,9 +468,7 @@ class TestRequestShape:
         assert response.content == PLAN
 
     def test_remote_plaintext_is_refused_before_any_socket_is_opened(self) -> None:
-        provider = HttpOpenAICompatibleProvider(
-            model="m", base_url="http://example.invalid/v1"
-        )
+        provider = HttpOpenAICompatibleProvider(model="m", base_url="http://example.invalid/v1")
         with pytest.raises(ProviderUnavailableError, match="non-local plaintext"):
             ask(provider)
 

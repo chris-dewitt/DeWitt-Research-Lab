@@ -169,8 +169,21 @@ Append completed handoffs below this line. Never place credentials, private data
   Every one keeps its real status label. `DRL-OSS-022` was rewritten to make
   that labelling the standing obligation the allowlist used to discharge.
 - No agent changes repository visibility. That is a Director account action.
-- Next: the Director flips visibility; optionally enable Pages on the repository
-  to serve the replay viewer, which no longer has any workflow behind it.
+- **Visibility flipped 2026-08-23.** `chris-dewitt/DeWitt-Research-Lab` is
+  public, verified by an unauthenticated read of the GitHub API: `private:
+  false`, `visibility: public`, licence detected as Apache-2.0. RES-024 is
+  executed, not merely authorized.
+- Post-flip audit of the CI surface, which is now runnable by strangers: no
+  workflow references any secret (the only one that did, `publish-replays.yml`,
+  was deleted with the mirror); `ci.yml` triggers on `pull_request` rather than
+  `pull_request_target`, so fork pull requests run without access to repository
+  secrets; top-level `permissions: contents: read`. Public repositories get free
+  standard-runner minutes, so fork traffic carries no billing exposure.
+- Outstanding: the `PUBLIC_ARTIFACT_TOKEN` repository secret, if still present,
+  is a dangling credential — nothing references it since the mirror was retired.
+  It should be revoked in the Director's account. GitHub Pages is not enabled
+  (`has_pages: false`), so the replay viewer has no live URL.
+- Next: revoke `PUBLIC_ARTIFACT_TOKEN`; decide whether to enable Pages.
 
 ### 2026-08-17 — DRL-034 public repository source curation
 

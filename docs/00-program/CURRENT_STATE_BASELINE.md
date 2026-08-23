@@ -21,7 +21,7 @@ work. It is a repository truth statement, not a V1 or production-release claim.
 | Institutional boundary | Independent work outside UNC coursework; no employer or university representation |
 | Public contact | `director@dewitt-labs.com` |
 | Website | [`www.dewitt-labs.com`](https://www.dewitt-labs.com), live personal portfolio |
-| Source visibility | Public authorized by RES-024, superseding the RES-018 date clause |
+| Source visibility | **Public since 2026-08-23** under RES-024, superseding the RES-018 date clause |
 | Binding sources | `LABORATORY_BIBLE.md`, `AGENTS.md`, `DIRECTORS_MEMO.md`, approved specifications and ADRs |
 
 ## Implementation maturity

@@ -36,7 +36,7 @@ dashboard weekly and before any public claim.
 | Evidence-ready prototypes | Atticus integrated path, specialist fixtures, replay viewer/export, reports, teaching lab |
 | Specified-only surfaces | lab-web, atticus-console, Atticus Core/Edge weights, live cloud deployment |
 | Website | `www.dewitt-labs.com` is live; portfolio content remains Director-edited in Wix |
-| Repository visibility | Public authorized by RES-024; Director flips the switch |
+| Repository visibility | **Public since 2026-08-23** under RES-024 |
 | Cloud/model spend | `$0` recorded; no live project or model training authorized |
 | Public-claim boundary | Do not call the system V1, production, or an open-weight model release |
 | Top release blocker | None on visibility; RES-024 cleared it |

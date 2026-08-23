@@ -59,7 +59,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | MERGED — DEPLOYMENT READ-BACK PENDING | PR #45; `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
 | 14 / DRL-033 follow-up | Cursor cloud agent | `cursor/drl-033-artifacts-repo-live-d422` | 2026-08-19T03:20:00Z | IN REVIEW — PUBLIC REPO LIVE; PAGES + TOKEN PENDING | PR #48; `agents/handoffs/2026-08-19-drl-033-artifacts-repo-live.md` |
 | 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
-| ops / local Atticus models | Cursor cloud agent | `cursor/local-qwen-smollm-atticus-ad29` | 2026-08-23 | IN REVIEW — workstation Qwen3-1.7B + SmolLM3-3B serving; DIR-004 open | `agents/handoffs/2026-08-23-local-qwen-smollm.md` |
+| ops / local Atticus models | Cursor cloud agent | `cursor/local-qwen-smollm-atticus-ad29` | 2026-08-23 | IN REVIEW — workstation Qwen3-1.7B + SmolLM3-3B serving; DIR-004 open | PR #54; `agents/handoffs/2026-08-23-local-qwen-smollm.md` |
 
 ## Active scope — DRL-034 public repository readiness
 

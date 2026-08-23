@@ -16,7 +16,7 @@ last_updated: 2026-08-23
 - Branch: `cursor/local-qwen-smollm-atticus-ad29`
 - Starting commit: `c43241e` (`main`)
 - Ending commit: the commit containing this handoff
-- Pull request: filled after open
+- Pull request: https://github.com/chris-dewitt/DeWitt-Research-Lab/pull/54
 - Prepared UTC: `2026-08-23`
 
 ## 2. Objective completed
@@ -47,7 +47,28 @@ or V1-scope decision. DIR-004 remains the selection gate.
 
 ## 5. Tests and results
 
-Filled after the verification pass on this branch.
+```text
+uv run pytest
+# 425 passed in 19.17s
+
+uv run mypy scripts packages services apps/atticus-local-runner
+# Success: no issues found in 63 source files
+
+uv run ruff check scripts tests packages services apps/atticus-local-runner
+# All checks passed
+
+uv run python scripts/validate_foundation.py
+# VALIDATION PASSED (371 controlled documents)
+
+uv run python scripts/validate_program.py
+# PROGRAM VALIDATION PASSED
+
+uv run bandit -q -r scripts packages services apps/atticus-local-runner
+# exit 0
+```
+
+Weights were not pulled in this environment. The Director must run the
+PowerShell pulls against the daemon on `:11434`.
 
 ## 6. Deployment or migration notes
 

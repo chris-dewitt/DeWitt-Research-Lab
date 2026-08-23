@@ -80,11 +80,7 @@ def render_human_report(
         elif event.event_type == "tool_failed" and name:
             tools.append(f"  FAIL {name}")
     evidence_lines = [f"  - {item.evidence_id}: {item.title}" for item in result.evidence]
-    record_line = (
-        f"RUN RECORD: {log_path}"
-        if log_path is not None
-        else "RUN RECORD: (not written)"
-    )
+    record_line = f"RUN RECORD: {log_path}" if log_path is not None else "RUN RECORD: (not written)"
     lines = [
         "DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION",
         f"PLANNER: {planner_line}",

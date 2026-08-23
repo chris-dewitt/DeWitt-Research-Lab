@@ -343,9 +343,7 @@ class TestPlanSourceDisclosure:
         guide_only = (
             ToolDefinition("laboratory.guide", "Explain the workshop.", RiskTier.EXPLAIN, True),
         )
-        content = plan_json(
-            [{"tool_name": "laboratory.guide", "arguments": {}, "risk_tier": 0}]
-        )
+        content = plan_json([{"tool_name": "laboratory.guide", "arguments": {}, "risk_tier": 0}])
         planner = ModelPlanner(gateway_for(StubProvider(content)), guide_only)
         calls = planner.plan(request())
         assert [c.tool_name for c in calls] == ["laboratory.guide"]

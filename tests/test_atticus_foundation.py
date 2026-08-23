@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from datetime import UTC, date, datetime
 from decimal import Decimal
 
@@ -7,9 +8,9 @@ import pytest
 from atlas_service import AtlasService
 from atticus_control_plane import ApprovalService, PolicyEngine, build_local_runtime
 from atticus_control_plane.cli import main, render_human_report
-from atticus_control_plane.run_record import FORBIDDEN_RECORD_KEYS, write_run_record
 from atticus_control_plane.orchestrator import AtticusOrchestrator
 from atticus_control_plane.registry import ToolOutput, ToolRegistry
+from atticus_control_plane.run_record import FORBIDDEN_RECORD_KEYS, write_run_record
 from balancelab_ai import BalanceSheet, RateScenario, ScenarioEngine
 from drl_protocol import (
     EvidenceItem,
@@ -229,8 +230,6 @@ def test_progress_emits_tool_names_not_the_objective() -> None:
 
 
 def test_run_record_persists_ids_not_content(tmp_path) -> None:
-    import json
-
     request = TaskRequest(
         "record-test",
         "Use inflation and Federal Reserve evidence to run a bear-steepener bank scenario",

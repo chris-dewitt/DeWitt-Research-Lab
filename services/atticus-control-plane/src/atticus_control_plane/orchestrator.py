@@ -370,10 +370,7 @@ class AtticusOrchestrator:
         limitations = [
             "Macro, market, and Fed inputs are synthetic fixtures for local development.",
             "BalanceLab uses a simplified educational repricing model, not production bank data.",
-            (
-                "DIR-004 (Core/Edge model selection) is still open; "
-                "a local run is not a selection."
-            ),
+            "DIR-004 (Core/Edge model selection) is still open; a local run is not a selection.",
             "Linked workflow is prototype maturity; signed replay is DRL-019.",
         ]
         limitations.extend(failures)

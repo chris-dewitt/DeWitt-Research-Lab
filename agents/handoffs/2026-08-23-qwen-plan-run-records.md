@@ -53,7 +53,39 @@ already had for the same objective. DIR-004 remains the selection gate.
 
 ## 5. Tests and results
 
-Recorded in the pull request after the verification pass on this branch.
+```text
+uv run ruff check scripts tests packages services apps/atticus-local-runner
+# All checks passed
+
+uv run mypy scripts packages services apps/atticus-local-runner
+# Success: no issues found in 64 source files
+
+uv run pytest -q
+# 445 passed
+
+uv run python scripts/validate_foundation.py
+# VALIDATION PASSED (373 controlled documents)
+
+uv run python scripts/validate_program.py
+# PROGRAM VALIDATION PASSED
+
+uv run python scripts/validate_open_identity.py
+# OPEN IDENTITY VALIDATION PASSED
+
+uv run python scripts/validate_domain_wix.py
+# DOMAIN/WIX VALIDATION PASSED
+
+uv run python scripts/validate_public_repository.py
+# PUBLIC REPOSITORY AUDIT PASSED
+
+uv run bandit -q -r scripts packages services apps/atticus-local-runner
+# exit 0
+
+ATTICUS_RUN_RECORD_DIR=/tmp/atticus-records \
+  uv run --package atticus-control-plane atticus-demo --public
+# progress lines on stderr; STATE completed; EVIDENCE 5 items;
+# record lists atlas/fedlens/balancelab and evalforge_score 1.0
+```
 
 ## 6. Deployment or migration notes
 

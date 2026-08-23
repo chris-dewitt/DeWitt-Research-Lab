@@ -108,6 +108,10 @@ candidates:
         treating a live run as revision-pinned evidence.
       - Pulls must land on the daemon answering GET /v1/models, not merely
         appear in an unpinned `ollama list`.
+      - License evidence read 2026-08-23 — the Hugging Face model index for
+        `Qwen/Qwen3-1.7B-GGUF` carries the apache-2.0 license tag. That is
+        repository metadata from the HF API rather than a reading of the license
+        text, so it supports clearing without by itself being the clearance.
 
   - id: edge-smollm3-3b
     role: edge
@@ -132,6 +136,12 @@ candidates:
       - Hybrid thinking model; set ATTICUS_MODEL_NO_THINKING=1 for planning.
       - GGUF conversion provenance is ggml-org, not Hugging Face TB; read both
         cards before clearing license_status.
+      - License evidence read 2026-08-23 — both carry the apache-2.0 license tag
+        in their Hugging Face model index. `HuggingFaceTB/SmolLM3-3B` is the
+        original and `ggml-org/SmolLM3-3B-GGUF` is the conversion actually
+        served. Whether the conversion inherits the original license was the
+        open question this note raised, and the metadata answers it. As above,
+        repository metadata rather than a reading of the license text.
       - Pulls must land on the daemon answering GET /v1/models, not merely
         appear in an unpinned `ollama list`.
 

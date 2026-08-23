@@ -350,8 +350,8 @@ class AtticusOrchestrator:
         limitations = [
             "Macro, market, and Fed inputs are synthetic fixtures for local development.",
             "BalanceLab uses a simplified educational repricing model, not production bank data.",
-            "The deterministic planner stands in for Atticus Core until the model bake-off.",
-            "Linked workflow is prototype maturity; signed replay packaging is DRL-019.",
+            "DIR-004 (which models become Atticus Core and Edge) is still open; a local model run is not a selection.",
+            "Linked workflow is prototype maturity; signed replay packaging is DRL-019 (signed replay work item).",
         ]
         limitations.extend(failures)
         return TaskResult(

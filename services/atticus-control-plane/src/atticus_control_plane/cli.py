@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 
-from drl_protocol import TaskRequest
+from drl_protocol import TaskRequest, TaskResult
 
 from .model_planner import ModelPlanner
 from .runtime import build_runtime_from_env
@@ -43,6 +43,41 @@ def describe_planner(runtime: object) -> str:
     return f"{configured} configured, but plan came from {planner.last_plan_source}"
 
 
+def render_human_report(result: TaskResult, planner_line: str) -> str:
+    """Printable card for a demo run. Full trace is ``--json``."""
+    tools: list[str] = []
+    for event in result.trace:
+        name = event.attributes.get("tool")
+        if event.event_type == "tool_completed" and name:
+            tools.append(f"  ok  {name}")
+        elif event.event_type == "tool_failed" and name:
+            tools.append(f"  FAIL {name}")
+    evidence_lines = [f"  - {item.evidence_id}: {item.title}" for item in result.evidence]
+    lines = [
+        "DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION",
+        f"PLANNER: {planner_line}",
+        f"STATE: {result.state.value}",
+        "",
+        result.summary,
+        "",
+        "TOOLS:",
+        *(tools or ["  (none invoked)"]),
+        "",
+        f"EVIDENCE: {len(result.evidence)} items",
+        *(evidence_lines or ["  (none)"]),
+        "",
+        (
+            f"EVALFORGE: {result.evaluation.get('score', 'not-run')} "
+            "(scores the finished trajectory; it is not a specialist)"
+        ),
+        "",
+        "No log file is written. Re-run with --json to print the full trace.",
+        "LIMITATIONS:",
+        *[f"- {limitation}" for limitation in result.limitations],
+    ]
+    return "\n".join(lines)
+
+
 def main() -> int:
     args = build_parser().parse_args()
     request = TaskRequest(
@@ -56,17 +91,7 @@ def main() -> int:
     if args.json:
         print(json.dumps(result.to_dict(), indent=2, default=str))
     else:
-        print("DEWITT RESEARCH WORKSHOP // ATTICUS LOCAL FOUNDATION")
-        print(f"PLANNER: {describe_planner(runtime)}")
-        print(f"STATE: {result.state.value}")
-        print()
-        print(result.summary)
-        print()
-        print(f"EVIDENCE: {len(result.evidence)} items")
-        print(f"EVALFORGE: {result.evaluation.get('score', 'not-run')}")
-        print("LIMITATIONS:")
-        for limitation in result.limitations:
-            print(f"- {limitation}")
+        print(render_human_report(result, describe_planner(runtime)))
     return 0 if result.state.value in {"completed", "degraded"} else 1
 
 

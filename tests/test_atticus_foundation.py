@@ -6,15 +6,19 @@ from decimal import Decimal
 import pytest
 from atlas_service import AtlasService
 from atticus_control_plane import ApprovalService, PolicyEngine, build_local_runtime
+from atticus_control_plane.cli import render_human_report
 from atticus_control_plane.orchestrator import AtticusOrchestrator
 from atticus_control_plane.registry import ToolOutput, ToolRegistry
 from balancelab_ai import BalanceSheet, RateScenario, ScenarioEngine
 from drl_protocol import (
+    EvidenceItem,
     RiskTier,
     RunState,
     TaskRequest,
+    TaskResult,
     ToolCall,
     ToolDefinition,
+    TraceEvent,
 )
 from evalforge_service import EvalForge
 
@@ -144,3 +148,55 @@ def test_reversible_tool_pauses_without_bound_approval() -> None:
 
     assert result.state is RunState.AWAITING_APPROVAL
     assert "approval required" in result.summary.lower()
+
+
+def test_human_report_lists_tools_and_says_evalforge_is_the_score() -> None:
+    result = TaskResult(
+        "atticus-demo",
+        RunState.COMPLETED,
+        "Atticus completed the bounded workflow and returned cited evidence.",
+        evidence=[
+            EvidenceItem(
+                "fedlens-doc-1",
+                "FedLens",
+                "Latest fixture statement",
+                "2026-07-24",
+                "text",
+                "cite",
+            ),
+            EvidenceItem(
+                "balancelab-bear-steepener",
+                "BalanceLab",
+                "Synthetic regional-bank rate scenario",
+                "2026-07-27",
+                "nii",
+                "cite",
+            ),
+        ],
+        trace=[
+            TraceEvent(
+                "e1",
+                "atticus-demo",
+                RunState.EXECUTING,
+                "tool_completed",
+                "done",
+                attributes={"tool": "fedlens.compare_latest"},
+            ),
+            TraceEvent(
+                "e2",
+                "atticus-demo",
+                RunState.EXECUTING,
+                "tool_completed",
+                "done",
+                attributes={"tool": "balancelab.run_scenario"},
+            ),
+        ],
+        evaluation={"score": 1.0},
+    )
+    card = render_human_report(result, "model planner via qwen (ollama)")
+    assert "ok  fedlens.compare_latest" in card
+    assert "ok  balancelab.run_scenario" in card
+    assert "fedlens-doc-1" in card
+    assert "EVALFORGE: 1.0" in card
+    assert "not a specialist" in card
+    assert "--json" in card

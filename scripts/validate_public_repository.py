@@ -90,9 +90,7 @@ SECRET_PATTERNS = {
 # deny-list implementation. The exception is path- and rule-specific so it
 # cannot make another file pass.
 TEXT_RULE_EXCEPTIONS: dict[str, frozenset[str]] = {
-    "tests/test_public_artifact_export.py": frozenset({"secret", "local-path"}),
     "tests/test_wix_auditor.py": frozenset({"public-contact"}),
-    "scripts/prepare_public_replay_release.py": frozenset({"local-path"}),
     "DIRECTORS_MEMO.md": frozenset({"historical-contact"}),
 }
 

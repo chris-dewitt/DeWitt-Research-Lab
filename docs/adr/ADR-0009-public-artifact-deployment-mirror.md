@@ -1,13 +1,33 @@
 ---
 document_id: DRL-ADR-0009
 title: "Use a Separate Public Repository for Sanitized Deployment Artifacts"
-version: 1.1.0
-status: APPROVED FOUNDATION
+version: 2.0.0
+status: SUPERSEDED
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-19
+last_updated: 2026-08-22
 ---
 
 # ADR-0009: Use a separate public repository for sanitized deployment artifacts
+
+> **SUPERSEDED on 2026-08-22 by RES-024.** The Director elected to publish the
+> authoritative repository itself rather than a sanitized derivative of it.
+>
+> This decision rested on one constraint: GitHub Pages will not deploy from a
+> private personal repository on the Director's plan, and RES-018 kept the
+> source private through 2026-09-30. RES-024 supersedes that date clause, which
+> removes the constraint and with it the mirror's only reason to exist —
+> alternative 1 below, rejected here, is what was ultimately chosen.
+>
+> Retired with this decision: `configs/public-artifact-export.yaml`,
+> `configs/open-exceptions/DRL-OEX-0001.json`,
+> `scripts/prepare_public_replay_release.py`,
+> `.github/workflows/publish-replays.yml`, and
+> `tests/test_public_artifact_export.py`. `scripts/build_replay_site.py`
+> survives — it builds the viewer, which a public repository can serve from its
+> own Pages.
+>
+> The document is retained unedited below as the record of why the boundary was
+> built and what it enforced. Nothing below is current practice.
 
 ## Context
 

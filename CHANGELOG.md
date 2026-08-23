@@ -1,13 +1,44 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.14.0
+version: 4.15.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-22 — RES-024: publish the source, retire the artifact mirror
+
+- Recorded **RES-024**. The Director elected to publish
+  `chris-dewitt/DeWitt-Research-Lab` itself rather than a sanitized derivative,
+  39 days ahead of the RES-018 date clause. It supersedes that clause and
+  supersedes RES-021 in full. Visibility is a Director account action; no agent
+  performs it.
+- Retired the artifact mirror. It existed for one reason — GitHub Pages will not
+  deploy from a private personal repository on the current plan — and a public
+  source removes it. Deleted `configs/public-artifact-export.yaml`,
+  `configs/open-exceptions/DRL-OEX-0001.json`,
+  `scripts/prepare_public_replay_release.py`,
+  `.github/workflows/publish-replays.yml`, and
+  `tests/test_public_artifact_export.py`. `scripts/build_replay_site.py`
+  survives; Pages can serve its output directly once the repository is public.
+- `ADR-0009` is `SUPERSEDED` and DRL-033 is closed as superseded. Both are
+  retained unedited beneath supersession banners rather than rewritten, so the
+  record of why the boundary existed and what it enforced survives it.
+- Rewrote `DRL-OSS-022` for direct publication. Removing the allowlist raises
+  rather than lowers the honesty bar, because nothing mechanical now stands
+  between a draft and a reader: maturity labels become load-bearing, the
+  research gates stay evidence-based rather than visibility-based, the
+  fail-closed tracked-source audit becomes the only automated check and must not
+  be weakened to pass a commit, and corrections are published rather than erased.
+- RES-024 records deliberately what the allowlist previously withheld and is now
+  public: the Directors Memo including the open DIR-006 and DIR-007
+  deliberations, `LICENSE-STRATEGY.md`, `COMMERCIAL_SUSTAINABILITY.md`, the
+  worklog, 24 agent handoffs, and every `DRAFT` or `IN REVIEW` controlled
+  document including `TR-2026-002` and its preliminary novelty scan. Each keeps
+  its real status label; publishing unfinished work as unfinished is the intent.
 
 ## 2026-08-19 — Resolution diagnostic and the research/cfi ratification
 

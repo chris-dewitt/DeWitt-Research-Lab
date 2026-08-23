@@ -13,7 +13,7 @@ last_updated: 2026-08-17
 
 This checklist governs making the authoritative source repository publicly
 readable. It does not declare the platform V1, authorize a model release, or
-override RES-018: the repository remains private through 2026-09-30.
+override RES-024, which authorizes public visibility now and supersedes the RES-018 date clause.
 
 ## Automated source gates
 
@@ -46,7 +46,7 @@ reachable Git-author-metadata gate.
 | Remote branch cleanup | Awaiting explicit deletion approval | 22 branches are merged and no open PR references them |
 | Repository About description, homepage, and topics | Complete | GitHub repository metadata updated 2026-08-17 |
 | Anonymous clone and link verification | Release-day gate | Director or release operator |
-| Repository visibility | Date-gated | RES-018; not before 2026-09-30 |
+| Repository visibility | Authorized | RES-024; the Director changes visibility in their GitHub account |
 
 ## Resolved Decision — DIR-009
 
@@ -68,7 +68,7 @@ surface. This no longer gates public visibility.
 3. Run `make public-release-check` from a clean checkout of `main`.
 4. Remove only remote branches proven merged and not referenced by an open PR.
 5. Confirm repository About metadata, license detection, topics, and contact.
-6. Change visibility only on or after 2026-09-30 with Director authorization.
+6. Change visibility under RES-024. This is a Director account action; no agent performs it.
 7. Verify an anonymous clone, root links, reproduction commands, and absence of
    private data from the public view.
 8. Record the public URL, exact revision, checks, and rollback plan in a handoff.

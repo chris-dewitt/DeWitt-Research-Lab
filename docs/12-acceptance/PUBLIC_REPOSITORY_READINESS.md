@@ -46,7 +46,7 @@ reachable Git-author-metadata gate.
 | Remote branch cleanup | Awaiting explicit deletion approval | 22 branches are merged and no open PR references them |
 | Repository About description, homepage, and topics | Complete | GitHub repository metadata updated 2026-08-17 |
 | Anonymous clone and link verification | Release-day gate | Director or release operator |
-| Repository visibility | Authorized | RES-024; the Director changes visibility in their GitHub account |
+| Repository visibility | **Public since 2026-08-23** | RES-024; verified by unauthenticated read of the GitHub API |
 
 ## Resolved Decision — DIR-009
 

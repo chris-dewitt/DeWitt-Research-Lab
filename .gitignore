@@ -33,3 +33,6 @@ data/private/
 
 # Local Atticus run records (ids and scores; never commit contents)
 runs/atticus/*.json
+
+# Operator-refreshed official public feeds (keep README)
+data/public-feeds/*.json

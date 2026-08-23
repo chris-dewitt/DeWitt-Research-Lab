@@ -1,0 +1,45 @@
+# Official public sources for the opt-in live feed pipeline (ADR-0010).
+# Fixtures remain the default. This register is not a Yahoo/unofficial scrape list.
+register_id: drl-public-feeds
+register_version: 1.0.0
+data_tier: public
+director_gate: ADR-0010
+sources:
+  - source_id: fred-stlouisfed
+    display_name: FRED, Federal Reserve Bank of St. Louis
+    official_uri: https://fred.stlouisfed.org/
+    api_uri: https://api.stlouisfed.org/fred/
+    license_label: FRED API terms; attribution required
+    terms_url: https://fred.stlouisfed.org/docs/api/terms_of_use.html
+    redistribution: link-and-transform; do not claim FRED endorsement
+    training_use: prohibited_until_review
+    cadence: daily
+    notes:
+      - Requires operator-owned FRED_API_KEY.
+      - Attribution: uses the FRED API but is not endorsed by FRB St. Louis.
+  - source_id: us-treasury-yield-curve
+    display_name: U.S. Treasury Daily Par Yield Curve Rates
+    official_uri: https://home.treasury.gov/resource-center/data-chart-center/interest-rates
+    api_uri: https://home.treasury.gov/resource-center/data-chart-center/interest-rates
+    license_label: U.S. government work
+    terms_url: https://www.treasury.gov/about/role-of-treasury
+    redistribution: public-domain-us-government-work
+    training_use: public_us_government_work
+    cadence: business-daily
+    notes:
+      - Fallback when FRED_API_KEY is unset.
+  - source_id: federal-reserve-press-monetary
+    display_name: Federal Reserve monetary-policy press RSS
+    official_uri: https://www.federalreserve.gov/
+    api_uri: https://www.federalreserve.gov/feeds/press_monetary.xml
+    license_label: U.S. government work
+    terms_url: https://www.federalreserve.gov/monetarypolicy.htm
+    redistribution: public-domain-us-government-work
+    training_use: public_us_government_work
+    cadence: as-released
+    notes:
+      - RSS titles and descriptions, not a full speech archive.
+rejected_sources:
+  - source_id: yahoo-finance
+    reason: Terms of use do not permit unofficial bulk retrieval or redistribution.
+    alternative: FRED DGS series or Treasury par yields

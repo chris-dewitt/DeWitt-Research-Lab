@@ -60,7 +60,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 14 / DRL-033 follow-up | Cursor cloud agent | `cursor/drl-033-artifacts-repo-live-d422` | 2026-08-19T03:20:00Z | IN REVIEW — PUBLIC REPO LIVE; PAGES + TOKEN PENDING | PR #48; `agents/handoffs/2026-08-19-drl-033-artifacts-repo-live.md` |
 | 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
 | ops / local Atticus models | Cursor cloud agent | `cursor/local-qwen-smollm-atticus-ad29` | 2026-08-23 | MERGED | PR #54; `agents/handoffs/2026-08-23-local-qwen-smollm.md` |
-| ops / Qwen plan bind + run records | Cursor cloud agent | `cursor/qwen-plan-arg-bind-ad29` | 2026-08-23 | IN REVIEW — bind omitted args; complete integrated specialists; ids-only run records; CI lint fix | PR #55; `agents/handoffs/2026-08-23-qwen-plan-run-records.md` |
+| ops / Qwen plan bind + run records | Cursor cloud agent | `cursor/qwen-plan-arg-bind-ad29` | 2026-08-23 | MERGED | PR #55; `agents/handoffs/2026-08-23-qwen-plan-run-records.md` |
+| ops / official public feeds | Cursor cloud agent | `cursor/live-public-feeds-ad29` | 2026-08-23 | IN REVIEW — FRED/Treasury/Fed RSS opt-in store; Yahoo rejected; ADR-0010 | `agents/handoffs/2026-08-23-public-feed-pipeline.md` |
 
 ## Active scope — DRL-034 public repository readiness
 
@@ -556,5 +557,15 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   `runs/atticus/`. Prompt, objective, and tool content are not persisted.
 - CI: wrap the DIR-004 / DRL-019 limitation strings (Ruff E501).
 - Handoff: `agents/handoffs/2026-08-23-qwen-plan-run-records.md`
+- Merged: PR #55
+
+### 2026-08-23 — Official public feed pipeline
+
+- Branch: `cursor/live-public-feeds-ad29`
+- Objective: opt-in FRED / Treasury / Fed RSS store so Atlas and FedLens
+  can show changing public variables. Yahoo Finance rejected on terms.
+- ADR-0010 and DIR-010 in review. Fixtures remain default/CI.
+- Operator: `scripts/refresh_public_feeds.py` then `ATTICUS_LIVE_DATA=1`.
+- Handoff: `agents/handoffs/2026-08-23-public-feed-pipeline.md`
 
 

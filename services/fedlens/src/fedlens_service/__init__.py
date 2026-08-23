@@ -8,6 +8,7 @@ from .corpus import (
     load_fed_corpus,
     write_checksums_into_manifest,
 )
+from .live_store import documents_from_store
 from .service import FedDocument, FedLensService, LanguageComparison
 
 __all__ = [
@@ -20,6 +21,7 @@ __all__ = [
     "PassageCitation",
     "SourceRegisterEntry",
     "cited_compare",
+    "documents_from_store",
     "load_fed_corpus",
     "search_passages",
     "write_checksums_into_manifest",

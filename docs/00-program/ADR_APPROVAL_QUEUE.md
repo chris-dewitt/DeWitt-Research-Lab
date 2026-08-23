@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRG-094
 title: "ADR and Director Approval Queue"
-version: 1.2.0
+version: 1.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-17
+last_updated: 2026-08-23
 ---
 
 # ADR and Director Approval Queue
@@ -21,6 +21,7 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |
+| P2 | ADR-0010 / DIR-010 | Official public feeds versus Yahoo | IN REVIEW | Live Atlas/FedLens ingest | Accept official-only opt-in store; fixtures stay default |
 | P2 | DIR-004 / G-001 | Atticus Core upstream model | Evidence gate | Core SFT | Bake-off per `docs/03-model/BASE_MODEL_BAKEOFF.md` |
 | P2 | G-002 | Edge upstream / teacher | Evidence gate | Edge training | Edge bake-off + distillation study |
 | P2 | DIR-005 / G-005 | Anonymous/auth quotas and pricing | Evidence gate | Public beta | Load/abuse/cost experiment |

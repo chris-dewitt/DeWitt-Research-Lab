@@ -75,6 +75,7 @@ def register_foundation_tools(
     def atlas_handler(arguments: dict[str, Any]) -> ToolOutput:
         as_of = _parse_date(arguments["as_of"])
         items = atlas.research_snapshot(as_of=as_of)
+        changes = atlas.series_changes(as_of=as_of)
         evidence = [
             EvidenceItem(
                 f"atlas-{item.series_id}-{item.observation_date.isoformat()}",
@@ -87,21 +88,27 @@ def register_foundation_tools(
                     "series_id": item.series_id,
                     "observation_date": item.observation_date.isoformat(),
                     "as_of": as_of.isoformat(),
-                    "fixture": True,
+                    "fixture": item.citation.startswith("fixture://"),
                 },
             )
             for item in items
         ]
+        message = f"Atlas returned {len(items)} point-in-time observations."
+        if changes:
+            message = f"{message} {len(changes)} series changed versus the prior print."
         return ToolOutput(
             evidence=evidence,
-            artifacts={"atlas_snapshot": [asdict(item) for item in items]},
-            message=f"Atlas returned {len(items)} point-in-time observations.",
+            artifacts={
+                "atlas_snapshot": [asdict(item) for item in items],
+                "series_changes": changes,
+            },
+            message=message,
         )
 
     registry.register(
         ToolDefinition(
             "atlas.research_snapshot",
-            "Retrieve point-in-time macro and market fixture evidence",
+            "Retrieve point-in-time macro and market evidence",
             RiskTier.READ_COMPUTE,
             True,
         ),
@@ -117,13 +124,17 @@ def register_foundation_tools(
             evidence=[
                 EvidenceItem(
                     f"fedlens-{document.document_id}",
-                    "DRL synthetic Federal Reserve fixture",
+                    (
+                        "DRL synthetic Federal Reserve fixture"
+                        if document.citation.startswith("fixture://")
+                        else "Federal Reserve monetary-policy press"
+                    ),
                     document.title,
                     document.published_date.isoformat(),
                     document.text,
                     document.citation,
                     {
-                        "fixture": True,
+                        "fixture": document.citation.startswith("fixture://"),
                         "comparison": asdict(comparison),
                         "added_passage_citations": [p.citation for p in cited.added_passages],
                         "removed_passage_citations": [p.citation for p in cited.removed_passages],
@@ -143,7 +154,7 @@ def register_foundation_tools(
     registry.register(
         ToolDefinition(
             "fedlens.compare_latest",
-            "Compare the two latest eligible Fed communication fixtures",
+            "Compare the two latest eligible Fed communications",
             RiskTier.READ_COMPUTE,
             True,
         ),

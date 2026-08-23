@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Lab Monorepo"
-version: 5.0.2
+version: 5.0.3
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-23
@@ -90,6 +90,9 @@ default. To point it at a local Ollama model (Qwen3 1.7B or SmolLM3-3B),
 follow [`docs/11-operations/LOCAL_MODEL_RUNBOOK.md`](docs/11-operations/LOCAL_MODEL_RUNBOOK.md).
 That does not select Atticus Core or Edge. A local run prints `progress:`
 lines on stderr and writes an ids-only record under `runs/atticus/`.
+To analyze changing official public series (FRED, Treasury yields, Fed press
+RSS — not Yahoo Finance), see
+[`docs/11-operations/PUBLIC_FEED_PIPELINE.md`](docs/11-operations/PUBLIC_FEED_PIPELINE.md).
 
 ## Current implementation boundary
 

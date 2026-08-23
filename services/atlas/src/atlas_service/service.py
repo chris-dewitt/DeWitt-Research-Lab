@@ -27,14 +27,21 @@ class AtlasService:
 
     @classmethod
     def from_public_adapter(cls, adapter: object) -> AtlasService:
-        """Build a service from a validated/cached public adapter load."""
+        """Build a service from any adapter that exposes ``load()``."""
 
-        from .adapter import PublicFixtureAdapter
-
-        if not isinstance(adapter, PublicFixtureAdapter):
-            raise TypeError("adapter must be a PublicFixtureAdapter")
-        loaded = adapter.load()
+        load = getattr(adapter, "load", None)
+        if not callable(load):
+            raise TypeError("adapter must provide load()")
+        loaded = load()
         return cls([item.observation for item in loaded])
+
+    @classmethod
+    def from_feed_store(cls, root: object) -> AtlasService:
+        from pathlib import Path
+
+        from .live_store import PublicFeedStoreAdapter
+
+        return cls.from_public_adapter(PublicFeedStoreAdapter(Path(str(root))))
 
     @staticmethod
     def fixture_observations() -> list[MetricObservation]:
@@ -91,4 +98,44 @@ class AtlasService:
         as_of: date,
         series: tuple[str, ...] = ("CPI_YOY", "UST_2Y", "UST_10Y"),
     ) -> list[MetricObservation]:
-        return [self.latest(series_id, as_of=as_of) for series_id in series]
+        items: list[MetricObservation] = []
+        for series_id in series:
+            try:
+                items.append(self.latest(series_id, as_of=as_of))
+            except LookupError:
+                continue
+        if not items:
+            raise LookupError(f"No requested series were public by {as_of.isoformat()}")
+        return items
+
+    def series_changes(
+        self,
+        *,
+        as_of: date,
+        series: tuple[str, ...] = ("CPI_YOY", "UST_2Y", "UST_10Y"),
+    ) -> list[dict[str, str]]:
+        """Latest minus previous public print for each series."""
+        changes: list[dict[str, str]] = []
+        for series_id in series:
+            eligible = [
+                item
+                for item in self._observations
+                if item.series_id == series_id and item.published_date <= as_of
+            ]
+            eligible.sort(key=lambda item: (item.published_date, item.observation_date))
+            if len(eligible) < 2:
+                continue
+            previous, current = eligible[-2], eligible[-1]
+            delta = Decimal(current.value) - Decimal(previous.value)
+            changes.append(
+                {
+                    "series_id": series_id,
+                    "previous_value": format(previous.value, "f"),
+                    "current_value": format(current.value, "f"),
+                    "delta": format(delta, "f"),
+                    "previous_date": previous.observation_date.isoformat(),
+                    "current_date": current.observation_date.isoformat(),
+                    "citation": current.citation,
+                }
+            )
+        return changes

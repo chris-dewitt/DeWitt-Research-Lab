@@ -1,10 +1,10 @@
 ---
 document_id: DRL-PRD-005
 title: "Integrated Reference Demonstration Specification"
-version: 2.2.0
+version: 2.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-01
+last_updated: 2026-08-23
 ---
 
 
@@ -28,6 +28,7 @@ The production demo pins an `as_of_date`; “latest” is resolved and displayed
 | Five-way linked artifact digests on one task | `prototype` | `TaskResult.artifacts["linked_workflow"]` + `workflow_linked` trace event (DRL-018) |
 | M3 specialist composition (public Atlas adapter, bounded Fed corpus + citations, scenario catalog) | `prototype` | `build_m3_specialists()` in control-plane runtime |
 | Signed replay / independent verification package | `prototype` | `services/evalforge/fixtures/signed_replays/` (fixture HMAC; not production keys) |
+| Opt-in official FRED/Treasury/Fed store | `prototype` | `scripts/refresh_public_feeds.py` + `ATTICUS_LIVE_DATA=1`; ADR-0010 in review |
 | Live staging/production open-weight demo | `specified` | Blocked on DIR-002/DIR-004 and M4 deploy work |
 
 ## Workflow contract

@@ -367,12 +367,7 @@ class AtticusOrchestrator:
             )
         )
 
-        limitations = [
-            "Macro, market, and Fed inputs are synthetic fixtures for local development.",
-            "BalanceLab uses a simplified educational repricing model, not production bank data.",
-            "DIR-004 (Core/Edge model selection) is still open; a local run is not a selection.",
-            "Linked workflow is prototype maturity; signed replay is DRL-019.",
-        ]
+        limitations = self._limitations_for(evidence)
         limitations.extend(failures)
         emit("finished", state.value)
         return TaskResult(
@@ -385,6 +380,27 @@ class AtticusOrchestrator:
             evaluation,
             limitations,
         )
+
+    @staticmethod
+    def _limitations_for(evidence: list[EvidenceItem]) -> list[str]:
+        live = any(
+            item.citation and not item.citation.startswith("fixture://")
+            for item in evidence
+            if item.evidence_id.startswith(("atlas-", "fedlens-"))
+        )
+        if live:
+            return [
+                "Atlas/FedLens used the local official-feed store (ADR-0010, opt-in).",
+                "BalanceLab still uses a simplified educational bank, not a live institution.",
+                "DIR-004 (Core/Edge selection) is still open; a local run is not a selection.",
+                "Linked workflow is prototype maturity; signed replay is DRL-019.",
+            ]
+        return [
+            "Macro, market, and Fed inputs are synthetic fixtures for local development.",
+            "BalanceLab uses a simplified educational repricing model, not production bank data.",
+            "DIR-004 (Core/Edge selection) is still open; a local run is not a selection.",
+            "Linked workflow is prototype maturity; signed replay is DRL-019.",
+        ]
 
     @staticmethod
     def _link_workflow(

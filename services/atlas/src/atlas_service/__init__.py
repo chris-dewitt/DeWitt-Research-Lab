@@ -11,6 +11,7 @@ from .adapter import (
     TemporalRecord,
     validate_observation_payload,
 )
+from .live_store import LIVE_SOURCE_TERMS, PublicFeedStoreAdapter
 from .service import AtlasService, MetricObservation
 
 __all__ = [
@@ -20,7 +21,9 @@ __all__ = [
     "FAILURE_FIXTURE_PAYLOAD",
     "FIXTURE_SOURCE_TERMS",
     "FileObservationCache",
+    "LIVE_SOURCE_TERMS",
     "MetricObservation",
+    "PublicFeedStoreAdapter",
     "PublicFixtureAdapter",
     "SourceTerms",
     "TemporalRecord",

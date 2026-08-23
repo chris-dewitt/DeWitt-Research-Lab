@@ -9,6 +9,16 @@ last_updated: 2026-08-23
 
 # Foundation Changelog
 
+## 2026-08-23 — Official public feed pipeline (opt-in)
+
+- `scripts/refresh_public_feeds.py` ingests FRED (CPI, DGS2, DGS10), Treasury
+  par yields, and Federal Reserve monetary-policy press RSS into
+  `data/public-feeds/`.
+- `ATTICUS_LIVE_DATA=1` points Atlas/FedLens at that store. Fixtures remain
+  the default. Yahoo Finance is not a source.
+- Atticus snapshot artifacts include `series_changes` (latest minus prior
+  print). **ADR-0010** / **DIR-010** are in review.
+
 ## 2026-08-23 — Pages deployment claims are now verified at the edge
 
 - `publish-pages` verifies that the deployed URL actually returns 200 before the

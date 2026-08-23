@@ -34,6 +34,18 @@ does **not** include trained Atticus weights, public inference, a production
 cloud deployment, or completed empirical papers. Those are planned or
 evidence-gated work, and they are labeled that way throughout the repository.
 
+Laboratory IDs always carry a prefix, and the prefixes mean different things:
+
+| Prefix | What it is | Example |
+|---|---|---|
+| `DRL-NNN` | A work item / GitHub issue | `DRL-004` — prove a clean-clone bootstrap and demo |
+| `DRL-XXX-NNN` | A requirement | `DRL-OPS-007` — local model runbook |
+| `DIR-NNN` | A Director decision still in the ledger | `DIR-004` — which models become Atticus Core and Edge (open) |
+| `RES-NNN` | An approved answer to a DIR | `RES-022` — keep historical UNC author emails |
+| `ADR` | An architecture decision record | recorded in `docs/adr/` |
+
+`DRL-004` and `DIR-004` are not the same thing.
+
 ## Start with the evidence
 
 | Artifact | What it is | Maturity |

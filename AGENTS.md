@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-AGENTS
 title: "Repository-Wide Agent Operating Contract"
-version: 4.0.0
+version: 4.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-08-23
 ---
 
 
@@ -211,6 +211,8 @@ Agents should:
 
 Controlled documents require YAML frontmatter with unique document ID, version, status, owner, and update date. Approved documents must not contain unresolved `TODO`, `TBD`, or placeholder claims unless the section is explicitly titled “Open Decision” and linked to an issue.
 
+The first time an identifier appears in a conversation, README, PR, commit, or handoff, gloss it in the same sentence or the next one. Bare numbers are not enough. Prefixes are not interchangeable: **DRL-NNN** is an issue/work item, **DRL-XXX-NNN** is a requirement, **DIR-NNN** is a Director decision, **RES-NNN** is a resolution of a DIR, **D-NNN** is a foundation register decision, and **ADR** is an architecture decision record. Example: write “DIR-004 (which upstream models become Atticus Core and Edge; still open)” rather than “DIR-004”.
+
 When implementation changes behavior, update:
 
 - project specification;
@@ -226,7 +228,7 @@ When implementation changes behavior, update:
 Every PR must state:
 
 - problem and user value;
-- issue and requirement IDs;
+- issue and requirement IDs, each glossed in plain language on first use;
 - owned paths changed;
 - design and tradeoffs;
 - security/privacy effect;

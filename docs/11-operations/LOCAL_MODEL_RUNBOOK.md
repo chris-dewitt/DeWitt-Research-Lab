@@ -12,7 +12,7 @@ last_updated: 2026-08-23
 
 How to put an open-weight model behind the Atticus planner on a workstation, and how to tell what is wrong when it does not answer.
 
-The deterministic fixture planner is the default everywhere, including CI. Nothing here changes that. A model is opt-in, and a model failure degrades to fixtures rather than failing the run. Running a small local model does **not** select Atticus Core or Edge. `DIR-004` stays open until a hardware bake-off with pinned revisions and cleared licenses is reviewed.
+The deterministic fixture planner is the default everywhere, including CI. Nothing here changes that. A model is opt-in, and a model failure degrades to fixtures rather than failing the run. Running a small local model does **not** select Atticus Core or Edge. **DIR-004** (the Director decision: which upstream models become Atticus Core and Edge) stays open until a hardware bake-off with pinned revisions and cleared licenses is reviewed.
 
 ## Two Ollama libraries on Windows
 

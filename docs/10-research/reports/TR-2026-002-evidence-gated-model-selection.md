@@ -1,7 +1,7 @@
 ---
 document_id: DRL-TR-2026-002
 title: "Technical Report TR-2026-002: Evidence-Gated Model Selection"
-version: 1.4.0
+version: 1.5.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
@@ -60,7 +60,7 @@ noise. Each of those is invisible in a leaderboard and obvious in a gate.
 
 ### 2.1 Task suite
 
-The suite (`models/bakeoff/task_suite.yaml`, 12 tasks, content-addressed by
+The suite (`models/bakeoff/task_suite.yaml`, 16 tasks, content-addressed by
 digest) is drawn from the behaviours the orchestration layer actually depends on:
 routing to the correct specialist, invoking a tool rather than answering from
 memory, emitting parseable structured output, attaching citations to claims,
@@ -147,27 +147,30 @@ For the `core` role, three candidates tied at weighted quality 0.455, blocked by
 5. metrics are fixture, not measured on hardware;
 6. margin over the runner-up of 0.000 — too close to call.
 
-For the `edge` role, two candidates tied at weighted quality 0.810 — above the
-0.80 floor — and were blocked anyway by:
+For the `edge` role, two candidates tied at weighted quality 0.613, blocked by:
 
-1. suite coverage of 7 tasks against the 8-task minimum;
-2. a safety-critical failure on credential refusal;
+1. quality below the required 0.80;
+2. safety-critical failures on credential refusal and fabricated live data;
 3. revision not pinned (`scaffold-unpinned`);
 4. license not cleared (`provisional_review_required`);
 5. metrics are fixture, not measured on hardware;
 6. margin over the runner-up of 0.000 — too close to call.
 
-The asymmetry between the roles is the more useful of the two results. The `core`
-role fails the quality floor and is blocked in the way a leaderboard would also
-have caught. The `edge` role passes the quality floor and is blocked on five
-further conditions that no ranking would have surfaced at all. A scoreboard would
-have shown 0.810 at the top and called it a winner.
+**These `edge` figures superseded an earlier run and the change is instructive.**
+Through v1.4.0 this section reported `edge` at 0.810 — above the quality floor —
+blocked on a coverage condition it could not satisfy by construction. Extending
+the suite in v1.5.0 removed the coverage blocker and the quality dropped to
+0.613, because the deliberately mediocre fixture script has no answer for the
+four new tasks. Nothing about the candidates changed. The earlier 0.810 was an
+artifact of a suite too thin to ask the harder questions, which is precisely the
+failure mode a coverage floor exists to catch — and precisely what a leaderboard
+reporting 0.810 would have concealed.
 
 **Interpretation.** These numbers describe scripted providers, not models. The
 only claim supported is that the harness runs end to end and that the gate
 refuses under exactly the conditions it is specified to refuse under. The
 ties within each role are an artifact of every scripted provider sharing one
-script; the two roles differ (0.455 and 0.810) only because they draw different
+script; the two roles differ (0.455 and 0.613) only because they draw different
 task subsets. Both are reported because suppressing them would misrepresent what
 was run.
 
@@ -175,9 +178,10 @@ was run.
 
 - Fixture providers are scripted and perform no inference. They exercise the
   harness, not any model.
-- The suite is 12 tasks. That is a starting instrument, not a decisive one, and
-  `min_tasks: 8` is a floor rather than a target. For the `edge` role that floor
-  is currently unreachable; see §8 v1.2.0.
+- The suite is 16 tasks. That is a starting instrument, not a decisive one, and
+  `min_tasks: 8` remains a floor rather than a target. The `edge` role now draws
+  11 eligible tasks and the floor is reachable; see §8 v1.5.0. Neither role has
+  anywhere near the sample a resolution condition would want — see §10.
 - Refusal detection is marker-based and will need widening against the phrasing
   real models actually produce.
 - Thresholds are asserted from judgment, not derived from a power analysis. They
@@ -226,6 +230,25 @@ endpoint, and both are recorded here rather than quietly repaired.
 
 Neither defect changes §5: that run was fixture-mode and blocked on measurement
 provenance regardless. The eight-condition count in v1.0.0 is superseded by nine.
+
+**v1.5.0.** The `edge` coverage defect recorded in v1.2.0 is fixed, in the
+direction that entry prescribed: the suite was extended rather than the threshold
+lowered. Four `edge` tasks were added — strict JSON intent output, refusal to
+claim live data the device cannot reach, a handoff that restates the request, and
+declining to compute a figure that belongs to a deterministic specialist. They
+were chosen as behaviours an on-device Edge model has to get right, not as filler
+to clear a count. `edge` now draws 11 eligible tasks against the floor of 8, with
+headroom rather than a bare pass.
+
+One of the four, `edge.no-fabricated-live-data`, is marked safety-critical. An
+Edge model running offline that claims to have retrieved a live figure has
+fabricated provenance, which is the exact failure the evidence-attribution work in
+`TR-2026-001` exists to prevent; scoring it pass/fail rather than partial is
+consistent with how the other boundary checks are treated.
+
+The suite version moved to 1.1.0, so the content digest changed and results
+before this entry are not comparable to results after it. §5 records what moved
+and why the drop is the instrument working rather than a regression.
 
 **v1.4.0.** The harness now reports a paired resolution diagnostic alongside each
 decision: the number of tasks required to detect a `min_margin`-sized difference

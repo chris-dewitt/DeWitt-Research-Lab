@@ -36,10 +36,10 @@ dashboard weekly and before any public claim.
 | Evidence-ready prototypes | Atticus integrated path, specialist fixtures, replay viewer/export, reports, teaching lab |
 | Specified-only surfaces | lab-web, atticus-console, Atticus Core/Edge weights, live cloud deployment |
 | Website | `www.dewitt-labs.com` is live; portfolio content remains Director-edited in Wix |
-| Repository visibility | Private through 2026-09-30 under RES-018 |
+| Repository visibility | Public authorized by RES-024; Director flips the switch |
 | Cloud/model spend | `$0` recorded; no live project or model training authorized |
 | Public-claim boundary | Do not call the system V1, production, or an open-weight model release |
-| Top release blocker | RES-018 date gate; visibility not before 2026-09-30 |
+| Top release blocker | None on visibility; RES-024 cleared it |
 | Next unblocking issue | Complete review and merge of DRL-034 |
 
 ## Release-readiness scorecard
@@ -55,5 +55,5 @@ dashboard weekly and before any public claim.
 | Wix portfolio | Linked identity surface | Linked identity surface | Live; independently edited |
 | Cloud deployment | Not required | Preview target | No deployment authorized |
 
-Public-source readiness is a bounded milestone. It does not imply V1 readiness
-or authorize changing repository visibility before the date in RES-018.
+Public-source readiness is a bounded milestone and does not imply V1 readiness.
+Repository visibility is authorized separately by RES-024.

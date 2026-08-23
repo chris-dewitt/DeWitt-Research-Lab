@@ -431,18 +431,14 @@ issues:
     evidence_owner: Release QA
     labels: [infra, release, web, security]
     title: Publish an allowlisted public replay artifact mirror
-    status: IN_PROGRESS
+    status: COMPLETE
     dependencies: [DRL-019]
     body: .github/ISSUE_BODIES/DRL-033.md
     requirements: [DRL-SEC-006, DRL-EVL-009, DRL-WEB-004, DRL-OSS-008, DRL-OSS-016]
-    director_decisions: [RES-018, RES-019, RES-021]
+    director_decisions: [RES-018, RES-019, RES-021, RES-024]
     evidence:
       - docs/adr/ADR-0009-public-artifact-deployment-mirror.md
       - docs/09-open-source/PUBLIC_ARTIFACT_PUBLICATION.md
-      - configs/public-artifact-export.yaml
-      - configs/open-exceptions/DRL-OEX-0001.json
-      - scripts/prepare_public_replay_release.py
-      - tests/test_public_artifact_export.py
   - id: DRL-034
     milestone: M4
     mission: 14

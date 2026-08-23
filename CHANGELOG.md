@@ -1,13 +1,70 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.14.0
+version: 4.16.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-19
 ---
 
 # Foundation Changelog
+
+## 2026-08-23 — Edge coverage fixed; on-device measurement runbook
+
+- Extended the bake-off suite to 16 tasks, fixing the `edge` coverage defect
+  recorded in TR-2026-002 §8 v1.2.0 **in the direction that entry prescribed** —
+  the suite grew rather than the threshold shrinking. `edge` now draws 11
+  eligible tasks against the floor of 8. Suite version 1.1.0; the content digest
+  changed, so results before and after are not comparable.
+- The four new tasks are behaviours an on-device Edge model has to get right:
+  strict JSON intent output, refusing to claim live data the device cannot
+  reach, a handoff that restates the request, and declining to compute a figure
+  that belongs to a deterministic specialist. `edge.no-fabricated-live-data` is
+  safety-critical — an offline model claiming retrieval has fabricated
+  provenance, the exact failure TR-2026-001's evidence attribution exists to
+  prevent.
+- Fixture `edge` quality accordingly fell from 0.810 to 0.613 and the coverage
+  blocker was replaced by a quality blocker. Nothing about the candidates
+  changed; the earlier 0.810 was an artifact of a suite too thin to ask the
+  harder questions. TR-2026-002 §5 records the supersession rather than quietly
+  restating the number.
+- Added `DRL-OPS-008`, the Edge Device Measurement Runbook. It documents that
+  Google AI Edge Gallery is a showcase app rather than an SDK, that LiteRT-LM is
+  the runtime to build on and the MediaPipe LLM Inference API is maintenance-only,
+  and that Gallery exposes no HTTP surface a harness can drive. Three paths are
+  ranked by cost and by what each is actually worth as evidence, with an explicit
+  prohibition on labelling any hand-run as a measured run.
+
+## 2026-08-22 — RES-024: publish the source, retire the artifact mirror
+
+- Recorded **RES-024**. The Director elected to publish
+  `chris-dewitt/DeWitt-Research-Lab` itself rather than a sanitized derivative,
+  39 days ahead of the RES-018 date clause. It supersedes that clause and
+  supersedes RES-021 in full. Visibility is a Director account action; no agent
+  performs it.
+- Retired the artifact mirror. It existed for one reason — GitHub Pages will not
+  deploy from a private personal repository on the current plan — and a public
+  source removes it. Deleted `configs/public-artifact-export.yaml`,
+  `configs/open-exceptions/DRL-OEX-0001.json`,
+  `scripts/prepare_public_replay_release.py`,
+  `.github/workflows/publish-replays.yml`, and
+  `tests/test_public_artifact_export.py`. `scripts/build_replay_site.py`
+  survives; Pages can serve its output directly once the repository is public.
+- `ADR-0009` is `SUPERSEDED` and DRL-033 is closed as superseded. Both are
+  retained unedited beneath supersession banners rather than rewritten, so the
+  record of why the boundary existed and what it enforced survives it.
+- Rewrote `DRL-OSS-022` for direct publication. Removing the allowlist raises
+  rather than lowers the honesty bar, because nothing mechanical now stands
+  between a draft and a reader: maturity labels become load-bearing, the
+  research gates stay evidence-based rather than visibility-based, the
+  fail-closed tracked-source audit becomes the only automated check and must not
+  be weakened to pass a commit, and corrections are published rather than erased.
+- RES-024 records deliberately what the allowlist previously withheld and is now
+  public: the Directors Memo including the open DIR-006 and DIR-007
+  deliberations, `LICENSE-STRATEGY.md`, `COMMERCIAL_SUSTAINABILITY.md`, the
+  worklog, 24 agent handoffs, and every `DRAFT` or `IN REVIEW` controlled
+  document including `TR-2026-002` and its preliminary novelty scan. Each keeps
+  its real status label; publishing unfinished work as unfinished is the intent.
 
 ## 2026-08-19 — Resolution diagnostic and the research/cfi ratification
 

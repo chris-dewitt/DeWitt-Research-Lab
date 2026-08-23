@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DOC-002
 title: "Controlled Documentation Index"
-version: 3.3.0
+version: 3.4.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -31,7 +31,8 @@ last_updated: 2026-08-05
 - `08-web-brand` — brand, website, console, replay, accessibility, analytics.
 - `09-open-source` — open research charter implementation, artifact standards, models, stack/upstream policy, reproducibility, forkability, licensing, contributors, governance, and plugins.
 - `10-research` — ethics, publications, teaching/research program.
-- `11-operations` — agents, ADRs, releases, cost and document control.
+- `11-operations` — agents, ADRs, releases, cost, document control, and the
+  local/edge model measurement runbooks (DRL-OPS-007, DRL-OPS-008).
 - `12-acceptance` — Definition of Ready/Done and V1 release gates.
 
 ## Component authority

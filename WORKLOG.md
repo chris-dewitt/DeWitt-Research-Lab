@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.24.0
+version: 4.25.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-19
+last_updated: 2026-08-22
 ---
 
 
@@ -18,15 +18,16 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 - M2 specialists through DRL-013 on `main`; M3 specialists DRL-014–017 on `main`
   (DRL-016 landed via corrective PR #20).
-- Active mission: **14 Release QA** — DRL-034 source-tree curation is ready for
-  review while the authoritative repository remains private. Public visibility
-  is date-gated by RES-018 and blocked by DIR-009. CFI DIR-008 Option A remains
-  subject to independent G1 review. Wix editor implementation remains
-  Director-operated.
+- Active mission: **14 Release QA** — public visibility is authorized by
+  RES-024, which supersedes the RES-018 date clause and retires the artifact
+  mirror. DIR-009 was resolved by RES-022. The Director changes visibility in
+  their own GitHub account. CFI DIR-008 Option A remains subject to independent
+  G1 review. Wix editor implementation remains Director-operated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-002 (GCP deploy), DIR-004 (model bake-off; scaffold only —
-  no winner), independent CFI G1 review, and final public-artifact deployment
-  read-back (Pages + `PUBLIC_ARTIFACT_TOKEN`). DIR-009 is resolved by RES-022.
+  no winner), and independent CFI G1 review. DIR-009 is resolved by RES-022.
+  The public-artifact deployment read-back is no longer a blocker — RES-024
+  retired the mirror it belonged to.
 - First sprint plan: `docs/00-program/FIRST_SPRINT_PLAN.md`.
 
 ## Reservation table
@@ -147,6 +148,29 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-22 — RES-024 publish the source, retire the artifact mirror
+
+- The Director elected to publish `chris-dewitt/DeWitt-Research-Lab` itself
+  rather than a sanitized derivative, 39 days ahead of the RES-018 date clause.
+  RES-024 records it and supersedes that clause plus RES-021 in full.
+- The mirror existed for one reason: GitHub Pages will not deploy from a private
+  personal repository on the current plan. A public source removes the reason.
+  `ADR-0009` is `SUPERSEDED`, `DRL-OEX-0001` is closed, and the export policy,
+  publication workflow, preparation script, and their tests are deleted.
+  `scripts/build_replay_site.py` survives; Pages can serve its output directly.
+- DRL-033 is closed as superseded. Its issue body and ADR-0009 are retained
+  unedited beneath supersession banners, as the record of what the boundary was
+  and why it was built.
+- Recorded deliberately in RES-024: this publishes what the allowlist withheld —
+  the Directors Memo including open DIR-006 and DIR-007 deliberations,
+  `LICENSE-STRATEGY.md`, `COMMERCIAL_SUSTAINABILITY.md`, the worklog, 24 agent
+  handoffs, and every `DRAFT` or `IN REVIEW` document including `TR-2026-002`.
+  Every one keeps its real status label. `DRL-OSS-022` was rewritten to make
+  that labelling the standing obligation the allowlist used to discharge.
+- No agent changes repository visibility. That is a Director account action.
+- Next: the Director flips visibility; optionally enable Pages on the repository
+  to serve the replay viewer, which no longer has any workflow behind it.
 
 ### 2026-08-17 — DRL-034 public repository source curation
 

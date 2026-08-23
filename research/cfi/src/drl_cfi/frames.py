@@ -24,6 +24,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+from drl_cfi.competence import CompetenceProbe
 from drl_cfi.payoffs import Claim, LegKind, equivalence_failure
 
 
@@ -119,13 +120,42 @@ class PairedValuation:
     left_value: float
     right_value: float
     oracle_price: float
+    competence: CompetenceProbe | None = None
+
+    def __post_init__(self) -> None:
+        if self.competence is not None and self.competence.subject_id != self.subject_id:
+            raise ValueError(
+                f"competence probe is for {self.competence.subject_id!r}, not {self.subject_id!r}"
+            )
+
+    @property
+    def is_admissible(self) -> bool:
+        """True when this observation may enter an analysis.
+
+        A framing difference means nothing unless the subject could price the
+        unframed claim; see :mod:`drl_cfi.competence`. An observation with no
+        competence probe attached is **not** admissible — absent evidence of
+        competence is not evidence of it, and defaulting the other way would let
+        an unscreened study look screened.
+        """
+        return self.competence is not None and self.competence.is_competent
+
+    def inadmissibility_reason(self) -> str | None:
+        """Why this observation cannot be analysed, or ``None`` if it can."""
+        if self.competence is None:
+            return (
+                f"{self.subject_id} has no competence probe for pair {self.pair_id!r}; "
+                "an unscreened valuation cannot be attributed to framing"
+            )
+        return self.competence.exclusion_reason()
 
     @property
     def framing_difference(self) -> float:
         """Raw paired difference ``left - right``.
 
         This is an observation, not an estimate. Aggregating these into an effect
-        requires the frozen analysis plan behind G3.
+        requires the frozen analysis plan behind G3, and only observations where
+        :attr:`is_admissible` holds belong in that aggregate.
         """
         return self.left_value - self.right_value
 

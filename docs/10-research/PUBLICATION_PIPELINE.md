@@ -39,4 +39,4 @@ against primary sources. Current state:
 |---|---|---|
 | TR-2026-001 | None | Not required while the report claims only a reproducible workflow |
 | TR-2026-002 | `TR-2026-002_NOVELTY_SCAN.md` (DRL-RES-008) | **Preliminary** — 7 records examined, 4 verified; not a G1 review |
-| CFI Papers I-III | `CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md` (DRL-RES-006) | `IN REVIEW`; independent G1 outstanding |
+| CFI Papers I-III | `CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md` (DRL-RES-006) + `CFI_REVALIDATION_2026-08-23.md` (DRL-RES-009) | Two strata covered; preprint re-opening outstanding. RES-025 replaced the independent-reviewer precondition with stratum coverage |

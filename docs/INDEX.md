@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DOC-002
 title: "Controlled Documentation Index"
-version: 3.4.0
+version: 3.5.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-05
@@ -65,6 +65,9 @@ Some older seed documents may remain under unnumbered domain paths for history. 
 - `10-research/CFI_CANDIDATE_DATA_RIGHTS_REGISTER.md` — opening CFI-003 record
   of candidate human datasets. No data acquired; G2 remains closed.
 - `10-research/TR-2026-002_NOVELTY_SCAN.md` — preliminary novelty scan for the
-  evidence-gate report. Not a G1 review.
+  evidence-gate report.
+- `10-research/CFI_REVALIDATION_2026-08-23.md` — first revalidation pass against
+  the 2026-09-05 boundary, covering the published-journal stratum the original
+  review missed. Companion to the 2026-08-05 review, not an edit to it.
 - `research/cfi/` — Paper II machine instrument (payoff equivalence, pricing
   oracle, coherence repair). Contains no experiment, dataset, or result.

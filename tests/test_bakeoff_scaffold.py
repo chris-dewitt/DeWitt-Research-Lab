@@ -12,6 +12,27 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTER = ROOT / "models" / "bakeoff" / "candidates.yaml"
 
 
+def test_local_edge_models_are_registered_as_served() -> None:
+    """Qwen3-1.7B and SmolLM3-3B are workstation-served, not a Core/Edge winner.
+
+    DIR-004 (which models become Atticus Core and Edge) stays open.
+    """
+    register = load_bakeoff_register(REGISTER)
+    by_id = {row["id"]: row for row in register["candidates"]}
+    for candidate_id, expected_model in (
+        ("edge-qwen3-1.7b", "hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0"),
+        ("edge-smollm3-3b", "hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M"),
+    ):
+        row = by_id[candidate_id]
+        assert row["role"] == "edge"
+        assert row["open_weight"] is True
+        assert row["license_status"] != "cleared"
+        serving = row["serving"]
+        assert serving["runtime"] == "ollama"
+        assert serving["model"] == expected_model
+    assert register["selection_status"] == "not_selected"
+
+
 def test_bakeoff_register_covers_core_and_edge() -> None:
     register = load_bakeoff_register(REGISTER)
     roles = {row["role"] for row in register["candidates"]}
@@ -41,8 +62,7 @@ def test_bakeoff_scaffold_report_has_required_fields() -> None:
         assert "limitations" in row
         assert 0.0 <= row["metrics"]["aggregate_proxy"] <= 1.0
     assert any(
-        "DIR-004" in item or "not selected" in item.lower()
-        for item in report["limitations"]
+        "DIR-004" in item or "not selected" in item.lower() for item in report["limitations"]
     )
     assert report["configuration_digest"].startswith("sha256:")
 

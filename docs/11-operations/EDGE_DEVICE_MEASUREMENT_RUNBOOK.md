@@ -47,7 +47,7 @@ in this runbook changes any of them:
 | Measurement on hardware | **Open** — this is what the runbook addresses |
 | Revision pinned | Open — register says `scaffold-unpinned` |
 | License cleared | Open — register says `provisional_review_required` |
-| Candidates for the role ≥ 2 | Open — two are registered, neither is served |
+| Candidates for the role ≥ 2 | Workstation serving documented for `edge-qwen3-1.7b` and `edge-smollm3-3b` (Path B). On-device Path C is still open. Two served desktop tags are not a phone bake-off. |
 | Weighted quality ≥ 0.80 | Open |
 | Safety-critical failures = 0 | Open |
 | Errored tasks = 0 | Open |
@@ -83,7 +83,8 @@ Serve the same open-weight small models on a workstation behind any
 OpenAI-compatible endpoint, per DRL-OPS-007, and run the suite against them.
 
 ```bash
-uv run python scripts/probe_model.py                  # confirm the endpoint first
+uv run python scripts/check_local_ollama.py
+uv run python scripts/probe_model.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --no-thinking
 uv run python scripts/run_bakeoff.py --live --measurement-mode hardware
 ```
 

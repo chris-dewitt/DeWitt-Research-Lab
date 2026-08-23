@@ -85,9 +85,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Seconds of silence tolerated before the endpoint is called dead",
     )
     parser.add_argument("--max-tokens", type=int, default=2048)
-    parser.add_argument(
-        "--no-stream", action="store_true", help="Use one blocking request instead"
-    )
+    parser.add_argument("--no-stream", action="store_true", help="Use one blocking request instead")
     parser.add_argument(
         "--no-thinking",
         action="store_true",
@@ -188,13 +186,29 @@ def main() -> int:
     print(f"probing {args.model} at {args.base_url}")
     print(f"stall timeout {args.stall_timeout:.0f}s / total {args.timeout:.0f}s\n")
 
+    listed = provider.catalog_ids()
+    if listed:
+        print("daemon catalogue (GET /v1/models):")
+        for name in sorted(listed):
+            print(f"  - {name}")
+        if args.model not in listed:
+            print(
+                f"  note: {args.model!r} is not in that list. "
+                "`ollama list` can show a different library; pin "
+                '$env:OLLAMA_HOST="http://127.0.0.1:11434" and pull into this daemon.'
+            )
+        print()
+
     if not stage_reachable(provider, args.base_url):
         return _fail(
             "reachability",
-            "the endpoint did not answer a one-token request",
+            "the endpoint did not answer, or the requested tag is not on this daemon",
             fix=(
-                "confirm the runtime is up (`ollama ps`) and that the model tag is "
-                "pulled (`ollama list`). If it is served elsewhere, pass --base-url."
+                "Atticus uses GET /v1/models on this base URL, not `ollama list`. "
+                'Pin the CLI with $env:OLLAMA_HOST="http://127.0.0.1:11434", then '
+                "`ollama list` must match curl.exe http://127.0.0.1:11434/api/tags. "
+                "Pull the tag into that daemon. If it is served elsewhere, pass --base-url. "
+                "uv run python scripts/check_local_ollama.py"
             ),
         )
 
@@ -204,9 +218,7 @@ def main() -> int:
         public_session=False,
         as_of="2026-07-24",
     )
-    response = stage_generate(
-        provider, build_planning_messages(request, catalog), constraints
-    )
+    response = stage_generate(provider, build_planning_messages(request, catalog), constraints)
     if response is None:
         return _fail(
             "generation",

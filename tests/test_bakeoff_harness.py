@@ -203,9 +203,7 @@ class TestGrading:
 
     def test_invalid_json_does_not_inflate_score(self) -> None:
         """Missing keys must count against the score, not shrink the denominator."""
-        task = _task(
-            grader=GraderSpec(must_emit_json=True, json_required_keys=("a", "b", "c"))
-        )
+        task = _task(grader=GraderSpec(must_emit_json=True, json_required_keys=("a", "b", "c")))
         assert grade_response(task, _response("garbage")).score == 0.0
 
     def test_refusal_expectation(self) -> None:
@@ -521,9 +519,7 @@ class TestLiveProviderWiring:
         providers = build_live_providers(register)
         assert set(providers) == {"served"}
 
-    def test_identity_is_taken_from_the_register_not_the_endpoint(
-        self, tmp_path: Path
-    ) -> None:
+    def test_identity_is_taken_from_the_register_not_the_endpoint(self, tmp_path: Path) -> None:
         """A local server cannot attest to the license or revision it loaded."""
         register = self._register(
             tmp_path,
@@ -555,7 +551,9 @@ class TestLiveProviderWiring:
                 )
             ],
         )
-        provider = build_live_providers(register, base_url_override="http://127.0.0.1:8000/v1")["c1"]
+        provider = build_live_providers(register, base_url_override="http://127.0.0.1:8000/v1")[
+            "c1"
+        ]
         assert provider.base_url == "http://127.0.0.1:8000/v1"  # type: ignore[attr-defined]
 
     def test_an_incomplete_serving_block_is_an_error_not_a_skip(self, tmp_path: Path) -> None:
@@ -566,7 +564,11 @@ class TestLiveProviderWiring:
 
     def test_the_real_register_serves_exactly_what_has_been_stood_up(self) -> None:
         providers = build_live_providers(REGISTER)
-        assert set(providers) == {"core-gemma4-26b"}
+        assert set(providers) == {
+            "core-gemma4-26b",
+            "edge-qwen3-1.7b",
+            "edge-smollm3-3b",
+        }
 
     def test_a_live_run_of_the_real_register_still_cannot_select(self) -> None:
         """One served candidate is a measurement, not a bake-off.
@@ -581,10 +583,22 @@ class TestLiveProviderWiring:
         assert decision.selected is None
         assert any("required to compare" in b for b in decision.blockers)
 
+    def test_two_served_edge_models_still_cannot_select(self) -> None:
+        """Workstation serving is not a bake-off winner.
 
-# --------------------------------------------------------------------------- #
-# Resolution diagnostic (reported, never gating)
-# --------------------------------------------------------------------------- #
+        Two local tags clear the field-size condition for Edge. License and
+        revision still hedge, so DIR-004 stays open even if the scores are
+        perfect. That is the point of standing the models up without selecting.
+        """
+        register = load_candidates(REGISTER)
+        runs = [
+            _run("edge-qwen3-1.7b", _results(12, 1.0), role="edge"),
+            _run("edge-smollm3-3b", _results(12, 0.9), role="edge"),
+        ]
+        decision = select_winner("edge", runs, register)
+        assert decision.selected is None
+        joined = " ".join(decision.blockers)
+        assert "license" in joined or "revision" in joined or "provisional" in joined
 
 
 def _scored(scores: list[float], *, weights: list[float] | None = None) -> list[TaskResult]:

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Lab Monorepo"
-version: 5.0.0
+version: 5.0.1
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-17
+last_updated: 2026-08-23
 ---
 
 # DeWitt Research Lab
@@ -33,6 +33,18 @@ The current prototype uses deterministic fixtures and a rule-based planner. It
 does **not** include trained Atticus weights, public inference, a production
 cloud deployment, or completed empirical papers. Those are planned or
 evidence-gated work, and they are labeled that way throughout the repository.
+
+Laboratory IDs always carry a prefix, and the prefixes mean different things:
+
+| Prefix | What it is | Example |
+|---|---|---|
+| `DRL-NNN` | A work item / GitHub issue | `DRL-004` — prove a clean-clone bootstrap and demo |
+| `DRL-XXX-NNN` | A requirement | `DRL-OPS-007` — local model runbook |
+| `DIR-NNN` | A Director decision still in the ledger | `DIR-004` — which models become Atticus Core and Edge (open) |
+| `RES-NNN` | An approved answer to a DIR | `RES-022` — keep historical UNC author emails |
+| `ADR` | An architecture decision record | recorded in `docs/adr/` |
+
+`DRL-004` and `DIR-004` are not the same thing.
 
 ## Start with the evidence
 
@@ -73,8 +85,10 @@ The demonstration runs an actual local orchestration path:
 4. EvalForge evaluates the completed trajectory and its permission behavior.
 
 The reported values are fixture evidence for software behavior, not claims
-about financial markets or real institutions. The planner is rule-based and
-stands in for the future Atticus model program.
+about financial markets or real institutions. The planner is rule-based by
+default. To point it at a local Ollama model (Qwen3 1.7B or SmolLM3-3B),
+follow [`docs/11-operations/LOCAL_MODEL_RUNBOOK.md`](docs/11-operations/LOCAL_MODEL_RUNBOOK.md).
+That does not select Atticus Core or Edge.
 
 ## Current implementation boundary
 

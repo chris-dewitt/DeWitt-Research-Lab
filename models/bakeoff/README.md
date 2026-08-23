@@ -1,10 +1,10 @@
 ---
 document_id: DRL-MOD-100
 title: "Atticus Bake-Off Scaffold and Stage-B Harness"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-03
+last_updated: 2026-08-23
 ---
 
 # Atticus Bake-Off
@@ -19,6 +19,7 @@ gate.
 - This is **not** a live hardware bake-off until run with `--measurement-mode hardware`.
 - This does **not** select Atticus Core or Edge.
 - **DIR-004** remains open until measured evidence is reviewed by the Director.
+- `edge-qwen3-1.7b` and `edge-smollm3-3b` carry workstation `serving` blocks so a local Ollama daemon can drive Atticus. Presence of those blocks is not a selection.
 
 ## Stage B: the task suite
 

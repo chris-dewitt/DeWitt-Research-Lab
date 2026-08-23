@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.25.0
+version: 4.26.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-22
+last_updated: 2026-08-23
 ---
 
 
@@ -59,6 +59,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 14 / DRL-033 | Codex | `lovesong/infra/drl-033-public-artifact-pages` | 2026-08-06T02:15:00Z | MERGED — DEPLOYMENT READ-BACK PENDING | PR #45; `agents/handoffs/2026-08-05-drl-033-public-artifact-mirror.md` |
 | 14 / DRL-033 follow-up | Cursor cloud agent | `cursor/drl-033-artifacts-repo-live-d422` | 2026-08-19T03:20:00Z | IN REVIEW — PUBLIC REPO LIVE; PAGES + TOKEN PENDING | PR #48; `agents/handoffs/2026-08-19-drl-033-artifacts-repo-live.md` |
 | 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
+| ops / local Atticus models | Cursor cloud agent | `cursor/local-qwen-smollm-atticus-ad29` | 2026-08-23 | IN REVIEW — workstation Qwen3-1.7B + SmolLM3-3B serving; DIR-004 open | PR #54; `agents/handoffs/2026-08-23-local-qwen-smollm.md` |
 
 ## Active scope — DRL-034 public repository readiness
 
@@ -491,4 +492,18 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Branch: `cursor/drl-014-atlas-adapter-ad29`
 - Source terms, temporal validation, disk cache, failure fixture
 - Handoff: `agents/handoffs/2026-07-29-drl-014.md`
+
+### 2026-08-23 — Local Atticus with Qwen3 1.7B and SmolLM3-3B
+
+- Branch: `cursor/local-qwen-smollm-atticus-ad29`
+- Objective: wire workstation Atticus to the Ollama daemon on `:11434` with
+  Qwen3 1.7B and SmolLM3-3B. Diagnose the Windows split between `ollama list`
+  and `GET /v1/models`.
+- Register: `edge-qwen3-1.7b` and `edge-smollm3-3b` serving blocks added.
+  Licenses remain provisional. `selection_status: not_selected`. DIR-004 open.
+- Operator path: `scripts/check_local_ollama.py`,
+  `scripts/windows/setup-local-models.ps1`, DRL-OPS-007 v1.2.0.
+- Tests: `tests/test_check_local_ollama.py`, bake-off register/harness updates.
+- Handoff: `agents/handoffs/2026-08-23-local-qwen-smollm.md`
+
 

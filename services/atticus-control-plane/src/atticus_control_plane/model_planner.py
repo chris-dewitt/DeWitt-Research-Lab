@@ -29,7 +29,12 @@ from drl_ai_core import ModelGateway, ProviderError
 from drl_ai_core.providers import ChatMessage, CompletionConstraints
 from drl_protocol import RiskTier, TaskRequest, ToolCall, ToolDefinition
 
-from .planner import FixturePlanner, Planner
+from .planner import (
+    INTEGRATED_SPECIALISTS,
+    FixturePlanner,
+    Planner,
+    needs_integrated_coverage,
+)
 from .structured_plans import build_tool_plan_validator
 
 __all__ = ["ModelPlanner", "build_planning_messages"]
@@ -48,8 +53,19 @@ Rules:
 - Use only tool names from the catalog below. Never invent one.
 - Keep plans short. Only include a step that the objective actually requires.
 - If the objective needs no specialist, plan a single laboratory.guide step.
-- Arguments must be a JSON object, empty if the tool needs none.\
+- Arguments must be a JSON object. Required keys:
+  atlas.research_snapshot: {"as_of": "<ISO date from the request>"}
+  fedlens.compare_latest: {"as_of": "<ISO date from the request>"}
+  balancelab.run_scenario: {"name": "bear-steepener"} when the objective is a steepener/bank run
+  laboratory.guide: {"topic": "<short topic>"} or empty\
 """
+
+# Tools that read the request date. Missing as_of is a 1.7B omission, not a
+# new capability: the date is already on the TaskRequest.
+_AS_OF_TOOLS = frozenset({"atlas.research_snapshot", "fedlens.compare_latest"})
+_SCENARIO_TOOL = "balancelab.run_scenario"
+_DEFAULT_SCENARIO = "bear-steepener"
+_SCENARIO_HINTS = ("bear-steepener", "bear steepener", "steepener")
 
 
 def _short_reason(exc: Exception, limit: int = 240) -> str:
@@ -58,13 +74,31 @@ def _short_reason(exc: Exception, limit: int = 240) -> str:
     return text if len(text) <= limit else text[: limit - 1] + "\u2026"
 
 
+def _bind_request_arguments(
+    tool_name: str, arguments: dict[str, Any], request: TaskRequest
+) -> dict[str, Any]:
+    """Fill request-owned fields the model omitted.
+
+    This is not schema coercion. The model still cannot invent a tool or lower
+    risk. It can forget ``as_of`` even after the probe listed it, and a 1.7B
+    local run then dies with KeyError. The date and the demo scenario name are
+    already determined by the request.
+    """
+    bound = dict(arguments)
+    if tool_name in _AS_OF_TOOLS and not bound.get("as_of") and request.as_of:
+        bound["as_of"] = request.as_of
+    if tool_name == _SCENARIO_TOOL and not bound.get("name"):
+        objective = request.objective.lower()
+        if any(hint in objective for hint in _SCENARIO_HINTS):
+            bound["name"] = _DEFAULT_SCENARIO
+    return bound
+
+
 def _catalog_block(catalog: tuple[ToolDefinition, ...]) -> str:
     lines = []
     for tool in catalog:
         flag = "" if tool.public_allowed else " (not public)"
-        lines.append(
-            f"- {tool.name} (risk_tier {int(tool.risk_tier)}){flag}: {tool.description}"
-        )
+        lines.append(f"- {tool.name} (risk_tier {int(tool.risk_tier)}){flag}: {tool.description}")
     return "\n".join(lines)
 
 
@@ -135,7 +169,6 @@ class ModelPlanner:
         #: that report which planner ran must read this rather than the class name.
         self.last_plan_source: str = "not-run"
 
-
     def plan(self, request: TaskRequest) -> list[ToolCall]:
         try:
             response = self.gateway.complete(
@@ -174,7 +207,7 @@ class ModelPlanner:
             self.last_plan_source = "fallback: plan contained no known tools"
             return self.fallback.plan(request)
         self.last_plan_source = "model"
-        return calls
+        return self._complete_integrated_coverage(request, calls)
 
     def _parse(self, content: str) -> dict[str, Any] | None:
         """Validate the completion against the plan schema.
@@ -206,6 +239,7 @@ class ModelPlanner:
             arguments = step.get("arguments")
             if not isinstance(arguments, dict):
                 arguments = {}
+            arguments = _bind_request_arguments(name, arguments, request)
             calls.append(
                 ToolCall(
                     call_id=f"{request.task_id}-{index}-{name.replace('.', '-')}",
@@ -216,3 +250,42 @@ class ModelPlanner:
                 )
             )
         return calls
+
+    def _complete_integrated_coverage(
+        self, request: TaskRequest, calls: list[ToolCall]
+    ) -> list[ToolCall]:
+        """Append omitted catalog specialists for the integrated demo.
+
+        A 1.7B model often names EvalForge or one specialist and stops. That is
+        not a new capability: the fixture planner already includes these tools
+        for the same objective. Only catalog tools are added. A model still
+        cannot invent a name that is not registered.
+        """
+        if not needs_integrated_coverage(request.objective):
+            return calls
+        present = {call.tool_name for call in calls}
+        completed = list(calls)
+        for name in INTEGRATED_SPECIALISTS:
+            if name in present:
+                continue
+            definition = self._by_name.get(name)
+            if definition is None:
+                continue
+            arguments = _bind_request_arguments(name, {}, request)
+            if name == _SCENARIO_TOOL:
+                arguments.setdefault("name", _DEFAULT_SCENARIO)
+                arguments.setdefault("short_rate_bps", 25)
+                arguments.setdefault("long_rate_bps", 75)
+            index = len(completed)
+            slug = name.replace(".", "-")
+            completed.append(
+                ToolCall(
+                    call_id=f"{request.task_id}-{index}-{slug}-coverage",
+                    tool_name=name,
+                    arguments=arguments,
+                    risk_tier=RiskTier(definition.risk_tier),
+                )
+            )
+        if len(completed) > len(calls):
+            self.last_plan_source = "model+integrated-coverage"
+        return completed

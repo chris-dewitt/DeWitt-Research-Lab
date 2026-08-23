@@ -1,13 +1,23 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.17.0
+version: 4.18.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-19
+last_updated: 2026-08-23
 ---
 
 # Foundation Changelog
+
+## 2026-08-23 — Local Atticus run records and integrated demo coverage
+
+- `atticus-demo` prints `progress:` lines on stderr while a run is in flight
+  and writes an ids-and-scores record under `runs/atticus/`.
+- A model plan that omits Atlas, FedLens, or BalanceLab on the integrated
+  demo objective is completed from the live catalog. That is not DIR-004
+  (Core/Edge model selection).
+- Omitted `as_of` and the demo `bear-steepener` name are bound from the
+  request so a 1.7B plan does not die on KeyError.
 
 ## 2026-08-23 — Competence screen, G1 gate replaced, first revalidation pass
 

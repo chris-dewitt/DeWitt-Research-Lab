@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.16.0
+version: 1.17.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 ---
 
 # Director's Decision and Escalation Ledger
@@ -43,11 +43,10 @@ the Director's approval.
 - The repository must contain both controlled specifications and runnable code.
 - Major changes move through issues, feature branches, pull requests, tests,
   handoffs, and Director review.
-- The canonical GitHub repository is the Director-owned private repository
-  `chris-dewitt/DeWitt-Research-Lab`. It remains private through the end of
-  September 2026 while public-ready evidence is prepared. GitHub branch
-  protection and rulesets are intentionally not enabled; repository process,
-  review, and validation remain mandatory operating policy.
+- The canonical GitHub repository is the Director-owned public repository
+  `chris-dewitt/DeWitt-Research-Lab` (RES-024). GitHub branch protection and
+  rulesets are intentionally not enabled; repository process, review, and
+  validation remain mandatory operating policy.
 - `director@dewitt-labs.com` is the only public contact address used by the
   portfolio and repository, including responsible security reports.
 
@@ -122,9 +121,12 @@ the Director's approval.
 - The separate artifact mirror is retired by RES-024 and is no longer a
   blocker. `chris-dewitt/dewitt-research-artifacts` may be deleted or left
   dormant at the Director's discretion; nothing in this repository targets it.
-  Once `DeWitt-Research-Lab` is public, GitHub Pages can serve the replay
-  viewer directly from it — `make replay-site` still builds those files — but
-  no Pages workflow is configured yet.
+  Once `DeWitt-Research-Lab` is public, GitHub Pages serves the replay viewer
+  at `https://chris-dewitt.github.io/DeWitt-Research-Lab/`. Wix
+  (`www.dewitt-labs.com`) is still the academic portfolio and does not yet
+  link to that URL from the live homepage; paste-ready copy is in
+  `docs/08-web-brand/SITE_COPY.md`. This cloud agent cannot authenticate the
+  Wix MCP.
 - Some reachable commits expose a UNC email address in Git author metadata
   (16 when DIR-009 was raised; 15 reachable today — the figure moves with the
   ref set). Accepted by RES-022 as a known, deliberate disclosure; no history
@@ -134,21 +136,23 @@ the Director's approval.
 ## Current implementation truth
 
 The repository contains a runnable local research vertical slice using
-deterministic fixture specialists and a rule-based Atticus planning path. M3
-specialists (Atlas public adapter, bounded FedLens corpus with passage
-citations, BalanceLab scenario catalog) are composed into one prototype
-evidence-to-scenario workflow with a five-way `linked_workflow` artifact
-(DRL-018). This proves component contracts, policy behavior, approval binding,
-evidence lineage, integrated orchestration, and evaluation plumbing. It is not
-yet a public production service, a trained Atticus model release, or a deployed
-Wix site. Signed success/degraded replay fixtures exist as prototype packages
-(DRL-019) using a demo HMAC key — not production signing identity.
+deterministic fixture specialists and a rule-based Atticus planning path, plus
+an opt-in official-feed path (FRED, Treasury, Fed RSS) behind
+`ATTICUS_LIVE_DATA=1`. M3 specialists (Atlas public adapter, bounded FedLens
+corpus with passage citations, BalanceLab scenario catalog) are composed into
+one prototype evidence-to-scenario workflow with a five-way `linked_workflow`
+artifact (DRL-018). This proves component contracts, policy behavior, approval
+binding, evidence lineage, integrated orchestration, and evaluation plumbing.
+It is not yet a public production service, a trained Atticus model release, or
+a Wix site that links to the live recordings. Signed success/degraded replay
+fixtures exist as prototype packages (DRL-019, the work item that packaged
+those recordings) using a demo HMAC key — not production signing identity —
+and are served at `https://chris-dewitt.github.io/DeWitt-Research-Lab/`.
 
-The original same-repository GitHub Pages build succeeded at `1feda7f`, but
-deployment was rejected because the canonical repository is private on a plan
-without private-repository Pages. RES-021 approves a separate allowlisted public
-deployment mirror; the public repository now exists, but Pages and the publish
-token are still outstanding, so no artifact is live.
+The GitHub Pages workflow is live. On 2026-08-23 `deploy-pages` reported
+success while the URL 404'd because the Pages site record had been
+re-created without a new deployment landing on it; a later run served 200.
+Wix still needs a homepage link to that URL.
 
 ## Release check
 

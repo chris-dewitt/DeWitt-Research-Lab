@@ -12,7 +12,8 @@ last_updated: 2026-08-01
 
     ## Purpose
 
-    Maturity: **prototype** signed fixture replays (DRL-019) verify digests locally.
+    Maturity: **prototype** signed fixture replays verify digests locally and
+    are published at https://chris-dewitt.github.io/DeWitt-Research-Lab/.
     The demonstration proves the most important engineering claims of EvalForge. Every visible result is live, replayed from a signed real trace, cached from a dated artifact, or clearly marked illustrative.
 
     ## Signature story

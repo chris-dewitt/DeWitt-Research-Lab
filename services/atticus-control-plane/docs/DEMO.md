@@ -12,7 +12,9 @@ last_updated: 2026-07-30
 
     ## Purpose
 
-    Maturity: **prototype** local fixture path (DRL-018). Signed replay packaging is DRL-019.
+    Maturity: **prototype** local fixture path, plus an opt-in official-feed
+    path. Signed fixture recordings are on GitHub Pages
+    (https://chris-dewitt.github.io/DeWitt-Research-Lab/).
     The demonstration proves the most important engineering claims of Atticus Control Plane. Every visible result is live, replayed from a signed real trace, cached from a dated artifact, or clearly marked illustrative.
 
     ## Signature story

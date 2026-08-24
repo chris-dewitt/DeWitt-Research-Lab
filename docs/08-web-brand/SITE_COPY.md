@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.1.0
+version: 3.2.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-16
+last_updated: 2026-08-24
 ---
 
 # Personal academic portfolio site copy
@@ -12,9 +12,10 @@ last_updated: 2026-08-16
 Paste-ready copy for manual Wix use. This does not authorize a Wix write; nothing
 here is applied to the live site by any tool in this repository.
 
-Version 3.1.0 replaces the outline in 2.0.0 with finished text for all four
-approved pages. It is written against the live site as audited on 2026-08-16, so
-it says what to remove as well as what to write.
+Version 3.2.0 points the recorded-run buttons at the live GitHub Pages viewer
+`https://chris-dewitt.github.io/DeWitt-Research-Lab/`. Wix remains the
+portfolio; Pages hosts the signed fixture recordings. Version 3.1.0 replaced
+the outline in 2.0.0 with finished text for all four approved pages.
 
 ## Page tree
 
@@ -55,10 +56,11 @@ completeness ("FULLY DEPLOYABLE", "FULL TRACEABILITY") for prototypes.
 **A wrong link.** The footer links to `http://www.git-hub.com/chris-dewitt`. That
 is not GitHub. The correct link is `https://github.com/chris-dewitt`.
 
-**Dead buttons.** *View my research*, *About me*, *View All Questions*, *Watch
-prototype run*, *Inspect deterministic logs*, *Source code*, and *Recorded run*
-have no destinations. A button that does nothing reads worse than no button:
-either point it somewhere or delete it.
+**Dead buttons.** *View my research*, *About me*, *View All Questions*,
+*Inspect deterministic logs*, and *Source code* have no destinations. A button
+that does nothing reads worse than no button: either point it somewhere or
+delete it. *Watch prototype run* and *Recorded run* now have a destination:
+`https://chris-dewitt.github.io/DeWitt-Research-Lab/`.
 
 **Duplication.** The homepage lists the same five research questions twice, once
 as INTEREST_01–05 and again as Q-2026-001–005 with invented pipeline states
@@ -142,7 +144,20 @@ one describing a model-selection harness whose evidence gate currently refuses t
 name a winner — and why that is the correct outcome.
 
 [ Read the research ]
+
+Recorded runs
+
+Two signed recordings of the evidence-to-scenario workflow, including one that
+fails partway through and keeps going. They replay in the browser with no model,
+GPU, or API key.
+
+[ Watch a recorded run ]
 ```
+
+Point *Watch a recorded run* at
+`https://chris-dewitt.github.io/DeWitt-Research-Lab/`. Those pages are fixture
+recordings with a demo signature, not live market data and not a local model
+run. The portfolio stays on this Wix site.
 
 ## What I am working on
 
@@ -264,13 +279,26 @@ rather than the packaged model card, because a hedged status is not a cleared on
 
 ## Recorded runs
 
-The workflow in TR-2026-001 has recorded runs, including a deliberately degraded
-one — a run that fails is evidence about the system, not an outcome to hide. The
-signatures they carry are demo signatures, valid inside the local laboratory
-context only.
+Wix editor: add this block on **Home** and on **/projects** (the live
+`/research` route currently 404s). The button must be a real HTTPS link, not
+plain text.
 
-Runs are generated from the repository. There is no hosted player yet, so this
-section links to the source rather than to a page that does not exist.
+```text
+Recorded runs
+
+The workflow in TR-2026-001 has signed recordings, including a deliberately
+degraded one. A run that fails is evidence about the system, not an outcome to
+hide.
+
+Watch them here — no model, GPU, or API key required:
+https://chris-dewitt.github.io/DeWitt-Research-Lab/
+
+These are fixture recordings signed with a demo key so the files cannot be
+silently swapped. That is integrity checking, not a production signature, and
+the numbers are not live market data. This Wix site is the academic portfolio;
+the recordings live on GitHub Pages.
+
+[ Watch a recorded run ]
 ```
 
 ### Link targets
@@ -280,6 +308,7 @@ section links to the source rather than to a page that does not exist.
 | TR-2026-001 → Read the report | `blob/main/docs/10-research/reports/TR-2026-001-integrated-workflow.md` |
 | TR-2026-002 → Read the report | `blob/main/docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md` |
 | Both → Source | repository root |
+| Watch a recorded run | `https://chris-dewitt.github.io/DeWitt-Research-Lab/` |
 
 Confirm the repository name before pasting: GitHub reports the project as moved
 from `DeWitt-Research-Lab-Foundation` to `DeWitt-Research-Lab`. The old address

@@ -8,7 +8,11 @@ import pytest
 from atlas_service import AtlasService
 from atticus_control_plane import ApprovalService, PolicyEngine, build_local_runtime
 from atticus_control_plane.cli import main, render_human_report
-from atticus_control_plane.orchestrator import AtticusOrchestrator
+from atticus_control_plane.orchestrator import (
+    AtticusOrchestrator,
+    PUBLIC_REPLAY_SITE_URL,
+    format_quantity,
+)
 from atticus_control_plane.registry import ToolOutput, ToolRegistry
 from atticus_control_plane.run_record import FORBIDDEN_RECORD_KEYS, write_run_record
 from balancelab_ai import BalanceSheet, RateScenario, ScenarioEngine
@@ -45,6 +49,20 @@ def test_integrated_atticus_workflow_completes_with_evidence() -> None:
     assert all(item.citation for item in result.evidence)
     assert any(event.event_type == "policy_decision" for event in result.trace)
     assert any(event.event_type == "workflow_linked" for event in result.trace)
+    blob = " ".join(result.limitations)
+    assert "ADR-0010" not in blob
+    assert "DRL-019" not in blob
+    assert "DIR-004" not in blob
+    assert "canned fixtures" in blob
+    assert PUBLIC_REPLAY_SITE_URL in blob
+    assert result.summary.startswith("Fixture evidence shows")
+    assert "synthetic communication" in result.summary
+
+
+def test_format_quantity_strips_trailing_zeros() -> None:
+    assert format_quantity("4.1900000000 percent") == "4.19 percent"
+    assert format_quantity("3.30386 percent") == "3.30386 percent"
+    assert format_quantity("not-a-number") == "not-a-number"
 
 
 def test_balancelab_calculation_is_hand_verifiable() -> None:
@@ -207,6 +225,8 @@ def test_human_report_lists_tools_and_says_evalforge_is_the_score() -> None:
     assert "not a specialist" in card
     assert "--json" in card
     assert "RUN RECORD: (not written)" in card
+    assert "PUBLIC RECORDINGS: https://chris-dewitt.github.io/DeWitt-Research-Lab/" in card
+    assert "www.dewitt-labs.com" in card
 
 
 def test_progress_emits_tool_names_not_the_objective() -> None:

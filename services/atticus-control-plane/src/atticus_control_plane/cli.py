@@ -11,6 +11,7 @@ from pathlib import Path
 from drl_protocol import TaskRequest, TaskResult
 
 from .model_planner import ModelPlanner
+from .orchestrator import PUBLIC_REPLAY_SITE_URL
 from .run_record import write_run_record
 from .runtime import build_runtime_from_env, live_data_enabled
 
@@ -105,6 +106,11 @@ def render_human_report(
         ),
         "",
         record_line,
+        f"PUBLIC RECORDINGS: {PUBLIC_REPLAY_SITE_URL}",
+        (
+            "Those pages are signed fixture replays, not this run. "
+            "The academic portfolio is https://www.dewitt-labs.com."
+        ),
         "Ids and scores only. Re-run with --json to print the full trace.",
         "LIMITATIONS:",
         *[f"- {limitation}" for limitation in result.limitations],

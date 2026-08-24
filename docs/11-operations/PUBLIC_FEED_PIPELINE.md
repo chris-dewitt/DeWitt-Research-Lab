@@ -4,18 +4,18 @@ title: "Official Public Feed Pipeline"
 version: 1.0.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 ---
 
 
 # Official Public Feed Pipeline
 
-Opt-in ingest of **official** public sources so Atlas and FedLens can show
-variables that actually change. Fixtures stay the default, including CI.
+Opt-in means: fixtures stay the default, including CI. Live numbers appear
+only after you refresh official public sources onto this machine and set
+`ATTICUS_LIVE_DATA=1`. Atticus does not scrape the web during a task.
 
-**ADR-0010** (opt-in official public data feeds) is in review. This path is an
-isolated experiment until the Director accepts that ADR. It does not select
-Atticus Core or Edge (**DIR-004**).
+**ADR-0010** (the written decision for this path) is in review. Using the path
+does not close it. It does not select Atticus Core or Edge (**DIR-004**).
 
 Yahoo Finance is **not** a source. Its terms do not permit unofficial bulk
 retrieval or redistribution. Use FRED or Treasury for yields.

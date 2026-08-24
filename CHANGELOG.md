@@ -1,13 +1,26 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.19.0
+version: 4.20.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 ---
 
 # Foundation Changelog
+
+## 2026-08-24 — Plain-language demo card; Wix must link Pages
+
+- Atticus limitations no longer dump ticket IDs. ADR-0010 is the written
+  decision that live FRED/Treasury/Fed data is opt-in; DRL-019 was the work
+  item that packaged signed fixture recordings. The card now says that in
+  English and prints the live Pages URL.
+- Live runs say "Public data" instead of "Fixture evidence"; Fed quotes use
+  the document title; yield trailing zeros are stripped.
+- `docs/08-web-brand/SITE_COPY.md` points *Watch a recorded run* at
+  `https://chris-dewitt.github.io/DeWitt-Research-Lab/`. The Wix auditor
+  fails a homepage that lacks that link. Live Wix still needs the paste;
+  this environment cannot authenticate the Wix MCP.
 
 ## 2026-08-23 — Official public feed pipeline (opt-in)
 

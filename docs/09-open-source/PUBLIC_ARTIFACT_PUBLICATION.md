@@ -1,10 +1,10 @@
 ---
 document_id: DRL-OSS-022
 title: "Public Artifact Publication Boundary"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-22
+last_updated: 2026-08-24
 ---
 
 # Public Artifact Publication Boundary
@@ -25,6 +25,7 @@ answering: what may be published, and under what claim.
 |---|---|---|---|
 | `chris-dewitt/DeWitt-Research-Lab` | Public (RES-024) | Authoritative preferred source | Code, controlled documents, signed replay fixtures, tests, build policy |
 | `www.dewitt-labs.com` | Public | Canonical academic portfolio | Personal introduction and links to approved evidence |
+| `https://chris-dewitt.github.io/DeWitt-Research-Lab/` | Public | Signed fixture replay viewer | Success and degraded recordings; not live Atticus |
 
 The separate mirror `chris-dewitt/dewitt-research-artifacts` is **retired**. No
 configuration, workflow, or script in this repository targets it. It may be
@@ -81,10 +82,13 @@ them, with no GPU, account, database, or paid API required.
 
 `.github/workflows/publish-pages.yml` publishes them to GitHub Pages on every
 push to `main` that touches the replay bundles, the renderer, the build script,
-or the workflow itself, and on manual dispatch. It is a restoration rather than
-a new design: the same workflow existed before and was correct, and failed only
-because Pages will not serve a private personal repository. Making the source
-public removed that constraint.
+or the workflow itself, and on manual dispatch. The live viewer is:
+
+https://chris-dewitt.github.io/DeWitt-Research-Lab/
+
+Wix (`www.dewitt-labs.com`) is the academic portfolio. It must link to that
+URL. Pages does not replace Wix, and a local Atticus run is not published
+there. The recordings are signed fixture bundles with a demo HMAC.
 
 The build verifies each bundle's manifest signature and artifact digests before
 rendering, so a tampered recording fails the workflow rather than being

@@ -4,11 +4,21 @@ title: "ADR-0010: Opt-in official public data feeds"
 version: 1.0.0
 status: IN REVIEW
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 ---
 
 
 # ADR-0010: Opt-in official public data feeds
+
+## In plain language
+
+**Opt-in** means the default `atticus-demo` still uses canned fixtures so
+tests and CI never hit the network. Live FRED, Treasury, and Fed RSS numbers
+appear only after you run `scripts/refresh_public_feeds.py` and set
+`ATTICUS_LIVE_DATA=1` on your machine. That is a local store, not a scrape
+during the task, and it is not Yahoo Finance.
+
+This ADR is still **in review**. Using the path does not close it.
 
 ## Context
 

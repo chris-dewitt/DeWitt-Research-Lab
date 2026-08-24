@@ -34,7 +34,10 @@ from typing import Any
 
 from .replay import verify_replay_bundle
 
+PUBLIC_REPLAY_SITE_URL = "https://chris-dewitt.github.io/DeWitt-Research-Lab/"
+
 __all__ = [
+    "PUBLIC_REPLAY_SITE_URL",
     "ReplayBundle",
     "ReplaySiteError",
     "build_site",
@@ -419,11 +422,13 @@ def render_index(bundles: list[ReplayBundle]) -> str:
         "returned evidence, evaluation, and linked digests. They replay without "
         "a model, GPU, or API key.</p>",
         '<div class="note">Everything here is <strong>prototype</strong> maturity. '
-        "Inputs are synthetic fixtures for local development, and the planner "
-        "standing in for Atticus Core is rule-based until the model bake-off "
-        "finishes. What these recordings demonstrate is that the contracts, "
-        "policy boundaries, evidence lineage, and evaluation plumbing compose "
-        "correctly — not that the numbers say anything about the world.</div>",
+        "These two recordings are signed <strong>fixture</strong> runs: canned "
+        "inputs, a rule-based planner, and a demo signing key so the files cannot "
+        "be silently swapped. That is integrity checking, not a production "
+        "signature, and the numbers are not live market data. Local Qwen or FRED "
+        "runs stay on the operator's machine; they are not published here. The "
+        "academic portfolio is "
+        '<a href="https://www.dewitt-labs.com">www.dewitt-labs.com</a>.</div>',
         '<div class="cards">' + "".join(cards) + "</div>",
         _footer(),
     ]

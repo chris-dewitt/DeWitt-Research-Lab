@@ -48,6 +48,14 @@ def format_quantity(content: str) -> str:
     return f"{rendered} {rest}".rstrip()
 
 
+def _join_and(items: list[str]) -> str:
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return f"{', '.join(items[:-1])}, and {items[-1]}"
+
+
 def uses_live_feeds(evidence: list[EvidenceItem]) -> bool:
     """True when Atlas or FedLens citations are official sources, not fixtures."""
 
@@ -525,23 +533,34 @@ class AtticusOrchestrator:
             (item.content for key, item in by_id.items() if key.startswith("balancelab-")),
             None,
         )
-        if cpi and two_year and ten_year and fed_item is not None and balance:
-            degraded = " One or more optional steps failed." if failures else ""
-            live = uses_live_feeds(evidence)
+        live = uses_live_feeds(evidence)
+        quantities: list[str] = []
+        if cpi:
+            quantities.append(f"CPI at {format_quantity(cpi)}")
+        if two_year:
+            quantities.append(f"the two-year yield at {format_quantity(two_year)}")
+        if ten_year:
+            quantities.append(f"the ten-year yield at {format_quantity(ten_year)}")
+        parts: list[str] = []
+        if quantities:
             origin = "Public data shows" if live else "Fixture evidence shows"
+            parts.append(f"{origin} {_join_and(quantities)}.")
+        if fed_item is not None:
             fed_kind = (
                 "latest Federal Reserve communication"
                 if live
                 else "latest synthetic communication"
             )
             fed_quote = (fed_item.title or "").strip() or str(fed_item.content).splitlines()[0]
-            return (
-                f"{origin} CPI at {format_quantity(cpi)}, the two-year yield at "
-                f"{format_quantity(two_year)}, and the ten-year yield at "
-                f"{format_quantity(ten_year)}. FedLens analyzed the {fed_kind}: "
-                f"“{fed_quote}” BalanceLab then applied a +25/+75 basis-point "
-                f"bear-steepener to the synthetic regional bank. {balance}{degraded}"
+            parts.append(f"FedLens analyzed the {fed_kind}: “{fed_quote}”")
+        if balance:
+            parts.append(
+                "BalanceLab then applied a +25/+75 basis-point bear-steepener "
+                f"to the synthetic regional bank. {balance}"
             )
-        if evidence:
-            return "Atticus completed the bounded workflow and returned cited evidence."
-        return "Atticus completed without publishable evidence."
+        if not parts:
+            if evidence:
+                return "Atticus completed the bounded workflow and returned cited evidence."
+            return "Atticus completed without publishable evidence."
+        degraded = " One or more optional steps failed." if failures else ""
+        return " ".join(parts) + degraded

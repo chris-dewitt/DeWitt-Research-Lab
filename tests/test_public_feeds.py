@@ -163,7 +163,14 @@ def test_live_runtime_reads_the_store_and_reports_changes(
     )
     assert result.state.value == "completed"
     assert result.artifacts.get("series_changes")
-    assert any("official-feed store" in item for item in result.limitations)
+    blob = " ".join(result.limitations)
+    assert "official public" in blob
+    assert "ATTICUS_LIVE_DATA=1" in blob
+    assert "ADR-0010" not in blob
+    assert "DRL-019" not in blob
+    assert result.summary.startswith("Public data shows")
+    assert "synthetic communication" not in result.summary
+    assert "“Two”" in result.summary or "“One”" in result.summary
     atlas_items = [item for item in result.evidence if item.evidence_id.startswith("atlas-")]
     assert atlas_items
     assert all(not item.citation.startswith("fixture://") for item in atlas_items)
@@ -182,4 +189,5 @@ def test_default_runtime_stays_on_fixtures(monkeypatch: pytest.MonkeyPatch) -> N
     )
     assert result.state.value == "completed"
     assert len(result.evidence) == 5
-    assert any("synthetic fixtures" in item for item in result.limitations)
+    assert any("canned fixtures" in item or "synthetic" in item for item in result.limitations)
+    assert not any("ADR-0010" in item for item in result.limitations)

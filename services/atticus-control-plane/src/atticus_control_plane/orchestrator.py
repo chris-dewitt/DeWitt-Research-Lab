@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable
 from datetime import UTC, datetime
+from decimal import Decimal, InvalidOperation
 from typing import Any
 
 from drl_ai_core import canonical_digest, redact_text
@@ -26,6 +27,43 @@ from .registry import ToolRegistry
 
 CancelCheck = Callable[[], bool]
 ProgressFn = Callable[[str, str], None]
+
+PUBLIC_REPLAY_SITE_URL = "https://chris-dewitt.github.io/DeWitt-Research-Lab/"
+
+
+def format_quantity(content: str) -> str:
+    """Render a leading numeric token without trailing zeros."""
+
+    text = str(content).strip()
+    if not text:
+        return text
+    token, _, rest = text.partition(" ")
+    try:
+        number = Decimal(token)
+    except InvalidOperation:
+        return text
+    rendered = format(number.normalize(), "f")
+    if "." in rendered:
+        rendered = rendered.rstrip("0").rstrip(".")
+    return f"{rendered} {rest}".rstrip()
+
+
+def _join_and(items: list[str]) -> str:
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f"{items[0]} and {items[1]}"
+    return f"{', '.join(items[:-1])}, and {items[-1]}"
+
+
+def uses_live_feeds(evidence: list[EvidenceItem]) -> bool:
+    """True when Atlas or FedLens citations are official sources, not fixtures."""
+
+    return any(
+        item.citation and not item.citation.startswith("fixture://")
+        for item in evidence
+        if item.evidence_id.startswith(("atlas-", "fedlens-"))
+    )
 
 
 class AtticusOrchestrator:
@@ -383,23 +421,44 @@ class AtticusOrchestrator:
 
     @staticmethod
     def _limitations_for(evidence: list[EvidenceItem]) -> list[str]:
-        live = any(
-            item.citation and not item.citation.startswith("fixture://")
-            for item in evidence
-            if item.evidence_id.startswith(("atlas-", "fedlens-"))
-        )
-        if live:
+        if uses_live_feeds(evidence):
             return [
-                "Atlas/FedLens used the local official-feed store (ADR-0010, opt-in).",
-                "BalanceLab still uses a simplified educational bank, not a live institution.",
-                "DIR-004 (Core/Edge selection) is still open; a local run is not a selection.",
-                "Linked workflow is prototype maturity; signed replay is DRL-019.",
+                (
+                    "CPI, Treasury yields, and Fed text came from official public "
+                    "sources (FRED, U.S. Treasury, Federal Reserve RSS) already "
+                    "downloaded onto this machine. Tests stay on canned fixtures "
+                    "unless you set ATTICUS_LIVE_DATA=1."
+                ),
+                (
+                    "BalanceLab still uses a simplified educational bank, "
+                    "not a live institution."
+                ),
+                (
+                    "Which models become Atticus Core and Edge is still an open "
+                    "Director decision. This run is not a selection."
+                ),
+                (
+                    "This live run is not published. Public signed fixture "
+                    f"recordings: {PUBLIC_REPLAY_SITE_URL}"
+                ),
             ]
         return [
-            "Macro, market, and Fed inputs are synthetic fixtures for local development.",
-            "BalanceLab uses a simplified educational repricing model, not production bank data.",
-            "DIR-004 (Core/Edge selection) is still open; a local run is not a selection.",
-            "Linked workflow is prototype maturity; signed replay is DRL-019.",
+            (
+                "Macro, market, and Fed inputs are canned fixtures for local "
+                "development, not live market data."
+            ),
+            (
+                "BalanceLab uses a simplified educational repricing model, "
+                "not production bank data."
+            ),
+            (
+                "Which models become Atticus Core and Edge is still an open "
+                "Director decision. This run is not a selection."
+            ),
+            (
+                "Public signed recordings of this fixture workflow: "
+                f"{PUBLIC_REPLAY_SITE_URL}"
+            ),
         ]
 
     @staticmethod
@@ -466,22 +525,42 @@ class AtticusOrchestrator:
         cpi = next((item.content for key, item in by_id.items() if "CPI_YOY" in key), None)
         two_year = next((item.content for key, item in by_id.items() if "UST_2Y" in key), None)
         ten_year = next((item.content for key, item in by_id.items() if "UST_10Y" in key), None)
-        fed = next(
-            (item.content for key, item in by_id.items() if key.startswith("fedlens-")),
+        fed_item = next(
+            (item for key, item in by_id.items() if key.startswith("fedlens-")),
             None,
         )
         balance = next(
             (item.content for key, item in by_id.items() if key.startswith("balancelab-")),
             None,
         )
-        if cpi and two_year and ten_year and fed and balance:
-            degraded = " One or more optional steps failed." if failures else ""
-            return (
-                f"Fixture evidence shows CPI at {cpi}, the two-year yield at {two_year}, "
-                f"and the ten-year yield at {ten_year}. FedLens analyzed the latest "
-                f"synthetic communication: “{fed}” BalanceLab then applied a +25/+75 "
-                f"basis-point bear-steepener to the synthetic regional bank. {balance}{degraded}"
+        live = uses_live_feeds(evidence)
+        quantities: list[str] = []
+        if cpi:
+            quantities.append(f"CPI at {format_quantity(cpi)}")
+        if two_year:
+            quantities.append(f"the two-year yield at {format_quantity(two_year)}")
+        if ten_year:
+            quantities.append(f"the ten-year yield at {format_quantity(ten_year)}")
+        parts: list[str] = []
+        if quantities:
+            origin = "Public data shows" if live else "Fixture evidence shows"
+            parts.append(f"{origin} {_join_and(quantities)}.")
+        if fed_item is not None:
+            fed_kind = (
+                "latest Federal Reserve communication"
+                if live
+                else "latest synthetic communication"
             )
-        if evidence:
-            return "Atticus completed the bounded workflow and returned cited evidence."
-        return "Atticus completed without publishable evidence."
+            fed_quote = (fed_item.title or "").strip() or str(fed_item.content).splitlines()[0]
+            parts.append(f"FedLens analyzed the {fed_kind}: “{fed_quote}”")
+        if balance:
+            parts.append(
+                "BalanceLab then applied a +25/+75 basis-point bear-steepener "
+                f"to the synthetic regional bank. {balance}"
+            )
+        if not parts:
+            if evidence:
+                return "Atticus completed the bounded workflow and returned cited evidence."
+            return "Atticus completed without publishable evidence."
+        degraded = " One or more optional steps failed." if failures else ""
+        return " ".join(parts) + degraded

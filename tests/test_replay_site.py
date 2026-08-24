@@ -142,6 +142,9 @@ class TestRendering:
     ) -> None:
         index = render_index([success, degraded])
         assert "prototype" in index
+        assert "fixture" in index
+        assert "demo signing key" in index
+        assert "www.dewitt-labs.com" in index
 
     def test_html_is_escaped(self, success: ReplayBundle) -> None:
         hostile = ReplayBundle(

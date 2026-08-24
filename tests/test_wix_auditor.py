@@ -151,6 +151,16 @@ class TestLookalikeSourceLinks:
              "https://chris-dewitt.github.io/"]
         ) == []
 
+    def test_pages_replay_url_counts_as_a_replay_link(self) -> None:
+        assert audit.has_replay_site_link(
+            ["https://chris-dewitt.github.io/DeWitt-Research-Lab/"]
+        )
+        assert audit.has_replay_site_link(
+            ["https://chris-dewitt.github.io/DeWitt-Research-Lab/success.html"]
+        )
+        assert not audit.has_replay_site_link(["https://github.com/chris-dewitt/DeWitt-Research-Lab"])
+        assert audit.REPLAY_SITE_URL == "https://chris-dewitt.github.io/DeWitt-Research-Lab/"
+
     def test_unrelated_links_are_ignored(self) -> None:
         assert audit.lookalike_github_hosts(
             ["mailto:someone@example.com", "https://www.dewitt-labs.com/projects"]

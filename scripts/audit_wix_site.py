@@ -93,6 +93,12 @@ REQUIRED_HOME_TEXT = [
 # to visitor data.
 REQUIRED_SITE_LINKS = ["github", "privacy", "contact"]
 
+# GitHub Pages replay viewer. Wix is the editorial front door; this URL is the
+# hosted recording. A homepage with no link to it leaves the live Pages site
+# unreachable from the portfolio.
+REPLAY_SITE_URL = "https://chris-dewitt.github.io/DeWitt-Research-Lab/"
+REPLAY_SITE_HOST_PATH = "chris-dewitt.github.io/dewitt-research-lab"
+
 #: A page carrying less than this much visible text is a stub, not a page.
 MIN_PAGE_TEXT_CHARS = 400
 
@@ -447,6 +453,13 @@ def unsourced_citations(text: str, known: frozenset[str]) -> list[str]:
     return sorted(set(out))
 
 
+def has_replay_site_link(hrefs: list[str]) -> bool:
+    """True when a page links to the GitHub Pages recorded-run viewer."""
+
+    needle = REPLAY_SITE_HOST_PATH.lower()
+    return any(needle in href.strip().lower() for href in hrefs)
+
+
 def lookalike_github_hosts(hrefs: list[str]) -> list[str]:
     """Return link hosts that read as GitHub but are not github.com.
 
@@ -545,6 +558,14 @@ def audit_page(url: str, is_home: bool) -> None:
             if not any(link in h.lower() for h in parser.hrefs) and link not in lower:
                 add("GAP", "Content", f"No visible '{link}' link/text found on homepage "
                     "(required before initial publication).")
+        if not has_replay_site_link(parser.hrefs):
+            add(
+                "GAP",
+                "Content",
+                "Homepage has no link to the GitHub Pages recorded-run viewer "
+                f"({REPLAY_SITE_URL}). Wix is the portfolio front door; Pages "
+                "hosts the signed fixture recordings.",
+            )
         canvas, fg = resolve_theme_colors(html)
         add("INFO", "Brand",
             f"Resolved theme: canvas={canvas or 'unknown'} foreground={fg or 'unknown'}")

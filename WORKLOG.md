@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.28.0
+version: 4.29.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 ---
 
 
@@ -61,7 +61,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | 14 / DRL-034 | Codex | `lovesong/chore/drl-034-public-repository-readiness` | 2026-08-17T00:00:00Z | READY FOR REVIEW — PUBLIC RELEASE BLOCKED ON DIR-009 | `agents/handoffs/2026-08-17-drl-034-public-repository-readiness.md` |
 | ops / local Atticus models | Cursor cloud agent | `cursor/local-qwen-smollm-atticus-ad29` | 2026-08-23 | MERGED | PR #54; `agents/handoffs/2026-08-23-local-qwen-smollm.md` |
 | ops / Qwen plan bind + run records | Cursor cloud agent | `cursor/qwen-plan-arg-bind-ad29` | 2026-08-23 | MERGED | PR #55; `agents/handoffs/2026-08-23-qwen-plan-run-records.md` |
-| ops / official public feeds | Cursor cloud agent | `cursor/live-public-feeds-ad29` | 2026-08-23 | IN REVIEW — FRED/Treasury/Fed RSS opt-in store; Yahoo rejected; ADR-0010 | `agents/handoffs/2026-08-23-public-feed-pipeline.md` |
+| ops / official public feeds | Cursor cloud agent | `cursor/live-public-feeds-ad29` | 2026-08-23 | MERGED | PR #58; `agents/handoffs/2026-08-23-public-feed-pipeline.md` |
+| ops / plain card + Wix→Pages | Cursor cloud agent | `cursor/plain-limitations-wix-pages-ad29` | 2026-08-24 | IN REVIEW | `agents/handoffs/2026-08-24-plain-limitations-wix-pages.md` |
 
 ## Active scope — DRL-034 public repository readiness
 
@@ -151,6 +152,19 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-24 — Plain-language limitations; Wix→Pages link copy
+
+- Branch: `cursor/plain-limitations-wix-pages-ad29`
+- Director asked what ADR-0010 / opt-in and DRL-019 meant, and to link Wix to
+  the now-working GitHub Pages site.
+- Operator card no longer prints those ticket IDs. Live vs fixture wording
+  is honest. Pages URL is on the card.
+- `SITE_COPY.md` 3.2.0 has paste-ready *Watch a recorded run* pointing at
+  `https://chris-dewitt.github.io/DeWitt-Research-Lab/`. The Wix auditor
+  requires that homepage href. Live Wix was not written: Wix MCP needs
+  desktop authentication, and no `WIX_API_KEY` is in this environment.
+- Handoff: `agents/handoffs/2026-08-24-plain-limitations-wix-pages.md`
 
 ### 2026-08-23 — GitHub Pages 404 diagnosed; deployment claim now verified
 

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-004
 title: "Personal Academic Portfolio Homepage Specification"
-version: 5.0.0
+version: 5.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-08-24
 ---
 
 # Personal Academic Portfolio Homepage Specification
@@ -45,8 +45,10 @@ or a simulated terminal status line above this introduction.
    prototype work, not UNC-Chapel Hill coursework unless that is actually true.
 4. **Selected projects** — Atticus, Atlas, FedLens, BalanceLab AI, and EvalForge
    as projects Christopher built or is developing.
-5. **Recorded demonstration** — an optional featured artifact supporting a
-   project, with success/degraded states and prototype limitations.
+5. **Recorded demonstration** — link to the live GitHub Pages viewer
+   `https://chris-dewitt.github.io/DeWitt-Research-Lab/` (signed fixture
+   success and degraded recordings). Label it as a fixture replay, not a live
+   Atticus service.
 6. **Current direction** — what he is learning now and why he hopes to pursue
    further graduate work in computer science.
 7. **Contact** — a simple route for academic or relevant professional contact.

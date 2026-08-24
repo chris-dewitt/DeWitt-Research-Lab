@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Lab Monorepo"
-version: 5.0.3
+version: 5.0.4
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-08-24
 ---
 
 # DeWitt Research Lab
@@ -19,6 +19,8 @@ science. This repository contains independent work outside UNC coursework; it
 does not represent my employer or the university.
 
 **Academic portfolio:** [www.dewitt-labs.com](https://www.dewitt-labs.com)
+
+**Recorded runs:** [chris-dewitt.github.io/DeWitt-Research-Lab](https://chris-dewitt.github.io/DeWitt-Research-Lab/) (signed fixture replays on GitHub Pages; not a live Atticus service)
 
 **Project mission:** Intelligence for Good. Intelligence for All.
 
@@ -56,6 +58,7 @@ Laboratory IDs always carry a prefix, and the prefixes mean different things:
 | [Computational Finance of Intelligence](docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md) | Research program connecting stochastic belief dynamics, optimal stopping, finance, cognition, and AI | `research plan; no empirical result claimed` |
 | [Model bake-off](models/bakeoff/README.md) | Candidate registry, harness, license gates, and measured limitations | `prototype; no winner selected` |
 | [Signed replay fixtures](services/evalforge/fixtures/signed_replays/README.md) | Success and degraded recorded runs with fixture-integrity checks | `prototype fixture` |
+| [GitHub Pages replay viewer](https://chris-dewitt.github.io/DeWitt-Research-Lab/) | Hosted player for those two recordings | `prototype; live` |
 
 ## Run the local prototype
 

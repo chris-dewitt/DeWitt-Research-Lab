@@ -62,3 +62,9 @@ def test_atticus_domain_remains_planned() -> None:
     routing = yaml.safe_load((ROOT / "configs/domain-routing.yaml").read_text())
     atticus = next(app for app in routing["applications"] if app["id"] == "atticus")
     assert atticus["status"] == "planned"
+
+
+def test_site_copy_links_the_live_replay_viewer() -> None:
+    text = read("docs/08-web-brand/SITE_COPY.md")
+    assert "https://chris-dewitt.github.io/DeWitt-Research-Lab/" in text
+    assert "no hosted player yet" not in text

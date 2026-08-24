@@ -1,6 +1,10 @@
 # Signed reference replays (DRL-019)
 
-Maturity: **prototype** fixture packages for local/CI verification.
+**DRL-019** was the work item that packaged success and degraded Atticus runs
+as signed recordings. It is merged. What exists is a **prototype**: fixture
+packages for local/CI verification, published on GitHub Pages at
+https://chris-dewitt.github.io/DeWitt-Research-Lab/
+
 Signatures use a published demo HMAC key (`drl-fixture-replay-v1`),
 not a production signing identity.
 

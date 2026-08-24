@@ -16,7 +16,8 @@ last_updated: 2026-08-24
   Wix to the live GitHub Pages replay viewer
 - Branch: `cursor/plain-limitations-wix-pages-ad29`
 - Base: `origin/main` (`ac2baa8`)
-- Pull request: opened with this work
+- Ending commit: `95b02d0`
+- Pull request: https://github.com/chris-dewitt/DeWitt-Research-Lab/pull/59
 - Prepared UTC: `2026-08-24`
 
 ## 2. Objective completed

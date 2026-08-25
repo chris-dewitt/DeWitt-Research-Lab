@@ -553,3 +553,65 @@ class TestProbeScript:
         out = capsys.readouterr().out
         assert code == 1
         assert "FAILED at reachability" in out
+
+
+class TestSystemPrefix:
+    """The serving block's system prefix, which carries a runtime control token.
+
+    ``THINKING_OFF_HINTS`` asks for the same thing through the request body and
+    says of itself that it is best-effort. Against ollama's OpenAI-compatible
+    shim it is: the keys are accepted and ignored, and a hybrid reasoning model
+    spends its whole budget thinking and returns nothing. What these tests pin
+    down is the placement, because getting it wrong is silent — a second system
+    message is commonly dropped by the chat template along with whatever it
+    carried.
+    """
+
+    def test_prefix_is_prepended_when_no_system_message_exists(self) -> None:
+        provider = HttpOpenAICompatibleProvider(
+            model="m", base_url="http://127.0.0.1:1/v1", system_prefix="/no_think"
+        )
+        assert provider._messages([ChatMessage(role="user", content="hi")]) == [
+            {"role": "system", "content": "/no_think"},
+            {"role": "user", "content": "hi"},
+        ]
+
+    def test_prefix_joins_the_existing_system_message_rather_than_adding_one(self) -> None:
+        """A second system turn would risk losing the token or the instructions."""
+        provider = HttpOpenAICompatibleProvider(
+            model="m", base_url="http://127.0.0.1:1/v1", system_prefix="/no_think"
+        )
+        wire = provider._messages(
+            [
+                ChatMessage(role="system", content="Be terse."),
+                ChatMessage(role="user", content="hi"),
+            ]
+        )
+        assert wire == [
+            {"role": "system", "content": "/no_think\nBe terse."},
+            {"role": "user", "content": "hi"},
+        ]
+        assert sum(m["role"] == "system" for m in wire) == 1
+
+    def test_conversation_is_untouched_without_a_prefix(self) -> None:
+        provider = HttpOpenAICompatibleProvider(model="m", base_url="http://127.0.0.1:1/v1")
+        original = [ChatMessage(role="user", content="hi")]
+        assert provider._messages(original) == [{"role": "user", "content": "hi"}]
+
+    def test_empty_prefix_is_treated_as_absent(self) -> None:
+        """A blank string in the register must not inject an empty system turn."""
+        provider = HttpOpenAICompatibleProvider(
+            model="m", base_url="http://127.0.0.1:1/v1", system_prefix=""
+        )
+        assert provider._messages([ChatMessage(role="user", content="hi")]) == [
+            {"role": "user", "content": "hi"}
+        ]
+
+    def test_register_carries_the_prefix_into_the_live_provider(self) -> None:
+        """The serving block is the only place this is configured."""
+        from drl_ai_core.bakeoff import parse_serving
+
+        spec = parse_serving({"runtime": "ollama", "model": "m", "system_prefix": "/no_think"})
+        assert spec is not None
+        assert spec.system_prefix == "/no_think"
+        assert parse_serving({"runtime": "ollama", "model": "m"}).system_prefix is None

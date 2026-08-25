@@ -1006,6 +1006,7 @@ def build_live_providers(
             open_weight=candidate.open_weight,
             quantization=serving.quantization,
             runtime=serving.runtime,
+            system_prefix=serving.system_prefix,
             stream=stream,
             stall_timeout=stall_timeout,
         )

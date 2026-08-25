@@ -15,9 +15,7 @@ import yaml
 
 from .security import canonical_digest
 
-DEFAULT_REGISTER = (
-    Path(__file__).resolve().parents[4] / "models" / "bakeoff" / "candidates.yaml"
-)
+DEFAULT_REGISTER = Path(__file__).resolve().parents[4] / "models" / "bakeoff" / "candidates.yaml"
 
 
 @dataclass(frozen=True, slots=True)
@@ -33,6 +31,26 @@ class ServingSpec:
     model: str
     base_url: str | None = None
     quantization: str | None = None
+    system_prefix: str | None = None
+    """Text the runtime needs in the system message before it will answer.
+
+    Hybrid reasoning models decide whether to emit a thinking block, and left
+    unsuppressed both edge candidates spend the entire output budget inside it
+    and return empty content — so a live run measures nothing.
+
+    ``THINKING_OFF_HINTS`` already asks for this through the request body, and
+    its own docstring is careful to call that best-effort. Measured against
+    ollama's OpenAI-compatible shim on 2026-08-25, it is: both ``think: false``
+    and ``chat_template_kwargs.enable_thinking`` are accepted without error and
+    have no effect on ``hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M``, which still
+    returned 96 thinking tokens and empty content. The control token in the
+    system message did work. The two mechanisms are complementary rather than
+    redundant: the payload hints reach servers that implement them, and this
+    reaches models whose chat template only reads the conversation.
+
+    It belongs on the serving block because it is a property of how this
+    candidate is served, not of the task being asked.
+    """
 
 
 @dataclass(frozen=True, slots=True)
@@ -62,11 +80,13 @@ def parse_serving(raw: Any) -> ServingSpec | None:
         raise ValueError("serving block requires both 'runtime' and 'model'")
     base_url = raw.get("base_url")
     quantization = raw.get("quantization")
+    system_prefix = raw.get("system_prefix")
     return ServingSpec(
         runtime=runtime,
         model=model,
         base_url=str(base_url) if base_url else None,
         quantization=str(quantization) if quantization else None,
+        system_prefix=str(system_prefix) if system_prefix else None,
     )
 
 

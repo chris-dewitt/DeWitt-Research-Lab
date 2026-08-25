@@ -277,6 +277,7 @@ class HttpOpenAICompatibleProvider:
         open_weight: bool = True,
         quantization: str | None = None,
         runtime: str = "ollama",
+        system_prefix: str | None = None,
         api_key: str | None = None,
         connect_timeout: float = 5.0,
         stream: bool = True,
@@ -291,6 +292,7 @@ class HttpOpenAICompatibleProvider:
         self.connect_timeout = connect_timeout
         self.stream = stream
         self.stall_timeout = stall_timeout
+        self.system_prefix = system_prefix or None
         self.extra_payload = dict(extra_payload or {})
         self._identity = ModelIdentity(
             provider_id=provider_id,
@@ -496,6 +498,23 @@ class HttpOpenAICompatibleProvider:
             return False
         return True
 
+    def _messages(self, messages: Sequence[ChatMessage]) -> list[dict[str, str]]:
+        """Render the conversation, applying the serving block's system prefix.
+
+        The prefix joins the *existing* system message rather than adding a
+        second one: chat templates commonly render only the first system turn,
+        so appending would silently drop either the control token or the task's
+        own instructions.
+        """
+        wire = [{"role": m.role, "content": m.content} for m in messages]
+        if not self.system_prefix:
+            return wire
+        for message in wire:
+            if message["role"] == "system":
+                message["content"] = f"{self.system_prefix}\n{message['content']}".strip()
+                return wire
+        return [{"role": "system", "content": self.system_prefix}, *wire]
+
     def _payload(
         self,
         messages: Sequence[ChatMessage],
@@ -504,7 +523,7 @@ class HttpOpenAICompatibleProvider:
     ) -> dict[str, Any]:
         payload: dict[str, Any] = {
             "model": self.model,
-            "messages": [{"role": m.role, "content": m.content} for m in messages],
+            "messages": self._messages(messages),
             "temperature": constraints.temperature,
             "max_tokens": constraints.max_output_tokens,
             "stream": self.stream,

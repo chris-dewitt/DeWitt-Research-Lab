@@ -98,6 +98,7 @@ candidates:
     serving:
       runtime: ollama
       model: hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0
+      system_prefix: "/no_think"
       quantization: Q8_0
     limitations:
       - Workstation/edge-class serving profile, not a Core candidate.
@@ -127,6 +128,7 @@ candidates:
     serving:
       runtime: ollama
       model: hf.co/ggml-org/SmolLM3-3B-GGUF:Q4_K_M
+      system_prefix: "/no_think"
       quantization: Q4_K_M
     limitations:
       - Workstation/edge-class serving profile, not a Core candidate.

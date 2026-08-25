@@ -1,10 +1,10 @@
 ---
 document_id: DRL-RES-003
 title: "Publication and Replication Pipeline"
-version: 2.2.0
+version: 2.3.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-19
+last_updated: 2026-08-25
 ---
 
 
@@ -40,3 +40,20 @@ against primary sources. Current state:
 | TR-2026-001 | None | Not required while the report claims only a reproducible workflow |
 | TR-2026-002 | `TR-2026-002_NOVELTY_SCAN.md` (DRL-RES-008) | **Preliminary** — 7 records examined, 4 verified; not a G1 review |
 | CFI Papers I-III | `CFI_PRIMARY_SOURCE_NOVELTY_REVIEW.md` (DRL-RES-006) + `CFI_REVALIDATION_2026-08-23.md` (DRL-RES-009) | Two strata covered; preprint re-opening outstanding. RES-025 replaced the independent-reviewer precondition with stratum coverage |
+
+## Bridge instrumentation
+
+The Belief Diffusion bridge is not a fourth paper (§2.1). Its foundation tasks
+produce software and methods evidence, which is indexed here so that a reader
+does not have to infer progress from the commit log.
+
+| Task | Artifact | State |
+|---|---|---|
+| CFI-004 — observable belief-event schema | `research/cfi/src/drl_cfi/beliefs.py` | Proposal in code, with valid/invalid fixtures in `tests/cfi/test_beliefs.py`. Not gate-approved |
+| CFI-005 — Bayesian, diffusion, OU, and jump baselines | `research/cfi/src/drl_cfi/baselines.py` + `CFI_BELIEF_RECOVERY_2026-08-25.md` (DRL-RES-011) | Reference package and synthetic recovery study complete; three known estimator limits recorded |
+| CFI-006 — estimands and preregistration template | — | Not started |
+| CFI-007 — belief-trajectory viewer | — | Not started |
+| CFI-008 — bridge methods report | — | Not started; depends on CFI-005–007 |
+
+None of these touches G2. They use synthetic paths only, and the schema refuses
+to record a belief it cannot represent rather than clamping it.

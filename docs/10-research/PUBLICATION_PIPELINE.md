@@ -1,7 +1,7 @@
 ---
 document_id: DRL-RES-003
 title: "Publication and Replication Pipeline"
-version: 2.3.0
+version: 2.4.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-25
@@ -52,7 +52,7 @@ does not have to infer progress from the commit log.
 | CFI-004 — observable belief-event schema | `research/cfi/src/drl_cfi/beliefs.py` | Proposal in code, with valid/invalid fixtures in `tests/cfi/test_beliefs.py`. Not gate-approved |
 | CFI-005 — Bayesian, diffusion, OU, and jump baselines | `research/cfi/src/drl_cfi/baselines.py` + `CFI_BELIEF_RECOVERY_2026-08-25.md` (DRL-RES-011) | Reference package and synthetic recovery study complete; three known estimator limits recorded |
 | CFI-006 — estimands and preregistration template | — | Not started |
-| CFI-007 — belief-trajectory viewer | — | Not started |
+| CFI-007 — belief-trajectory viewer | `research/cfi/src/drl_cfi/viewer.py` + `scripts/build_belief_site.py` + `CFI_BELIEF_VIEWER_2026-08-25.md` (DRL-RES-012) | Local viewer complete: seven synthetic fixtures across clean, degraded, and error states, with a diagnostic registry that reports identifiability without a verdict |
 | CFI-008 — bridge methods report | — | Not started; depends on CFI-005–007 |
 
 None of these touches G2. They use synthetic paths only, and the schema refuses

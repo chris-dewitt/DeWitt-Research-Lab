@@ -1,13 +1,32 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.20.0
+version: 4.21.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-24
+last_updated: 2026-08-25
 ---
 
 # Foundation Changelog
+
+## 2026-08-25 — Belief-trajectory viewer, with a diagnostic per unidentified estimate
+
+- CFI-007: `drl_cfi.viewer` renders a belief path and the estimators applied to
+  it as static HTML. `make belief-site` builds it locally; nothing is published.
+- Every estimate travels with diagnostics, because fitting Ornstein-Uhlenbeck to
+  a pure drifting walk reports a resting level of −16.53 log-odds — a probability
+  of 0.000000066 — for a path that never dropped below even odds, and says
+  nothing is wrong. A diagnostic states identifiability, never a verdict.
+- Two predicates had to be measured rather than reasoned. `residual_scale == 0.0`
+  is wrong in both directions: exactly 0.0 under reporting noise when each
+  evidence id is used once, and 1.89e-13 rather than 0.0 in the noiseless
+  asymmetric case. The shipped predicate is structural and integer.
+- Closes the accessibility gaps the replay viewer carries rather than copying
+  them: landmarks, a skip link, captioned tables, scoped headers, named and
+  focusable scroll regions, and a chart labelled by a real `<title>`/`<desc>`
+  with a table equivalent it promises in its own description.
+- Degraded, empty, and error are rendered pages rather than aborted builds. The
+  error page shows the simulator's refusal verbatim and no substitute number.
 
 ## 2026-08-24 — Plain-language demo card; Wix must link Pages
 

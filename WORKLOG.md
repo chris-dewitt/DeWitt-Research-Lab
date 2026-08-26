@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.29.0
+version: 4.30.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-24
+last_updated: 2026-08-25
 ---
 
 
@@ -152,6 +152,49 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-25 — CFI-007 belief-trajectory viewer
+
+- Branch: `claude/papers-publication-status-qph07b`. Local viewer only;
+  `.github/workflows/publish-pages.yml` and `site/replays/` untouched, and
+  `site/` remains gitignored.
+- Built on CFI-004 and CFI-005 (PR #65). Neither depends on G2: the gate governs
+  acquiring or using candidate human data, and every path here is generated from
+  a seed.
+- The design was decided by a measurement, not a preference. `fit_ornstein_uhlenbeck`
+  on the `diffusion` fixture returns reversion rate −0.0242 and level −16.53
+  log-odds, which is p = 6.6e-8, for a path whose range is +0.00 to +9.97. The
+  estimator is not wrong; it was asked a question the data cannot answer and
+  answered with full confidence. Printing that level unqualified would repeat the
+  failure recorded in EVAL-0001 and DRL-RES-011.
+- Nine diagnostic codes, each a statement of identifiability or resolution and
+  never a verdict. A test asserts no diagnostic label or detail uses verdict
+  language, and a second asserts no rendered page contains a verdict construction.
+- Two predicates were corrected by running the estimators rather than reasoning
+  about them. `residual_scale == 0.0` fires for the wrong reason (it is exactly
+  0.0 under reporting noise when each evidence id labels one increment — it is
+  repetition, not noise, that makes a residual informative) and misses the
+  noiseless asymmetric case at 1.89e-13. Replaced with
+  `observations <= len(llr_by_evidence)`. Separately, `reversion_rate == 0.0` is
+  a real sentinel but unreachable from any seeded simulator; the reachable
+  failure is a negative rate with an off-path level.
+- Accessibility gaps in the replay viewer were closed rather than copied: it has
+  zero ARIA, no landmarks, no skip link, no captions, no header scopes, and
+  unfocusable scroll containers. This viewer has all of them, plus a chart
+  labelled by a real `<title>`/`<desc>` and a table equivalent its own
+  description promises. **Asserted structurally only — no assistive technology
+  was used and no audit was performed.**
+- Seven fixtures across clean, degraded and error. `walk-fitted-as-reverting`
+  renders all four panel states from one trajectory: recovered, diagnosed,
+  diagnosed, refused.
+- Fixtures are generated from seeds rather than committed. The error state cannot
+  be committed at all — it *is* the simulator refusing, so there is no artifact.
+- Verified: 68 viewer tests, full suite green, ruff clean, `mypy scripts packages
+  services apps/atticus-local-runner` clean (78 files) — the command CI runs and
+  the one missed on PR #65 — plus `mypy research/cfi/src/drl_cfi/` (10 files) and
+  all three validators. Build is byte-identical across runs.
+- Recorded as `DRL-RES-012`. Next: CFI-006 is the last input to CFI-008, and the
+  Director has held it deliberately pending a read of CFI-004/005/007.
 
 ### 2026-08-24 — Plain-language limitations; Wix→Pages link copy
 

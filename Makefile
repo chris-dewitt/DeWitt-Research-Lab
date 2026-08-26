@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site belief-site belief-recovery serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -25,6 +25,12 @@ bakeoff:
 
 replay-site:
 	uv run python scripts/build_replay_site.py --out site/replays --metadata
+
+belief-site:
+	uv run python scripts/build_belief_site.py --out site/beliefs --metadata
+
+belief-recovery:
+	uv run python scripts/run_belief_recovery.py
 
 bakeoff-json:
 	uv run python scripts/run_bakeoff.py --json

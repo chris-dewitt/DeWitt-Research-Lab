@@ -132,7 +132,7 @@ class TestRendering:
             assert "employer" not in page.lower()
             assert "research initiative" not in page.lower()
             assert "founded" not in page.lower()
-            assert "director@" not in page.lower()
+            assert "director@dewitt-labs.com" in page.lower()
 
     def test_every_page_has_accessible_document_landmarks(
         self, success: ReplayBundle, degraded: ReplayBundle

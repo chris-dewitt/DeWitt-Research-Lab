@@ -39,8 +39,9 @@ No signed replay bundle, manifest, evaluation result, workflow, or deployment
 configuration changed.
 
 The public footer treats DeWitt Research Laboratory as the report title and
-otherwise contains only the archive status and site link. Disclosures are
-limited to limitations of the artifacts themselves.
+otherwise contains only the archive status, site link, and
+`director@dewitt-labs.com` contact address. Disclosures are limited to
+limitations of the artifacts themselves.
 
 ## 4. ADRs created or needed
 

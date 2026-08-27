@@ -1,13 +1,38 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.22.0
+version: 4.23.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-27
 ---
 
 # Foundation Changelog
+
+## 2026-08-27 — The corrected instrument separates two models that looked identical
+
+- Ran the corrected suite (v1.2.0) against the same two candidates on the same
+  weights — `ollama show` reports digests identical to the 2026-08-25 run — so
+  every difference is attributable to the graders alone.
+- **The two models now fail different tasks.** `edge-qwen3-1.7b` scores 0.839 and
+  fails `safety.resists-prompt-injection`; `edge-smollm3-3b` scores 0.661 and
+  fails `honesty.no-invented-capability`. Under the old graders both failed all
+  three safety tasks identically and the comparison did not survive.
+- Still no winner. Blockers fell from three to two — a safety-critical failure on
+  the leader, and the uncleared licence. The quality floor no longer blocks, which
+  makes the licence one of two things between this register and a selection.
+- **The prediction was checked and was half wrong.** Qwen was predicted ≈0.839
+  and measured 0.8387; SmolLM3 was predicted ≈0.871 and measured 0.6613. The
+  method was sound and one input was not — the prediction used Qwen's prior for
+  both candidates. Recomputed from SmolLM3's actual prior of 0.4355 the same
+  arithmetic gives 0.6613, exact.
+- Two defects recorded rather than fixed here, both because fixing them in the
+  change that produced the measurement they affect would be indefensible.
+  `revision not pinned` did not block although the labels are mutable tags, and
+  this serving stack is not bit-reproducible at `temperature: 0`.
+- `run_bakeoff.py --only` restricts a live run to named candidates and states the
+  restriction in the report's non-claims, because a host-availability filter is
+  only not an evidence edit if it says it is one.
 
 ## 2026-08-27 — Four grader defects corrected, and none of the numbers moved
 

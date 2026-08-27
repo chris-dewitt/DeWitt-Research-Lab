@@ -117,7 +117,7 @@ class TestRendering:
         for name in success.linked_workflow.get("links", {}):
             assert name in page
 
-    def test_laboratory_identity_and_disclosure_on_every_page(
+    def test_report_identity_without_institutional_claims_on_every_page(
         self, success: ReplayBundle, degraded: ReplayBundle
     ) -> None:
         for page in (
@@ -126,10 +126,13 @@ class TestRendering:
             render_index([success, degraded]),
         ):
             assert "DeWitt Research Laboratory" in page
-            assert "Christopher Noxon DeWitt" in page
             assert "www.dewitt-labs.com" in page
-            assert "Independent personal research artifact" in page
-            assert "does not endorse this project" in page
+            assert "UNC-Chapel Hill" not in page
+            assert "does not endorse" not in page
+            assert "employer" not in page.lower()
+            assert "research initiative" not in page.lower()
+            assert "founded" not in page.lower()
+            assert "director@" not in page.lower()
 
     def test_every_page_has_accessible_document_landmarks(
         self, success: ReplayBundle, degraded: ReplayBundle

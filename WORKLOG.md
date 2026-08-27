@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.32.0
+version: 4.33.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-08-27
@@ -63,6 +63,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 | ops / Qwen plan bind + run records | Cursor cloud agent | `cursor/qwen-plan-arg-bind-ad29` | 2026-08-23 | MERGED | PR #55; `agents/handoffs/2026-08-23-qwen-plan-run-records.md` |
 | ops / official public feeds | Cursor cloud agent | `cursor/live-public-feeds-ad29` | 2026-08-23 | MERGED | PR #58; `agents/handoffs/2026-08-23-public-feed-pipeline.md` |
 | ops / plain card + Wix→Pages | Cursor cloud agent | `cursor/plain-limitations-wix-pages-ad29` | 2026-08-24 | IN REVIEW | `agents/handoffs/2026-08-24-plain-limitations-wix-pages.md` |
+| web / DRL-035 recorded-runs evidence archive | Codex | `fix/drl-035-replay-evidence-archive` | 2026-08-27 | READY FOR REVIEW | Issue #68; `agents/handoffs/2026-08-27-drl-035-replay-evidence-archive.md` |
 
 ## Active scope — DRL-034 public repository readiness
 
@@ -77,6 +78,19 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   exact security, privacy, licensing, test, and handoff evidence. Existing UNC
   author-email history remains a Director decision because remediation rewrites
   published Git history.
+
+## Active scope — DRL-035 recorded-runs evidence archive
+
+- Scope: rebuild the public GitHub Pages replay viewer as an accessible,
+  responsive evidence archive for the verified success and degraded fixture
+  recordings without changing their signed contents.
+- Dependencies: DRL-019 signed fixtures, the public repository authorized by
+  RES-024, and the existing `publish-pages` workflow.
+- Exit criteria: clear report/repository identity; explicit prototype,
+  fixture, rule-based-planner, and demo-signature boundaries;
+  semantic landmarks; keyboard-reachable, captioned, scoped data tables;
+  deterministic self-contained output; focused tests and repository checks;
+  feature branch, pull request, and exact handoff evidence.
 
 ## Active scope — DRL-033 public artifact mirror
 
@@ -105,7 +119,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   DRL-021 stays `QUEUED` until its visual and operational acceptance evidence exists.
 - Exit criteria: personal identity and current education lead; **View my
   research** and **Explore my projects** are the first actions; projects are
-  evidence; university and employer boundaries are explicit; tests pass.
+  evidence; public caveats are limited to artifact-specific limitations; tests
+  pass.
 
 ## Active scope — DRL-031 Computational Finance of Intelligence
 
@@ -152,6 +167,26 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-27 — DRL-035 recorded-runs evidence archive
+
+- Rebuilt the static GitHub Pages replay viewer as a responsive evidence
+  archive with baseline/degraded comparison, stronger prototype boundaries,
+  and direct research/source routes.
+- Added semantic header, navigation, main, and footer landmarks; a skip link;
+  keyboard-reachable overflow regions; table captions; scoped headers; and
+  text labels that do not rely on colour for status.
+- Preserved deterministic self-contained HTML, verified-bundle refusal,
+  fixture-data disclosures, the rule-based-planner boundary, and the
+  demo-signature caveat. Public copy treats DeWitt Research Laboratory as the
+  report title and limits caveats to artifact-specific technical limitations.
+- Focused replay tests, full Python tests, workspace test commands, typecheck,
+  lint, four repository validators, deterministic site generation, and diff
+  checks passed. Screenshot capture was unavailable because the environment
+  could not obtain a browser binary; no visual-regression image is claimed.
+- Branch `fix/drl-035-replay-evidence-archive`; implementation commit
+  `ce226a0`; exact handoff at
+  `agents/handoffs/2026-08-27-drl-035-replay-evidence-archive.md`.
 
 ### 2026-08-27 — EVAL-0001 re-measurement (commit 2 of 2)
 
@@ -692,5 +727,3 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - ADR-0010 and DIR-010 in review. Fixtures remain default/CI.
 - Operator: `scripts/refresh_public_feeds.py` then `ATTICUS_LIVE_DATA=1`.
 - Handoff: `agents/handoffs/2026-08-23-public-feed-pipeline.md`
-
-

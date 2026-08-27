@@ -49,9 +49,7 @@ class TestLoading:
         assert degraded.final_state == "degraded"
         assert degraded.failures, "degraded bundle should record a tool failure"
 
-    def test_evidence_and_limitations_are_read_from_the_run(
-        self, success: ReplayBundle
-    ) -> None:
+    def test_evidence_and_limitations_are_read_from_the_run(self, success: ReplayBundle) -> None:
         assert success.evidence_ids
         assert success.limitations
         assert success.maturity == "prototype"
@@ -119,7 +117,7 @@ class TestRendering:
         for name in success.linked_workflow.get("links", {}):
             assert name in page
 
-    def test_portfolio_identity_and_disclosure_on_every_page(
+    def test_report_identity_without_institutional_claims_on_every_page(
         self, success: ReplayBundle, degraded: ReplayBundle
     ) -> None:
         for page in (
@@ -127,10 +125,47 @@ class TestRendering:
             render_bundle_page(degraded),
             render_index([success, degraded]),
         ):
-            assert "Christopher Noxon DeWitt" in page
+            assert "DeWitt Research Laboratory" in page
             assert "www.dewitt-labs.com" in page
-            assert "Independent student research artifact" in page
-            assert "does not endorse this project" in page
+            assert "UNC-Chapel Hill" not in page
+            assert "does not endorse" not in page
+            assert "employer" not in page.lower()
+            assert "research initiative" not in page.lower()
+            assert "founded" not in page.lower()
+            assert "director@dewitt-labs.com" in page.lower()
+
+    def test_every_page_has_accessible_document_landmarks(
+        self, success: ReplayBundle, degraded: ReplayBundle
+    ) -> None:
+        for page in (
+            render_bundle_page(success),
+            render_bundle_page(degraded),
+            render_index([success, degraded]),
+        ):
+            assert 'class="skip-link" href="#main"' in page
+            assert '<header class="site-header">' in page
+            assert '<nav class="site-nav" aria-label="Primary">' in page
+            assert '<main id="main" class="shell" tabindex="-1">' in page
+            assert '<footer class="site-footer">' in page
+
+    def test_run_tables_are_captioned_scoped_and_keyboard_reachable(
+        self, success: ReplayBundle
+    ) -> None:
+        page = render_bundle_page(success)
+        assert page.count('class="table-region" tabindex="0" role="region"') == 2
+        assert "<caption>Specialist artifacts linked to this recorded run</caption>" in page
+        assert "<caption>Recorded execution and integrity metadata</caption>" in page
+        assert 'scope="col"' in page
+        assert 'scope="row"' in page
+
+    def test_status_is_not_communicated_by_color_alone(
+        self, success: ReplayBundle, degraded: ReplayBundle
+    ) -> None:
+        success_page = render_bundle_page(success)
+        degraded_page = render_bundle_page(degraded)
+        assert ">completed<" in success_page
+        assert ">degraded<" in degraded_page
+        assert "This run failed partway through and kept going" in degraded_page
 
     def test_index_links_each_bundle(self, success: ReplayBundle, degraded: ReplayBundle) -> None:
         index = render_index([success, degraded])
@@ -188,9 +223,7 @@ class TestBuild:
         build_site(BUNDLES, a)
         build_site(BUNDLES, b)
         for name in ("index.html", "success.html", "degraded.html"):
-            assert (a / name).read_text(encoding="utf-8") == (b / name).read_text(
-                encoding="utf-8"
-            )
+            assert (a / name).read_text(encoding="utf-8") == (b / name).read_text(encoding="utf-8")
 
     def test_metadata_describes_what_was_published(
         self, success: ReplayBundle, degraded: ReplayBundle

@@ -113,6 +113,12 @@ candidates:
         `Qwen/Qwen3-1.7B-GGUF` carries the apache-2.0 license tag. That is
         repository metadata from the HF API rather than a reading of the license
         text, so it supports clearing without by itself being the clearance.
+      - Revision evidence read 2026-08-27 via `ollama show` and GET /api/tags —
+        digest `c737388f9bfa28ce94d0571ca1ff1a78f1a7a318c0c8c03b6c331498e0a611cf`,
+        1.72B parameters, Q8_0, context 40960. That digest is the pin the
+        `revision_label` tag is not. The gate's revision check is a four-string
+        denylist and passes the mutable tag regardless, which TR-2026-002 v1.7.0
+        records as an open defect.
 
   - id: edge-smollm3-3b
     role: edge
@@ -144,6 +150,11 @@ candidates:
         served. Whether the conversion inherits the original license was the
         open question this note raised, and the metadata answers it. As above,
         repository metadata rather than a reading of the license text.
+      - Revision evidence read 2026-08-27 via `ollama show` and GET /api/tags —
+        digest `c1be63e265a7d76d6c20f75958159d5952f1e580928402cd01c44ccab4dfce6a`,
+        3.08B parameters, Q4_K_M, context 65536. Same caveat as the Qwen row —
+        the digest is a real pin, the tag in `revision_label` is not, and the
+        gate currently accepts the tag.
       - Pulls must land on the daemon answering GET /v1/models, not merely
         appear in an unpinned `ollama list`.
 

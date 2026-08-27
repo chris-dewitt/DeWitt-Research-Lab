@@ -36,6 +36,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 from drl_ai_core import ScriptedProvider, run_bakeoff, summarise_blockers
@@ -109,6 +110,19 @@ def main() -> int:
         default="fixture",
         help="fixture runs can never produce a selection; hardware runs may.",
     )
+    parser.add_argument(
+        "--only",
+        action="append",
+        metavar="CANDIDATE_ID",
+        help=(
+            "restrict a live run to these candidates (repeatable). Use when the "
+            "register declares a serving block for a candidate this host does not "
+            "actually serve: its health check would otherwise abort the whole run. "
+            "The restriction is printed and recorded in the report's non-claims, "
+            "because a host-availability filter is only not an evidence edit if it "
+            "is stated to be one."
+        ),
+    )
     parser.add_argument("--json", action="store_true", help="emit JSON instead of markdown")
     parser.add_argument("--out", type=Path, help="write the report to this path")
     args = parser.parse_args()
@@ -129,6 +143,17 @@ def main() -> int:
         constraints: CompletionConstraints | None = CompletionConstraints(
             timeout_seconds=args.timeout, temperature=0.0, require_open_weight=True
         )
+        if args.only:
+            unknown = sorted(set(args.only) - set(providers))
+            if unknown:
+                print(
+                    f"--only names candidates with no serving block: {unknown}; "
+                    f"available: {sorted(providers)}",
+                    file=sys.stderr,
+                )
+                return 1
+            restricted_to = sorted(set(args.only))
+            providers = {cid: providers[cid] for cid in restricted_to}
         print(f"running live against: {', '.join(sorted(providers))}\n", file=sys.stderr)
     else:
         providers = build_fixture_providers(args.register)
@@ -154,6 +179,20 @@ def main() -> int:
     except BakeoffError as exc:
         print(f"bake-off could not produce evidence: {exc}", file=sys.stderr)
         return 1
+
+    if args.live and args.only:
+        report = replace(
+            report,
+            non_claims=(
+                *report.non_claims,
+                (
+                    "This run was restricted with --only to "
+                    f"{', '.join(sorted(set(args.only)))}. Other registered candidates "
+                    "were not run and are absent from the ranking for that reason, not "
+                    "on any measured basis."
+                ),
+            ),
+        )
 
     rendered = json.dumps(report.as_dict(), indent=2) if args.json else report.to_markdown()
     print(rendered)

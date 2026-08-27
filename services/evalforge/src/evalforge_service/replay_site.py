@@ -365,6 +365,7 @@ def _footer() -> str:
         "<p>DeWitt Research Laboratory · Recorded runs · Status: Prototype</p>\n"
         "</div>\n<div>\n"
         '<p><a href="https://www.dewitt-labs.com">dewitt-labs.com</a></p>\n'
+        '<p><a href="mailto:director@dewitt-labs.com">director@dewitt-labs.com</a></p>\n'
         "</div>\n</div>\n</footer>"
     )
 

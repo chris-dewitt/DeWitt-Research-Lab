@@ -1,8 +1,9 @@
 # Computational Finance of Intelligence — research instrumentation
 
-Machine-side apparatus for the CFI program, currently covering the Paper II
-track only. This package contains **no experiment, no dataset, and no result**.
-It is the instrument a preregistered protocol would later drive.
+Machine-side apparatus for the CFI program, covering the Paper II track and the
+shared Belief Diffusion bridge. This package contains **no experiment, no
+dataset, and no result**. It is the instrument a preregistered protocol would
+later drive.
 
 Authority: `docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md`
 (DRL-RES-005) and the dispositions in
@@ -45,6 +46,9 @@ lets the two converge instead of queueing.
 | `frames` | CFI-201 | Frame taxonomy, and frame pairs that cannot vary the payoff |
 | `coherence` | CFI-204 | Arbitrage detection, minimal coherence repair, exploiting portfolio |
 | `competence` | CFI-205 | Unframed-control screen excluding subjects that cannot price the claim |
+| `beliefs` | CFI-004 | The observable belief-event schema, refusing records it cannot represent |
+| `baselines` | CFI-005 | Bayesian, diffusion, OU, and jump estimators, with simulators and a recovery study |
+| `viewer` | CFI-007 | Static HTML for a belief path and its fits, with a diagnostic per unidentified estimate |
 
 ## Two design decisions that bound the claims
 

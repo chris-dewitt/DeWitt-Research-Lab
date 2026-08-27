@@ -336,9 +336,8 @@ def _page(title: str, body: str) -> str:
         '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
         '<meta name="color-scheme" content="dark">\n'
         '<meta name="theme-color" content="#090a09">\n'
-        '<meta name="description" content="Inspectable prototype research runs from '
-        "DeWitt Research Laboratory, including execution traces, evidence lineage, "
-        'limitations, and provenance.">\n'
+        '<meta name="description" content="Inspectable prototype research runs, '
+        'including execution traces, evidence lineage, limitations, and provenance.">\n'
         f"<title>{_esc(title)}</title>\n"
         f"<style>{_STYLE}</style>\n"
         "</head>\n<body>\n"
@@ -363,13 +362,9 @@ def _page(title: str, body: str) -> str:
 def _footer() -> str:
     return (
         '<footer class="site-footer">\n<div class="shell site-footer-grid">\n<div>\n'
-        "<p>Christopher Noxon DeWitt · Charlotte, North Carolina · "
-        "Independent research · Status: Prototype</p>\n"
-        "<p>Independent personal research artifact. UNC-Chapel Hill is identified "
-        "for educational context and does not endorse this project.</p>\n"
+        "<p>DeWitt Research Laboratory · Recorded runs · Status: Prototype</p>\n"
         "</div>\n<div>\n"
         '<p><a href="https://www.dewitt-labs.com">dewitt-labs.com</a></p>\n'
-        '<p><a href="mailto:director@dewitt-labs.com">director@dewitt-labs.com</a></p>\n'
         "</div>\n</div>\n</footer>"
     )
 
@@ -568,9 +563,9 @@ def render_index(bundles: list[ReplayBundle]) -> str:
         '<section class="hero" aria-labelledby="archive-title"><div>',
         '<p class="eyebrow">Public evidence archive / Prototype series 01</p>',
         '<h1 id="archive-title">Recorded research runs</h1>',
-        '<p class="lede">DeWitt Research Laboratory studies how bounded AI systems '
-        "plan research, route work across specialist tools, preserve evidence lineage, "
-        "divide authority, and remain inspectable when something fails. These static "
+        '<p class="lede">This report examines how bounded AI systems plan research, '
+        "route work across specialist tools, preserve evidence lineage, divide "
+        "authority, and remain inspectable when something fails. These static "
         "recordings expose the execution—not merely the final answer.</p>",
         '<div class="actions"><a class="button primary" href="#runs">Inspect the runs</a>'
         '<a class="button" href="https://github.com/chris-dewitt/DeWitt-Research-Lab">'

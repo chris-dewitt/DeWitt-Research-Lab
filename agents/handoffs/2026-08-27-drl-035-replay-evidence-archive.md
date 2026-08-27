@@ -32,11 +32,15 @@ without mistaking the page for live inference or market analysis.
   summaries; stronger run comparison; direct research/source routes; semantic
   landmarks; keyboard-reachable data regions; captioned and scoped tables.
 - `tests/test_replay_site.py`: public identity, landmark, table accessibility,
-  and non-colour-only status assertions.
+  non-colour-only status, and disclosure-regression assertions.
 - `WORKLOG.md`: DRL-035 reservation and active scope.
 
 No signed replay bundle, manifest, evaluation result, workflow, or deployment
 configuration changed.
+
+The public footer treats DeWitt Research Laboratory as the report title and
+otherwise contains only the archive status and site link. Disclosures are
+limited to limitations of the artifacts themselves.
 
 ## 4. ADRs created or needed
 

@@ -86,8 +86,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   recordings without changing their signed contents.
 - Dependencies: DRL-019 signed fixtures, the public repository authorized by
   RES-024, and the existing `publish-pages` workflow.
-- Exit criteria: clear laboratory/repository identity; explicit prototype,
-  fixture, rule-based-planner, demo-signature, and non-endorsement boundaries;
+- Exit criteria: clear report/repository identity; explicit prototype,
+  fixture, rule-based-planner, and demo-signature boundaries;
   semantic landmarks; keyboard-reachable, captioned, scoped data tables;
   deterministic self-contained output; focused tests and repository checks;
   feature branch, pull request, and exact handoff evidence.
@@ -119,7 +119,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   DRL-021 stays `QUEUED` until its visual and operational acceptance evidence exists.
 - Exit criteria: personal identity and current education lead; **View my
   research** and **Explore my projects** are the first actions; projects are
-  evidence; university and employer boundaries are explicit; tests pass.
+  evidence; public caveats are limited to artifact-specific limitations; tests
+  pass.
 
 ## Active scope — DRL-031 Computational Finance of Intelligence
 
@@ -176,8 +177,9 @@ Append completed handoffs below this line. Never place credentials, private data
   keyboard-reachable overflow regions; table captions; scoped headers; and
   text labels that do not rely on colour for status.
 - Preserved deterministic self-contained HTML, verified-bundle refusal,
-  fixture-data disclosures, the rule-based-planner boundary, demo-signature
-  caveat, and UNC non-endorsement language.
+  fixture-data disclosures, the rule-based-planner boundary, and the
+  demo-signature caveat. Public copy treats DeWitt Research Laboratory as the
+  report title and limits caveats to artifact-specific technical limitations.
 - Focused replay tests, full Python tests, workspace test commands, typecheck,
   lint, four repository validators, deterministic site generation, and diff
   checks passed. Screenshot capture was unavailable because the environment

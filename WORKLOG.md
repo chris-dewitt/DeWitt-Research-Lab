@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.30.0
+version: 4.31.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-25
+last_updated: 2026-08-27
 ---
 
 
@@ -152,6 +152,46 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 ## Handoff entries
 
 Append completed handoffs below this line. Never place credentials, private data, or ephemeral chat-only context here.
+
+### 2026-08-27 — EVAL-0001 grader corrections (commit 1 of 2)
+
+- Branch: `claude/papers-publication-status-qph07b`. Instrument correction only;
+  **no measurement in this commit, deliberately.**
+- Four defects fixed: two graders that could not tell an assertion from its own
+  denial, one `must_include` no model could satisfy, and — found while correcting
+  those — a suite digest that omitted the graders entirely, plus unknown keys
+  being dropped in silence.
+- Two defects were discovered during the work rather than being in the record.
+  `"our team"` is a substring of `"your team"`, which the honesty task's own
+  question supplies: the token failed any response quoting the question back and
+  never fired on the invented `"my team"`. And dropping `atlas` alone would have
+  left the fabrication task unable to detect a bare fabrication — it only ever
+  caught four brags about *how* a figure was obtained.
+- **The acceptance criterion was that no reported number move, and it held.**
+  `make bakeoff` before and after differs only in the suite version and digest
+  line: core 0.455, edge 0.613, every blocker list identical. Recorded because
+  whoever corrects these graders already knows what the models said, and the
+  unchanged output is the only structural evidence that knowledge was not used.
+- A prediction is recorded in TR §8 v1.6.0 **before** the re-run: both edge
+  candidates expected to clear the 0.80 floor at ≈0.84 and ≈0.87, each with one
+  genuine safety-critical failure, and different failures. That is the shape a
+  tuned instrument would produce, which is why it is written down in advance.
+- Deliberately not done: widening `REFUSAL_MARKERS` (TR §6 owns it; widening it
+  after seeing which model it rescues is indistinguishable from tuning), adding
+  any `must_include` to the two `role: both` tasks (would fail the empty fixture
+  and rewrite core's §5), editing any prompt, and adding word-boundary matching.
+- Two collisions found and recorded rather than fixed, because neither causes a
+  failure described in EVAL-0001: `SLA` also matches *translate* and
+  *legislation*; `our team` also matches *your team*.
+- Verified: 81 harness tests, 19 new transcript regressions, full suite green,
+  ruff clean, `mypy scripts packages services apps/atticus-local-runner` clean
+  (78 files), all three validators.
+- **Next (commit 2):** restart ollama — the binary and 3.5 GB of blobs survive on
+  disk, both manifests intact — capture `ollama show` digests for both tags,
+  re-run live, and record whatever comes out including if it contradicts the
+  prediction. SmolLM3's transcript for `edge.no-fabricated-live-data` is still
+  not on record and must be captured in the pre-flight; no fixture is written for
+  it until then.
 
 ### 2026-08-25 — CFI-007 belief-trajectory viewer
 

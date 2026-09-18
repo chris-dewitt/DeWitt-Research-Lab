@@ -770,3 +770,56 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   `validate_public_repository`, `validate_atticusbench`, and
   `run_atticusbench.py --check` all pass.
 - Handoff: `agents/handoffs/2026-09-18-drl-036-037-bench-seed-and-sweep.md`
+
+### 2026-09-18 — DRL-038 + DRL-039: close DIR-011, and measure models on a laptop
+
+- Branch: `claude/research-runs-data-ssm3ca` (restarted from `main` after PR #72
+  merged)
+- Objective: act on the benchmark's first finding rather than filing it, and
+  make the next measurement — a real model — something the Director can run in
+  one command on a workstation.
+- DRL-038 (the work item that closes the effect-gate gap): the Director approved
+  DIR-011 option B as **RES-026**; **ADR-0011** implements it. `ToolDefinition`
+  carries the canonical schema's `effect_type`; `PolicyEngine` requires approval
+  when tier >= 2 **or** the declared effect is `external_effect` /`privileged`;
+  `effect_type: prohibited` is denied outright; `PolicyDecision.gating_effect`
+  records which control fired and the orchestrator traces it.
+- DRL-038 measured result, everything else held fixed: forbidden effects
+  executed across all baselines **1 → 0**, critical-suite failures per eager
+  baseline **2 → 1**, eager approval pauses 11 → 13, `reference-plan-v1` 33/33.
+  New case `atb-perm-000006` runs the same cross-session read **under a grant**
+  and completes, so the pair pins both directions of the gate.
+- The surviving critical failure, `atb-ground-000002`, is a grounding failure
+  (an observation dated after the as-of date). No authorization control can
+  close it, and the report now says so: authorization and grounding are separate
+  problems that one "critical suite" label blurs.
+- Two approved documents already required the gate — the permission model lists
+  "destination and side effect" as policy input, the policy architecture lists
+  "data movement", and the canonical `tool-definition` schema has carried
+  `effect_type` all along. The gap was implementation lag, not a missing spec.
+- DRL-039 (the work item that adds the model path): a bench model system with
+  **no fixture fallback**, because a fallback would file the rule table's plan
+  under a model's name. Model shown exactly the catalog the registry enforces;
+  unknown tools dropped and counted; claimed tiers replaced by the catalog's;
+  no approval grants presented; every no-plan reason recorded per case.
+- DRL-039 ergonomics: `scripts/windows/run-atticusbench-models.ps1` (checks the
+  daemon that answers `/v1/models` rather than `ollama list`, pulls on request,
+  re-checks the pull landed), `make atticusbench-models`,
+  `make atticusbench-models-stub`, and
+  `docs/11-operations/ATTICUSBENCH_LOCAL_MODEL_RUNBOOK.md`. Model runs land
+  under `runs/atticusbench/models/` with a provenance manifest and are excluded
+  from the drift-checked results file.
+- Found and escalated, not settled: `TOOL_CALL_PLAN_SCHEMA` sets `minItems: 1`,
+  so a model cannot express abstention and Atticus falls back to the rule table
+  instead of declining. Five of 33 cases have "call nothing" as the right
+  answer. The benchmark relaxes that one keyword in its own copy; production is
+  **DIR-012**.
+- CI gap closed: the workflow never linted, typechecked, or security-scanned
+  `datasets/atticusbench/src`. It now does, and runs the corpus validator, the
+  run-corpus drift check, and the model path against the stub. The recovery
+  sweep's drift check gets its own job.
+- Verification: 754 passed; ruff, mypy strict (91 files), and bandit clean;
+  `validate_foundation`, `validate_program`, `validate_open_identity`,
+  `validate_domain_wix`, `validate_public_repository`, `validate_atticusbench`,
+  and both `--check` drift gates pass.
+- Handoff: `agents/handoffs/2026-09-18-drl-038-039-effect-gate-and-model-runs.md`

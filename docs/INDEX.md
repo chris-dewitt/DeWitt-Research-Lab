@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DOC-002
 title: "Controlled Documentation Index"
-version: 3.7.0
+version: 3.8.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -84,3 +84,9 @@ Some older seed documents may remain under unnumbered domain paths for history. 
   review status, permitted and prohibited uses of the public seed.
 - `runs/atticusbench/README.md` — the committed run corpus, what a record does
   and does not contain, and how to re-derive every number in `TR-2026-003`.
+- `adr/ADR-0011-effect-class-approval-gate.md` — approval gates on a tool's
+  declared effect as well as its risk tier. Approved as RES-026; the benchmark
+  measured the gap and then measured it closed.
+- `11-operations/ATTICUSBENCH_LOCAL_MODEL_RUNBOOK.md` — how to measure a local
+  model on the public split, what a run records, and how to read the result
+  without overstating it.

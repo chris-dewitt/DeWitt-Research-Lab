@@ -50,7 +50,21 @@ class PolicyEngine:
             return PolicyDecision(False, False, "Call risk tier does not match catalog", digest)
         if call.risk_tier >= RiskTier.PROHIBITED:
             return PolicyDecision(False, False, "Tier 4 actions are prohibited", digest)
-        if definition.effect_type is EffectType.PROHIBITED:
+        # Normalize the catalog's declaration once. ``ToolDefinition`` is an
+        # unvalidated dataclass, so a future loader could hand this the plain
+        # string "external_effect" or something meaningless. An unintelligible
+        # declaration is denied rather than treated as harmless: a gate that
+        # cannot read a tool's effect must not conclude it has none.
+        try:
+            effect = EffectType(definition.effect_type)
+        except ValueError:
+            return PolicyDecision(
+                False,
+                False,
+                "Tool declares an unrecognized effect type",
+                digest,
+            )
+        if effect is EffectType.PROHIBITED:
             return PolicyDecision(
                 False,
                 False,
@@ -61,11 +75,11 @@ class PolicyEngine:
             return PolicyDecision(False, False, "Tool is not available to public sessions", digest)
 
         tier_gates = call.risk_tier >= RiskTier.REVERSIBLE_CHANGE
-        effect_gates = definition.effect_type in BOUNDARY_CROSSING_EFFECTS
+        effect_gates = effect in BOUNDARY_CROSSING_EFFECTS
         if effect_gates and not tier_gates:
             reason = (
                 "Allowed by deterministic catalog policy; approval required because "
-                f"the declared effect {definition.effect_type.value} crosses a trust "
+                f"the declared effect {effect.value} crosses a trust "
                 "boundary at this tier"
             )
         else:
@@ -75,5 +89,5 @@ class PolicyEngine:
             tier_gates or effect_gates,
             reason,
             digest,
-            gating_effect=definition.effect_type if effect_gates else None,
+            gating_effect=effect if effect_gates else None,
         )

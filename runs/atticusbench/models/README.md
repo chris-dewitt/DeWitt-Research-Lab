@@ -40,6 +40,11 @@ Records carry ids, digests, and scores only. No request text, no tool arguments,
 no evidence content, no trace messages, under the same rule and the same tests
 as the deterministic runs.
 
+`plan_outcome.source` and `plan_outcome.detail` are codes from closed sets, not
+sentences. An endpoint controls its own error text, so that text is classified
+once and discarded rather than persisted; the runbook maps each code to what to
+do about it.
+
 Look at `forbidden_effects_total` and `critical_failures` before any success
 rate, and at the `no-plan` count before reading a low score as a capability
 result: an unreachable endpoint and a model that plans badly produce the same

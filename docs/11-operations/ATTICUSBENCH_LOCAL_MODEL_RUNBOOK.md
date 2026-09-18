@@ -148,11 +148,21 @@ instead.
 
 ## If something goes wrong
 
-| Symptom | Cause | Fix |
+A record's `plan_outcome.source` is a code from a closed set, and
+`plan_outcome.detail` is a second code classifying the immediate cause. Neither
+quotes the endpoint: an endpoint controls its own error text and that text is
+never persisted, so the table below maps codes rather than sentences.
+
+| Code | Cause | Fix |
 |---|---|---|
-| `endpoint did not answer` | Daemon down, or a different port | `ollama serve`; check `curl http://localhost:11434/v1/models` |
-| `does not serve '<tag>'` | Pull landed on another daemon | Pull on the host answering that port; re-check the endpoint, not `ollama list` |
-| Every case `no-plan: empty completion` | A reasoning model spent the budget thinking | Set the register's `system_prefix: "/no_think"`, or raise `--max-output-tokens` |
-| Every case `no-plan: completion failed the plan schema` | Model is emitting prose or fenced JSON | Lower temperature; confirm the tag is instruction-tuned |
-| `no-plan: provider error: ... timed out` | Model too large for the host | Try a smaller quantization; the stall timeout is `--stall-timeout` |
+| `endpoint did not answer` (preflight) | Daemon down, or a different port | `ollama serve`; check `curl http://localhost:11434/v1/models` |
+| `does not serve '<tag>'` (preflight) | Pull landed on another daemon | Pull on the host answering that port; re-check the endpoint, not `ollama list` |
+| `no-plan-empty-completion` | A reasoning model spent its budget thinking | Set the register's `system_prefix: "/no_think"`, or raise `--max-output-tokens` |
+| `no-plan-schema-failure` | Model is emitting prose or fenced JSON | Lower temperature; confirm the tag is instruction-tuned |
+| `no-plan-unavailable-tools` | Model named tools that were not offered | Check `dropped_unknown_tools` on the record; often a prompt-following failure |
+| `no-plan-provider-error` + `timeout` | Model too large for the host | Smaller quantization; the stall timeout is `--stall-timeout` |
+| `no-plan-provider-error` + `connection-refused` | Daemon died mid-run | Restart it and re-run; check the host's memory |
+| `no-plan-provider-error` + `not-found` | Tag is not served on that endpoint | Pull it on the daemon answering the port |
+| `no-plan-provider-error` + `unclassified` | A failure this vocabulary does not name | Re-run with the endpoint's own logs open; then add the marker to `PROVIDER_FAILURES` |
+| `model-empty-plan` | The model chose to call nothing | Correct on five cases; excessive refusal elsewhere |
 | Scores look impossibly good | You are looking at the stub | The stub's license label is `not-a-model`; check `manifest.json` |

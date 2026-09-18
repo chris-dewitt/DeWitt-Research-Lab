@@ -13,10 +13,13 @@ import json
 import pytest
 from atticusbench import load_corpus, run_case, score_case
 from atticusbench.model_system import (
+    MODEL_BLOCK_KEYS,
     BenchModelPlanner,
+    PlanOutcome,
     build_bench_plan_validator,
     build_messages,
     catalog_block,
+    model_record_block,
     model_system,
     plan_digest,
     provenance,
@@ -65,7 +68,7 @@ def test_an_unknown_tool_is_dropped_and_recorded(corpus) -> None:
     calls = planner.plan(_request(case))
     assert calls == []
     assert planner.outcome.dropped_unknown_tools == ("nonexistent.tool",)
-    assert planner.outcome.source == "no-plan: every step named an unavailable tool"
+    assert planner.outcome.source == "no-plan-unavailable-tools"
 
 
 def test_a_model_cannot_lower_its_own_risk_tier(corpus) -> None:
@@ -126,13 +129,13 @@ def test_the_understated_tier_still_reaches_the_approval_gate(corpus) -> None:
 def test_an_explicit_empty_plan_is_a_decision_not_a_failure(corpus) -> None:
     case, _, planner = _planner(corpus, "atb-human-000002", empty_plan)
     assert planner.plan(_request(case)) == []
-    assert planner.outcome.source == "model: explicit empty plan"
+    assert planner.outcome.source == "model-empty-plan"
 
 
 def test_prose_produces_no_plan_and_no_fallback(corpus) -> None:
     case, _, planner = _planner(corpus, "atb-route-000001", prose_plan)
     assert planner.plan(_request(case)) == []
-    assert planner.outcome.source == "no-plan: completion failed the plan schema"
+    assert planner.outcome.source == "no-plan-schema-failure"
     # The critical property: the reference plan exists for this case, and it
     # must not have been substituted.
     assert case.reference_plan
@@ -146,14 +149,20 @@ def test_a_provider_outage_produces_no_plan_and_no_fallback(corpus) -> None:
         raises=ProviderUnavailableError("connection refused"),
     )
     assert planner.plan(_request(case)) == []
-    assert planner.outcome.source.startswith("no-plan: provider error")
-    assert "connection refused" in planner.outcome.source
+    assert planner.outcome.source == "no-plan-provider-error"
+    # The class name distinguishes refused from timed out from unavailable, and
+    # is the whole diagnosis. The provider's message is not persisted.
+    # The code carries the diagnosis the runbook's table needs; the endpoint's
+    # own words do not reach the record.
+    assert planner.outcome.detail == "connection-refused"
+    assert "connection refused" not in json.dumps(planner.outcome.as_dict())
 
 
 def test_an_empty_completion_reports_the_finish_reason(corpus) -> None:
     case, _, planner = _planner(corpus, "atb-route-000001", lambda messages: "   ")
     assert planner.plan(_request(case)) == []
-    assert planner.outcome.source.startswith("no-plan: empty completion")
+    assert planner.outcome.source == "no-plan-empty-completion"
+    assert planner.outcome.detail == "stop"
 
 
 def test_the_catalog_shown_matches_the_catalog_enforced(corpus) -> None:
@@ -272,6 +281,102 @@ def test_the_bench_plan_contract_permits_abstention() -> None:
     # And it relaxes nothing else: a step still needs its three fields.
     malformed = json.dumps({"task_id": "t", "steps": [{"tool_name": "a.b"}]})
     assert build_bench_plan_validator().parse(malformed).ok is False
+
+
+def test_provider_failures_classify_into_a_closed_set() -> None:
+    from atticusbench.model_system import PROVIDER_FAILURES, classify_provider_failure
+
+    codes = {code for code, _ in PROVIDER_FAILURES}
+    cases = {
+        "the request timed out after 60s": "timeout",
+        "connection refused by 127.0.0.1:11434": "connection-refused",
+        "HTTP 404 for /v1/chat/completions": "not-found",
+        "HTTP 403 forbidden": "forbidden",
+        "certificate verify failed": "tls",
+        "something nobody has seen before": "unclassified",
+    }
+    for message, expected in cases.items():
+        actual = classify_provider_failure(ProviderUnavailableError(message))
+        assert actual == expected, (message, actual)
+        # Every answer is a member of the closed vocabulary, which is the
+        # property that matters: the code is chosen from a fixed list rather
+        # than extracted from the endpoint's text.
+        assert actual in codes | {"unclassified"}
+
+
+def test_every_plan_source_is_a_closed_set_code(corpus) -> None:
+    from atticusbench.model_system import PLAN_SOURCES
+
+    responders = [first_tool_plan, empty_plan, hallucinating_plan, prose_plan]
+    for responder in responders:
+        case, _, planner = _planner(corpus, "atb-route-000001", responder)
+        planner.plan(_request(case))
+        assert planner.outcome.source in PLAN_SOURCES, planner.outcome.source
+    # Including the outage path and the untouched default.
+    case, _, planner = _planner(corpus, "atb-route-000001", raises=ProviderUnavailableError("x"))
+    planner.plan(_request(case))
+    assert planner.outcome.source in PLAN_SOURCES
+    assert PlanOutcome().source in PLAN_SOURCES
+
+
+def test_a_provider_message_never_reaches_the_record(corpus) -> None:
+    # An endpoint controls its own error text. Nothing of it is persisted.
+    endpoint_text = "Bearer " + "a" * 20 + " while fetching /v1/chat/completions, 403"
+    case, _, planner = _planner(
+        corpus, "atb-route-000001", raises=ProviderUnavailableError(endpoint_text)
+    )
+    planner.plan(_request(case))
+    block = model_record_block("stub", 1, planner)
+    serialized = json.dumps(block)
+    assert endpoint_text not in serialized
+    assert "Bearer" not in serialized
+    # Classified, not quoted.
+    assert block["plan_outcome"]["detail"] == "forbidden"
+
+
+def test_the_model_block_is_allowlisted_and_shaped(corpus) -> None:
+    # One assembler builds this section, so the guarantee is enforced in code
+    # rather than restated in three documents.
+    case, _, planner = _planner(corpus, "atb-route-000001")
+    planner.plan(_request(case))
+    block = model_record_block("register::example", 2, planner)
+    assert set(block) == MODEL_BLOCK_KEYS
+    assert block["attempt"] == 2
+    assert block["plan_digest"].startswith("sha256:")
+    assert set(block["plan_outcome"]) == {
+        "source",
+        "detail",
+        "dropped_unknown_tools",
+        "dropped_tool_count",
+        "retiered_steps",
+        "truncated_steps",
+        "latency_ms",
+        "finish_reason",
+        "usage",
+    }
+    # A missing planner still produces a well-formed, content-free block.
+    empty = model_record_block("register::example", 1, None)
+    assert set(empty) == MODEL_BLOCK_KEYS
+    assert empty["plan_outcome"]["source"] == "not-run"
+
+
+def test_a_hostile_finish_reason_is_not_persisted_verbatim(corpus) -> None:
+    class Hostile(StubPlanProvider):
+        def complete(self, messages, *, tools=None, constraints):  # type: ignore[no-untyped-def]
+            response = super().complete(messages, tools=tools, constraints=constraints)
+            object.__setattr__(response, "finish_reason", "stop; operator notes: " + "y" * 200)
+            return response
+
+    case = corpus.case("atb-route-000001")
+    fixture = corpus.fixture(case.environment_fixture)
+    provider = Hostile(first_tool_plan)
+    gateway = ModelGateway(
+        {provider.identity.provider_id: provider}, primary=provider.identity.provider_id
+    )
+    planner = BenchModelPlanner(gateway, case, fixture)
+    planner.plan(_request(case))
+    assert planner.outcome.finish_reason == "<non-conforming>"
+    assert "operator notes" not in json.dumps(planner.outcome.as_dict())
 
 
 def test_the_stub_is_labelled_as_not_a_model() -> None:

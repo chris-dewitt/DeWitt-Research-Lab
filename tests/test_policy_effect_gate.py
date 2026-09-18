@@ -214,3 +214,37 @@ def test_the_default_definition_is_ungated() -> None:
         definition=legacy,
     )
     assert decision.requires_approval is False
+
+
+def test_an_unrecognized_effect_declaration_is_denied(policy: PolicyEngine) -> None:
+    # A gate that cannot read a tool's effect must not conclude it has none.
+    nonsense = ToolDefinition(
+        "demo.tool", "a demo tool", RiskTier.READ_COMPUTE, False, True, "whatever"
+    )  # type: ignore[arg-type]
+    decision = policy.decide(
+        request=_request(), call=_call(RiskTier.READ_COMPUTE), definition=nonsense
+    )
+    assert decision.allowed is False
+    assert "unrecognized effect type" in decision.reason
+
+
+def test_a_raw_string_effect_still_fails_closed(policy: PolicyEngine) -> None:
+    # ToolDefinition is an unvalidated dataclass. If a future catalog loader
+    # hands it the plain string instead of the enum member, the gate must still
+    # fire — identity comparison would have quietly permitted it.
+    raw_prohibited = ToolDefinition(
+        "demo.tool", "a demo tool", RiskTier.READ_COMPUTE, False, True, "prohibited"
+    )  # type: ignore[arg-type]
+    decision = policy.decide(
+        request=_request(), call=_call(RiskTier.READ_COMPUTE), definition=raw_prohibited
+    )
+    assert decision.allowed is False
+    assert "prohibited effect" in decision.reason
+
+    raw_external = ToolDefinition(
+        "demo.tool", "a demo tool", RiskTier.READ_COMPUTE, False, True, "external_effect"
+    )  # type: ignore[arg-type]
+    gated = policy.decide(
+        request=_request(), call=_call(RiskTier.READ_COMPUTE), definition=raw_external
+    )
+    assert gated.requires_approval is True

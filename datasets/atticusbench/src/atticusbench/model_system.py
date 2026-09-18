@@ -151,13 +151,61 @@ def build_messages(
     ]
 
 
+#: Why a case produced the plan it did, as a closed set of codes.
+#:
+#: Codes rather than sentences because this field is persisted, and a sentence
+#: built from a provider's error message is a channel for whatever that endpoint
+#: chose to say. The exception class already distinguishes the failures an
+#: operator acts on differently — refused, timed out, unavailable — so the code
+#: plus the class name carries the diagnosis and the message is dropped.
+PLAN_SOURCES: frozenset[str] = frozenset(
+    {
+        "not-run",
+        "model",
+        "model-empty-plan",
+        "no-plan-provider-error",
+        "no-plan-empty-completion",
+        "no-plan-schema-failure",
+        "no-plan-unavailable-tools",
+    }
+)
+
+#: Longest provider-supplied token kept as detail, and the shape it must have.
+MAX_DETAIL = 48
+_DETAIL = re.compile(r"[A-Za-z0-9_.\-]{1,48}")
+
+#: Provider failures, classified into this module's own vocabulary.
+#:
+#: The gateway aggregates per-provider detail into one ``ProviderError``, so the
+#: exception class does not distinguish refused from timed out from 404 — the
+#: message does, and the message is an endpoint-controlled string that must not
+#: be persisted. So the message is read once, here, and reduced to a code from a
+#: closed set. The operator gets the diagnosis the runbook's troubleshooting
+#: table needs; the record gets no endpoint text.
+PROVIDER_FAILURES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("timeout", ("timed out", "timeout", "stalled")),
+    ("connection-refused", ("connection refused", "refused", "connection reset")),
+    ("not-found", ("404", "not found")),
+    ("unauthorized", ("401", "unauthorized")),
+    ("forbidden", ("403", "forbidden")),
+    ("tls", ("certificate", "ssl", "tls")),
+    ("unreachable", ("name or service not known", "no route", "unreachable", "dns")),
+    ("closed-weight-rejected", ("closed-weight", "closed weight", "open_weight")),
+    ("server-error", ("500", "502", "503", "internal server")),
+)
+
+
 @dataclass(slots=True)
 class PlanOutcome:
     """What the model produced for one case, and what became of it."""
 
-    #: "model" when the plan came from a parsed completion; otherwise the
-    #: reason no plan did. Never a fallback plan.
+    #: A member of ``PLAN_SOURCES``. "model" and "model-empty-plan" mean the
+    #: plan came from a parsed completion; every other code means no plan did,
+    #: and never that a fallback plan was substituted.
     source: str = "not-run"
+    #: One bounded, shape-checked token naming the immediate cause: an exception
+    #: class name, or a provider finish reason. Never a message.
+    detail: str = ""
     dropped_unknown_tools: tuple[str, ...] = ()
     #: Total dropped steps, which can exceed the number of names recorded.
     dropped_tool_count: int = 0
@@ -170,6 +218,7 @@ class PlanOutcome:
     def as_dict(self) -> dict[str, Any]:
         return {
             "source": self.source,
+            "detail": self.detail,
             "dropped_unknown_tools": list(self.dropped_unknown_tools),
             "dropped_tool_count": self.dropped_tool_count,
             "retiered_steps": list(self.retiered_steps),
@@ -219,25 +268,24 @@ class BenchModelPlanner:
                 constraints=self.constraints,
             )
         except ProviderError as exc:
-            self.outcome.source = f"no-plan: provider error: {_one_line(exc)}"
+            self.outcome.source = "no-plan-provider-error"
+            self.outcome.detail = classify_provider_failure(exc)
             return []
 
         self.outcome.latency_ms = float(getattr(response, "latency_ms", 0.0) or 0.0)
-        self.outcome.finish_reason = str(getattr(response, "finish_reason", "") or "")
+        self.outcome.finish_reason = _safe_detail(str(getattr(response, "finish_reason", "") or ""))
         usage = getattr(response, "usage", None)
         if isinstance(usage, dict):
             self.outcome.usage = {str(k): int(v) for k, v in usage.items()}
 
         if not response.content.strip():
-            self.outcome.source = (
-                "no-plan: empty completion "
-                f"(finish_reason={self.outcome.finish_reason or 'unknown'})"
-            )
+            self.outcome.source = "no-plan-empty-completion"
+            self.outcome.detail = _safe_detail(self.outcome.finish_reason or "unknown")
             return []
 
         result = self._validator.parse(response.content)
         if not result.ok or not isinstance(result.data, dict):
-            self.outcome.source = "no-plan: completion failed the plan schema"
+            self.outcome.source = "no-plan-schema-failure"
             return []
 
         calls = self._to_calls(request, result.data)
@@ -247,9 +295,9 @@ class BenchModelPlanner:
             # difference, because one of those is correct on five cases.
             steps = result.data.get("steps")
             if isinstance(steps, list) and not steps:
-                self.outcome.source = "model: explicit empty plan"
+                self.outcome.source = "model-empty-plan"
             else:
-                self.outcome.source = "no-plan: every step named an unavailable tool"
+                self.outcome.source = "no-plan-unavailable-tools"
             return []
         self.outcome.source = "model"
         self.last_plan = list(calls)
@@ -308,9 +356,61 @@ def _safe_tool_name(name: str) -> str:
     return f"<non-conforming:{len(name)} chars>"
 
 
-def _one_line(exc: Exception, limit: int = 240) -> str:
-    text = " ".join(str(exc).split())
-    return text if len(text) <= limit else text[: limit - 1] + "…"
+def classify_provider_failure(exc: Exception) -> str:
+    """Reduce a provider failure to one code from ``PROVIDER_FAILURES``.
+
+    The exception's message is read and discarded. Nothing of it is returned.
+    """
+
+    text = " ".join(str(exc).split()).lower()
+    for code, markers in PROVIDER_FAILURES:
+        if any(marker in text for marker in markers):
+            return code
+    return "unclassified"
+
+
+def _safe_detail(token: str) -> str:
+    """Keep a provider-supplied token only if it is a short, plain token."""
+
+    collapsed = token.strip()
+    if _DETAIL.fullmatch(collapsed):
+        return collapsed
+    return "<non-conforming>"
+
+
+#: The only keys a model block may add to a run record. An allowlist, mirroring
+#: `harness.RETAINED_ATTRIBUTES`, so the content-minimization guarantee is
+#: enforced in one place per record section rather than restated in prose.
+MODEL_BLOCK_KEYS: frozenset[str] = frozenset(
+    {"system_id", "attempt", "plan_outcome", "plan_digest"}
+)
+
+
+def model_record_block(
+    system_id: str,
+    attempt: int,
+    planner: BenchModelPlanner | None,
+) -> dict[str, Any]:
+    """Assemble the model section of a run record, allowlisted and bounded.
+
+    Callers must not build this by hand. Everything here is either an id, a
+    digest, a count, a closed-set code, or a shape-checked token; nothing is a
+    message, a prompt, or a tool argument.
+    """
+
+    outcome = planner.outcome.as_dict() if planner is not None else PlanOutcome().as_dict()
+    if outcome["source"] not in PLAN_SOURCES:  # pragma: no cover - defensive
+        raise ValueError(f"unknown plan source {outcome['source']!r}")
+    block: dict[str, Any] = {
+        "system_id": system_id,
+        "attempt": int(attempt),
+        "plan_outcome": outcome,
+        "plan_digest": plan_digest(list(planner.last_plan) if planner else []),
+    }
+    unexpected = set(block) - MODEL_BLOCK_KEYS
+    if unexpected:  # pragma: no cover - defensive
+        raise ValueError(f"model block carries unexpected keys: {sorted(unexpected)}")
+    return block
 
 
 def model_system(

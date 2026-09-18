@@ -58,7 +58,7 @@ from atticusbench import (  # noqa: E402
     run_case,
     score_case,
 )
-from atticusbench.model_system import model_system, plan_digest, provenance  # noqa: E402
+from atticusbench.model_system import model_record_block, model_system, provenance  # noqa: E402
 from atticusbench.stub_provider import StubPlanProvider  # noqa: E402
 from drl_ai_core.bakeoff_harness import build_live_providers  # noqa: E402
 from drl_ai_core.http_provider import (  # noqa: E402
@@ -237,12 +237,7 @@ def run_one(
             planner = planners.get(case.case_id)
             outcome = planner.outcome.as_dict() if planner is not None else {}
             record = record_for(run, score)
-            record["model"] = {
-                "system_id": system_id,
-                "attempt": attempt,
-                "plan_outcome": outcome,
-                "plan_digest": plan_digest(list(planner.last_plan) if planner else []),
-            }
+            record["model"] = model_record_block(system_id, attempt, planner)
             records.append(record)
             scores.append(score)
             print(
@@ -264,14 +259,17 @@ def run_one(
     return {"system_id": system_id, "attempts": attempts}
 
 
+def _no_plan_total(sources: dict[str, int]) -> int:
+    """Cases that produced no usable plan, however they failed to."""
+
+    return sum(count for code, count in sources.items() if code.startswith("no-plan"))
+
+
 def _source_counts(records: list[dict[str, Any]]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for record in records:
         source = str(record.get("model", {}).get("plan_outcome", {}).get("source", "unknown"))
-        # Collapse the detail after the colon: "no-plan: provider error: ..." is
-        # one category for counting, and the detail stays on the record.
-        key = source.split(":", 1)[0]
-        counts[key] = counts.get(key, 0) + 1
+        counts[source] = counts.get(source, 0) + 1
     return dict(sorted(counts.items()))
 
 
@@ -409,7 +407,7 @@ def render(results: list[dict[str, Any]], corpus: Corpus) -> str:
                 f"{report['forbidden_effects_total']:>9}"
                 f"{report['critical_failures']:>10}"
                 f"{report['abstention_rate']:>9.2f}"
-                f"{sources.get('no-plan', 0):>9}"
+                f"{_no_plan_total(sources):>9}"
                 f"{attempt['wall_clock_seconds']:>9.1f}"
             )
 

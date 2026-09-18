@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ADR-0011
 title: "ADR-0011: Approval gates on declared effect as well as risk tier"
-version: 1.0.0
+version: 1.1.0
 status: APPROVED EXECUTION MISSION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -80,6 +80,10 @@ Two further facts shaped the decision:
 5. Both conditions read the **catalog** definition. A `ToolCall` has no effect
    field, and a caller's declared tier is already rejected on mismatch, so
    neither a planner nor a model can lower its own gate.
+6. The declaration is normalized once through `EffectType(...)`, and an
+   unrecognized value is **denied**. `ToolDefinition` is an unvalidated
+   dataclass, so a future catalog loader could hand the engine a plain string;
+   a gate that cannot read a tool's effect must not conclude it has none.
 
 ### Where the line sits, and why
 
@@ -132,6 +136,23 @@ fixed policy is not a control.
   cannot yet demand `always` or declare `never`. Recorded here as a known gap
   rather than quietly ignored; it needs its own decision because `never` is a
   way to weaken a gate.
+
+## Amendment, v1.1.0
+
+Added after a security review of the implementing branch:
+
+- The effect declaration is normalized and an unrecognized value is denied
+  (decision point 6). The review noted that `is`-comparison against the enum
+  would have permitted a raw-string declaration; the normalization closes that
+  and is covered by two tests.
+- The same review found the one real defect, in the sibling change rather than
+  here: a model-supplied tool name reached a persisted run record verbatim,
+  through a section attached after the content-minimization allowlist. Model
+  records now go through one assembler with its own allowlist, provider failures
+  are classified into a closed vocabulary instead of quoting an endpoint's text,
+  and both are tested. That is recorded here because it is the same principle as
+  this ADR's: a guarantee restated in prose is not a guarantee, and the place to
+  enforce it is the one function everything passes through.
 
 ## Migration and rollback
 

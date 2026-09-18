@@ -27,6 +27,7 @@ from __future__ import annotations
 import argparse
 import json
 import platform
+import re
 import sys
 import time
 from datetime import UTC, datetime
@@ -77,6 +78,19 @@ from scripts.run_atticusbench import (  # noqa: E402
 MODEL_RUN_ROOT = RUN_ROOT / "models"
 REGISTER = REPO_ROOT / "models" / "bakeoff" / "candidates.yaml"
 DEFAULT_BASE_URL = "http://localhost:11434/v1"
+
+
+#: A run directory component is built from a system id, and an ad-hoc --model
+#: tag becomes part of that id. Reduce it to a safe slug rather than trusting a
+#: string to be a single path segment.
+_SAFE_COMPONENT = re.compile(r"[^A-Za-z0-9._-]+")
+
+
+def path_component(system_id: str) -> str:
+    """One filesystem-safe directory name for a system id."""
+
+    slug = _SAFE_COMPONENT.sub("-", system_id.replace("::", "--")).strip("-.")
+    return slug[:96] or "unnamed-system"
 
 
 def display_path(path: Path) -> str:
@@ -271,7 +285,7 @@ def write_run(
     root: Path = MODEL_RUN_ROOT,
 ) -> Path:
     system_id = str(result["system_id"])
-    directory = root / system_id.replace("::", "--") / run_id
+    directory = root / path_component(system_id) / run_id
     (directory / "records").mkdir(parents=True, exist_ok=True)
 
     for attempt in result["attempts"]:
@@ -404,7 +418,18 @@ def render(results: list[dict[str, Any]], corpus: Corpus) -> str:
         lines.append("")
         for result in results:
             for attempt in result["attempts"]:
-                comparison = _paired(reference, attempt["case_scores"])
+                try:
+                    comparison = _paired(reference, attempt["case_scores"])
+                except (KeyError, TypeError) as exc:
+                    # A model run is expensive and its records are already
+                    # written. A shape mismatch in the committed baseline must
+                    # cost the comparison line, not the summary.
+                    lines.append(
+                        f"paired vs reference-plan-v1: unavailable "
+                        f"({type(exc).__name__}: {exc}). Re-run "
+                        "`make atticusbench` to refresh the committed baseline."
+                    )
+                    continue
                 lines.append(
                     f"paired vs reference-plan-v1: {result['system_id']} "
                     f"#{attempt['attempt']} difference "

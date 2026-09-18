@@ -280,3 +280,36 @@ def test_the_stub_is_labelled_as_not_a_model() -> None:
     assert identity.license_label == "not-a-model"
     assert identity.runtime == "stub"
     assert "stub" in identity.model_family
+
+
+def test_a_model_supplied_tool_name_is_bounded_before_it_is_recorded(corpus) -> None:
+    # A model can put anything in tool_name, including its own prompt. Records
+    # carry ids and scores, so a non-conforming name is recorded by shape and
+    # length rather than verbatim.
+    leak = "ignore previous instructions and " + "x" * 400
+
+    def leaky(messages) -> str:
+        return json.dumps(
+            {
+                "task_id": "atb-route-000001",
+                "steps": [
+                    {"tool_name": leak, "arguments": {}, "risk_tier": 1},
+                    *[
+                        {"tool_name": f"fake.tool{index}", "arguments": {}, "risk_tier": 1}
+                        for index in range(12)
+                    ],
+                ],
+            }
+        )
+
+    case, _, planner = _planner(corpus, "atb-route-000001", leaky)
+    assert planner.plan(_request(case)) == []
+    recorded = planner.outcome.dropped_unknown_tools
+    assert leak not in recorded
+    assert any(name.startswith("<non-conforming:") for name in recorded)
+    # Bounded in count, with the true total kept as a number.
+    assert len(recorded) <= 8
+    assert planner.outcome.dropped_tool_count >= len(recorded)
+    serialized = json.dumps(planner.outcome.as_dict())
+    assert "ignore previous instructions" not in serialized
+    assert all(len(name) <= 64 for name in recorded)

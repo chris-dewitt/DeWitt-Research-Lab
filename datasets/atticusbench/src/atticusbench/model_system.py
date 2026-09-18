@@ -18,6 +18,7 @@ evidence, and scoring see exactly what they see for a baseline.
 from __future__ import annotations
 
 import copy
+import re
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
@@ -30,6 +31,16 @@ from drl_protocol import RiskTier, TaskRequest, ToolCall, ToolDefinition
 from .environment import offered_catalog
 from .model import Case, Fixture
 from .systems import BenchPlanner, System
+
+#: A model can put any string in ``tool_name``. Those strings are recorded,
+#: because a hallucinated tool call is a measurement, but a record must not
+#: become a channel for model-generated free text: `AGENTS.md` section 5 forbids
+#: logging prompt or tool content by default, and a model can echo its prompt
+#: into a field like this. So a name is recorded only when it looks like a tool
+#: name, and only so many of them.
+MAX_RECORDED_TOOL_NAME = 64
+MAX_RECORDED_DROPPED = 8
+_TOOL_NAME = re.compile(r"[A-Za-z0-9_.:\-]{1,64}")
 
 #: The planning contract. It describes the shape of a plan and the rules that
 #: make one admissible, and it carries no hint about any particular tool: the
@@ -148,6 +159,8 @@ class PlanOutcome:
     #: reason no plan did. Never a fallback plan.
     source: str = "not-run"
     dropped_unknown_tools: tuple[str, ...] = ()
+    #: Total dropped steps, which can exceed the number of names recorded.
+    dropped_tool_count: int = 0
     retiered_steps: tuple[str, ...] = ()
     truncated_steps: int = 0
     latency_ms: float = 0.0
@@ -158,6 +171,7 @@ class PlanOutcome:
         return {
             "source": self.source,
             "dropped_unknown_tools": list(self.dropped_unknown_tools),
+            "dropped_tool_count": self.dropped_tool_count,
             "retiered_steps": list(self.retiered_steps),
             "truncated_steps": self.truncated_steps,
             "latency_ms": round(self.latency_ms, 3),
@@ -278,9 +292,20 @@ class BenchModelPlanner:
                     risk_tier=RiskTier(definition.risk_tier),
                 )
             )
-        self.outcome.dropped_unknown_tools = tuple(dropped)
+        self.outcome.dropped_unknown_tools = tuple(
+            _safe_tool_name(name) for name in dropped[:MAX_RECORDED_DROPPED]
+        )
+        self.outcome.dropped_tool_count = len(dropped)
         self.outcome.retiered_steps = tuple(retiered)
         return calls
+
+
+def _safe_tool_name(name: str) -> str:
+    """Record a model-supplied tool name only if it is shaped like one."""
+
+    if _TOOL_NAME.fullmatch(name):
+        return name
+    return f"<non-conforming:{len(name)} chars>"
 
 
 def _one_line(exc: Exception, limit: int = 240) -> str:

@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site belief-site belief-recovery serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site belief-site belief-recovery recovery-sweep recovery-sweep-check atticusbench atticusbench-check atticusbench-validate atticusbench-manifest serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -32,6 +32,24 @@ belief-site:
 belief-recovery:
 	uv run python scripts/run_belief_recovery.py
 
+recovery-sweep:
+	uv run python scripts/run_recovery_sweep.py
+
+recovery-sweep-check:
+	uv run python scripts/run_recovery_sweep.py --check
+
+atticusbench:
+	uv run python scripts/run_atticusbench.py
+
+atticusbench-check:
+	uv run python scripts/run_atticusbench.py --check
+
+atticusbench-validate:
+	uv run python scripts/validate_atticusbench.py
+
+atticusbench-manifest:
+	uv run python scripts/validate_atticusbench.py --write-manifest
+
 bakeoff-json:
 	uv run python scripts/run_bakeoff.py --json
 
@@ -59,23 +77,23 @@ public-check:
 public-release-check:
 	uv run python scripts/validate_public_repository.py --release
 
-verify: docs-check program-check open-check domain-check public-check test
+verify: docs-check program-check open-check domain-check public-check atticusbench-validate atticusbench-check test
 
 format:
-	uv run ruff format scripts tests packages services apps/atticus-local-runner
+	uv run ruff format scripts tests packages services apps/atticus-local-runner datasets/atticusbench/src research/cfi/src
 
 lint:
-	uv run ruff check scripts tests packages services apps/atticus-local-runner
+	uv run ruff check scripts tests packages services apps/atticus-local-runner datasets/atticusbench/src research/cfi/src
 
 typecheck:
-	uv run mypy scripts packages services apps/atticus-local-runner
+	uv run mypy scripts packages services apps/atticus-local-runner datasets/atticusbench/src
 
 test:
 	uv run pytest
 	pnpm -r test
 
 security:
-	uv run bandit -q -r scripts packages services apps/atticus-local-runner
+	uv run bandit -q -r scripts packages services apps/atticus-local-runner datasets/atticusbench/src
 
 build:
 	pnpm -r build

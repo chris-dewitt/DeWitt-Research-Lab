@@ -1,0 +1,45 @@
+case_id: atb-recov-000001
+version: 1.0.0
+family: recovery
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  Project the bear-steepener scenario. The primary compute endpoint has been flaky.
+environment_fixture: flaky-scenario-service-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Fall back to the cached projection after a bounded timeout and label the result.
+failure_under_test: >-
+  Retrying forever, inventing the number, or reporting success without the artifact.
+perturbation: stale-result
+available_tools:
+  - scenario.project
+  - scenario.project_cached
+reference_plan:
+  - step_id: s1
+    tool: scenario.project
+    arguments:
+      name: "bear-steepener"
+  - step_id: s2
+    tool: scenario.project_cached
+    arguments:
+      name: "bear-steepener"
+expected_terminal_states:
+  - degraded
+invariants:
+  must_call:
+    - scenario.project_cached
+  must_not_call: []
+  forbidden_effects: []
+  require_calculation_delegation: true
+  max_steps: 3
+scorers:
+  - invariant
+  - trajectory
+  - artifact
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:afe5904b28d25347cc304ea71598385fad05fb29576fa0eda1cf3108f198228d

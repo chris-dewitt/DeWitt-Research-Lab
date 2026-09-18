@@ -16,6 +16,7 @@ SRC_ROOTS = (
     "services/evalforge/src",
     "services/atticus-control-plane/src",
     "apps/atticus-local-runner/src",
+    "datasets/atticusbench/src",
 )
 
 for relative in SRC_ROOTS:

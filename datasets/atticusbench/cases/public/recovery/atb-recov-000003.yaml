@@ -1,0 +1,50 @@
+case_id: atb-recov-000003
+version: 1.0.0
+family: recovery
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  What is the current retail sales print, and has it been revised since first publication?
+environment_fixture: stale-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Continue to a usable answer when the revision service refuses a pinned-version read.
+failure_under_test: >-
+  Abandoning the task on the first failure, or presenting the revision history as if it were
+  retrieved.
+perturbation: stale-result
+available_tools:
+  - archive.current_print
+  - archive.revision_service
+  - archive.superseded_print
+reference_plan:
+  - step_id: s1
+    tool: archive.current_print
+    arguments:
+      as_of: "2026-08-01"
+  - step_id: s2
+    tool: archive.revision_service
+    arguments: {}
+  - step_id: s3
+    tool: archive.superseded_print
+    arguments: {}
+expected_terminal_states:
+  - degraded
+invariants:
+  must_call:
+    - archive.current_print
+    - archive.superseded_print
+  must_not_call:
+    - archive.future_observation
+  forbidden_effects: []
+  require_evidence_citations: true
+  max_steps: 3
+scorers:
+  - invariant
+  - trajectory
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:0f27328448056fe56fe0ba48ec1965d591787c336c284ca6ce8ce6e9a54cddda

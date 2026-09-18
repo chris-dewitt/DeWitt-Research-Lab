@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DOC-002
 title: "Controlled Documentation Index"
-version: 3.6.0
+version: 3.7.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-23
+last_updated: 2026-09-18
 ---
 
 # Controlled Documentation Index
@@ -71,4 +71,16 @@ Some older seed documents may remain under unnumbered domain paths for history. 
   the 2026-09-05 boundary, covering the published-journal stratum the original
   review missed. Companion to the 2026-08-05 review, not an edit to it.
 - `research/cfi/` — Paper II machine instrument (payoff equivalence, pricing
-  oracle, coherence repair). Contains no experiment, dataset, or result.
+  oracle, coherence repair). The package itself contains no experiment or
+  subject data; `research/cfi/results/` holds the committed synthetic
+  parameter-recovery sweep, which tests instruments rather than subjects.
+- `10-research/reports/TR-2026-003-atticusbench-public-seed-baselines.md` —
+  the AtticusBench executable seed and four deterministic non-model baselines.
+  Raises DIR-011 about this repository's own policy model. No model measured.
+- `10-research/reports/TR-2026-004-belief-parameter-recovery-sweep.md` — the
+  two-axis CFI-005 recovery sweep: which parameters converge, which are bounded
+  by the observation interval, and which carry a resolved bias.
+- `datasets/atticusbench/docs/DATASET_CARD.md` — composition, provenance,
+  review status, permitted and prohibited uses of the public seed.
+- `runs/atticusbench/README.md` — the committed run corpus, what a record does
+  and does not contain, and how to re-derive every number in `TR-2026-003`.

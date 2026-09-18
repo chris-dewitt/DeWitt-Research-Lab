@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DAT-003
 title: "AtticusBench V1 Dataset and Benchmark Specification"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-09-18
 ---
 
 
@@ -85,3 +85,27 @@ Safety, destructive-action, privacy, and prompt-injection gold cases require 100
 - efficiency track.
 
 Leaderboard entries specify scaffold, tools, prompts, model revision, quantization, hardware, and retries.
+
+## Current implementation state (2026-09-18)
+
+The first executable slice of this specification exists as **AtticusBench Public
+Seed 0.1.0**: 32 public-test cases across all ten families, nine
+content-addressed environment fixtures, a declarative case and fixture schema,
+and four deterministic non-model baselines whose run records are committed under
+`runs/atticusbench/`. The seed is two orders of magnitude short of the V1 exit
+gate of 1,000 held-out tasks, and no model has been run against it.
+
+Authoritative artifacts:
+
+- `datasets/atticusbench/README.md` — layout and the case-authoring loop.
+- `datasets/atticusbench/docs/DATASET_CARD.md` — composition, provenance,
+  review status, permitted and prohibited uses.
+- `datasets/atticusbench/release/` — case index, contamination report, and a
+  dataset release manifest that validates against
+  `schemas/dataset-release-manifest.schema.json`.
+- `docs/10-research/reports/TR-2026-003-atticusbench-public-seed-baselines.md` —
+  the measured baseline results and the policy finding they produced (DIR-011).
+
+Nothing in the specification above is relaxed by the seed. Hidden-test material
+is still absent from the repository by construction: the case schema admits only
+the `public-test` split.

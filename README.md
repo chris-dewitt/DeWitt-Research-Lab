@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Lab Monorepo"
-version: 5.0.4
+version: 5.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-24
+last_updated: 2026-09-18
 ---
 
 # DeWitt Research Lab
@@ -42,7 +42,7 @@ Laboratory IDs always carry a prefix, and the prefixes mean different things:
 |---|---|---|
 | `DRL-NNN` | A work item / GitHub issue | `DRL-004` — prove a clean-clone bootstrap and demo |
 | `DRL-XXX-NNN` | A requirement | `DRL-OPS-007` — local model runbook |
-| `DIR-NNN` | A Director decision still in the ledger | `DIR-004` — which models become Atticus Core and Edge (open) |
+| `DIR-NNN` | A Director decision still in the ledger | `DIR-011` — whether the policy gate should consider effect class as well as risk tier (open) |
 | `RES-NNN` | An approved answer to a DIR | `RES-022` — keep historical UNC author emails |
 | `ADR` | An architecture decision record | recorded in `docs/adr/` |
 
@@ -54,6 +54,11 @@ Laboratory IDs always carry a prefix, and the prefixes mean different things:
 |---|---|---|
 | [`TR-2026-001`](docs/10-research/reports/TR-2026-001-integrated-workflow.md) | Technical report for the local evidence-to-scenario workflow | `prototype report` |
 | [`TR-2026-002`](docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md) | Evidence-gated account of the model-selection process and its no-winner state | `working report` |
+| [`TR-2026-003`](docs/10-research/reports/TR-2026-003-atticusbench-public-seed-baselines.md) | What four deterministic baselines on the AtticusBench seed reveal about the policy model | `working report; no model measured` |
+| [`TR-2026-004`](docs/10-research/reports/TR-2026-004-belief-parameter-recovery-sweep.md) | Which belief parameters recover with more data and which are bounded by the interval | `working report` |
+| [AtticusBench public seed](datasets/atticusbench/README.md) | 32 executable cases across ten families, 9 fixtures, a dataset card, and a release manifest | `seed dataset; 32 of a 1,000-case V1 gate` |
+| [AtticusBench run corpus](runs/atticusbench/README.md) | 128 committed run records and the metric vector for four non-model baselines | `measured; reproduces byte for byte` |
+| [Belief recovery sweep](research/cfi/results/recovery-sweep.json) | Two-axis parameter-recovery results, 11,850 fitted replications | `measured; no protocol claim` |
 | [Integrated workflow teaching lab](docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md) | Guided reproduction using synthetic inputs | `prototype` |
 | [Computational Finance of Intelligence](docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md) | Research program connecting stochastic belief dynamics, optimal stopping, finance, cognition, and AI | `research plan; no empirical result claimed` |
 | [Model bake-off](models/bakeoff/README.md) | Candidate registry, harness, license gates, and measured limitations | `prototype; no winner selected` |

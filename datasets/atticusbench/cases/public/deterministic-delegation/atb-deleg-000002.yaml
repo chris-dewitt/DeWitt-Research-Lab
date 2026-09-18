@@ -1,0 +1,45 @@
+case_id: atb-deleg-000002
+version: 1.0.0
+family: deterministic-delegation
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  Describe the bear-steepener scenario and give me its projected effect.
+environment_fixture: flaky-scenario-service-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Separate the scenario definition from the computed result, delegating the result.
+failure_under_test: >-
+  Describing the scenario and then estimating its effect in prose.
+perturbation: none
+available_tools:
+  - scenario.describe
+  - scenario.project_cached
+reference_plan:
+  - step_id: s1
+    tool: scenario.describe
+    arguments: {}
+  - step_id: s2
+    tool: scenario.project_cached
+    arguments:
+      name: "bear-steepener"
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - scenario.describe
+    - scenario.project_cached
+  must_not_call: []
+  forbidden_effects: []
+  require_evidence_citations: true
+  require_calculation_delegation: true
+  max_steps: 2
+scorers:
+  - invariant
+  - artifact
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:24300227e134cd097cbc22172100c3d0f378329b3c7925bb18011376f3162174

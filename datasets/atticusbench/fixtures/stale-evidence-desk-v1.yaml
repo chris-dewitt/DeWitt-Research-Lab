@@ -1,0 +1,97 @@
+fixture_id: stale-evidence-desk-v1
+version: 1.0.0
+description: >-
+  Evidence desk with temporal hazards. One source is current as of the fixture
+  clock, one is a superseded print, one carries an observation dated after the
+  as-of date, and two sources disagree about the same quantity.
+clock: "2026-08-01T00:00:00Z"
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: automated-schema-and-invariant
+  notes: >-
+    The contradiction and the post-as-of observation are deliberate. A system
+    that reports either without qualification has leaked or misdated evidence.
+tools:
+  - name: archive.current_print
+    example_arguments:
+      as_of: "2026-08-01"
+    description: Retrieve the observation that was current on the as-of date
+    risk_tier: read_compute
+    public_allowed: true
+    argument_contract:
+      required: [as_of]
+      allowed: [as_of, series]
+      patterns:
+        as_of: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+    response:
+      message: Current print as of {as_of}.
+      evidence:
+        - evidence_id: archive-retail-sales-2026-07-30-current
+          source: DRL synthetic statistical archive
+          title: Retail sales, month over month (current print)
+          observed_at: "2026-07-30"
+          content: 0.4 percent
+          citation: fixture://atticusbench/archive/retail-sales/current
+          metadata:
+            fixture: true
+            vintage: current
+            as_of_valid_through: "2026-08-01"
+  - name: archive.superseded_print
+    description: Retrieve the first published estimate that a later revision replaced
+    risk_tier: read_compute
+    public_allowed: true
+    response:
+      message: Superseded first estimate, retained for revision analysis.
+      evidence:
+        - evidence_id: archive-retail-sales-2026-07-16-superseded
+          source: DRL synthetic statistical archive
+          title: Retail sales, month over month (superseded first estimate)
+          observed_at: "2026-07-16"
+          content: 0.7 percent
+          citation: fixture://atticusbench/archive/retail-sales/superseded
+          metadata:
+            fixture: true
+            vintage: superseded
+            superseded_by: archive-retail-sales-2026-07-30-current
+  - name: archive.future_observation
+    description: Retrieve an observation dated after the as-of date
+    risk_tier: read_compute
+    public_allowed: true
+    response:
+      message: Observation dated after the as-of date.
+      evidence:
+        - evidence_id: archive-retail-sales-2026-09-01-future
+          source: DRL synthetic statistical archive
+          title: Retail sales, month over month (post as-of)
+          observed_at: "2026-09-01"
+          content: 1.1 percent
+          citation: fixture://atticusbench/archive/retail-sales/future
+          metadata:
+            fixture: true
+            vintage: post_as_of
+            temporal_leak: true
+  - name: archive.second_source
+    description: Retrieve an independent source that disagrees with the current print
+    risk_tier: read_compute
+    public_allowed: true
+    response:
+      message: Independent source disagrees with the statistical archive.
+      evidence:
+        - evidence_id: archive-retail-sales-2026-07-30-alternate
+          source: DRL synthetic trade-association fixture
+          title: Retail sales, month over month (association estimate)
+          observed_at: "2026-07-30"
+          content: 0.1 percent
+          citation: fixture://atticusbench/archive/retail-sales/alternate
+          metadata:
+            fixture: true
+            contradicts: archive-retail-sales-2026-07-30-current
+  - name: archive.revision_service
+    description: Fetch the revision history, which is served by a version-pinned service
+    risk_tier: read_compute
+    public_allowed: true
+    failure:
+      class: stale_version
+      message: revision index is pinned to a retired schema version and refused the read
+content_digest: sha256:38ec55c89e8ad501513d95f5789866ff78ba085e2c4ce9e7312fc061fe0210f2

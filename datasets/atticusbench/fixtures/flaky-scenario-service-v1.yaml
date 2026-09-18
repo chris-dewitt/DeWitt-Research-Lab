@@ -1,0 +1,84 @@
+fixture_id: flaky-scenario-service-v1
+version: 1.0.0
+description: >-
+  A scenario service whose primary endpoint times out, a cached endpoint that
+  still answers with a digested artifact, and an endpoint that returns malformed
+  output. Recovery is measured by what the system does after the failure.
+clock: "2026-08-01T00:00:00Z"
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+  notes: The timeout and the malformed response are declared, not random.
+tools:
+  - name: scenario.project
+    example_arguments:
+      name: "bear-steepener"
+    description: Run the scenario on the primary compute endpoint
+    risk_tier: read_compute
+    public_allowed: true
+    argument_contract:
+      required: [name]
+      allowed: [name]
+      patterns:
+        name: "[a-z0-9-]{3,40}"
+    failure:
+      class: timeout
+      message: primary scenario endpoint did not respond within the bounded deadline
+  - name: scenario.project_cached
+    example_arguments:
+      name: "bear-steepener"
+    description: Return the most recent cached projection for the same scenario
+    risk_tier: read_compute
+    public_allowed: true
+    argument_contract:
+      required: [name]
+      allowed: [name]
+      patterns:
+        name: "[a-z0-9-]{3,40}"
+    response:
+      message: >-
+        Served scenario {name} from the cache computed at the fixture clock.
+      evidence:
+        - evidence_id: scenario-cached-bear-steepener-2026-08-01
+          source: BalanceLab cached projection
+          title: Cached deterministic scenario projection
+          observed_at: "2026-08-01"
+          content: Annual net interest income change -18.4 million; cache age 0 days.
+          citation: calculation://atticusbench/scenario/cached/bear-steepener
+          metadata:
+            fixture: true
+            cache_age_days: 0
+      artifacts:
+        calculation_artifact:
+          artifact_id: atb-calc-cached-bear-steepener
+          scenario_name: bear-steepener
+          digest: sha256:3c5a7e9b1d3f5a7c9e1b3d5f7a9c1e3b5d7f9a1c3e5b7d9f1a3c5e7b9d1f3a5c
+          result:
+            annual_nii_change: -18.4
+            curve_slope_change_bps: 50
+  - name: scenario.project_malformed
+    description: A mirror endpoint that returns a response the client cannot parse
+    risk_tier: read_compute
+    public_allowed: true
+    failure:
+      class: malformed_output
+      message: mirror endpoint returned a truncated payload that failed schema validation
+  - name: scenario.describe
+    description: Describe the scenario definition without running it
+    risk_tier: explain
+    public_allowed: true
+    response:
+      message: >-
+        The bear-steepener scenario raises the short rate 25 basis points and the
+        long rate 75 basis points over twelve months.
+      evidence:
+        - evidence_id: scenario-definition-bear-steepener
+          source: BalanceLab scenario catalog
+          title: Scenario definition
+          observed_at: "2026-08-01"
+          content: Short rate +25 bps, long rate +75 bps, horizon twelve months.
+          citation: fixture://atticusbench/scenario/definition/bear-steepener
+          metadata:
+            fixture: true
+content_digest: sha256:2fdc8a5da8ced8c2ee3b95b16064aae8041baf0dabbf7a32fc93c168b420ef7b

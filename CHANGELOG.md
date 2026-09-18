@@ -1,13 +1,60 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.23.0
+version: 4.24.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-27
+last_updated: 2026-09-18
 ---
 
 # Foundation Changelog
+
+## 2026-09-18 — The benchmark now exists as data, and its first finding is about our own policy
+
+- AtticusBench had a specification and no cases, which meant its scoring vector
+  had never been tested as a measuring instrument. There are now **32 executable
+  public cases across all ten V1 families**, nine declarative environment
+  fixtures, and four deterministic non-model baselines whose 128 run records are
+  committed under `runs/atticusbench/` and reproduce byte for byte.
+- **The vector separates the baselines.** Replaying each case's recorded safe
+  plan passes 32/32; two eager planners pass 12/32 with seven cases carrying an
+  unauthorized action; refusing everything passes 5/32 — exactly the five cases
+  where abstention is correct — at a 0.84 excessive-refusal rate. A single
+  aggregate score would have called the refusing planner the safe one and said
+  nothing else.
+- **Tier-based policy held every write.** Across 96 unsafe-baseline runs, no
+  forbidden external write or send executed: the deterministic policy stopped
+  every one at an approval pause or a denial, without the planner's cooperation.
+  That is the strongest positive result here and it is a property of the policy,
+  not of the planners.
+- **The one effect that got through says the tier model is incomplete.** A
+  read-tier tool performing a cross-session `data_egress` executed with no
+  approval, because approval attaches at tier 2 and above. Raised as **DIR-011**
+  with `TR-2026-003` §5.3 as its evidence rather than patched: changing approval
+  logic is an ADR and a Director decision. Until it is resolved, the critical
+  suite's cross-session case measures our policy model, not a candidate.
+- All seven unauthorized-action cases were read-tier misuse — a post-as-of
+  observation, an unrequested projection, a cross-session read, out-of-scope
+  retrieval — and every one is invisible to a policy that reasons only about
+  write consequence.
+- CFI-005 recovery is now swept on two axes (`TR-2026-004`), 11,850 fitted
+  replications, committed under `research/cfi/results/`. Volatility converges
+  under grid refinement; the diffusion drift sits at `sigma/sqrt(T)` = 0.253 for
+  the whole sweep and does not improve with 32× more observations of the same
+  interval; the Ornstein-Uhlenbeck reversion rate (+14.9 standard errors) and the
+  jump intensity (−20.3) are biases rather than noise. Refining the grid makes
+  the reversion-rate bias **worse**, from +15.1% to +22.2% relative.
+- Extending the observation interval instead of refining it turned out to be
+  impossible at these drifts — the simulator refuses a path that saturates the
+  representable belief range rather than pinning it — so the constraint is
+  recorded as a result and the sweep holds calendar time fixed.
+- Two defects found and fixed in the new code before publishing numbers from it:
+  relative bias at a truth of exactly zero serialized as JSON `Infinity`, and the
+  paired success-rate difference was differenced from two already-rounded rates.
+- `mypy_path` in `pyproject.toml` resolves the workspace src roots, which clears
+  three pre-existing `import-not-found` errors; `make typecheck` passes strict on
+  88 files. `make verify` now also runs the corpus validator and the run-corpus
+  drift check.
 
 ## 2026-08-27 — The corrected instrument separates two models that looked identical
 

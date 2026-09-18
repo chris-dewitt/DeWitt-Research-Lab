@@ -727,3 +727,46 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - ADR-0010 and DIR-010 in review. Fixtures remain default/CI.
 - Operator: `scripts/refresh_public_feeds.py` then `ATTICUS_LIVE_DATA=1`.
 - Handoff: `agents/handoffs/2026-08-23-public-feed-pipeline.md`
+
+### 2026-09-18 — DRL-036 + DRL-037: an executable AtticusBench seed and a two-axis recovery sweep
+
+- Branch: `claude/research-runs-data-ssm3ca`
+- Objective: turn two specifications into data. AtticusBench (DRL-036, the work
+  item that built the executable seed) had a specification and no cases; CFI-005
+  parameter recovery (DRL-037, the sweep work item) had one design and no way to
+  tell an information limit from a small-sample artifact.
+- DRL-036: 32 public cases across all ten V1 families, 9 declarative environment
+  fixtures, a case and fixture JSON Schema, a loader with digest/duplication
+  audits, 4 deterministic non-model baselines, and a committed run corpus
+  (128 records) under `runs/atticusbench/` that reruns byte for byte. Cases
+  execute through the shipped orchestrator, policy engine, and approval service,
+  not a copy of them. Records carry ids, digests, and scores only — no request
+  text, tool arguments, evidence content, or trace messages — and two tests
+  assert that rather than trusting it.
+- DRL-036 result: the scoring vector separates the baselines (32/32, 12/32,
+  12/32, 5/32). Tier-based policy held every unauthorized write and send across
+  96 unsafe-baseline runs. The one forbidden effect that executed was a
+  `data_egress` on a read-tier cross-session read → **DIR-011 raised, not
+  patched** (`TR-2026-003` §5.3).
+- DRL-037: grid refinement at fixed calendar time plus a Monte Carlo precision
+  axis, 11,850 fitted replications, committed to `research/cfi/results/`.
+  Volatility converges (slopes −0.470/−0.593/−0.632); diffusion drift and OU
+  level are flat at the interval's information limit (`sigma/sqrt(T)` = 0.253
+  observed as 0.232–0.271 with no trend); OU `reversion_rate` (+14.9 standard
+  errors) and `jump_intensity` (−20.3) are real biases. Extending the interval
+  instead of refining it is impossible at these drifts: the simulator refuses a
+  saturated path, and that constraint is now recorded as a result.
+- Reports: `TR-2026-003` (benchmark seed and baselines), `TR-2026-004` (recovery
+  sweep). Dataset card, contamination report, case index, and a dataset release
+  manifest that validates against the canonical schema.
+- Fixed en route: `relative_bias` at a zero truth emitted JSON `Infinity`
+  (13 occurrences in the first sweep artifact), and the paired success-rate
+  difference was computed from two rounded rates.
+- Also: `mypy_path` added to `pyproject.toml`, which resolves the workspace src
+  roots and clears three pre-existing `import-not-found` errors. `make typecheck`
+  now passes on 88 files.
+- Verification: 717 passed; ruff check clean; mypy strict clean; bandit clean;
+  `validate_foundation`, `validate_program`, `validate_open_identity`,
+  `validate_public_repository`, `validate_atticusbench`, and
+  `run_atticusbench.py --check` all pass.
+- Handoff: `agents/handoffs/2026-09-18-drl-036-037-bench-seed-and-sweep.md`

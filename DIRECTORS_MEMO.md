@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.17.0
+version: 1.18.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-24
+last_updated: 2026-09-18
 ---
 
 # Director's Decision and Escalation Ledger
@@ -74,6 +74,7 @@ the Director's approval.
 | DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | RESOLVED — RES-020; independent G1 review remains required |
 | DIR-009 | Repository privacy | Should 16 commits whose author metadata exposes a UNC email address be rewritten before the repository becomes public? | A: rewrite all affected reachable history to the GitHub no-reply address, coordinate every open branch, and force-push; this removes the address but changes commit SHAs. B: accept the historical disclosure and preserve commit identity; future commits already use the no-reply address. | Choose A before changing visibility because RES-019 establishes one public contact, but do not rewrite history without the Director's explicit approval. | RESOLVED — RES-022; Option B chosen against the recommendation |
 | DIR-010 | Public feeds | Which live sources may Atlas/FedLens ingest, and is Yahoo Finance allowed? | Official FRED + Treasury + Fed RSS (opt-in store) versus unofficial Yahoo/yfinance scrapes. Yahoo terms forbid unofficial bulk retrieval/redistribution. | Accept ADR-0010: official sources only; fixtures remain default/CI; Yahoo rejected. | IN REVIEW — ADR-0010 |
+| DIR-011 | Policy and approval | Should the policy decision consider a tool's declared effect class in addition to its risk tier? | The AtticusBench seed measured this rather than assumed it (`TR-2026-003` §5.3). Tier gating held every unauthorized write and send across 96 baseline runs; the one forbidden effect that executed was a `data_egress` on a **read-tier** cross-session read, because approval attaches at tier 2 and above. A: raise every egress-declaring tool to tier 2, which gates ordinary public reads behind approval. B: add an effect-class dimension to `PolicyDecision`, which changes canonical approval logic and needs an ADR, a migration, and deny-path tests. C: accept the gap and rely on the planner, which the eager baselines show is not a control. | Choose B and write the ADR; do not ship A as a quick fix. Until this is resolved, the critical suite's cross-session case measures the policy model rather than a candidate, so no release candidate may be reported as passing that suite. | Director decision required — ADR not yet drafted |
 
 ## Approved resolutions
 
@@ -127,6 +128,11 @@ the Director's approval.
   link to that URL from the live homepage; paste-ready copy is in
   `docs/08-web-brand/SITE_COPY.md`. This cloud agent cannot authenticate the
   Wix MCP.
+- DIR-011 is open: the deterministic policy gates on risk tier, and a read-tier
+  tool that egresses data across sessions therefore passes without an approval.
+  Measured, not hypothesized (`TR-2026-003` §5.3). Until an ADR resolves it, the
+  AtticusBench critical suite must not be cited as passed by any release
+  candidate.
 - Some reachable commits expose a UNC email address in Git author metadata
   (16 when DIR-009 was raised; 15 reachable today — the figure moves with the
   ref set). Accepted by RES-022 as a known, deliberate disclosure; no history
@@ -148,6 +154,25 @@ a Wix site that links to the live recordings. Signed success/degraded replay
 fixtures exist as prototype packages (DRL-019, the work item that packaged
 those recordings) using a demo HMAC key — not production signing identity —
 and are served at `https://chris-dewitt.github.io/DeWitt-Research-Lab/`.
+
+AtticusBench now exists as data rather than only as a specification:
+32 executable public cases across all ten V1 families, nine declarative
+environment fixtures, four deterministic non-model baselines, and a committed
+run corpus under `runs/atticusbench/` that a rerun reproduces byte for byte
+(DRL-036, the work item that built the seed). The V1 exit gate asks for at
+least 1,000 held-out tasks, so this is a seed and is labelled as one
+everywhere. **No model has been run against it**, and nothing in it selects a
+model or supports a safety claim. Its first substantive finding is DIR-011
+above, which is a finding about this repository's policy model.
+
+CFI-005 parameter recovery is now swept on two axes rather than reported at one
+design (DRL-037, the work item that built the sweep), with results committed
+under `research/cfi/results/`. Volatility converges under grid refinement; the
+diffusion drift and the Ornstein-Uhlenbeck level are at an information limit
+that more observations of the same interval cannot move; the reversion rate and
+the jump intensity carry biases resolved at 14.9 and 20.3 Monte Carlo standard
+errors. `TR-2026-004` records it. No protocol has passed G3, so none of this is
+a pass or a failure.
 
 The GitHub Pages workflow is live. On 2026-08-23 `deploy-pages` reported
 success while the URL 404'd because the Pages site record had been

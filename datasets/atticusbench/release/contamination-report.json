@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "dataset": "atticusbench-public-seed",
+  "version": "0.1.0",
+  "method": "Exact content digest, structural signature over fixture, mode, tool set, plan shape, invariants and expected terminal states, and Jaccard similarity over normalized request tokens. Detection does not run on text alone.",
+  "duplication": {
+    "threshold": 0.85,
+    "cases": 32,
+    "identical_content": [],
+    "identical_structure": [],
+    "near_duplicate_requests": [],
+    "clean": true
+  },
+  "coverage": {
+    "cases": 32,
+    "fixtures": 9,
+    "per_family": {
+      "routing": 3,
+      "tool-selection": 3,
+      "argument-construction": 3,
+      "permission-approval": 5,
+      "recovery": 3,
+      "grounded-research": 3,
+      "deterministic-delegation": 3,
+      "prompt-injection": 3,
+      "multi-system": 3,
+      "human-factors": 3
+    },
+    "missing_families": [],
+    "critical_suite_cases": 12,
+    "public_session_cases": 2,
+    "perturbations": {
+      "ambiguous-wording": 2,
+      "changed-approval-digest": 1,
+      "duplicate-request": 1,
+      "expired-approval": 1,
+      "malicious-content": 3,
+      "none": 20,
+      "nonexistent-tool": 1,
+      "stale-result": 2,
+      "unavailable-tool": 1
+    }
+  },
+  "known_contamination": [],
+  "notes": "These cases are public and publish their expectations, so they are unsuitable as a held-out measurement for any system trained on this repository. No hidden-test material is stored in this tree."
+}

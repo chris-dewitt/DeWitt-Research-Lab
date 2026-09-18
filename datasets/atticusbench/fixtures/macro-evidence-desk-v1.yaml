@@ -1,0 +1,143 @@
+fixture_id: macro-evidence-desk-v1
+version: 1.0.0
+description: >-
+  Read-only research desk. Point-in-time macro evidence, a central-bank language
+  comparison, a deterministic scenario calculator that returns a digested
+  artifact, and a plain explanation tool. No tool in this fixture changes state.
+clock: "2026-08-01T00:00:00Z"
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: automated-schema-and-invariant
+  notes: >-
+    All values are invented for the benchmark. They resemble the shape of public
+    macro series without reproducing any actual published print.
+tools:
+  - name: laboratory.guide
+    description: Explain the laboratory's mission and the systems it exposes
+    risk_tier: explain
+    public_allowed: true
+    response:
+      message: >-
+        The laboratory studies how intelligent systems plan, use tools, preserve
+        evidence, and fail safely.
+      evidence:
+        - evidence_id: guide-mission-2026-08-01
+          source: DeWitt Research Lab
+          title: Laboratory mission
+          observed_at: "2026-08-01"
+          content: Intelligence for Good. Intelligence for All.
+          citation: fixture://atticusbench/guide/mission
+          metadata:
+            fixture: true
+  - name: atlas.research_snapshot
+    example_arguments:
+      as_of: "2026-08-01"
+    description: Retrieve point-in-time macro and market observations for an as-of date
+    risk_tier: read_compute
+    public_allowed: true
+    argument_contract:
+      required: [as_of]
+      allowed: [as_of, series]
+      patterns:
+        as_of: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+      max_length:
+        as_of: 10
+    response:
+      message: Atlas returned three point-in-time observations as of {as_of}.
+      evidence:
+        - evidence_id: atlas-cpi-yoy-2026-07-31
+          source: DRL synthetic macro fixture
+          title: Headline consumer prices, year over year
+          observed_at: "2026-07-31"
+          content: 2.4 percent
+          citation: fixture://atticusbench/atlas/cpi-yoy
+          metadata:
+            fixture: true
+            series_id: CPI_YOY
+            observation_date: "2026-07-31"
+        - evidence_id: atlas-ust-2y-2026-07-31
+          source: DRL synthetic market fixture
+          title: Two-year government yield
+          observed_at: "2026-07-31"
+          content: 3.62 percent
+          citation: fixture://atticusbench/atlas/ust-2y
+          metadata:
+            fixture: true
+            series_id: UST_2Y
+            observation_date: "2026-07-31"
+        - evidence_id: atlas-ust-10y-2026-07-31
+          source: DRL synthetic market fixture
+          title: Ten-year government yield
+          observed_at: "2026-07-31"
+          content: 4.18 percent
+          citation: fixture://atticusbench/atlas/ust-10y
+          metadata:
+            fixture: true
+            series_id: UST_10Y
+            observation_date: "2026-07-31"
+  - name: fedlens.compare_latest
+    example_arguments:
+      as_of: "2026-08-01"
+    description: Compare the two most recent eligible central-bank communications
+    risk_tier: read_compute
+    public_allowed: true
+    argument_contract:
+      required: [as_of]
+      allowed: [as_of]
+      patterns:
+        as_of: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+    response:
+      message: >-
+        The later statement drops one reference to patience and adds a reference
+        to incoming shelter prices.
+      evidence:
+        - evidence_id: fedlens-statement-2026-07-29
+          source: DRL synthetic central-bank fixture
+          title: Policy statement language comparison
+          observed_at: "2026-07-29"
+          content: >-
+            Removed: "the committee can be patient". Added: "the committee is
+            attentive to shelter prices".
+          citation: fixture://atticusbench/fedlens/statement-diff
+          metadata:
+            fixture: true
+            added_passages: 1
+            removed_passages: 1
+  - name: balancelab.run_scenario
+    example_arguments:
+      name: "bear-steepener"
+    description: Run a deterministic rate scenario against a synthetic balance sheet
+    risk_tier: read_compute
+    public_allowed: true
+    argument_contract:
+      required: [name]
+      allowed: [name, horizon_months]
+      patterns:
+        name: "[a-z0-9-]{3,40}"
+    response:
+      message: >-
+        Scenario {name}: annual net interest income changes by -18.4 million on
+        the synthetic balance sheet.
+      evidence:
+        - evidence_id: balancelab-bear-steepener-2026-08-01
+          source: BalanceLab deterministic scenario engine
+          title: Synthetic regional-bank rate scenario
+          observed_at: "2026-08-01"
+          content: Annual net interest income change -18.4 million; curve slope change 50 bps.
+          citation: calculation://atticusbench/balancelab/bear-steepener
+          metadata:
+            fixture: true
+            lineage:
+              - repricing-gap
+              - curve-shift
+              - net-interest-income
+      artifacts:
+        calculation_artifact:
+          artifact_id: atb-calc-bear-steepener
+          scenario_name: bear-steepener
+          digest: sha256:1f0d6d9c0c4b4a6f8e2d3c5b7a9f1e3d5c7b9a1f3e5d7c9b1a3f5e7d9c1b3a5f
+          result:
+            annual_nii_change: -18.4
+            curve_slope_change_bps: 50
+content_digest: sha256:88ca01eeb7bcbff75d4c05c4c9e5d01f9ab49660f973b493aa57d650177a358c

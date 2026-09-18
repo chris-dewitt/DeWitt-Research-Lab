@@ -1,0 +1,406 @@
+{
+  "schema_version": "1.0.0",
+  "dataset": "atticusbench-public-seed",
+  "version": "0.1.0",
+  "corpus_digest": "sha256:9701eedcd48717c7aee79343c9623c6aeadcd3c16246ee23e35e10e26ce10853",
+  "cases": {
+    "atb-arg-000001": {
+      "digest": "sha256:81d7eb572e020d1319cde6b68582ead3423f07281aee40ef50f15d4dc0feead7",
+      "family": "argument-construction",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/argument-construction/atb-arg-000001.yaml"
+    },
+    "atb-arg-000002": {
+      "digest": "sha256:3410243915d14cfe9210a2d1969e279259f05f6bf16d0e53049aa2889c09d331",
+      "family": "argument-construction",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "workspace-path-escape-v1",
+      "path": "datasets/atticusbench/cases/public/argument-construction/atb-arg-000002.yaml"
+    },
+    "atb-arg-000003": {
+      "digest": "sha256:19999915bc0bd483f72deb985c82588e9c31bdbc74fa2efa4fc643f20f0e80ff",
+      "family": "argument-construction",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "inbox-shared-drive-v1",
+      "path": "datasets/atticusbench/cases/public/argument-construction/atb-arg-000003.yaml"
+    },
+    "atb-deleg-000001": {
+      "digest": "sha256:745db8822036501ed23d0b40e96643f888b357ec458499dd25a60f058177e2e2",
+      "family": "deterministic-delegation",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/deterministic-delegation/atb-deleg-000001.yaml"
+    },
+    "atb-deleg-000002": {
+      "digest": "sha256:24300227e134cd097cbc22172100c3d0f378329b3c7925bb18011376f3162174",
+      "family": "deterministic-delegation",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "flaky-scenario-service-v1",
+      "path": "datasets/atticusbench/cases/public/deterministic-delegation/atb-deleg-000002.yaml"
+    },
+    "atb-deleg-000003": {
+      "digest": "sha256:f654e4b9ddd4caf67c762c660733b24d9ad5282912069c139775a3ad34849199",
+      "family": "deterministic-delegation",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/deterministic-delegation/atb-deleg-000003.yaml"
+    },
+    "atb-ground-000001": {
+      "digest": "sha256:f6adc1bc3813338c709deb547f6581a82986f123912bef77c7dea0bacbd0fd9e",
+      "family": "grounded-research",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/grounded-research/atb-ground-000001.yaml"
+    },
+    "atb-ground-000002": {
+      "digest": "sha256:9c74c233344cdb3e766288d6c15ad6a34e012f4b5e2b8c9e183da53df239f649",
+      "family": "grounded-research",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "stale-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/grounded-research/atb-ground-000002.yaml"
+    },
+    "atb-ground-000003": {
+      "digest": "sha256:53ae8b87ba76fcb5ad5c325b4966c18c1dea59d8b1f842e7fa9d1a9df5fe9bc7",
+      "family": "grounded-research",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "stale-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/grounded-research/atb-ground-000003.yaml"
+    },
+    "atb-human-000001": {
+      "digest": "sha256:7cfcc31eebdd2e3650f0c9385861e29fb4030036f7aa36fa56bfecb30a48c328",
+      "family": "human-factors",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "inbox-shared-drive-v1",
+      "path": "datasets/atticusbench/cases/public/human-factors/atb-human-000001.yaml"
+    },
+    "atb-human-000002": {
+      "digest": "sha256:20f7171a0549714b332a0d32bc807bae5bd3254699c490db0fa39934972d9999",
+      "family": "human-factors",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "inbox-shared-drive-v1",
+      "path": "datasets/atticusbench/cases/public/human-factors/atb-human-000002.yaml"
+    },
+    "atb-human-000003": {
+      "digest": "sha256:e0d99e7cbda6a3de1b2aeb4f40e952273d6b805af4e9d00394c26ce2d3546ea4",
+      "family": "human-factors",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "stale-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/human-factors/atb-human-000003.yaml"
+    },
+    "atb-multi-000001": {
+      "digest": "sha256:75b868ae6c66b552cdf9a7db9264da5ecd0cdc01fdac742ba4ffee4562e4a692",
+      "family": "multi-system",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/multi-system/atb-multi-000001.yaml"
+    },
+    "atb-multi-000002": {
+      "digest": "sha256:5dc2e92090427acb0516019c340073fa49997101a550c0fe89f8856744183348",
+      "family": "multi-system",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "inbox-shared-drive-v1",
+      "path": "datasets/atticusbench/cases/public/multi-system/atb-multi-000002.yaml"
+    },
+    "atb-multi-000003": {
+      "digest": "sha256:d39c8e96503c0821c90acfcaacb3f3d1d5b2b6957107622cc78e93f91b448c08",
+      "family": "multi-system",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "stale-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/multi-system/atb-multi-000003.yaml"
+    },
+    "atb-perm-000001": {
+      "digest": "sha256:60595953be2ce23eb0ba43ed74ba276fb88af1a333f3662a451e67e877cb5b14",
+      "family": "permission-approval",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "repo-unreviewed-secrets-v1",
+      "path": "datasets/atticusbench/cases/public/permission-approval/atb-perm-000001.yaml"
+    },
+    "atb-perm-000002": {
+      "digest": "sha256:1284afcb6d52dfd95019b2aaee532a04b7743c4a9205ccc7e98e1fbd1be41a78",
+      "family": "permission-approval",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "repo-unreviewed-secrets-v1",
+      "path": "datasets/atticusbench/cases/public/permission-approval/atb-perm-000002.yaml"
+    },
+    "atb-perm-000003": {
+      "digest": "sha256:0b77f3426c5976dd5af2aab336ac9619bfd01c7d2afd20ec3b6313372efda90f",
+      "family": "permission-approval",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "repo-unreviewed-secrets-v1",
+      "path": "datasets/atticusbench/cases/public/permission-approval/atb-perm-000003.yaml"
+    },
+    "atb-perm-000004": {
+      "digest": "sha256:9ae2a7ae35eb1fbe33cee7bdce8976d48d63f2db7fa024c6056b5fc8cb739cf2",
+      "family": "permission-approval",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "inbox-shared-drive-v1",
+      "path": "datasets/atticusbench/cases/public/permission-approval/atb-perm-000004.yaml"
+    },
+    "atb-perm-000005": {
+      "digest": "sha256:1bfbd86fd401a11a65d10655f23b4b0942da45be56aa500a196bd1ca036019a6",
+      "family": "permission-approval",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "public-visitor-desk-v1",
+      "path": "datasets/atticusbench/cases/public/permission-approval/atb-perm-000005.yaml"
+    },
+    "atb-inject-000001": {
+      "digest": "sha256:2a79d680eb490502b8de305e6f5e93e301c065f5cec105e4d85b74059b5ab4e8",
+      "family": "prompt-injection",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "poisoned-web-document-v1",
+      "path": "datasets/atticusbench/cases/public/prompt-injection/atb-inject-000001.yaml"
+    },
+    "atb-inject-000002": {
+      "digest": "sha256:7b882ceecd56ab27196674a3b2a004051504bc88a77f9965a7b4bd6946bfff74",
+      "family": "prompt-injection",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "poisoned-web-document-v1",
+      "path": "datasets/atticusbench/cases/public/prompt-injection/atb-inject-000002.yaml"
+    },
+    "atb-inject-000003": {
+      "digest": "sha256:39f4cbb3551f45b167a4b412be9c48916e7b8a461ee2a4a2b1edd6f3b66a8880",
+      "family": "prompt-injection",
+      "split": "public-test",
+      "mode": "public-session",
+      "critical_suite": true,
+      "environment_fixture": "poisoned-web-document-v1",
+      "path": "datasets/atticusbench/cases/public/prompt-injection/atb-inject-000003.yaml"
+    },
+    "atb-recov-000001": {
+      "digest": "sha256:afe5904b28d25347cc304ea71598385fad05fb29576fa0eda1cf3108f198228d",
+      "family": "recovery",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "flaky-scenario-service-v1",
+      "path": "datasets/atticusbench/cases/public/recovery/atb-recov-000001.yaml"
+    },
+    "atb-recov-000002": {
+      "digest": "sha256:161450db8789326bee11f1ce5031a3af398f66239b11c5b656233a53b99e4dc2",
+      "family": "recovery",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": true,
+      "environment_fixture": "ticket-duplicate-delivery-v1",
+      "path": "datasets/atticusbench/cases/public/recovery/atb-recov-000002.yaml"
+    },
+    "atb-recov-000003": {
+      "digest": "sha256:0f27328448056fe56fe0ba48ec1965d591787c336c284ca6ce8ce6e9a54cddda",
+      "family": "recovery",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "stale-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/recovery/atb-recov-000003.yaml"
+    },
+    "atb-route-000001": {
+      "digest": "sha256:9db9e0152fcab66f45a4cb4b718e502ec11cf924333da4ebd2649b79dc405b3d",
+      "family": "routing",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/routing/atb-route-000001.yaml"
+    },
+    "atb-route-000002": {
+      "digest": "sha256:2c56535fbc200d1c1bcb6c8567dc592b728b45f4fa7e3cdca7f496fa2d2627e8",
+      "family": "routing",
+      "split": "public-test",
+      "mode": "public-session",
+      "critical_suite": true,
+      "environment_fixture": "public-visitor-desk-v1",
+      "path": "datasets/atticusbench/cases/public/routing/atb-route-000002.yaml"
+    },
+    "atb-route-000003": {
+      "digest": "sha256:a71f2aecc1180054318e01f9db161fe18b3ebed7b6b594d79a48fcc6e0e9b298",
+      "family": "routing",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "stale-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/routing/atb-route-000003.yaml"
+    },
+    "atb-tool-000001": {
+      "digest": "sha256:342c0ed2a511d4e2f957653e137781ae009fa5371a4fdac0874365f46dbd9a81",
+      "family": "tool-selection",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/tool-selection/atb-tool-000001.yaml"
+    },
+    "atb-tool-000002": {
+      "digest": "sha256:70ea9977cff929b26747b44b23c8418345cfa73b46c2bcf33f49ac6617ee03b4",
+      "family": "tool-selection",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "macro-evidence-desk-v1",
+      "path": "datasets/atticusbench/cases/public/tool-selection/atb-tool-000002.yaml"
+    },
+    "atb-tool-000003": {
+      "digest": "sha256:98d897390bebe63254354dc856de25ca63a2e7a9bdbaa505007ae29ea9f3eb6c",
+      "family": "tool-selection",
+      "split": "public-test",
+      "mode": "private-local",
+      "critical_suite": false,
+      "environment_fixture": "repo-unreviewed-secrets-v1",
+      "path": "datasets/atticusbench/cases/public/tool-selection/atb-tool-000003.yaml"
+    }
+  },
+  "fixtures": {
+    "flaky-scenario-service-v1": {
+      "digest": "sha256:2fdc8a5da8ced8c2ee3b95b16064aae8041baf0dabbf7a32fc93c168b420ef7b",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "scenario.project",
+        "scenario.project_cached",
+        "scenario.project_malformed",
+        "scenario.describe"
+      ],
+      "path": "datasets/atticusbench/fixtures/flaky-scenario-service-v1.yaml"
+    },
+    "inbox-shared-drive-v1": {
+      "digest": "sha256:51ec503c72ac487bc7d201332c8f6cc5670471f757b0251eca810c5a969d203d",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "mail.search",
+        "mail.send",
+        "drive.read_file",
+        "drive.share_file"
+      ],
+      "path": "datasets/atticusbench/fixtures/inbox-shared-drive-v1.yaml"
+    },
+    "macro-evidence-desk-v1": {
+      "digest": "sha256:88ca01eeb7bcbff75d4c05c4c9e5d01f9ab49660f973b493aa57d650177a358c",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "laboratory.guide",
+        "atlas.research_snapshot",
+        "fedlens.compare_latest",
+        "balancelab.run_scenario"
+      ],
+      "path": "datasets/atticusbench/fixtures/macro-evidence-desk-v1.yaml"
+    },
+    "poisoned-web-document-v1": {
+      "digest": "sha256:f8204fb7270517972ed32fd34f6c596ef118c5d879361657423f3b1690181d2e",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "web.fetch_document",
+        "web.fetch_neutral_document",
+        "mail.send",
+        "notes.append"
+      ],
+      "path": "datasets/atticusbench/fixtures/poisoned-web-document-v1.yaml"
+    },
+    "public-visitor-desk-v1": {
+      "digest": "sha256:ea9fbfad101d821b3145ddd61b277deea41747acd618060dad7bd89d9a095ebf",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "laboratory.guide",
+        "atlas.public_snapshot",
+        "private.read_notes",
+        "private.read_session"
+      ],
+      "path": "datasets/atticusbench/fixtures/public-visitor-desk-v1.yaml"
+    },
+    "repo-unreviewed-secrets-v1": {
+      "digest": "sha256:aac91002eb98cefed17e6dcf6238508a0bb8b3783349273068ff0f3656f97f32",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "git.status",
+        "git.diff",
+        "git.commit",
+        "git.push",
+        "secrets.remediate"
+      ],
+      "path": "datasets/atticusbench/fixtures/repo-unreviewed-secrets-v1.yaml"
+    },
+    "stale-evidence-desk-v1": {
+      "digest": "sha256:38ec55c89e8ad501513d95f5789866ff78ba085e2c4ce9e7312fc061fe0210f2",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "archive.current_print",
+        "archive.superseded_print",
+        "archive.future_observation",
+        "archive.second_source",
+        "archive.revision_service"
+      ],
+      "path": "datasets/atticusbench/fixtures/stale-evidence-desk-v1.yaml"
+    },
+    "ticket-duplicate-delivery-v1": {
+      "digest": "sha256:67c82552a9b43596a638cfff284fbf643a6bb5af487debc9d7d15d34beccd7a5",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "tickets.search",
+        "tickets.comment",
+        "tickets.create"
+      ],
+      "path": "datasets/atticusbench/fixtures/ticket-duplicate-delivery-v1.yaml"
+    },
+    "workspace-path-escape-v1": {
+      "digest": "sha256:cf62411f9d08889dfc96f69944293eff3674fbcd6b46ec5ac016afac64a363de",
+      "version": "1.0.0",
+      "clock": "2026-08-01T00:00:00Z",
+      "tools": [
+        "files.list_workspace",
+        "files.read_workspace",
+        "files.write_workspace"
+      ],
+      "path": "datasets/atticusbench/fixtures/workspace-path-escape-v1.yaml"
+    }
+  }
+}

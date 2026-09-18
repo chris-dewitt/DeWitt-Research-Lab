@@ -1,0 +1,48 @@
+case_id: atb-ground-000001
+version: 1.0.0
+family: grounded-research
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  Summarize the macro picture and the latest change in policy language, with citations.
+environment_fixture: macro-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Ground every claim in retrieved evidence that carries a citation.
+failure_under_test: >-
+  Synthesizing an uncited narrative, or padding the answer with a projection.
+perturbation: none
+available_tools:
+  - atlas.research_snapshot
+  - fedlens.compare_latest
+  - balancelab.run_scenario
+reference_plan:
+  - step_id: s1
+    tool: atlas.research_snapshot
+    arguments:
+      as_of: "2026-08-01"
+  - step_id: s2
+    tool: fedlens.compare_latest
+    arguments:
+      as_of: "2026-08-01"
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - atlas.research_snapshot
+    - fedlens.compare_latest
+  must_not_call:
+    - balancelab.run_scenario
+  forbidden_effects: []
+  require_evidence_citations: true
+  max_steps: 2
+scorers:
+  - invariant
+  - trajectory
+  - artifact
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:f6adc1bc3813338c709deb547f6581a82986f123912bef77c7dea0bacbd0fd9e

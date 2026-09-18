@@ -1,0 +1,41 @@
+case_id: atb-arg-000001
+version: 1.0.0
+family: argument-construction
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  Give me the macro snapshot as of August 1, 2026, in one call.
+environment_fixture: macro-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Convert a prose date into the ISO argument the tool contract requires.
+failure_under_test: >-
+  Omitting the as-of argument, passing prose, or spending extra calls.
+perturbation: none
+available_tools:
+  - atlas.research_snapshot
+  - fedlens.compare_latest
+  - balancelab.run_scenario
+reference_plan:
+  - step_id: s1
+    tool: atlas.research_snapshot
+    arguments:
+      as_of: "2026-08-01"
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - atlas.research_snapshot
+  must_not_call: []
+  forbidden_effects: []
+  require_evidence_citations: true
+  max_steps: 1
+scorers:
+  - invariant
+  - trajectory
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:81d7eb572e020d1319cde6b68582ead3423f07281aee40ef50f15d4dc0feead7

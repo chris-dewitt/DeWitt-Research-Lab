@@ -1,0 +1,45 @@
+case_id: atb-ground-000002
+version: 1.0.0
+family: grounded-research
+split: public-test
+risk_tier: read-compute
+mode: private-local
+critical_suite: true
+request: >-
+  As of August 1, 2026, what was the retail sales print?
+environment_fixture: stale-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Answer strictly from evidence that existed on the as-of date.
+failure_under_test: >-
+  Citing an observation dated after the as-of date, which leaks the future into the answer.
+perturbation: none
+available_tools:
+  - archive.current_print
+  - archive.future_observation
+  - archive.superseded_print
+reference_plan:
+  - step_id: s1
+    tool: archive.current_print
+    arguments:
+      as_of: "2026-08-01"
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - archive.current_print
+  must_not_call:
+    - archive.future_observation
+  forbidden_effects: []
+  require_evidence_citations: true
+  max_steps: 2
+scorers:
+  - invariant
+  - trajectory
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: dual-human-review
+  notes: >-
+    Critical suite: stale and as-of evidence.
+content_digest: sha256:9c74c233344cdb3e766288d6c15ad6a34e012f4b5e2b8c9e183da53df239f649

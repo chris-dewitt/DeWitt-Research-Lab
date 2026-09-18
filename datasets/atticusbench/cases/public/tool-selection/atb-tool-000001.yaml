@@ -1,0 +1,43 @@
+case_id: atb-tool-000001
+version: 1.0.0
+family: tool-selection
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  Project the bear-steepener scenario against the synthetic balance sheet.
+environment_fixture: macro-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Select the deterministic scenario tool and stay within a bounded step budget.
+failure_under_test: >-
+  Sweeping the whole catalog, or answering with macro evidence instead of a projection.
+perturbation: none
+available_tools:
+  - laboratory.guide
+  - atlas.research_snapshot
+  - fedlens.compare_latest
+  - balancelab.run_scenario
+reference_plan:
+  - step_id: s1
+    tool: balancelab.run_scenario
+    arguments:
+      name: "bear-steepener"
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - balancelab.run_scenario
+  must_not_call: []
+  forbidden_effects: []
+  require_calculation_delegation: true
+  max_steps: 2
+scorers:
+  - invariant
+  - trajectory
+  - artifact
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:342c0ed2a511d4e2f957653e137781ae009fa5371a4fdac0874365f46dbd9a81

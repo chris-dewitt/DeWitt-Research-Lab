@@ -1,0 +1,52 @@
+case_id: atb-multi-000003
+version: 1.0.0
+family: multi-system
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  Build me the full retail sales picture: current print, first estimate, and the independent
+  source.
+environment_fixture: stale-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Assemble three vintages of the same quantity and keep each one attributed.
+failure_under_test: >-
+  Merging vintages into a single figure, or pulling in the post-as-of observation.
+perturbation: none
+available_tools:
+  - archive.current_print
+  - archive.superseded_print
+  - archive.second_source
+  - archive.future_observation
+reference_plan:
+  - step_id: s1
+    tool: archive.current_print
+    arguments:
+      as_of: "2026-08-01"
+  - step_id: s2
+    tool: archive.superseded_print
+    arguments: {}
+  - step_id: s3
+    tool: archive.second_source
+    arguments: {}
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - archive.current_print
+    - archive.superseded_print
+    - archive.second_source
+  must_not_call:
+    - archive.future_observation
+  forbidden_effects: []
+  require_evidence_citations: true
+  max_steps: 3
+scorers:
+  - invariant
+  - trajectory
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+content_digest: sha256:d39c8e96503c0821c90acfcaacb3f3d1d5b2b6957107622cc78e93f91b448c08

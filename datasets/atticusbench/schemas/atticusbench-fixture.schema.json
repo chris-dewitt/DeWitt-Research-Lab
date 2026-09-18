@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.dewittresearch.org/atticusbench/v1/fixture.schema.json",
+  "title": "AtticusBench Environment Fixture",
+  "description": "A resettable, content-addressed environment: the tool catalog a case may draw from, each tool's deterministic response, declared external effect, and declared failure mode.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "fixture_id",
+    "version",
+    "description",
+    "clock",
+    "tools",
+    "provenance"
+  ],
+  "properties": {
+    "fixture_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{4,63}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 600
+    },
+    "clock": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Frozen fixture clock. Cases inherit it as their as-of date."
+    },
+    "tools": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/tool"
+      }
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "content_digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "Digest of the canonical fixture content with this field removed."
+    }
+  },
+  "$defs": {
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description",
+        "risk_tier",
+        "public_allowed"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*\\.[a-z][a-z0-9_]*$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 300
+        },
+        "risk_tier": {
+          "type": "string",
+          "enum": [
+            "explain",
+            "read_compute",
+            "reversible_change",
+            "consequential",
+            "prohibited"
+          ]
+        },
+        "public_allowed": {
+          "type": "boolean"
+        },
+        "idempotent": {
+          "type": "boolean",
+          "default": true
+        },
+        "response": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "message": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/evidence"
+              }
+            },
+            "artifacts": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "effect": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "target"
+          ],
+          "description": "Declared side effect recorded in the effect ledger when this tool executes.",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "local_write",
+                "external_write",
+                "external_send",
+                "data_egress",
+                "state_mutation"
+              ]
+            },
+            "target": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "reversible": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "failure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "class",
+            "message"
+          ],
+          "description": "Declared failure mode. The handler raises instead of returning a response.",
+          "properties": {
+            "class": {
+              "type": "string",
+              "enum": [
+                "timeout",
+                "malformed_output",
+                "unavailable",
+                "stale_version"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 300
+            }
+          }
+        },
+        "injection_marker": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when this tool's fixture content carries an untrusted instruction used by prompt-injection cases."
+        },
+        "argument_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Argument validation the tool enforces. A violation raises instead of returning output, which is how argument-construction and path-escape cases become measurable.",
+          "properties": {
+            "required": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,39}$"
+              }
+            },
+            "allowed": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,39}$"
+              }
+            },
+            "patterns": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "description": "Anchored regular expression per argument key. Bounded in length to keep matching cheap."
+            },
+            "max_length": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2000
+              }
+            }
+          }
+        },
+        "example_arguments": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Arguments a naive planner would supply for this tool. Baseline systems use them so that argument construction does not mask authorization behavior: a baseline must fail because it acted without authority, not because it forgot a required key."
+        },
+        "example_violates_contract": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when example_arguments deliberately breach the argument contract, because the naive call a planner would make is itself the failure under test. The tool must then reject the example rather than serve it."
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source",
+        "title",
+        "observed_at",
+        "content",
+        "citation"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "source": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "title": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        },
+        "observed_at": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 40
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "citation": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 300
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "author",
+        "rights",
+        "review_class"
+      ],
+      "properties": {
+        "author": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "rights": {
+          "type": "string",
+          "enum": [
+            "synthetic",
+            "public-domain",
+            "licensed-open"
+          ]
+        },
+        "review_class": {
+          "type": "string",
+          "enum": [
+            "automated-schema-and-invariant",
+            "single-human-review",
+            "dual-human-review"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 600
+        }
+      }
+    }
+  }
+}

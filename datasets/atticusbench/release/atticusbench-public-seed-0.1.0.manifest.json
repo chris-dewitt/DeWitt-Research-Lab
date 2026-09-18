@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "id": "atticusbench-public-seed",
+  "name": "AtticusBench Public Seed",
+  "version": "0.1.0",
+  "released_at": "2026-09-18T00:00:00Z",
+  "license": {
+    "id": "Apache-2.0",
+    "uri": "repo://LICENSE",
+    "content_rights": "synthetic, original to this repository"
+  },
+  "records": 32,
+  "splits": {
+    "public-test": 32
+  },
+  "sources": [
+    {
+      "id": "hand-authored-synthetic",
+      "description": "Hand-authored synthetic cases and fixtures. No model generated a case, no donated trace was used, and no real record appears.",
+      "records": 32,
+      "rights": "synthetic",
+      "corpus_digest": "sha256:9701eedcd48717c7aee79343c9623c6aeadcd3c16246ee23e35e10e26ce10853"
+    }
+  ],
+  "review": {
+    "dual_human_review": 12,
+    "single_human_review": 20,
+    "automated_checks": [
+      "schema validation",
+      "cross-document consistency",
+      "content digest verification",
+      "duplication audit",
+      "reference-plan execution against every case"
+    ],
+    "caveat": "One person authored and reviewed this seed. The dual-review class records the specification's requirement, not two independent sign-offs."
+  },
+  "contamination_report": {
+    "schema_version": "1.0.0",
+    "id": "atticusbench-public-seed-contamination",
+    "kind": "report",
+    "uri": "repo://datasets/atticusbench/release/contamination-report.json",
+    "digest": "sha256:46d3292e6e428b199eb7e36272d360509f6fea0a9cd79d2bc68872700cde4e15",
+    "classification": "public",
+    "media_type": "application/json",
+    "title": "Contamination and duplication report",
+    "created_at": "2026-09-18T00:00:00Z",
+    "source_system": "dewitt-research-lab"
+  },
+  "artifacts": [
+    {
+      "schema_version": "1.0.0",
+      "id": "atticusbench-public-seed-cases",
+      "kind": "dataset",
+      "uri": "repo://datasets/atticusbench/release/case-index.json",
+      "digest": "sha256:4877bdac83cbece03b54a3c930a5c0e471a5d23d6347299443a1a000e673d890",
+      "classification": "public",
+      "media_type": "application/json",
+      "title": "Case and fixture digest index",
+      "created_at": "2026-09-18T00:00:00Z",
+      "source_system": "dewitt-research-lab"
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "atticusbench-public-seed-dataset-card",
+      "kind": "document",
+      "uri": "repo://datasets/atticusbench/docs/DATASET_CARD.md",
+      "digest": "sha256:05e93b439b7c7b07bbd247f3a2a787f3bb60320f769023c8b230eed36c9042fb",
+      "classification": "public",
+      "media_type": "text/markdown",
+      "title": "Dataset card",
+      "created_at": "2026-09-18T00:00:00Z",
+      "source_system": "dewitt-research-lab"
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "atticusbench-public-seed-case-schema",
+      "kind": "document",
+      "uri": "repo://datasets/atticusbench/schemas/atticusbench-case.schema.json",
+      "digest": "sha256:6721debd5b2dc8c076468ece03687308a12f30760a7be71360a80e7e804da034",
+      "classification": "public",
+      "media_type": "application/schema+json",
+      "title": "Case schema",
+      "created_at": "2026-09-18T00:00:00Z",
+      "source_system": "dewitt-research-lab"
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "atticusbench-public-seed-fixture-schema",
+      "kind": "document",
+      "uri": "repo://datasets/atticusbench/schemas/atticusbench-fixture.schema.json",
+      "digest": "sha256:c563cede0da67b318ecd96f2f8f06133473579dca1536aeaaf5d122efb3de5dd",
+      "classification": "public",
+      "media_type": "application/schema+json",
+      "title": "Fixture schema",
+      "created_at": "2026-09-18T00:00:00Z",
+      "source_system": "dewitt-research-lab"
+    },
+    {
+      "schema_version": "1.0.0",
+      "id": "atticusbench-public-seed-baseline-results",
+      "kind": "report",
+      "uri": "repo://runs/atticusbench/results.json",
+      "digest": "sha256:3fd60da7c5c7f5fe8d2afc38c6ecf29afeed2ac168c4dcb210be2cdc394673f0",
+      "classification": "public",
+      "media_type": "application/json",
+      "title": "Deterministic baseline results",
+      "created_at": "2026-09-18T00:00:00Z",
+      "source_system": "dewitt-research-lab"
+    }
+  ],
+  "manifest_digest": "sha256:61d7c1705d9fbd00eb2845d87e954efc13101a485667eab3f91164ef94522d19"
+}

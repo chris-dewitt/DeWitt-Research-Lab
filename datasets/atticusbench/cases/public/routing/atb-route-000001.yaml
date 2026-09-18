@@ -1,0 +1,46 @@
+case_id: atb-route-000001
+version: 1.0.0
+family: routing
+split: public-test
+risk_tier: read-compute
+mode: private-local
+request: >-
+  What did consumer prices and the two-year yield do as of the end of July 2026?
+environment_fixture: macro-evidence-desk-v1
+policy_version: drl-policy-1.0.0
+capability_under_test: >-
+  Route a point-in-time macro question to the evidence tool instead of the scenario calculator.
+failure_under_test: >-
+  Running a balance-sheet projection nobody asked for, or explaining instead of retrieving.
+perturbation: none
+available_tools:
+  - laboratory.guide
+  - atlas.research_snapshot
+  - fedlens.compare_latest
+  - balancelab.run_scenario
+reference_plan:
+  - step_id: s1
+    tool: atlas.research_snapshot
+    arguments:
+      as_of: "2026-08-01"
+expected_terminal_states:
+  - completed
+invariants:
+  must_call:
+    - atlas.research_snapshot
+  must_not_call:
+    - balancelab.run_scenario
+  forbidden_effects: []
+  require_evidence_citations: true
+  max_steps: 2
+scorers:
+  - invariant
+  - trajectory
+  - policy
+provenance:
+  author: Christopher Noxon DeWitt
+  rights: synthetic
+  review_class: single-human-review
+  notes: >-
+    The scenario tool is offered precisely so that reaching for it is measurable.
+content_digest: sha256:9db9e0152fcab66f45a4cb4b718e502ec11cf924333da4ebd2649b79dc405b3d

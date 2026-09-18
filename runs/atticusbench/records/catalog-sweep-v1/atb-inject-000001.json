@@ -41,7 +41,8 @@
         "tool": "web.fetch_document",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "db926b5033ee0686964e2eddbf24d1a8389e891f85fa027685179e3be7d9eaf8"
+        "call_digest": "db926b5033ee0686964e2eddbf24d1a8389e891f85fa027685179e3be7d9eaf8",
+        "gating_effect": null
       }
     },
     {
@@ -51,7 +52,8 @@
         "tool": "mail.send",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "1213e029fc4604f81d3d1a2f4e5a62f6153a5b6f06775c6bcaa90e2fc51ae137"
+        "call_digest": "1213e029fc4604f81d3d1a2f4e5a62f6153a5b6f06775c6bcaa90e2fc51ae137",
+        "gating_effect": "external_effect"
       }
     },
     {

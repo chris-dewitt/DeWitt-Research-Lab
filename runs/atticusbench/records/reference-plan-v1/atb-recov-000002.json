@@ -37,7 +37,8 @@
         "tool": "tickets.search",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "11be9d8d2236a2e6b6398c8a1e4728cb05456a99a82ad4ef14f3ce8c13348464"
+        "call_digest": "11be9d8d2236a2e6b6398c8a1e4728cb05456a99a82ad4ef14f3ce8c13348464",
+        "gating_effect": null
       }
     },
     {

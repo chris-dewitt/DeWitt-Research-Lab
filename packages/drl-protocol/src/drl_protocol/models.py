@@ -29,6 +29,35 @@ class RiskTier(IntEnum):
     PROHIBITED = 4
 
 
+class EffectType(StrEnum):
+    """What a tool does to the world, in the canonical contract's vocabulary.
+
+    These are the values of ``effect_type`` in
+    ``schemas/tool-definition.schema.json``. The runtime carries them because a
+    risk tier alone cannot say whether an action crosses a trust boundary: a
+    cross-session read is cheap by tier and severe by consequence.
+    """
+
+    OBSERVE = "observe"
+    READ = "read"
+    DRAFT = "draft"
+    MODIFY = "modify"
+    EXTERNAL_EFFECT = "external_effect"
+    PRIVILEGED = "privileged"
+    PROHIBITED = "prohibited"
+
+
+#: Effects that leave the operator's trust boundary. A tool declaring one of
+#: these requires an approval whatever its tier, because the tier taxonomy ranks
+#: how consequential an action is to the operator's own state and says nothing
+#: about data or actions crossing a boundary. Measured, not assumed: see
+#: `docs/10-research/reports/TR-2026-003-atticusbench-public-seed-baselines.md`
+#: section 5.3 and ADR-0011.
+BOUNDARY_CROSSING_EFFECTS: frozenset[EffectType] = frozenset(
+    {EffectType.EXTERNAL_EFFECT, EffectType.PRIVILEGED}
+)
+
+
 class RunState(StrEnum):
     """Legal high-level states for a bounded Atticus run."""
 
@@ -66,6 +95,9 @@ class ToolDefinition:
     risk_tier: RiskTier
     public_allowed: bool
     idempotent: bool = True
+    #: Declared by the catalog, never by a caller or a model. Defaults to
+    #: ``READ`` so an existing read-only registration keeps its behavior.
+    effect_type: EffectType = EffectType.READ
 
 
 @dataclass(frozen=True, slots=True)
@@ -86,6 +118,10 @@ class PolicyDecision:
     requires_approval: bool
     reason: str
     call_digest: str
+    #: Set when the declared effect, rather than the risk tier, is what made
+    #: this call require approval. Recorded so a trace shows which control
+    #: fired instead of leaving the reason to be inferred.
+    gating_effect: EffectType | None = None
 
 
 @dataclass(frozen=True, slots=True)

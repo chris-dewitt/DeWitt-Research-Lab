@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.18.0
+version: 1.19.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -74,7 +74,7 @@ the Director's approval.
 | DIR-008 | CFI research | How should the CFI program respond to 2026 primary work that substantially overlaps Papers I and III and the repair component of Paper II? | A: preserve the program, make narrowed Paper II the flagship, and authorize new scoping for active information acquisition and identifiable coupled dynamics; B: retain all three as explicit replication/extension papers; C: retain Paper II and replace Papers I and III. Experiments under the original claims risk producing technically sound but non-novel work. | Choose A. Do not change the approved questions yet; authorize a bounded follow-up novelty packet for the two redesigns and independent G1 review of Paper II. | RESOLVED — RES-020; independent G1 review remains required |
 | DIR-009 | Repository privacy | Should 16 commits whose author metadata exposes a UNC email address be rewritten before the repository becomes public? | A: rewrite all affected reachable history to the GitHub no-reply address, coordinate every open branch, and force-push; this removes the address but changes commit SHAs. B: accept the historical disclosure and preserve commit identity; future commits already use the no-reply address. | Choose A before changing visibility because RES-019 establishes one public contact, but do not rewrite history without the Director's explicit approval. | RESOLVED — RES-022; Option B chosen against the recommendation |
 | DIR-010 | Public feeds | Which live sources may Atlas/FedLens ingest, and is Yahoo Finance allowed? | Official FRED + Treasury + Fed RSS (opt-in store) versus unofficial Yahoo/yfinance scrapes. Yahoo terms forbid unofficial bulk retrieval/redistribution. | Accept ADR-0010: official sources only; fixtures remain default/CI; Yahoo rejected. | IN REVIEW — ADR-0010 |
-| DIR-011 | Policy and approval | Should the policy decision consider a tool's declared effect class in addition to its risk tier? | The AtticusBench seed measured this rather than assumed it (`TR-2026-003` §5.3). Tier gating held every unauthorized write and send across 96 baseline runs; the one forbidden effect that executed was a `data_egress` on a **read-tier** cross-session read, because approval attaches at tier 2 and above. A: raise every egress-declaring tool to tier 2, which gates ordinary public reads behind approval. B: add an effect-class dimension to `PolicyDecision`, which changes canonical approval logic and needs an ADR, a migration, and deny-path tests. C: accept the gap and rely on the planner, which the eager baselines show is not a control. | Choose B and write the ADR; do not ship A as a quick fix. Until this is resolved, the critical suite's cross-session case measures the policy model rather than a candidate, so no release candidate may be reported as passing that suite. | Director decision required — ADR not yet drafted |
+| DIR-011 | Policy and approval | Should the policy decision consider a tool's declared effect class in addition to its risk tier? | The AtticusBench seed measured this rather than assumed it (`TR-2026-003` §5.3). Tier gating held every unauthorized write and send across 96 baseline runs; the one forbidden effect that executed was a `data_egress` on a **read-tier** cross-session read, because approval attaches at tier 2 and above. A: raise every egress-declaring tool to tier 2, which gates ordinary public reads behind approval. B: add an effect-class dimension to `PolicyDecision`, which changes canonical approval logic and needs an ADR, a migration, and deny-path tests. C: accept the gap and rely on the planner, which the eager baselines show is not a control. | Choose B and write the ADR; do not ship A as a quick fix. Until this is resolved, the critical suite's cross-session case measures the policy model rather than a candidate, so no release candidate may be reported as passing that suite. | RESOLVED — RES-026; ADR-0011 |
 
 ## Approved resolutions
 
@@ -106,6 +106,8 @@ the Director's approval.
 | RES-024 | Make `chris-dewitt/DeWitt-Research-Lab` public now, and retire the separate artifact mirror. | The Director | 2026-08-22 | **Supersedes the private-through-2026-09-30 clause of RES-018 and supersedes RES-021 in full.** The Director elects to publish the authoritative source rather than a sanitized derivative. The mirror existed for one reason — GitHub Pages will not deploy from a private personal repository on the current plan — and a public source removes that reason, so `ADR-0009` is superseded, `DRL-OEX-0001` is closed, and the export policy, publication workflow, preparation script, and their tests are deleted. The Director accepts, deliberately, that this publishes material the allowlist previously withheld: the Directors Memo including the open DIR-006 and DIR-007 deliberations, `LICENSE-STRATEGY.md`, `COMMERCIAL_SUSTAINABILITY.md`, the worklog, 24 agent handoffs, and every `DRAFT` or `IN REVIEW` controlled document — among them `TR-2026-002` and its preliminary novelty scan. Each remains labelled with its real status; publishing unfinished work as unfinished work is the intent, not a lapse. Visibility is changed in the Director's GitHub account; this resolution authorizes it and no agent performs it. |
 | RES-025 | Replace the independent-reviewer requirement at the G1 novelty gate with a stratum-coverage rule. | The Director | 2026-08-23 | **Amends RES-020 and the G1 row of the CFI lifecycle.** Blocking the research program on recruiting a volunteer reviewer stopped it for three weeks and was never realistic for a one-person workshop. The requirement is withdrawn. What replaces it is the function the reviewer served, not nothing: before any novelty claim is made public, the question must be searched in **a literature stratum the original review did not cover**, and the coverage of each pass must be stated. The rule exists because the gap is demonstrated rather than theoretical — the 2026-08-05 review searched arXiv and OpenReview almost exclusively, and the first two searches of a published-journal corpus surfaced close neighbours it had never seen, including experimental valuation work in the *Journal of Finance*. A single-stratum search is now treated as an incomplete search, and saying which strata were covered is mandatory in any novelty record. The Director may still seek outside review; it is no longer a precondition for proceeding. |
 
+| RES-026 | Approve DIR-011 option B: the policy gate considers a tool's declared effect as well as its risk tier. | The Director | 2026-09-18 | **Resolves DIR-011.** `ToolDefinition` carries the canonical schema's `effect_type`, and `PolicyEngine` requires an approval when the declared effect is `external_effect` or `privileged`, whatever the tier; `effect_type: prohibited` is denied outright. The Director chose option B over option A (retiering the tools) so the control lives in policy rather than in per-tool registration data that the next tool can silently omit. `PolicyDecision.gating_effect` records which control fired, and the orchestrator puts it on the trace. `modify` and `draft` stay ungated by effect deliberately: gating them would put every ordinary local edit behind an approval. Measured consequence on the AtticusBench public seed — forbidden effects executed across all baselines 1 → 0, critical-suite failures per eager baseline 2 → 1, `reference-plan-v1` 33/33. The one remaining critical failure is a grounding failure (post-as-of evidence), which no authorization control can close. `approval_policy` from the same schema remains unimplemented and is recorded in ADR-0011 as a known gap needing its own decision. |
+
 ## Current blockers
 
 - No Google Cloud project or billing identity is configured.
@@ -128,11 +130,16 @@ the Director's approval.
   link to that URL from the live homepage; paste-ready copy is in
   `docs/08-web-brand/SITE_COPY.md`. This cloud agent cannot authenticate the
   Wix MCP.
-- DIR-011 is open: the deterministic policy gates on risk tier, and a read-tier
-  tool that egresses data across sessions therefore passes without an approval.
-  Measured, not hypothesized (`TR-2026-003` §5.3). Until an ADR resolves it, the
-  AtticusBench critical suite must not be cited as passed by any release
-  candidate.
+- ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and
+  ADR-0011. The AtticusBench critical suite now measures a candidate rather than
+  our own policy for the cross-session case. One critical-suite failure remains
+  against the eager baselines, `atb-ground-000002`, and it is a grounding
+  failure (an observation dated after the as-of date) that no authorization
+  control can close.
+- `approval_policy` in `schemas/tool-definition.schema.json` is still
+  unimplemented: a tool cannot demand `always` or declare `never`. ADR-0011
+  records it. `never` is a way to weaken a gate, so it needs its own decision
+  rather than a follow-up commit.
 - Some reachable commits expose a UNC email address in Git author metadata
   (16 when DIR-009 was raised; 15 reachable today — the figure moves with the
   ref set). Accepted by RES-022 as a known, deliberate disclosure; no history
@@ -162,8 +169,10 @@ run corpus under `runs/atticusbench/` that a rerun reproduces byte for byte
 (DRL-036, the work item that built the seed). The V1 exit gate asks for at
 least 1,000 held-out tasks, so this is a seed and is labelled as one
 everywhere. **No model has been run against it**, and nothing in it selects a
-model or supports a safety claim. Its first substantive finding is DIR-011
-above, which is a finding about this repository's policy model.
+model or supports a safety claim. Its first substantive finding, DIR-011, was a
+finding about this repository's own policy model, and RES-026 and ADR-0011 have
+since closed it: the benchmark measured a gap, the gap was fixed, and the same
+benchmark now shows it closed.
 
 CFI-005 parameter recovery is now swept on two axes rather than reported at one
 design (DRL-037, the work item that built the sweep), with results committed

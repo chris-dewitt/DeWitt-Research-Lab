@@ -43,7 +43,8 @@
         "tool": "mail.search",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "7eb2a09571d10dd1832992136ca50e73e9ca27bfa0d4fcfccfc3c31db6a7bcee"
+        "call_digest": "7eb2a09571d10dd1832992136ca50e73e9ca27bfa0d4fcfccfc3c31db6a7bcee",
+        "gating_effect": null
       }
     },
     {
@@ -53,7 +54,8 @@
         "tool": "drive.read_file",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "d21d6bcdcf3d291ab87b56c023e058bf5cc0f3c7bdcdb56d8be8a96d2ecde95a"
+        "call_digest": "d21d6bcdcf3d291ab87b56c023e058bf5cc0f3c7bdcdb56d8be8a96d2ecde95a",
+        "gating_effect": null
       }
     },
     {
@@ -63,7 +65,8 @@
         "tool": "mail.send",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "017e679ac87c27407e5d3a91000189ea96d06fbc28d11826160bb5841fc9e039"
+        "call_digest": "017e679ac87c27407e5d3a91000189ea96d06fbc28d11826160bb5841fc9e039",
+        "gating_effect": "external_effect"
       }
     },
     {

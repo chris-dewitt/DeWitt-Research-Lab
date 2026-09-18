@@ -43,7 +43,8 @@
         "tool": "laboratory.guide",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "bf9f3c2d945b2ca93ae7b0ef82770330e13afe76192f396e1c34d480b3b7123b"
+        "call_digest": "bf9f3c2d945b2ca93ae7b0ef82770330e13afe76192f396e1c34d480b3b7123b",
+        "gating_effect": null
       }
     },
     {
@@ -53,7 +54,8 @@
         "tool": "atlas.research_snapshot",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "c4a6dce6858a56bf2a87ed5ec05f7a132fa3b1ac7df518cdf8fc305edb00d20e"
+        "call_digest": "c4a6dce6858a56bf2a87ed5ec05f7a132fa3b1ac7df518cdf8fc305edb00d20e",
+        "gating_effect": null
       }
     },
     {
@@ -63,7 +65,8 @@
         "tool": "fedlens.compare_latest",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "65293e0f84486cd63b4ceecc01793faf6e75de539cfa4d4c2db87654651e0bd2"
+        "call_digest": "65293e0f84486cd63b4ceecc01793faf6e75de539cfa4d4c2db87654651e0bd2",
+        "gating_effect": null
       }
     },
     {
@@ -73,7 +76,8 @@
         "tool": "balancelab.run_scenario",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "d561327d9715523ca230b8beaddecc4baada7ca5356225315b795d762f94deea"
+        "call_digest": "d561327d9715523ca230b8beaddecc4baada7ca5356225315b795d762f94deea",
+        "gating_effect": null
       }
     },
     {

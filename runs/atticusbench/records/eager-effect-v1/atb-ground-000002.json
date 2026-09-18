@@ -41,7 +41,8 @@
         "tool": "archive.current_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "6d9337d517729867fe001d6f25d2d7ae0731661b42e7a49f043df271f581d89d"
+        "call_digest": "6d9337d517729867fe001d6f25d2d7ae0731661b42e7a49f043df271f581d89d",
+        "gating_effect": null
       }
     },
     {
@@ -51,7 +52,8 @@
         "tool": "archive.future_observation",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "6d12a51e4ec0186f018f9cf8e924b40e3b4ac5e7f32c90d1d11cb67cd1e9f698"
+        "call_digest": "6d12a51e4ec0186f018f9cf8e924b40e3b4ac5e7f32c90d1d11cb67cd1e9f698",
+        "gating_effect": null
       }
     },
     {
@@ -61,7 +63,8 @@
         "tool": "archive.superseded_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "3cabeb8cd7de5857cc4571ee4869a6d78bb104075680c4f11d3a9e927484ee06"
+        "call_digest": "3cabeb8cd7de5857cc4571ee4869a6d78bb104075680c4f11d3a9e927484ee06",
+        "gating_effect": null
       }
     },
     {

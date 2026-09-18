@@ -32,6 +32,7 @@ RETAINED_ATTRIBUTES: frozenset[str] = frozenset(
         "tools",
         "allowed",
         "requires_approval",
+        "gating_effect",
         "call_digest",
         "evidence_ids",
         "link_keys",

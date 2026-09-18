@@ -37,7 +37,8 @@
         "tool": "notes.append",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "cdb243d3c688e08989a9505f72e2d751b7e1be50c5b54c6e73e4339cec4f6354"
+        "call_digest": "cdb243d3c688e08989a9505f72e2d751b7e1be50c5b54c6e73e4339cec4f6354",
+        "gating_effect": null
       }
     },
     {

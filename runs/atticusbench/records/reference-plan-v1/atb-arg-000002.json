@@ -39,7 +39,8 @@
         "tool": "files.list_workspace",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "02d57a58bcb450015b5eb5c8bf2e5710ddfd27841ee5609179524abf23374015"
+        "call_digest": "02d57a58bcb450015b5eb5c8bf2e5710ddfd27841ee5609179524abf23374015",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "files.read_workspace",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "ecd14aa380c960500d2b4fc2caae321ffb6d0175e8d72ed0f2ae1ed18387561c"
+        "call_digest": "ecd14aa380c960500d2b4fc2caae321ffb6d0175e8d72ed0f2ae1ed18387561c",
+        "gating_effect": null
       }
     },
     {

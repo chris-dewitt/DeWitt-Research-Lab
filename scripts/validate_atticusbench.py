@@ -50,7 +50,7 @@ from atticusbench.corpus import (  # noqa: E402
 from drl_ai_core import canonical_digest  # noqa: E402
 
 DATASET_ID = "atticusbench-public-seed"
-DATASET_VERSION = "0.1.0"
+DATASET_VERSION = "0.1.1"
 #: Release date of this seed. A constant, not the wall clock, so regenerating
 #: the manifest on an unchanged corpus rewrites identical bytes.
 RELEASE_TIMESTAMP = "2026-09-18T00:00:00Z"

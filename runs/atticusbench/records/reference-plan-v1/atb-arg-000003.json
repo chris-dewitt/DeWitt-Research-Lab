@@ -39,7 +39,8 @@
         "tool": "drive.read_file",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "018136931d2373db1a5696c95adbd667c5526ccb505f6e69c0e2f2dd49e167ac"
+        "call_digest": "018136931d2373db1a5696c95adbd667c5526ccb505f6e69c0e2f2dd49e167ac",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "drive.share_file",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "d1435ef20c2bcbe2061f5fc25ef708ebd12acae7952b72370c298b92c2ec23d0"
+        "call_digest": "d1435ef20c2bcbe2061f5fc25ef708ebd12acae7952b72370c298b92c2ec23d0",
+        "gating_effect": "external_effect"
       }
     },
     {

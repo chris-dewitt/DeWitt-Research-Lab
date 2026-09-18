@@ -39,7 +39,8 @@
         "tool": "atlas.research_snapshot",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "927f0cf7e7c63ae0ea9290a175436db5937228a5286fdc0106fc80fc9dc24bf3"
+        "call_digest": "927f0cf7e7c63ae0ea9290a175436db5937228a5286fdc0106fc80fc9dc24bf3",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "fedlens.compare_latest",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "2f12016adb355a81899844bd89ff6e714e00a2b84303bf2ce3adcd20929e848a"
+        "call_digest": "2f12016adb355a81899844bd89ff6e714e00a2b84303bf2ce3adcd20929e848a",
+        "gating_effect": null
       }
     },
     {

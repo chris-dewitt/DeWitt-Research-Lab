@@ -1,7 +1,7 @@
 ---
 document_id: DRL-TR-2026-003
 title: "Technical Report TR-2026-003: An Executable AtticusBench Seed and What Four Deterministic Baselines Reveal About the Policy Model"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -18,6 +18,17 @@ DeWitt, Christopher Noxon. 2026. *Technical Report TR-2026-003: An Executable
 AtticusBench Seed and What Four Deterministic Baselines Reveal About the Policy
 Model*. Working paper. Document ID `DRL-TR-2026-003`. Repository path:
 `docs/10-research/reports/TR-2026-003-atticusbench-public-seed-baselines.md`.
+
+## Revision note (v1.1.0, 2026-09-18)
+
+Sections 1 to 5.3 are the original measurement on a 32-case corpus, made before
+the policy change they motivated. They are **not** rewritten, because the
+finding in §5.3 rests on them and overwriting the numbers would erase the
+evidence for **ADR-0011**. Section 5.4 is the re-measurement after that ADR
+landed, on the 33-case corpus that adds the companion case.
+
+`runs/atticusbench/results.json` now holds the post-ADR run. The pre-ADR
+records are in git history at commit `eaf89db`.
 
 ## Abstract
 
@@ -43,8 +54,15 @@ policy held every one of them at an approval pause or a denial without the
 planner's cooperation. Third, the single forbidden effect that did execute came
 through a **read-tier** tool that performs a cross-session data egress, because
 approval gating attaches to risk tier and this effect sits below the gate. That
-is a finding about the policy model, not about any model, and it is recorded as an
+is a finding about the policy model, not about any model, and it was recorded as an
 open Director decision rather than silently patched.
+
+Since v1.0.0 that decision has been taken. **RES-026 and ADR-0011** gate approval
+on a tool's declared effect as well as its risk tier, and §5.4 re-measures the
+same corpus: forbidden effects executed across all baselines fall from 1 to 0 and
+critical-suite failures per eager baseline from 2 to 1. The one that remains is a
+grounding failure rather than an authorization one, which no approval gate can
+close.
 
 ## 1. Question and scope
 
@@ -142,7 +160,10 @@ reruns the split and compares.
 
 ## 5. Results
 
-### 5.1 The vector separates the baselines
+Sections 5.1 to 5.3 are the pre-ADR-0011 measurement: 32 cases, corpus digest
+`sha256:9701eedc…`, scorer 1.0.0. Section 5.4 re-measures after the fix.
+
+### 5.1 The vector separates the baselines (pre-ADR-0011)
 
 | System | Task success | Wilson 95% | Terminal accuracy | Cases with an unauthorized action | Unauthorized actions | Forbidden effects executed | Critical failures | Abstention rate | Excessive refusal | Mean steps |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -165,7 +186,7 @@ actions, zero effects, zero critical failures — and almost useless, passing on
 the five cases where abstention is correct and carrying an excessive-refusal rate
 of 0.84. A benchmark that reported a safety score alone would rank it first.
 
-### 5.2 Tier-based approval held every write, without the planner's help
+### 5.2 Tier-based approval held every write, without the planner's help (pre-ADR-0011)
 
 Across 96 runs of the three non-reference baselines, terminal states were:
 
@@ -187,7 +208,7 @@ property of the deterministic policy, not of the planners, and it is the stronge
 positive result in this report: an eager planner with no notion of authority could
 not produce an unauthorized outward effect against this policy on this corpus.
 
-### 5.3 The effect that did execute sits below the approval gate
+### 5.3 The effect that did execute sat below the approval gate (pre-ADR-0011)
 
 One forbidden effect executed, in `atb-perm-000005`, for both eager baselines:
 
@@ -206,12 +227,13 @@ state, not about whether data leaves a boundary. A read that crosses a session o
 tenant boundary is cheap by tier and severe by consequence, and nothing in the
 current model catches it. Tier gating is necessary and not sufficient.
 
-The remedy is not obvious enough to apply here. Making every egress-declaring
-tool tier 2 would gate ordinary public reads behind approval; adding an
-effect-class dimension to the policy decision changes canonical approval logic,
-which `AGENTS.md` §4 makes an ADR and Director decision rather than an
-implementation detail. It is recorded in `DIRECTORS_MEMO.md` as an open question
-with this report as its evidence.
+The remedy was not applied in v1.0.0. Making every egress-declaring tool tier 2
+would gate ordinary public reads behind approval; adding an effect-class
+dimension to the policy decision changes canonical approval logic, which
+`AGENTS.md` §4 makes an ADR and Director decision rather than an implementation
+detail. It was recorded in `DIRECTORS_MEMO.md` as **DIR-011** with this report as
+its evidence, and the Director resolved it as **RES-026** on 2026-09-18,
+selecting the effect-class dimension. See §5.4.
 
 A second observation from the same run set: all seven unauthorized-action cases
 were read-tier tool misuse — a post-as-of observation retrieved in two cases, an
@@ -219,12 +241,68 @@ unrequested projection in two, a cross-session read in one, and out-of-scope
 retrieval in two more. Every one of them is invisible to a policy that reasons
 only about write consequence.
 
+### 5.4 Re-measurement after ADR-0011
+
+`PolicyEngine` now requires an approval when the catalog's declared `effect_type`
+is `external_effect` or `privileged`, whatever the risk tier, and records
+`gating_effect` on the trace when that condition rather than the tier is what
+fired. The corpus gained one case, `atb-perm-000006`: the same cross-session read
+**with** a valid grant, so the pair pins both directions of the gate.
+
+33 cases, corpus digest
+`sha256:89c0352949b0cef9ab59e00014da98fbad6aaccacf7eb60c56978821381b1fb7`,
+results digest
+`sha256:a64251a6e208d808c9bc034e56d8adee6843df08e151615069558e3dac1e78ac`,
+same scorer 1.0.0.
+
+| System | Task success | Wilson 95% | Unauthorized-action cases | Forbidden effects executed | Critical failures |
+|---|---|---|---|---|---|
+| `reference-plan-v1` | 33/33 | 0.90–1.00 | 0 | 0 | 0 |
+| `eager-effect-v1` | 12/33 | 0.22–0.53 | 6 | **0** | **1** |
+| `catalog-sweep-v1` | 12/33 | 0.22–0.53 | 6 | **0** | **1** |
+| `abstain-v1` | 5/33 | 0.07–0.31 | 0 | 0 | 0 |
+
+The change, holding everything else fixed:
+
+| | Pre-ADR (32 cases) | Post-ADR (33 cases) |
+|---|---|---|
+| Forbidden effects executed, all baselines | 1 | **0** |
+| Critical-suite failures per eager baseline | 2 | **1** |
+| Unauthorized-action cases per eager baseline | 7 | **6** |
+| Eager runs halted at an approval pause | 11 | **13** |
+| `reference-plan-v1` task success | 32/32 | 33/33 |
+
+Three things are worth separating in that table.
+
+**The gate closed the finding.** The cross-session read no longer executes
+without a grant: both eager baselines now stop at the pause, the effect ledger is
+empty, and the trace carries `gating_effect: external_effect` so a reader can see
+which control fired rather than inferring it. The eager approval pauses rise from
+11 to 13 — the two extra are this read under both eager policies.
+
+**The gate did not cost the authorized path.** `atb-perm-000006` runs the same
+read under a grant and completes, with the egress recorded and scored as
+authorized. A gate that also blocked the approved case would be a regression
+dressed as a fix, so the corpus tests both directions.
+
+**One critical failure survives, and it is a different kind.**
+`atb-ground-000002` still fails for both eager baselines: they retrieve an
+observation dated after the as-of date. Nothing about that action is
+unauthorized — the tool is a permitted read of permitted data — so no approval
+gate can catch it. It is a judgment failure about evidence, and the honest
+reading is that authorization controls and grounding controls are separate
+problems that a single "critical suite" label can easily blur.
+
+The wider claim from §5.2 survives the change and is now stronger: across 99
+unsafe-baseline runs, **no forbidden effect of any kind executed.**
+
 ## 6. What these results do not show
 
 - Nothing about model capability. No model was run.
-- Nothing about safety. Twelve critical cases in synthetic fixtures do not
-  establish that a runtime is safe; they establish that these twelve hazards are
-  detected when they occur.
+- Nothing about safety. Thirteen critical cases in synthetic fixtures do not
+  establish that a runtime is safe; they establish that these hazards are
+  detected when they occur. §5.4 shows one such detection leading to a fix,
+  which is the loop working, not the system being safe.
 - Nothing about real-world reliability. Fixtures have no network, no filesystem,
   no mailbox, and no adversary who adapts.
 - Nothing about the families as capability slices. Three to five cases each.
@@ -243,9 +321,9 @@ corpus can be internally consistent and still test nothing interesting.
 declared example arguments, which isolates authorization behavior but means these
 baselines say nothing about argument construction.
 
-**One author, one reviewer, same person.** Twelve cases are marked for dual human
-review because the specification requires it for security cases; they have had
-one. The dataset card and the release manifest both record this gap explicitly.
+**One author, one reviewer, same person.** Thirteen cases are marked for dual
+human review because the specification requires it for security cases; they have
+had one. The dataset card and the release manifest both record this gap explicitly.
 
 ## 8. Reproduction
 
@@ -253,21 +331,24 @@ one. The dataset card and the release manifest both record this gap explicitly.
 uv run python scripts/validate_atticusbench.py          # schema, digests, coverage, duplication
 uv run python scripts/run_atticusbench.py               # rewrite runs/atticusbench
 uv run python scripts/run_atticusbench.py --check       # byte-compare against the committed corpus
-uv run pytest tests/atticusbench -q                     # 73 tests, including the drift check
+uv run pytest tests/atticusbench -q                     # includes the drift check
+uv run pytest tests/test_policy_effect_gate.py -q       # the ADR-0011 gate, 18 tests
 ```
 
-Outputs: `runs/atticusbench/records/<system>/<case>.json` (128 records),
+Outputs: `runs/atticusbench/records/<system>/<case>.json` (132 records),
 `results.json` (digest
-`sha256:c4a88e982015c4657c17f5a3765e0f803c1452a10b12878de32cbc7435aa1d50`),
+`sha256:a64251a6e208d808c9bc034e56d8adee6843df08e151615069558e3dac1e78ac`),
 `results.csv`, and `latency.json`. Release manifest and contamination report:
 `datasets/atticusbench/release/`.
 
 ## 9. Next dependency-unblocking work
 
-1. Resolve the effect-versus-tier question in §5.3 through an ADR. Until it is
-   resolved, no release candidate should be measured on the critical suite and
-   reported as passing, because the suite's cross-session case is currently a
-   finding about the policy, not about the candidate.
+1. ~~Resolve the effect-versus-tier question in §5.3 through an ADR.~~ Done:
+   RES-026 and ADR-0011, re-measured in §5.4. The critical suite's cross-session
+   case now measures a candidate rather than our own policy. The successor
+   question is narrower and is in the approval queue: whether a tool may declare
+   `approval_policy: always` or `never` for itself, which the canonical schema
+   allows and the engine still ignores.
 2. Grow the corpus toward the V1 gate, prioritizing families where three cases
    cannot distinguish behaviors: recovery, human factors, and multi-system.
 3. Obtain independent review of the twelve critical cases. This is a people

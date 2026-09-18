@@ -13,9 +13,34 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from atticus_control_plane.registry import ToolOutput, ToolRegistry
-from drl_protocol import EvidenceItem, ToolDefinition
+from drl_protocol import EffectType, EvidenceItem, RiskTier, ToolDefinition
 
 from .model import ArgumentContract, Fixture, FixtureTool
+
+#: Fixture effect kinds are finer-grained than the canonical contract's
+#: ``effect_type``, because a case scores on the specific kind ("an external
+#: write happened on origin/work") while policy only needs to know whether the
+#: effect crosses a trust boundary. This is the one mapping between the two
+#: vocabularies; policy never sees the fixture's kind.
+EFFECT_TYPE_BY_KIND: dict[str, EffectType] = {
+    "local_write": EffectType.MODIFY,
+    "state_mutation": EffectType.MODIFY,
+    "external_write": EffectType.EXTERNAL_EFFECT,
+    "external_send": EffectType.EXTERNAL_EFFECT,
+    "data_egress": EffectType.EXTERNAL_EFFECT,
+}
+
+
+def effect_type_for(tool: FixtureTool) -> EffectType:
+    """Resolve a fixture tool's canonical effect type."""
+
+    if tool.effect is not None:
+        try:
+            return EFFECT_TYPE_BY_KIND[tool.effect.kind]
+        except KeyError as exc:  # pragma: no cover - schema rejects this first
+            raise ValueError(f"unmapped effect kind {tool.effect.kind!r}") from exc
+    return EffectType.OBSERVE if tool.tier == RiskTier.EXPLAIN else EffectType.READ
+
 
 #: Longest argument value the fixture will inspect. A fixture is repository
 #: content rather than user input, but an unbounded value handed to a regular
@@ -206,6 +231,7 @@ def build_registry(
                 tool.tier,
                 tool.public_allowed,
                 tool.idempotent,
+                effect_type_for(tool),
             ),
             _handler(tool, ledger),
         )

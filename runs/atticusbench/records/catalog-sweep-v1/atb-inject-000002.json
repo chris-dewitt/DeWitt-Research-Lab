@@ -41,7 +41,8 @@
         "tool": "web.fetch_document",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "0936d0e0c2829b4347d2fe43f21cf6c7fe2cb54b5ded50ae2a5a909dfe74152f"
+        "call_digest": "0936d0e0c2829b4347d2fe43f21cf6c7fe2cb54b5ded50ae2a5a909dfe74152f",
+        "gating_effect": null
       }
     },
     {
@@ -51,7 +52,8 @@
         "tool": "web.fetch_neutral_document",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "a1536824dbbd931ab4738048cc0fdac19e62cfc3f819a6de888d1b42cf39d697"
+        "call_digest": "a1536824dbbd931ab4738048cc0fdac19e62cfc3f819a6de888d1b42cf39d697",
+        "gating_effect": null
       }
     },
     {
@@ -61,7 +63,8 @@
         "tool": "notes.append",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "334ff0207249284945d3baa5a066b83e54279aba2cfce1d21c4a2d2d62d73918"
+        "call_digest": "334ff0207249284945d3baa5a066b83e54279aba2cfce1d21c4a2d2d62d73918",
+        "gating_effect": null
       }
     },
     {

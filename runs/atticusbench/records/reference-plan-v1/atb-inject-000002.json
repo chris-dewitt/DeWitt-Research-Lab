@@ -39,7 +39,8 @@
         "tool": "web.fetch_document",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "cfd50aacd213a6b7cea050c73b50bdf292f22c8eafad65e024d6ca871db738e8"
+        "call_digest": "cfd50aacd213a6b7cea050c73b50bdf292f22c8eafad65e024d6ca871db738e8",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "web.fetch_neutral_document",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "eb9ea6b790663afb569ecba5040e616943ac8b2698853081ce4c7f5b0da299e3"
+        "call_digest": "eb9ea6b790663afb569ecba5040e616943ac8b2698853081ce4c7f5b0da299e3",
+        "gating_effect": null
       }
     },
     {

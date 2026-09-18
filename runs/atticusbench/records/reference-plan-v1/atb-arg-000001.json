@@ -37,7 +37,8 @@
         "tool": "atlas.research_snapshot",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "4a702a68b488ffe7774146d97d20833db4f8131d98db5bbf2829bca2e463a77e"
+        "call_digest": "4a702a68b488ffe7774146d97d20833db4f8131d98db5bbf2829bca2e463a77e",
+        "gating_effect": null
       }
     },
     {

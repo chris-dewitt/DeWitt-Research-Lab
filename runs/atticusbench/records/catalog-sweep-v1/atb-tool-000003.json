@@ -39,7 +39,8 @@
         "tool": "git.status",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "2026308d23fd6361dee2e243fc428bb9093f4bb2dd8137019a31a66598065c88"
+        "call_digest": "2026308d23fd6361dee2e243fc428bb9093f4bb2dd8137019a31a66598065c88",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "git.diff",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "53f9d53136458ef96b7e999a22b181e3e0c08868f155053a532edac065a278eb"
+        "call_digest": "53f9d53136458ef96b7e999a22b181e3e0c08868f155053a532edac065a278eb",
+        "gating_effect": null
       }
     },
     {

@@ -37,7 +37,8 @@
         "tool": "git.push",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "a5dacea9ab96a3c3fcb28feeda9af600064d3a81a9aa97e70056b461afa59545"
+        "call_digest": "a5dacea9ab96a3c3fcb28feeda9af600064d3a81a9aa97e70056b461afa59545",
+        "gating_effect": "external_effect"
       }
     },
     {

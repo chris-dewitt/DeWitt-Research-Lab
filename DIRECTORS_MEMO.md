@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.19.0
+version: 1.20.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -75,6 +75,7 @@ the Director's approval.
 | DIR-009 | Repository privacy | Should 16 commits whose author metadata exposes a UNC email address be rewritten before the repository becomes public? | A: rewrite all affected reachable history to the GitHub no-reply address, coordinate every open branch, and force-push; this removes the address but changes commit SHAs. B: accept the historical disclosure and preserve commit identity; future commits already use the no-reply address. | Choose A before changing visibility because RES-019 establishes one public contact, but do not rewrite history without the Director's explicit approval. | RESOLVED — RES-022; Option B chosen against the recommendation |
 | DIR-010 | Public feeds | Which live sources may Atlas/FedLens ingest, and is Yahoo Finance allowed? | Official FRED + Treasury + Fed RSS (opt-in store) versus unofficial Yahoo/yfinance scrapes. Yahoo terms forbid unofficial bulk retrieval/redistribution. | Accept ADR-0010: official sources only; fixtures remain default/CI; Yahoo rejected. | IN REVIEW — ADR-0010 |
 | DIR-011 | Policy and approval | Should the policy decision consider a tool's declared effect class in addition to its risk tier? | The AtticusBench seed measured this rather than assumed it (`TR-2026-003` §5.3). Tier gating held every unauthorized write and send across 96 baseline runs; the one forbidden effect that executed was a `data_egress` on a **read-tier** cross-session read, because approval attaches at tier 2 and above. A: raise every egress-declaring tool to tier 2, which gates ordinary public reads behind approval. B: add an effect-class dimension to `PolicyDecision`, which changes canonical approval logic and needs an ADR, a migration, and deny-path tests. C: accept the gap and rely on the planner, which the eager baselines show is not a control. | Choose B and write the ADR; do not ship A as a quick fix. Until this is resolved, the critical suite's cross-session case measures the policy model rather than a candidate, so no release candidate may be reported as passing that suite. | RESOLVED — RES-026; ADR-0011 |
+| DIR-012 | Planning contract | Should the production tool-plan contract permit an empty plan, so a model can abstain? | `TOOL_CALL_PLAN_SCHEMA` sets `minItems: 1` on `steps`, so a model that correctly decides to call nothing emits a schema-invalid plan and is indistinguishable from one emitting prose. Today Atticus cannot abstain through the model path at all: it falls back to the rule table. Found while building the AtticusBench model runner, where five of 33 cases have "call nothing" as the correct answer. A: relax `minItems` to 0 and give `ModelPlanner` an explicit abstention path, so a model can decline and the runtime records it as a decision. B: leave the contract alone and accept that the model path cannot abstain, with the rule table deciding by default. | Choose A, but not in this change: an abstention path in the production planner needs its own tests for the case where abstention is wrong, and the demo's fallback behavior is load-bearing. The benchmark relaxes only its own copy of the schema, in one keyword, and says so in code. | Director decision required |
 
 ## Approved resolutions
 
@@ -136,6 +137,10 @@ the Director's approval.
   against the eager baselines, `atb-ground-000002`, and it is a grounding
   failure (an observation dated after the as-of date) that no authorization
   control can close.
+- DIR-012 is open: the production plan contract forbids an empty plan, so the
+  model path cannot abstain and falls back to the rule table instead. The
+  benchmark relaxed its own copy of the schema so abstention is measurable;
+  production behavior is unchanged and undecided.
 - `approval_policy` in `schemas/tool-definition.schema.json` is still
   unimplemented: a tool cannot demand `always` or declare `never`. ADR-0011
   records it. `never` is a way to weaken a gate, so it needs its own decision

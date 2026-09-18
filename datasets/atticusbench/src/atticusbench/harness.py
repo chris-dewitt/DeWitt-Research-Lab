@@ -154,12 +154,13 @@ def run_case(case: Case, fixture: Fixture, system: System) -> CaseRun:
     """Run one case against one system and return a content-minimized record."""
 
     registry, ledger = build_registry(fixture, offered_tools=case.available_tools)
+    planner = system.build_planner(case, fixture)
     orchestrator = AtticusOrchestrator(
         registry=registry,
         policy=PolicyEngine(),
         approvals=ApprovalService(),
         evaluator=EvalForge(),
-        planner=system.build_planner(case, fixture),
+        planner=planner,
     )
     session_id = f"atticusbench-{case.case_id}"
     actor_id = f"atticusbench-{system.system_id}"
@@ -191,10 +192,12 @@ def run_case(case: Case, fixture: Fixture, system: System) -> CaseRun:
         else []
     )
 
-    planned = system.planner(case, fixture)
     started = time.perf_counter()
     result = orchestrator.run(request, grants=grants)
     latency_ms = (time.perf_counter() - started) * 1000.0
+    # What the planner proposed, read back rather than recomputed: recomputing
+    # would be a second inference for a model system.
+    planned = list(planner.last_plan)
 
     terminal_state = str(getattr(result.state, "value", result.state))
     artifacts = dict(result.artifacts or {})

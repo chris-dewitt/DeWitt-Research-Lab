@@ -20,6 +20,7 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 | — | DIR-009 | Rewrite Git history or accept institutional author-address exposure | RESOLVED — RES-022 | Public repository visibility | Closed: explicit risk acceptance recorded; no rewrite authorized |
 | — | ADR-0011 / DIR-011 | Approval gate on declared effect as well as risk tier | RESOLVED — RES-026 | AtticusBench critical suite meaning anything about a candidate | Closed: option B implemented with deny-path and abuse-case tests; before/after numbers in `TR-2026-003` §5.3 |
 | P2 | approval_policy | Should a tool be able to demand `always` or declare `never` approval? | Open | Per-tool approval overrides | ADR-0011 records the gap; `never` weakens a gate, so it needs its own ADR |
+| P2 | DIR-012 | Should the production plan contract permit an empty plan so a model can abstain? | Director decision | Model-path abstention | Relax `minItems` and add an explicit abstention path with tests for wrongful abstention |
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |

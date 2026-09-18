@@ -1,4 +1,4 @@
-.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site belief-site belief-recovery recovery-sweep recovery-sweep-check atticusbench atticusbench-check atticusbench-validate atticusbench-manifest serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
+.PHONY: bootstrap doctor demo local-models-check feeds-refresh bakeoff bakeoff-json replay-site belief-site belief-recovery recovery-sweep recovery-sweep-check atticusbench atticusbench-check atticusbench-validate atticusbench-manifest atticusbench-models atticusbench-models-stub serve docs-check program-check open-check domain-check schema-check public-check public-release-check verify format lint typecheck test security build manifest dev clean
 
 bootstrap:
 	uv sync --all-packages --locked
@@ -49,6 +49,12 @@ atticusbench-validate:
 
 atticusbench-manifest:
 	uv run python scripts/validate_atticusbench.py --write-manifest
+
+atticusbench-models:
+	uv run python scripts/run_atticusbench_models.py
+
+atticusbench-models-stub:
+	uv run python scripts/run_atticusbench_models.py --stub --no-write
 
 bakeoff-json:
 	uv run python scripts/run_bakeoff.py --json

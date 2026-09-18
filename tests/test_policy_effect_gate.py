@@ -158,9 +158,7 @@ def test_public_session_denial_precedes_the_effect_gate(policy: PolicyEngine) ->
 
 
 def test_unregistered_tool_is_denied_whatever_it_claims(policy: PolicyEngine) -> None:
-    decision = policy.decide(
-        request=_request(), call=_call(RiskTier.READ_COMPUTE), definition=None
-    )
+    decision = policy.decide(request=_request(), call=_call(RiskTier.READ_COMPUTE), definition=None)
     assert decision.allowed is False
     assert "not registered" in decision.reason
 

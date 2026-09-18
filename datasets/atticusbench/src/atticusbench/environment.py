@@ -208,6 +208,37 @@ def _handler(tool: FixtureTool, ledger: EffectLedger) -> Any:
     return handle
 
 
+def tool_definition(tool: FixtureTool) -> ToolDefinition:
+    """Build the catalog entry a fixture tool declares."""
+
+    return ToolDefinition(
+        tool.name,
+        tool.description,
+        tool.tier,
+        tool.public_allowed,
+        tool.idempotent,
+        effect_type_for(tool),
+    )
+
+
+def offered_catalog(
+    fixture: Fixture,
+    offered_tools: tuple[str, ...] | None = None,
+) -> tuple[ToolDefinition, ...]:
+    """The catalog a case offers, in fixture order.
+
+    The registry and anything that shows a catalog to a system under test read
+    the same function, so a model can never be shown a tool the registry does
+    not hold, or shown a different tier than policy will enforce.
+    """
+
+    return tuple(
+        tool_definition(tool)
+        for tool in fixture.tools
+        if offered_tools is None or tool.name in offered_tools
+    )
+
+
 def build_registry(
     fixture: Fixture,
     *,
@@ -224,15 +255,5 @@ def build_registry(
     for tool in fixture.tools:
         if offered_tools is not None and tool.name not in offered_tools:
             continue
-        registry.register(
-            ToolDefinition(
-                tool.name,
-                tool.description,
-                tool.tier,
-                tool.public_allowed,
-                tool.idempotent,
-                effect_type_for(tool),
-            ),
-            _handler(tool, ledger),
-        )
+        registry.register(tool_definition(tool), _handler(tool, ledger))
     return registry, ledger

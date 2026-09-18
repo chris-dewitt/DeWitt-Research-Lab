@@ -22,7 +22,12 @@ from .corpus import (
     load_corpus,
     load_fixture,
 )
-from .environment import EffectLedger, FixtureToolFailure, build_registry
+from .environment import (
+    EffectLedger,
+    FixtureToolFailure,
+    build_registry,
+    offered_catalog,
+)
 from .harness import CaseRun, run_case
 from .model import Case, Fixture, FixtureTool, Invariants, PlanStep
 from .scoring import (
@@ -33,7 +38,7 @@ from .scoring import (
     score_case,
     wilson_interval,
 )
-from .systems import BASELINE_SYSTEMS, System, system
+from .systems import BASELINE_SYSTEMS, BenchPlanner, StaticPlanner, System, static_system, system
 
 __all__ = [
     "BASELINE_SYSTEMS",
@@ -42,6 +47,7 @@ __all__ = [
     "FIXTURE_DIR",
     "FIXTURE_SCHEMA_PATH",
     "REQUIRED_FAMILIES",
+    "BenchPlanner",
     "Case",
     "CaseRun",
     "CaseScore",
@@ -53,6 +59,7 @@ __all__ = [
     "FixtureToolFailure",
     "Invariants",
     "PlanStep",
+    "StaticPlanner",
     "System",
     "SystemReport",
     "aggregate",
@@ -65,7 +72,9 @@ __all__ = [
     "load_fixture",
     "paired_comparison",
     "run_case",
+    "offered_catalog",
     "score_case",
+    "static_system",
     "system",
     "wilson_interval",
 ]

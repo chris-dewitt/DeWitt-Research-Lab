@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-023
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.1.0
+version: 1.2.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -22,8 +22,11 @@ editor for `www.dewitt-labs.com`, then Publish.
   `Research | Chris DeWitt`.
 - Research + Projects status enrichment (BODY_END custom embed
   `Research/Projects status enrichment`, id `0505c503-cd89-425e-8b35-da977b7cc2b3`,
-  revision `2`): hides original thin Wix cards and shows one maturity/status
-  panel per page (TR detail + null result; monorepo systems; SIGKILL/Dead Drift).
+  revision `3`): hides original thin Wix cards and shows one maturity/status
+  panel per page; leads with open-weight / safe-use framing.
+- Home open-weight thesis (BODY_END embed `Open-weight AI thesis (home)`,
+  id `73d6abb6-e6c0-4c03-9103-3bd38c38b7cd`): prefer open-weight local models
+  over opaque vendor APIs; concrete safe-use definition.
 
 Nav already uses `/work` for Projects. Canonical public slug remains `/work`
 with `/projects` as a redirect alias.
@@ -31,7 +34,9 @@ with `/projects` as a redirect alias.
 ## 1. Home hero (#3, #8)
 
 Keep the thesis line. Add the name above it. One short body paragraph so CTAs
-appear earlier on mobile.
+appear earlier on mobile. Also paste the open-weight position block from
+`SITE_COPY.md` (Open-weight over opaque company APIs) permanently so it survives
+without the home thesis embed.
 
 ```text
 Chris DeWitt
@@ -51,6 +56,24 @@ work — source, tests, failures, and runs you can replay.
 [ Read the research → /research ]
 [ Watch a recorded run → https://chris-dewitt.github.io/DeWitt-Research-Lab/ ]
 [ Browse the source → https://github.com/chris-dewitt/DeWitt-Research-Lab ]
+```
+
+### Open-weight position (paste on Home)
+
+```text
+Open-weight over opaque company APIs
+
+I prefer open-weight models I can run on hardware I own over closed, hosted
+systems from large AI vendors. Weights, licenses, and evaluation evidence should
+be inspectable. The software around them is open source.
+
+Safe use, concretely: deterministic policy and human approval bound what a model
+may do; an evidence gate can refuse to select a model at all; runs stay local by
+default so prompts and tools are not shipped to a third-party cloud; failures are
+published rather than smoothed over.
+
+No base model has been selected yet. That refusal is deliberate — preference is
+not evidence.
 ```
 
 ## 2. GitHub URL (#4)

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.4.0
+version: 3.5.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -14,13 +14,13 @@ Paste-ready copy for manual Wix use where the editor is required. SEO tags and
 URL redirects may be applied through the Wix SEO APIs when authenticated; page
 body copy still needs the editor.
 
-Version 3.4.0 records the 2026-09-19 live state: fabricated claims and
+Version 3.5.0 records the 2026-09-19 live state: fabricated claims and
 institutional chrome from earlier audits are gone; Projects lives at `/work`
 with `/projects` redirected there. Home/About SEO uses a light academic signal
-(no MADS/UNC in the meta description). Research and Projects now show maturity
-and status detail via a BODY_END custom embed (`Research/Projects status
-enrichment`, id `0505c503-…`). Remaining editor work is in
-`WIX_REMAINING_EDITOR_FIXES.md`.
+(no MADS/UNC in the meta description). Research and Projects show maturity
+and status via a BODY_END custom embed (originals hidden). Home leads with an
+**open-weight over opaque company APIs** position and concrete safe-use
+framing. Remaining editor work is in `WIX_REMAINING_EDITOR_FIXES.md`.
 
 ## Page tree
 
@@ -47,6 +47,9 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
   prototype maturity, TR-2026-001/002 limitations and links, TR-2026-002 null
   result, open model-selection blockers, monorepo systems (Atticus/Atlas/
   FedLens/BalanceLab/EvalForge), SIGKILL and Dead Drift status
+- Home open-weight thesis panel (custom embed `73d6abb6-…`): prefer open-weight
+  local models over opaque vendor APIs; safe use = policy, approval, evidence
+  gates, local runs, published failures
 
 **Still editor-only:** see `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`.
 
@@ -90,6 +93,29 @@ which require a person to agree before anything happens.
 I am documenting the failures as well as the results. This portfolio is one
 person's trajectory through these systems, not a laboratory and not an
 organization.
+```
+
+## Open-weight position (homepage)
+
+Lead with this before or beside "Why complex systems?". Use **open-weight** for
+models and **open source** for software. Do not claim released Atticus weights.
+
+```text
+Open-weight over opaque company APIs
+
+I prefer open-weight models I can run on hardware I own over closed, hosted
+systems from large AI vendors. Weights, licenses, and evaluation evidence should
+be inspectable. The software around them is open source.
+
+Safe use, concretely: deterministic policy and human approval bound what a model
+may do; an evidence gate can refuse to select a model at all; runs stay local by
+default so prompts and tools are not shipped to a third-party cloud; failures are
+published rather than smoothed over.
+
+No base model has been selected yet. That refusal is deliberate — preference is
+not evidence.
+
+[ Read the research ]  [ See the projects ]  [ Browse the source ]
 ```
 
 ## Open questions

@@ -117,9 +117,13 @@ class TestPageTreeFollowsRES016:
     def test_hero_no_longer_requires_the_superseded_slogan(self) -> None:
         """RES-016: lead with the person, not a lab name or a slogan."""
         joined = " ".join(audit.REQUIRED_HOME_TEXT)
-        assert "Christopher Noxon DeWitt" in joined
+        assert "DeWitt" in joined
+        assert "Applied Data Science" in joined
         assert "Workshop" not in joined
         assert "Intelligence for Good" not in joined
+
+    def test_projects_section_accepts_live_work_slug(self) -> None:
+        assert "work" in audit.EXPECTED_TOP_SECTIONS["Projects"]
 
     def test_institutional_link_requirements_are_dropped(self) -> None:
         assert set(audit.REQUIRED_SITE_LINKS) == {"github", "privacy", "contact"}

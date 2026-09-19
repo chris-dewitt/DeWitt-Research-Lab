@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.33.0
+version: 4.35.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-27
+last_updated: 2026-09-19
 ---
 
 
@@ -22,7 +22,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   RES-024, which supersedes the RES-018 date clause and retires the artifact
   mirror. DIR-009 was resolved by RES-022. The Director changes visibility in
   their own GitHub account. CFI DIR-008 Option A remains subject to independent
-  G1 review. Wix editor implementation remains Director-operated.
+  G1 review. Wix editor body-copy remains Director-operated; SEO redirects/tags
+  are API-reachable when the Wix MCP is authenticated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-002 (GCP deploy), DIR-004 (model bake-off; scaffold only —
   no winner), and independent CFI G1 review. DIR-009 is resolved by RES-022.
@@ -34,6 +35,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
+| Wix portfolio fixes | Cursor cloud agent | `cursor/website-portfolio-fixes-f70f` | 2026-09-19 | IN PROGRESS | PR #74 |
 | 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
@@ -823,3 +825,51 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   `validate_domain_wix`, `validate_public_repository`, `validate_atticusbench`,
   and both `--check` drift gates pass.
 - Handoff: `agents/handoffs/2026-09-18-drl-038-039-effect-gate-and-model-runs.md`
+
+## 2026-09-19 — Wix portfolio redirect + SEO B + docs sync
+
+- Branch: `cursor/website-portfolio-fixes-f70f`
+- Live Wix: `/projects` → `/work`; `/projects-1` → `/work`; SEO option B on
+  Home/About; Research SEO title `Research | Chris DeWitt`.
+- Repo: `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md` paste pack for
+  editor-only items #3–#9; SITE_COPY / build plan / checklist / auditor synced.
+- Tests: `tests/test_wix_auditor.py` — 33 passed (manual runner; pytest not
+  installed in this environment).
+- Next: Director applies `WIX_REMAINING_EDITOR_FIXES.md` in the Wix editor and
+  Publishes. Handoff: `agents/handoffs/2026-09-19-wix-portfolio-fixes.md`.
+
+## 2026-09-19 — SEO meta softened (no MADS/UNC)
+
+- Director chose SEO option 3 over option B for Home/About meta descriptions.
+- Live description: *Forecast engineer and graduate student. Independent work on
+  complex systems, agents, and evaluation — aiming toward further study in
+  computer science.*
+- Docs/handoff updated on `cursor/website-portfolio-fixes-f70f`.
+
+## 2026-09-19 — Research/Projects status enrichment
+
+- Live Wix BODY_END embed `Research/Projects status enrichment`
+  (`0505c503-cd89-425e-8b35-da977b7cc2b3`): `/research` gains prototype maturity,
+  TR-2026-001/002 limitations + report links, TR-2026-002 null result, open
+  model-selection blockers; `/work` gains monorepo clarification, Atticus/Atlas/
+  FedLens/BalanceLab/EvalForge prototype list, SIGKILL and Dead Drift status.
+- Source truth: `SITE_COPY.md`, `CURRENT_STATE_BASELINE.md`,
+  `OPEN_SOURCE_MATURITY_MODEL.md`.
+- Verified in browser; screenshots under `/opt/cursor/artifacts/screenshots/`.
+- Docs: `SITE_COPY.md` 3.4.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.1.0.
+- Next: Director may paste the same facts permanently in Studio and disable the
+  embed; hero/GitHub/footer/privacy remain editor-only.
+
+## 2026-09-19 — Deduplicate Research/Projects cards
+
+- Enrichment embed revision `2` hides original Wix cards on `/research` and
+  `/work` so each page shows a single status panel (not originals + enrichment).
+- Verified: `dedupe-research.webp`, `dedupe-work.webp`.
+
+## 2026-09-19 — Open-weight / safe-use thesis on live site
+
+- Home BODY_END embed `Open-weight AI thesis (home)` (`73d6abb6-…`, rev 2):
+  prefer open-weight local models over opaque vendor APIs; concrete safe-use
+  (policy, approval, evidence gate, local runs, published failures).
+- Research/Projects enrichment rev `3`: intros + research thesis card aligned.
+- Docs: `SITE_COPY.md` 3.5.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.2.0.

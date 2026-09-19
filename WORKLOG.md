@@ -859,3 +859,9 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Docs: `SITE_COPY.md` 3.4.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.1.0.
 - Next: Director may paste the same facts permanently in Studio and disable the
   embed; hero/GitHub/footer/privacy remain editor-only.
+
+## 2026-09-19 — Deduplicate Research/Projects cards
+
+- Enrichment embed revision `2` hides original Wix cards on `/research` and
+  `/work` so each page shows a single status panel (not originals + enrichment).
+- Verified: `dedupe-research.webp`, `dedupe-work.webp`.

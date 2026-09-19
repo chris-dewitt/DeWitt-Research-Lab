@@ -21,9 +21,9 @@ editor for `www.dewitt-labs.com`, then Publish.
   — aiming toward further study in computer science.* Research title set to
   `Research | Chris DeWitt`.
 - Research + Projects status enrichment (BODY_END custom embed
-  `Research/Projects status enrichment`, id `0505c503-cd89-425e-8b35-da977b7cc2b3`):
-  maturity tags, TR report detail and links, TR-2026-002 null result, monorepo
-  system list, SIGKILL/Dead Drift status.
+  `Research/Projects status enrichment`, id `0505c503-cd89-425e-8b35-da977b7cc2b3`,
+  revision `2`): hides original thin Wix cards and shows one maturity/status
+  panel per page (TR detail + null result; monorepo systems; SIGKILL/Dead Drift).
 
 Nav already uses `/work` for Projects. Canonical public slug remains `/work`
 with `/projects` as a redirect alias.

@@ -26,7 +26,8 @@ drawn from `CURRENT_STATE_BASELINE.md`, `OPEN_SOURCE_MATURITY_MODEL.md`, and
 ## 3. Files and interfaces changed
 
 - Live Wix: BODY_END custom embed `Research/Projects status enrichment`
-  (id `0505c503-cd89-425e-8b35-da977b7cc2b3`, revision `1`).
+  (id `0505c503-cd89-425e-8b35-da977b7cc2b3`, revision `2`). Revision 2 hides
+  original thin Studio cards so `/research` and `/work` are not doubled.
 - Repo: `docs/08-web-brand/SITE_COPY.md` (3.4.0),
   `WIX_REMAINING_EDITOR_FIXES.md` (1.1.0), `WORKLOG.md`, `DIRECTORS_MEMO.md`,
   this handoff.

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.5.0
+version: 3.6.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -14,13 +14,15 @@ Paste-ready copy for manual Wix use where the editor is required. SEO tags and
 URL redirects may be applied through the Wix SEO APIs when authenticated; page
 body copy still needs the editor.
 
-Version 3.5.0 records the 2026-09-19 live state: fabricated claims and
+Version 3.6.0 records the 2026-09-19 live state: fabricated claims and
 institutional chrome from earlier audits are gone; Projects lives at `/work`
 with `/projects` redirected there. Home/About SEO uses a light academic signal
-(no MADS/UNC in the meta description). Research and Projects show maturity
-and status via a BODY_END custom embed (originals hidden). Home leads with an
-**open-weight over opaque company APIs** position and concrete safe-use
-framing. Remaining editor work is in `WIX_REMAINING_EDITOR_FIXES.md`.
+(no MADS/UNC in the meta description). A BODY_END softener embed also strips
+Chapel Hill / MADS phrasing from visible Home/About body (preserves UNC
+Charlotte). Research and Projects show maturity and status via a BODY_END
+custom embed (originals hidden). Home leads with an **open-weight over opaque
+company APIs** position and concrete safe-use framing. Remaining editor work
+is in `WIX_REMAINING_EDITOR_FIXES.md`.
 
 ## Page tree
 
@@ -41,7 +43,11 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
 - Home/About meta descriptions (Director choice, 2026-09-19): *Forecast engineer
   and graduate student. Independent work on complex systems, agents, and
   evaluation — aiming toward further study in computer science.* (no MADS/UNC
-  in meta; page body may still name the program)
+  in meta)
+- Softener embed `8d0df783-…` revision `9` (TreeWalker text nodes only):
+  Home/About visible body softens Chapel Hill / MADS lines; UNC Charlotte
+  kept; punctuation debris cleaned. Do not reintroduce container
+  `textContent` rewrites — that flattened the layout (rev 5 incident).
 - Research SEO title is `Research | Chris DeWitt`
 - Research `/research` and Projects `/work` status panels (custom embed):
   prototype maturity, TR-2026-001/002 limitations and links, TR-2026-002 null
@@ -50,6 +56,7 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
 - Home open-weight thesis panel (custom embed `73d6abb6-…`): prefer open-weight
   local models over opaque vendor APIs; safe use = policy, approval, evidence
   gates, local runs, published failures
+- Homepage cleanup embed `4ebc7135-…`: collapses leftover section min-heights
 
 **Still editor-only:** see `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`.
 

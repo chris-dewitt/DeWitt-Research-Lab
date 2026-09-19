@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.21.0
+version: 1.22.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -130,11 +130,13 @@ the Director's approval.
   (`www.dewitt-labs.com`) is the academic portfolio and links that URL from the
   homepage (*Watch a recorded run*). As of 2026-09-19: `/projects` redirects to
   `/work`; Home/About SEO meta uses a light academic signal without naming
-  MADS/UNC (page body may still); `/research` and `/work` show maturity/status
-  panels via a custom embed (prototype tags, TR null result, monorepo systems).
-  Home leads with an open-weight-over-opaque-APIs position and concrete safe-use
-  framing (local runs, policy/approval, evidence gates). Remaining permanent
-  body-copy (hero, GitHub URL, footer, privacy) is in
+  MADS/UNC; a BODY_END softener embed (rev 7, TreeWalker text nodes only) also
+  strips Chapel Hill / MADS from visible Home/About body while keeping UNC
+  Charlotte. `/research` and `/work` show maturity/status panels via a custom
+  embed (prototype tags, TR null result, monorepo systems). Home leads with an
+  open-weight-over-opaque-APIs position and concrete safe-use framing (local
+  runs, policy/approval, evidence gates). Remaining permanent body-copy (hero,
+  GitHub URL, footer, privacy) is in
   `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`. The Wix MCP can manage SEO
   redirects/tags and embeds when authenticated; Studio page body still needs
   the editor for permanent paste.

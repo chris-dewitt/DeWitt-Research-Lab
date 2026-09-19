@@ -873,3 +873,22 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   (policy, approval, evidence gate, local runs, published failures).
 - Research/Projects enrichment rev `3`: intros + research thesis card aligned.
 - Docs: `SITE_COPY.md` 3.5.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.2.0.
+
+## 2026-09-19 — Softener v6 + CI doc-id fix
+
+- PR #74 CI failed on duplicate `document_id` DRL-WEB-023
+  (`WIX_REMAINING_EDITOR_FIXES.md` vs `RESEARCH_PAGE_COPY.md`). Remaining-editor
+  pack is now **DRL-WEB-024**.
+- Softener embed `8d0df783-…` rev 5 used `el.textContent` on containers and
+  flattened Home/About into a text dump. Disabled immediately; republished as
+  rev 9 with `createTreeWalker` text-node rewrites only (incl. comma hero).
+- Softener: Chapel Hill / MADS stripped on Home/About; UNC Charlotte kept;
+  `, .` debris cleaned; About 8000-char gate.
+- Homepage cleanup embed `4ebc7135-…` rev 7: `DL_HOME_GAP_V3` + JS collapses
+  empty sections between hero CTAs and “Why complex systems?”.
+- Docs: `SITE_COPY.md` 3.6.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.4.0.
+- Checks: `uv run python scripts/validate_foundation.py` → VALIDATION PASSED.
+- Browser: `home-after-softener6.webp`, `about-after-softener6.webp` (layout
+  restored; Chapel Hill gone on About).
+- Next: Director permanent Studio paste for hero/GitHub/footer; optional further
+  gap tuning if void remains below hero.

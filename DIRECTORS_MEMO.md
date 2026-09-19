@@ -132,7 +132,9 @@ the Director's approval.
   `/work`; Home/About SEO meta uses a light academic signal without naming
   MADS/UNC (page body may still); `/research` and `/work` show maturity/status
   panels via a custom embed (prototype tags, TR null result, monorepo systems).
-  Remaining permanent body-copy (hero, GitHub URL, footer, privacy) is in
+  Home leads with an open-weight-over-opaque-APIs position and concrete safe-use
+  framing (local runs, policy/approval, evidence gates). Remaining permanent
+  body-copy (hero, GitHub URL, footer, privacy) is in
   `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`. The Wix MCP can manage SEO
   redirects/tags and embeds when authenticated; Studio page body still needs
   the editor for permanent paste.

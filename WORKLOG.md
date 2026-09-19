@@ -865,3 +865,11 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Enrichment embed revision `2` hides original Wix cards on `/research` and
   `/work` so each page shows a single status panel (not originals + enrichment).
 - Verified: `dedupe-research.webp`, `dedupe-work.webp`.
+
+## 2026-09-19 — Open-weight / safe-use thesis on live site
+
+- Home BODY_END embed `Open-weight AI thesis (home)` (`73d6abb6-…`, rev 2):
+  prefer open-weight local models over opaque vendor APIs; concrete safe-use
+  (policy, approval, evidence gate, local runs, published failures).
+- Research/Projects enrichment rev `3`: intros + research thesis card aligned.
+- Docs: `SITE_COPY.md` 3.5.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.2.0.

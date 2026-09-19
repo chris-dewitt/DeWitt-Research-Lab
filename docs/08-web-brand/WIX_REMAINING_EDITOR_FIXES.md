@@ -1,7 +1,7 @@
 ---
-document_id: DRL-WEB-023
+document_id: DRL-WEB-024
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.2.0
+version: 1.4.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -27,6 +27,17 @@ editor for `www.dewitt-labs.com`, then Publish.
 - Home open-weight thesis (BODY_END embed `Open-weight AI thesis (home)`,
   id `73d6abb6-e6c0-4c03-9103-3bd38c38b7cd`): prefer open-weight local models
   over opaque vendor APIs; concrete safe-use definition.
+- Soften MADS/UNC visible copy (BODY_END embed
+  `Soften MADS/UNC visible copy`, id `8d0df783-b31a-4c18-8cdc-3cf006e3e3a6`,
+  revision `9`): TreeWalker text-node rewrite only (v5’s `textContent` on
+  containers flattened Home/About — rolled back; rev 8’s comma inject broke
+  the pairs array). Strips Chapel Hill / MADS phrasing (period and comma hero
+  variants), cleans `, .` debris, rewrites “Research Lab repository” →
+  “repository”, preserves UNC Charlotte; length gate 8000.
+- Homepage Research section cleanup (HEAD embed id
+  `4ebc7135-9a6f-44e8-b9f9-a2056ed92e88`, revision `7`): collapses leftover
+  hero/section min-heights (`DL_HOME_GAP` / `V2` / `V3`) and hides empty
+  sections between hero CTAs and “Why complex systems?”.
 
 Nav already uses `/work` for Projects. Canonical public slug remains `/work`
 with `/projects` as a redirect alias.
@@ -34,23 +45,24 @@ with `/projects` as a redirect alias.
 ## 1. Home hero (#3, #8)
 
 Keep the thesis line. Add the name above it. One short body paragraph so CTAs
-appear earlier on mobile. Also paste the open-weight position block from
-`SITE_COPY.md` (Open-weight over opaque company APIs) permanently so it survives
-without the home thesis embed.
+appear earlier on mobile. Paste the **softened** public line (no Chapel Hill /
+MADS in the first viewport) so the softener embed is not the only defense.
+Also paste the open-weight position block from `SITE_COPY.md` permanently so
+it survives without the home thesis embed.
 
 ```text
 Chris DeWitt
 
 I study complex systems by the way they fail.
 
-Forecast engineer. Applied Data Science graduate student, UNC–Chapel Hill.
-Preparing for graduate work in computer science. Charlotte, North Carolina.
+Forecast engineer and graduate student. Charlotte, North Carolina.
+Preparing for graduate work in computer science.
 
-I work full time as a forecast engineer and am in my final year of the Master of
-Applied Data Science program at UNC–Chapel Hill. I spend weekends building agent
-platforms, evaluation harnesses, quantitative tools, and experiments that
-occasionally fail in interesting ways. Everything here is independent personal
-work — source, tests, failures, and runs you can replay.
+I work full time as a forecast engineer and study applied data science part
+time, with an eye toward further graduate work in computer science. I spend
+weekends building agent platforms, evaluation harnesses, quantitative tools,
+and experiments that occasionally fail in interesting ways. Everything here is
+independent personal work — source, tests, failures, and runs you can replay.
 
 [ Explore my projects → /work ]
 [ Read the research → /research ]

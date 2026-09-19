@@ -837,3 +837,11 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   installed in this environment).
 - Next: Director applies `WIX_REMAINING_EDITOR_FIXES.md` in the Wix editor and
   Publishes. Handoff: `agents/handoffs/2026-09-19-wix-portfolio-fixes.md`.
+
+## 2026-09-19 — SEO meta softened (no MADS/UNC)
+
+- Director chose SEO option 3 over option B for Home/About meta descriptions.
+- Live description: *Forecast engineer and graduate student. Independent work on
+  complex systems, agents, and evaluation — aiming toward further study in
+  computer science.*
+- Docs/handoff updated on `cursor/website-portfolio-fixes-f70f`.

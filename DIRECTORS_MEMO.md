@@ -129,7 +129,8 @@ the Director's approval.
   at `https://chris-dewitt.github.io/DeWitt-Research-Lab/`. Wix
   (`www.dewitt-labs.com`) is the academic portfolio and links that URL from the
   homepage (*Watch a recorded run*). As of 2026-09-19: `/projects` redirects to
-  `/work`; SEO option B is live on Home/About; remaining body-copy edits are in
+  `/work`; Home/About SEO meta uses a light academic signal without naming
+  MADS/UNC (page body may still); remaining body-copy edits are in
   `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`. The Wix MCP can manage SEO
   redirects/tags when authenticated; Studio page body still needs the editor.
 - ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and

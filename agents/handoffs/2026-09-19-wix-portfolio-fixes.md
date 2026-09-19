@@ -1,6 +1,6 @@
 ---
 document_id: DRL-HO-WEB-20260919-PORTFOLIO
-title: "Handoff: Wix portfolio redirect, SEO B, and remaining editor fixes"
+title: "Handoff: Wix portfolio redirect, SEO, and remaining editor fixes"
 version: 1.0.0
 status: IN REVIEW
 owner: Christopher Noxon DeWitt
@@ -8,7 +8,7 @@ last_updated: 2026-09-19
 ---
 
 
-# Handoff: Wix portfolio redirect, SEO B, and remaining editor fixes
+# Handoff: Wix portfolio redirect, SEO, and remaining editor fixes
 
 ## 1. Branch and last commit
 
@@ -20,8 +20,9 @@ last_updated: 2026-09-19
 
 - Replaced live redirect `/projects` → `/research` with `/projects` → `/work`
   (also `/projects-1` → `/work`).
-- Applied Director-approved SEO option B on Home and About; Research SEO title
-  set to `Research | Chris DeWitt`.
+- Applied Home/About SEO meta (superseding earlier option B): light academic
+  signal without naming MADS/UNC. Research SEO title set to
+  `Research | Chris DeWitt`.
 - Synced controlled docs and the Wix auditor with live slug/SEO reality.
 - Wrote paste pack for remaining Studio editor body-copy (hero, GitHub URL,
   footer, privacy, research cards, projects clarification).
@@ -37,7 +38,7 @@ last_updated: 2026-09-19
 
 ## 4. ADRs created or needed
 
-None. SEO option B is a Director wording choice under RES-016, not a new ADR.
+None. SEO meta wording is a Director choice under RES-016, not a new ADR.
 
 ## 5. Tests and results
 
@@ -50,8 +51,7 @@ python -m pytest tests/test_wix_auditor.py -q
 Live checks:
 
 - `GET /projects` → `301 Location: /work`
-- Home meta description no longer mentions tutoring
-- About meta description no longer claims a CS master’s student
+- Home/About meta: light graduate-student line without MADS/UNC
 
 ## 6. Deployment or migration notes
 
@@ -80,5 +80,5 @@ Director opens the Wix editor and applies
 1. This handoff
 2. `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`
 3. Live: `https://www.dewitt-labs.com/projects` → `/work`
-4. Live Home/About `<meta name="description">` for option B wording
+4. Live Home/About `<meta name="description">` for the light graduate-student line
 5. `scripts/audit_wix_site.py` if re-auditing

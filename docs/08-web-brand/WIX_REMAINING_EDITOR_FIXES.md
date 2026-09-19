@@ -16,7 +16,10 @@ editor for `www.dewitt-labs.com`, then Publish.
 ## Already applied via API (2026-09-19)
 
 - `/projects` → `/work` (was wrongly `/research`); `/projects-1` → `/work`.
-- SEO option B on Home and About; Research title set to `Research | Chris DeWitt`.
+- Home/About SEO description (no MADS/UNC in meta): *Forecast engineer and
+  graduate student. Independent work on complex systems, agents, and evaluation
+  — aiming toward further study in computer science.* Research title set to
+  `Research | Chris DeWitt`.
 
 Nav already uses `/work` for Projects. Canonical public slug remains `/work`
 with `/projects` as a redirect alias.
@@ -143,7 +146,7 @@ with a single primary repository link each.
 ## Verify after publish
 
 1. `https://www.dewitt-labs.com/projects` lands on Projects (`/work`).
-2. Home meta description no longer mentions tutoring.
+2. Home meta description uses the light graduate-student line (no MADS/UNC).
 3. No `http://www.github.com` links remain.
 4. Footer shows clickable `director@dewitt-labs.com`, GitHub, Privacy.
 5. Research cards link reports + recorded run; TR-2026-002 states no winner.

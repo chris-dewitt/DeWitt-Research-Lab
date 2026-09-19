@@ -16,8 +16,9 @@ body copy still needs the editor.
 
 Version 3.3.0 records the 2026-09-19 live state: fabricated claims and
 institutional chrome from earlier audits are gone; Projects lives at `/work`
-with `/projects` redirected there; SEO option B is live on Home/About. Remaining
-editor work is in `WIX_REMAINING_EDITOR_FIXES.md`.
+with `/projects` redirected there. Home/About SEO uses a light academic signal
+(no MADS/UNC in the meta description). Remaining editor work is in
+`WIX_REMAINING_EDITOR_FIXES.md`.
 
 ## Page tree
 
@@ -35,7 +36,10 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
 **Done on Wix (API):**
 
 - `/projects` → `/work` (was wrongly `/research`)
-- Home/About meta descriptions use SEO option B (no tutoring / wrong CS master’s claim)
+- Home/About meta descriptions (Director choice, 2026-09-19): *Forecast engineer
+  and graduate student. Independent work on complex systems, agents, and
+  evaluation — aiming toward further study in computer science.* (no MADS/UNC
+  in meta; page body may still name the program)
 - Research SEO title is `Research | Chris DeWitt`
 
 **Still editor-only:** see `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`.

@@ -226,6 +226,9 @@ class AtticusOrchestrator:
                     allowed=decision.allowed,
                     requires_approval=decision.requires_approval,
                     call_digest=decision.call_digest,
+                    gating_effect=(
+                        decision.gating_effect.value if decision.gating_effect else None
+                    ),
                 )
             )
             if not decision.allowed:

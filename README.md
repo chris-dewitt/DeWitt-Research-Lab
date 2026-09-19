@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-001
 title: "DeWitt Research Lab Monorepo"
-version: 5.1.0
+version: 5.2.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -42,9 +42,9 @@ Laboratory IDs always carry a prefix, and the prefixes mean different things:
 |---|---|---|
 | `DRL-NNN` | A work item / GitHub issue | `DRL-004` — prove a clean-clone bootstrap and demo |
 | `DRL-XXX-NNN` | A requirement | `DRL-OPS-007` — local model runbook |
-| `DIR-NNN` | A Director decision still in the ledger | `DIR-011` — whether the policy gate should consider effect class as well as risk tier (open) |
+| `DIR-NNN` | A Director decision still in the ledger | `DIR-012` — whether the plan contract should let a model abstain (open) |
+| `ADR` + `RES-NNN` | An approved architecture decision and the resolution that approved it | `ADR-0011` / `RES-026` — approval gates on declared effect as well as risk tier |
 | `RES-NNN` | An approved answer to a DIR | `RES-022` — keep historical UNC author emails |
-| `ADR` | An architecture decision record | recorded in `docs/adr/` |
 
 `DRL-004` and `DIR-004` are not the same thing.
 
@@ -59,6 +59,8 @@ Laboratory IDs always carry a prefix, and the prefixes mean different things:
 | [AtticusBench public seed](datasets/atticusbench/README.md) | 32 executable cases across ten families, 9 fixtures, a dataset card, and a release manifest | `seed dataset; 32 of a 1,000-case V1 gate` |
 | [AtticusBench run corpus](runs/atticusbench/README.md) | 128 committed run records and the metric vector for four non-model baselines | `measured; reproduces byte for byte` |
 | [Belief recovery sweep](research/cfi/results/recovery-sweep.json) | Two-axis parameter-recovery results, 11,850 fitted replications | `measured; no protocol claim` |
+| [`ADR-0011`](docs/adr/ADR-0011-effect-class-approval-gate.md) | The approval gate the benchmark's first finding produced, with before-and-after numbers | `approved; implemented` |
+| [Local model runbook](docs/11-operations/ATTICUSBENCH_LOCAL_MODEL_RUNBOOK.md) | Measuring a local model on the benchmark in one command | `operating procedure` |
 | [Integrated workflow teaching lab](docs/10-research/teaching/INTEGRATED_WORKFLOW_LAB.md) | Guided reproduction using synthetic inputs | `prototype` |
 | [Computational Finance of Intelligence](docs/10-research/COMPUTATIONAL_FINANCE_OF_INTELLIGENCE.md) | Research program connecting stochastic belief dynamics, optimal stopping, finance, cognition, and AI | `research plan; no empirical result claimed` |
 | [Model bake-off](models/bakeoff/README.md) | Candidate registry, harness, license gates, and measured limitations | `prototype; no winner selected` |

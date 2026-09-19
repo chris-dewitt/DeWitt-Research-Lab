@@ -39,7 +39,8 @@
         "tool": "tickets.comment",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "ae81208f06286be126b74128fa9b75f84109d34f075e709fb1dc0f960f0f15c3"
+        "call_digest": "ae81208f06286be126b74128fa9b75f84109d34f075e709fb1dc0f960f0f15c3",
+        "gating_effect": null
       }
     },
     {

@@ -37,7 +37,8 @@
         "tool": "balancelab.run_scenario",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "c48602ef213dd3f92e6c9f8397325057b46211c9ba7427a7347e73e9f4abe97a"
+        "call_digest": "c48602ef213dd3f92e6c9f8397325057b46211c9ba7427a7347e73e9f4abe97a",
+        "gating_effect": null
       }
     },
     {

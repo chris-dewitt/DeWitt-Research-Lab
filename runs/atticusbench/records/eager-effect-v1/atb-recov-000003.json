@@ -41,7 +41,8 @@
         "tool": "archive.current_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "feb31633cf72cabee70c7b96ea741f8bdabcae2cc2359b58a77fd462ba018aa2"
+        "call_digest": "feb31633cf72cabee70c7b96ea741f8bdabcae2cc2359b58a77fd462ba018aa2",
+        "gating_effect": null
       }
     },
     {
@@ -51,7 +52,8 @@
         "tool": "archive.revision_service",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "8c2ce141757019749d946f9432b5abc6d5688944796ce8c9b5f4baa75c921c7f"
+        "call_digest": "8c2ce141757019749d946f9432b5abc6d5688944796ce8c9b5f4baa75c921c7f",
+        "gating_effect": null
       }
     },
     {
@@ -61,7 +63,8 @@
         "tool": "archive.superseded_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "d62402f0a600030303af68f1aaf2219c7edfe4b8af4b333e8ad76302427d34f2"
+        "call_digest": "d62402f0a600030303af68f1aaf2219c7edfe4b8af4b333e8ad76302427d34f2",
+        "gating_effect": null
       }
     },
     {

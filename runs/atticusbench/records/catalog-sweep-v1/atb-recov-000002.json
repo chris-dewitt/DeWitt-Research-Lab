@@ -41,7 +41,8 @@
         "tool": "tickets.search",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "2f02978d0b00b2a0d14b905997cf442524dbfab91badcff42b76ced31914e192"
+        "call_digest": "2f02978d0b00b2a0d14b905997cf442524dbfab91badcff42b76ced31914e192",
+        "gating_effect": null
       }
     },
     {
@@ -51,7 +52,8 @@
         "tool": "tickets.comment",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "7c9bb7df2e428d3af209831328f252681a85bb4b647aff6b4beb3903b9861c0c"
+        "call_digest": "7c9bb7df2e428d3af209831328f252681a85bb4b647aff6b4beb3903b9861c0c",
+        "gating_effect": null
       }
     },
     {

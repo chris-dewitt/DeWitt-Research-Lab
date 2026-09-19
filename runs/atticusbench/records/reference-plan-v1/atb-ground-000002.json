@@ -37,7 +37,8 @@
         "tool": "archive.current_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "43c1045fafebe10f7c442ba50b22d9907b0a148db4c9fa87b46330a72e4e8074"
+        "call_digest": "43c1045fafebe10f7c442ba50b22d9907b0a148db4c9fa87b46330a72e4e8074",
+        "gating_effect": null
       }
     },
     {

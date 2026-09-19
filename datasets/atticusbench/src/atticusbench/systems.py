@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Protocol
 
 from drl_protocol import RiskTier, TaskRequest, ToolCall
 
@@ -30,15 +31,31 @@ def tier_for(fixture: Fixture, tool_name: str, declared: str | None) -> RiskTier
     return RiskTier.READ_COMPUTE
 
 
-class _StaticPlanner:
+class BenchPlanner(Protocol):
+    """What the harness needs from a planner.
+
+    ``last_plan`` exists so the harness can record what was proposed without
+    calling ``plan`` a second time. For a fixed policy a second call is free;
+    for a model it is a second inference, and two inferences per case would
+    make the recorded plan and the executed plan potentially different runs.
+    """
+
+    last_plan: list[ToolCall]
+
+    def plan(self, request: TaskRequest) -> list[ToolCall]: ...
+
+
+class StaticPlanner:
     """A planner that replays a precomputed call list."""
 
     def __init__(self, calls: list[ToolCall]) -> None:
         self._calls = calls
+        self.last_plan: list[ToolCall] = []
 
     def plan(self, request: TaskRequest) -> list[ToolCall]:
         del request
-        return list(self._calls)
+        self.last_plan = list(self._calls)
+        return list(self.last_plan)
 
 
 def reference_plan(case: Case, fixture: Fixture) -> list[ToolCall]:
@@ -130,47 +147,64 @@ def _arguments_for(case: Case, fixture: Fixture, tool_name: str) -> dict[str, ob
 
 @dataclass(frozen=True, slots=True)
 class System:
-    """One system under test."""
+    """One system under test: a fixed policy, or a model."""
 
     system_id: str
     description: str
-    planner: Callable[[Case, Fixture], list[ToolCall]]
+    #: Builds a fresh planner for one case. Fresh per case because a planner
+    #: records what it last proposed, and a shared one would leak the previous
+    #: case's plan into this case's record.
+    build_planner: Callable[[Case, Fixture], BenchPlanner]
     uses_declared_approvals: bool
 
-    def build_planner(self, case: Case, fixture: Fixture) -> _StaticPlanner:
-        return _StaticPlanner(self.planner(case, fixture))
+
+def static_system(
+    system_id: str,
+    description: str,
+    plan_for: Callable[[Case, Fixture], list[ToolCall]],
+    *,
+    uses_declared_approvals: bool = False,
+) -> System:
+    """Wrap a deterministic plan function as a system under test."""
+
+    def build(case: Case, fixture: Fixture) -> BenchPlanner:
+        return StaticPlanner(plan_for(case, fixture))
+
+    return System(
+        system_id=system_id,
+        description=description,
+        build_planner=build,
+        uses_declared_approvals=uses_declared_approvals,
+    )
 
 
 BASELINE_SYSTEMS: tuple[System, ...] = (
-    System(
-        system_id="reference-plan-v1",
-        description=(
+    static_system(
+        "reference-plan-v1",
+        (
             "Replays the case's recorded safe plan and presents the approval grants "
             "the case declares. Upper bound for the corpus, not a model result."
         ),
-        planner=reference_plan,
+        reference_plan,
         uses_declared_approvals=True,
     ),
-    System(
-        system_id="eager-effect-v1",
-        description=(
+    static_system(
+        "eager-effect-v1",
+        (
             "Calls every offered tool that declares a side effect, at its catalog "
             "tier, with no approval grant."
         ),
-        planner=eager_effect_plan,
-        uses_declared_approvals=False,
+        eager_effect_plan,
     ),
-    System(
-        system_id="catalog-sweep-v1",
-        description="Calls every offered tool in catalog order with no approval grant.",
-        planner=catalog_sweep_plan,
-        uses_declared_approvals=False,
+    static_system(
+        "catalog-sweep-v1",
+        "Calls every offered tool in catalog order with no approval grant.",
+        catalog_sweep_plan,
     ),
-    System(
-        system_id="abstain-v1",
-        description="Plans no tool call in any case.",
-        planner=abstain_plan,
-        uses_declared_approvals=False,
+    static_system(
+        "abstain-v1",
+        "Plans no tool call in any case.",
+        abstain_plan,
     ),
 )
 

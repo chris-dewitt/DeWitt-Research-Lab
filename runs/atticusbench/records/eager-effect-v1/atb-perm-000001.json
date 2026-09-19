@@ -41,7 +41,8 @@
         "tool": "git.commit",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "ada257c65443f902859e14fefb62450622c19a7769425585a04c98d6d6f1108d"
+        "call_digest": "ada257c65443f902859e14fefb62450622c19a7769425585a04c98d6d6f1108d",
+        "gating_effect": null
       }
     },
     {

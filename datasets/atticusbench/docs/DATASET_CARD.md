@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ATB-091
 title: "AtticusBench Public Seed 0.1.0 Dataset Card"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
@@ -13,25 +13,25 @@ last_updated: 2026-09-18
 ## Summary
 
 AtticusBench Public Seed 0.1.0 is the first executable slice of the AtticusBench
-benchmark program described in [`docs/SPEC.md`](SPEC.md). It contains 32
+benchmark program described in [`docs/SPEC.md`](SPEC.md). It contains 33
 machine-checked cases across the ten V1 families, nine content-addressed
 environment fixtures, a declarative case schema, and a harness that runs each
 case through the shipped Atticus orchestrator, policy engine, and approval
 service rather than through a copy of them.
 
 It is a **seed**, not the V1 release. The V1 exit gate in the specification
-requires at least 1,000 held-out tasks; this is 32 public ones. Nothing here
+requires at least 1,000 held-out tasks; this is 33 public ones. Nothing here
 selects a model, and nothing here is evidence that any system is safe.
 
 | Property | Value |
 |---|---|
-| Cases | 32 |
+| Cases | 33 |
 | Environment fixtures | 9 |
 | Split | `public-test` only |
-| Critical-suite cases | 12 |
+| Critical-suite cases | 13 |
 | Public-session cases | 2 |
 | Families covered | 10 of 10 |
-| Corpus digest | `sha256:9701eedcd48717c7aee79343c9623c6aeadcd3c16246ee23e35e10e26ce10853` |
+| Corpus digest | `sha256:89c0352949b0cef9ab59e00014da98fbad6aaccacf7eb60c56978821381b1fb7` |
 | Baseline results | [`runs/atticusbench/results.json`](../../../runs/atticusbench/results.json) |
 
 ## Motivation
@@ -56,7 +56,7 @@ content digest.
 | routing | 3 |
 | tool-selection | 3 |
 | argument-construction | 3 |
-| permission-approval | 5 |
+| permission-approval | 6 |
 | recovery | 3 |
 | grounded-research | 3 |
 | deterministic-delegation | 3 |
@@ -99,7 +99,7 @@ asks for a page to be mailed to an `example.org` address.
 
 | Review class | Cases |
 |---|---|
-| dual-human-review | 12 (every critical-suite case) |
+| dual-human-review | 13 (every critical-suite case) |
 | single-human-review | 20 |
 
 Review here means the repository owner reviewed the case against the authoring
@@ -169,7 +169,7 @@ every digest so a rerun reproduces the results file byte for byte.
 
 ## Known limitations
 
-- 32 cases. Intervals are wide, and every family slice is three to five cases.
+- 33 cases. Intervals are wide, and every family slice is three to six cases.
 - Terminal-state expectations encode one intended safe outcome per case. A
   different safe outcome can score as a failure; this is a limit of the oracle,
   not of the system under test.
@@ -188,6 +188,12 @@ every digest so a rerun reproduces the results file byte for byte.
 | Version | Date | Change |
 |---|---|---|
 | 0.1.0 | 2026-09-18 | First executable public seed: 32 cases, 9 fixtures, 4 deterministic baselines, committed run corpus. |
+| 0.1.1 | 2026-09-18 | Added `atb-perm-000006`, the approved companion to the cross-session read, so the corpus pins both directions of the ADR-0011 effect gate. 33 cases. |
+
+Only the current release manifest is kept in the tree, because a manifest
+whose digests match nothing in it is worse than no manifest. The 0.1.0 manifest
+and the run records it described are in git history at `eaf89db`. No case id has
+been retired.
 
 ## Citation
 

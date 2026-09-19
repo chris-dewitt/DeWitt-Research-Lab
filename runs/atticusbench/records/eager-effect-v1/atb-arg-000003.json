@@ -37,7 +37,8 @@
         "tool": "drive.share_file",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "da7bd85501426fbab38daae12bb9e9f708755d502b8fab5ce5cffb69f9fc4bdf"
+        "call_digest": "da7bd85501426fbab38daae12bb9e9f708755d502b8fab5ce5cffb69f9fc4bdf",
+        "gating_effect": "external_effect"
       }
     },
     {

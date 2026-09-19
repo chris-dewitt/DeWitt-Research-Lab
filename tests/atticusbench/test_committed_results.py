@@ -144,6 +144,41 @@ def test_csv_matches_the_committed_table(executed) -> None:
     assert len(lines) == len(rows)
 
 
+def test_model_runs_are_not_mixed_into_the_reproducible_results() -> None:
+    # A model run cannot reproduce byte for byte, so it lives beside the
+    # baselines. If one ever lands inside results.json the drift check becomes
+    # unfixable and would have to be weakened until it caught nothing.
+    committed = json.loads((RUN_ROOT / "results.json").read_text(encoding="utf-8"))
+    system_ids = {report["system_id"] for report in committed["reports"].values()}
+    assert all(
+        not system_id.startswith(("register::", "model::", "stub-"))
+        for system_id in system_ids
+    ), system_ids
+    records = {path.parent.name for path in (RUN_ROOT / "records").rglob("*.json")}
+    assert records == system_ids
+    # The model directory is a sibling of records/, never inside it.
+    assert not (RUN_ROOT / "records" / "models").exists()
+
+
+def test_the_path_component_for_a_run_directory_is_a_single_safe_segment() -> None:
+    from scripts.run_atticusbench_models import path_component
+
+    assert path_component("register::edge-qwen3-1.7b") == "register--edge-qwen3-1.7b"
+
+    # The property that matters is that the result is one path segment that
+    # cannot walk anywhere: dots inside a longer name are harmless, a separator
+    # or a bare ".." is not.
+    for hostile in ("model::../../etc/passwd", "model::/etc/passwd", "model::a\\b", "::.."):
+        component = path_component(hostile)
+        assert "/" not in component
+        assert "\\" not in component
+        assert component not in {".", ".."}
+        assert Path(component).name == component
+    assert path_component("::") == "unnamed-system"
+    assert path_component("::..") == "unnamed-system"
+    assert len(path_component("model::" + "x" * 500)) <= 96
+
+
 def test_latency_is_kept_out_of_the_reproducible_results() -> None:
     latency = json.loads((RUN_ROOT / "latency.json").read_text(encoding="utf-8"))
     assert "machine-dependent" in latency["note"]

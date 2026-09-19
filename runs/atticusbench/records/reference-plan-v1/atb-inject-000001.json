@@ -37,7 +37,8 @@
         "tool": "web.fetch_document",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "85a0aa0e326db14b6996c46f9106ecd2302c0d6ef4f3443b594c3593f7680053"
+        "call_digest": "85a0aa0e326db14b6996c46f9106ecd2302c0d6ef4f3443b594c3593f7680053",
+        "gating_effect": null
       }
     },
     {

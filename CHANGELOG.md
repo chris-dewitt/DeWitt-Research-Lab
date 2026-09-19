@@ -1,13 +1,62 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.24.0
+version: 4.25.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-18
 ---
 
 # Foundation Changelog
+
+## 2026-09-18 — The benchmark's first finding is now a closed gap, and a model can be measured on a laptop
+
+- **DIR-011 is closed as RES-026 by ADR-0011.** Approval now gates on a tool's
+  declared effect as well as its risk tier: `external_effect` and `privileged`
+  require an approval at any tier, and `prohibited` is denied outright. The
+  trace records which control fired, so "why did this pause" is readable rather
+  than inferred.
+- **The same benchmark that found the gap shows it closed.** Holding everything
+  else fixed: forbidden effects executed across all baselines **1 → 0**,
+  critical-suite failures per eager baseline **2 → 1**, eager runs halted at an
+  approval pause 11 → 13. A new case runs the same cross-session read *under a
+  grant* and completes, because a gate that also blocks the approved case is a
+  regression dressed as a fix.
+- Three documents already required this gate and the code did not implement it:
+  the permission model lists "destination and side effect" as policy input, the
+  policy architecture lists "data movement", and the canonical tool-definition
+  schema has carried an `effect_type` enum since the bundle was written. Worth
+  recording as a pattern — the gap was implementation lag against our own
+  approved specifications, which is exactly the distinction `AGENTS.md` §1 asks
+  an agent to keep visible.
+- **TR-2026-003 was revised, not rewritten.** The pre-fix numbers stay in
+  §5.1–5.3 because the finding rests on them; §5.4 is the re-measurement.
+  Overwriting them would have erased the evidence for the decision they caused.
+- **One critical failure survives and is a different kind.** A baseline still
+  retrieves an observation dated after the as-of date. Nothing about that action
+  is unauthorized, so no approval gate can catch it: authorization controls and
+  grounding controls are separate problems, and one "critical suite" label
+  blurs them.
+- **A model can now be measured, in one command, on a workstation.**
+  `make atticusbench-models` runs whatever the bake-off register serves;
+  `-Model <tag>` runs an ad-hoc tag and records it as unregistered with license
+  unknown, because a tag is not provenance. The PowerShell wrapper checks the
+  daemon that actually answers `/v1/models` rather than trusting `ollama list`,
+  which is the Windows failure mode that has already cost a day once.
+- **The model path has no fixture fallback, deliberately.** The control plane
+  falls back to the rule table when a completion is unusable, which is right for
+  a demo that must produce a workflow and would be a lie in a benchmark: the
+  record would carry a hand-written plan under the model's name. A model that
+  returns nothing usable plans nothing, and the reason is recorded per case.
+- **Atticus cannot abstain through the model path, and now we know.** The shared
+  plan contract requires at least one step, so a model deciding to call nothing
+  emits an invalid plan and is indistinguishable from one emitting prose. Five
+  of 33 cases have "call nothing" as the correct answer. The benchmark relaxes
+  that one keyword in its own copy; whether production should follow is DIR-012.
+- CI never linted, typechecked, or security-scanned the benchmark package. It
+  does now, and it runs the corpus validator, the run-corpus drift check, and
+  the model path against a stub provider labelled `not-a-model` so a stub row
+  can never be mistaken for a measurement.
 
 ## 2026-09-18 — The benchmark now exists as data, and its first finding is about our own policy
 

@@ -39,7 +39,8 @@
         "tool": "scenario.project",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "0335cb87bc5a0f0cf94ae041f4c2b92e8bbbb8be4fd39d4850e0521c4718b852"
+        "call_digest": "0335cb87bc5a0f0cf94ae041f4c2b92e8bbbb8be4fd39d4850e0521c4718b852",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "scenario.project_cached",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "df30a93ba0d2a0d1c848a1ed87bf4b00568509e045c7da6a4d6d1d765322283c"
+        "call_digest": "df30a93ba0d2a0d1c848a1ed87bf4b00568509e045c7da6a4d6d1d765322283c",
+        "gating_effect": null
       }
     },
     {

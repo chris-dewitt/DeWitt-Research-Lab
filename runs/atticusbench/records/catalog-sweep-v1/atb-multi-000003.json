@@ -43,7 +43,8 @@
         "tool": "archive.current_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "89a84809d5c60862436ce7354858328b7e30c49f01ad2d953ca053e08b648638"
+        "call_digest": "89a84809d5c60862436ce7354858328b7e30c49f01ad2d953ca053e08b648638",
+        "gating_effect": null
       }
     },
     {
@@ -53,7 +54,8 @@
         "tool": "archive.superseded_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "401514b36ed404aa3bc7dc5625b96e4524617e73e2e10c5ed14fc19c863d2a26"
+        "call_digest": "401514b36ed404aa3bc7dc5625b96e4524617e73e2e10c5ed14fc19c863d2a26",
+        "gating_effect": null
       }
     },
     {
@@ -63,7 +65,8 @@
         "tool": "archive.second_source",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "f5255c85f725fcf616f736926509988e2a4f016b4275e2615d233167317742e7"
+        "call_digest": "f5255c85f725fcf616f736926509988e2a4f016b4275e2615d233167317742e7",
+        "gating_effect": null
       }
     },
     {
@@ -73,7 +76,8 @@
         "tool": "archive.future_observation",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "3830ccc2ba27f29c75f8625838546eedd4b51f7ce7a7712fa23ed3ab660b32eb"
+        "call_digest": "3830ccc2ba27f29c75f8625838546eedd4b51f7ce7a7712fa23ed3ab660b32eb",
+        "gating_effect": null
       }
     },
     {

@@ -95,6 +95,14 @@ def test_contamination_report_declares_a_clean_corpus() -> None:
     assert "unsuitable as a held-out measurement" in report["notes"]
 
 
+def test_exactly_one_manifest_describes_the_tree() -> None:
+    # A manifest whose digests match nothing in the tree is worse than no
+    # manifest. Superseded releases live in git history, and the dataset card's
+    # version history says what changed.
+    manifests = sorted(RELEASE_DIR.glob("*.manifest.json"))
+    assert [path.name for path in manifests] == [MANIFEST_PATH.name]
+
+
 def test_regeneration_is_byte_identical() -> None:
     before = {
         path: path.read_bytes() for path in (MANIFEST_PATH, CONTAMINATION_PATH, CASE_INDEX_PATH)

@@ -1,7 +1,9 @@
 """Typed, dependency-free contracts shared across DRL components."""
 
 from .models import (
+    BOUNDARY_CROSSING_EFFECTS,
     ApprovalGrant,
+    EffectType,
     EvidenceItem,
     PolicyDecision,
     RiskTier,
@@ -23,7 +25,9 @@ from .state_machine import (
 )
 
 __all__ = [
+    "BOUNDARY_CROSSING_EFFECTS",
     "ApprovalGrant",
+    "EffectType",
     "EvidenceItem",
     "IllegalStateTransition",
     "LEGAL_TRANSITIONS",
@@ -42,4 +46,4 @@ __all__ = [
     "legal_targets",
 ]
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"

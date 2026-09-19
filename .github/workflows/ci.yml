@@ -36,11 +36,17 @@ jobs:
       - name: Public-source readiness audit
         run: uv run python scripts/validate_public_repository.py
       - name: Python lint
-        run: uv run ruff check scripts tests packages services apps/atticus-local-runner
+        run: uv run ruff check scripts tests packages services apps/atticus-local-runner datasets/atticusbench/src research/cfi/src
       - name: Python type check
-        run: uv run mypy scripts packages services apps/atticus-local-runner
+        run: uv run mypy scripts packages services apps/atticus-local-runner datasets/atticusbench/src
       - name: Python security scan
-        run: uv run bandit -q -r scripts packages services apps/atticus-local-runner
+        run: uv run bandit -q -r scripts packages services apps/atticus-local-runner datasets/atticusbench/src
+      - name: AtticusBench corpus validation
+        run: uv run python scripts/validate_atticusbench.py
+      - name: AtticusBench run-corpus drift check
+        run: uv run python scripts/run_atticusbench.py --check
+      - name: AtticusBench model path without a model
+        run: uv run python scripts/run_atticusbench_models.py --stub --no-write
       - name: Python tests
         run: uv run pytest
       - name: Integrated Atticus smoke test
@@ -54,6 +60,22 @@ jobs:
           name: tracked-source-manifest
           path: site/source-manifest.json
           if-no-files-found: error
+
+  research-artifacts:
+    name: Committed research artifacts reproduce
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: "0.12.3"
+          enable-cache: true
+      - name: Sync Python workspace
+        run: uv sync --all-packages --locked
+      # About a minute of CPU, which is why it is not on the critical path with
+      # the fast checks. A committed result nobody re-derives is a claim.
+      - name: CFI-005 recovery sweep drift check
+        run: uv run python scripts/run_recovery_sweep.py --check
 
   node-workspace:
     name: Node workspace scaffolds (specified only)

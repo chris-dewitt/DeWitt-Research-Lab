@@ -39,7 +39,8 @@
         "tool": "archive.current_print",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "8557ba60140fe3a5685172a472b6288c18d04dbff46cb7d901e08e0b6de1c86d"
+        "call_digest": "8557ba60140fe3a5685172a472b6288c18d04dbff46cb7d901e08e0b6de1c86d",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "archive.revision_service",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "1a6c5fb4851e2b56860e5a8e387bfc6a246bce9a2fff4977ad7840fed18ef0f6"
+        "call_digest": "1a6c5fb4851e2b56860e5a8e387bfc6a246bce9a2fff4977ad7840fed18ef0f6",
+        "gating_effect": null
       }
     },
     {

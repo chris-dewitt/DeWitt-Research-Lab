@@ -1,10 +1,10 @@
 ---
 document_id: DRL-SEC-003
 title: "Permission, Risk Tier, and Approval Model"
-version: 2.0.0
+version: 2.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-07-26
+last_updated: 2026-09-18
 ---
 
 
@@ -31,6 +31,32 @@ last_updated: 2026-07-26
 - require approval;
 - require step-up authentication;
 - allow with constraints/redactions.
+
+## Implemented approval triggers (2026-09-18)
+
+The running `PolicyEngine` requires an approval on **either** of two independent
+conditions, and records which one fired:
+
+1. **Tier.** The call's risk tier is `REVERSIBLE_CHANGE` (2) or higher.
+2. **Declared effect.** The catalog's `effect_type` is `external_effect` or
+   `privileged`, whatever the tier. A tool declaring `prohibited` is denied
+   outright.
+
+Condition 2 was added by **ADR-0011** after `TR-2026-003` §5.3 measured a
+read-tier tool performing a cross-session data egress with no approval. This
+section of the specification already listed "destination and side effect" as
+policy input; the engine did not read it. Both conditions read the catalog
+definition, never the caller's claim.
+
+Deliberately **not** gated by effect: `modify` and `draft`. They are gated by
+tier where it matters, and gating them by effect as well would put every
+ordinary local edit behind an approval.
+
+Not yet implemented: the `approval_policy` field of
+`schemas/tool-definition.schema.json` (`never` / `policy` / `always` /
+`prohibited`). A tool cannot yet demand or waive approval for itself, and
+`never` would be a way to weaken a gate, so it is an open decision rather than
+a follow-up commit.
 
 ## Approval binding
 

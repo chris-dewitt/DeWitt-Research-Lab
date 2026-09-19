@@ -39,7 +39,8 @@
         "tool": "mail.send",
         "allowed": true,
         "requires_approval": true,
-        "call_digest": "3c70d87d1f40e7bb1392adda685ee9a689d4e7cbb5bbcbe381122ea543a0164d"
+        "call_digest": "3c70d87d1f40e7bb1392adda685ee9a689d4e7cbb5bbcbe381122ea543a0164d",
+        "gating_effect": "external_effect"
       }
     },
     {

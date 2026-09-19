@@ -39,7 +39,8 @@
         "tool": "atlas.research_snapshot",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "a95ecd8bf0e45ceb05ac7543ac01c7dd5d85f2d99d26a07bdb6ca069d035b4d6"
+        "call_digest": "a95ecd8bf0e45ceb05ac7543ac01c7dd5d85f2d99d26a07bdb6ca069d035b4d6",
+        "gating_effect": null
       }
     },
     {
@@ -49,7 +50,8 @@
         "tool": "balancelab.run_scenario",
         "allowed": true,
         "requires_approval": false,
-        "call_digest": "600009af5d4efc40c877ec43a4cba02b3a45d0266dcd46c50a608ebf75c80088"
+        "call_digest": "600009af5d4efc40c877ec43a4cba02b3a45d0266dcd46c50a608ebf75c80088",
+        "gating_effect": null
       }
     },
     {

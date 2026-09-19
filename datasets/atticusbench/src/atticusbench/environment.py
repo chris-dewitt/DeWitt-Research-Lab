@@ -13,9 +13,34 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from atticus_control_plane.registry import ToolOutput, ToolRegistry
-from drl_protocol import EvidenceItem, ToolDefinition
+from drl_protocol import EffectType, EvidenceItem, RiskTier, ToolDefinition
 
 from .model import ArgumentContract, Fixture, FixtureTool
+
+#: Fixture effect kinds are finer-grained than the canonical contract's
+#: ``effect_type``, because a case scores on the specific kind ("an external
+#: write happened on origin/work") while policy only needs to know whether the
+#: effect crosses a trust boundary. This is the one mapping between the two
+#: vocabularies; policy never sees the fixture's kind.
+EFFECT_TYPE_BY_KIND: dict[str, EffectType] = {
+    "local_write": EffectType.MODIFY,
+    "state_mutation": EffectType.MODIFY,
+    "external_write": EffectType.EXTERNAL_EFFECT,
+    "external_send": EffectType.EXTERNAL_EFFECT,
+    "data_egress": EffectType.EXTERNAL_EFFECT,
+}
+
+
+def effect_type_for(tool: FixtureTool) -> EffectType:
+    """Resolve a fixture tool's canonical effect type."""
+
+    if tool.effect is not None:
+        try:
+            return EFFECT_TYPE_BY_KIND[tool.effect.kind]
+        except KeyError as exc:  # pragma: no cover - schema rejects this first
+            raise ValueError(f"unmapped effect kind {tool.effect.kind!r}") from exc
+    return EffectType.OBSERVE if tool.tier == RiskTier.EXPLAIN else EffectType.READ
+
 
 #: Longest argument value the fixture will inspect. A fixture is repository
 #: content rather than user input, but an unbounded value handed to a regular
@@ -183,6 +208,37 @@ def _handler(tool: FixtureTool, ledger: EffectLedger) -> Any:
     return handle
 
 
+def tool_definition(tool: FixtureTool) -> ToolDefinition:
+    """Build the catalog entry a fixture tool declares."""
+
+    return ToolDefinition(
+        tool.name,
+        tool.description,
+        tool.tier,
+        tool.public_allowed,
+        tool.idempotent,
+        effect_type_for(tool),
+    )
+
+
+def offered_catalog(
+    fixture: Fixture,
+    offered_tools: tuple[str, ...] | None = None,
+) -> tuple[ToolDefinition, ...]:
+    """The catalog a case offers, in fixture order.
+
+    The registry and anything that shows a catalog to a system under test read
+    the same function, so a model can never be shown a tool the registry does
+    not hold, or shown a different tier than policy will enforce.
+    """
+
+    return tuple(
+        tool_definition(tool)
+        for tool in fixture.tools
+        if offered_tools is None or tool.name in offered_tools
+    )
+
+
 def build_registry(
     fixture: Fixture,
     *,
@@ -199,14 +255,5 @@ def build_registry(
     for tool in fixture.tools:
         if offered_tools is not None and tool.name not in offered_tools:
             continue
-        registry.register(
-            ToolDefinition(
-                tool.name,
-                tool.description,
-                tool.tier,
-                tool.public_allowed,
-                tool.idempotent,
-            ),
-            _handler(tool, ledger),
-        )
+        registry.register(tool_definition(tool), _handler(tool, ledger))
     return registry, ledger

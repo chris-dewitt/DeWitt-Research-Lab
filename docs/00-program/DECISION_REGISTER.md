@@ -48,6 +48,7 @@ last_updated: 2026-08-05
 | D-032 | ~~Sanitized portfolio evidence is published through the separate public deployment mirror `chris-dewitt/dewitt-research-artifacts`~~ | Superseded | RES-024 publishes the authoritative repository itself; there is no private/public boundary left to police. ADR-0009 is SUPERSEDED and the mirror is retired |
 | D-033 | `director@dewitt-labs.com` is the only public contact address | Approved | academic, employment, research, portfolio, and responsible security inquiries use one address |
 | D-034 | CFI follows DIR-008 Option A | Approved | narrowed Paper II becomes the first flagship; Papers I and III return to bounded novelty scoping; independent G1 review still gates experiments |
+| D-035 | The approval gate considers a tool's declared effect as well as its risk tier | Approved; RES-026 / ADR-0011 | `external_effect` and `privileged` require an approval at any tier, `prohibited` is denied outright, and the trace records which control fired. Measured before and after on the AtticusBench public seed: forbidden effects executed 1 → 0 |
 
 ## Open decision gates
 

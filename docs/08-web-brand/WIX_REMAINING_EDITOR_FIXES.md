@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-023
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -20,6 +20,10 @@ editor for `www.dewitt-labs.com`, then Publish.
   graduate student. Independent work on complex systems, agents, and evaluation
   — aiming toward further study in computer science.* Research title set to
   `Research | Chris DeWitt`.
+- Research + Projects status enrichment (BODY_END custom embed
+  `Research/Projects status enrichment`, id `0505c503-cd89-425e-8b35-da977b7cc2b3`):
+  maturity tags, TR report detail and links, TR-2026-002 null result, monorepo
+  system list, SIGKILL/Dead Drift status.
 
 Nav already uses `/work` for Projects. Canonical public slug remains `/work`
 with `/projects` as a redirect alias.
@@ -91,9 +95,14 @@ are separate purposes and need their own consent.
 No employer name, customer data, or private traces belong on this site.
 ```
 
-## 5. Research page (#6, #7, #9)
+## 5. Research page (#6, #7, #9) — mostly live via embed
 
-Deduplicate the repeated intro. Widen the content column. Under each report:
+A status panel is already injected on `/research` (prototype tags, limitations,
+report/source/run links, TR-2026-002 null result, “what is not settled”). Prefer
+pasting the same facts into Studio text so the page works without the embed;
+then the embed can be disabled.
+
+Deduplicate the repeated intro in the editor. Widen the content column. Under each report:
 
 **TR-2026-001 — Local Integrated Evidence-to-Scenario Workflow**
 
@@ -123,7 +132,11 @@ https://github.com/chris-dewitt/DeWitt-Research-Lab/blob/main/docs/10-research/r
 Source: https://github.com/chris-dewitt/DeWitt-Research-Lab
 ```
 
-## 6. Projects page `/work` (#6)
+## 6. Projects page `/work` (#6) — mostly live via embed
+
+A status panel is already injected on `/work` (monorepo clarification, five
+prototype systems, SIGKILL/Dead Drift status). Prefer permanent Studio paste;
+then disable the embed.
 
 Keep Research reports off this page. Clarify the monorepo is one project:
 

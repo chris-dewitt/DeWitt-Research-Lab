@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.34.0
+version: 4.35.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -35,7 +35,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
-| Wix portfolio fixes | Cursor cloud agent | `cursor/website-portfolio-fixes-f70f` | 2026-09-19 | IN PROGRESS | (pending) |
+| Wix portfolio fixes | Cursor cloud agent | `cursor/website-portfolio-fixes-f70f` | 2026-09-19 | IN PROGRESS | PR #74 |
 | 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
@@ -845,3 +845,17 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   complex systems, agents, and evaluation — aiming toward further study in
   computer science.*
 - Docs/handoff updated on `cursor/website-portfolio-fixes-f70f`.
+
+## 2026-09-19 — Research/Projects status enrichment
+
+- Live Wix BODY_END embed `Research/Projects status enrichment`
+  (`0505c503-cd89-425e-8b35-da977b7cc2b3`): `/research` gains prototype maturity,
+  TR-2026-001/002 limitations + report links, TR-2026-002 null result, open
+  model-selection blockers; `/work` gains monorepo clarification, Atticus/Atlas/
+  FedLens/BalanceLab/EvalForge prototype list, SIGKILL and Dead Drift status.
+- Source truth: `SITE_COPY.md`, `CURRENT_STATE_BASELINE.md`,
+  `OPEN_SOURCE_MATURITY_MODEL.md`.
+- Verified in browser; screenshots under `/opt/cursor/artifacts/screenshots/`.
+- Docs: `SITE_COPY.md` 3.4.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.1.0.
+- Next: Director may paste the same facts permanently in Studio and disable the
+  embed; hero/GitHub/footer/privacy remain editor-only.

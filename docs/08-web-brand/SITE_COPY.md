@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.3.0
+version: 3.4.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-19
@@ -14,10 +14,12 @@ Paste-ready copy for manual Wix use where the editor is required. SEO tags and
 URL redirects may be applied through the Wix SEO APIs when authenticated; page
 body copy still needs the editor.
 
-Version 3.3.0 records the 2026-09-19 live state: fabricated claims and
+Version 3.4.0 records the 2026-09-19 live state: fabricated claims and
 institutional chrome from earlier audits are gone; Projects lives at `/work`
 with `/projects` redirected there. Home/About SEO uses a light academic signal
-(no MADS/UNC in the meta description). Remaining editor work is in
+(no MADS/UNC in the meta description). Research and Projects now show maturity
+and status detail via a BODY_END custom embed (`Research/Projects status
+enrichment`, id `0505c503-…`). Remaining editor work is in
 `WIX_REMAINING_EDITOR_FIXES.md`.
 
 ## Page tree
@@ -41,6 +43,10 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
   evaluation — aiming toward further study in computer science.* (no MADS/UNC
   in meta; page body may still name the program)
 - Research SEO title is `Research | Chris DeWitt`
+- Research `/research` and Projects `/work` status panels (custom embed):
+  prototype maturity, TR-2026-001/002 limitations and links, TR-2026-002 null
+  result, open model-selection blockers, monorepo systems (Atticus/Atlas/
+  FedLens/BalanceLab/EvalForge), SIGKILL and Dead Drift status
 
 **Still editor-only:** see `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`.
 

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.20.0
+version: 1.21.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-18
+last_updated: 2026-09-19
 ---
 
 # Director's Decision and Escalation Ledger
@@ -127,10 +127,11 @@ the Director's approval.
   dormant at the Director's discretion; nothing in this repository targets it.
   Once `DeWitt-Research-Lab` is public, GitHub Pages serves the replay viewer
   at `https://chris-dewitt.github.io/DeWitt-Research-Lab/`. Wix
-  (`www.dewitt-labs.com`) is still the academic portfolio and does not yet
-  link to that URL from the live homepage; paste-ready copy is in
-  `docs/08-web-brand/SITE_COPY.md`. This cloud agent cannot authenticate the
-  Wix MCP.
+  (`www.dewitt-labs.com`) is the academic portfolio and links that URL from the
+  homepage (*Watch a recorded run*). As of 2026-09-19: `/projects` redirects to
+  `/work`; SEO option B is live on Home/About; remaining body-copy edits are in
+  `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`. The Wix MCP can manage SEO
+  redirects/tags when authenticated; Studio page body still needs the editor.
 - ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and
   ADR-0011. The AtticusBench critical suite now measures a candidate rather than
   our own policy for the cross-session case. One critical-suite failure remains

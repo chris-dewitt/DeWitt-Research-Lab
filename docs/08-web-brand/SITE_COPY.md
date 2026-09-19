@@ -1,73 +1,49 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.2.0
+version: 3.3.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-24
+last_updated: 2026-09-19
 ---
+
 
 # Personal academic portfolio site copy
 
-Paste-ready copy for manual Wix use. This does not authorize a Wix write; nothing
-here is applied to the live site by any tool in this repository.
+Paste-ready copy for manual Wix use where the editor is required. SEO tags and
+URL redirects may be applied through the Wix SEO APIs when authenticated; page
+body copy still needs the editor.
 
-Version 3.2.0 points the recorded-run buttons at the live GitHub Pages viewer
-`https://chris-dewitt.github.io/DeWitt-Research-Lab/`. Wix remains the
-portfolio; Pages hosts the signed fixture recordings. Version 3.1.0 replaced
-the outline in 2.0.0 with finished text for all four approved pages.
+Version 3.3.0 records the 2026-09-19 live state: fabricated claims and
+institutional chrome from earlier audits are gone; Projects lives at `/work`
+with `/projects` redirected there; SEO option B is live on Home/About. Remaining
+editor work is in `WIX_REMAINING_EDITOR_FIXES.md`.
 
 ## Page tree
 
 Four pages, as RES-016 approves them: Home, Research, Projects, About.
 
-An earlier draft of this document proposed three, folding Research into Projects
-on the grounds that a Research page holding one report next to a Projects page
-describing the same work splits thin material across two thin pages. That
-reasoning rested on there being one report. There are two — TR-2026-001 and
-TR-2026-002 — and the second is the stronger of them, because its result is a
-null one. The premise was wrong, so the deviation is withdrawn and the approved
-tree stands unchanged.
+| Nav label | Live slug | Notes |
+| --- | --- | --- |
+| Home | `/` | |
+| Research | `/research` | |
+| Projects | `/work` | `/projects` and `/projects-1` redirect here |
+| About | `/about` | |
 
-## Before you paste: what comes off the site
+## Live status (2026-09-19)
 
-These are the live findings, in the order they matter. The first group is not
-stylistic.
+**Done on Wix (API):**
 
-**Claims with nothing behind them.** None of these strings appear anywhere in
-the repository, and the work they describe has not happened:
+- `/projects` → `/work` (was wrongly `/research`)
+- Home/About meta descriptions use SEO option B (no tutoring / wrong CS master’s claim)
+- Research SEO title is `Research | Chris DeWitt`
 
-| On the site now | Reality |
-| --- | --- |
-| TR-2026-001 "Coordinating Language Models, Deterministic Analysis, and Human Approval for Specialist Systems" | The real TR-2026-001 is *Local Integrated Evidence-to-Scenario Workflow* |
-| "We utilized Llama-3-70B and Mistral-Large-2 as core inference engines" | No model has been run live. Model selection (DIR-004) is still open |
-| "across 500+ distinct research trajectories" | No such runs exist |
-| "Deterministic pass rate achieved 94.2% on source verification tasks" | Not produced by anything in the repository |
-| "Strongest trajectories documented in run 084x" | No such run |
-| Citation: "Intelligence as Agency: Coordinating Multi-Agent Multi-Layer Systems" | A third title, inconsistent with the heading above it |
-| "RUN DOCUMENTED: CHARLOTTE, NC // OCT 2026" | Future-dated |
+**Still editor-only:** see `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`.
 
-**Institutional chrome.** `NODE: 01 // UPTIME: 99.9%` in the footer of all three
-pages — `BRAND_SYSTEM.md` names that exact string as its example of a fabricated
-metric. "Specialist research nodes" on the Systems page is prohibited by the same
-section. So is the six-row TECHNICAL SPECIFICATIONS table, which asserts
-completeness ("FULLY DEPLOYABLE", "FULL TRACEABILITY") for prototypes.
-
-**A wrong link.** The footer links to `http://www.git-hub.com/chris-dewitt`. That
-is not GitHub. The correct link is `https://github.com/chris-dewitt`.
-
-**Dead buttons.** *View my research*, *About me*, *View All Questions*,
-*Inspect deterministic logs*, and *Source code* have no destinations. A button
-that does nothing reads worse than no button: either point it somewhere or
-delete it. *Watch prototype run* and *Recorded run* now have a destination:
-`https://chris-dewitt.github.io/DeWitt-Research-Lab/`.
-
-**Duplication.** The homepage lists the same five research questions twice, once
-as INTEREST_01–05 and again as Q-2026-001–005 with invented pipeline states
-(`[ACTIVE_INVESTIGATION]`, `[DEGRADED_STATE]`). Keep one list, without the states.
-
-**An empty page.** `/projects` has 133 characters of visible text — nav and
-footer only — and the homepage links to it.
+**Historical note.** An earlier version of this file listed fabricated metrics
+(`94.2%`, `500+ trajectories`, Llama/Mistral claims, `NODE: 01 // UPTIME`) as
+“on the site now.” Those strings are no longer on the live portfolio; do not
+reintroduce them.
 
 ---
 
@@ -88,8 +64,8 @@ in computer science.
 ```
 
 RES-016 fixes both the labels and their order: research first, projects second.
-*View my research* goes to `/research`, *Explore my projects* to `/projects`.
-Neither resolves today — both are dead buttons on the live site.
+*View my research* goes to `/research`, *Explore my projects* to `/work`
+(with `/projects` as a redirect alias).
 
 ## Opening statement
 

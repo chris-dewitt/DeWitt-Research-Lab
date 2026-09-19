@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-019
 title: "Wix Personal Academic Portfolio Build Plan"
-version: 3.0.0
+version: 3.1.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-04
+last_updated: 2026-09-19
 ---
 
 # Wix Personal Academic Portfolio Build Plan
@@ -20,9 +20,12 @@ and where he hopes to take that work next.
 ```text
 Home       /          identity, education, interests, selected work, direction
 Research   /research  reports, methods, experiments, notes
-Projects   /projects  selected systems and engineering work
+Projects   /work      selected systems and engineering work
 About      /about     background, current study, goals, contact
 ```
+
+Live note (2026-09-19): the Projects page slug is `/work`. `/projects` and
+`/projects-1` redirect to `/work`. Nav labels still say Projects.
 
 GitHub, source, writing, recorded runs, and open-source details live inside
 Research or Projects rather than becoming additional top-level departments.

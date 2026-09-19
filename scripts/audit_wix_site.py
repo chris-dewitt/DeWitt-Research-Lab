@@ -71,19 +71,20 @@ EXPECTED_COLLECTIONS = [
 # small, an unlisted page is worth a decision.
 EXPECTED_TOP_SECTIONS = {
     "Research": ["research"],
-    "Projects": ["projects", "project"],
+    # Live Projects page slug is /work; /projects is a redirect alias (2026-09-19).
+    "Projects": ["work", "projects", "project"],
     "About": ["about"],
 }
 
 # Required homepage text (RES-016 identity).
 #
 # The hero no longer carries a lab name or a slogan: leading with either is what
-# RES-016 corrected. Only the identity is required here — the degree-programme
-# wording is governed by SITE_COPY.md, which an auditor cannot check for
-# exactness without asserting one phrasing over another.
+# RES-016 corrected. The Director approved SEO option B (2026-09-19), which keeps
+# "Forecast Engineer" in the title rather than the "Academic Portfolio"
+# descriptor. Identity here is the person plus the degree programme signal.
 REQUIRED_HOME_TEXT = [
-    "Christopher Noxon DeWitt",
-    "Academic Portfolio",
+    "DeWitt",
+    "Applied Data Science",
 ]
 
 # Required links/content anywhere on the homepage.

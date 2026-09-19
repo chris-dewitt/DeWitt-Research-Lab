@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.33.0
+version: 4.34.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-08-27
+last_updated: 2026-09-19
 ---
 
 
@@ -22,7 +22,8 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
   RES-024, which supersedes the RES-018 date clause and retires the artifact
   mirror. DIR-009 was resolved by RES-022. The Director changes visibility in
   their own GitHub account. CFI DIR-008 Option A remains subject to independent
-  G1 review. Wix editor implementation remains Director-operated.
+  G1 review. Wix editor body-copy remains Director-operated; SEO redirects/tags
+  are API-reachable when the Wix MCP is authenticated.
 - Integration branch: still to be created by operator via DRL-001.
 - Open blockers: DIR-002 (GCP deploy), DIR-004 (model bake-off; scaffold only —
   no winner), and independent CFI G1 review. DIR-009 is resolved by RES-022.
@@ -34,6 +35,7 @@ This is the canonical human-readable ledger for sequential agents. Append; do no
 
 | Mission | Agent/tool | Branch | Started UTC | Status | PR |
 |---|---|---|---|---|---|
+| Wix portfolio fixes | Cursor cloud agent | `cursor/website-portfolio-fixes-f70f` | 2026-09-19 | IN PROGRESS | (pending) |
 | 00/01 follow-up | Cursor cloud agent | `cursor/mission-00-program-bootstrap-ad29` | 2026-07-27 | MERGED | PR #6, #7 |
 | 02 / DRL-005 | Cursor cloud agent | `cursor/drl-005-protocol-state-machine-ad29` | 2026-07-27 | MERGED | PR #8 |
 | 07 / DRL-007 | Cursor cloud agent | `cursor/drl-007-model-provider-interface-ad29` | 2026-07-27 | MERGED | PR #9 |
@@ -823,3 +825,15 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   `validate_domain_wix`, `validate_public_repository`, `validate_atticusbench`,
   and both `--check` drift gates pass.
 - Handoff: `agents/handoffs/2026-09-18-drl-038-039-effect-gate-and-model-runs.md`
+
+## 2026-09-19 — Wix portfolio redirect + SEO B + docs sync
+
+- Branch: `cursor/website-portfolio-fixes-f70f`
+- Live Wix: `/projects` → `/work`; `/projects-1` → `/work`; SEO option B on
+  Home/About; Research SEO title `Research | Chris DeWitt`.
+- Repo: `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md` paste pack for
+  editor-only items #3–#9; SITE_COPY / build plan / checklist / auditor synced.
+- Tests: `tests/test_wix_auditor.py` — 33 passed (manual runner; pytest not
+  installed in this environment).
+- Next: Director applies `WIX_REMAINING_EDITOR_FIXES.md` in the Wix editor and
+  Publishes. Handoff: `agents/handoffs/2026-09-19-wix-portfolio-fixes.md`.

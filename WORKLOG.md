@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.35.0
+version: 4.36.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 
@@ -892,3 +892,51 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   restored; Chapel Hill gone on About).
 - Next: Director permanent Studio paste for hero/GitHub/footer; optional further
   gap tuning if void remains below hero.
+
+## 2026-09-20 — Portfolio polish pass (Director in Studio)
+
+- Decisions: PROJECTS label kept; Chapel Hill/MADS stay softened; hero = name +
+  thesis + hard gap kill; monorepo line softens; Research drops peer-reviewed
+  apology; footer/GitHub/privacy paste now.
+- Live embeds: enrichment `0505c503-…` rev 4; softener `8d0df783-…` rev **11**
+  (`uncapHero` clears H6/SPAN `text-transform: capitalize` so And-fix shows);
+  gap cleanup `4ebc7135-…` rev 8 (`DL_HOME_GAP_V4`).
+- Docs: `WIX_LIVE_PASTE_NOW.md` (DRL-WEB-025) 1.1.0, `WIX_REMAINING_EDITOR_FIXES.md`
+  1.6.0, `SITE_COPY.md` 3.8.0.
+- Checks: `uv run python scripts/validate_foundation.py` → VALIDATION PASSED.
+- Browser: Home And-fix + `text-transform:none`; Research no peer-reviewed
+  apology; Work monorepo soft line; gap V4 present. Screenshots:
+  `verify-home-v11.png`, `verify-research-v11.png`, `verify-work-v11.png`.
+- Next: Director pastes `WIX_LIVE_PASTE_NOW.md` in Studio (incl. subtitle Text
+  transform → None) and Publishes; agent re-verifies footer/privacy/name.
+
+## 2026-09-20 — Embedded code slice (Studio helpers)
+
+- Interpretation: Director “New idea: Embedded code” → do remaining polish via
+  BODY_END/HEAD embeds so Studio paste shrinks.
+- Live: new BODY_END **Studio paste helpers** `b21ad726-…` **rev 4**
+  (leaf-safe TreeWalker / document-fragment only): rewrite
+  `http://www.github.com/chris-dewitt` → `https://github.com/chris-dewitt`;
+  About `ABOUT CHRIS` → `About`; footer mailto wrap + GitHub + Privacy panel
+  (`#cd-privacy`) until `/privacy` page exists.
+- Already-live embeds still cover softener/enrichment/gap/open-weight.
+- Hero name already present on live DOM — not re-injected.
+- `/privacy` still 404 — remains Studio-only (no page API create this pass).
+- Docs: `WIX_LIVE_PASTE_NOW.md` 1.2.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.7.0,
+  `SITE_COPY.md` 3.9.0; handoff updated.
+- Checks: `uv run python scripts/validate_foundation.py`; headless Chrome —
+  bad GitHub hrefs cleared; About heading cleaned; footer links present;
+  privacy panel opens on `#cd-privacy`.
+- Next: Director creates `/privacy` + permanent Text transform None; Publish.
+
+## 2026-09-20 — Research/Work header nav restored
+
+- Live bug: `/research` and `/work` had no header/nav.
+- Root cause: enrichment `0505c503-…` hide lists included page HEADER comps
+  (`comp-msfldjxx` on Research, `comp-mswd0roa` on Work).
+- Fix: embed **rev 7** — remove those ids; `isChrome()` guard; MARK v3; no
+  `textContent` flattening.
+- Verified: nav + enrichment both present on `/research` and `/work`.
+  Screenshots `after-research-nav.png`, `after-work-nav.png`.
+- Docs/handoff: `WIX_REMAINING_EDITOR_FIXES.md`, `SITE_COPY.md`,
+  `agents/handoffs/2026-09-20-wix-research-nav-fix.md`.

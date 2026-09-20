@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.25.0
+version: 1.26.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -141,11 +141,15 @@ the Director's approval.
   safe-use framing (local runs, policy/approval, evidence gates). 2026-09-20:
   Director asked for more **embedded code** mid-Studio edit. Helpers embed
   `b21ad726-…` rev 4 now covers GitHub href rewrite, About heading, and footer
-  mailto/GitHub/Privacy panel live; softener/enrichment/gap already carried
-  tone + capitalize + gap. Remaining Studio-musts: create `/privacy` (404 today),
-  permanent subtitle Text transform → None, optional empty-strip delete /
-  permanent paste to retire embeds. Checklist:
-  `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` v1.2. The Wix MCP manages embeds
+  mailto/GitHub live; softener/enrichment/gap already carried
+  tone + capitalize + gap. **2026-09-20: the Director retired `/privacy`** —
+  no page, no footer link, no interim panel. It had been a Studio-must standing
+  at 404 since 2026-09-19 while the footer linked a `#cd-privacy` panel in its
+  place; publishing a thin page to satisfy a link the site does not need was
+  judged worse than removing the link. Helpers embed goes to **rev 5** to drop
+  the anchor and the panel. Remaining Studio-musts: permanent subtitle Text
+  transform → None, optional empty-strip delete / permanent paste to retire
+  embeds. Checklist: `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` v1.3. The Wix MCP manages embeds
   when authenticated; new pages and permanent Text settings stay Studio.
 - ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and
   ADR-0011. The AtticusBench critical suite now measures a candidate rather than

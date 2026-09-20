@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.10.0
+version: 3.11.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -41,10 +41,10 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
   excluded from hide lists so nav stays visible)
 - Homepage gap cleanup `4ebc7135-…` rev `8` (`DL_HOME_GAP_V4`)
 - Home open-weight thesis embed `73d6abb6-…`
-- Studio helpers `b21ad726-…` rev `4` (GitHub hrefs; About heading; footer
-  mailto + GitHub + Privacy panel)
+- Studio helpers `b21ad726-…` rev `5` (GitHub hrefs; About heading; footer
+  mailto + GitHub; Privacy link and `#cd-privacy` panel removed)
 
-**Director Studio remaining:** create `/privacy`; permanent subtitle Text
+**Director Studio remaining:** permanent subtitle Text
 transform → None; optional structural gap delete / permanent paste to retire
 embeds. See `WIX_LIVE_PASTE_NOW.md`.
 

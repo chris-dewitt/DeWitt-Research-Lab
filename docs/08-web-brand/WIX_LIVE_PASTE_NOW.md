@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-025
 title: "Wix Live Paste Now (Director — do these in Studio)"
-version: 1.2.0
+version: 1.3.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -31,7 +31,7 @@ on About.
 | Open-weight thesis block | `73d6abb6-…` rev 2 |
 | Bad GitHub href → `https://github.com/chris-dewitt` | **Helpers** `b21ad726-…` rev 4 |
 | About heading `ABOUT CHRIS` → `About` (TreeWalker) | Helpers rev 4 |
-| Footer mailto + GitHub + Privacy (panel until `/privacy` exists) | Helpers rev 4 |
+| Footer mailto + GitHub | Helpers rev 5 (Privacy link and panel removed) |
 
 Hero already shows **Chris DeWitt** above the thesis on the live site.
 
@@ -39,29 +39,16 @@ Hero already shows **Chris DeWitt** above the thesis on the live site.
 
 ## Still paste / do in Studio (short list)
 
-### 1. Privacy page (must be Studio — embeds cannot create a route)
+### 1. Remove the footer Privacy link and panel
 
-Create page slug `/privacy` with:
+The Director retired `/privacy` on 2026-09-20: no page, no footer link, no
+interim panel. Helpers embed `b21ad726-…` goes to **rev 5**, which drops the
+Privacy anchor and the `#cd-privacy` panel and leaves the footer as mailto plus
+GitHub.
 
-```text
-Privacy
-
-This is an independent personal academic portfolio operated by Christopher Noxon
-DeWitt. It is not a laboratory, institute, or employer site.
-
-Contact and inquiry mail goes to director@dewitt-labs.com. Do not send secrets,
-credentials, or employer-confidential material.
-
-Wix may process ordinary hosting and traffic metadata for the site. Prefer
-minimal analytics. Application subdomains and research-trace donation, if any,
-are separate purposes and need their own consent.
-
-No employer name, customer data, or private traces belong on this site.
-```
-
-Until that page exists, the helpers embed’s **Privacy** footer link opens a
-panel (`#cd-privacy`) with the same copy. After the page ships, retarget the
-footer Privacy link to `/privacy` and we can disable the panel.
+Nothing needs creating in Studio for this. If a Privacy link was already pasted
+permanently into the footer, delete it there too, or the embed will be removing
+a link the editor keeps putting back.
 
 ### 2. Permanent Text transform (hero subtitle)
 
@@ -83,5 +70,5 @@ in the editor (gap CSS V4 already tries).
 
 ### 5. Publish
 
-**Publish**, hard-refresh. Ping for re-verify of `/privacy` and permanent
-subtitle transform.
+**Publish**, hard-refresh. Ping for re-verify that the footer carries mailto
+and GitHub only, and that the hero subtitle transform is permanent.

@@ -1,10 +1,10 @@
 ---
 document_id: DRL-WEB-020
 title: "Wix Editor Build, Review, and Handoff Checklist"
-version: 1.4.0
+version: 1.5.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 # Wix Editor Build, Review, and Handoff Checklist
@@ -35,11 +35,12 @@ last_updated: 2026-09-19
       service and not live market data.
 - [ ] The first viewport states the name, current UNC-Chapel Hill degree, and intended computer-science direction (see `WIX_REMAINING_EDITOR_FIXES.md`).
 - [ ] Atticus and every specialist has a page or truthful planned-state entry.
-- [ ] Header and footer navigation are consistent (GitHub + Privacy in footer).
+- [ ] Header and footer navigation are consistent (GitHub in footer).
 - [ ] The site is understandable without opening Atticus.
 - [ ] No empty or misleading page is published merely to fill navigation.
 - [ ] No `http://www.github.com` lookalike/protocol mistakes remain.
-- [ ] `/privacy` exists with the independent-portfolio notice.
+- [ ] No `/privacy` route or footer Privacy link exists; the route was retired
+      on 2026-09-20 rather than published as a thin page.
 
 ## Brand and UX
 

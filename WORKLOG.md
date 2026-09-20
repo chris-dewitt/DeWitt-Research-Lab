@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.38.0
+version: 4.39.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -1021,3 +1021,28 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   the Director's machine. Ruff, mypy strict (91 files) and bandit clean; all six
   validators pass; `datasets/atticusbench/release/` unchanged in git.
 - Handoff: `agents/handoffs/2026-09-20-manifest-digest-newline-normalization.md`.
+
+## 2026-09-20 — `/privacy` retired rather than built
+
+- Branch `docs/remove-privacy-route`. Director decision, 2026-09-20: delete
+  `/privacy` outright — no page, no footer link, no interim panel.
+- Context: the route had been a Studio-must since 2026-09-19 and stood at 404
+  the whole time, while the helpers embed linked a `#cd-privacy` panel in its
+  place. The live site was therefore carrying a Privacy affordance that went
+  nowhere real. Publishing a thin page to satisfy a link the site does not need
+  is the kind of navigation-filling `WIX_EDITOR_HANDOFF_CHECKLIST.md` already
+  forbids, so the link goes instead of the page arriving.
+- Repo: `WIX_LIVE_PASTE_NOW.md` 1.3.0 (privacy-page section replaced by the
+  removal instruction), `WIX_REMAINING_EDITOR_FIXES.md` 1.9.0, `SITE_COPY.md`
+  3.11.0, `WIX_EDITOR_HANDOFF_CHECKLIST.md` 1.5.0 (the `/privacy` checkbox
+  becomes an assertion that no such route exists), `DIRECTORS_MEMO.md` 1.26.0.
+- **Not applied live.** The helpers embed `b21ad726-…` must go to rev 5 to drop
+  the Privacy anchor and the `#cd-privacy` panel. No Wix MCP was authenticated
+  in this session, so this change is specified and not executed; the repo now
+  describes rev 5 while rev 4 is what the site serves.
+- Worth recording separately: **no embed source is version-controlled.** Five
+  live BODY_END embeds govern visible behavior on the portfolio and exist only
+  inside Wix, so the repository cannot review, diff, or restore them. That is a
+  gap in a repository whose stated doctrine is that controlled documents and
+  code are the source of truth. Not addressed here.
+- Checks: `validate_foundation` and `validate_domain_wix` pass.

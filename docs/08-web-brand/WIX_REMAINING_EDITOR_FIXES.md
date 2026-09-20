@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-024
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.8.0
+version: 1.9.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -37,9 +37,8 @@ privacy via embeds first, permanent Studio when ready.
 | Home gap under CTAs | Gap V4 CSS/JS | Delete empty strip if void remains |
 | GitHub `http://www.github…` | Helpers href rewrite | Permanent link edit |
 | About `ABOUT CHRIS` | Helpers TreeWalker | Permanent heading paste |
-| Footer mailto / GitHub / Privacy | Helpers (Privacy = panel) | Create `/privacy` page; permanent footer |
+| Footer mailto / GitHub | Helpers rev 5 | Permanent footer paste |
 | Research / Projects tone | Enrichment panels | Optional permanent paste |
-| New `/privacy` route | No (404 today) | **Yes — create page** |
 
 ## Already applied via API
 
@@ -56,17 +55,20 @@ privacy via embeds first, permanent Studio when ready.
 - Home open-weight thesis embed `73d6abb6-…` rev 2 still live.
 - **Studio paste helpers** `b21ad726-…` **rev 4** (BODY_END): leaf-safe
   TreeWalker / document-fragment patterns only (no container `textContent`
-  flatten). Fixes bad GitHub hrefs; About heading; footer mailto + GitHub +
-  Privacy panel (`#cd-privacy`) until `/privacy` exists.
+  flatten). Fixes bad GitHub hrefs; About heading; footer mailto + GitHub.
+  **Rev 5** removes the Privacy anchor and the `#cd-privacy` panel: the Director
+  retired the route on 2026-09-20 rather than build the page it was standing in
+  for.
 
 Nav label remains **PROJECTS** → `/work`. `/projects` redirects there.
 
 ## Studio remaining (see `WIX_LIVE_PASTE_NOW.md`)
 
-1. Create `/privacy` page (required for a real route).
-2. Hero subtitle Text transform → None (permanent).
-3. Optional: delete empty hero strip; permanent hero/About/footer paste when
+1. Hero subtitle Text transform → None (permanent).
+2. Optional: delete empty hero strip; permanent hero/About/footer paste when
    ready to retire embeds.
+3. If a Privacy link was pasted permanently into the footer, delete it in
+   Studio — otherwise the editor keeps restoring what rev 5 removes.
 
 ## Verify after publish / hard-refresh
 
@@ -76,7 +78,7 @@ Nav label remains **PROJECTS** → `/work`. `/projects` redirects there.
 3. No huge black void between hero CTAs and “Why complex systems?”.
 4. Research intro has no “not peer-reviewed / not coursework”.
 5. Projects card says *Monorepo · a project in this portfolio*.
-6. Footer: mailto, GitHub, Privacy (panel or `/privacy`).
+6. Footer: mailto and GitHub only — no Privacy link, no `#cd-privacy` panel.
 7. No live `http://www.github.com/chris-dewitt` hrefs.
 8. About heading is not `ABOUT CHRIS`.
 9. `/projects` still lands on Projects (`/work`).

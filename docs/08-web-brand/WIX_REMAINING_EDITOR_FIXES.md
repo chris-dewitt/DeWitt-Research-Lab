@@ -19,7 +19,8 @@ Research/Work `<header>` comps (`comp-msfldjxx` / `comp-mswd0roa`). Hard-refresh
 `https://www.dewitt-labs.com/research` and `https://www.dewitt-labs.com/work`
 to confirm nav.
 
-Director decisions (2026-09-20): keep nav label **PROJECTS** (`/work` slug
+Director decisions (2026-09-20; aligned with RES-016, which made the public
+site Christopher Noxon DeWitt's personal academic portfolio): keep nav label **PROJECTS** (`/work` slug
 stays); Chapel Hill / MADS stay softened/removed from public body; home hero
 gets **name above thesis** + hard gap kill; monorepo line softens (not deletes);
 Research intro drops “not peer-reviewed / not coursework”; footer + GitHub +

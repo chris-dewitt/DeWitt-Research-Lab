@@ -28,7 +28,8 @@ shows. Studio paste pack written for the Director who is live in Wix.
 
 **Live Wix**
 
-- Enrichment `0505c503-…` → rev **4** (Research/Projects tone)
+- Enrichment `0505c503-…` → rev **7** (final same-day state after header-nav
+  restore in `2026-09-20-wix-research-nav-fix.md`; initial polish pass used rev 4)
 - Softener `8d0df783-…` → rev **11** (And-fix + Chapel Hill strip + `uncapHero`
   `text-transform: none`)
 - Gap cleanup `4ebc7135-…` → rev **8** (`DL_HOME_GAP_V4`)

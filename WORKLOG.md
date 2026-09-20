@@ -924,11 +924,13 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Decisions: PROJECTS label kept; Chapel Hill/MADS stay softened; hero = name +
   thesis + hard gap kill; monorepo line softens; Research drops peer-reviewed
   apology; footer/GitHub/privacy paste now.
-- Live embeds: enrichment `0505c503-…` rev 4; softener `8d0df783-…` rev **11**
+- Live embeds (historical-at-time state before the nav-fix entry below):
+  enrichment `0505c503-…` rev 4; softener `8d0df783-…` rev **11**
   (`uncapHero` clears H6/SPAN `text-transform: capitalize` so And-fix shows);
   gap cleanup `4ebc7135-…` rev 8 (`DL_HOME_GAP_V4`).
-- Docs: `WIX_LIVE_PASTE_NOW.md` (DRL-WEB-025) 1.1.0, `WIX_REMAINING_EDITOR_FIXES.md`
-  1.6.0, `SITE_COPY.md` 3.8.0.
+- Docs (historical-at-time values for this pass): `WIX_LIVE_PASTE_NOW.md`
+  (DRL-WEB-025) 1.1.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.6.0, `SITE_COPY.md`
+  3.8.0.
 - Checks: `uv run python scripts/validate_foundation.py` → VALIDATION PASSED.
 - Browser: Home And-fix + `text-transform:none`; Research no peer-reviewed
   apology; Work monorepo soft line; gap V4 present. Screenshots:
@@ -948,8 +950,8 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Already-live embeds still cover softener/enrichment/gap/open-weight.
 - Hero name already present on live DOM — not re-injected.
 - `/privacy` still 404 — remains Studio-only (no page API create this pass).
-- Docs: `WIX_LIVE_PASTE_NOW.md` 1.2.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.7.0,
-  `SITE_COPY.md` 3.9.0; handoff updated.
+- Docs (historical-at-time values for this pass): `WIX_LIVE_PASTE_NOW.md` 1.2.0,
+  `WIX_REMAINING_EDITOR_FIXES.md` 1.7.0, `SITE_COPY.md` 3.9.0; handoff updated.
 - Checks: `uv run python scripts/validate_foundation.py`; headless Chrome —
   bad GitHub hrefs cleared; About heading cleaned; footer links present;
   privacy panel opens on `#cd-privacy`.

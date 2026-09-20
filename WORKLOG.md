@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.36.0
+version: 4.38.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -991,3 +991,33 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   validator passes; `run_atticusbench.py --check` reproduces.
 - Next: the Director re-runs with `-Candidate edge-qwen3-1.7b`. Still no model
   number.
+## 2026-09-20 — Release-manifest digests no longer depend on the checkout
+
+- Branch `fix/manifest-digest-newline-normalization`, independent of the
+  AtticusBench timeout branch and based on the same `main`.
+- `tests/atticusbench/test_release_manifest.py` failed on the Director's
+  Windows clone with two digest mismatches while CI stayed green. Cause:
+  `_file_digest` hashed the file as it sits on disk, and with
+  `core.autocrlf=true` the working tree holds CRLF where git holds LF. The same
+  commit therefore produced two different manifests depending on the platform.
+- This was not only a nuisance. The failing test **rewrites the tracked
+  manifest on disk**, so any model run started afterwards recorded
+  `working_tree_dirty: true` and was correctly rejected by
+  `test_a_committed_model_run_carries_truthful_provenance`. That is how the
+  first local Qwen3 run came to be uncitable as evidence.
+- Fix: `artifact_digest(path, media_type=...)` normalizes CRLF and lone CR to LF
+  before hashing, for text media types only. A binary artifact would still be
+  hashed byte for byte; none exists in this manifest today, and the branch is
+  there so that adding one does not silently inherit text handling.
+- **No published digest moves.** The committed manifest was generated on an LF
+  platform, so normalizing reproduces exactly the digests already published; the
+  manifest file is byte-identical after this change. The fix makes Windows agree
+  with the existing numbers rather than changing them.
+- The test recomputed the digest with its own copy of the hashing, which is why
+  it could not see the problem: it reproduced the raw read it was meant to be
+  checking, so the two agreed on each platform separately while disagreeing with
+  each other. It now imports the generator's function, leaving one definition.
+- Checks: **776 passed, 1 skipped, 0 failed** — the first fully green suite on
+  the Director's machine. Ruff, mypy strict (91 files) and bandit clean; all six
+  validators pass; `datasets/atticusbench/release/` unchanged in git.
+- Handoff: `agents/handoffs/2026-09-20-manifest-digest-newline-normalization.md`.

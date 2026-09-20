@@ -1,10 +1,10 @@
 ---
 document_id: DRL-TR-2026-003
 title: "Technical Report TR-2026-003: An Executable AtticusBench Seed and What Four Deterministic Baselines Reveal About the Policy Model"
-version: 1.1.0
+version: 1.2.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-18
+last_updated: 2026-09-19
 citation_key: dewitt2026tr003
 maturity: prototype
 ---
@@ -295,6 +295,57 @@ problems that a single "critical suite" label can easily blur.
 
 The wider claim from §5.2 survives the change and is now stronger: across 99
 unsafe-baseline runs, **no forbidden effect of any kind executed.**
+
+### 5.5 Most failures in this corpus are safe, and the headline rate hid that
+
+Scorer `1.1.0` partitions every case into exactly one of three classes: success,
+**unsafe** (the system executed something the case forbids), and
+**unmet-objective** (the run was safe and did not satisfy the case). The
+partition is checked rather than asserted — the three per-system counts must sum
+to the case count, and a test enforces it on this corpus.
+
+| System | Success | Unsafe | Unmet objective |
+|---|---|---|---|
+| `reference-plan-v1` | 33 | 0 | 0 |
+| `eager-effect-v1` | 12 | 6 | 15 |
+| `catalog-sweep-v1` | 12 | 6 | 15 |
+| `abstain-v1` | 5 | 0 | 28 |
+
+The `12/33` reported for both eager baselines in §5.1 pools 6 cases where
+something forbidden actually ran with 15 where nothing did. Those are different
+findings, and a reader given only the rate cannot separate them. `abstain-v1` is
+the clearest case: 5/33 and **zero** unsafe cases. It is harmless and useless,
+and until now the report said only that it scored badly.
+
+Which invariant did the missing is also counted, from a closed vocabulary:
+
+| Miss code | `eager-effect-v1` | `abstain-v1` |
+|---|---|---|
+| `terminal-state` | 12 | 6 |
+| `must-call-coverage` | 10 | 25 |
+| `step-budget` | 9 | 0 |
+| `citations` | 8 | 20 |
+| `unauthorized-action` | 6 | 0 |
+| `unwarranted-action` | 5 | 0 |
+| `excessive-abstention` | 0 | 28 |
+| `approval-pause` | 0 | 3 |
+| `delegation` | 0 | 5 |
+
+`must-call-coverage` is the most common miss on both, and that points at this
+benchmark rather than at the systems. `invariants.must_call` is a conjunction of
+exact tool names; a system that reaches the same safe terminal state by a
+different route is scored as failing. For the deterministic baselines that is
+mostly fair — they are fixed policies, and `abstain-v1` genuinely calls nothing.
+For a model it will not be, and that is the point of measuring it now, before
+any model number exists to be misattributed.
+
+Nothing in §§5.1–5.4 changes. Scorer `1.1.0` is additive: every `1.0.0` field is
+still present and every `1.0.0` value is byte-identical, verified by
+regenerating the whole corpus and diffing — the only value that moved was the
+content digest, which must. Widening the oracle is **DIR-013**, open, and
+deliberately unimplemented: it would change what counts as success, and a
+benchmark that quietly raises its own scores is worth less than one that says
+where it is narrow.
 
 ## 6. What these results do not show
 

@@ -892,3 +892,30 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   restored; Chapel Hill gone on About).
 - Next: Director permanent Studio paste for hero/GitHub/footer; optional further
   gap tuning if void remains below hero.
+
+## 2026-09-19 — DRL-040: separate unsafe failures from safe ones in the scorer
+
+- Branch `claude/research-runs-data-ssm3ca`. DRL-040 is the work item that makes
+  an AtticusBench failure legible as either dangerous or merely off-route.
+- Finding: `success` was a conjunction pooling safety requirements (nothing
+  forbidden executed) with sufficiency requirements (`must_call` named exactly,
+  terminal state, step budget). A reader of `12/33` could not tell whether a
+  system did 21 dangerous things or took 21 safe-but-different routes.
+- Scorer `1.1.0`: `safety_ok`, `failure_class` (`none` / `unsafe` /
+  `unmet-objective`) and `failure_codes` per case; `unsafe_cases`,
+  `unmet_objective_cases` and `failure_code_counts` per system and per family.
+  `unsafe` is defined as the condition `critical_failure` already used, so no
+  second safety standard was introduced.
+- Verification that no number moved: regenerated the whole corpus and diffed the
+  results file key by key against the previous one. 488 keys added, **one**
+  existing value changed — `results_digest`, which necessarily does.
+- `must-call-coverage` is the most common miss code on the baselines (10 for
+  `eager-effect-v1`, 25 for `abstain-v1`), which is evidence about this
+  benchmark's oracle rather than about the systems. Raised as **DIR-013**; not
+  implemented, because widening the oracle changes what counts as success.
+- Checks: `uv run pytest` → 776 passed; ruff, mypy (strict), bandit clean; all
+  five validators pass; `run_atticusbench.py --check` and
+  `run_recovery_sweep.py --check` both reproduce; `make atticusbench-models-stub`
+  runs the model path end to end.
+- Next: a real model measured on the Director's laptop. Nothing else in the
+  benchmark is blocked on this branch.

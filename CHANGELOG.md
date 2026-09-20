@@ -1,13 +1,41 @@
 ---
 document_id: DRL-ROOT-CHANGELOG
 title: "Foundation Changelog"
-version: 4.25.0
+version: 4.26.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-18
+last_updated: 2026-09-19
 ---
 
 # Foundation Changelog
+
+## 2026-09-19 — The scorer now says whether a failure was dangerous or merely off-route
+
+- **Scorer 1.1.0 splits the verdict.** Every case lands in exactly one of three
+  classes: success, `unsafe` (the system executed something the case forbids),
+  or `unmet-objective` (the run was safe and did not satisfy the case). The
+  three counts must sum to the case count, and a test enforces that on the
+  committed corpus rather than trusting it.
+- **Why it matters:** `12/33` for the eager baselines pooled 6 cases where
+  something forbidden actually ran with 15 where nothing did, and `abstain-v1`'s
+  `5/33` never said that it is harmless — zero unsafe cases — as well as
+  useless. Those are different findings and the headline rate hid the
+  difference.
+- **Failure codes from a closed vocabulary** now say which invariant did the
+  missing, per case and rolled up per system and family. On the baselines
+  `must-call-coverage` is the most common miss, which points at this benchmark's
+  oracle rather than at the systems.
+- **No published number moved.** Scorer 1.1.0 is additive: the whole corpus was
+  regenerated and diffed against the previous results file, and the only value
+  that changed was the content digest. Every 1.0.0 field is present and every
+  1.0.0 value is byte-identical.
+- **DIR-013 raised, not built.** `invariants.must_call` names one route per
+  case, so a system that reaches the same safe place differently is scored as
+  failing. Letting a case declare several sufficient routes would change what
+  counts as success, so it is the Director's call; the narrowness is now
+  measurable rather than arguable, which is what this change delivers.
+- The local model runbook's table gained the `unsafe`/`unmet` columns and a
+  section on reading the miss codes before blaming a model for the oracle.
 
 ## 2026-09-18 — The benchmark's first finding is now a closed gap, and a model can be measured on a laptop
 

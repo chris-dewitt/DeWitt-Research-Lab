@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
 
@@ -17,6 +16,7 @@ from scripts.validate_atticusbench import (
     DATASET_ID,
     DATASET_VERSION,
     RELEASE_DIR,
+    artifact_digest,
     write_release_manifest,
 )
 
@@ -59,7 +59,12 @@ def test_every_referenced_artifact_exists_with_the_recorded_digest(manifest) -> 
         assert reference["uri"].startswith("repo://")
         path = REPO_ROOT / reference["uri"].removeprefix("repo://")
         assert path.is_file(), reference["uri"]
-        digest = "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+        # Recomputed with the generator's own function rather than a second
+        # copy of the hashing here. The copy was the reason this test could not
+        # see that the digest depended on the checkout: it reproduced the raw
+        # read it was meant to be checking, so the two agreed on Windows and on
+        # Linux separately while disagreeing with each other.
+        digest = artifact_digest(path, media_type=reference["media_type"])
         assert reference["digest"] == digest, reference["uri"]
         assert reference["classification"] == "public"
 

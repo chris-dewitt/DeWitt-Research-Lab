@@ -91,8 +91,37 @@ def load_without_consistency() -> Corpus:
     return Corpus(cases=cases, fixtures=fixtures)
 
 
-def _file_digest(path: Path) -> str:
-    return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+#: Media types whose digest is taken over newline-normalized bytes.
+#:
+#: Every artifact this manifest names is text. Hashing it as it sits on disk
+#: made the digest depend on the checkout: git stores LF, and a Windows clone
+#: with ``core.autocrlf=true`` has CRLF in the working tree, so the same commit
+#: produced two different manifests and the regeneration test failed on Windows
+#: while CI stayed green. The dataset card claims this seed reproduces byte for
+#: byte; hashing normalized bytes is what makes that true on every platform
+#: rather than only on the one CI happens to run.
+_TEXT_MEDIA_TYPES = frozenset(
+    {"application/json", "application/schema+json", "application/yaml"}
+)
+
+
+def _is_text_media_type(media_type: str) -> bool:
+    return media_type.startswith("text/") or media_type in _TEXT_MEDIA_TYPES
+
+
+def artifact_digest(path: Path, *, media_type: str) -> str:
+    """Digest one release artifact, normalizing line endings for text.
+
+    A binary artifact is hashed byte for byte: normalizing it would corrupt the
+    digest of any file where CR or LF is data rather than a line ending. Nothing
+    in the current manifest is binary, and this branch exists so that adding one
+    does not silently inherit text handling.
+    """
+
+    data = path.read_bytes()
+    if _is_text_media_type(media_type):
+        data = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return "sha256:" + hashlib.sha256(data).hexdigest()
 
 
 def _artifact(
@@ -108,7 +137,7 @@ def _artifact(
         "id": identifier,
         "kind": kind,
         "uri": f"repo://{path.relative_to(REPO_ROOT).as_posix()}",
-        "digest": _file_digest(path),
+        "digest": artifact_digest(path, media_type=media_type),
         "classification": "public",
         "media_type": media_type,
         "title": title,

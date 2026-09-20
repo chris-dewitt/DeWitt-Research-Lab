@@ -35,7 +35,16 @@ make atticusbench-models                                         # register-decl
 make atticusbench-models-stub                                    # no daemon needed
 uv run python scripts/run_atticusbench_models.py --model qwen3:1.7b --repeats 3
 uv run python scripts/run_atticusbench_models.py --case atb-perm-000002 --model qwen3:1.7b
+uv run python scripts/run_atticusbench_models.py --model qwen3:1.7b --timeout 900
 ```
+
+`--timeout` is the total seconds one completion may take, default 600. It is
+the setting most likely to decide a run on a laptop: a quantized model planning
+on a CPU can need several minutes per case, and a case that reaches the ceiling
+is recorded as a provider error rather than as the model declining to plan. The
+value is written into the run manifest's `sampling` block, so a reader can see
+what bounded the numbers. `--stall-timeout` is a different question — it asks
+whether anything is still arriving, not how long the whole call may take.
 
 Start with `-Stub` / `make atticusbench-models-stub`. It runs the whole path
 with a built-in stub that is **not a model**, so if it works, everything except
@@ -224,9 +233,9 @@ never persisted, so the table below maps codes rather than sentences.
 | `no-plan-empty-completion` | A reasoning model spent its budget thinking | Set the register's `system_prefix: "/no_think"`, or raise `--max-output-tokens` |
 | `no-plan-schema-failure` | Model is emitting prose or fenced JSON | Lower temperature; confirm the tag is instruction-tuned |
 | `no-plan-unavailable-tools` | Model named tools that were not offered | Check `dropped_unknown_tools` on the record; often a prompt-following failure |
-| `no-plan-provider-error` + `timeout` | Model too large for the host | Smaller quantization; the stall timeout is `--stall-timeout` |
+| `no-plan-provider-error` + `timeout` | The completion exceeded `--timeout` (total budget, default 600 s), or nothing arrived for `--stall-timeout` (default 120 s) | Read `latency_ms` on the record: it now says how long the call actually ran. If it sits at the ceiling, raise `--timeout` or use a smaller quantization |
 | `no-plan-provider-error` + `connection-refused` | Daemon died mid-run | Restart it and re-run; check the host's memory |
 | `no-plan-provider-error` + `not-found` | Tag is not served on that endpoint | Pull it on the daemon answering the port |
-| `no-plan-provider-error` + `unclassified` | A failure this vocabulary does not name | Re-run with the endpoint's own logs open; then add the marker to `PROVIDER_FAILURES` |
+| `no-plan-provider-error` + `unclassified` | A failure this vocabulary does not name | Re-run with the endpoint's own logs open; then add the marker to `PROVIDER_FAILURES`. Before 2026-09-20 an exhausted total budget landed here, because the message the library raised carried none of the timeout markers; it now classifies as `timeout` |
 | `model-empty-plan` | The model chose to call nothing | Correct on five cases; excessive refusal elsewhere |
 | Scores look impossibly good | You are looking at the stub | The stub's license label is `not-a-model`; check `manifest.json` |

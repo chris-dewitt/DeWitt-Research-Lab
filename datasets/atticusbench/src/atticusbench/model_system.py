@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import copy
 import re
+import time
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
@@ -262,6 +263,12 @@ class BenchModelPlanner:
     def plan(self, request: TaskRequest) -> list[ToolCall]:
         self.outcome = PlanOutcome()
         self.last_plan = []
+        # Timed here rather than read from the response, because a failed call
+        # returns no response to read it from. A provider error that reports
+        # 0 ms hides the one number that tells a budget exhaustion apart from a
+        # refused connection, which is how a 30-second ceiling was read as a
+        # model declining to plan.
+        started = time.monotonic()
         try:
             response = self.gateway.complete(
                 build_messages(request, self.catalog, self.fixture),
@@ -270,6 +277,7 @@ class BenchModelPlanner:
         except ProviderError as exc:
             self.outcome.source = "no-plan-provider-error"
             self.outcome.detail = classify_provider_failure(exc)
+            self.outcome.latency_ms = (time.monotonic() - started) * 1000.0
             return []
 
         self.outcome.latency_ms = float(getattr(response, "latency_ms", 0.0) or 0.0)

@@ -79,6 +79,20 @@ MODEL_RUN_ROOT = RUN_ROOT / "models"
 REGISTER = REPO_ROOT / "models" / "bakeoff" / "candidates.yaml"
 DEFAULT_BASE_URL = "http://localhost:11434/v1"
 
+#: Total seconds one completion may take on a benchmark run.
+#:
+#: ``CompletionConstraints`` defaults to 30 s, which is a control-plane budget:
+#: a production request that has not returned in half a minute should be
+#: abandoned. A benchmark is not that. It serves a quantized model on whatever
+#: hardware the Director has, and the question being asked is what the model
+#: plans, not how fast it plans it. Measured on a Qwen3-1.7B Q8_0 run, the five
+#: cases that completed took 11.8 s to 26.0 s and the other 28 were cut off, so
+#: the ceiling — not the model — decided 28 of 33 cases.
+#:
+#: Latency is still recorded per case, so a slow model remains visible as slow
+#: rather than being hidden by a generous ceiling.
+DEFAULT_BENCH_TIMEOUT_SECONDS = 600.0
+
 
 #: A run directory component is built from a system id, and an ad-hoc --model
 #: tag becomes part of that id. Reduce it to a safe slug rather than trusting a
@@ -358,6 +372,11 @@ def write_run(
         "sampling": {
             "temperature": args.temperature,
             "max_output_tokens": args.max_output_tokens,
+            # Recorded because it bounds the run: every case that needed longer
+            # than this is a provider error rather than a model answer, so a
+            # reader cannot interpret the scores without knowing the ceiling.
+            "timeout_seconds": args.timeout,
+            "stall_timeout_seconds": args.stall_timeout,
             "stop_after_json": True,
             "approvals_presented": 0,
         },
@@ -631,6 +650,17 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--max-output-tokens", type=int, default=2048)
     parser.add_argument("--stall-timeout", type=float, default=DEFAULT_STALL_TIMEOUT_SECONDS)
+    parser.add_argument(
+        "--timeout",
+        type=float,
+        default=DEFAULT_BENCH_TIMEOUT_SECONDS,
+        help=(
+            "total seconds one completion may take before it is abandoned. The "
+            "library default is a production budget; a quantized model planning "
+            "on a laptop CPU routinely needs more, and a ceiling reached is "
+            "recorded as a provider error, not as the model declining to plan."
+        ),
+    )
     parser.add_argument("--json", action="store_true", help="print the run payload as JSON")
     parser.add_argument(
         "--out",
@@ -666,6 +696,7 @@ def main(argv: list[str] | None = None) -> int:
     constraints = CompletionConstraints(
         temperature=args.temperature,
         max_output_tokens=args.max_output_tokens,
+        timeout_seconds=args.timeout,
         require_open_weight=True,
         stop_after_json=True,
     )

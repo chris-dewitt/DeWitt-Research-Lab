@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 
 import pytest
 from atticusbench import load_corpus, run_case, score_case
@@ -487,3 +488,55 @@ def test_an_adhoc_tag_that_the_register_knows_is_warned_about() -> None:
 
     # A tag the register genuinely does not know is not worth warning about.
     assert adhoc_warning("definitely-not-in-the-register:latest") is None
+def test_the_librarys_own_timeout_messages_classify_as_timeouts() -> None:
+    """The classifier reads messages this repository writes, so pin those.
+
+    ``classify_provider_failure`` matches substrings against a message built in
+    ``drl_ai_core.http_provider``, and the gateway has already flattened the
+    exception class away by then. That coupling is invisible from either side:
+    the previous test proved the classifier handles *a* timeout message, using
+    one written for the test. The message the library actually raised said "no
+    response from ... within 30s", which contains none of the timeout markers,
+    so every exhausted budget on a real run was recorded as "unclassified" and
+    read as a model that declined to plan.
+
+    These are the exact strings the two raising sites produce.
+    """
+
+    from atticusbench.model_system import classify_provider_failure
+    from drl_ai_core.providers import ProviderTimeoutError
+
+    url = "http://localhost:11434/v1/chat/completions"
+    total = ProviderTimeoutError(f"{url} timed out: no response within 30s")
+    stall = ProviderTimeoutError(f"{url} stalled: no data for 120s")
+
+    assert classify_provider_failure(total) == "timeout"
+    assert classify_provider_failure(stall) == "timeout"
+
+
+def test_a_provider_failure_records_how_long_it_took(corpus) -> None:
+    """A provider error that reports 0 ms cannot be told apart from a refusal.
+
+    Latency is read off the response everywhere else, and a failed call has no
+    response, so the error path used to leave the field at its default. That is
+    the one number distinguishing an exhausted budget from a connection that
+    was refused instantly.
+    """
+
+    from drl_ai_core.providers import ProviderTimeoutError
+
+    class SlowFailingGateway:
+        def complete(self, *args: object, **kwargs: object) -> object:
+            time.sleep(0.05)
+            raise ProviderTimeoutError("endpoint timed out: no response within 30s")
+
+    case = corpus.case("atb-route-000001")
+    fixture = corpus.fixture(case.environment_fixture)
+    planner = BenchModelPlanner(SlowFailingGateway(), case, fixture)  # type: ignore[arg-type]
+
+    plan = planner.plan(_request(case))
+
+    assert plan == []
+    assert planner.outcome.source == "no-plan-provider-error"
+    assert planner.outcome.detail == "timeout"
+    assert planner.outcome.latency_ms >= 50.0

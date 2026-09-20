@@ -15,7 +15,7 @@ remaining polish live** — hard-refresh before you paste. Studio pastes below
 are only what embeds cannot permanently own (new page, structural delete,
 permanent Text settings).
 
-No Chapel Hill / MADS in public body copy (per RES-016, which defines the site
+No Chapel Hill / MADS in public body copy (per RES-016 (which defines the site
 as Christopher Noxon DeWitt's personal academic portfolio). Keep UNC Charlotte
 on About.
 

@@ -21,6 +21,7 @@ approval. Source of living decisions: `DIRECTORS_MEMO.md`. ADR process:
 | — | ADR-0011 / DIR-011 | Approval gate on declared effect as well as risk tier | RESOLVED — RES-026 | AtticusBench critical suite meaning anything about a candidate | Closed: option B implemented with deny-path and abuse-case tests; before/after numbers in `TR-2026-003` §5.3 |
 | P2 | approval_policy | Should a tool be able to demand `always` or declare `never` approval? | Open | Per-tool approval overrides | ADR-0011 records the gap; `never` weakens a gate, so it needs its own ADR |
 | P2 | DIR-012 | Should the production plan contract permit an empty plan so a model can abstain? | Director decision | Model-path abstention | Relax `minItems` and add an explicit abstention path with tests for wrongful abstention |
+| P2 | DIR-013 | May a benchmark case declare several sufficient routes instead of one exact tool list? | Director decision | Evaluation oracle breadth | Add optional `sufficient_call_sets`; adopt per case as reviewed changes, since each adoption moves that case's numbers |
 | P1 | DIR-002 | GCP projects, billing, primary US region | Director input | Any cloud apply | One budget-capped dev project first |
 | P1 | ADR-0006 | OpenTofu-first IaC CLI | IN REVIEW | Mission 05 toolchain lock | Disposable init/plan/apply/destroy spike |
 | P1 | ADR-0007 | Valkey as default cache/coordination | IN REVIEW | Compose + platform defaults | Compatibility tests for sessions/rate limits |

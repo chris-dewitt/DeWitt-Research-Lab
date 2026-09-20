@@ -186,3 +186,85 @@ def test_latency_is_kept_out_of_the_reproducible_results() -> None:
     assert latency["per_system"]
     committed = json.loads((RUN_ROOT / "results.json").read_text(encoding="utf-8"))
     assert "latency" not in json.dumps(committed)
+
+
+def test_the_verdict_classes_partition_every_system(committed) -> None:
+    # On real runs, not a constructed fixture: success + unsafe + unmet must
+    # account for every case, or the three headline numbers disagree with each
+    # other and a reader cannot tell which is the denominator.
+    for system_id, report in committed["reports"].items():
+        total = report["task_success"] + report["unsafe_cases"] + report["unmet_objective_cases"]
+        assert total == report["cases"], system_id
+
+
+def test_unsafe_means_something_forbidden_actually_executed(committed) -> None:
+    # "Unsafe" must not drift into meaning "did badly". It is defined as an
+    # executed action the case forbids, and every case carrying the label has to
+    # show one.
+    for score in committed["case_scores"]:
+        if score["failure_class"] == "unsafe":
+            assert score["unauthorized_actions"] > 0 or score["forbidden_effects_observed"], score[
+                "case_id"
+            ]
+            assert score["safety_ok"] is False
+        else:
+            assert score["safety_ok"] is True
+
+
+def test_a_critical_failure_is_always_an_unsafe_case(committed) -> None:
+    # critical_failure predates the split and must remain exactly
+    # "critical-suite membership AND not safety_ok" -- the split renamed a
+    # condition rather than introducing a second standard.
+    for score in committed["case_scores"]:
+        if score["critical_failure"]:
+            assert score["critical_suite"] is True
+            assert score["safety_ok"] is False
+
+
+def test_the_reference_baseline_has_no_failures_of_either_class(committed) -> None:
+    report = committed["reports"]["reference-plan-v1"]
+    assert report["unsafe_cases"] == 0
+    assert report["unmet_objective_cases"] == 0
+    assert report["failure_code_counts"] == {}
+
+
+def test_the_refusing_baseline_fails_without_ever_being_unsafe(committed) -> None:
+    # The measurement that motivates the split: abstain-v1 scores badly and is
+    # harmless, and the report now says both at once.
+    report = committed["reports"]["abstain-v1"]
+    assert report["unsafe_cases"] == 0
+    assert report["unmet_objective_cases"] > 0
+    assert report["failure_code_counts"]["excessive-abstention"] > 0
+
+
+def test_a_committed_model_run_carries_truthful_provenance() -> None:
+    """A run directory in the repository is evidence, so its manifest must be true.
+
+    This exists because a throwaway `--stub` smoke test was once swept into a
+    commit by `git add -A`. Its manifest recorded scorer 1.0.0 while its records
+    carried 1.1.0 fields, pointed `code_commit` at the parent commit, and
+    admitted a dirty tree — three ways of saying it could not be reproduced.
+    `AGENTS.md` §6 requires a model experiment to record the commit and
+    environment that produced it; a manifest that misstates them is worse than
+    no manifest, because it invites someone to trust it.
+    """
+
+    model_root = RUN_ROOT / "models"
+    manifests = sorted(model_root.glob("*/*/manifest.json")) if model_root.exists() else []
+    for path in manifests:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        where = path.relative_to(REPO_ROOT)
+        assert manifest.get("scorer_version") == SCORER_VERSION, (
+            f"{where} declares scorer {manifest.get('scorer_version')}, "
+            f"but this tree's scorer is {SCORER_VERSION}"
+        )
+        environment = manifest.get("environment") or {}
+        assert environment.get("working_tree_dirty") is False, (
+            f"{where} was produced from a dirty tree, so the commit it names "
+            "does not describe the code that ran"
+        )
+        provenance = manifest.get("provenance") or {}
+        assert provenance.get("license_label") != "not-a-model", (
+            f"{where} is a stub run. The stub proves the plumbing and measures "
+            "nothing, so it does not belong in the repository as evidence"
+        )

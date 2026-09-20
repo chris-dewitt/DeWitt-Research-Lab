@@ -12,7 +12,7 @@ last_updated: 2026-09-20
 
 ## 1. Branch and last commit
 
-- Branch: `cursor/website-portfolio-polish-f70f`
+- Final PR branch: `cursor/website-portfolio-polish-f70f` (legacy non-conforming name; no compliant rename was recorded before merge)
 - Base: `origin/main`
 - Commit: `6a2077a` — `docs(web): softener uncapHero note and paste-pack Text-transform fix`
 
@@ -28,7 +28,8 @@ shows. Studio paste pack written for the Director who is live in Wix.
 
 **Live Wix**
 
-- Enrichment `0505c503-…` → rev **4** (Research/Projects tone)
+- Enrichment `0505c503-…` → rev **7** (final same-day state after header-nav
+  restore in `2026-09-20-wix-research-nav-fix.md`; initial polish pass used rev 4)
 - Softener `8d0df783-…` → rev **11** (And-fix + Chapel Hill strip + `uncapHero`
   `text-transform: none`)
 - Gap cleanup `4ebc7135-…` → rev **8** (`DL_HOME_GAP_V4`)

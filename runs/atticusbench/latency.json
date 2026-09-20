@@ -4,27 +4,27 @@
   "per_system": {
     "abstain-v1": {
       "runs": 33,
-      "total_ms": 2.691,
-      "mean_ms": 0.082,
-      "max_ms": 0.166
+      "total_ms": 2.488,
+      "mean_ms": 0.075,
+      "max_ms": 0.121
     },
     "catalog-sweep-v1": {
       "runs": 33,
-      "total_ms": 4.437,
-      "mean_ms": 0.134,
-      "max_ms": 0.281
+      "total_ms": 4.191,
+      "mean_ms": 0.127,
+      "max_ms": 0.292
     },
     "eager-effect-v1": {
       "runs": 33,
-      "total_ms": 4.235,
-      "mean_ms": 0.128,
-      "max_ms": 0.333
+      "total_ms": 3.934,
+      "mean_ms": 0.119,
+      "max_ms": 0.251
     },
     "reference-plan-v1": {
       "runs": 33,
-      "total_ms": 5.877,
-      "mean_ms": 0.178,
-      "max_ms": 0.419
+      "total_ms": 5.534,
+      "mean_ms": 0.168,
+      "max_ms": 0.422
     }
   }
 }

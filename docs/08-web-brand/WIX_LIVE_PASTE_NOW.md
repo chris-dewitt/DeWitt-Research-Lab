@@ -15,7 +15,9 @@ remaining polish live** — hard-refresh before you paste. Studio pastes below
 are only what embeds cannot permanently own (new page, structural delete,
 permanent Text settings).
 
-No Chapel Hill / MADS in public body copy. Keep UNC Charlotte on About.
+No Chapel Hill / MADS in public body copy (per RES-016 (which defines the site
+as Christopher Noxon DeWitt's personal academic portfolio). Keep UNC Charlotte
+on About.
 
 ---
 
@@ -24,7 +26,7 @@ No Chapel Hill / MADS in public body copy. Keep UNC Charlotte on About.
 | Fix | Embed |
 | --- | --- |
 | Chapel Hill / MADS strip + And-fix + subtitle `text-transform: none` | Softener `8d0df783-…` rev 11 |
-| Research / Projects softened panels | Enrichment `0505c503-…` rev 4 |
+| Research / Projects softened panels (+ header nav restore on `/research` and `/work`) | Enrichment `0505c503-…` rev 7 |
 | Home gap collapse between CTAs and “Why complex systems?” | Cleanup `4ebc7135-…` rev 8 (`DL_HOME_GAP_V4`) |
 | Open-weight thesis block | `73d6abb6-…` rev 2 |
 | Bad GitHub href → `https://github.com/chris-dewitt` | **Helpers** `b21ad726-…` rev 4 |

@@ -31,6 +31,8 @@ from .environment import (
 from .harness import CaseRun, run_case
 from .model import Case, Fixture, FixtureTool, Invariants, PlanStep
 from .scoring import (
+    FAILURE_CLASSES,
+    FAILURE_CODES,
     CaseScore,
     SystemReport,
     aggregate,
@@ -50,6 +52,8 @@ __all__ = [
     "BenchPlanner",
     "Case",
     "CaseRun",
+    "FAILURE_CLASSES",
+    "FAILURE_CODES",
     "CaseScore",
     "Corpus",
     "CorpusError",

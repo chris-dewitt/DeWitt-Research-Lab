@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.22.0
+version: 1.23.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 # Director's Decision and Escalation Ledger
@@ -130,16 +130,17 @@ the Director's approval.
   (`www.dewitt-labs.com`) is the academic portfolio and links that URL from the
   homepage (*Watch a recorded run*). As of 2026-09-19: `/projects` redirects to
   `/work`; Home/About SEO meta uses a light academic signal without naming
-  MADS/UNC; a BODY_END softener embed (rev 7, TreeWalker text nodes only) also
+  MADS/UNC; a BODY_END softener embed (rev 10, TreeWalker text nodes only) also
   strips Chapel Hill / MADS from visible Home/About body while keeping UNC
   Charlotte. `/research` and `/work` show maturity/status panels via a custom
-  embed (prototype tags, TR null result, monorepo systems). Home leads with an
-  open-weight-over-opaque-APIs position and concrete safe-use framing (local
-  runs, policy/approval, evidence gates). Remaining permanent body-copy (hero,
-  GitHub URL, footer, privacy) is in
-  `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`. The Wix MCP can manage SEO
-  redirects/tags and embeds when authenticated; Studio page body still needs
-  the editor for permanent paste.
+  embed (rev 4: softened Research intro; monorepo · a project in this portfolio).
+  Home leads with an open-weight-over-opaque-APIs position and concrete safe-use
+  framing (local runs, policy/approval, evidence gates). 2026-09-20: Director is
+  pasting permanent hero (name above thesis), footer, GitHub, and privacy from
+  `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md`. Gap CSS V4 + Studio delete of empty
+  strips target the home void. The Wix MCP can manage SEO redirects/tags and
+  embeds when authenticated; Studio page body still needs the editor for
+  permanent paste.
 - ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and
   ADR-0011. The AtticusBench critical suite now measures a candidate rather than
   our own policy for the cross-session case. One critical-suite failure remains

@@ -1,201 +1,74 @@
 ---
 document_id: DRL-WEB-024
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.4.0
+version: 1.5.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 
 # Wix remaining editor fixes
 
-Paste pack for content the SEO/Redirect APIs cannot change. Apply in the Wix
-editor for `www.dewitt-labs.com`, then Publish.
+**Right now:** follow `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` while you are in
+Studio, then Publish. This file keeps the longer pack and the API ledger.
 
-## Already applied via API (2026-09-19)
+Director decisions (2026-09-20): keep nav label **PROJECTS** (`/work` slug
+stays); Chapel Hill / MADS stay softened/removed from public body; home hero
+gets **name above thesis** + hard gap kill; monorepo line softens (not deletes);
+Research intro drops “not peer-reviewed / not coursework”; footer + GitHub +
+privacy paste now.
 
-- `/projects` → `/work` (was wrongly `/research`); `/projects-1` → `/work`.
-- Home/About SEO description (no MADS/UNC in meta): *Forecast engineer and
-  graduate student. Independent work on complex systems, agents, and evaluation
-  — aiming toward further study in computer science.* Research title set to
-  `Research | Chris DeWitt`.
-- Research + Projects status enrichment (BODY_END custom embed
-  `Research/Projects status enrichment`, id `0505c503-cd89-425e-8b35-da977b7cc2b3`,
-  revision `3`): hides original thin Wix cards and shows one maturity/status
-  panel per page; leads with open-weight / safe-use framing.
-- Home open-weight thesis (BODY_END embed `Open-weight AI thesis (home)`,
-  id `73d6abb6-e6c0-4c03-9103-3bd38c38b7cd`): prefer open-weight local models
-  over opaque vendor APIs; concrete safe-use definition.
-- Soften MADS/UNC visible copy (BODY_END embed
-  `Soften MADS/UNC visible copy`, id `8d0df783-b31a-4c18-8cdc-3cf006e3e3a6`,
-  revision `9`): TreeWalker text-node rewrite only (v5’s `textContent` on
-  containers flattened Home/About — rolled back; rev 8’s comma inject broke
-  the pairs array). Strips Chapel Hill / MADS phrasing (period and comma hero
-  variants), cleans `, .` debris, rewrites “Research Lab repository” →
-  “repository”, preserves UNC Charlotte; length gate 8000.
-- Homepage Research section cleanup (HEAD embed id
-  `4ebc7135-9a6f-44e8-b9f9-a2056ed92e88`, revision `7`): collapses leftover
-  hero/section min-heights (`DL_HOME_GAP` / `V2` / `V3`) and hides empty
-  sections between hero CTAs and “Why complex systems?”.
+## Already applied via API
 
-Nav already uses `/work` for Projects. Canonical public slug remains `/work`
-with `/projects` as a redirect alias.
+- `/projects` → `/work`; `/projects-1` → `/work`.
+- Home/About SEO (no MADS/UNC in meta). Research title `Research | Chris DeWitt`.
+- Enrichment embed `0505c503-…` **rev 4**: Research intro softened (no
+  peer-reviewed/coursework apology); Projects monorepo line → *Monorepo · a
+  project in this portfolio*; work intro leads with personal projects.
+- Softener `8d0df783-…` **rev 10**: TreeWalker text nodes; Chapel Hill/MADS
+  strip; `Forecast Engineer And …` → lowercase and; UNC Charlotte preserved.
+- Homepage cleanup `4ebc7135-…` **rev 8**: `DL_HOME_GAP_V4` + stronger empty
+  section collapse between hero CTAs and “Why complex systems?”.
+- Home open-weight thesis embed `73d6abb6-…` rev 2 still live.
+
+Nav label remains **PROJECTS** → `/work`. `/projects` redirects there.
 
 ## 1. Home hero (#3, #8)
 
-Keep the thesis line. Add the name above it. One short body paragraph so CTAs
-appear earlier on mobile. Paste the **softened** public line (no Chapel Hill /
-MADS in the first viewport) so the softener embed is not the only defense.
-Also paste the open-weight position block from `SITE_COPY.md` permanently so
-it survives without the home thesis embed.
-
-```text
-Chris DeWitt
-
-I study complex systems by the way they fail.
-
-Forecast engineer and graduate student. Charlotte, North Carolina.
-Preparing for graduate work in computer science.
-
-I work full time as a forecast engineer and study applied data science part
-time, with an eye toward further graduate work in computer science. I spend
-weekends building agent platforms, evaluation harnesses, quantitative tools,
-and experiments that occasionally fail in interesting ways. Everything here is
-independent personal work — source, tests, failures, and runs you can replay.
-
-[ Explore my projects → /work ]
-[ Read the research → /research ]
-[ Watch a recorded run → https://chris-dewitt.github.io/DeWitt-Research-Lab/ ]
-[ Browse the source → https://github.com/chris-dewitt/DeWitt-Research-Lab ]
-```
-
-### Open-weight position (paste on Home)
-
-```text
-Open-weight over opaque company APIs
-
-I prefer open-weight models I can run on hardware I own over closed, hosted
-systems from large AI vendors. Weights, licenses, and evaluation evidence should
-be inspectable. The software around them is open source.
-
-Safe use, concretely: deterministic policy and human approval bound what a model
-may do; an evidence gate can refuse to select a model at all; runs stay local by
-default so prompts and tools are not shipped to a third-party cloud; failures are
-published rather than smoothed over.
-
-No base model has been selected yet. That refusal is deliberate — preference is
-not evidence.
-```
+See `WIX_LIVE_PASTE_NOW.md` §1. Paste name + softened subtitle + shorter body.
+Delete the empty strip under the CTAs in the editor if the gap CSS does not
+fully clear it.
 
 ## 2. GitHub URL (#4)
 
-Find `http://www.github.com/chris-dewitt` (any page) and set the link to:
-
-`https://github.com/chris-dewitt`
+`https://github.com/chris-dewitt` everywhere (not `http://www.github.com/...`).
 
 ## 3. Footer (#5)
 
-Site-wide footer / master page:
+See `WIX_LIVE_PASTE_NOW.md` §3 — mailto + GitHub + Privacy.
 
-```text
-Everything shown on this website is independent personal work.
+## 4. Privacy page
 
-Questions, ideas, or interesting failures:
-director@dewitt-labs.com   ← mailto:director@dewitt-labs.com
+See `WIX_LIVE_PASTE_NOW.md` §4 — slug `/privacy`.
 
-GitHub · Privacy
-```
+## 5. About
 
-- GitHub → `https://github.com/chris-dewitt`
-- Privacy → `/privacy` (new page below)
+See `WIX_LIVE_PASTE_NOW.md` §5 — heading `About`; no Chapel Hill; keep UNC
+Charlotte pride.
 
-## 4. Privacy page (new)
+## 6. Research / Projects permanent paste (optional)
 
-Create page slug `/privacy`:
-
-```text
-Privacy
-
-This is an independent personal academic portfolio operated by Christopher Noxon
-DeWitt. It is not a laboratory, institute, or employer site.
-
-Contact and inquiry mail goes to director@dewitt-labs.com. Do not send secrets,
-credentials, or employer-confidential material.
-
-Wix may process ordinary hosting and traffic metadata for the site. Prefer
-minimal analytics. Application subdomains and research-trace donation, if any,
-are separate purposes and need their own consent.
-
-No employer name, customer data, or private traces belong on this site.
-```
-
-## 5. Research page (#6, #7, #9) — mostly live via embed
-
-A status panel is already injected on `/research` (prototype tags, limitations,
-report/source/run links, TR-2026-002 null result, “what is not settled”). Prefer
-pasting the same facts into Studio text so the page works without the embed;
-then the embed can be disabled.
-
-Deduplicate the repeated intro in the editor. Widen the content column. Under each report:
-
-**TR-2026-001 — Local Integrated Evidence-to-Scenario Workflow**
-
-```text
-Prototype · working paper · fixture data only.
-
-Read the report:
-https://github.com/chris-dewitt/DeWitt-Research-Lab/blob/main/docs/10-research/reports/TR-2026-001-integrated-workflow.md
-
-Source: https://github.com/chris-dewitt/DeWitt-Research-Lab
-
-Watch a recorded run (signed fixtures, not a live Atticus service):
-https://chris-dewitt.github.io/DeWitt-Research-Lab/
-```
-
-**TR-2026-002 — Evidence-Gated Model Selection**
-
-```text
-Prototype · working paper.
-
-Result: no winner. The evidence gate refused to name a core or edge model.
-That null result is the report’s empirical claim, not a missing outcome.
-
-Read the report:
-https://github.com/chris-dewitt/DeWitt-Research-Lab/blob/main/docs/10-research/reports/TR-2026-002-evidence-gated-model-selection.md
-
-Source: https://github.com/chris-dewitt/DeWitt-Research-Lab
-```
-
-## 6. Projects page `/work` (#6) — mostly live via embed
-
-A status panel is already injected on `/work` (monorepo clarification, five
-prototype systems, SIGKILL/Dead Drift status). Prefer permanent Studio paste;
-then disable the embed.
-
-Keep Research reports off this page. Clarify the monorepo is one project:
-
-```text
-DeWitt Research Lab (project)
-Prototype / independent research · reliable agentic systems
-
-An experimental monorepo for studying how open-weight models, deterministic
-policy, evaluation, and human approval should divide authority. It is a project
-inside this portfolio — not the identity of the website.
-
-[ View repository → https://github.com/chris-dewitt/DeWitt-Research-Lab ]
-[ Watch a recorded run → https://chris-dewitt.github.io/DeWitt-Research-Lab/ ]
-[ Related research → /research ]
-```
-
-Keep Null Horizon / Dead Drift (or current weekend builds) as separate cards
-with a single primary repository link each.
+Embeds already show softened panels. Prefer pasting the same facts into Studio
+text later so embeds can be disabled.
 
 ## Verify after publish
 
-1. `https://www.dewitt-labs.com/projects` lands on Projects (`/work`).
-2. Home meta description uses the light graduate-student line (no MADS/UNC).
-3. No `http://www.github.com` links remain.
-4. Footer shows clickable `director@dewitt-labs.com`, GitHub, Privacy.
-5. Research cards link reports + recorded run; TR-2026-002 states no winner.
-6. First viewport shows name + CS graduate direction without three long paragraphs before CTAs.
+1. Home first viewport shows **Chris DeWitt** above the thesis.
+2. Subtitle is `Forecast engineer and graduate student. Charlotte…` (no Chapel
+   Hill, no title-case **And**).
+3. No huge black void between hero CTAs and “Why complex systems?”.
+4. Research intro has no “not peer-reviewed / not coursework”.
+5. Projects card says *Monorepo · a project in this portfolio*.
+6. Footer: clickable mailto, GitHub, Privacy.
+7. `/projects` still lands on Projects (`/work`).

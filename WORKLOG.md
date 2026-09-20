@@ -892,3 +892,15 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   restored; Chapel Hill gone on About).
 - Next: Director permanent Studio paste for hero/GitHub/footer; optional further
   gap tuning if void remains below hero.
+
+## 2026-09-20 — Portfolio polish pass (Director in Studio)
+
+- Decisions: PROJECTS label kept; Chapel Hill/MADS stay softened; hero = name +
+  thesis + hard gap kill; monorepo line softens; Research drops peer-reviewed
+  apology; footer/GitHub/privacy paste now.
+- Live embeds: enrichment `0505c503-…` rev 4; softener `8d0df783-…` rev 10;
+  gap cleanup `4ebc7135-…` rev 8 (`DL_HOME_GAP_V4`).
+- Docs: `WIX_LIVE_PASTE_NOW.md` (DRL-WEB-025), `WIX_REMAINING_EDITOR_FIXES.md`
+  1.5.0, `SITE_COPY.md` 3.7.0.
+- Next: Director pastes `WIX_LIVE_PASTE_NOW.md` in Studio and Publishes; agent
+  re-verifies.

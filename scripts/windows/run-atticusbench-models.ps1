@@ -35,6 +35,12 @@
 .PARAMETER BaseUrl
     OpenAI-compatible endpoint. Defaults to the local Ollama default.
 
+.PARAMETER Timeout
+    Total seconds one completion may take. Defaults to the Python default of
+    600. A quantized model planning on a laptop CPU can need minutes per case,
+    and a case that reaches the ceiling is recorded as a provider error rather
+    than as the model declining to plan.
+
 .EXAMPLE
     .\run-atticusbench-models.ps1
     Measures whatever the register serves.
@@ -67,6 +73,11 @@ param(
     [string[]] $Case,
     [Parameter(Mandatory = $false, Position = [int]::MaxValue)]
     [string] $BaseUrl = 'http://localhost:11434/v1',
+    # Total seconds one completion may take. The Python default is 600; a
+    # quantized model planning on a laptop CPU can need minutes per case, and a
+    # case that reaches the ceiling is recorded as a provider error rather than
+    # as the model declining to plan.
+    [double] $Timeout = 0,
     [switch] $Stub
 )
 
@@ -87,6 +98,7 @@ try {
     if ($Stub) {
         Write-Step 'Stub run: no daemon, no model, plumbing only.'
         $stubArgs = @('run', 'python', 'scripts/run_atticusbench_models.py', '--stub')
+        if ($Timeout -gt 0) { $stubArgs += @('--timeout', $Timeout) }
         foreach ($id in $Case) { $stubArgs += @('--case', $id) }
         & uv @stubArgs
         exit $LASTEXITCODE
@@ -137,6 +149,7 @@ try {
     foreach ($tag in $Model) { $runArgs += @('--model', $tag) }
     foreach ($id in $Case) { $runArgs += @('--case', $id) }
     foreach ($id in $Candidate) { $runArgs += @('--candidate', $id) }
+    if ($Timeout -gt 0) { $runArgs += @('--timeout', $Timeout) }
 
     Write-Step 'Running the benchmark'
     & uv @runArgs

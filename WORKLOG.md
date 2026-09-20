@@ -1,7 +1,7 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.38.0
+version: 4.39.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -1021,3 +1021,55 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   the Director's machine. Ruff, mypy strict (91 files) and bandit clean; all six
   validators pass; `datasets/atticusbench/release/` unchanged in git.
 - Handoff: `agents/handoffs/2026-09-20-manifest-digest-newline-normalization.md`.
+## 2026-09-20 — The first local model run measured the timeout, not the model
+
+- Branch `fix/atticusbench-model-run-timeout`. Raised by the Director's first
+  real AtticusBench model run: Qwen3-1.7B Q8_0 on the local Ollama daemon,
+  33 cases, reported 6/33 with a 0.97 abstention rate.
+- That number is not a model result. 28 of 33 cases ended
+  `no-plan-provider-error`, and the five that produced a plan took 11.8 s,
+  14.4 s, 17.1 s, 22.5 s and 26.0 s — every one under 30 s.
+  `CompletionConstraints.timeout_seconds` defaults to **30.0**, and
+  `run_atticusbench_models.py` never set it and exposed no flag for it. The
+  arithmetic closes: 28 ceilings of 30 s plus ~92 s of real generation is 932 s
+  against the 936 s reported. The harness scored each cut-off call as an
+  abstention, which is why the run landed beside `abstain-v1`'s 5/33.
+- Three things hid it, and each is fixed here rather than worked around:
+  1. **The timeout did not classify.** `classify_provider_failure` matches
+     substrings against a message built in `drl_ai_core.http_provider`, because
+     `ModelGateway` flattens the exception class into a joined string before the
+     bench module sees it. The message read `no response from {url} within 30s`,
+     which contains none of `timed out` / `timeout` / `stalled`, so every
+     exhausted budget was recorded as `unclassified`. The two total-timeout
+     sites now read `{url} timed out: no response within {n}s`.
+  2. **The error path recorded no latency.** `latency_ms` was read off the
+     response, and a failed call has none, so all 28 wrote 0 ms — hiding the one
+     number that separates an exhausted budget from a refused connection.
+     `BenchModelPlanner.plan` now times the call itself.
+  3. **The manifest did not record the ceiling.** `sampling` carried
+     temperature, max output tokens and `stop_after_json`, but not the budget
+     that decided 28 of 33 cases. It now carries `timeout_seconds` and
+     `stall_timeout_seconds`.
+- New `--timeout`, default `DEFAULT_BENCH_TIMEOUT_SECONDS = 600.0`. The 30 s
+  library default is left alone: it is a defensible production budget, and a
+  benchmark is not a production request. Latency stays per-case, so a slow model
+  is still visible as slow.
+- The gap that let this through was a test that proved the classifier handles
+  *a* timeout message, written for the test. The message the library actually
+  raised was never fed to it. `test_the_librarys_own_timeout_messages_classify_as_timeouts`
+  now pins both real strings, and
+  `test_a_provider_failure_records_how_long_it_took` pins the latency.
+- Not fixed here, and needs a Director decision: on Windows with
+  `core.autocrlf=true`, `tests/atticusbench/test_release_manifest.py` fails on
+  two digest mismatches, because the release manifest hashes working-tree bytes
+  and the tree holds CRLF where git holds LF. CI is Linux and stays green. The
+  failure also **rewrites the tracked manifest on disk**, which is how the
+  Director's run came to record `working_tree_dirty: true` and therefore cannot
+  be cited as evidence at all. Any fix moves published digests.
+- Checks: 770 passed, 1 skipped, 8 deselected (the manifest tests above); ruff,
+  mypy strict (91 files) and bandit clean; all six validators pass;
+  `run_atticusbench.py --check` reproduces byte for byte; the stub model path
+  runs end to end and writes the new `sampling` fields.
+- Next: re-run Qwen3-1.7B with `--timeout 600` from a clean tree to get a first
+  real measurement. Handoff:
+  `agents/handoffs/2026-09-20-atticusbench-model-run-timeout.md`.

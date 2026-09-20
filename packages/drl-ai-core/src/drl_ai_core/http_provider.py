@@ -340,11 +340,15 @@ class HttpOpenAICompatibleProvider:
             detail = exc.read().decode("utf-8", "replace")[:300]
             raise ProviderUnavailableError(f"endpoint returned HTTP {exc.code}: {detail}") from exc
         except TimeoutError as exc:
-            raise ProviderTimeoutError(f"no response from {url} within {timeout:.0f}s") from exc
+            raise ProviderTimeoutError(
+                f"{url} timed out: no response within {timeout:.0f}s"
+            ) from exc
         except (urllib.error.URLError, OSError, HTTPException) as exc:
             reason = getattr(exc, "reason", exc)
             if isinstance(reason, TimeoutError):
-                raise ProviderTimeoutError(f"no response from {url} within {timeout:.0f}s") from exc
+                raise ProviderTimeoutError(
+                    f"{url} timed out: no response within {timeout:.0f}s"
+                ) from exc
             raise ProviderUnavailableError(f"cannot reach {url}: {reason}") from exc
         return response
 

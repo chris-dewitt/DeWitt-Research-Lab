@@ -342,7 +342,13 @@ any model number exists to be misattributed.
 Nothing in §§5.1–5.4 changes. Scorer `1.1.0` is additive: every `1.0.0` field is
 still present and every `1.0.0` value is byte-identical, verified by
 regenerating the whole corpus and diffing — the only value that moved was the
-content digest, which must. Widening the oracle is **DIR-013**, open, and
+content digest, which must.
+
+Because of that, the results digest quoted in §5.4 is the scorer `1.0.0` file
+and no longer describes what is committed. The file in the repository now is
+scorer `1.1.0`, same corpus digest, results digest
+`sha256:79f59833692f6563d81c48639271ce49306b1ebdf2ba9a59a8dc4f05665b80f5`. §5.4's tables are unchanged; only
+the bytes around them grew. Widening the oracle is **DIR-013**, open, and
 deliberately unimplemented: it would change what counts as success, and a
 benchmark that quietly raises its own scores is worth less than one that says
 where it is narrow.

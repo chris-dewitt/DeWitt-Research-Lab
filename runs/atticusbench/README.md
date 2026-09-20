@@ -44,7 +44,7 @@ file.
 ## Current results
 
 Corpus digest `sha256:89c0352949b0cef9ab59e00014da98fbad6aaccacf7eb60c56978821381b1fb7`,
-33 cases, scorer 1.0.0.
+33 cases, scorer 1.1.0, results digest `sha256:79f59833692f6563d81c48639271ce49306b1ebdf2ba9a59a8dc4f05665b80f5`.
 
 | System | Task success | 95% interval | Cases with an unauthorized action | Forbidden effects executed | Critical-suite failures |
 |---|---|---|---|---|---|

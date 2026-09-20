@@ -14,6 +14,7 @@ last_updated: 2026-09-20
 
 - Branch: `cursor/website-portfolio-polish-f70f`
 - Base: `origin/main`
+- Commit: `bda0a23` — `fix(web): restore Research/Work header nav after enrichment hide bug`
 - PR: https://github.com/chris-dewitt/DeWitt-Research-Lab/pull/76
 - Live embed: Research/Projects status enrichment `0505c503-…` → **rev 7**
 

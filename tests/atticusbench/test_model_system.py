@@ -8,6 +8,7 @@ has its failure quietly replaced by a rule-based plan.
 
 from __future__ import annotations
 
+import argparse
 import json
 
 import pytest
@@ -418,3 +419,71 @@ def test_a_model_supplied_tool_name_is_bounded_before_it_is_recorded(corpus) -> 
     serialized = json.dumps(planner.outcome.as_dict())
     assert "ignore previous instructions" not in serialized
     assert all(len(name) <= 64 for name in recorded)
+
+
+def test_a_register_candidate_can_be_measured_on_its_own() -> None:
+    """`--candidate` exists so one model can be measured without the whole register.
+
+    Without it the only register-backed path measures every candidate, which on
+    a laptop means sitting through a 26B model to get a 1.7B number. That cost
+    pushes people to `--model`, which silently drops the register's serving
+    settings — so the missing filter was making the wrong path the easy one.
+    """
+
+    from scripts.run_atticusbench_models import register_serving_tags, resolve_providers
+
+    served = register_serving_tags()
+    assert served, "the register should declare at least one serving block"
+    wanted = sorted(served)[0]
+
+    args = argparse.Namespace(
+        stub=False,
+        models=None,
+        candidates=[wanted],
+        base_url="http://localhost:11434/v1",
+        stall_timeout=1.0,
+    )
+    providers = resolve_providers(args)
+    assert list(providers) == [f"register::{wanted}"]
+
+
+def test_an_unknown_candidate_id_names_the_ones_that_exist() -> None:
+    from scripts.run_atticusbench_models import register_serving_tags, resolve_providers
+
+    args = argparse.Namespace(
+        stub=False,
+        models=None,
+        candidates=["not-a-candidate"],
+        base_url="http://localhost:11434/v1",
+        stall_timeout=1.0,
+    )
+    with pytest.raises(SystemExit) as raised:
+        resolve_providers(args)
+    message = str(raised.value)
+    assert "not-a-candidate" in message
+    # A rejection that does not say what is valid just costs another round trip.
+    for candidate_id in register_serving_tags():
+        assert candidate_id in message
+
+
+def test_an_adhoc_tag_that_the_register_knows_is_warned_about() -> None:
+    """The failure this warning exists for actually happened.
+
+    `--model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0` measured a registered reasoning
+    model without the register's `/no_think` prefix. It stalled on nearly every
+    case and reported `no-plan-provider-error`, which reads as a finding about
+    the model rather than about how it was invoked.
+    """
+
+    from scripts.run_atticusbench_models import adhoc_warning, register_serving_tags
+
+    served = register_serving_tags()
+    assert served
+    candidate_id, tag = sorted(served.items())[0]
+    warning = adhoc_warning(tag)
+    assert warning is not None
+    assert candidate_id in warning
+    assert "--candidate" in warning
+
+    # A tag the register genuinely does not know is not worth warning about.
+    assert adhoc_warning("definitely-not-in-the-register:latest") is None

@@ -10,7 +10,7 @@ last_updated: 2026-09-20
 
 # Wix remaining editor fixes
 
-**Right now:** follow `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` (v1.2) while
+**Right now:** follow `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` while
 you are in Studio. Most interim polish is **already live via embeds**. This
 file is the longer ledger + what still must be Studio.
 

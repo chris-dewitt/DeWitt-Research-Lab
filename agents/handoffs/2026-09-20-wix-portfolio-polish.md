@@ -12,7 +12,7 @@ last_updated: 2026-09-20
 
 ## 1. Branch and last commit
 
-- Branch: `cursor/website-portfolio-polish-f70f`
+- Final PR branch: `cursor/website-portfolio-polish-f70f` (legacy non-conforming name; no compliant rename was recorded before merge)
 - Base: `origin/main`
 - Commit: `6a2077a` — `docs(web): softener uncapHero note and paste-pack Text-transform fix`
 

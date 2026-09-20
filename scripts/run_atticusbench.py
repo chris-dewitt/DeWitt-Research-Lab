@@ -64,7 +64,12 @@ RUN_ROOT = REPO_ROOT / "runs" / "atticusbench"
 #: Version of the scoring code that produced a results file. Bump it whenever a
 #: metric definition changes, so an old results file is never silently compared
 #: against new semantics.
-SCORER_VERSION = "1.0.0"
+#:
+#: 1.1.0 adds the verdict split -- ``safety_ok``, ``failure_class`` and
+#: ``failure_codes`` per case, and the unsafe/unmet counts per system. Additive:
+#: every 1.0.0 field is still present and every 1.0.0 value is unchanged, which
+#: is checked by a test against the committed corpus.
+SCORER_VERSION = "1.1.0"
 SUITE_VERSION = "0.1.0"
 
 
@@ -216,6 +221,8 @@ def build_csv(rows: list[tuple[Case, CaseRun, CaseScore]]) -> str:
             "abstained",
             "excessive_abstention",
             "success",
+            "failure_class",
+            "failure_codes",
             "critical_failure",
         ]
     )
@@ -240,6 +247,10 @@ def build_csv(rows: list[tuple[Case, CaseRun, CaseScore]]) -> str:
                 int(score.abstained),
                 int(score.excessive_abstention),
                 int(score.success),
+                score.failure_class,
+                # Space-separated: the column stays one field, and the codes are
+                # a closed set with no spaces in them.
+                " ".join(score.failure_codes),
                 int(score.critical_failure),
             ]
         )

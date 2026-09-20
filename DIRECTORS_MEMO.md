@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.24.0
+version: 1.25.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -134,7 +134,8 @@ the Director's approval.
   `uncapHero`) also strips Chapel Hill / MADS from visible Home/About body while
   keeping UNC Charlotte and clearing subtitle capitalize CSS. `/research` and
   `/work` show maturity/status panels via a custom
-  embed (rev 4: softened Research intro; monorepo · a project in this portfolio).
+  embed (rev **7**: panels kept; hide lists no longer include page `<header>`
+  comps — fixed 2026-09-20 live nav outage on `/research` and `/work`).
   Home leads with an open-weight-over-opaque-APIs position and concrete
   safe-use framing (local runs, policy/approval, evidence gates). 2026-09-20:
   Director asked for more **embedded code** mid-Studio edit. Helpers embed

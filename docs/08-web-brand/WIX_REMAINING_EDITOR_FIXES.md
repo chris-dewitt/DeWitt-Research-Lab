@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-024
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.7.0
+version: 1.8.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -13,6 +13,10 @@ last_updated: 2026-09-20
 **Right now:** follow `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` (v1.2) while
 you are in Studio. Most interim polish is **already live via embeds**. This
 file is the longer ledger + what still must be Studio.
+
+**2026-09-20 nav fix:** enrichment `0505c503-…` **rev 7** no longer hides
+Research/Work `<header>` comps (`comp-msfldjxx` / `comp-mswd0roa`). Hard-refresh
+`/research` and `/work` to confirm nav.
 
 Director decisions (2026-09-20): keep nav label **PROJECTS** (`/work` slug
 stays); Chapel Hill / MADS stay softened/removed from public body; home hero
@@ -38,9 +42,9 @@ privacy via embeds first, permanent Studio when ready.
 
 - `/projects` → `/work`; `/projects-1` → `/work`.
 - Home/About SEO (no MADS/UNC in meta). Research title `Research | Chris DeWitt`.
-- Enrichment embed `0505c503-…` **rev 4**: Research intro softened (no
-  peer-reviewed/coursework apology); Projects monorepo line → *Monorepo · a
-  project in this portfolio*; work intro leads with personal projects.
+- Enrichment embed `0505c503-…` **rev 7**: Research/Projects panels + tone;
+  hide lists exclude page HEADER comps (nav restore); `isChrome()` guard;
+  MARK `dewitt-status-enrich-v3`.
 - Softener `8d0df783-…` **rev 11**: TreeWalker text nodes; Chapel Hill/MADS
   strip; And-fix pairs; **`uncapHero` forces `text-transform: none`** on the
   hero subtitle. UNC Charlotte preserved.

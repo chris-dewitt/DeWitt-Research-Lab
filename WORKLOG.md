@@ -928,3 +928,15 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   bad GitHub hrefs cleared; About heading cleaned; footer links present;
   privacy panel opens on `#cd-privacy`.
 - Next: Director creates `/privacy` + permanent Text transform None; Publish.
+
+## 2026-09-20 — Research/Work header nav restored
+
+- Live bug: `/research` and `/work` had no header/nav.
+- Root cause: enrichment `0505c503-…` hide lists included page HEADER comps
+  (`comp-msfldjxx` on Research, `comp-mswd0roa` on Work).
+- Fix: embed **rev 7** — remove those ids; `isChrome()` guard; MARK v3; no
+  `textContent` flattening.
+- Verified: nav + enrichment both present on `/research` and `/work`.
+  Screenshots `after-research-nav.png`, `after-work-nav.png`.
+- Docs/handoff: `WIX_REMAINING_EDITOR_FIXES.md`, `SITE_COPY.md`,
+  `agents/handoffs/2026-09-20-wix-research-nav-fix.md`.

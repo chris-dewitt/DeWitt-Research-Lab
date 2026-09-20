@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.9.0
+version: 3.10.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -14,11 +14,10 @@ Paste-ready copy for manual Wix use where the editor is required. SEO tags and
 URL redirects may be applied through the Wix SEO APIs when authenticated; page
 body copy still needs the editor for permanent ownership.
 
-Version 3.9.0 records **Studio paste helpers** embed `b21ad726-…` rev 4
-(GitHub href fix, About heading, footer mailto/GitHub/Privacy panel) on top of
-softener rev 11 / enrichment rev 4 / gap V4. Director choices 2026-09-20 stand.
-Live Studio checklist (shrunk): `WIX_LIVE_PASTE_NOW.md` v1.2. Ledger:
-`WIX_REMAINING_EDITOR_FIXES.md` v1.7.
+Version 3.10.0 records enrichment `0505c503-…` **rev 7** (Research/Work header
+nav restore — hide lists no longer target `<header>` comps). Helpers rev 4 /
+softener rev 11 / gap V4 still stand. Live Studio checklist:
+`WIX_LIVE_PASTE_NOW.md` v1.2. Ledger: `WIX_REMAINING_EDITOR_FIXES.md` v1.8.
 
 ## Page tree
 
@@ -38,7 +37,8 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
 - Redirects + SEO meta (no MADS/UNC)
 - Softener `8d0df783-…` rev `11` (TreeWalker; And-fix; Chapel Hill strip;
   `uncapHero` clears subtitle `text-transform: capitalize`)
-- Enrichment `0505c503-…` rev `4` (softened Research/Projects intros)
+- Enrichment `0505c503-…` rev `7` (Research/Projects panels; HEADER comps
+  excluded from hide lists so nav stays visible)
 - Homepage gap cleanup `4ebc7135-…` rev `8` (`DL_HOME_GAP_V4`)
 - Home open-weight thesis embed `73d6abb6-…`
 - Studio helpers `b21ad726-…` rev `4` (GitHub hrefs; About heading; footer

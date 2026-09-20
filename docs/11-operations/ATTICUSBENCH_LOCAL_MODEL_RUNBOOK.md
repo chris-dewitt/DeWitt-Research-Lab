@@ -21,6 +21,7 @@ Nothing here needs a cloud account, an API key, or a paid endpoint.
 .\scripts\windows\run-atticusbench-models.ps1 -Candidate edge-qwen3-1.7b   # one registered model
 .\scripts\windows\run-atticusbench-models.ps1                              # every model the register serves
 .\scripts\windows\run-atticusbench-models.ps1 -Candidate edge-qwen3-1.7b -Repeats 3
+.\scripts\windows\run-atticusbench-models.ps1 -Candidate edge-qwen3-1.7b -Timeout 900
 ```
 
 **Prefer `-Candidate` over `-Model`.** `-Candidate` takes a register id and
@@ -35,13 +36,14 @@ make atticusbench-models                                         # register-decl
 make atticusbench-models-stub                                    # no daemon needed
 uv run python scripts/run_atticusbench_models.py --model qwen3:1.7b --repeats 3
 uv run python scripts/run_atticusbench_models.py --case atb-perm-000002 --model qwen3:1.7b
-uv run python scripts/run_atticusbench_models.py --model qwen3:1.7b --timeout 900
+uv run python scripts/run_atticusbench_models.py --candidate edge-qwen3-1.7b --timeout 900
 ```
 
-`--timeout` is the total seconds one completion may take, default 600. It is
-the setting most likely to decide a run on a laptop: a quantized model planning
-on a CPU can need several minutes per case, and a case that reaches the ceiling
-is recorded as a provider error rather than as the model declining to plan. The
+`--timeout` (`-Timeout` from the PowerShell wrapper) is the total seconds one
+completion may take, default 600. It is the setting most likely to decide a run
+on a laptop: a quantized model planning on a CPU can need several minutes per
+case, and a case that reaches the ceiling is recorded as a provider error
+rather than as the model declining to plan. The
 value is written into the run manifest's `sampling` block, so a reader can see
 what bounded the numbers. `--stall-timeout` is a different question — it asks
 whether anything is still arriving, not how long the whole call may take.
@@ -105,9 +107,17 @@ system_prefix are NOT applied ... Use --candidate edge-qwen3-1.7b instead.
 ```
 
 Qwen3 is a reasoning model. Measured through `--model`, it never receives the
-register's `/no_think` prefix, reasons until the stall timeout fires, and
+register's `/no_think` prefix, reasons far past the point a plan was due, and
 reports `no-plan-provider-error` on nearly every case. Nothing is wrong with
 the model or the daemon; the prefix was simply never sent.
+
+Two things compound there, and it is worth separating them, because fixing one
+leaves the other. The missing prefix makes the model slow. The **total**
+completion budget is what cuts it off — not the stall timeout, which asks a
+different question and was never reached. On the 2026-09-20 Qwen3-1.7B run
+every case that finished did so between 11.8 s and 26.0 s, and the other 28
+were abandoned at the then-default ceiling of 30 s. Send the prefix *and* give
+the run a budget it can finish in.
 
 ## What a run produces
 

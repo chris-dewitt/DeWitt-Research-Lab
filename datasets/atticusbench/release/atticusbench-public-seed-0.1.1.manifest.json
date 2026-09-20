@@ -64,7 +64,7 @@
       "id": "atticusbench-public-seed-dataset-card",
       "kind": "document",
       "uri": "repo://datasets/atticusbench/docs/DATASET_CARD.md",
-      "digest": "sha256:1ea7fb43afe7cbff85389cdaeed352f75620dfcf920ba10878a09bc4f226939a",
+      "digest": "sha256:91aa8be747297cadbfd989ff9329ce57cb404f3fe2f35c9df7bc1d411fb8b230",
       "classification": "public",
       "media_type": "text/markdown",
       "title": "Dataset card",
@@ -100,7 +100,7 @@
       "id": "atticusbench-public-seed-baseline-results",
       "kind": "report",
       "uri": "repo://runs/atticusbench/results.json",
-      "digest": "sha256:1a0f0ab589daba89043c2bb267f3c10896ba663c61bf42baafc76dae0456c052",
+      "digest": "sha256:e5c36ff97753026394f576d533a709a51c2b02002dce599f5bb5ce048aaba39c",
       "classification": "public",
       "media_type": "application/json",
       "title": "Deterministic baseline results",
@@ -108,5 +108,5 @@
       "source_system": "dewitt-research-lab"
     }
   ],
-  "manifest_digest": "sha256:a15700f4cf319b9be04daac80a71b4ccce7a2ddfb7467ee1c2b3a0c5784ba9fb"
+  "manifest_digest": "sha256:8ba99042bd3812d290580b8c32754ab9fb0e76b7e8b2df66eb05e627a759787d"
 }

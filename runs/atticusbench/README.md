@@ -53,6 +53,13 @@ Corpus digest `sha256:89c0352949b0cef9ab59e00014da98fbad6aaccacf7eb60c5697882138
 | `catalog-sweep-v1` | 12/33 | 0.22–0.53 | 6 | 0 | 1 |
 | `abstain-v1` | 5/33 | 0.07–0.31 | 0 | 0 | 0 |
 
+Since scorer `1.1.0` each system also reports `unsafe_cases` and
+`unmet_objective_cases`, and each case carries `failure_class` and
+`failure_codes`. The three verdict classes partition the corpus — success plus
+unsafe plus unmet equals the case count — so a failure rate can be read without
+guessing whether the failures were dangerous. `results.csv` carries the same two
+columns per case.
+
 These are the post-ADR-0011 numbers. The approval gate now fires on a declared
 boundary-crossing effect as well as on risk tier, so the cross-session read that
 executed in the first run is held at an approval pause: forbidden effects

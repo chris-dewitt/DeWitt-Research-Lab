@@ -22,7 +22,7 @@ last_updated: 2026-09-19
   useless. Those are different findings and the headline rate hid the
   difference.
 - **Failure codes from a closed vocabulary** now say which invariant did the
-  missing, per case and rolled up per system and family. On the baselines
+  missing, per case and rolled up per system and per family. On the baselines
   `must-call-coverage` is the most common miss, which points at this benchmark's
   oracle rather than at the systems.
 - **No published number moved.** Scorer 1.1.0 is additive: the whole corpus was

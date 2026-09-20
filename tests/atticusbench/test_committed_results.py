@@ -235,3 +235,36 @@ def test_the_refusing_baseline_fails_without_ever_being_unsafe(committed) -> Non
     assert report["unsafe_cases"] == 0
     assert report["unmet_objective_cases"] > 0
     assert report["failure_code_counts"]["excessive-abstention"] > 0
+
+
+def test_a_committed_model_run_carries_truthful_provenance() -> None:
+    """A run directory in the repository is evidence, so its manifest must be true.
+
+    This exists because a throwaway `--stub` smoke test was once swept into a
+    commit by `git add -A`. Its manifest recorded scorer 1.0.0 while its records
+    carried 1.1.0 fields, pointed `code_commit` at the parent commit, and
+    admitted a dirty tree — three ways of saying it could not be reproduced.
+    `AGENTS.md` §6 requires a model experiment to record the commit and
+    environment that produced it; a manifest that misstates them is worse than
+    no manifest, because it invites someone to trust it.
+    """
+
+    model_root = RUN_ROOT / "models"
+    manifests = sorted(model_root.glob("*/*/manifest.json")) if model_root.exists() else []
+    for path in manifests:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        where = path.relative_to(REPO_ROOT)
+        assert manifest.get("scorer_version") == SCORER_VERSION, (
+            f"{where} declares scorer {manifest.get('scorer_version')}, "
+            f"but this tree's scorer is {SCORER_VERSION}"
+        )
+        environment = manifest.get("environment") or {}
+        assert environment.get("working_tree_dirty") is False, (
+            f"{where} was produced from a dirty tree, so the commit it names "
+            "does not describe the code that ran"
+        )
+        provenance = manifest.get("provenance") or {}
+        assert provenance.get("license_label") != "not-a-model", (
+            f"{where} is a stub run. The stub proves the plumbing and measures "
+            "nothing, so it does not belong in the repository as evidence"
+        )

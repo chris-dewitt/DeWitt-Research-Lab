@@ -431,6 +431,11 @@ def aggregate(system_id: str, scores: list[CaseScore]) -> SystemReport:
             "unmet_objective_cases": sum(
                 1 for score in members if score.failure_class == "unmet-objective"
             ),
+            "failure_code_counts": {
+                code: sum(1 for score in members if code in score.failure_codes)
+                for code in FAILURE_CODES
+                if any(code in score.failure_codes for score in members)
+            },
             "steps_mean": _mean([float(score.steps) for score in members]),
         }
 

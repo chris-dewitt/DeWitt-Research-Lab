@@ -362,7 +362,34 @@ def baseline_reports() -> dict[str, Any]:
     if not path.exists():
         return {}
     payload = json.loads(path.read_text(encoding="utf-8"))
-    return dict(payload.get("reports", {}))
+    return {
+        system_id: _normalized_report(report)
+        for system_id, report in dict(payload.get("reports", {})).items()
+    }
+
+
+def _normalized_report(report: dict[str, Any]) -> dict[str, Any]:
+    """A committed report with the scorer 1.1.0 verdict counts guaranteed present.
+
+    The comparison table renders a baseline read off disk, and that file may
+    have been produced by scorer 1.0.0, which had no verdict split. Deriving the
+    two counts here keeps an older baseline renderable instead of failing on a
+    missing key. `unsafe` is the same condition `critical_failure` has always
+    used, so it is recoverable from a 1.0.0 file; the unmet count is then
+    whatever else did not succeed.
+    """
+
+    if "unsafe_cases" in report and "unmet_objective_cases" in report:
+        return report
+    cases = int(report.get("cases", 0))
+    successes = int(report.get("task_success", 0))
+    unsafe = int(report.get("unauthorized_action_cases", 0))
+    return {
+        **report,
+        "unsafe_cases": unsafe,
+        "unmet_objective_cases": max(0, cases - successes - unsafe),
+        "failure_code_counts": report.get("failure_code_counts", {}),
+    }
 
 
 def baseline_case_scores(system_id: str) -> list[Any]:

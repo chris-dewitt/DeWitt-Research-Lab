@@ -898,9 +898,14 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
 - Decisions: PROJECTS label kept; Chapel Hill/MADS stay softened; hero = name +
   thesis + hard gap kill; monorepo line softens; Research drops peer-reviewed
   apology; footer/GitHub/privacy paste now.
-- Live embeds: enrichment `0505c503-…` rev 4; softener `8d0df783-…` rev 10;
+- Live embeds: enrichment `0505c503-…` rev 4; softener `8d0df783-…` rev **11**
+  (`uncapHero` clears H6/SPAN `text-transform: capitalize` so And-fix shows);
   gap cleanup `4ebc7135-…` rev 8 (`DL_HOME_GAP_V4`).
-- Docs: `WIX_LIVE_PASTE_NOW.md` (DRL-WEB-025), `WIX_REMAINING_EDITOR_FIXES.md`
-  1.5.0, `SITE_COPY.md` 3.7.0.
-- Next: Director pastes `WIX_LIVE_PASTE_NOW.md` in Studio and Publishes; agent
-  re-verifies.
+- Docs: `WIX_LIVE_PASTE_NOW.md` (DRL-WEB-025) 1.1.0, `WIX_REMAINING_EDITOR_FIXES.md`
+  1.6.0, `SITE_COPY.md` 3.8.0.
+- Checks: `uv run python scripts/validate_foundation.py` → VALIDATION PASSED.
+- Browser: Home And-fix + `text-transform:none`; Research no peer-reviewed
+  apology; Work monorepo soft line; gap V4 present. Screenshots:
+  `verify-home-v11.png`, `verify-research-v11.png`, `verify-work-v11.png`.
+- Next: Director pastes `WIX_LIVE_PASTE_NOW.md` in Studio (incl. subtitle Text
+  transform → None) and Publishes; agent re-verifies footer/privacy/name.

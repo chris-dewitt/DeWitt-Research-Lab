@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.7.0
+version: 3.8.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -14,11 +14,13 @@ Paste-ready copy for manual Wix use where the editor is required. SEO tags and
 URL redirects may be applied through the Wix SEO APIs when authenticated; page
 body copy still needs the editor.
 
-Version 3.7.0 records Director choices 2026-09-20: keep **PROJECTS** nav label
-(`/work` slug); public body keeps Chapel Hill/MADS softened/removed; home hero
-adds name + shorter body; Research/Projects panel copy drops defensive
-disclaimers; monorepo line softens. Live Studio checklist:
-`WIX_LIVE_PASTE_NOW.md`. Remaining editor ledger: `WIX_REMAINING_EDITOR_FIXES.md`.
+Version 3.8.0 records softener rev 11 (`uncapHero` / `text-transform: none`) so
+the hero subtitle shows lowercase **and** despite Wix capitalize CSS, plus
+Director choices 2026-09-20: keep **PROJECTS** nav label (`/work` slug); public
+body keeps Chapel Hill/MADS softened/removed; home hero adds name + shorter
+body; Research/Projects panel copy drops defensive disclaimers; monorepo line
+softens. Live Studio checklist: `WIX_LIVE_PASTE_NOW.md`. Remaining editor
+ledger: `WIX_REMAINING_EDITOR_FIXES.md`.
 
 ## Page tree
 
@@ -36,7 +38,8 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
 **Done on Wix (API):**
 
 - Redirects + SEO meta (no MADS/UNC)
-- Softener `8d0df783-…` rev `10` (TreeWalker; And-fix; Chapel Hill strip)
+- Softener `8d0df783-…` rev `11` (TreeWalker; And-fix; Chapel Hill strip;
+  `uncapHero` clears subtitle `text-transform: capitalize`)
 - Enrichment `0505c503-…` rev `4` (softened Research/Projects intros)
 - Homepage gap cleanup `4ebc7135-…` rev `8` (`DL_HOME_GAP_V4`)
 - Home open-weight thesis embed `73d6abb6-…`

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-024
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.5.0
+version: 1.6.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -26,8 +26,10 @@ privacy paste now.
 - Enrichment embed `0505c503-…` **rev 4**: Research intro softened (no
   peer-reviewed/coursework apology); Projects monorepo line → *Monorepo · a
   project in this portfolio*; work intro leads with personal projects.
-- Softener `8d0df783-…` **rev 10**: TreeWalker text nodes; Chapel Hill/MADS
-  strip; `Forecast Engineer And …` → lowercase and; UNC Charlotte preserved.
+- Softener `8d0df783-…` **rev 11**: TreeWalker text nodes; Chapel Hill/MADS
+  strip; And-fix pairs; **`uncapHero` forces `text-transform: none`** on the
+  hero subtitle (Wix H6/SPAN had `capitalize`, which re-title-cased `and` →
+  `And` even after DOM rewrite). UNC Charlotte preserved.
 - Homepage cleanup `4ebc7135-…` **rev 8**: `DL_HOME_GAP_V4` + stronger empty
   section collapse between hero CTAs and “Why complex systems?”.
 - Home open-weight thesis embed `73d6abb6-…` rev 2 still live.

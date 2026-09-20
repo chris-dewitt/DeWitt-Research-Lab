@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-025
 title: "Wix Live Paste Now (Director — do these in Studio)"
-version: 1.0.0
+version: 1.1.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -11,7 +11,7 @@ last_updated: 2026-09-20
 # Do this in Wix Studio now
 
 You are editing `www.dewitt-labs.com`. Paste these exactly, then **Publish**.
-I am updating embeds/API in parallel (Research/Projects tone, gap, softener).
+Embeds are already live (Research/Projects tone, gap V4, softener rev 11).
 
 No Chapel Hill / MADS in public body copy. Keep UNC Charlotte on About.
 
@@ -34,6 +34,12 @@ agent platforms, evaluation harnesses, quantitative tools, and experiments
 that fail in interesting ways. Everything here is independent personal work —
 source, tests, failures, and runs you can replay.
 ```
+
+**Critical — subtitle casing:** select the subtitle line
+(`Forecast engineer and graduate student…`) and set **Text transform → None**
+(not Capitalize / Title Case). Wix `capitalize` was forcing `And` even when the
+DOM said `and`. Softener rev 11 clears this for now; Studio must match or it
+returns when embeds are removed.
 
 **CTAs** (keep / retarget if needed):
 

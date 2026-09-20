@@ -1,10 +1,10 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.22.0
+version: 1.25.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 # Director's Decision and Escalation Ledger
@@ -131,16 +131,22 @@ the Director's approval.
   (`www.dewitt-labs.com`) is the academic portfolio and links that URL from the
   homepage (*Watch a recorded run*). As of 2026-09-19: `/projects` redirects to
   `/work`; Home/About SEO meta uses a light academic signal without naming
-  MADS/UNC; a BODY_END softener embed (rev 7, TreeWalker text nodes only) also
-  strips Chapel Hill / MADS from visible Home/About body while keeping UNC
-  Charlotte. `/research` and `/work` show maturity/status panels via a custom
-  embed (prototype tags, TR null result, monorepo systems). Home leads with an
-  open-weight-over-opaque-APIs position and concrete safe-use framing (local
-  runs, policy/approval, evidence gates). Remaining permanent body-copy (hero,
-  GitHub URL, footer, privacy) is in
-  `docs/08-web-brand/WIX_REMAINING_EDITOR_FIXES.md`. The Wix MCP can manage SEO
-  redirects/tags and embeds when authenticated; Studio page body still needs
-  the editor for permanent paste.
+  MADS/UNC; a BODY_END softener embed (rev 11, TreeWalker text nodes +
+  `uncapHero`) also strips Chapel Hill / MADS from visible Home/About body while
+  keeping UNC Charlotte and clearing subtitle capitalize CSS. `/research` and
+  `/work` show maturity/status panels via a custom
+  embed (rev **7**: panels kept; hide lists no longer include page `<header>`
+  comps — fixed 2026-09-20 live nav outage on `/research` and `/work`).
+  Home leads with an open-weight-over-opaque-APIs position and concrete
+  safe-use framing (local runs, policy/approval, evidence gates). 2026-09-20:
+  Director asked for more **embedded code** mid-Studio edit. Helpers embed
+  `b21ad726-…` rev 4 now covers GitHub href rewrite, About heading, and footer
+  mailto/GitHub/Privacy panel live; softener/enrichment/gap already carried
+  tone + capitalize + gap. Remaining Studio-musts: create `/privacy` (404 today),
+  permanent subtitle Text transform → None, optional empty-strip delete /
+  permanent paste to retire embeds. Checklist:
+  `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` v1.2. The Wix MCP manages embeds
+  when authenticated; new pages and permanent Text settings stay Studio.
 - ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and
   ADR-0011. The AtticusBench critical suite now measures a candidate rather than
   our own policy for the cross-session case. One critical-suite failure remains

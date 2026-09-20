@@ -60,7 +60,7 @@ from atticusbench import (  # noqa: E402
 )
 from atticusbench.model_system import model_record_block, model_system, provenance  # noqa: E402
 from atticusbench.stub_provider import StubPlanProvider  # noqa: E402
-from drl_ai_core.bakeoff_harness import build_live_providers  # noqa: E402
+from drl_ai_core.bakeoff_harness import build_live_providers, load_candidates  # noqa: E402
 from drl_ai_core.http_provider import (  # noqa: E402
     DEFAULT_STALL_TIMEOUT_SECONDS,
     HttpOpenAICompatibleProvider,
@@ -155,6 +155,42 @@ def ad_hoc_provider(tag: str, base_url: str, *, stall_timeout: float) -> ModelPr
     )
 
 
+def register_serving_tags() -> dict[str, str]:
+    """Map each register candidate id to the model tag it is served under."""
+
+    try:
+        candidates = load_candidates(REGISTER)
+    except (OSError, ValueError):
+        return {}
+    return {
+        candidate.id: candidate.serving.model
+        for candidate in candidates.values()
+        if candidate.serving is not None
+    }
+
+
+def adhoc_warning(tag: str) -> str | None:
+    """Warn when an ad-hoc tag is a register candidate served without its settings.
+
+    `--model` builds a bare provider: the endpoint's defaults and nothing else.
+    The register can attach a `system_prefix`, and for a reasoning model that
+    prefix is the difference between a plan and a stall. Measuring the same
+    weights without it and calling the result that model's score would be
+    wrong, so the runner says so rather than letting the run look normal.
+    """
+
+    for candidate_id, served in register_serving_tags().items():
+        if served != tag:
+            continue
+        return (
+            f"'{tag}' is register candidate '{candidate_id}', but --model ignores "
+            f"the register. Serving settings such as system_prefix are NOT applied, "
+            f"the run records license_label 'unknown', and the result is not "
+            f"citable. Use --candidate {candidate_id} to measure it as declared."
+        )
+    return None
+
+
 def resolve_providers(args: argparse.Namespace) -> dict[str, ModelProvider]:
     if args.stub:
         return {"stub-plan-v1": StubPlanProvider()}
@@ -162,6 +198,9 @@ def resolve_providers(args: argparse.Namespace) -> dict[str, ModelProvider]:
     providers: dict[str, ModelProvider] = {}
     if args.models:
         for tag in args.models:
+            warning = adhoc_warning(tag)
+            if warning:
+                print(f"WARNING: {warning}")
             providers[f"model::{tag}"] = ad_hoc_provider(
                 tag, args.base_url, stall_timeout=args.stall_timeout
             )
@@ -172,6 +211,15 @@ def resolve_providers(args: argparse.Namespace) -> dict[str, ModelProvider]:
         base_url_override=args.base_url if args.base_url != DEFAULT_BASE_URL else None,
         stall_timeout=args.stall_timeout,
     )
+    if args.candidates:
+        unknown = sorted(set(args.candidates) - set(registered))
+        if unknown:
+            available = ", ".join(sorted(registered)) or "none"
+            raise SystemExit(
+                f"unknown register candidate(s): {', '.join(unknown)}. "
+                f"Candidates the register declares a serving block for: {available}"
+            )
+        registered = {cid: p for cid, p in registered.items() if cid in set(args.candidates)}
     providers.update({f"register::{cid}": provider for cid, provider in registered.items()})
     return providers
 
@@ -560,6 +608,17 @@ def main(argv: list[str] | None = None) -> int:
         "--stub",
         action="store_true",
         help="use the built-in stub provider: no daemon, no model, plumbing only",
+    )
+    parser.add_argument(
+        "--candidate",
+        action="append",
+        dest="candidates",
+        metavar="ID",
+        help=(
+            "measure only this register candidate, by id, with the serving "
+            "settings the register declares. Repeatable. Without it the whole "
+            "register is measured, which on a laptop can mean a very large model"
+        ),
     )
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL)
     parser.add_argument("--case", action="append", dest="cases", help="limit to this case id")

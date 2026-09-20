@@ -968,3 +968,26 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   Screenshots `after-research-nav.png`, `after-work-nav.png`.
 - Docs/handoff: `WIX_REMAINING_EDITOR_FIXES.md`, `SITE_COPY.md`,
   `agents/handoffs/2026-09-20-wix-research-nav-fix.md`.
+
+## 2026-09-20 — DRL-041: measure one registered model without the whole register
+
+- Branch `claude/research-runs-data-ssm3ca`, from `main` at `7aa78ae`.
+- Found by the Director running the real thing: `--model <tag>` on a tag the
+  register knows measured Qwen3-1.7B without the register's `/no_think`
+  prefix. It reasoned past the stall timeout and reported
+  `no-plan-provider-error` on nearly every case — which reads as a finding
+  about the model and was a finding about the invocation.
+- Root cause was ergonomic, not a bug: the register-backed path measured every
+  candidate including a 26B model, so the cheap path was the wrong one.
+- `--candidate <id>` / `-Candidate` measures one register entry with its
+  declared serving settings. An unknown id names every valid id rather than
+  just refusing.
+- `--model` now warns, before running, when the tag is one the register knows
+  and names the `--candidate` id to use instead.
+- The PowerShell parameters are named-only. A stray token in `- Stub` was
+  binding positionally to `-Repeats` and erroring about a parameter the caller
+  never mentioned.
+- Checks: `uv run pytest` → 780 passed; ruff, mypy, bandit clean; foundation
+  validator passes; `run_atticusbench.py --check` reproduces.
+- Next: the Director re-runs with `-Candidate edge-qwen3-1.7b`. Still no model
+  number.

@@ -16,6 +16,13 @@
     One or more Ollama tags to measure. Omit to measure every candidate in
     models/bakeoff/candidates.yaml that declares a serving block.
 
+.PARAMETER Candidate
+    One or more register candidate ids from models/bakeoff/candidates.yaml,
+    measured with the serving settings the register declares (system_prefix and
+    the rest). Prefer this over -Model: an ad-hoc tag gets the endpoint's
+    defaults and nothing else, which for a reasoning model is the difference
+    between a plan and a stall.
+
 .PARAMETER Repeats
     Run the split this many times per model, to see how stable its plans are.
 
@@ -33,6 +40,10 @@
     Measures whatever the register serves.
 
 .EXAMPLE
+    .\run-atticusbench-models.ps1 -Candidate edge-qwen3-1.7b
+    One register candidate, served exactly as the register declares it.
+
+.EXAMPLE
     .\run-atticusbench-models.ps1 -Model qwen3:1.7b,llama3.2:3b -Pull -Repeats 2
 
 .EXAMPLE
@@ -42,10 +53,19 @@
 
 [CmdletBinding()]
 param(
+    # Every parameter is named. Without this a typo such as `- Stub` binds its
+    # stray token positionally to the first parameter that accepts one, and the
+    # error names a parameter the caller never mentioned.
+    [Parameter(Mandatory = $false, Position = [int]::MaxValue)]
     [string[]] $Model,
+    [Parameter(Mandatory = $false, Position = [int]::MaxValue)]
+    [string[]] $Candidate,
+    [Parameter(Mandatory = $false, Position = [int]::MaxValue)]
     [int] $Repeats = 1,
     [switch] $Pull,
+    [Parameter(Mandatory = $false, Position = [int]::MaxValue)]
     [string[]] $Case,
+    [Parameter(Mandatory = $false, Position = [int]::MaxValue)]
     [string] $BaseUrl = 'http://localhost:11434/v1',
     [switch] $Stub
 )
@@ -116,6 +136,7 @@ try {
                  '--base-url', $BaseUrl, '--repeats', $Repeats)
     foreach ($tag in $Model) { $runArgs += @('--model', $tag) }
     foreach ($id in $Case) { $runArgs += @('--case', $id) }
+    foreach ($id in $Candidate) { $runArgs += @('--candidate', $id) }
 
     Write-Step 'Running the benchmark'
     & uv @runArgs

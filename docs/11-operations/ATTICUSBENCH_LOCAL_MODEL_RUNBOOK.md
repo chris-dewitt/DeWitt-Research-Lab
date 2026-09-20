@@ -1,10 +1,10 @@
 ---
 document_id: DRL-OPS-012
 title: "AtticusBench Local Model Runbook"
-version: 1.1.0
+version: 1.2.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 
@@ -17,11 +17,17 @@ Nothing here needs a cloud account, an API key, or a paid endpoint.
 
 ```powershell
 # Windows, from anywhere in the repository
-.\scripts\windows\run-atticusbench-models.ps1 -Stub                      # prove the setup, no model
-.\scripts\windows\run-atticusbench-models.ps1                            # every model the register serves
-.\scripts\windows\run-atticusbench-models.ps1 -Model qwen3:1.7b -Pull    # one model, pull it first
-.\scripts\windows\run-atticusbench-models.ps1 -Model qwen3:1.7b -Repeats 3
+.\scripts\windows\run-atticusbench-models.ps1 -Stub                        # prove the setup, no model
+.\scripts\windows\run-atticusbench-models.ps1 -Candidate edge-qwen3-1.7b   # one registered model
+.\scripts\windows\run-atticusbench-models.ps1                              # every model the register serves
+.\scripts\windows\run-atticusbench-models.ps1 -Candidate edge-qwen3-1.7b -Repeats 3
 ```
+
+**Prefer `-Candidate` over `-Model`.** `-Candidate` takes a register id and
+serves the model exactly as `models/bakeoff/candidates.yaml` declares it,
+including `system_prefix`. `-Model` takes a raw tag and applies the endpoint's
+defaults and nothing else. For a reasoning model that difference is the
+difference between a plan and a stall — see the note below.
 
 ```bash
 # macOS or Linux
@@ -66,10 +72,33 @@ Adding a model to the sweep is adding a block like that. The run then records
 the register's `revision_label`, `license_label`, and `license_status`, which is
 what makes the result usable as evidence.
 
+**One candidate at a time.** `--candidate <id>` (PowerShell `-Candidate`)
+measures a single register entry with its declared serving settings. Without
+it the register path measures *every* candidate, which on a laptop means
+sitting through a 26B model to get a 1.7B number. List the ids by running with
+a wrong one: the error names every candidate the register serves.
+
 **Ad hoc, with `--model <tag>`.** Faster for trying something, and weaker as
 evidence: an unregistered tag has no license clearance and no revision
 provenance, so the run records `license_label: unknown` and
 `register_backed: false`. Fine for exploration; not citable in a report.
+
+It is also weaker *as a measurement*, which is easy to miss. `--model` builds
+a bare provider: no `system_prefix`, no register-declared serving settings. If
+the tag happens to be one the register knows, the runner now says so loudly
+before running, because this exact mistake has already produced a run that
+looked like a finding about a model and was a finding about the invocation:
+
+```text
+WARNING: 'hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0' is register candidate
+'edge-qwen3-1.7b', but --model ignores the register. Serving settings such as
+system_prefix are NOT applied ... Use --candidate edge-qwen3-1.7b instead.
+```
+
+Qwen3 is a reasoning model. Measured through `--model`, it never receives the
+register's `/no_think` prefix, reasons until the stall timeout fires, and
+reports `no-plan-provider-error` on nearly every case. Nothing is wrong with
+the model or the daemon; the prefix was simply never sent.
 
 ## What a run produces
 

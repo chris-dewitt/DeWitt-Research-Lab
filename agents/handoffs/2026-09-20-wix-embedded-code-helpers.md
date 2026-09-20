@@ -14,7 +14,7 @@ last_updated: 2026-09-20
 
 - Branch: `cursor/website-portfolio-polish-f70f`
 - Base: `origin/main`
-- Commit: (this push) — `docs(web): embedded-code helpers shrink Studio paste pack`
+- Commit: `5d8a5c8` — `docs(web): embedded-code helpers shrink Studio paste pack`
 
 ## 2. Objective completed
 

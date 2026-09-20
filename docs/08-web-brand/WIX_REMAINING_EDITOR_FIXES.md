@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-024
 title: "Wix Remaining Editor Fixes (Director Paste Pack)"
-version: 1.6.0
+version: 1.7.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -10,14 +10,29 @@ last_updated: 2026-09-20
 
 # Wix remaining editor fixes
 
-**Right now:** follow `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` while you are in
-Studio, then Publish. This file keeps the longer pack and the API ledger.
+**Right now:** follow `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` (v1.2) while
+you are in Studio. Most interim polish is **already live via embeds**. This
+file is the longer ledger + what still must be Studio.
 
 Director decisions (2026-09-20): keep nav label **PROJECTS** (`/work` slug
 stays); Chapel Hill / MADS stay softened/removed from public body; home hero
 gets **name above thesis** + hard gap kill; monorepo line softens (not deletes);
 Research intro drops “not peer-reviewed / not coursework”; footer + GitHub +
-privacy paste now.
+privacy via embeds first, permanent Studio when ready.
+
+## Embed vs Studio (blunt)
+
+| Item | Via embeds now? | Must stay Studio? |
+| --- | --- | --- |
+| Hero name above thesis | Already on live DOM | Optional permanent paste |
+| Subtitle And / capitalize CSS | Softener `uncapHero` | Permanent Text transform → None |
+| Chapel Hill / MADS strip | Softener TreeWalker | Permanent About/Home paste |
+| Home gap under CTAs | Gap V4 CSS/JS | Delete empty strip if void remains |
+| GitHub `http://www.github…` | Helpers href rewrite | Permanent link edit |
+| About `ABOUT CHRIS` | Helpers TreeWalker | Permanent heading paste |
+| Footer mailto / GitHub / Privacy | Helpers (Privacy = panel) | Create `/privacy` page; permanent footer |
+| Research / Projects tone | Enrichment panels | Optional permanent paste |
+| New `/privacy` route | No (404 today) | **Yes — create page** |
 
 ## Already applied via API
 
@@ -28,43 +43,25 @@ privacy paste now.
   project in this portfolio*; work intro leads with personal projects.
 - Softener `8d0df783-…` **rev 11**: TreeWalker text nodes; Chapel Hill/MADS
   strip; And-fix pairs; **`uncapHero` forces `text-transform: none`** on the
-  hero subtitle (Wix H6/SPAN had `capitalize`, which re-title-cased `and` →
-  `And` even after DOM rewrite). UNC Charlotte preserved.
-- Homepage cleanup `4ebc7135-…` **rev 8**: `DL_HOME_GAP_V4` + stronger empty
-  section collapse between hero CTAs and “Why complex systems?”.
+  hero subtitle. UNC Charlotte preserved.
+- Homepage cleanup `4ebc7135-…` **rev 8**: `DL_HOME_GAP_V4` + empty section
+  collapse between hero CTAs and “Why complex systems?”.
 - Home open-weight thesis embed `73d6abb6-…` rev 2 still live.
+- **Studio paste helpers** `b21ad726-…` **rev 4** (BODY_END): leaf-safe
+  TreeWalker / document-fragment patterns only (no container `textContent`
+  flatten). Fixes bad GitHub hrefs; About heading; footer mailto + GitHub +
+  Privacy panel (`#cd-privacy`) until `/privacy` exists.
 
 Nav label remains **PROJECTS** → `/work`. `/projects` redirects there.
 
-## 1. Home hero (#3, #8)
+## Studio remaining (see `WIX_LIVE_PASTE_NOW.md`)
 
-See `WIX_LIVE_PASTE_NOW.md` §1. Paste name + softened subtitle + shorter body.
-Delete the empty strip under the CTAs in the editor if the gap CSS does not
-fully clear it.
+1. Create `/privacy` page (required for a real route).
+2. Hero subtitle Text transform → None (permanent).
+3. Optional: delete empty hero strip; permanent hero/About/footer paste when
+   ready to retire embeds.
 
-## 2. GitHub URL (#4)
-
-`https://github.com/chris-dewitt` everywhere (not `http://www.github.com/...`).
-
-## 3. Footer (#5)
-
-See `WIX_LIVE_PASTE_NOW.md` §3 — mailto + GitHub + Privacy.
-
-## 4. Privacy page
-
-See `WIX_LIVE_PASTE_NOW.md` §4 — slug `/privacy`.
-
-## 5. About
-
-See `WIX_LIVE_PASTE_NOW.md` §5 — heading `About`; no Chapel Hill; keep UNC
-Charlotte pride.
-
-## 6. Research / Projects permanent paste (optional)
-
-Embeds already show softened panels. Prefer pasting the same facts into Studio
-text later so embeds can be disabled.
-
-## Verify after publish
+## Verify after publish / hard-refresh
 
 1. Home first viewport shows **Chris DeWitt** above the thesis.
 2. Subtitle is `Forecast engineer and graduate student. Charlotte…` (no Chapel
@@ -72,5 +69,7 @@ text later so embeds can be disabled.
 3. No huge black void between hero CTAs and “Why complex systems?”.
 4. Research intro has no “not peer-reviewed / not coursework”.
 5. Projects card says *Monorepo · a project in this portfolio*.
-6. Footer: clickable mailto, GitHub, Privacy.
-7. `/projects` still lands on Projects (`/work`).
+6. Footer: mailto, GitHub, Privacy (panel or `/privacy`).
+7. No live `http://www.github.com/chris-dewitt` hrefs.
+8. About heading is not `ABOUT CHRIS`.
+9. `/projects` still lands on Projects (`/work`).

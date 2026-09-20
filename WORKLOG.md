@@ -1,10 +1,10 @@
 ---
 document_id: DRL-ROOT-WORKLOG
 title: "Sequential Agent Worklog"
-version: 4.35.0
+version: 4.36.0
 status: APPROVED FOUNDATION
 owner: Christopher Noxon DeWitt
-last_updated: 2026-09-19
+last_updated: 2026-09-20
 ---
 
 
@@ -909,3 +909,22 @@ Full handoff copy: `agents/handoffs/2026-07-27-mission-00.md`.
   `verify-home-v11.png`, `verify-research-v11.png`, `verify-work-v11.png`.
 - Next: Director pastes `WIX_LIVE_PASTE_NOW.md` in Studio (incl. subtitle Text
   transform → None) and Publishes; agent re-verifies footer/privacy/name.
+
+## 2026-09-20 — Embedded code slice (Studio helpers)
+
+- Interpretation: Director “New idea: Embedded code” → do remaining polish via
+  BODY_END/HEAD embeds so Studio paste shrinks.
+- Live: new BODY_END **Studio paste helpers** `b21ad726-…` **rev 4**
+  (leaf-safe TreeWalker / document-fragment only): rewrite
+  `http://www.github.com/chris-dewitt` → `https://github.com/chris-dewitt`;
+  About `ABOUT CHRIS` → `About`; footer mailto wrap + GitHub + Privacy panel
+  (`#cd-privacy`) until `/privacy` page exists.
+- Already-live embeds still cover softener/enrichment/gap/open-weight.
+- Hero name already present on live DOM — not re-injected.
+- `/privacy` still 404 — remains Studio-only (no page API create this pass).
+- Docs: `WIX_LIVE_PASTE_NOW.md` 1.2.0, `WIX_REMAINING_EDITOR_FIXES.md` 1.7.0,
+  `SITE_COPY.md` 3.9.0; handoff updated.
+- Checks: `uv run python scripts/validate_foundation.py`; headless Chrome —
+  bad GitHub hrefs cleared; About heading cleaned; footer links present;
+  privacy panel opens on `#cd-privacy`.
+- Next: Director creates `/privacy` + permanent Text transform None; Publish.

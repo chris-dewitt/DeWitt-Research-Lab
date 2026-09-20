@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-022
 title: "Personal Academic Portfolio Site Copy"
-version: 3.8.0
+version: 3.9.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -12,15 +12,13 @@ last_updated: 2026-09-20
 
 Paste-ready copy for manual Wix use where the editor is required. SEO tags and
 URL redirects may be applied through the Wix SEO APIs when authenticated; page
-body copy still needs the editor.
+body copy still needs the editor for permanent ownership.
 
-Version 3.8.0 records softener rev 11 (`uncapHero` / `text-transform: none`) so
-the hero subtitle shows lowercase **and** despite Wix capitalize CSS, plus
-Director choices 2026-09-20: keep **PROJECTS** nav label (`/work` slug); public
-body keeps Chapel Hill/MADS softened/removed; home hero adds name + shorter
-body; Research/Projects panel copy drops defensive disclaimers; monorepo line
-softens. Live Studio checklist: `WIX_LIVE_PASTE_NOW.md`. Remaining editor
-ledger: `WIX_REMAINING_EDITOR_FIXES.md`.
+Version 3.9.0 records **Studio paste helpers** embed `b21ad726-…` rev 4
+(GitHub href fix, About heading, footer mailto/GitHub/Privacy panel) on top of
+softener rev 11 / enrichment rev 4 / gap V4. Director choices 2026-09-20 stand.
+Live Studio checklist (shrunk): `WIX_LIVE_PASTE_NOW.md` v1.2. Ledger:
+`WIX_REMAINING_EDITOR_FIXES.md` v1.7.
 
 ## Page tree
 
@@ -43,9 +41,12 @@ Four pages, as RES-016 approves them: Home, Research, Projects, About.
 - Enrichment `0505c503-…` rev `4` (softened Research/Projects intros)
 - Homepage gap cleanup `4ebc7135-…` rev `8` (`DL_HOME_GAP_V4`)
 - Home open-weight thesis embed `73d6abb6-…`
+- Studio helpers `b21ad726-…` rev `4` (GitHub hrefs; About heading; footer
+  mailto + GitHub + Privacy panel)
 
-**Director paste now:** `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md`
-(hero + name, footer, GitHub, privacy, About).
+**Director Studio remaining:** create `/privacy`; permanent subtitle Text
+transform → None; optional structural gap delete / permanent paste to retire
+embeds. See `WIX_LIVE_PASTE_NOW.md`.
 
 **Historical note.** An earlier version of this file listed fabricated metrics
 (`94.2%`, `500+ trajectories`, Llama/Mistral claims, `NODE: 01 // UPTIME`) as

@@ -1,7 +1,7 @@
 ---
 document_id: DRL-DIR-001
 title: "Director's Decision and Escalation Ledger"
-version: 1.23.0
+version: 1.24.0
 status: APPROVED OPERATING PROCEDURE
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -137,11 +137,14 @@ the Director's approval.
   embed (rev 4: softened Research intro; monorepo · a project in this portfolio).
   Home leads with an open-weight-over-opaque-APIs position and concrete
   safe-use framing (local runs, policy/approval, evidence gates). 2026-09-20:
-  Director is pasting permanent hero (name above thesis; Text transform None),
-  footer, GitHub, and privacy from `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md`.
-  Gap CSS V4 + Studio delete of empty strips target the home void. The Wix MCP
-  can manage SEO redirects/tags and embeds when authenticated; Studio page body
-  still needs the editor for permanent paste.
+  Director asked for more **embedded code** mid-Studio edit. Helpers embed
+  `b21ad726-…` rev 4 now covers GitHub href rewrite, About heading, and footer
+  mailto/GitHub/Privacy panel live; softener/enrichment/gap already carried
+  tone + capitalize + gap. Remaining Studio-musts: create `/privacy` (404 today),
+  permanent subtitle Text transform → None, optional empty-strip delete /
+  permanent paste to retire embeds. Checklist:
+  `docs/08-web-brand/WIX_LIVE_PASTE_NOW.md` v1.2. The Wix MCP manages embeds
+  when authenticated; new pages and permanent Text settings stay Studio.
 - ~~DIR-011: the policy gated on risk tier alone.~~ Closed by RES-026 and
   ADR-0011. The AtticusBench critical suite now measures a candidate rather than
   our own policy for the cross-session case. One critical-suite failure remains

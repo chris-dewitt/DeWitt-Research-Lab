@@ -1,7 +1,7 @@
 ---
 document_id: DRL-WEB-025
 title: "Wix Live Paste Now (Director — do these in Studio)"
-version: 1.1.0
+version: 1.2.0
 status: DRAFT
 owner: Christopher Noxon DeWitt
 last_updated: 2026-09-20
@@ -10,102 +10,36 @@ last_updated: 2026-09-20
 
 # Do this in Wix Studio now
 
-You are editing `www.dewitt-labs.com`. Paste these exactly, then **Publish**.
-Embeds are already live (Research/Projects tone, gap V4, softener rev 11).
+You are editing `www.dewitt-labs.com`. **Embedded code is carrying most of the
+remaining polish live** — hard-refresh before you paste. Studio pastes below
+are only what embeds cannot permanently own (new page, structural delete,
+permanent Text settings).
 
 No Chapel Hill / MADS in public body copy. Keep UNC Charlotte on About.
 
 ---
 
-## 1. Home hero (first viewport)
+## Already live via embeds (no paste required for interim look)
 
-**Find** the hero text block (thesis + subtitle + body). Replace with:
+| Fix | Embed |
+| --- | --- |
+| Chapel Hill / MADS strip + And-fix + subtitle `text-transform: none` | Softener `8d0df783-…` rev 11 |
+| Research / Projects softened panels | Enrichment `0505c503-…` rev 4 |
+| Home gap collapse between CTAs and “Why complex systems?” | Cleanup `4ebc7135-…` rev 8 (`DL_HOME_GAP_V4`) |
+| Open-weight thesis block | `73d6abb6-…` rev 2 |
+| Bad GitHub href → `https://github.com/chris-dewitt` | **Helpers** `b21ad726-…` rev 4 |
+| About heading `ABOUT CHRIS` → `About` (TreeWalker) | Helpers rev 4 |
+| Footer mailto + GitHub + Privacy (panel until `/privacy` exists) | Helpers rev 4 |
 
-```text
-Chris DeWitt
-
-I study complex systems by the way they fail.
-
-Forecast engineer and graduate student. Charlotte, North Carolina.
-
-I work full time as a forecast engineer and study applied data science part
-time, with an eye toward further graduate work in computer science. Weekends:
-agent platforms, evaluation harnesses, quantitative tools, and experiments
-that fail in interesting ways. Everything here is independent personal work —
-source, tests, failures, and runs you can replay.
-```
-
-**Critical — subtitle casing:** select the subtitle line
-(`Forecast engineer and graduate student…`) and set **Text transform → None**
-(not Capitalize / Title Case). Wix `capitalize` was forcing `And` even when the
-DOM said `and`. Softener rev 11 clears this for now; Studio must match or it
-returns when embeds are removed.
-
-**CTAs** (keep / retarget if needed):
-
-- Explore my projects → `/work`
-- Read the research → `/research`
-- Watch a recorded run → `https://chris-dewitt.github.io/DeWitt-Research-Lab/`
-- Browse the source → `https://github.com/chris-dewitt/DeWitt-Research-Lab`
-
-**Layout:** Delete or collapse any empty strip / blank section between the hero
-CTAs and “Why complex systems?” (the black void). If it is an empty container,
-delete it. If it is min-height on a section, set min-height to auto / 0.
-
-**Optional permanent open-weight block** (below Questions, or replace the
-embed later):
-
-```text
-Open-weight over opaque company APIs
-
-I prefer open-weight models I can run on hardware I own over closed, hosted
-systems from large AI vendors. Weights, licenses, and evaluation evidence should
-be inspectable. The software around them is open source.
-
-Safe use, concretely: deterministic policy and human approval bound what a model
-may do; an evidence gate can refuse to select a model at all; runs stay local by
-default so prompts and tools are not shipped to a third-party cloud; failures are
-published rather than smoothed over.
-
-No base model has been selected yet. That refusal is deliberate — preference is
-not evidence.
-```
+Hero already shows **Chris DeWitt** above the thesis on the live site.
 
 ---
 
-## 2. GitHub URL (site-wide)
+## Still paste / do in Studio (short list)
 
-Find any link to `http://www.github.com/chris-dewitt` (or similar) and set it to:
+### 1. Privacy page (must be Studio — embeds cannot create a route)
 
-`https://github.com/chris-dewitt`
-
-Profile / social icons too.
-
----
-
-## 3. Footer (master page / site-wide)
-
-Replace footer copy with:
-
-```text
-Everything shown on this website is independent personal work.
-
-Questions, ideas, or interesting failures:
-director@dewitt-labs.com
-```
-
-Link that email as `mailto:director@dewitt-labs.com`.
-
-Add two text links next to it:
-
-- GitHub → `https://github.com/chris-dewitt`
-- Privacy → `/privacy`
-
----
-
-## 4. Privacy page (new)
-
-Create page slug `/privacy`:
+Create page slug `/privacy` with:
 
 ```text
 Privacy
@@ -123,38 +57,29 @@ are separate purposes and need their own consent.
 No employer name, customer data, or private traces belong on this site.
 ```
 
----
+Until that page exists, the helpers embed’s **Privacy** footer link opens a
+panel (`#cd-privacy`) with the same copy. After the page ships, retarget the
+footer Privacy link to `/privacy` and we can disable the panel.
 
-## 5. About
+### 2. Permanent Text transform (hero subtitle)
 
-**Heading:** change `ABOUT CHRIS` → `About`
+Select `Forecast engineer and graduate student…` → **Text transform → None**.
+Softener already forces this live; Studio must match or capitalize returns when
+embeds are removed.
 
-**Body** (softened — no Chapel Hill):
+### 3. Optional: delete empty strip under hero CTAs
 
-```text
-I'm Chris DeWitt. I work full time as a forecast engineer and study applied
-data science part time, and expect to complete my current master's in May 2027.
+If a black void remains after hard-refresh, delete/collapse the empty section
+in the editor (gap CSS V4 already tries).
 
-I'm also a proud graduate of UNC Charlotte. My time there changed my life and
-gave me the confidence to keep learning, building, and asking bigger questions.
+### 4. Optional permanent paste (when you want embeds off)
 
-This portfolio documents independent personal work — research reports, software,
-and recorded runs. It is not coursework, not employer work, and not a laboratory.
-```
+- Hero body / About body from the longer pack in
+  `WIX_REMAINING_EDITOR_FIXES.md` / `SITE_COPY.md`
+- Footer copy as native Studio text + links (helpers already cover interim)
+- Research / Projects panel facts into Studio text (enrichment already covers)
 
----
+### 5. Publish
 
-## 6. Research + Projects headings
-
-- Page H1: `Research` / `Projects` (sentence case if you can; all-caps nav is fine)
-- Keep nav label **PROJECTS** → `/work` (do not rename the route today)
-
-I am rewriting the injected status panels so Research no longer leads with
-“not peer-reviewed / not coursework,” and Projects uses a softer monorepo line.
-
----
-
-## 7. Publish
-
-Click **Publish**. Hard-refresh the live site. Tell me when that lands and I
-will re-verify.
+**Publish**, hard-refresh. Ping for re-verify of `/privacy` and permanent
+subtitle transform.

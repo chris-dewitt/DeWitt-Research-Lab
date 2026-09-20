@@ -96,7 +96,7 @@ benchmark-side flag and fixes two recording defects.
 ## 8. Verification
 
 ```text
-uv run pytest -q --deselect tests/atticusbench/test_release_manifest.py
+uv run pytest
 uv run ruff check scripts tests packages services apps/atticus-local-runner datasets/atticusbench/src
 uv run mypy scripts packages services apps/atticus-local-runner datasets/atticusbench/src
 uv run bandit -q -r scripts packages services apps/atticus-local-runner datasets/atticusbench/src
@@ -112,7 +112,7 @@ uv run python scripts/run_atticusbench_models.py --stub --timeout 450
 
 | Check | Result |
 |---|---|
-| pytest | 770 passed, 1 skipped, 8 deselected |
+| pytest | 781 passed, 1 skipped, 0 failed |
 | ruff | All checks passed |
 | mypy (strict) | no issues in 91 source files |
 | bandit | clean |
@@ -122,23 +122,22 @@ uv run python scripts/run_atticusbench_models.py --stub --timeout 450
 
 ## 9. Known failures and risks
 
-**`tests/atticusbench/test_release_manifest.py` fails on Windows — two
-digest mismatches. Pre-existing; not introduced here; deliberately not fixed.**
+**None outstanding on this branch.** Full suite on Windows after rebasing onto
+`main`: 781 passed, 1 skipped, 0 failed.
 
-`core.autocrlf=true` with `* text=auto` means the working tree holds CRLF where
-git holds LF, and the release manifest hashes working-tree bytes. CI is Linux and
-stays green. Two consequences:
+The two `tests/atticusbench/test_release_manifest.py` digest failures recorded
+in earlier revisions of this handoff were a separate, pre-existing CRLF problem.
+They were fixed by PR #79 (`fix/manifest-digest-newline-normalization`), which
+merged to `main` as `6de4bdb` before this branch was rebased. That matters here
+for one reason worth keeping: while those tests failed they **rewrote the
+tracked manifest on disk**, so any model run started afterwards recorded
+`working_tree_dirty: true` and was correctly rejected as evidence. That is how
+the 2026-09-20 Qwen3-1.7B run came to be uncitable — the run was fine, the tree
+was not. With #79 in, a run started from a clean tree stays clean.
 
-- Severity **medium**: the dataset card claims the seed reproduces byte for byte,
-  and for the manifest that holds only on LF platforms.
-- Severity **high for evidence integrity**: the failing test **rewrites the
-  tracked manifest on disk**. Any model run started afterwards records
-  `working_tree_dirty: true` and is rejected by
-  `test_a_committed_model_run_carries_truthful_provenance`. This is exactly how
-  the Qwen3 run came to be unusable as evidence.
-
-Any fix moves published digests, so it is a Director decision, not a cleanup
-commit. It does not block the next mission.
+Remaining, and not introduced here: DIR-012 (the production plan contract
+forbids an empty plan, so the model path cannot abstain) and DIR-013 (the
+benchmark oracle names one route per case). Neither blocks this branch.
 
 ## 10. Dirty state and temporary resources
 
@@ -154,8 +153,8 @@ commit. It does not block the next mission.
 ## 11. Next-agent start instructions
 
 1. `git checkout fix/atticusbench-model-run-timeout && uv sync --all-packages --locked`
-2. Verify inherited state with the command block in section 8. Expect the two
-   `test_release_manifest.py` failures on Windows and a clean suite on Linux.
+2. Verify inherited state with the command block in section 8. Expect a fully
+   green suite on every platform now that PR #79 is on `main`.
 3. First task: re-run Qwen3-1.7B **from a clean working tree**, so the manifest
    records `working_tree_dirty: false`:
    `uv run python scripts/run_atticusbench_models.py --model hf.co/Qwen/Qwen3-1.7B-GGUF:Q8_0 --timeout 600`

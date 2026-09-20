@@ -16,7 +16,8 @@ file is the longer ledger + what still must be Studio.
 
 **2026-09-20 nav fix:** enrichment `0505c503-…` **rev 7** no longer hides
 Research/Work `<header>` comps (`comp-msfldjxx` / `comp-mswd0roa`). Hard-refresh
-`/research` and `/work` to confirm nav.
+`https://www.dewitt-labs.com/research` and `https://www.dewitt-labs.com/work`
+to confirm nav.
 
 Director decisions (2026-09-20): keep nav label **PROJECTS** (`/work` slug
 stays); Chapel Hill / MADS stay softened/removed from public body; home hero

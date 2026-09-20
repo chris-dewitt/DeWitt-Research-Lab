@@ -14,7 +14,7 @@ last_updated: 2026-09-20
 
 - Branch: `cursor/website-portfolio-polish-f70f`
 - Base: `origin/main`
-- Commit: see tip of branch after `docs(web): softener uncapHero + paste pack note`
+- Commit: `6a2077a` — `docs(web): softener uncapHero note and paste-pack Text-transform fix`
 
 ## 2. Objective completed
 
